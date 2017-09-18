@@ -1,0 +1,21 @@
+---
+layout: page
+---
+
+{% assign thread = page.thread %}
+{% assign comments = thread.comments | reverse %}
+
+<p class="post-meta">
+    Original Url: {{ thread.guid }}
+</p>
+
+
+{% for comment in comments %}
+<h2 id="">{{ comment.author }}:</h2>
+<p class="post-meta">
+    <time datetime="{{ comment.pubDate | date_to_xmlschema }}">
+        {{ comment.pubDate | date_to_string }}
+    </time>
+</p>
+<p>{{ comment.body }}</p>
+{% endfor %}
