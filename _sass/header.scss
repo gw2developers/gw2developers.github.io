@@ -1,0 +1,14 @@
+.site-header {
+    background: #AA0404;
+    border: none;
+}
+
+.site-nav .page-link {
+    color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+    .site-nav input:checked ~ .trigger .page-link {
+        color: #111;
+    }
+}
