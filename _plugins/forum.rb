@@ -25,7 +25,7 @@ module Jekyll
         end
 
         threads.each do |thread|
-          filename = File.join('forum-backup', Utils::slugify(thread['title']))
+          filename = File.join('forum-backup', thread['guid'].match(/\/([^\/]*)$/)[1])
           site.collections['forum-backup'].docs << ForumPage.new(site, site.source, filename, thread)
         end
       end
