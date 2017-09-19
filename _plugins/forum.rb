@@ -12,6 +12,11 @@ module Jekyll
       self.data['thread'] = thread
       self.data['title'] = thread['title']
       self.data['date'] = thread['pubDate']
+
+      self.data['thread']['comments'] = self.data['thread']['comments'].map do |comment|
+        comment['body'] = comment['body'].gsub(/href="https:\/\/forum-en\.guildwars2\.com\/forum\/community\/api\/([^\/]*)([\/#].*?)?"/, 'href="/forum-backup/\1"')
+        comment
+      end
     end
   end
 
