@@ -44,3 +44,8 @@ h3.card__title {
     font-size: 22px;
     margin-bottom: 4px;
 }
+
+.card > a:hover ~ .card__content .card__title,
+.card > a:focus ~ .card__content .card__title {
+    text-decoration: underline;
+}

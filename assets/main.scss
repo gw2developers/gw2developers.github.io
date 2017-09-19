@@ -3,5 +3,9 @@
 
 @import "{{ site.theme }}";
 
+body {
+    text-decoration-skip: ink; 
+}
+
 @import "header.scss";
 @import "cards.scss";
