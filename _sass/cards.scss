@@ -1,0 +1,46 @@
+.card-wrapper {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.card {
+    position: relative;
+    width: 236px;
+    margin-bottom: 20px;
+}
+
+.card img {
+    width: 236px;
+    border-radius: 3px;
+}
+
+.card + .card {
+    margin-left: 16px;
+}
+
+.card > a {
+    display: block;
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    z-index: 1;
+}
+
+.card--wide {
+    width: 100%;
+    display: flex;
+}
+
+.card__content {
+    padding-top: 8px;
+}
+
+.card--wide .card__content {
+    padding-left: 20px;
+    padding-top: 8px;
+}
+
+h3.card__title {
+    font-size: 22px;
+    margin-bottom: 4px;
+}
