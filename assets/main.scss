@@ -7,5 +7,14 @@ body {
     text-decoration-skip: ink; 
 }
 
+table > tbody > tr > th {
+    text-align: left;
+}
+
+dt {
+    font-weight: bold;
+}
+
 @import "header.scss";
 @import "cards.scss";
+@import "guide.scss";

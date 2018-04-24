@@ -30,8 +30,14 @@ plugins:
   - jekyll-feed
 
 collections:
-  - forum-backup
-    
+  forum-backup:
+    output: false
+  guides:
+    output: true
+    permalink: /:collection/:title/
+  docs:
+    output: true
+    permalink: /:collection/:title/
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.

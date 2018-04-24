@@ -1,0 +1,28 @@
+- type: authentication
+  code: 403
+  text: endpoint requires authentication
+  description: The endpoint you requested requires authentication and you haven't passed an API key.
+- type: authentication
+  code: 403
+  text: invalid key
+  description: The API key you provided is invalid. Maybe it has the wrong format or was deleted.
+- type: authentication
+  code: 403
+  text: requires scope xxx
+  description: The API key doesn't include all permissions needed to request the endpoint.
+- type: [authentication, guild]
+  code: 403
+  text: membership required
+  description: The account of the provided API key is not a member of the guild.
+- type: authentication
+  code: 403
+  text: access restricted to guild leaders
+  description: You are trying to access a guild endpoint that is only accessable to guild leaders, but the API key provided is owned by a normal member.
+- type: guild
+  code: 404
+  text: no such guild
+  description: Accessing a guild with an invalid id.
+- type: guild
+  code: 400
+  text: ErrGroupNotFound
+  description: Accessing a guild that doesn't exist.

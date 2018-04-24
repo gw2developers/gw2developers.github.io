@@ -5,6 +5,23 @@
 layout: page
 ---
 
+<h2>Guides</h2>
+
+<div class="card-wrapper">
+    {% assign guides = site.guides | slice:0,3 %}
+    {% for guide in guides %}
+        <div class="card">
+            <a href="{{ guide.url }}" title="{{ guide.title }}"></a>
+            <img src="{{ guide.image }}">
+            <div class="card__content">
+                <h3 class="card__title">{{ guide.title }}</h3>
+                <p class="card__text">{{ guide.summary }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
 <div class="card-wrapper">
     <div class="card card--wide">
         <a href="/forum-backup/"></a>

@@ -1,0 +1,24 @@
+.guide .post-header {
+    background: #AA0404;
+    color: #fff;
+    display: flex;
+    align-items: center;
+
+    img {
+        max-width: 33vw;
+    }
+
+    .post-header__content {
+        flex: 1;
+        padding: 12px 12px 12px 0;
+
+        p {
+            margin: 0;
+        }
+    }
+}
+
+.edit-on-github {
+    border-top: 1px solid #e8e8e8;
+    padding-top: 16px;
+}

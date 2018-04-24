@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<article class="post guide">
+
+  <header class="post-header">
+    <img src="{{ page.image }}" alt="">
+    <div class="post-header__content">
+      <h1 class="post-title">{{ page.title | escape }}</h1>
+      <p>{{ page.summary }}</p>
+    </div>
+  </header>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+</article>
+
+<div class="edit-on-github">
+  You can <a target="_blank" rel="noopener noreferrer" href="https://github.com/gw2developers/gw2developers.github.io/blob/source/{{ page.path }}">improve this guide on GitHub</a>.
+</div>

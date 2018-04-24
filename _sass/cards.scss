@@ -6,6 +6,7 @@
 .card {
     position: relative;
     width: 236px;
+    max-width: 100%;
     margin-bottom: 20px;
 }
 
@@ -48,4 +49,14 @@ h3.card__title {
 .card > a:hover ~ .card__content .card__title,
 .card > a:focus ~ .card__content .card__title {
     text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .card-wrapper {
+        flex-direction: column;
+    }
+
+    .card + .card {
+        margin-left: 0;
+    }
 }
