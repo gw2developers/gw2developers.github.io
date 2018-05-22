@@ -92,16 +92,18 @@
 - date: 2017-04-18
   changes:
   - endpoint: /v2/account/achievements
-    text: Fixed the Hint Completion achievement from showing up as completed ([#442](https://github.com/arenanet/api-cdi/issues/442))
-    text: Fixed the max number of bits for The Real Raiders of Tyria achievement ([#473](https://github.com/arenanet/api-cdi/issues/473))
+    text: | 
+      * Fixed the Hint Completion achievement from showing up as completed ([#442](https://github.com/arenanet/api-cdi/issues/442))
+      * Fixed the max number of bits for The Real Raiders of Tyria achievement ([#473](https://github.com/arenanet/api-cdi/issues/473))
   - endpoint: /v2/account/raids
     text: Fixed the order to be consistent with /v2/raids ([#457](https://github.com/arenanet/api-cdi/issues/457))
   - endpoint: /v2/achievements/categories
     text: Fixed the Super Adventure Festival daily category from not showing up ([#477](https://github.com/arenanet/api-cdi/issues/477))
   - endpoint: /v2/skills
-    text: Whitelisted thief stolen skills from players ([#471](https://github.com/arenanet/api-cdi/issues/471))
-    text: Whitelisted Cleansing Pulse trait skill ([#469](https://github.com/arenanet/api-cdi/issues/469))
-    text: Whitelisted pet skills ([#468](https://github.com/arenanet/api-cdi/issues/468))
+    text: | 
+      * Whitelisted thief stolen skills from players ([#471](https://github.com/arenanet/api-cdi/issues/471))
+      * Whitelisted Cleansing Pulse trait skill ([#469](https://github.com/arenanet/api-cdi/issues/469))
+      * Whitelisted pet skills ([#468](https://github.com/arenanet/api-cdi/issues/468))
 
 - date: 2017-04-12
   changes:
@@ -189,8 +191,9 @@
   - endpoint: /v2/items
     text: Automatically whitelist items whenever they are found in inventories ([#439](https://github.com/arenanet/api-cdi/issues/439))
   - endpoint: /v2/wvw/matches
-    text: Added the objective fortification details `points_tick`, `points_capture`, `guild_upgrades` and `yaks_delivered` ([#397](https://github.com/arenanet/api-cdi/pull/397))
-    text: Fixed the claim time of an unclaimed objective from returning `2001-01-01T00:00:00Z`, it now returns `null` ([#451](https://github.com/arenanet/api-cdi/issues/451))
+    text: | 
+      * Added the objective fortification details `points_tick`, `points_capture`, `guild_upgrades` and `yaks_delivered` ([#397](https://github.com/arenanet/api-cdi/pull/397))
+      * Fixed the claim time of an unclaimed objective from returning `2001-01-01T00:00:00Z`, it now returns `null` ([#451](https://github.com/arenanet/api-cdi/issues/451))
   - endpoint: /v2/professions
     text: Added skills as `skills` ([#435](https://github.com/arenanet/api-cdi/pull/435))
 
@@ -218,16 +221,18 @@
   - endpoint: /v2/items
     text: Added `Enrichment` and `Infusion` flags to `details.infusion_slots[].flags` ([#408](https://github.com/arenanet/api-cdi/issues/408))
   - endpoint: /v2/titles
-    text: Added support for titles awarded from multiple achievements as `achievements`, field `achievement` is now deprecated ([#407](https://github.com/arenanet/api-cdi/pull/407))
-    text: Added the amount of achievements points required for titles, if needed, as `ap_required` ([#407](https://github.com/arenanet/api-cdi/pull/407))
+    text: | 
+      * Added support for titles awarded from multiple achievements as `achievements`, field `achievement` is now deprecated ([#407](https://github.com/arenanet/api-cdi/pull/407))
+      * Added the amount of achievements points required for titles, if needed, as `ap_required` ([#407](https://github.com/arenanet/api-cdi/pull/407))
 
 - date: 2017-01-13
   changes:
   - endpoint: /v2/pvp/seasons/:id/leaderboards/:board/:region
     text: Fixed NA and EU being backwards ([Gitter](https://gitter.im/arenanet/api-cdi?at=58796189300f220a66e5a5f7))
   - endpoint: /v2/guild/:id/log
-    text: Fixed `user_id` from being set properly ([Gitter](https://gitter.im/arenanet/api-cdi?at=58796189300f220a66e5a5f7))
-    text: Fixed `count` for treasury entries from being overwritten with 1 ([Gitter](https://gitter.im/arenanet/api-cdi?at=58796189300f220a66e5a5f7))
+    text: | 
+      * Fixed `user_id` from being set properly ([Gitter](https://gitter.im/arenanet/api-cdi?at=58796189300f220a66e5a5f7))
+      * Fixed `count` for treasury entries from being overwritten with 1 ([Gitter](https://gitter.im/arenanet/api-cdi?at=58796189300f220a66e5a5f7))
 
 - date: 2017-01-10
   changes:
@@ -253,8 +258,9 @@
   - endpoint: /v2/masteries
     text: Fixed mastery experience costs to return the cost for the respective level only ([#413](https://github.com/arenanet/api-cdi/issues/413))
   - endpoint: /v2/pvp/games
-    text: Added rating change as `rating_change` ([#418](https://github.com/arenanet/api-cdi/pull/418))
-    text: Fixed start and end dates ([#421](https://github.com/arenanet/api-cdi/issues/421))
+    text: | 
+      * Added rating change as `rating_change` ([#418](https://github.com/arenanet/api-cdi/pull/418))
+      * Fixed start and end dates ([#421](https://github.com/arenanet/api-cdi/issues/421))
 
 - date: 2016-12-13
   changes:
@@ -284,8 +290,9 @@
   - endpoint: /v2/wvw/ranks
     text: Enabled endpoint ([#361](https://github.com/arenanet/api-cdi/pull/361))
   - endpoint: /v2/account/bank
-    text: Added item charges ([#376](https://github.com/arenanet/api-cdi/pull/376))
-    text: Fixed bank tab count ([#359](https://github.com/arenanet/api-cdi/issues/359))
+    text: | 
+      * Added item charges ([#376](https://github.com/arenanet/api-cdi/pull/376))
+      * Fixed bank tab count ([#359](https://github.com/arenanet/api-cdi/issues/359))
   - endpoint: /v2/account/inventory
     text: Added item charges ([#376](https://github.com/arenanet/api-cdi/pull/376))
   - endpoint: /v2/characters/:id/inventory
@@ -428,8 +435,9 @@
   - endpoint: /v2/pvp/amulets
     text: Enabled endpoint ([#269](https://github.com/arenanet/api-cdi/pull/269))
   - endpoint: /v2/characters
-    text: Added PvP builds as `equipment_pvp` ([#269](https://github.com/arenanet/api-cdi/pull/269))
-    text: Added equipped skills as `skills`, including legends for revenants and pets for rangers ([#178](https://github.com/arenanet/api-cdi/pull/178) and [e0fbfe44](https://github.com/arenanet/api-cdi/commit/e0fbfe4474a12f4089e64f65f4357f313b0fbec0))
+    text: | 
+      * Added PvP builds as `equipment_pvp` ([#269](https://github.com/arenanet/api-cdi/pull/269))
+      * Added equipped skills as `skills`, including legends for revenants and pets for rangers ([#178](https://github.com/arenanet/api-cdi/pull/178) and [e0fbfe44](https://github.com/arenanet/api-cdi/commit/e0fbfe4474a12f4089e64f65f4357f313b0fbec0))
 
 - date: 2016-04-20
   changes:
@@ -468,8 +476,9 @@
   - endpoint: /v2/achievements/daily
     text: Marked as enumerable ([Gitter](https://gitter.im/arenanet/api-cdi?at=56e0ab4c89dd3cce10050df3))
   - endpoint: /v2/guild/:id/log
-    text: Fixed names of kicked members from not being resolved ([Gitter](https://gitter.im/arenanet/api-cdi?at=56e0ab4c89dd3cce10050df3))
-    text: Added stash transaction log entries ([Gitter](https://gitter.im/arenanet/api-cdi?at=56e0ab4c89dd3cce10050df3))
+    text: | 
+      * Fixed names of kicked members from not being resolved ([Gitter](https://gitter.im/arenanet/api-cdi?at=56e0ab4c89dd3cce10050df3))
+      * Added stash transaction log entries ([Gitter](https://gitter.im/arenanet/api-cdi?at=56e0ab4c89dd3cce10050df3))
   - endpoint: /v2/pvp/seasons
     text: Added start and end date configurables ([Gitter](https://gitter.im/arenanet/api-cdi?at=56e0ab4c89dd3cce10050df3))
   - endpoint: /v2/traits
@@ -492,8 +501,9 @@
   - endpoint: /v2/pvp/seasons
     text: Enabled endpoint ([#199](https://github.com/arenanet/api-cdi/pull/199))
   - endpoint: /v2/pvp/games
-    text: Added match type as `rating_type` ([#199](https://github.com/arenanet/api-cdi/pull/199))
-    text: Added corresponding season for ranked matches as `season` ([#199](https://github.com/arenanet/api-cdi/pull/199))
+    text: | 
+      * Added match type as `rating_type` ([#199](https://github.com/arenanet/api-cdi/pull/199))
+      * Added corresponding season for ranked matches as `season` ([#199](https://github.com/arenanet/api-cdi/pull/199))
 
 - date: 2016-02-12
   changes:
@@ -547,11 +557,13 @@
   - endpoint: /v2/account
     text: Added the daily and monthly achievement points as `daily` and `monthly` ([#147](https://github.com/arenanet/api-cdi/pull/147))
   - endpoint: /v2/achievements
-    text: Added support for repeatable achievements with the number of times it has been completed as `repeated` ([#142](https://github.com/arenanet/api-cdi/pull/142))
-    text: Added the `Repeatable` flag ([#142](https://github.com/arenanet/api-cdi/pull/142))
+    text: | 
+      * Added support for repeatable achievements with the number of times it has been completed as `repeated` ([#142](https://github.com/arenanet/api-cdi/pull/142))
+      * Added the `Repeatable` flag ([#142](https://github.com/arenanet/api-cdi/pull/142))
   - endpoint: /v2/skins
-    text: Added skin rarity as `rarity` ([#163](https://github.com/arenanet/api-cdi/pull/163))
-    text: Added the `OverrideRarity` flag ([#163](https://github.com/arenanet/api-cdi/pull/163))
+    text: | 
+      * Added skin rarity as `rarity` ([#163](https://github.com/arenanet/api-cdi/pull/163))
+      * Added the `OverrideRarity` flag ([#163](https://github.com/arenanet/api-cdi/pull/163))
 
 - date: 2015-12-16
   changes:
@@ -617,11 +629,13 @@
 - date: 2015-10-27
   changes:
   - endpoint: /v2/colors
-    text: Added the item id that unlocks the color as `item` ([#88](https://github.com/arenanet/api-cdi/pull/88))
-    text: Added the in-game sort categories as `categories` ([#88](https://github.com/arenanet/api-cdi/pull/88))
+    text: | 
+      * Added the item id that unlocks the color as `item` ([#88](https://github.com/arenanet/api-cdi/pull/88))
+      * Added the in-game sort categories as `categories` ([#88](https://github.com/arenanet/api-cdi/pull/88))
   - endpoint: /v2/wvw/objectives
-    text: Added label coordinates as `label_coord` ([#101](https://github.com/arenanet/api-cdi/pull/101))
-    text: Fixed coordinates (these were actually the label coordinates, [#101](https://github.com/arenanet/api-cdi/pull/101))
+    text: | 
+      * Added label coordinates as `label_coord` ([#101](https://github.com/arenanet/api-cdi/pull/101))
+      * Fixed coordinates (these were actually the label coordinates, [#101](https://github.com/arenanet/api-cdi/pull/101))
 
 - date: 2015-10-6
   changes:
@@ -713,8 +727,9 @@
   - endpoint: /v2/account
     text: Added account creation date as `created` ([#33](https://github.com/arenanet/api-cdi/pull/33))
   - endpoint: /v2/characters
-    text: Added character age in seconds as `age` ([#33](https://github.com/arenanet/api-cdi/pull/33))
-    text: Added character deaths as `deaths` ([#33](https://github.com/arenanet/api-cdi/pull/33))
+    text: | 
+      * Added character age in seconds as `age` ([#33](https://github.com/arenanet/api-cdi/pull/33))
+      * Added character deaths as `deaths` ([#33](https://github.com/arenanet/api-cdi/pull/33))
   - Added support for the `Accept-Language` header ([#30](https://github.com/arenanet/api-cdi/issues/30))
 
 - date: 2014-10-24
@@ -751,28 +766,31 @@
 - date: 2013-10-15
   changes:
   - endpoint: /v1/wvw/match_details
-    text: Each object in the "maps" array was given a "bonuses" array. This array gives information on which bonuses are coming from each map, and which team has them. "Borderlands Bloodlust" ownership information appears in this array.
-    text: Fixed a bug which prevented Ruins objectives which time-decayed to a neutral/uncaptured state from being listed as "Neutral".
+    text: | 
+      * Each object in the "maps" array was given a "bonuses" array. This array gives information on which bonuses are coming from each map, and which team has them. "Borderlands Bloodlust" ownership information appears in this array.
+      * Fixed a bug which prevented Ruins objectives which time-decayed to a neutral/uncaptured state from being listed as "Neutral".
 
 - date: 2013-08-6
   changes:
-  - endpoint: the
-    text: Enabled endpoint rendering service for retrieving game assets in web-friendly form
+  - Enabled the rendering service for retrieving game assets in web-friendly form
   - endpoint: /v1/files
     text: Enabled endpoint that lists some generic useful UI icons that can be retrieved from the rendering service
-  - endpoint: /v1/item_details to show item icon ids that can be used in conjunction with the rendering service
+  - endpoint: /v1/item_details
+    text: Updated endpoint to show item icon ids that can be used in conjunction with the rendering service
 
 - date: 2013-06-22
   changes:
   - endpoint: /v1/event_details
-    text: Enabled endpoint
-    text: This API returns more detailed information about events, including their starting position in the world. This can be used in conjunction with the map API to show the position of events on the world map.
+    text: | 
+      * Enabled endpoint
+      * This API returns more detailed information about events, including their starting position in the world. This can be used in conjunction with the map API to show the position of events on the world map.
 
 - date: 2013-06-20
   changes:
   - endpoint: /v1/maps
-    text: Enabled endpoint and the world map tile service
-    text: These two services can be used together to create world maps outside of the game, and will serve as the basis for future map-based API content.
+    text: | 
+      * Enabled endpoint and the world map tile service
+      * These two services can be used together to create world maps outside of the game, and will serve as the basis for future map-based API content.
 
 - date: 2013-06-11
   changes:
@@ -783,28 +801,32 @@
 - date: 2013-06-7
   changes:
   - endpoint: /v1/item_details
-    text: Consumable unlock items now show the type of unlock they perform
-    text: Consumable dyes and recipes now show the `color_id` and `recipe_id` they unlock
+    text: | 
+      * Consumable unlock items now show the type of unlock they perform
+      * Consumable dyes and recipes now show the `color_id` and `recipe_id` they unlock
 
 - date: 2013-06-6
   changes:
   - endpoint: /v1/item_details
-    text: Added bonus tiers for upgrade components
-    text: Fixed `"SoulBindOnUse"` flag for certain items
+    text: | 
+      * Added bonus tiers for upgrade components
+      * Fixed `"SoulBindOnUse"` flag for certain items
 
 - date: 2013-06-3
   changes:
   - endpoint: /v1/colors
-    text: Added pre-calculated RGB values for users who only want an RGB value and are not planning to apply the color to a texture mask
-    text: Added `base_rgb` value to each color returned
-    text: It now only returns "dye" colors (previously it returned skin, eye, hair, etc. colors in addition to dyes)
+    text: | 
+      * Added pre-calculated RGB values for users who only want an RGB value and are not planning to apply the color to a texture mask
+      * Added `base_rgb` value to each color returned
+      * It now only returns "dye" colors (previously it returned skin, eye, hair, etc. colors in addition to dyes)
 
 - date: 2013-06-2
   changes:
   - endpoint: /v1/colors
-    text: Color values should be more useful
-    text: Fixed JSON types
-    text: The colors now only include the materials that are actually defined for them
+    text: | 
+      * Color values should be more useful
+      * Fixed JSON types
+      * The colors now only include the materials that are actually defined for them
 
 - date: 2013-06-1
   changes:
@@ -822,8 +844,9 @@
   - endpoint: /v1/wvw/matches
     text: Added `start_time` and `end_time`
   - endpoint: /v1/item_details
-    text: Output has been improved so that null properties are more easily interpreted ([forum](https://forum-en.gw2archive.eu/forum/community/api/Possible-issue-with-buff-property))
-    text: Infusion slots now show the `item_id` of the infusion instead of the full item details
+    text: | 
+      * Output has been improved so that null properties are more easily interpreted ([forum](https://forum-en.gw2archive.eu/forum/community/api/Possible-issue-with-buff-property))
+      * Infusion slots now show the `item_id` of the infusion instead of the full item details
   - Item discovery has been improved, so hopefully any missing item issues will be resolved
 
 - date: 2013-05-23
