@@ -38,6 +38,9 @@ collections:
   docs:
     output: true
     permalink: /:collection/:title/
+  endpoints:
+    output: true
+    permalink: /docs/:path
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.

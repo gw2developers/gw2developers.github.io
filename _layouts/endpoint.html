@@ -1,0 +1,59 @@
+---
+layout: default
+---
+
+<style>
+    .flags { margin: -12px 0 32px; }
+    .flags > span {
+        font-size: 14px;
+        border: 1px solid #eee;
+        border-left-width: 4px;
+        background: #f9f9f9;
+        padding: 2px 8px;
+        border-radius: 3px;
+    }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #eee; padding: 4px 8px; text-align: left}
+</style>
+
+<h1>{{ page.endpoint }}</h1>
+
+<div class="flags">
+{% if page.authenticated %}<span>authenticated</span>{% endif %}
+{% if page.paginated %}<span>paginated</span>{% endif %}
+{% if page.bulk %}<span>bulk expanded</span>{% endif %}
+</div>
+
+{{ content }}
+
+<h2>Query Parameters</h2>
+<table>
+    <thead>
+        <tr><th>parameter</th><th>type</th><th>description</th></tr>
+    </thead>
+    <tbody>
+        {% if page.paginated %}
+        <tr><td><code>page</code></td><td>int</td><td>The page index of results to return.</td></tr>
+        <tr><td><code>page_size</code></td><td>int</td><td>The size of each page. Defaults to 50, most items can</td></tr>
+        {% endif %}
+    </tbody>
+</table>
+
+{% if page.paginated %}
+<h2>Pagination</h2>
+<p>The results of this endpoints can be returned in pages ({{ page.endpoint}}?page=&lt;page&gt;)</p>
+{% endif %}
+
+<h2 id="changes">Changes</h2>
+
+{% for entry in site.data.changelog %}
+{% assign changes = entry.changes | where_exp:"item", "item.endpoint contains page.endpoint" %}
+{% if changes.size > 0 %}
+<h3>{{ entry.date | date_to_long_string }}</h3>
+<ul>
+{% for change in changes %}
+    <li>{{ change.text | markdownify }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endfor %}
