@@ -1,7 +1,7 @@
 
 - date: 2018-05-21
   changes:
-  - endpoint: /v2/itemstats
+  - endpoint: [ "/v2/itemstats" ]
     text: Changed `attributes` to an array of objects that return the name, multiplier and bonus value of each attribute ([Gitter](https://gitter.im/arenanet/api-cdi?at=5b0363bed332ee5fad388d11))
     breaking: true
   - endpoint: [ /v2/nodes, /v2/account/home/nodes ]
@@ -16,13 +16,13 @@
 
 - date: 2018-05-18
   changes:
-  - endpoint: /v2/pvp/seasons
+  - endpoint: [ "/v2/pvp/seasons" ]
     text: Added season 11 ([#622](https://github.com/arenanet/api-cdi/issues/622))
 - date: 2018-01-10
   changes:
   - endpoint: [ /v2/raids, /v2/account/raids ]
     text: Added Hall of Chains as `hall_of_chains` ([#588](https://github.com/arenanet/api-cdi/issues/588))
-  - endpoint: /v2/pvp/seasons
+  - endpoint: [ "/v2/pvp/seasons" ]
     text: Added season 9 and 10 ([#593](https://github.com/arenanet/api-cdi/issues/593))
 
 - date: 2017-10-23
@@ -43,63 +43,63 @@
 
 - date: 2017-07-12
   changes:
-  - endpoint: /v2/commerce/delivery
+  - endpoint: [ "/v2/commerce/delivery" ]
     text: Fixed time-out issues ([Gitter](https://gitter.im/arenanet/api-cdi?at=596558100de4d2545e1a20db))
 
 - date: 2017-06-6
   changes:
-  - endpoint: /v2/achievements/categories
+  - endpoint: [ "/v2/achievements/categories" ]
     text: Deduplicate achievement lists ([Gitter](https://gitter.im/arenanet/api-cdi?at=5936d36df2dd2dba06756a43))
-  - endpoint: /v2/pvp/seasons
+  - endpoint: [ "/v2/pvp/seasons" ]
     text: Added ranks ([Gitter](https://gitter.im/arenanet/api-cdi?at=5936d36df2dd2dba06756a43))
-  - endpoint: /v2/wvw/objectives
+  - endpoint: [ "/v2/wvw/objectives" ]
     text: Fixed location of Langor Gulch ([Gitter](https://gitter.im/arenanet/api-cdi?at=5936d36df2dd2dba06756a43))
 
 - date: 2017-05-16
   changes:
-  - endpoint: /v2/account/home/nodes
+  - endpoint: [ "/v2/account/home/nodes" ]
     text: Added Fire Orchid Node as `primordial_orchid` ([Gitter](https://gitter.im/arenanet/api-cdi?at=591b58bb9f4f4ab05bcef51f))
-  - endpoint: /v2/guild/:id/teams
+  - endpoint: [ "/v2/guild/:id/teams" ]
     text: Added alternative encoding support for members ([Gitter](https://gitter.im/arenanet/api-cdi?at=591b58bb9f4f4ab05bcef51f))
-  - endpoint: /v2/skills
+  - endpoint: [ "/v2/skills" ]
     text: Added specialization id as `specialization` ([Gitter](https://gitter.im/arenanet/api-cdi?at=591b58bb9f4f4ab05bcef51f))
-  - endpoint: /v2/wvw/matches/stats/:id/guilds/:guild_id
+  - endpoint: [ "/v2/wvw/matches/stats/:id/guilds/:guild_id" ]
     text: Changed HTTP code to 404 instead of 200 when there is no data present ([Gitter](https://gitter.im/arenanet/api-cdi?at=591b58bb9f4f4ab05bcef51f))
 
 - date: 2017-05-15
   changes:
-  - endpoint: /v2/wvw/matches/stats/:id/guilds/:guild_id
+  - endpoint: [ "/v2/wvw/matches/stats/:id/guilds/:guild_id" ]
     text: Enabled endpoint ([#509](https://github.com/arenanet/api-cdi/pull/509))
 
 - date: 2017-05-4
   changes:
-  - endpoint: /v2/wvw/matches/stats/:id/teams/:team/top/kdr
+  - endpoint: [ "/v2/wvw/matches/stats/:id/teams/:team/top/kdr" ]
     text: Enabled endpoint ([#509](https://github.com/arenanet/api-cdi/pull/509))
-  - endpoint: /v2/wvw/matches/stats/:id/teams/:team/top/kills
+  - endpoint: [ "/v2/wvw/matches/stats/:id/teams/:team/top/kills" ]
     text: Enabled endpoint ([#509](https://github.com/arenanet/api-cdi/pull/509))
 
 - date: 2017-04-19
   changes:
-  - endpoint: /v2/account/mailcarriers
+  - endpoint: [ "/v2/account/mailcarriers" ]
     text: Enabled endpoint ([#446](https://github.com/arenanet/api-cdi/pull/446) and [#185](https://github.com/arenanet/api-cdi/issues/185))
-  - endpoint: /v2/account/pvp/heroes
+  - endpoint: [ "/v2/account/pvp/heroes" ]
     text: Enabled endpoint ([#464](https://github.com/arenanet/api-cdi/pull/464) and [#396](https://github.com/arenanet/api-cdi/issues/396))
-  - endpoint: /v2/mailcarriers
+  - endpoint: [ "/v2/mailcarriers" ]
     text: Enabled endpoint ([#446](https://github.com/arenanet/api-cdi/pull/446) and [#185](https://github.com/arenanet/api-cdi/issues/185))
-  - endpoint: /v2/pvp/heroes
+  - endpoint: [ "/v2/pvp/heroes" ]
     text: Enabled endpoint ([#464](https://github.com/arenanet/api-cdi/pull/464) and [#396](https://github.com/arenanet/api-cdi/issues/396))
 
 - date: 2017-04-18
   changes:
-  - endpoint: /v2/account/achievements
+  - endpoint: [ "/v2/account/achievements" ]
     text: | 
       * Fixed the Hint Completion achievement from showing up as completed ([#442](https://github.com/arenanet/api-cdi/issues/442))
       * Fixed the max number of bits for The Real Raiders of Tyria achievement ([#473](https://github.com/arenanet/api-cdi/issues/473))
-  - endpoint: /v2/account/raids
+  - endpoint: [ "/v2/account/raids" ]
     text: Fixed the order to be consistent with /v2/raids ([#457](https://github.com/arenanet/api-cdi/issues/457))
-  - endpoint: /v2/achievements/categories
+  - endpoint: [ "/v2/achievements/categories" ]
     text: Fixed the Super Adventure Festival daily category from not showing up ([#477](https://github.com/arenanet/api-cdi/issues/477))
-  - endpoint: /v2/skills
+  - endpoint: [ "/v2/skills" ]
     text: | 
       * Whitelisted thief stolen skills from players ([#471](https://github.com/arenanet/api-cdi/issues/471))
       * Whitelisted Cleansing Pulse trait skill ([#469](https://github.com/arenanet/api-cdi/issues/469))
@@ -111,18 +111,18 @@
 
 - date: 2017-04-11
   changes:
-  - endpoint: /v2/files
+  - endpoint: [ "/v2/files" ]
     text: Added the files `ui_minor_trait_mask` and `ui_major_trait_mask` ([#387](https://github.com/arenanet/api-cdi/issues/387))
-  - endpoint: /v2/guild/:id
+  - endpoint: [ "/v2/guild/:id" ]
     text: Added member count and capacity as `member_count` and `member_capacity` ([#447](https://github.com/arenanet/api-cdi/issues/447))
 
 - date: 2017-04-7
   changes:
-  - endpoint: /v2/characters/:id/sab
+  - endpoint: [ "/v2/characters/:id/sab" ]
     text: Enabled endpoint ([#486](https://github.com/arenanet/api-cdi/pull/486) and [#480](https://github.com/arenanet/api-cdi/issues/480))
-  - endpoint: /v2/account/home/cats
+  - endpoint: [ "/v2/account/home/cats" ]
     text: Added hint for the Super Adventure Box cat ([#479](https://github.com/arenanet/api-cdi/issues/479))
-  - endpoint: /v2/guild/:id/teams
+  - endpoint: [ "/v2/guild/:id/teams" ]
     text: Forwarded another error ([Gitter](https://gitter.im/arenanet/api-cdi?at=58e81b698e4b63533da8b09a))
 
 - date: 2017-04-1
@@ -131,9 +131,9 @@
 
 - date: 2017-03-31
   changes:
-  - endpoint: /v2/skills
+  - endpoint: [ "/v2/skills" ]
     text: Fixed missing skill facts for range-varying damage types ([#450](https://github.com/arenanet/api-cdi/issues/450))
-  - endpoint: /v2/wvw/matches/scores
+  - endpoint: [ "/v2/wvw/matches/scores" ]
     text: Added skirmishes as `skirmishes` ([#381](https://github.com/arenanet/api-cdi/pull/381) and [#472](https://github.com/arenanet/api-cdi/issues/472))
 
 - date: 2017-03-21
@@ -147,59 +147,59 @@
 
 - date: 2017-03-17
   changes:
-  - endpoint: /v2/account/achievements
+  - endpoint: [ "/v2/account/achievements" ]
     text: Added support for paginated responses ([#467](https://github.com/arenanet/api-cdi/issues/467))
-  - endpoint: /v2/account/home
+  - endpoint: [ "/v2/account/home" ]
     text: This endpoint now returns the subendpoints ([#456](https://github.com/arenanet/api-cdi/issues/456))
-  - endpoint: /v2/characters/:id/equipment
+  - endpoint: [ "/v2/characters/:id/equipment" ]
     text: Changed unequipped PvP equipment from `0` to `null` ([#454](https://github.com/arenanet/api-cdi/issues/454))
-  - endpoint: /v2/gliders
+  - endpoint: [ "/v2/gliders" ]
     text: Fixed gliders with no unlock items from not being whitelisted ([#466](https://github.com/arenanet/api-cdi/issues/466))
-  - endpoint: /v2/skills
+  - endpoint: [ "/v2/skills" ]
     text: Fixed Celestial Avatar skills from not showing up ([#357](https://github.com/arenanet/api-cdi/issues/357))
-  - endpoint: /v2/wvw/matches
+  - endpoint: [ "/v2/wvw/matches" ]
     text: Added victory points as `victory_points` ([#461](https://github.com/arenanet/api-cdi/pull/461))
 
 - date: 2017-03-15
   changes:
-  - endpoint: /v2/account/gliders
+  - endpoint: [ "/v2/account/gliders" ]
     text: Enabled endpoint ([#462](https://github.com/arenanet/api-cdi/pull/462) and [#182](https://github.com/arenanet/api-cdi/issues/182))
-  - endpoint: /v2/gliders
+  - endpoint: [ "/v2/gliders" ]
     text: Enabled endpoint ([#462](https://github.com/arenanet/api-cdi/pull/462) and [#182](https://github.com/arenanet/api-cdi/issues/182))
 
 - date: 2017-03-7
   changes:
-  - endpoint: /v2/wvw/objectives
+  - endpoint: [ "/v2/wvw/objectives" ]
     text: Fixed ownership ruins from not showing up ([#102](https://github.com/arenanet/api-cdi/issues/102) and [#226](https://github.com/arenanet/api-cdi/issues/226))
 
 - date: 2017-03-1
   changes:
-  - endpoint: /v2/account/dungeons
+  - endpoint: [ "/v2/account/dungeons" ]
     text: Enabled endpoint ([#443](https://github.com/arenanet/api-cdi/pull/443))
-  - endpoint: /v2/account/home/cats
+  - endpoint: [ "/v2/account/home/cats" ]
     text: Enabled endpoint ([#445](https://github.com/arenanet/api-cdi/pull/445))
-  - endpoint: /v2/account/home/nodes
+  - endpoint: [ "/v2/account/home/nodes" ]
     text: Enabled endpoint ([#444](https://github.com/arenanet/api-cdi/pull/444))
-  - endpoint: /v2/account/raids
+  - endpoint: [ "/v2/account/raids" ]
     text: Enabled endpoint ([#443](https://github.com/arenanet/api-cdi/pull/443))
-  - endpoint: /v2/dungeons
+  - endpoint: [ "/v2/dungeons" ]
     text: Enabled endpoint ([#443](https://github.com/arenanet/api-cdi/pull/443))
-  - endpoint: /v2/raids
+  - endpoint: [ "/v2/raids" ]
     text: Enabled endpoint ([#443](https://github.com/arenanet/api-cdi/pull/443))
-  - endpoint: /v2/wvw/upgrades
+  - endpoint: [ "/v2/wvw/upgrades" ]
     text: Enabled endpoint ([#431](https://github.com/arenanet/api-cdi/pull/431))
-  - endpoint: /v2/items
+  - endpoint: [ "/v2/items" ]
     text: Automatically whitelist items whenever they are found in inventories ([#439](https://github.com/arenanet/api-cdi/issues/439))
-  - endpoint: /v2/wvw/matches
+  - endpoint: [ "/v2/wvw/matches" ]
     text: | 
       * Added the objective fortification details `points_tick`, `points_capture`, `guild_upgrades` and `yaks_delivered` ([#397](https://github.com/arenanet/api-cdi/pull/397))
       * Fixed the claim time of an unclaimed objective from returning `2001-01-01T00:00:00Z`, it now returns `null` ([#451](https://github.com/arenanet/api-cdi/issues/451))
-  - endpoint: /v2/professions
+  - endpoint: [ "/v2/professions" ]
     text: Added skills as `skills` ([#435](https://github.com/arenanet/api-cdi/pull/435))
 
 - date: 2017-02-24
   changes:
-  - endpoint: /v2/achievements/daily
+  - endpoint: [ "/v2/achievements/daily" ]
     text: Added Fractal dailies as `fractals` ([#338](https://github.com/arenanet/api-cdi/pull/338))
 
 - date: 2017-02-23
@@ -212,213 +212,213 @@
 
 - date: 2017-02-2
   changes:
-  - endpoint: /v2/account
+  - endpoint: [ "/v2/account" ]
     text: Added account age in seconds as `age` ([#406](https://github.com/arenanet/api-cdi/pull/406) and [#405](https://github.com/arenanet/api-cdi/issues/405))
-  - endpoint: /v2/achievements
+  - endpoint: [ "/v2/achievements" ]
     text: Fixed unused bits being exposed ([#402](https://github.com/arenanet/api-cdi/issues/402))
-  - endpoint: /v2/continents
+  - endpoint: [ "/v2/continents" ]
     text: Added label coordinates as `label_coord` ([#378](https://github.com/arenanet/api-cdi/pull/378) and [#334](https://github.com/arenanet/api-cdi/issues/334))
-  - endpoint: /v2/items
+  - endpoint: [ "/v2/items" ]
     text: Added `Enrichment` and `Infusion` flags to `details.infusion_slots[].flags` ([#408](https://github.com/arenanet/api-cdi/issues/408))
-  - endpoint: /v2/titles
+  - endpoint: [ "/v2/titles" ]
     text: | 
       * Added support for titles awarded from multiple achievements as `achievements`, field `achievement` is now deprecated ([#407](https://github.com/arenanet/api-cdi/pull/407))
       * Added the amount of achievements points required for titles, if needed, as `ap_required` ([#407](https://github.com/arenanet/api-cdi/pull/407))
 
 - date: 2017-01-13
   changes:
-  - endpoint: /v2/pvp/seasons/:id/leaderboards/:board/:region
+  - endpoint: [ "/v2/pvp/seasons/:id/leaderboards/:board/:region" ]
     text: Fixed NA and EU being backwards ([Gitter](https://gitter.im/arenanet/api-cdi?at=58796189300f220a66e5a5f7))
-  - endpoint: /v2/guild/:id/log
+  - endpoint: [ "/v2/guild/:id/log" ]
     text: | 
       * Fixed `user_id` from being set properly ([Gitter](https://gitter.im/arenanet/api-cdi?at=58796189300f220a66e5a5f7))
       * Fixed `count` for treasury entries from being overwritten with 1 ([Gitter](https://gitter.im/arenanet/api-cdi?at=58796189300f220a66e5a5f7))
 
 - date: 2017-01-10
   changes:
-  - endpoint: /v2/guild/:id/log
+  - endpoint: [ "/v2/guild/:id/log" ]
     text: Added `?since` parameter ([#426](https://github.com/arenanet/api-cdi/pull/426))
-  - endpoint: /v2/pvp/seasons/:id/leaderboards
+  - endpoint: [ "/v2/pvp/seasons/:id/leaderboards" ]
     text: Added the NA and EU regions as subendpoints ([#428](https://github.com/arenanet/api-cdi/pull/428))
-  - endpoint: /v2/wvw/matches
+  - endpoint: [ "/v2/wvw/matches" ]
     text: Fixed Obsidian Sanctum from showing up
 
 - date: 2017-01-7
   changes:
-  - endpoint: /v2/wvw/matches/overview
+  - endpoint: [ "/v2/wvw/matches/overview" ]
     text: Enabled endpoint as extra subendpoint ([#416](https://github.com/arenanet/api-cdi/pull/416))
-  - endpoint: /v2/wvw/matches/scores
+  - endpoint: [ "/v2/wvw/matches/scores" ]
     text: Enabled endpoint as extra subendpoint ([#416](https://github.com/arenanet/api-cdi/pull/416))
-  - endpoint: /v2/wvw/matches/stats
+  - endpoint: [ "/v2/wvw/matches/stats" ]
     text: Enabled endpoint as extra subendpoint ([#416](https://github.com/arenanet/api-cdi/pull/416))
-  - endpoint: /v2/account/wallet
+  - endpoint: [ "/v2/account/wallet" ]
     text: Fixed gems balance
-  - endpoint: /v2/guild/:id/log
+  - endpoint: [ "/v2/guild/:id/log" ]
     text: Fixed player ids from not showing up in certain cases ([#384](https://github.com/arenanet/api-cdi/issues/384))
-  - endpoint: /v2/masteries
+  - endpoint: [ "/v2/masteries" ]
     text: Fixed mastery experience costs to return the cost for the respective level only ([#413](https://github.com/arenanet/api-cdi/issues/413))
-  - endpoint: /v2/pvp/games
+  - endpoint: [ "/v2/pvp/games" ]
     text: | 
       * Added rating change as `rating_change` ([#418](https://github.com/arenanet/api-cdi/pull/418))
       * Fixed start and end dates ([#421](https://github.com/arenanet/api-cdi/issues/421))
 
 - date: 2016-12-13
   changes:
-  - endpoint: /v2/pvp/seasons/:id/leaderboards
+  - endpoint: [ "/v2/pvp/seasons/:id/leaderboards" ]
     text: Enabled endpoint ([#400](https://github.com/arenanet/api-cdi/pull/400))
-  - endpoint: /v2/pvp/seasons/:id/leaderboards/:board
+  - endpoint: [ "/v2/pvp/seasons/:id/leaderboards/:board" ]
     text: Enabled endpoint ([#400](https://github.com/arenanet/api-cdi/pull/400))
-  - endpoint: /v2/pvp/standings
+  - endpoint: [ "/v2/pvp/standings" ]
     text: Added skill rating and decay as `rating` and `decay` ([#404](https://github.com/arenanet/api-cdi/pull/404))
 
 - date: 2016-12-9
   changes:
-  - endpoint: /v2/traits
+  - endpoint: [ "/v2/traits" ]
     text: Fixed trait order ([#325](https://github.com/arenanet/api-cdi/issues/325))
 
 - date: 2016-12-6
   changes:
-  - endpoint: /v2/account
+  - endpoint: [ "/v2/account" ]
     text: Added guild leader as `guild_leader` ([#392](https://github.com/arenanet/api-cdi/pull/392))
 
 - date: 2016-11-29
   changes:
-  - endpoint: /v2/characters/:id/training
+  - endpoint: [ "/v2/characters/:id/training" ]
     text: Enabled endpoint ([#327](https://github.com/arenanet/api-cdi/pull/327))
-  - endpoint: /v2/pvp/ranks
+  - endpoint: [ "/v2/pvp/ranks" ]
     text: Enabled endpoint ([#373](https://github.com/arenanet/api-cdi/pull/373))
-  - endpoint: /v2/wvw/ranks
+  - endpoint: [ "/v2/wvw/ranks" ]
     text: Enabled endpoint ([#361](https://github.com/arenanet/api-cdi/pull/361))
-  - endpoint: /v2/account/bank
+  - endpoint: [ "/v2/account/bank" ]
     text: | 
       * Added item charges ([#376](https://github.com/arenanet/api-cdi/pull/376))
       * Fixed bank tab count ([#359](https://github.com/arenanet/api-cdi/issues/359))
-  - endpoint: /v2/account/inventory
+  - endpoint: [ "/v2/account/inventory" ]
     text: Added item charges ([#376](https://github.com/arenanet/api-cdi/pull/376))
-  - endpoint: /v2/characters/:id/inventory
+  - endpoint: [ "/v2/characters/:id/inventory" ]
     text: Added item charges ([#376](https://github.com/arenanet/api-cdi/pull/376))
-  - endpoint: /v2/continents
+  - endpoint: [ "/v2/continents" ]
     text: Added map type as `type` ([#333](https://github.com/arenanet/api-cdi/pull/333))
-  - endpoint: /v2/maps
+  - endpoint: [ "/v2/maps" ]
     text: Added map type as `type` ([#333](https://github.com/arenanet/api-cdi/pull/333))
 
 - date: 2016-10-4
   changes:
   - Added /v2/wvw index page ([Gitter](https://gitter.im/arenanet/api-cdi?at=57f3f60f43b5aeb009989187))
-  - endpoint: /v2/characters/:id/skills
+  - endpoint: [ "/v2/characters/:id/skills" ]
     text: Enabled endpoint as a separate sub-endpoint ([#301](https://github.com/arenanet/api-cdi/issues/301))
-  - endpoint: /v2/account/materials
+  - endpoint: [ "/v2/account/materials" ]
     text: Added the `Account` binding flag for account-bound materials ([#375](https://github.com/arenanet/api-cdi/pull/375))
-  - endpoint: /v2/backstory/answers
+  - endpoint: [ "/v2/backstory/answers" ]
     text: Changed ids to be strings instead of integers ([#360](https://github.com/arenanet/api-cdi/pull/360))
     breaking: true
-  - endpoint: /v2/backstory/questions
+  - endpoint: [ "/v2/backstory/questions" ]
     text: Changed answer ids to be strings instead of integers ([#360](https://github.com/arenanet/api-cdi/pull/360))
     breaking: true
-  - endpoint: /v2/characters
+  - endpoint: [ "/v2/characters" ]
     text: Fixed an obscure crash caused by a character having no inventory ([Gitter](https://gitter.im/arenanet/api-cdi?at=57f3f60f43b5aeb009989187))
-  - endpoint: /v2/characters/:id/backstory
+  - endpoint: [ "/v2/characters/:id/backstory" ]
     text: Changed ids to be strings instead of integers ([#360](https://github.com/arenanet/api-cdi/pull/360))
     breaking: true
-  - endpoint: /v2/colors
+  - endpoint: [ "/v2/colors" ]
     text: Fixed colors to include colors that are not obtainable by players ([#353](https://github.com/arenanet/api-cdi/issues/353))
-  - endpoint: /v2/continents
+  - endpoint: [ "/v2/continents" ]
     text: Added region ids to region objects ([#377](https://github.com/arenanet/api-cdi/pull/377))
-  - endpoint: /v2/finishers
+  - endpoint: [ "/v2/finishers" ]
     text: Added unlock item ids as `unlock_items` ([#372](https://github.com/arenanet/api-cdi/pull/372))
-  - endpoint: /v2/items
+  - endpoint: [ "/v2/items" ]
     text: Removed duplicated skin unlocks ([Gitter](https://gitter.im/arenanet/api-cdi?at=57f3f60f43b5aeb009989187))
-  - endpoint: /v2/maps
+  - endpoint: [ "/v2/maps" ]
     text: Changed `floors` to contain the `default_floor` if it's omitted ([#356](https://github.com/arenanet/api-cdi/issues/356))
-  - endpoint: /v2/wvw/objectives
+  - endpoint: [ "/v2/wvw/objectives" ]
     text: Removed hardcoded marker coordinates ([Gitter](https://gitter.im/arenanet/api-cdi?at=57f3f60f43b5aeb009989187))
 
 - date: 2016-09-29
   changes:
-  - endpoint: /v2/continents
+  - endpoint: [ "/v2/continents" ]
     text: Added adventures as `adventures` ([#341](https://github.com/arenanet/api-cdi/issues/341))
 
 - date: 2016-07-29
   changes:
-  - endpoint: /v2/account/masteries
+  - endpoint: [ "/v2/account/masteries" ]
     text: Enabled endpoint ([#273](https://github.com/arenanet/api-cdi/issues/273))
-  - endpoint: /v2/account/recipes
+  - endpoint: [ "/v2/account/recipes" ]
     text: Enabled endpoint ([78a648ae](https://github.com/arenanet/api-cdi/commit/78a648ae65220a9637309175d77c9634fd98025e) and [Gitter](https://gitter.im/arenanet/api-cdi?at=579a56edac80b5ea3f14452b))
-  - endpoint: /v2/characters/:id/heropoints
+  - endpoint: [ "/v2/characters/:id/heropoints" ]
     text: Enabled endpoint
-  - endpoint: /v2/characters/:id/training
+  - endpoint: [ "/v2/characters/:id/training" ]
     text: Enabled endpoint ([#327](https://github.com/arenanet/api-cdi/pull/327))
-  - endpoint: /v2/masteries
+  - endpoint: [ "/v2/masteries" ]
     text: Enabled endpoint ([#273](https://github.com/arenanet/api-cdi/issues/273))
-  - endpoint: /v2/guild/:id
+  - endpoint: [ "/v2/guild/:id" ]
     text: Added support for alternative representation of guild favor ([Gitter](https://gitter.im/arenanet/api-cdi?at=579a56edac80b5ea3f14452b))
-  - endpoint: /v2/continents
+  - endpoint: [ "/v2/continents" ]
     text: Changed point of interest floors to always be exposed ([Gitter](https://gitter.im/arenanet/api-cdi?at=579a56edac80b5ea3f14452b))
 
 - date: 2016-07-26
   changes:
-  - endpoint: /v2/account/finishers
+  - endpoint: [ "/v2/account/finishers" ]
     text: Enabled endpoint ([#324](https://github.com/arenanet/api-cdi/pull/324) and [#184](https://github.com/arenanet/api-cdi/issues/184))
-  - endpoint: /v2/guild/:id
+  - endpoint: [ "/v2/guild/:id" ]
     text: Enabled endpoint
-  - endpoint: /v2/guild/search
+  - endpoint: [ "/v2/guild/search" ]
     text: Enabled endpoint
 
 - date: 2016-06-23
   changes:
-  - endpoint: /v2/account/outfits
+  - endpoint: [ "/v2/account/outfits" ]
     text: Enabled endpoint ([#326](https://github.com/arenanet/api-cdi/pull/326) and [#183](https://github.com/arenanet/api-cdi/issues/183))
-  - endpoint: /v2/backstory/answers
+  - endpoint: [ "/v2/backstory/answers" ]
     text: Enabled endpoint ([#300](https://github.com/arenanet/api-cdi/pull/300))
-  - endpoint: /v2/backstory/questions
+  - endpoint: [ "/v2/backstory/questions" ]
     text: Enabled endpoint ([#300](https://github.com/arenanet/api-cdi/pull/300))
-  - endpoint: /v2/characters/:id/backstory
+  - endpoint: [ "/v2/characters/:id/backstory" ]
     text: Enabled endpoint ([#300](https://github.com/arenanet/api-cdi/pull/300))
-  - endpoint: /v2/stories
+  - endpoint: [ "/v2/stories" ]
     text: Enabled endpoint ([#300](https://github.com/arenanet/api-cdi/pull/300))
-  - endpoint: /v2/stories/seasons
+  - endpoint: [ "/v2/stories/seasons" ]
     text: Enabled endpoint ([#300](https://github.com/arenanet/api-cdi/pull/300))
-  - endpoint: /v2/outfits
+  - endpoint: [ "/v2/outfits" ]
     text: Enabled endpoint ([#326](https://github.com/arenanet/api-cdi/pull/326) and [#183](https://github.com/arenanet/api-cdi/issues/183))
-  - endpoint: /v2/wvw/abilities
+  - endpoint: [ "/v2/wvw/abilities" ]
     text: Enabled endpoint ([#379](https://github.com/arenanet/api-cdi/pull/379) and [#294](https://github.com/arenanet/api-cdi/issues/294))
-  - endpoint: /v2/characters/:id
+  - endpoint: [ "/v2/characters/:id" ]
     text: Added character WvW abilities as `wvw_abilities` ([#379](https://github.com/arenanet/api-cdi/pull/379))
 
 - date: 2016-06-1
   changes:
-  - endpoint: /v2/continents
+  - endpoint: [ "/v2/continents" ]
     text: Added sector boundaries as `bounds` ([#57](https://github.com/arenanet/api-cdi/pull/57))
 
 - date: 2016-05-23
   changes:
-  - endpoint: /v2/account/titles
+  - endpoint: [ "/v2/account/titles" ]
     text: Enabled endpoint ([#281](https://github.com/arenanet/api-cdi/pull/281))
-  - endpoint: /v2/characters/:id/core
+  - endpoint: [ "/v2/characters/:id/core" ]
     text: Enabled endpoint ([#315](https://github.com/arenanet/api-cdi/pull/315))
-  - endpoint: /v2/characters/:id/crafting
+  - endpoint: [ "/v2/characters/:id/crafting" ]
     text: Enabled endpoint ([#315](https://github.com/arenanet/api-cdi/pull/315))
-  - endpoint: /v2/titles
+  - endpoint: [ "/v2/titles" ]
     text: Enabled endpoint ([#281](https://github.com/arenanet/api-cdi/pull/281))
-  - endpoint: /v2/achievements
+  - endpoint: [ "/v2/achievements" ]
     text: Added title rewards ([#281](https://github.com/arenanet/api-cdi/pull/281))
-  - endpoint: /v2/characters
+  - endpoint: [ "/v2/characters" ]
     text: Added selected title as `title` ([#281](https://github.com/arenanet/api-cdi/pull/281))
 
 - date: 2016-05-18
   changes:
-  - endpoint: /v2/itemstats
+  - endpoint: [ "/v2/itemstats" ]
     text: Enabled endpoint ([#261](https://github.com/arenanet/api-cdi/pull/261))
-  - endpoint: /v2/account/bank
+  - endpoint: [ "/v2/account/bank" ]
     text: Added selected stats for choosy-stat items as `stats` ([#261](https://github.com/arenanet/api-cdi/pull/261))
-  - endpoint: /v2/account/inventory
+  - endpoint: [ "/v2/account/inventory" ]
     text: Added selected stats for choosy-stat items as `stats` ([#261](https://github.com/arenanet/api-cdi/pull/261))
-  - endpoint: /v2/characters/:id/inventory
+  - endpoint: [ "/v2/characters/:id/inventory" ]
     text: Added selected stats for choosy-stat items as `stats` ([#261](https://github.com/arenanet/api-cdi/pull/261))
 
 - date: 2016-05-13
   changes:
-  - endpoint: /v2/achievements/daily
+  - endpoint: [ "/v2/achievements/daily" ]
     text: Added required access for accessing dailies as `required_access` ([#291](https://github.com/arenanet/api-cdi/issues/291))
 
 - date: 2016-04-26
@@ -428,264 +428,264 @@
 - date: 2016-04-23
   changes:
   - Disabled /v2/characters because of a bug that potentially leaks character information from other accounts
-  - endpoint: /v2/legends
+  - endpoint: [ "/v2/legends" ]
     text: Enabled endpoint ([f1cce6ea](https://github.com/arenanet/api-cdi/commit/f1cce6ea9bbc30002cc05dabc214547b72946941))
-  - endpoint: /v2/pets
+  - endpoint: [ "/v2/pets" ]
     text: Enabled endpoint ([#248](https://github.com/arenanet/api-cdi/pull/248))
-  - endpoint: /v2/pvp/amulets
+  - endpoint: [ "/v2/pvp/amulets" ]
     text: Enabled endpoint ([#269](https://github.com/arenanet/api-cdi/pull/269))
-  - endpoint: /v2/characters
+  - endpoint: [ "/v2/characters" ]
     text: | 
       * Added PvP builds as `equipment_pvp` ([#269](https://github.com/arenanet/api-cdi/pull/269))
       * Added equipped skills as `skills`, including legends for revenants and pets for rangers ([#178](https://github.com/arenanet/api-cdi/pull/178) and [e0fbfe44](https://github.com/arenanet/api-cdi/commit/e0fbfe4474a12f4089e64f65f4357f313b0fbec0))
 
 - date: 2016-04-20
   changes:
-  - endpoint: /v2/guild/:id/teams
+  - endpoint: [ "/v2/guild/:id/teams" ]
     text: Added season standings as `seasons` ([#277](https://github.com/arenanet/api-cdi/pull/277))
-  - endpoint: /v2/items
+  - endpoint: [ "/v2/items" ]
     text: Added buff name and icon to consumables as `details.name` and `details.icon` ([#246](https://github.com/arenanet/api-cdi/issues/246))
-  - endpoint: /v2/professions
+  - endpoint: [ "/v2/professions" ]
     text: Added weapons skills as `weapons` ([#265](https://github.com/arenanet/api-cdi/pull/265))
-  - endpoint: /v2/specializations
+  - endpoint: [ "/v2/specializations" ]
     text: Added weapon trait if a specialization unlocks one as `weapon_trait` ([#282](https://github.com/arenanet/api-cdi/pull/282))
-  - endpoint: /v2/wvw/matches
+  - endpoint: [ "/v2/wvw/matches" ]
     text: Made `all_worlds` always present ([Gitter](https://gitter.im/arenanet/api-cdi?at=5717bcdfa3833fbc5669dd33))
   - Changed banned accounts to not be able to use the authenticated endpoints anymore ([Gitter](https://gitter.im/arenanet/api-cdi?at=5717bcdfa3833fbc5669dd33))
 
 - date: 2016-03-22
   changes:
-  - endpoint: /v2/guild/:id/teams
+  - endpoint: [ "/v2/guild/:id/teams" ]
     text: Added PvP match history ([Gitter](https://gitter.im/arenanet/api-cdi?at=56f18ce40d5edb734e66fca8))
-  - endpoint: /v2/pvp
+  - endpoint: [ "/v2/pvp" ]
     text: Relax authentication requirement ([Gitter](https://gitter.im/arenanet/api-cdi?at=56f18ce40d5edb734e66fca8))
   - Fixed timezone issue for all endpoints using seconds-since-2001 data ([Gitter](https://gitter.im/arenanet/api-cdi?at=56f18ce40d5edb734e66fca8))
 
 - date: 2016-03-15
   changes:
-  - endpoint: /v2/professions
+  - endpoint: [ "/v2/professions" ]
     text: Enabled endpoint ([#255](https://github.com/arenanet/api-cdi/pull/255))
 
 - date: 2016-03-9
   changes:
   - Removed /v2/traits-beta (replaced by /v2/traits)
-  - endpoint: /v2/account
+  - endpoint: [ "/v2/account" ]
     text: Added WvW rank as `wvw_rank` ([Gitter](https://gitter.im/arenanet/api-cdi?at=56e0ab4c89dd3cce10050df3))
-  - endpoint: /v2/account/achievements
+  - endpoint: [ "/v2/account/achievements" ]
     text: Added repeated achievements without current progress ([Gitter](https://gitter.im/arenanet/api-cdi?at=56e0ab4c89dd3cce10050df3))
-  - endpoint: /v2/achievements/daily
+  - endpoint: [ "/v2/achievements/daily" ]
     text: Marked as enumerable ([Gitter](https://gitter.im/arenanet/api-cdi?at=56e0ab4c89dd3cce10050df3))
-  - endpoint: /v2/guild/:id/log
+  - endpoint: [ "/v2/guild/:id/log" ]
     text: | 
       * Fixed names of kicked members from not being resolved ([Gitter](https://gitter.im/arenanet/api-cdi?at=56e0ab4c89dd3cce10050df3))
       * Added stash transaction log entries ([Gitter](https://gitter.im/arenanet/api-cdi?at=56e0ab4c89dd3cce10050df3))
-  - endpoint: /v2/pvp/seasons
+  - endpoint: [ "/v2/pvp/seasons" ]
     text: Added start and end date configurables ([Gitter](https://gitter.im/arenanet/api-cdi?at=56e0ab4c89dd3cce10050df3))
-  - endpoint: /v2/traits
+  - endpoint: [ "/v2/traits" ]
     text: Added the trait order as `order` ([Gitter](https://gitter.im/arenanet/api-cdi?at=56e0ab4c89dd3cce10050df3))
 
 - date: 2016-02-24
   changes:
-  - endpoint: /v2/pvp/standings
+  - endpoint: [ "/v2/pvp/standings" ]
     text: Enabled endpoint ([#222](https://github.com/arenanet/api-cdi/pull/222))
-  - endpoint: /v2/materials
+  - endpoint: [ "/v2/materials" ]
     text: Added the material order as `order` ([#215](https://github.com/arenanet/api-cdi/pull/215))
 
 - date: 2016-02-23
   changes:
-  - endpoint: /v2/guild/:id/teams
+  - endpoint: [ "/v2/guild/:id/teams" ]
     text: Enabled endpoint ([#224](https://github.com/arenanet/api-cdi/pull/224))
 
 - date: 2016-02-19
   changes:
-  - endpoint: /v2/pvp/seasons
+  - endpoint: [ "/v2/pvp/seasons" ]
     text: Enabled endpoint ([#199](https://github.com/arenanet/api-cdi/pull/199))
-  - endpoint: /v2/pvp/games
+  - endpoint: [ "/v2/pvp/games" ]
     text: | 
       * Added match type as `rating_type` ([#199](https://github.com/arenanet/api-cdi/pull/199))
       * Added corresponding season for ranked matches as `season` ([#199](https://github.com/arenanet/api-cdi/pull/199))
 
 - date: 2016-02-12
   changes:
-  - endpoint: /v2/account/inventory
+  - endpoint: [ "/v2/account/inventory" ]
     text: Enabled endpoint ([#208](https://github.com/arenanet/api-cdi/pull/208))
 
 - date: 2016-02-4
   changes:
-  - endpoint: /v2/guild/:id/log
+  - endpoint: [ "/v2/guild/:id/log" ]
     text: Enabled endpoint ([#150](https://github.com/arenanet/api-cdi/pull/150))
 
 - date: 2016-01-26
   changes:
-  - endpoint: /v2/account
+  - endpoint: [ "/v2/account" ]
     text: Added commander unlock as `commander` ([Gitter](https://gitter.im/arenanet/api-cdi?at=56a7cbde586242210adfad20))
-  - endpoint: /v2/account/achievements
+  - endpoint: [ "/v2/account/achievements" ]
     text: Autowhitelist achievement ids ([Gitter](https://gitter.im/arenanet/api-cdi?at=56a7cbde586242210adfad20))
-  - endpoint: /v2/achievements/daily
+  - endpoint: [ "/v2/achievements/daily" ]
     text: Added festival achievements ([Gitter](https://gitter.im/arenanet/api-cdi?at=56a7cbde586242210adfad20))
-  - endpoint: /v2/characters
+  - endpoint: [ "/v2/characters" ]
     text: Fixed a cascaded crash when PlayerlessSrv dies
-  - endpoint: /v2/commerce/listings
+  - endpoint: [ "/v2/commerce/listings" ]
     text: Modified cache strategy to use smaller cache objects ([Gitter](https://gitter.im/arenanet/api-cdi?at=56a7cbde586242210adfad20))
-  - endpoint: /v2/guild/:id/upgrades
+  - endpoint: [ "/v2/guild/:id/upgrades" ]
     text: Whitelist mining upgrades ([Gitter](https://gitter.im/arenanet/api-cdi?at=56a7cbde586242210adfad20))
-  - endpoint: /v2/minis
+  - endpoint: [ "/v2/minis" ]
     text: Added localization support for unlock strings ([Gitter](https://gitter.im/arenanet/api-cdi?at=56a7cbde586242210adfad20))
-  - endpoint: /v2/pvp/stats
+  - endpoint: [ "/v2/pvp/stats" ]
     text: Added PvP rank rollovers as `pvp_rank_rollovers` ([Gitter](https://gitter.im/arenanet/api-cdi?at=56a7cbde586242210adfad20))
-  - endpoint: /v2/skins
+  - endpoint: [ "/v2/skins" ]
     text: Changed default empty names to `""` ([Gitter](https://gitter.im/arenanet/api-cdi?at=56a7cbde586242210adfad20))
 
 - date: 2016-01-23
   changes:
-  - endpoint: /v2/guild/:id/stash
+  - endpoint: [ "/v2/guild/:id/stash" ]
     text: Enabled endpoint as release ([#188](https://github.com/arenanet/api-cdi/pull/188))
-  - endpoint: /v2/guild/:id/treasury
+  - endpoint: [ "/v2/guild/:id/treasury" ]
     text: Enabled endpoint as release ([#149](https://github.com/arenanet/api-cdi/pull/149))
-  - endpoint: /v2/guild/:id/upgrades
+  - endpoint: [ "/v2/guild/:id/upgrades" ]
     text: Enabled endpoint ([#193](https://github.com/arenanet/api-cdi/pull/193))
 
 - date: 2016-01-19
   changes:
-  - endpoint: /v2/guild/:id/stash
+  - endpoint: [ "/v2/guild/:id/stash" ]
     text: Enabled endpoint as testing ([#188](https://github.com/arenanet/api-cdi/pull/188))
-  - endpoint: /v2/guild/:id/treasury
+  - endpoint: [ "/v2/guild/:id/treasury" ]
     text: Enabled endpoint as testing ([#149](https://github.com/arenanet/api-cdi/pull/149))
 
 - date: 2016-01-12
   changes:
-  - endpoint: /v2/account
+  - endpoint: [ "/v2/account" ]
     text: Added the daily and monthly achievement points as `daily` and `monthly` ([#147](https://github.com/arenanet/api-cdi/pull/147))
-  - endpoint: /v2/achievements
+  - endpoint: [ "/v2/achievements" ]
     text: | 
       * Added support for repeatable achievements with the number of times it has been completed as `repeated` ([#142](https://github.com/arenanet/api-cdi/pull/142))
       * Added the `Repeatable` flag ([#142](https://github.com/arenanet/api-cdi/pull/142))
-  - endpoint: /v2/skins
+  - endpoint: [ "/v2/skins" ]
     text: | 
       * Added skin rarity as `rarity` ([#163](https://github.com/arenanet/api-cdi/pull/163))
       * Added the `OverrideRarity` flag ([#163](https://github.com/arenanet/api-cdi/pull/163))
 
 - date: 2015-12-16
   changes:
-  - endpoint: /v2/skills
+  - endpoint: [ "/v2/skills" ]
     text: Enabled endpoint ([#5](https://github.com/arenanet/api-cdi/pull/5))
 
 - date: 2015-12-14
   changes:
-  - endpoint: /v2/guild/:id/members
+  - endpoint: [ "/v2/guild/:id/members" ]
     text: Enabled endpoint ([#140](https://github.com/arenanet/api-cdi/pull/140))
-  - endpoint: /v2/guild/:id/ranks
+  - endpoint: [ "/v2/guild/:id/ranks" ]
     text: Enabled endpoint ([#139](https://github.com/arenanet/api-cdi/pull/139))
 
 - date: 2015-12-8
   changes:
-  - endpoint: /v2/guild/permissions
+  - endpoint: [ "/v2/guild/permissions" ]
     text: Enabled endpoint ([#135](https://github.com/arenanet/api-cdi/pull/135))
 
 - date: 2015-12-2
   changes:
-  - endpoint: /v2/achievements/categories
+  - endpoint: [ "/v2/achievements/categories" ]
     text: Enabled endpoint ([#141](https://github.com/arenanet/api-cdi/pull/141))
-  - endpoint: /v2/achievements/groups
+  - endpoint: [ "/v2/achievements/groups" ]
     text: Enabled endpoint ([#141](https://github.com/arenanet/api-cdi/pull/141))
-  - endpoint: /v2/guild/upgrades
+  - endpoint: [ "/v2/guild/upgrades" ]
     text: Enabled endpoint ([#134](https://github.com/arenanet/api-cdi/pull/134))
-  - endpoint: /v2/achievements/daily
+  - endpoint: [ "/v2/achievements/daily" ]
     text: Removed the incorrect NA/EU split ([#123](https://github.com/arenanet/api-cdi/pull/123))
-  - endpoint: /v2/specializations
+  - endpoint: [ "/v2/specializations" ]
     text: Fixed specialization background images not being returned at full resolution ([#76](https://github.com/arenanet/api-cdi/issues/76))
 
 - date: 2015-12-1
   changes:
-  - endpoint: /v2/characters/:id/recipes
+  - endpoint: [ "/v2/characters/:id/recipes" ]
     text: Enabled endpoint ([#125](https://github.com/arenanet/api-cdi/pull/125))
 
 - date: 2015-11-20
   changes:
-  - endpoint: /v2/emblem
+  - endpoint: [ "/v2/emblem" ]
     text: Enabled endpoint ([#119](https://github.com/arenanet/api-cdi/pull/119))
 
 - date: 2015-11-18
   changes:
-  - endpoint: /v2/account
+  - endpoint: [ "/v2/account" ]
     text: Added game access level as `access` ([#114](https://github.com/arenanet/api-cdi/pull/114))
-  - endpoint: /v2/account/bank
+  - endpoint: [ "/v2/account/bank" ]
     text: Added binding information as `binding` and `bound_to` ([#108](https://github.com/arenanet/api-cdi/pull/108))
-  - endpoint: /v2/characters
+  - endpoint: [ "/v2/characters" ]
     text: Added binding information as `binding` and `bound_to` ([#108](https://github.com/arenanet/api-cdi/pull/108))
 
 - date: 2015-11-9
   changes:
-  - endpoint: /v2/account/achievements
+  - endpoint: [ "/v2/account/achievements" ]
     text: Enabled endpoint ([#96](https://github.com/arenanet/api-cdi/pull/96))
 
 - date: 2015-11-6
   changes:
-  - endpoint: /v2/account/minis
+  - endpoint: [ "/v2/account/minis" ]
     text: Enabled endpoint ([#107](https://github.com/arenanet/api-cdi/pull/107))
-  - endpoint: /v2/minis
+  - endpoint: [ "/v2/minis" ]
     text: Enabled endpoint ([#107](https://github.com/arenanet/api-cdi/pull/107))
 
 - date: 2015-10-27
   changes:
-  - endpoint: /v2/colors
+  - endpoint: [ "/v2/colors" ]
     text: | 
       * Added the item id that unlocks the color as `item` ([#88](https://github.com/arenanet/api-cdi/pull/88))
       * Added the in-game sort categories as `categories` ([#88](https://github.com/arenanet/api-cdi/pull/88))
-  - endpoint: /v2/wvw/objectives
+  - endpoint: [ "/v2/wvw/objectives" ]
     text: | 
       * Added label coordinates as `label_coord` ([#101](https://github.com/arenanet/api-cdi/pull/101))
       * Fixed coordinates (these were actually the label coordinates, [#101](https://github.com/arenanet/api-cdi/pull/101))
 
 - date: 2015-10-6
   changes:
-  - endpoint: /v2/achievements
+  - endpoint: [ "/v2/achievements" ]
     text: Enabled endpoint ([#96](https://github.com/arenanet/api-cdi/pull/96))
-  - endpoint: /v2/achievements/daily
+  - endpoint: [ "/v2/achievements/daily" ]
     text: Enabled endpoint ([#96](https://github.com/arenanet/api-cdi/pull/96))
-  - endpoint: /v2/wvw/matches
+  - endpoint: [ "/v2/wvw/matches" ]
     text: Enabled endpoint ([#94](https://github.com/arenanet/api-cdi/pull/94))
 
 - date: 2015-09-23
   changes:
-  - endpoint: /v2/wvw/objectives
+  - endpoint: [ "/v2/wvw/objectives" ]
     text: Enabled endpoint ([#91](https://github.com/arenanet/api-cdi/pull/91))
-  - endpoint: /v2/continents
+  - endpoint: [ "/v2/continents" ]
     text: Added the chat link as `chat_link` ([#95](https://github.com/arenanet/api-cdi/pull/95))
-  - endpoint: /v2/items
+  - endpoint: [ "/v2/items" ]
     text: Added the chat link as `chat_link` ([#95](https://github.com/arenanet/api-cdi/pull/95))
-  - endpoint: /v2/recipes
+  - endpoint: [ "/v2/recipes" ]
     text: Added the chat link as `chat_link` ([#95](https://github.com/arenanet/api-cdi/pull/95))
-  - endpoint: /v2/skills
+  - endpoint: [ "/v2/skills" ]
     text: Added the chat link as `chat_link` ([#95](https://github.com/arenanet/api-cdi/pull/95))
-  - endpoint: /v2/traits 
+  - endpoint: [ "/v2/traits " ]
     text: Added the chat link as `chat_link` ([#95](https://github.com/arenanet/api-cdi/pull/95))
 
 - date: 2015-09-3
   changes:
-  - endpoint: /v2/characters/:id/specializations
+  - endpoint: [ "/v2/characters/:id/specializations" ]
     text: Enabled endpoint ([#85](https://github.com/arenanet/api-cdi/pull/85))
-  - endpoint: /v2/pvp/games
+  - endpoint: [ "/v2/pvp/games" ]
     text: Enabled endpoint ([#89](https://github.com/arenanet/api-cdi/pull/89))
-  - endpoint: /v2/pvp/stats
+  - endpoint: [ "/v2/pvp/stats" ]
     text: Enabled endpoint ([#41](https://github.com/arenanet/api-cdi/pull/41))
-  - endpoint: /v2/traits
+  - endpoint: [ "/v2/traits" ]
     text: Enabled endpoint (replacing /v2/traits-beta, [#67](https://github.com/arenanet/api-cdi/pull/67))
 
 - date: 2015-08-27
   changes:
-  - endpoint: /v2/account/dyes
+  - endpoint: [ "/v2/account/dyes" ]
     text: Enabled endpoint ([#81](https://github.com/arenanet/api-cdi/pull/81))
-  - endpoint: /v2/account/skins
+  - endpoint: [ "/v2/account/skins" ]
     text: Enabled endpoint ([#81](https://github.com/arenanet/api-cdi/pull/81))
-  - endpoint: /v2/account/wallet
+  - endpoint: [ "/v2/account/wallet" ]
     text: Enabled endpoint ([#84](https://github.com/arenanet/api-cdi/pull/84))
-  - endpoint: /v2/currencies
+  - endpoint: [ "/v2/currencies" ]
     text: Enabled endpoint ([#84](https://github.com/arenanet/api-cdi/pull/84))
 
 - date: 2015-08-26
   changes:
-  - endpoint: /v2/worlds
+  - endpoint: [ "/v2/worlds" ]
     text: Added population status as `population` ([#82](https://github.com/arenanet/api-cdi/pull/82))
 
 - date: 2015-08-20
@@ -694,39 +694,39 @@
 
 - date: 2015-08-5
   changes:
-  - endpoint: /v2/specializations
+  - endpoint: [ "/v2/specializations" ]
     text: Added specialization background images as `background` ([#77](https://github.com/arenanet/api-cdi/pull/77))
 
 - date: 2015-07-30
   changes:
-  - endpoint: /v2/specializations
+  - endpoint: [ "/v2/specializations" ]
     text: Enabled endpoint ([#42](https://github.com/arenanet/api-cdi/pull/42))
-  - endpoint: /v2/traits-beta
+  - endpoint: [ "/v2/traits-beta" ]
     text: Enabled endpoint ([#67](https://github.com/arenanet/api-cdi/pull/67))
 
 - date: 2015-07-28
   changes:
-  - endpoint: /v2/characters
+  - endpoint: [ "/v2/characters" ]
     text: Added crafting disciplines as `crafting` ([#49](https://github.com/arenanet/api-cdi/pull/49))
 
 - date: 2015-06-25
   changes:
-  - endpoint: /v2/account/bank
+  - endpoint: [ "/v2/account/bank" ]
     text: Enabled endpoint ([#12](https://github.com/arenanet/api-cdi/pull/12))
-  - endpoint: /v2/account/materials
+  - endpoint: [ "/v2/account/materials" ]
     text: Enabled endpoint ([#13](https://github.com/arenanet/api-cdi/pull/13))
-  - endpoint: /v2/characters/:id/inventory
+  - endpoint: [ "/v2/characters/:id/inventory" ]
     text: Enabled endpoint ([#36](https://github.com/arenanet/api-cdi/pull/36))
-  - endpoint: /v2/characters/:id/equipment
+  - endpoint: [ "/v2/characters/:id/equipment" ]
     text: Enabled endpoint ([#36](https://github.com/arenanet/api-cdi/pull/36))
-  - endpoint: /v2/materials
+  - endpoint: [ "/v2/materials" ]
     text: Enabled endpoint ([#13](https://github.com/arenanet/api-cdi/pull/13))
 
 - date: 2015-06-23
   changes:
-  - endpoint: /v2/account
+  - endpoint: [ "/v2/account" ]
     text: Added account creation date as `created` ([#33](https://github.com/arenanet/api-cdi/pull/33))
-  - endpoint: /v2/characters
+  - endpoint: [ "/v2/characters" ]
     text: | 
       * Added character age in seconds as `age` ([#33](https://github.com/arenanet/api-cdi/pull/33))
       * Added character deaths as `deaths` ([#33](https://github.com/arenanet/api-cdi/pull/33))
@@ -734,38 +734,38 @@
 
 - date: 2014-10-24
   changes:
-  - endpoint: /v2/recipes
+  - endpoint: [ "/v2/recipes" ]
     text: Enabled endpoint
-  - endpoint: /v2/recipes/search
+  - endpoint: [ "/v2/recipes/search" ]
     text: Enabled endpoint
-  - endpoint: /v2/worlds
+  - endpoint: [ "/v2/worlds" ]
     text: Enabled endpoint
 
 - date: 2014-09-25
   changes:
-  - endpoint: /v2/items
+  - endpoint: [ "/v2/items" ]
     text: Enabled endpoint
 
 - date: 2014-09-10
   changes:
-  - endpoint: /v2/commerce/prices
+  - endpoint: [ "/v2/commerce/prices" ]
     text: Enabled endpoint
 
 - date: 2014-09-8
   changes:
-  - endpoint: /v2/commerce/exchange
+  - endpoint: [ "/v2/commerce/exchange" ]
     text: Enabled endpoint
-  - endpoint: /v2/commerce/listings
+  - endpoint: [ "/v2/commerce/listings" ]
     text: Enabled endpoint
 
 - date: 2014-07-11
   changes:
-  - endpoint: /v2/quaggans
+  - endpoint: [ "/v2/quaggans" ]
     text: Enabled endpoint
 
 - date: 2013-10-15
   changes:
-  - endpoint: /v1/wvw/match_details
+  - endpoint: [ "/v1/wvw/match_details" ]
     text: | 
       * Each object in the "maps" array was given a "bonuses" array. This array gives information on which bonuses are coming from each map, and which team has them. "Borderlands Bloodlust" ownership information appears in this array.
       * Fixed a bug which prevented Ruins objectives which time-decayed to a neutral/uncaptured state from being listed as "Neutral".
@@ -773,48 +773,48 @@
 - date: 2013-08-6
   changes:
   - Enabled the rendering service for retrieving game assets in web-friendly form
-  - endpoint: /v1/files
+  - endpoint: [ "/v1/files" ]
     text: Enabled endpoint that lists some generic useful UI icons that can be retrieved from the rendering service
-  - endpoint: /v1/item_details
+  - endpoint: [ "/v1/item_details" ]
     text: Updated endpoint to show item icon ids that can be used in conjunction with the rendering service
 
 - date: 2013-06-22
   changes:
-  - endpoint: /v1/event_details
+  - endpoint: [ "/v1/event_details" ]
     text: | 
       * Enabled endpoint
       * This API returns more detailed information about events, including their starting position in the world. This can be used in conjunction with the map API to show the position of events on the world map.
 
 - date: 2013-06-20
   changes:
-  - endpoint: /v1/maps
+  - endpoint: [ "/v1/maps" ]
     text: | 
       * Enabled endpoint and the world map tile service
       * These two services can be used together to create world maps outside of the game, and will serve as the basis for future map-based API content.
 
 - date: 2013-06-11
   changes:
-  - endpoint: /v1/events
+  - endpoint: [ "/v1/events" ]
     text: Added a new state called `"Inactive"`
       The inactive state is slightly different from the warmup state. An event in warmup is waiting for specific criteria to startup (usually, some amount of time must pass). An inactive event will stay inactive until it is activated by some external event.
 
 - date: 2013-06-7
   changes:
-  - endpoint: /v1/item_details
+  - endpoint: [ "/v1/item_details" ]
     text: | 
       * Consumable unlock items now show the type of unlock they perform
       * Consumable dyes and recipes now show the `color_id` and `recipe_id` they unlock
 
 - date: 2013-06-6
   changes:
-  - endpoint: /v1/item_details
+  - endpoint: [ "/v1/item_details" ]
     text: | 
       * Added bonus tiers for upgrade components
       * Fixed `"SoulBindOnUse"` flag for certain items
 
 - date: 2013-06-3
   changes:
-  - endpoint: /v1/colors
+  - endpoint: [ "/v1/colors" ]
     text: | 
       * Added pre-calculated RGB values for users who only want an RGB value and are not planning to apply the color to a texture mask
       * Added `base_rgb` value to each color returned
@@ -822,7 +822,7 @@
 
 - date: 2013-06-2
   changes:
-  - endpoint: /v1/colors
+  - endpoint: [ "/v1/colors" ]
     text: | 
       * Color values should be more useful
       * Fixed JSON types
@@ -830,20 +830,20 @@
 
 - date: 2013-06-1
   changes:
-  - endpoint: /v1/colors
+  - endpoint: [ "/v1/colors" ]
     text: The color values have been improved to be easier to use, and localized text names for the colors were added
-  - endpoint: /v1/guild_details
+  - endpoint: [ "/v1/guild_details" ]
     text: Emblem information is now easier to parse
 
 - date: 2013-05-31
   changes:
   - endpoint: [ /v1/guild_details, /v1/build, /v1/colors ]
     text: Enabled endpoints
-  - endpoint: /v1/recipe_details
+  - endpoint: [ "/v1/recipe_details" ]
     text: Added recipe restrictions and flags
-  - endpoint: /v1/wvw/matches
+  - endpoint: [ "/v1/wvw/matches" ]
     text: Added `start_time` and `end_time`
-  - endpoint: /v1/item_details
+  - endpoint: [ "/v1/item_details" ]
     text: | 
       * Output has been improved so that null properties are more easily interpreted ([forum](https://forum-en.gw2archive.eu/forum/community/api/Possible-issue-with-buff-property))
       * Infusion slots now show the `item_id` of the infusion instead of the full item details
