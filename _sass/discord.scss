@@ -1,0 +1,15 @@
+.discord, .discord:hover, .discord:active, .discord:visited {
+    display: block;
+    background: #aa0404 url('images/discord.svg') left center no-repeat / 48px 48px;
+    border-radius: 3px; 
+    color: #fff;
+    text-decoration: none;
+    padding: 16px 64px;
+    text-align: center;
+    margin-top: -30px;
+    margin-bottom: 16px;
+}
+
+.discord:hover, .discord:focus {
+    text-decoration: underline;
+}
