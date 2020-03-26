@@ -1,6 +1,7 @@
 .discord, .discord:hover, .discord:active, .discord:visited {
     display: block;
-    background: #aa0404 url('images/discord.svg') left center no-repeat / 48px 48px;
+    background: #aa0404 url('images/discord.svg') 4px center no-repeat;
+    background-size: 48px;
     border-radius: 3px; 
     color: #fff;
     text-decoration: none;
