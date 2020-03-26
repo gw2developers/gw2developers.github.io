@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>API Development Plans</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/API-Development-Plans/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">API Development Plans</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/API-Development-Plans
+</p>
+
+
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T01:06:59+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>Hi,</p>
+<p>First of all, I’m really happy to see all of your support for our new API system! We’re thrilled with how quickly you have adopted the APIs and created a huge variety of applications in an equally huge number of languages. Thank you so much for your support.</p>
+<p>—</p>
+<p>I wanted to give you an overview of our future development for the APIs. I hope that this information helps guide our conversations about potential new APIs. The currently released APIs are just the first step towards a much broader spectrum of API support.</p>
+<p>We intentionally don’t have a roadmap for exactly which APIs we will create. Our plan is to use feedback and input from the community to help us choose which specific APIs to make. That said, we do have a longer term schedule that consists of technologies that will make more types of APIs possible.</p>
+<p>We’re working on implementing OAuth2, a safe authentication system that will allow websites and applications to talk to our API on behalf of players without giving those apps your game password. For developers, this will involve signing up for an API key, getting a quota of API calls, etc. For users, there will be a new login flow where they authorize apps to take certain actions on their behalf.</p>
+<p>OAuth2 support will enable many more personalized APIs to be created. Guild, Chat, Character, and other APIs are all possible. We don’t currently have a planned release date for OAuth2, but we’re actively working on implementing it.</p>
+<p>So, when we’re talking about new APIs, keep this division in mind. If we talk about APIs that require authentication, those will need to wait until OAuth2 is ready. We can still talk about them, just keep the requirements for them in mind.</p>
+<p>On the other hand, there are plenty of other unauthenticated APIs we can create now, and we should definitely talk about those!</p>
+<p>Our immediate focus is on supporting the APIs that we just released — that means monitoring the servers, helping developers integrate with our API, improving our documentation, and fixing blocking bugs as quickly as possible.</p>
+<p>At the same time, we’re listening to your suggestions and feedback, and we’re already at work on new APIs. I’m not ready to talk about them just yet, but we’re already working on some of the things you’ve been asking for.</p>
+<p>—</p>
+<p>PS. A suggestion about making suggestions — let’s try this. For each type of API (Guild, Items, etc.), let’s have one thread. Having multiple APIs discussed in one thread is pretty confusing on our forum, and will lead to very long threads that no-one will want to read. And conversely, if we have threads for each idea for an API, it would be too difficult to keep track of all of them. Maybe this will be a good middle ground.</p></p>
+
+<h2 id="">Gilgamesh.2561:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T01:24:55+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>Concerning authenticated API and potential features: GW2 does not have any kind of in-game inspection. You can’t see other characters’ traits or gear details. Is it safe to say if you can’t do something currently in-game, such as inspect other players, that it won’t become exposed in an API until it is in-game?</p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T01:26:16+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 24 2013 01:24AM"><a href="/forum/community/api/API-Development-Plans/2081850">Gilgamesh.2561:</a></cite></div><div class="quotey"><p>Concerning authenticated API and potential features: GW2 does not have any kind of in-game inspection. You can’t see other characters’ traits or gear details. Is it safe to say if you can’t do something currently in-game, such as inspect other players, that it won’t become exposed in an API until it is in-game?</p></div></blockquote>
+<p>Yes, you won’t have any additional access beyond what your character can already do.</p></p>
+
+<h2 id="">Varonth.5830:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T01:32:03+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>Regarding the one thread per API category.<br>
+Could you get a forum moderator (or if you have the according rights, do it yourself :P ) create sticky threads for each category?</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T01:47:08+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>Cliff, sounds like there will be some really neat things to look forward to in the long term. Thanks for the heads up!</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T02:46:07+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>That is exciting news!  I will make a Trading Post api suggestion thread, I have been waiting for ArenaNet to offically release a Trading Post api that would be mobile apps friendly.<img src="/include/images/smilies/smile.png"></p>
+<p>And here it is: <a href="/forum-backup/API-Suggestion-Trading-Post-API">https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Trading-Post-API</a></p></p>
+
+<h2 id="">multivira.7925:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T10:31:51+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>Just wanted to say how much this work is appreciated. It really is a joy to have access to information without having to resort through OCR techniques, data mining data files and the probably naughtiest option of accessing the memory of the game directly. Oh or collecting data by hand <strong>shudder</strong></p>
+<p>Looking forward to any future updates<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">morley.7592:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T13:55:18+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>Great job on the API!</p>
+<p>It might be helpful to to bundle API calls, the way Facebook allowed (and possibly still allows) FQL queries to be bundled. As an example: say I wanted to get all the event state for four different events on five different servers; I THINK (and could be wrong) that right now, you’d have to retrieve each event / server pair separately, or get the whole event list for each server. It’d be cool to bundle that into one server request.</p>
+<p>Sorry if the API does this right now and I just didn’t read the docs right!</p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T13:57:14+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>I only dream of a streaming API that just trickles down event or WvW updates to us instead of having to poll it every other nanosecond :P</p></p>
+
+<h2 id="">Parthis.2091:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T14:00:56+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 24 2013 10:31AM"><a href="/forum/community/api/API-Development-Plans/2083845">multivira.7925:</a></cite></div><div class="quotey"><p>Just wanted to say how much this work is appreciated. It really is a joy to have access to information without having to resort through OCR techniques, data mining data files and the probably naughtiest option of accessing the memory of the game directly. Oh or collecting data by hand <strong>shudder</strong></p>
+<p>Looking forward to any future updates<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>HAI TDA.</p>
+<p>@Cliff. Great to hear OAuth is coming, and the APIs will eventually extend down to player level data.</p>
+<p>The next big API has to be the TP though. While there are a ton of good pre-auth API ideas, the TP is an obvious one and much needed one.</p>
+<p>No one likes scraping webpages<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">multivira.7925:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T14:37:20+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 24 2013 02:00PM"><a href="/forum/community/api/API-Development-Plans/2084631">Parthis.2091:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 24 2013 10:31AM"><a href="/forum/community/api/API-Development-Plans/2083845">multivira.7925:</a></cite></div><div class="quotey"><p>Just wanted to say how much this work is appreciated. It really is a joy to have access to information without having to resort through OCR techniques, data mining data files and the probably naughtiest option of accessing the memory of the game directly. Oh or collecting data by hand <strong>shudder</strong></p>
+<p>Looking forward to any future updates<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>HAI TDA.</p>
+<p>@Cliff. Great to hear OAuth is coming, and the APIs will eventually extend down to player level data.</p>
+<p>The next big API has to be the TP though. While there are a ton of good pre-auth API ideas, the TP is an obvious one and much needed one.</p>
+<p>No one likes scraping webpages<img src="/include/images/smilies/wink.png"></p></div></blockquote>
+<p>HAI JDGE</p>
+<p>I agree that releasing TP API would be useful. I currently have an app halfway in development that monitors and buys certain items based on their relation with other items, but I’m a bit hesitant on completing it as it uses memory reading to obtain session and char id and I just don’t feel right using that. Especially not when potentially releasing it to others.</p></p>
+
+<h2 id="">Felix Omni.3829:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T15:05:57+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>Putting together a list of the API Suggestion threads:</p>
+<p><a href="/forum-backup/API-Suggestion-World-vs-World">World vs World</a></p>
+<p><a href="/forum-backup/API-Suggestion-Skills-and-Traits">Skills and Traits</a></p>
+<p><a href="/forum-backup/API-Suggestion-Items-Recipes-and-Crafting">Items, Recipes, and Crafting</a></p>
+<p><a href="/forum-backup/API-Suggestion-Characters">Characters</a></p>
+<p><a href="/forum-backup/API-Suggestion-Trading-Post-API">Trading Post</a></p>
+<p><a href="/forum-backup/API-Suggestion-Guild-Events">Guild Events</a></p>
+<p><a href="/forum-backup/API-Suggestion-Guilds">Guilds</a></p></p>
+
+<h2 id="">Akkuma.2501:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T21:01:58+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 24 2013 01:26AM"><a href="/forum/community/api/API-Development-Plans/2081857">Cliff Spradlin.3512:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 24 2013 01:24AM"><a href="/forum/community/api/API-Development-Plans/2081850">Gilgamesh.2561:</a></cite></div><div class="quotey"><p>Concerning authenticated API and potential features: GW2 does not have any kind of in-game inspection. You can’t see other characters’ traits or gear details. Is it safe to say if you can’t do something currently in-game, such as inspect other players, that it won’t become exposed in an API until it is in-game?</p></div></blockquote>
+<p>Yes, you won’t have any additional access beyond what your character can already do.</p></div></blockquote>
+<p>You can’t inspect someone outside of spectator mode, but clearly there <strong>is</strong> an API to allow you to view another character’s traits and gear. Would the API then expose this for consumption outside of spectator mode or would this itself require the character to currently be in a sPvP match where spectator mode is accessible?</p></p>
+
+<h2 id="">Gilgamesh.2561:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T21:45:07+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 24 2013 09:01PM"><a href="/forum/community/api/API-Development-Plans/2086977">Akkuma.2501:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 24 2013 01:26AM"><a href="/forum/community/api/API-Development-Plans/2081857">Cliff Spradlin.3512:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 24 2013 01:24AM"><a href="/forum/community/api/API-Development-Plans/2081850">Gilgamesh.2561:</a></cite></div><div class="quotey"><p>Concerning authenticated API and potential features: GW2 does not have any kind of in-game inspection. You can’t see other characters’ traits or gear details. Is it safe to say if you can’t do something currently in-game, such as inspect other players, that it won’t become exposed in an API until it is in-game?</p></div></blockquote>
+<p>Yes, you won’t have any additional access beyond what your character can already do.</p></div></blockquote>
+<p>You can’t inspect someone outside of spectator mode, but clearly there <strong>is</strong> an API to allow you to view another character’s traits and gear. Would the API then expose this for consumption outside of spectator mode or would this itself require the character to currently be in a sPvP match where spectator mode is accessible?</p></div></blockquote>
+<p>I am thinking the latter myself, as part of the Custom Arenas API when retrieving detailed information about a Custom Arena and its participants. This would be a good point to make in the sPvP API suggestions thread.</p></p>
+
+<h2 id="">KratosAngel.7289:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-25T09:11:35+00:00">
+        25 May 2013
+    </time>
+</p>
+<p>
+<p>I was wondering if those APIs could be extended to the point where community is able to create addons for the game ?<br>
+That would be so great, though I know either it won’t be or in a very, very long time …</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-25T11:06:49+00:00">
+        25 May 2013
+    </time>
+</p>
+<p>
+<p>Hopefully the api does not get as inflated as the WoW api. GW2 does not need that. The interface is fine as it is, no need for Raid frames, damage meters, Heal bots, etc. The game surely does not need that.</p></p>
+
+<h2 id="">Varonth.5830:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-25T23:08:52+00:00">
+        25 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 25 2013 09:11AM"><a href="/forum/community/api/API-Development-Plans/2089318">KratosAngel.7289:</a></cite></div><div class="quotey"><p>I was wondering if those APIs could be extended to the point where community is able to create addons for the game ?<br>
+That would be so great, though I know either it won’t be or in a very, very long time …</p></div></blockquote>
+<p>I would say no. Unless they were planning for Addons from the first day, they won’t be able to just add some API. It is a massive task to add API after you have a running system.</p>
+<p>It’s not like the API we got, which is basically just grabbing stuff. We are talking about changing stuff. Changing stuff has the potentional to break stuff. Without building it from the beginning with a public API in mind, which allows for changing how the client works, it becomes a task which is almost similar to rewriting the entire game.</p>
+<p>Also it isn’t needed. They could of course add some more interface customization options. That I guess this subforum is the wrong one to suggest that change.</p></p>
+
+<h2 id="">Gilgamesh.2561:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T08:03:16+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="quotey"><p>Hopefully the api does not get as inflated as the WoW api. GW2 does not need that. The interface is fine as it is, no need for Raid frames, damage meters, Heal bots, etc. The game surely does not need that.</p></div></blockquote>
+<p>This is a REST~ful Web API, you don’t need to worry, it’s not the same type of API. Apples and oranges.</p></p>
+
+<h2 id="">KratosAngel.7289:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T08:33:53+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<p>Hey, thanks a lot for this constructive answer, instead of the previous which did not answer.<br>
+It’s quite sad if it’s not planned<img src="/include/images/smilies/sad.png"><br>
+I would say, though it’s not absolutely necessary, it would be a major improvement  :</p>
+<p>- Prettier customizable bars that you can move ? <strong>yes please !</strong><br>
+- Ability to move and modify the size of buffs/debuffs on you and your target ? <strong>yes please !</strong><br>
+- Ability to save gear and equip/unequip with 1 click (like Outfitter on WoW) ? <strong>yes please !</strong><br>
+- Ability to have a better organization of my inventory (Ark Inventory like) ? <strong>yes please !</strong><br>
+And so many examples to be added ! <strong>yes please !</strong> <br>
+See how much addons could improve the player’s experience of the game.<br>
+The point is just not to be as stupid as they were in WoW : not giving any information of the combat log. <br>
+Addons like Recount or BigWigs/DBM should not exist and have no place in GW2.<br>
+Addons only for comfort/visual are much welcomed.</p>
+<p>Those improvements I said, they <strong>might</strong> come into the game some day but are very, very, very low priority. When you see that high priority (like I Berserker from mesmers)  aren’t fixed after 3 months, that makes you understand you can’t hope to see those changes before years.</p></p>
+
+<h2 id="">Gilgamesh.2561:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T13:08:28+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 26 2013 08:33AM"><a href="/forum/community/api/API-Development-Plans/2093542">KratosAngel.7289:</a></cite></div><div class="quotey"><p>Hey, thanks a lot for this constructive answer, instead of the previous which did not answer.<br>
+It’s quite sad if it’s not planned<img src="/include/images/smilies/sad.png"><br>
+I would say, though it’s not absolutely necessary, it would be a major improvement  :</p>
+<p>- Prettier customizable bars that you can move ? <strong>yes please !</strong><br>
+- Ability to move and modify the size of buffs/debuffs on you and your target ? <strong>yes please !</strong><br>
+- Ability to save gear and equip/unequip with 1 click (like Outfitter on WoW) ? <strong>yes please !</strong><br>
+- Ability to have a better organization of my inventory (Ark Inventory like) ? <strong>yes please !</strong><br>
+And so many examples to be added ! <strong>yes please !</strong> <br>
+See how much addons could improve the player’s experience of the game.<br>
+The point is just not to be as stupid as they were in WoW : not giving any information of the combat log. <br>
+Addons like Recount or BigWigs/DBM should not exist and have no place in GW2.<br>
+Addons only for comfort/visual are much welcomed.</p>
+<p>Those improvements I said, they <strong>might</strong> come into the game some day but are very, very, very low priority. When you see that high priority (like I Berserker from mesmers)  aren’t fixed after 3 months, that makes you understand you can’t hope to see those changes before years.</p></div></blockquote>
+<p>You’re posting in the wrong forum, your suggestions are off-topic and have nothing to do with this API.</p>
+<p>Try here:<br>
+<a href="https://forum-en.guildwars2.com/forum/game/suggestions">https://forum-en.guildwars2.com/forum/game/suggestions</a></p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-27T11:31:38+00:00">
+        27 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 26 2013 08:03AM"><a href="/forum/community/api/API-Development-Plans/2093476">Gilgamesh.2561:</a></cite></div><div class="quotey"><p>This is a REST~ful Web API, you don’t need to worry, it’s not the same type of API. Apples and oranges.</p></div></blockquote>
+<p>Apples and oranges are still fruits and therefore can be compared pretty easy :P<br>
+And Even with a web api I can create such things as Damage Meters via the use of overlays (yeah I know a cannon for shooting birds, but still).</p>
+<p>What I meant to say: Anet should keep the possibilities to the bare necessity, things like buying and selling via the API should not be possible (apart from the security issues of course).</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-27T15:20:19+00:00">
+        27 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 27 2013 11:31AM"><a href="/forum/community/api/API-Development-Plans/2099093">Ruhrpottpatriot.7293:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 26 2013 08:03AM"><a href="/forum/community/api/API-Development-Plans/2093476">Gilgamesh.2561:</a></cite></div><div class="quotey"><p>This is a REST~ful Web API, you don’t need to worry, it’s not the same type of API. Apples and oranges.</p></div></blockquote>
+<p>Apples and oranges are still fruits and therefore can be compared pretty easy :P<br>
+And Even with a web api I can create such things as Damage Meters via the use of overlays (yeah I know a cannon for shooting birds, but still).</p>
+<p>What I meant to say: Anet should keep the possibilities to the bare necessity, things like buying and selling via the API should not be possible (apart from the security issues of course).</p></div></blockquote>
+<p>Assuming that Anet would do a good job on securing the api, as a user, I would prefer to be able to buy and sell from my mobile device than not, so it is a matter of wanting to give your users the best possible app experience or not.</p>
+<p>There is a paradigm shift when it comes to mobile apps versus PC apps because your users are not going to be able to login immediately, when the trading price is right, as he could be anywhere.</p></p>
+
+<h2 id="">kaspi.7164:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-27T15:47:53+00:00">
+        27 May 2013
+    </time>
+</p>
+<p>
+<p>The TP API with buy/sell functionality would have to be implemented and given/sold by ArenaNet as nobody in their right state of mind should trust a 3rd party with something like that (and Anet would never give control over such a significant thing to the masses). The most we could get out of this would be a “view” function to see your buy/sell orders and search the TP.</p>
+<p>It seems like a great way to monetize GW2 a bit more. Paying some small sum to be able to trade 24/7? It’s a no-brainer for traders.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-27T17:20:05+00:00">
+        27 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 27 2013 03:47PM"><a href="/forum/community/api/API-Development-Plans/2099999">kaspi.7164:</a></cite></div><div class="quotey"><p>The TP API with buy/sell functionality would have to be implemented and given/sold by ArenaNet as nobody in their right state of mind should trust a 3rd party with something like that (and Anet would never give control over such a significant thing to the masses). The most we could get out of this would be a “view” function to see your buy/sell orders and search the TP.</p>
+<p>It seems like a great way to monetize GW2 a bit more. Paying some small sum to be able to trade 24/7? It’s a no-brainer for traders.</p></div></blockquote>
+<p>They have plans for OAuth2 authentication and developers would need to be registered in order to use the api.  You would only be able to access the api through your developer key and there is a set quota.  I will not be surprised if one day, ArenaNet decides to charge an annual fee for developer registration like what Apple and Microsoft already do.  These fees would propagate to the users when developers sell their apps through the mobile store.</p></p>
+
+<h2 id="">Varonth.5830:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-27T18:56:02+00:00">
+        27 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 27 2013 05:20PM"><a href="/forum/community/api/API-Development-Plans/2100403">DarkSpirit.7046:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 27 2013 03:47PM"><a href="/forum/community/api/API-Development-Plans/2099999">kaspi.7164:</a></cite></div><div class="quotey"><p>The TP API with buy/sell functionality would have to be implemented and given/sold by ArenaNet as nobody in their right state of mind should trust a 3rd party with something like that (and Anet would never give control over such a significant thing to the masses). The most we could get out of this would be a “view” function to see your buy/sell orders and search the TP.</p>
+<p>It seems like a great way to monetize GW2 a bit more. Paying some small sum to be able to trade 24/7? It’s a no-brainer for traders.</p></div></blockquote>
+<p>They have plans for OAuth2 authentication and developers would need to be registered in order to use the api.  You would only be able to access the api through your developer key and there is a set quota.  I will not be surprised if one day, ArenaNet decides to charge an annual fee for developer registration like what Apple and Microsoft already do.  These fees would propagate to the users when developers sell their apps through the mobile store.</p></div></blockquote>
+<p>I really hope, that they follow the CCP way in terms of generating of API keys:<br>
+<a href="http://wiki.eveonline.com/en/wiki/API_Security">http://wiki.eveonline.com/en/wiki/API_Security</a></p>
+<p>If the quota is key based, then you could run into many problems like:</p>
+<ul>
+	<li>A web app being so popular that it runs into quota problems, making it unusable</li>
+	<li>A desktop app giving the devs API key out to everyone</li>
+	<li>An API key getting compromised, having to get support from ANet</li>
+</ul>
+<p>The way the CCP API system works is, every account in good standing can generate an unlimited amount of keys. Each key can be given its own rights, preventing certain stuff on one or the other key.<br>
+Quotas are account based, so if a user decides to just call request to the API over and over and over, he is going to reduce the quotas of his account, not the one of the dev.</p>
+<p>And if a key gets compromised, you can just disable that specific key.</p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-21T18:34:15+00:00">
+        21 Jun 2013
+    </time>
+</p>
+<p>
+<p>This, or at least the general idea of where the API is going, should be a sticky.</p></p>
+
+<h2 id="">Mehlox.1756:</h2>
+<p class="post-meta">
+    <time datetime="2014-04-29T10:06:25+00:00">
+        29 Apr 2014
+    </time>
+</p>
+<p>
+<p><strong>Last post 10 months ago?</strong> – Developers need to know in which direction the API is going…</p>
+<p>People are investing time <em>(and money)</em> into third party applications for GuildWars 2, so please don’t leave us hanging.</p></p>
+
+<h2 id="">Mehlox.1756:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-23T05:19:21+00:00">
+        23 May 2014
+    </time>
+</p>
+<p>
+<p>Since the last official post from a developer was over a year ago, I’ll quote a post from Stefan Larimore (official developer). He was writing this post on another topic, but it is kinda important for the development plans in general was well:</p>
+<blockquote><div class="citey"><cite title="Posted on May 16 2014 05:42PM"><a href="/forum/community/api/Looks-like-some-of-the-API-is-broken/4028746">Stefan Larimore.6872:</a></cite></div><div class="quotey"><p>Regarding a megaserver-compatible live events API:  For a few reasons, there are no plans to build this in the short/medium term, unfortunately.</p></div></blockquote>
+<p><em>The reply was posted on 17th May 2014, and here’s the link:</em></p>
+<p><a href="/forum-backup/Looks-like-some-of-the-API-is-broken">https://forum-en.guildwars2.com/forum/community/api/Looks-like-some-of-the-API-is-broken/first#post4028746</a></p>
+<p>Unfortunately I’m pretty sure this decision of not developing a Megaservers Events API means that OAuth authentication is on hold too and therefore many developers are kinda doomed I guess…</p></p>
+
+<h2 id="">RoyaleTee.9765:</h2>
+<p class="post-meta">
+    <time datetime="2014-07-14T19:15:28+00:00">
+        14 Jul 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 23 2014 05:19AM"><a href="/forum/community/api/API-Development-Plans/4051146">Mehlox.1756:</a></cite></div><div class="quotey"><p>Since the last official post from a developer was over a year ago, I’ll quote a post from Stefan Larimore (official developer). He was writing this post on another topic, but it is kinda important for the development plans in general was well:</p>
+<blockquote><div class="citey"><cite title="Posted on May 16 2014 05:42PM"><a href="/forum/community/api/Looks-like-some-of-the-API-is-broken/4028746">Stefan Larimore.6872:</a></cite></div><div class="quotey"><p>Regarding a megaserver-compatible live events API:  For a few reasons, there are no plans to build this in the short/medium term, unfortunately.</p></div></blockquote>
+<p><em>The reply was posted on 17th May 2014, and here’s the link:</em></p>
+<p><a href="/forum-backup/Looks-like-some-of-the-API-is-broken">https://forum-en.guildwars2.com/forum/community/api/Looks-like-some-of-the-API-is-broken/first#post4028746</a></p>
+<p>Unfortunately I’m pretty sure this decision of not developing a Megaservers Events API means that OAuth authentication is on hold too and therefore many developers are kinda doomed I guess…</p></div></blockquote>
+<p>This is really unfortunate. I’ve been waiting for the OAuth2 tool for quite some time now. Anything useful (that can’t already be achieved by just logging into the game) is impossible to develop without authentication and direct access to individual users. Hopefully they change their minds and get around to finishing the API development after all. There is so much that can be done by individual developers if we simply have the tools with which to do it.</p></p>
+
+<h2 id="">Strategist.6132:</h2>
+<p class="post-meta">
+    <time datetime="2015-01-12T20:48:50+00:00">
+        12 Jan 2015
+    </time>
+</p>
+<p>
+<p>I agree with RoyaleTee above. I can understand that other things have higher priority. But I really think the OAuth2 could become a revolutionary breakthrough in development.</p>
+<p>I hope you guys won’t give this up! (Or hopefully pick it up at a later time again!)</p>
+<p>If there’s anything we guys can do, please ask:P</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-01-12T22:55:27+00:00">
+        12 Jan 2015
+    </time>
+</p>
+<p>
+<p>OAuth2 is still a thing we’re working on. There’s been some complications but it is still happening.</p></p>
+
+<h2 id="">Merus.9475:</h2>
+<p class="post-meta">
+    <time datetime="2015-01-13T11:37:45+00:00">
+        13 Jan 2015
+    </time>
+</p>
+<p>
+<p>Those complications don’t happen to involve <a href="http://hueniverse.com/2012/07/26/oauth-2-0-and-the-road-to-hell/">any of the issues talked about in this blog post</a>, do they?</p>
+<p>I understand that Steam is decommissioning its OAuth2 implementation, but then who know why Valve does anything.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-01-13T18:05:59+00:00">
+        13 Jan 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on January 13 2015 11:37AM"><a href="/forum/community/api/API-Development-Plans/4689165">Merus.9475:</a></cite></div><div class="quotey"><p>Those complications don’t happen to involve <a href="http://hueniverse.com/2012/07/26/oauth-2-0-and-the-road-to-hell/">any of the issues talked about in this blog post</a>, do they?</p>
+<p>I understand that Steam is decommissioning its OAuth2 implementation, but then who know why Valve does anything.</p></div></blockquote>
+<p>No, we don’t use any of the more wild things lurking at the edges of OAuth2, fortunately.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

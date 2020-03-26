@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Unit Testing the API</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Unit-Testing-the-API/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Unit Testing the API</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Unit-Testing-the-API
+</p>
+
+
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-02-23T21:33:00+00:00">
+        23 Feb 2014
+    </time>
+</p>
+<p>
+<p>Hello forum</p>
+<p>If I’m not mistaken, the APIs we’re given are designed to be consumed in loosely typed languages. Nevertheless, we successfully wrote a .NET library that wraps the API in strongly typed classes.</p>
+<p>The problem is that I’m not exactly sure how to go about unit testing code that relies on external data.</p>
+<p>For APIs that do not require any parameters, I can simply get the data once and use that to verify that my code behaves as expected.</p>
+<p>As an example, I test my code for the ‘items.json’ API like this:</p>
+<div class="spoiler_container"><div class="spoileroncontainer"><button type="button" class="button spoileron" title="Click to show the spoiler.">Show Spoiler</button></div><div class="spoiler"><div class="spoileroffcontainer"><button type="button" class="button spoileroff" title="Click to hide the spoiler.">hide spoiler</button><br></div><div class="spoilertext"><pre><code>
+    [Test]
+    public void GetItemsCatalog()
+    {
+        var request  = new ItemsRequest();
+        var response = request.GetResponse(client);
+
+        Assume.That(response.IsSuccessStatusCode);
+        Assume.That(response.IsJsonResponse);
+
+        var itemsResult = response.Deserialize();
+
+        Assert.IsNotNull(itemsResult);
+        Assert.IsEmpty(itemsResult.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(ItemsResult).FullName);
+
+        Assert.IsNotNull(itemsResult.Items);
+        Assert.IsNotEmpty(itemsResult.Items);
+        Assert.IsEmpty(itemsResult.Items.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Items).FullName);
+
+        Trace.WriteLine(string.Format("Number of items: {0}", itemsResult.Items.Count));
+    }</code></pre></div></div></div><p>Although this unit test assumes that my machine has a working internet connection (and that the web service is up), its test results are fairly accurate. Either my code behaves as intended, or it doesn’t.</p>
+<p>But what do I test for when an API’s response data changes over time due to the dynamic nature of the game?</p>
+<p>At the time of writing, there are 31,864 unique item IDs that can be used to query the ‘item_details.json’ API. In order to say with 100% certainty that my ItemDetails class behaves as expected, I would have to test my code with 31,864 different inputs.</p>
+<p>Obviously, this is a no-go. So how do I test this code?</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2014-02-24T00:00:43+00:00">
+        24 Feb 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="quotey"><p>If I’m not mistaken, the APIs we’re given are designed to be consumed in loosely typed languages.</p></div></blockquote>
+<p>You are mistaken. JSON is just a data exchange format which describes values. It does nothing to impose a specific “language” meant to consume it (yes, I realize that it originated from JavaScript). If JSON wasn’t as flexible as it is, and it was so restrictive as to make it difficult for developers of, say, statically type languages, to consume, it would not be so widely used.</p>
+<p>If a client application consumes JSON, and, for example, a value for ‘someID’ is passed down as a string, then if a programmer decides to convert that string value to an unsigned integer, so be it. That’s a architectural design decision, but this has nothing to do with the JSON concept or the provider of the APIs. If it works, it works.</p>
+<blockquote><div class="quotey"><p>The problem is that I’m not exactly sure how to go about unit testing code that relies on external data.</p></div></blockquote>
+<p>Unit tests should be self-sustaining. You shouldn’t bake external dependencies within your tests, if you can help it. That that I recently solved this was with a testing concept called ‘fixtures’. A fixture can be considered pre-determined input passed into the unit test which mirror real-world data.</p>
+<p><em>Note: unit testing is a broad topic. Here, fixtures are present as just one possible solution. There are other alternatives, such as <a href="http://msdn.microsoft.com/en-us/library/ff650441.aspx">mock objects</a>.</em></p>
+<p>I recent created a <a href="https://github.com/KevinVitale/GW2Kit/tree/development">development</a> branch in <a href="https://github.com/KevinVitale/GW2Kit/">GW2KIt</a> which adds a plethora of <a href="https://github.com/KevinVitale/GW2Kit/tree/development/Tests/Tests">unit tests</a>. These tests use <a href="https://github.com/KevinVitale/GW2Kit/tree/development/Tests/Fixtures/v1">fixtures</a> I created from version 1 (<em>v1</em>) of the APIs.</p>
+<p>Again, <a href="https://github.com/KevinVitale/GW2Kit/tree/development/Tests/Fixtures/v1">look here for list of v1 fixtures</a> I use.</p>
+<p><strong>Edit</strong></p>
+<blockquote><div class="quotey"><p>But what do I test for when an API’s response data changes over time due to the dynamic nature of the game?</p></div></blockquote>
+<p>You do your best to mitigate issues. “Doing your best” means combing the documentation, in this case <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">item_details</a>, and writing tests based on what’s described there. You might want to try making a fixture for one of each type of item, and running it through your unit test.</p>
+<p>If you’ve done your job correctly, you’ll be pretty well set. Then, it’s up to the API’s creators to communicate with the community about possible breaking changes. (Spoiler Alert: <a href="/forum-backup/PSA-Attention-API-wrapper-authors">things will be changing soon</a>).</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-02-24T12:37:41+00:00">
+        24 Feb 2014
+    </time>
+</p>
+<p>
+<p>Sorry, I wasn’t referring to the JSON’s response format. I remembered one of the devs talking about how they designed the APIs.</p>
+<blockquote><div class="citey"><cite title="Posted on May 23 2013 10:48PM"><a href="/forum/community/api/Possible-issue-with-buff-property/2081222">Cliff Spradlin.3512:</a></cite></div><div class="quotey"><p>I don’t have much experience using JSON libraries that map to strongly-typed objects. We didn’t really design the API in mind with that use-case, so I’m not surprised that there are places where it breaks or doesn’t make sense.</p></div></blockquote>
+<p>So anyway, a test fixture is nothing but a vague description of a unit test that uses static sample data from an otherwise dynamic data source as input? I think that gave me an idea.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2014-02-24T14:09:38+00:00">
+        24 Feb 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="quotey"><p>So anyway, a test fixture is nothing but a vague description of a unit test that uses static sample data from an otherwise dynamic data source as input? I think that gave me an idea.</p></div></blockquote>
+<p>A <em>fixture</em> is the static sample data.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-02-24T14:36:28+00:00">
+        24 Feb 2014
+    </time>
+</p>
+<p>
+<p>Alright, I think I get it now.</p>
+<p>My idea is to write individual tests for each ItemDetails property. One test to check that the target property isn’t <em>null</em>, and for properties where the range of allowed values is finite, one additional null-test per known value (e.g. ‘item_details.type’, ‘item_details.rarity’).</p>
+<p>Would that be a meaningful way to test?</p></p>
+
+<h2 id="">Morhyn.8032:</h2>
+<p class="post-meta">
+    <time datetime="2014-02-28T18:15:39+00:00">
+        28 Feb 2014
+    </time>
+</p>
+<p>
+<p>It’s quite easy — <a href="https://github.com/jsumners/gw2-api-client/blob/develop/src/test/java/com/jrfom/gw2/ItemDetailsTest.java">https://github.com/jsumners/gw2-api-client/blob/develop/src/test/java/com/jrfom/gw2/ItemDetailsTest.java</a></p></p>
+
+<h2 id="">domness.6719:</h2>
+<p class="post-meta">
+    <time datetime="2014-03-03T11:36:54+00:00">
+        03 Mar 2014
+    </time>
+</p>
+<p>
+<p>One solution we use with other projects is to run the tests, and the first time it will actually pull the data from the server and save this to the system. Any tests after this will just run tests on the downloaded JSON data (so only connects to the internet once, and once only).</p>
+<p>And then if you want to download the data again, we just delete the JSON files, and the tests automatically connect to the API again to re-pull data (in case anything may have changed, to check updated behaviour and such).</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-03-04T15:12:26+00:00">
+        04 Mar 2014
+    </time>
+</p>
+<p>
+<p>I took a slightly different approach. Rather than testing a particular response, I turn it into a JSON schema by replacing every value with a generic substitute.</p>
+<p><strong>numeric</strong> : 0<br>
+<strong>text</strong> : ""<br>
+<strong>collection</strong> : []<br>
+<strong>complex type</strong>: {}</p>
+<p>With that as the input, all I have to do is</p>
+<ol>
+	<li>check that every object property is initialized to its default</li>
+	<li>check that the serializer could find a matching property on the .NET class for every property in the JSON input.</li>
+</ol>
+<p>Example: <a href="https://gw2dotnet.codeplex.com/SourceControl/latest#GW2.NET-Http/GW2.NET">https://gw2dotnet.codeplex.com/SourceControl/latest#GW2.NET-Http/GW2.NET</a> Tests/Core/ItemsInformation/Details/ItemTest.cs</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2014-03-20T17:37:51+00:00">
+        20 Mar 2014
+    </time>
+</p>
+<p>
+<p>First here is the correct link Steven posted: </p><pre><code>http://gw2dotnet.codeplex.com/SourceControl/latest#GW2.NET-Http/GW2.NET Tests/V1/Core/Items/Details/ItemTest.cs</code></pre> (The forum cuts the url at the space it has and codeplex refuses to accept %20 or + as safe characters, please copy and past the url into your address bar)<p></p>
+<p>Another approach which I used in the early days of “GW2.NET”: <a href="https://gw2dotnet.codeplex.com/">https://gw2dotnet.codeplex.com/</a> was the following:</p>
+<ul>
+	<li>We know from the wiki which response to expect.</li>
+	<li>You fetch the data which is preseted at the wiki and write your tests to compare it</li>
+	<li>If your fetched data is equal to the data you have in the wiki (hardcode it into your tests or something) you know your code works.</li>
+</ul>
+<p>Another approach, since querying  some nodes (e.g. items.json) is time consuming, is to use mocking. Basically you pass the data to your method you know the api is going to return (in this case a JSON formatted string) and then work with that on your code. This is usually better than querying the api every time, since we expect the api to return data and it is not your responsibility to unit test the ANet api. So here is  what you would do:</p>
+<ul>
+	<li>Take the data the api is going to return (from the api itself or otherwise) and pass it to your code via a mocking framework.</li>
+	<li>Test your code with unit tests and the mocking framework.</li>
+</ul>
+<p>I personally recommend <a href="https://github.com/Moq/moq4">Moq</a> as mocking framework and <a href="http://www.nunit.org/index.php?p=home">NUnit</a> as testing framework. I have made great experience with both. But this is a personal preference use what ever you like.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

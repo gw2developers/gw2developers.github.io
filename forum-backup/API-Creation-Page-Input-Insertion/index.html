@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>API Creation Page Input Insertion</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/API-Creation-Page-Input-Insertion/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">API Creation Page Input Insertion</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/API-Creation-Page-Input-Insertion
+</p>
+
+
+
+<h2 id="">I Am Dansker.7105:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-14T15:53:44+00:00">
+        14 Sep 2015
+    </time>
+</p>
+<p>
+<p>Seeing as the Nr.1 issue people have with our use of the API, is that we enforce specific names of their API Keys, to ensure that their key was made by that user and not just some random key from a completely different site.<br>
+No matter how many different ways you try and inform users about it, they miss this important step</p>
+<p>For reference, a little over 1/3 of all our users missed this step</p>
+<p>My suggestion is to be able to either via GET or POST request (preferably GET in case they have to login which causes a redirect, losing the post data?)  to be able to input harmless information such as the API Key name</p>
+<p>I would also like if this was expanded to also include the permissions, however i can see why you would not, if you want users to be fully aware of the permissions they are giving the key. This however is not an issue with the API Key name but is the one, at least my users, seems to miss, as normally you wouldn’t think the name matter</p></p>
+
+<h2 id="">Moturdrn.2837:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-14T17:23:18+00:00">
+        14 Sep 2015
+    </time>
+</p>
+<p>
+<p>+1 for the ability to pass the key name at least.</p>
+<p>We do the same in that we require a specific name for the key and, when looking into reasons why a key couldn’t be added, this is the #1 issue we encounter.</p></p>
+
+<h2 id="">Teranas.6150:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-16T19:30:04+00:00">
+        16 Sep 2015
+    </time>
+</p>
+<p>
+<p>Why not providing an additional field for this purpose?</p>
+<p>A user would be able to set an own name to remeber the key and we could fill the other field with an identifier that proofs the key.</p>
+<p>I’m not a fan of using an existing field for other purposes.</p>
+<p>It’s confusing for the user too.</p></p>
+
+<h2 id="">MatHack.4316:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-17T11:43:18+00:00">
+        17 Sep 2015
+    </time>
+</p>
+<p>
+<p>I disagree about needing another field, I think this will only add more confusion towards the users. Especially since it will have to be an optional field, if no value is provided, users will wonder what they have to put in there, even though it is an optional field.<br>
+If you make the name clear enough, people will not be confused what it is used for. For example this is how I Am Dansker has implemented this on the FSP website: <a href="http://i.imgur.com/waGLCon.png">http://i.imgur.com/waGLCon.png</a> (I edited out any real keys). Personally I find this name clear enough, it’s the Far Shiverpeaks API key.</p>
+<p>For more clarity towards your users you could include a screenshot of the key creation page which has the correct settings (with a fake but representative name), e.g. <a href="http://i.imgur.com/VwJLHqR.png">http://i.imgur.com/VwJLHqR.png</a>. You will probably have to change this screenshot each time new permissions are added, to not confuse users, but I do think this adds more clarity. As an example: The FSP website currently has a 23 seconds video guide. But if 1/3 of the users still make errors by putting in the wrong name, I think this video guide isn’t watched that much. I could imagine that watching the video might be an extra hurdle for some people. But an image where you can see in one glance how your key creation page should look is much harder to ‘ignore’.</p>
+<p>@I Am Dansker: For the FSP website specifically I would at least change the order in which you present the values, on the key creation page the name field is first, the checkboxes for the permissions are second. So it would make sense to provide the users the values in the correct order.<br>
+Also an explanation about why you need to name the key with the specific name is probably a good idea (could be added after the “This is not your api key!” part). As a developer I immediately understood the meaning of having to use the specific name, but for the more non-tech people I think this can be confusing.</p></p>
+
+<h2 id="">Pilot.6094:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-23T21:09:05+00:00">
+        23 Sep 2015
+    </time>
+</p>
+<p>
+<p>The work around for not being able to default the permissions would be able to indicate which ones your app considers optional and which ones are required with red text (Requested) or (Required) after the permission name. If they try to create the key without the required permissions the page could alert them that the key will not work with the 3rd party app.</p>
+<p>More fundamentally, while the API keys are easy to work with as a dev, the biggest flaw is that end users do not know what an API key is. They don’t know what it means, they think is sounds scary and they do not understand why they are creating one. This is a massive barrier to adoption, compared to a simple OAuth approval flow. I can’t think of any other consumer facing platform that requires end-users to create and give out API keys.</p>
+<p>In the end this hurts all the 3rd party devs trying to build enhancements to GW2, because it hampers adoption and creates a huge learning curve for unsuspecting end-users.</p>
+<p>Also the copy option has been removed from the API keys page, so now it is really error prone for users to copy the keys <img src="/include/images/smilies/sad.png"></p>
+<p>If any dev has created a site using the keys and already has a large user-base (thousands of users) it would be great to hear their real-world experience. If you have created instructions for end users or (API key tutorial videos GASP) that help them through the process it would be great if you could share. My own instructions are several bullet points long and I know that most users will get discouraged.</p></p>
+
+<h2 id="">Illconceived Was Na.9781:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-23T22:32:16+00:00">
+        23 Sep 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 23 2015 09:09PM"><a href="/forum/community/api/API-Creation-Page-Input-Insertion/5520944">Pilot.6094:</a></cite></div><div class="quotey"><p>it …creates a huge learning curve for unsuspecting end-users.</p></div></blockquote>
+<p>Let’s not exaggerate. It’s a hurdle, not a “huge learning curve.”</p>
+<blockquote><div class="citey"><cite title="Posted on September 23 2015 09:09PM"><a href="/forum/community/api/API-Creation-Page-Input-Insertion/5520944">Pilot.6094:</a></cite></div><div class="quotey"><p>Also the copy option has been removed from the API keys page, so now it is really error prone for users to copy the keys <img src="/include/images/smilies/sad.png"></p></div></blockquote>
+<p>Isn’t the key always the same number of characters? Isn’t it possible to reduce “really error prone” to simply “inconvenient” by enforcing string-length? (Although, I agree: making it easy to copy the API key would be very helpful.)</p>
+<blockquote><div class="citey"><cite title="Posted on September 23 2015 09:09PM"><a href="/forum/community/api/API-Creation-Page-Input-Insertion/5520944">Pilot.6094:</a></cite></div><div class="quotey"><p>My own instructions are several bullet points long and I know that most users will get discouraged.</p></div></blockquote>
+<p>People just aren’t used to using API keys. The mechanic is easy-enough to illustrate and I’ve found that some really like the ability to control what data each site gets to use, without having to create a site-specific password or ID.</p>
+<hr>
+<p>The critics here are quite right that API keys add a learning curve. As a user, I think that’s one worth teaching.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-24T04:57:16+00:00">
+        24 Sep 2015
+    </time>
+</p>
+<p>
+<p>Sorry gang, I checked internally and this isn’t something ArenaNet is interested in offering at this time.</p></p>
+
+<h2 id="">Lunacy Solacio.6514:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-24T15:27:13+00:00">
+        24 Sep 2015
+    </time>
+</p>
+<p>
+<p>Why force users to use a specific api key name? What benefit does that provide?</p>
+<blockquote><div class="citey"><cite title="Posted on September 23 2015 10:32PM"><a href="/forum/community/api/API-Creation-Page-Input-Insertion/5521184">Illconceived Was Na.9781:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 23 2015 09:09PM"><a href="/forum/community/api/API-Creation-Page-Input-Insertion/5520944">Pilot.6094:</a></cite></div><div class="quotey"><p>Also the copy option has been removed from the API keys page, so now it is really error prone for users to copy the keys <img src="/include/images/smilies/sad.png"></p></div></blockquote>
+<p>Isn’t the key always the same number of characters? Isn’t it possible to reduce “really error prone” to simply “inconvenient” by enforcing string-length? (Although, I agree: making it easy to copy the API key would be very helpful.)</p></div></blockquote>
+<p>They just have to highlight and copy. At this point, if the users have an issue doing that… (and yes I am all for making things easier on users, and trying to prevent users from doing anything to break the app but at some point the user has to do something and, to be blunt, you can’t hold their hand for everything), <br>
+edit: also, the users should be able to just triple click on the api key, and it highlights everything for them.</p>
+<p>and yes, the sites using it should be verifying the length of the key. This should be standard practice…</p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-24T17:15:29+00:00">
+        24 Sep 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 24 2015 03:27PM"><a href="/forum/community/api/API-Creation-Page-Input-Insertion/5523127">Lunacy Solacio.6514:</a></cite></div><div class="quotey"><p>Why force users to use a specific api key name? What benefit does that provide?</p></div></blockquote>
+<p>Forcing a new unique key name each time has the benefit that we now its a newly created API key for exactly this new app, and not some key someone found on the internet, got from a friend, …. The user owning the account is the only one who could create it, so we know its the right person to register the API key with our app.</p></p>
+
+<h2 id="">Lunacy Solacio.6514:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-24T18:02:26+00:00">
+        24 Sep 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 24 2015 05:15PM"><a href="/forum/community/api/API-Creation-Page-Input-Insertion/5523412">darthmaim.6017:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 24 2015 03:27PM"><a href="/forum/community/api/API-Creation-Page-Input-Insertion/5523127">Lunacy Solacio.6514:</a></cite></div><div class="quotey"><p>Why force users to use a specific api key name? What benefit does that provide?</p></div></blockquote>
+<p>Forcing a new unique key name each time has the benefit that we now its a newly created API key for exactly this new app, and not some key someone found on the internet, got from a friend, …. The user owning the account is the only one who could create it, so we know its the right person to register the API key with our app.</p></div></blockquote>
+<p>That doesn’t guarantee that, though. Sure, can’t use some random key, but how would a random key benefit them anyways? A friend could create it with the key name you want for that matter. For those registering on a guild or server site for home verification, knowing the account name or a character on the account, and knowing the account isn’t already registered should be sufficient for most purposes. Needing more than that, it’s just going to be the risk that you’ll turn off the users. Just seems like a somewhat pointless extra step to complicate things needlessly, although perhaps there are uses that this truly better serves.</p>
+<p>idk, this isn’t the place to discuss it really, thank you for the response, though.</p></p>
+
+<h2 id="">I Am Dansker.7105:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-24T18:55:36+00:00">
+        24 Sep 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 24 2015 04:57AM"><a href="/forum/community/api/API-Creation-Page-Input-Insertion/5522000">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>Sorry gang, I checked internally and this isn’t something ArenaNet is interested in offering at this time.</p></div></blockquote>
+<p>I can understand why you don’t want to do it with the permissions, but why not the name? i fail to see any way that could be abused.</p>
+<blockquote><div class="citey"><cite title="Posted on September 24 2015 06:02PM"><a href="/forum/community/api/API-Creation-Page-Input-Insertion/5523549">Lunacy Solacio.6514:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 24 2015 05:15PM"><a href="/forum/community/api/API-Creation-Page-Input-Insertion/5523412">darthmaim.6017:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 24 2015 03:27PM"><a href="/forum/community/api/API-Creation-Page-Input-Insertion/5523127">Lunacy Solacio.6514:</a></cite></div><div class="quotey"><p>Why force users to use a specific api key name? What benefit does that provide?</p></div></blockquote>
+<p>Forcing a new unique key name each time has the benefit that we now its a newly created API key for exactly this new app, and not some key someone found on the internet, got from a friend, …. The user owning the account is the only one who could create it, so we know its the right person to register the API key with our app.</p></div></blockquote>
+<p>That doesn’t guarantee that, though. Sure, can’t use some random key, but how would a random key benefit them anyways? A friend could create it with the key name you want for that matter.</p></div></blockquote>
+<p>It is used to ensure at least the key was created by the owner, with the intent to use it for this specific site</p>
+<p>For instance, i have access to API keys from every server due to either people leaving fsp or people trying to verify and see if they get access, even when they are not from fsp.</p>
+<p>I could use any of these keys to try and gain access to other WvW server communities that does not require specific names of their api keys.</p>
+<p>Basically every dev here with an active service using API keys, could do this.</p>
+<p>This doesn’t prevent etc a PVE friend from FSP to create a key for their deso WvW friend, but it does prevent the issue from above</p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-24T19:18:03+00:00">
+        24 Sep 2015
+    </time>
+</p>
+<p>
+<p>Yep, it still can be someone else, but at least the owner knows about it, because he created the key for someone else. Or in the rare case someone got access to the account and created a new API key, the user at least knows for which site the API key is used, because most apps require names that include their name/domain.<br>
+This is probably not needed for some apps, but for all those WvW apps for example its important to be sure the user is really on that world (currently, they also could create free accounts on that world to circumvent it, but /v2/account will hopefully contain the account type soon).</p></p>
+
+<h2 id="">Pilot.6094:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-25T21:42:45+00:00">
+        25 Sep 2015
+    </time>
+</p>
+<p>
+<p>Here is an idea that will work with ANet’s constraint that they don’t want us deep linking in, while at the same time giving us a way to help users choose the correct set of permissions.</p>
+<p>Devs would upload an app manifest that specifies their App name, an icon and which permissions the app requires and which are optional. i.e.</p>
+<p>&lt;app name=“My Sample GW2 App” iconurl=“<a href="http://www.sampleappico.png">http://www.sampleappico.png</a>”&gt;<br>
+	&lt;permissions&gt;<br>
+		&lt;required&gt;<br>
+			&lt;account/&gt;<br>
+			&lt;characters/&gt;<br>
+			&lt;inventory/&gt;<br>
+		&lt;/required&gt;<br>
+		&lt;optional&gt;<br>
+			&lt;builds/&gt;<br>
+		&lt;/optional&gt;<br>
+	&lt;/permissions&gt;<br>
+&lt;/app&gt;</p>
+<p>Then when users go to their Applications page to create a key…</p>
+<p>1) They first pick the app from an auto-complete field</p>
+<p>2) Based on the XML manifest for the selected app, the required permissions and optional permissions are indicated for the user to check off. Other permissions are disabled.</p>
+<p>3) If the user doesn’t select all the required app permissions the page could display a message to let them know the key won’t work.</p>
+<p>This could also provide a means to relate the app name to the key easily since some devs would like that as well.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

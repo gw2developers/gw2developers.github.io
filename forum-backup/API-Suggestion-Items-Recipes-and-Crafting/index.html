@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>[API Suggestion] Items, Recipes, and Crafting</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/API-Suggestion-Items-Recipes-and-Crafting/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">[API Suggestion] Items, Recipes, and Crafting</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting
+</p>
+
+
+
+<h2 id="">rodadams.5963:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-21T05:59:51+00:00">
+        21 May 2013
+    </time>
+</p>
+<p>
+<p>Let’s see, I’ve seen the following requests:</p>
+<p>Items:<br>
+- Have an index to which recipes they are created from and/or used in.<br>
+- If available from vendor, price in copper/karma for item.</p>
+<p>Recipes:<br>
+- Clearly state the Crafting Discipline. In particular, bags are hard to “guess” who makes them.<br>
+- Include the ‘set’ Mystic Forge recipes.<br>
+- Source of Recipe: Discoverable, or bought?</p>
+<p>I’ll add in:<br>
+- For food items, spell out what the buffs they give, like weapons do.<br>
+- Similar for runes, and any other types that don’t specify them.</p></p>
+
+<h2 id="">xanthic.9478:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-21T05:59:52+00:00">
+        21 May 2013
+    </time>
+</p>
+<p>
+<p>I am excited by what I see here, as it would make adding new recipes to my crafting script very easy in the future(instead of having to parse the wiki and create custom tools I can just run an update vs the api).</p>
+<p>However there are a few changes(more information) that I would like to see.</p>
+<p><strong><a href="https://api.guildwars2.com/v1/recipes.json">https://api.guildwars2.com/v1/recipes.json</a></strong></p>
+<ul>
+	<li>Fine as is.</li>
+</ul>
+<p><strong><a href="https://api.guildwars2.com/v1/recipe_details.json?recipe_id=3479">https://api.guildwars2.com/v1/recipe_details.json?recipe_id=3479</a></strong> example recipe</p>
+<ul>
+	<li>Field indicating if the recipe is a refine, part or item – different xp gained for each. Unless type is supposed to fill that function.</li>
+	<li>What craft(s) can use this recipe.</li>
+	<li>Recipe source.  Discovery, learned automatically, learned from recipe(breadcrumb to recipe IE “35 karma, Scholar Tholin – Krongar Pass(Timberline Falls 50-60)”)</li>
+</ul>
+<p><strong><a href="https://api.guildwars2.com/v1/items.json">https://api.guildwars2.com/v1/items.json</a></strong></p>
+<ul>
+	<li>Fine as is</li>
+</ul>
+<p><strong><a href="https://api.guildwars2.com/v1/item_details.json?item_id=13273">https://api.guildwars2.com/v1/item_details.json?item_id=13273</a></strong> example item</p>
+<ul>
+	<li>Link to the icon used by the item.  Such as <a href="https://dfach8bufmqqv.cloudfront.net/gw2/img/content/e414cb68.png">https://dfach8bufmqqv.cloudfront.net/gw2/img/content/e414cb68.png</a></li>
+</ul></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-21T06:10:36+00:00">
+        21 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 21 2013 05:59AM"><a href="/forum/community/api/Item-Recipe-API-suggestions/2065665">xanthic.9478:</a></cite></div><div class="quotey"><p><strong><a href="https://api.guildwars2.com/v1/item_details.json?item_id=13273">https://api.guildwars2.com/v1/item_details.json?item_id=13273</a></strong> example item</p>
+<ul>
+	<li>Link to the icon used by the item.  Such as <a href="https://dfach8bufmqqv.cloudfront.net/gw2/img/content/e414cb68.png">https://dfach8bufmqqv.cloudfront.net/gw2/img/content/e414cb68.png</a></li>
+</ul></div></blockquote>
+<p>For item details, it would be useful, if the item is sold by a vendor, to get the cost of buying it from a vendor.  Besides the price of SELLING it to the vendor, which we can also get from the Trading Post API anyway.  Include “Gold Cost”, or “Karma Cost”, “Laurel Cost”, or “Skill point Cost”.  This would make such derivations possible, for example:</p>
+<p><a href="http://www.gw2spidy.com/recipe/3157">http://www.gw2spidy.com/recipe/3157</a></p>
+<p>I think gw2spidy is using the data provided by gw2db but now that we have an official source, apps can consider switching to use this provided it has the data that they need.</p>
+<p>A great bonus would be supporting Mystic Forge recipes.  You can expose mystic forge recipes as belonging to its own unique crafting discipline if you like.  Sorry if we are asking for too much. <img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">LadyRhonwyn.2501:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T06:09:38+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 21 2013 05:59AM"><a href="/forum/community/api/Item-Recipe-API-suggestions/2065665">xanthic.9478:</a></cite></div><div class="quotey"><p><strong><a href="https://api.guildwars2.com/v1/item_details.json?item_id=13273">https://api.guildwars2.com/v1/item_details.json?item_id=13273</a></strong> example item</p></div></blockquote>
+<p>What I miss in this API is a recipe_id for those items that are also created using a recipe.</p>
+<p>If you take your recipe example.  One of its ingredients is this:</p>
+<p><a href="https://api.guildwars2.com/v1/item_details.json?item_id=12812">https://api.guildwars2.com/v1/item_details.json?item_id=12812</a></p>
+<p>Which is a crafting material, but one that requires another recipe to craft.  It would be nice if there was a recipe_id in there as well, so you can eventually find the base materials of the final crafted item.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T07:10:53+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 23 2013 06:09AM"><a href="/forum/community/api/Item-Recipe-API-suggestions/2076965">LadyRhonwyn.2501:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 21 2013 05:59AM"><a href="/forum/community/api/Item-Recipe-API-suggestions/2065665">xanthic.9478:</a></cite></div><div class="quotey"><p><strong><a href="https://api.guildwars2.com/v1/item_details.json?item_id=13273">https://api.guildwars2.com/v1/item_details.json?item_id=13273</a></strong> example item</p></div></blockquote>
+<p>What I miss in this API is a recipe_id for those items that are also created using a recipe.</p>
+<p>If you take your recipe example.  One of its ingredients is this:</p>
+<p><a href="https://api.guildwars2.com/v1/item_details.json?item_id=12812">https://api.guildwars2.com/v1/item_details.json?item_id=12812</a></p>
+<p>Which is a crafting material, but one that requires another recipe to craft.  It would be nice if there was a recipe_id in there as well, so you can eventually find the base materials of the final crafted item.</p></div></blockquote>
+<p>That is created by recipe_id 3392.</p>
+<p><a href="https://api.guildwars2.com/v1/recipe_details.json?recipe_id=3392">https://api.guildwars2.com/v1/recipe_details.json?recipe_id=3392</a></p>
+<p>You would have to match the output_item_id from the recipe list.</p>
+<p>But that would mean you have to download all recipe_details of each recipe to search for the output_item_id of the item that you need to craft.  Since you can only request the recipe_details of 1 recipe at a time it is going to be a performance hit for both server and client.</p>
+<p>I suggest we either:</p>
+<p>1.  Allow output_item_id as a parameter to recipe_details.json.</p>
+<p>or</p>
+<p>2.  Like LadyRhonwyn suggests, have a recipe_id field in the item record.  That would also mean having a unique value for this field in items that are not craftable.</p>
+<p>or</p>
+<p>3.  Have a way for recipe_details.json to return all recipes in 1 call.  Leaving it to the client to search for the required output_item_id.</p></p>
+
+<h2 id="">Charismatic Harm.9683:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T15:45:19+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>I would like to see an API that gives me all of the recipe details for all of the recipes in one JSON file.  Currently, the procedure for getting all of the recipe details is…..</p>
+<p>Step 1:  Call “recipes” to get the list of recipe_id’s<br>
+Step 2:  Loop through each recipe_id<br>
+Step 3:  Call “recipe_details” to get the details of each recipe</p>
+<p>This method takes a large amount of bandwidth as the current recipe_id list is 6870 items long….each requiring an individual call to get its details.</p>
+<p>If a new “recipes_details” API was created or “recipe_details” would allow for the request of multiple recipes at once (say 250), then the number of requests would be dramatically reduced.</p>
+<p>If the new “recipes_details” was created that contained ALL details for ALL recipes, then you would only need to call it once to get all of the information.</p>
+<p>If the current “recipe_details” allowed for multiple requests (250), then you would need 6870 / 250 = 27.48 or 28 calls.</p>
+<p>Either way, 1 or 28 calls, is FAR less than 6870 calls and would reduce bandwidth dramatically.</p>
+<p>Edit:  I haven’t tried using the “items” and “item_details” API’s yet, but I would hazard a guess that they work the same way.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T17:47:59+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>For the items with type Consumable/Unlock, e.g. <a href="https://api.guildwars2.com/v1/item_details.json?item_id=9653">https://api.guildwars2.com/v1/item_details.json?item_id=9653</a></p>
+<ul>
+	<li>recipe_id of the corresponding recipe which would be unlocked: <a href="https://api.guildwars2.com/v1/recipe_details.json?recipe_id=3182">3182</a></li>
+	<li>item_id of the crafted item, in this case: <a href="https://api.guildwars2.com/v1/item_details.json?item_id=12561">12561</a></li>
+</ul>
+<p>further for the recipes, example from above<br>
+<a href="https://api.guildwars2.com/v1/recipe_details.json?recipe_id=3182">https://api.guildwars2.com/v1/recipe_details.json?recipe_id=3182</a></p>
+<ul>
+	<li>item_id of the Consumable which is required to unlock (if applies): <a href="https://api.guildwars2.com/v1/item_details.json?item_id=9653">9653</a></li>
+</ul>
+<p>and finally for craftable items<br>
+<a href="https://api.guildwars2.com/v1/item_details.json?item_id=12561">https://api.guildwars2.com/v1/item_details.json?item_id=12561</a></p>
+<ul>
+	<li>recipe_id of the corresponding recipe: <a href="https://api.guildwars2.com/v1/recipe_details.json?recipe_id=3182">3182</a></li>
+</ul></p>
+
+<h2 id="">Yoone.9461:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T19:03:41+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p><strong>Items:</strong> add link to icon, like the current Trading Post API, but working without any GW2 account, and for every item.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-25T01:55:22+00:00">
+        25 May 2013
+    </time>
+</p>
+<p>
+<p>I’ve forgot the <a href="http://wiki.guildwars2.com/wiki/Chat_link_format">chat code</a> - i know we can calculate them on our own, but it would be more reliable to have them from the original source<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">Yoone.9461:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-25T06:21:20+00:00">
+        25 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 25 2013 01:55AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2088131">smiley.1438:</a></cite></div><div class="quotey"><p>I’ve forgot the <a href="http://wiki.guildwars2.com/wiki/Chat_link_format">chat code</a> - i know we can calculate them on our own, but it would be more reliable to have them from the original source<img src="/include/images/smilies/wink.png"></p></div></blockquote>
+<p>I don’t know if this really is a good idea, it would add unnecessary information to the API. Maybe releasing a function in several languages to convert the ID into the chat code would be more useful!</p></p>
+
+<h2 id="">Rawrfaec.6412:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-25T06:59:44+00:00">
+        25 May 2013
+    </time>
+</p>
+<p>
+<p>By extension a link to an item icon is unnecessary as long as we get a resource from which we can fetch an icon corresponding to the item’s ID, which is already given. Having a way to get both icon and chat code would be nice but neither <em>has</em> to be in JSON format.</p></p>
+
+<h2 id="">Yoone.9461:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-25T08:34:27+00:00">
+        25 May 2013
+    </time>
+</p>
+<p>
+<p>We <b>can’t</b> get every item icon from the ID, even with the Trading Post API. But we can generate every chat code with the ID.</p>
+<blockquote><div class="citey"><cite title="Posted on May 24 2013 07:30PM"><a href="/forum/community/api/Items-icons-and-in-game-code/2086538">The Talcmaster.7391:</a></cite></div><div class="quotey"><p>That is correct.  If it never has been sold on the TP, there is no image on there yet.  As of yet there is no way to get icons for items not on the TP.  I would put good money on it coming fairly soon though.</p></div></blockquote>
+<p>See the post: <a href="/forum-backup/Items-icons-and-in-game-code">https://forum-en.guildwars2.com/forum/community/api/Items-icons-and-in-game-code/first#post2086538</a></p></p>
+
+<h2 id="">Lethargy.3659:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-25T13:32:21+00:00">
+        25 May 2013
+    </time>
+</p>
+<p>
+<p>This isn’t a major problem, but I’ve found an item which is on the TP, but not in the API:<br>
+“Sealed Package of Snowballs” (item id 24)</p>
+<p>Might this be because the item hasn’t dropped since the christmas event, so it’s not considered discovered (That’s a complete guess at how it’s been implemented)?</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-25T23:58:53+00:00">
+        25 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 24 2013 03:45PM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2085206">Charismatic Harm.9683:</a></cite></div><div class="quotey"><p>I would like to see an API that gives me all of the recipe details for all of the recipes in one JSON file.  Currently, the procedure for getting all of the recipe details is…..</p>
+<p>Step 1:  Call “recipes” to get the list of recipe_id’s<br>
+Step 2:  Loop through each recipe_id<br>
+Step 3:  Call “recipe_details” to get the details of each recipe</p>
+<p>This method takes a large amount of bandwidth as the current recipe_id list is 6870 items long….each requiring an individual call to get its details.</p></div></blockquote>
+<p>I would like to second this suggestion and also include item_details for this suggestion also.</p>
+<p>Considering that we would need to be registered developers with api key and set quota, this suggestion for being able to get all the item details in 1 call and recipe details in 1 call, becomes even more important.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T00:55:49+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<p>I have posted on another suggestion thread before but since now we have an official suggestion thread for items, here goes:</p>
+<p>For item details, it would be useful, if the item is sold by a vendor, to get the cost of buying it from a vendor. Besides the price of SELLING it to the vendor, which we can also get from the Trading Post API anyway. Include “Gold Cost”, or “Karma Cost”, “Laurel Cost”, or “Skill point Cost”. This would make such derivations possible, for example:<br>
+<a href="http://www.gw2spidy.com/recipe/3157">http://www.gw2spidy.com/recipe/3157</a><br>
+I think gw2spidy is using the data provided by gw2db but now that we have an official source, apps can consider switching to use this provided it has the data that they need.</p>
+<p>Another great feature would be supporting Mystic Forge recipes. You can expose mystic forge recipes as belonging to its own unique crafting discipline if you like. Sorry if we are asking for too much.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T02:31:58+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<p>The problem with including vendor costs is that different vendors can sell the same item at different prices.  I’m not talking just coin versus karma, but I know at one time during beta there was an item that different vendors sold for different amounts of coin.</p>
+<p>A better way to present that data would be via a vendor_details.json API, that would key off of actor_id or something and list all the items the vendor sells, along with the prices.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T02:41:28+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 26 2013 02:31AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2092647">Dr Ishmael.9685:</a></cite></div><div class="quotey"><p>I know at one time during beta there was an item that different vendors sold for different amounts of coin.</p></div></blockquote>
+<p>Golem-In-A-Box is such an item – sold in Metrica Province at 2 different vendors for different price …and it’s missing in the Items-API :o</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T05:03:36+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 26 2013 02:31AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2092647">Dr Ishmael.9685:</a></cite></div><div class="quotey"><p>The problem with including vendor costs is that different vendors can sell the same item at different prices.  I’m not talking just coin versus karma, but I know at one time during beta there was an item that different vendors sold for different amounts of coin.</p>
+<p>A better way to present that data would be via a vendor_details.json API, that would key off of actor_id or something and list all the items the vendor sells, along with the prices.</p></div></blockquote>
+<p>Alternatively we can have a vendor array on each item record with each element in the array containing the vendor id and the gold/karma/laurel/skill point cost for the item.</p>
+<p>This would be similar to an item record with something like this:<br>
+</p><pre><code>
+{...,"SoldBy":[{"NPCExternalID":700000,"KarmaCost":49},{"NPCExternalID":700001,"KarmaCost":77}]}
+</code></pre>or<br>
+<pre><code>
+{...,"SoldBy":[{"NPCExternalID":700000,"GoldCost":8}]}
+</code></pre><p></p>
+<p>The advantage of this approach is that I won’t need to load the vendor.json, when I am not interested in vendor information, in order to generate a tree view like the one shown in <a href="http://www.gw2spidy.com/recipe/3157">http://www.gw2spidy.com/recipe/3157</a></p></p>
+
+<h2 id="">SLAYER.3941:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-30T07:20:40+00:00">
+        30 May 2013
+    </time>
+</p>
+<p>
+<p>Receiving the image / icon for an item is totally necessary</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-30T07:28:57+00:00">
+        30 May 2013
+    </time>
+</p>
+<p>
+<p>Would be nice if Arenanet would release an official asset kit containing all those icons for use with the API or some sort of tool to pull the data from the gw2.dat. People have already started to pull the data in some ways from the AH which i believe wasn’t intended. Official sources would also help the wikis <img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">xanthic.9478:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-31T04:11:25+00:00">
+        31 May 2013
+    </time>
+</p>
+<p>
+<p>For these API to be useful for me I would need the additional information in bold.  This is what I envision needing to automate my crafting guides recipes.</p>
+<p>get all valid/known recipes via recipes.json</p>
+<p>via recipe_details.json get each(new) recipes item_id created, skill level, <strong>craft required(eg cooking)</strong>, <strong>recipe source(eg discovery, learned automatically, learned from recipe – with source)</strong>, <strong>craft type from refine, part and item(they each give different xp)</strong></p>
+<hr>
+<p>Sample fields:</p>
+<p>“craft”:“cooking” <br>
+Possibly values: cooking, jewelcrafting, artificing, leatherworking, armorcrafting, tailoring, weaponcrafting, huntsman</p>
+<p>“source”:“discovery”<br>
+Possible values: discovery, learned, recipe name eg “Recipe: Ooze Custard”</p>
+<p>“craft_type”:“item”<br>
+Possible values: part, refine, item.  This may be redundant if “type” already implies that information but it would need possible results documented somewhere.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-31T22:43:03+00:00">
+        31 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 30 2013 07:28AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2119427">smiley.1438:</a></cite></div><div class="quotey"><p>Would be nice if Arenanet would release an official asset kit containing all those icons for use with the API or some sort of tool to pull the data from the gw2.dat. People have already started to pull the data in some ways from the AH which i believe wasn’t intended. Official sources would also help the wikis <img src="/include/images/smilies/wink.png"></p></div></blockquote>
+<p>What <a href="http://notifier.zicore.de/">Zicore’s TP notifier</a> does is to cache those images in a folder whenever his app tries to fetch an item image.  This way, the app actually runs faster the more the user uses it at the cost of some disk space (which is cheap nowadays anyway). <img src="/include/images/smilies/smile.png">  My image cache folder has 4738 PNG files right now.</p></p>
+
+<h2 id="">Healix.5819:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-31T23:42:08+00:00">
+        31 May 2013
+    </time>
+</p>
+<p>
+<p>When caching many small files, you can save a little bit of disk space by creating one large file. Files are allocated a specific amount of disk space, which for mostly everyone is going to be in intervals of 4KB. If you have a 1 byte file for example, it’s going to use up 4 KB.</p>
+<p>For ~4700 3-8KB files, you could save anywhere from 5-10 MB of space, assuming 64×64 icons.</p>
+<p>In my case, I’m caching 24,853 raw responses that are just a few 100 bytes in length each. In total, it’s only 11 MB, but since they’re all separate files, it’s actually 97 MB. In database form, it’s 4 MB.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-01T01:19:09+00:00">
+        01 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 31 2013 11:42PM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2131577">Healix.5819:</a></cite></div><div class="quotey"><p>When caching many small files, you can save a little bit of disk space by creating one large file. Files are allocated a specific amount of disk space, which for mostly everyone is going to be in intervals of 4KB. If you have a 1 byte file for example, it’s going to use up 4 KB.</p>
+<p>For ~4700 3-8KB files, you could save anywhere from 5-10 MB of space, assuming 64×64 icons.</p>
+<p>In my case, I’m caching 24,853 raw responses that are just a few 100 bytes in length each. In total, it’s only 11 MB, but since they’re all separate files, it’s actually 97 MB. In database form, it’s 4 MB.</p></div></blockquote>
+<p>That is cool, but in the case of my app that would be a little in the realm of adding more complexity for little gain since hard disk space is very cheap nowadays anyway. <img src="/include/images/smilies/smile.png">  Squeezing better performance is where I have been investing time into.</p></p>
+
+<h2 id="">xanthic.9478:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-01T06:23:35+00:00">
+        01 Jun 2013
+    </time>
+</p>
+<p>
+<p>Tonights changes added everything I was hoping for.  Crafting guide should get automated recipe lists tomorrow and then I won’t have to touch it again (except to add any new cooking recipe locations)</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T05:00:04+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<p>I am still holding out hope that they would provide NPC vendor “SoldBy” info for items soon.</p>
+<p>I would really like to be able to come up with something like this:</p>
+<p><a href="http://www.gw2spidy.com/recipe/3157">http://www.gw2spidy.com/recipe/3157</a></p>
+<p>…with the data provided.</p>
+<p>I already have the code developed for this against the gw2db data but their data is missing some NPC vendor prices for some items so I had to supplement it.</p>
+<p>As a bonus, if they can also provide Mystic Forge recipes that would be even better.  I tried mixing the MF recipes into the crafting recipes and my code came up with new cheaper ways to make some of the named exotics, which is very cool.</p></p>
+
+<h2 id="">havom.1532:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-05T14:09:09+00:00">
+        05 Jun 2013
+    </time>
+</p>
+<p>
+<p>recipe_details: Suggestion / Missing</p>
+<p>For the recipe_details I´m missing: The category of recipe: Insigmia, refinement, Upgrade component, Ring, and so on (such as seen here: <a href="http://wiki.guildwars2.com/wiki/File:Jeweler_Crafting_Pane.png">http://wiki.guildwars2.com/wiki/File:Jeweler_Crafting_Pane.png</a>).  Even mystic forge can be applied there.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-05T15:41:00+00:00">
+        05 Jun 2013
+    </time>
+</p>
+<p>
+<p>That’s the “type” element in recipe_details.json.  Mystic Forge recipes are not included in the API at this time.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-07T22:40:54+00:00">
+        07 Jun 2013
+    </time>
+</p>
+<p>
+<p>I have one more suggestion.  Right now there is no way for me to find out the Recipe item itself that is required to unlock a particular recipe.</p>
+<p>For example, take the recipe for Candy Corn Custard:</p>
+<p><a href="https://api.guildwars2.com/v1/recipe_details.json?recipe_id=6472">https://api.guildwars2.com/v1/recipe_details.json?recipe_id=6472</a></p>
+<p>…and the Recipe item to unlock the above recipe:</p>
+<p><a href="https://api.guildwars2.com/v1/item_details.json?item_id=36103">https://api.guildwars2.com/v1/item_details.json?item_id=36103</a></p>
+<p>There is currently no way for me to link one to the other, short of doing fancy regex matches.  It would be great if the recipe item can specify the recipe id that it actually unlocks OR the recipe itself, with the “LearnedFromItem” flag, can specify the recipe item that is used to unlock it.</p>
+<p>Thanks.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-07T22:46:24+00:00">
+        07 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 07 2013 10:40PM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2174719">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>There is currently no way for me to link one to the other, short of doing fancy regex matches.</p></div></blockquote>
+<p>Even that wouldn’t work all the time.  Example: <a href="http://wiki.guildwars2.com/wiki/Recipe:_Atzintli%27s_Spear">Recipe: Atzintli’s Spear</a> teaches the recipe for <a href="http://wiki.guildwars2.com/wiki/Quetzal_Harpoon">Quetzal Harpoon</a>.  Some others aren’t quite as bad (<a href="http://wiki.guildwars2.com/wiki/Recipe:_Eggs_Beetletun">Recipe: Eggs Beetletun</a> teaches <a href="http://wiki.guildwars2.com/wiki/Beetletun_Omelette">Beetletun Omelette</a>), but there are a lot like this.</p>
+<p>I second this request.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-07T22:56:53+00:00">
+        07 Jun 2013
+    </time>
+</p>
+<p>
+<p>Thats pretty much what i’ve already suggested in <a href="/forum-backup/API-Suggestion-Items-Recipes-and-Crafting">post #3</a>, isn’t it?<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-07T23:07:01+00:00">
+        07 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 07 2013 10:56PM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2174796">smiley.1438:</a></cite></div><div class="quotey"><p>Thats pretty much what i’ve already suggested in <a href="/forum-backup/API-Suggestion-Items-Recipes-and-Crafting">post #3</a>, isn’t it?<img src="/include/images/smilies/colondee.png"></p></div></blockquote>
+<p>That just goes to show how much the community needs this. <img src="/include/images/smilies/smile.png"></p>
+<p>EDIT: If we have this, and the “SoldBy” property for items, then apps would be able to start providing useful information on how + where to unlock recipes.</p>
+<p>If not the “SoldBy” property, we can use the Vendor API, if that is provided instead.<br>
+<a href="/forum-backup/API-Suggestion-Vendor-API">https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Vendor-API/first#post2175422</a></p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-08T03:50:51+00:00">
+        08 Jun 2013
+    </time>
+</p>
+<p>
+<p>Unlocks now list the color_id/recipe_id they unlock.  Whoo!</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-08T06:45:40+00:00">
+        08 Jun 2013
+    </time>
+</p>
+<p>
+<p>That was a fast turnaround!  Woot!</p>
+<p>The new unlock_type enum:</p>
+<pre><code>
+    public enum GW2APIUnlockTypeEnum
+    {
+        CraftingRecipe,
+        Dye,
+        BagSlot,
+        BankTab
+    }
+</code></pre></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-08T16:06:41+00:00">
+        08 Jun 2013
+    </time>
+</p>
+<p>
+<p>And now it’s obvious that there are a lot of recipe sheets missing.  Both of the ones I linked above (Eggs Beetletun, Atzintli’s Spear) are missing, as is <a href="http://wiki.guildwars2.com/wiki/Eda's_Apple_Pie_Recipe">Eda’s Apple Pie Recipe</a>.  Some of the recipes are listed (recipe_ids are 2968 for Beetletun Omelette and 2903 for Eda’s Apple Pie) and they have the LearnedFromItem flag, but the items API discovery mechanism still has some big flaws.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-08T16:46:20+00:00">
+        08 Jun 2013
+    </time>
+</p>
+<p>
+<p>Yes but items are getting “discovered” with each day so at least there is hope.  The only thing that I need now from the items API is either a “SoldBy” property (with its vendor acquisition cost) for vendors OR a vendor API that lists the items each vendor sells and its cost.</p>
+<p>With that I would be able to show where and how to unlock recipes and also be able to generate a tree view for minimum crafting cost for craftable items, like in gw2spidy.</p>
+<p>I believe gw2spidy had to supplement their data that they got from gw2db since the SoldBy property in gw2db items API is not very complete.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-08T18:03:15+00:00">
+        08 Jun 2013
+    </time>
+</p>
+<p>
+<p>I made a spreadsheet of all the LearnedFromItem recipe details and added the item_id of the consumable that unlocks it, as well as the name of the output_item_id.</p>
+<p><a href="https://docs.google.com/file/d/0B5NobLNMdY89TnpzVC00Zm1vemc/edit?usp=sharing">https://docs.google.com/file/d/0B5NobLNMdY89TnpzVC00Zm1vemc/edit?usp=sharing</a></p>
+<p>Looks like the majority of the recipes with an unlisted Unlock are where the recipe sheet is purchased for karma, although there are still some Bulk and Feast recipes with an unlisted Unlock even though you get those recipe sheets from the Mystic Forge.</p></p>
+
+<h2 id="">Paranaix.8374:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-12T20:51:46+00:00">
+        12 Jun 2013
+    </time>
+</p>
+<p>
+<p>As I missed this thread on the first glance I beg for pardon and simply repost my suggestion here:</p>
+<p>It would be kind of nice if you provide more information for bags, especially their type.<br>
+Currently a definition looks e.g like this one:</p>
+<p><em>{u’restrictions’: [], u’name’: u’12 Slot Equipment Box’, u’level’: u’0’, u’rarity’: u’Fine’, u’bag’: {u’no_sell_or_sort’: u’0’, u’size’: u’12’}</em></p>
+<p>As you can see there is no information about that equipment go firstly in this bag .<br>
+For "Invisible" Bags such information is already provided (u’no_sell_or_sort’: u’0’) why not for other bag types?</p>
+<p>With best regards, Paranaix</p></p>
+
+<h2 id="">xanthic.9478:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-12T22:32:24+00:00">
+        12 Jun 2013
+    </time>
+</p>
+<p>
+<p>I’d like to see a bulk get(like the TP api has) so I am not doing 10,000 individual api calls when rebuilding recipe sheets.  EG <a href="https://github.com/xanthics/gw2craft/blob/master/create_recipes.py">https://github.com/xanthics/gw2craft/blob/master/create_recipes.py</a></p></p>
+
+<h2 id="">elentras.4965:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-18T18:27:44+00:00">
+        18 Jun 2013
+    </time>
+</p>
+<p>
+<p>I’m bored about items pictures/icons…. I mean, if I want to get the pictures for each object I have to connect to the TradingPost API and this is pretty painfull to do.</p>
+<p>I use certificates, https connection and simulate from my application the connection through a browser. But I would be please to simply get them from the items hash, as a link to the picture.</p>
+<p>I just want to do it one time, but I can understand than beginners will request it all the time and slow down the assets server. Please,  find a solution about it !<br>
+I’m thinking about blocking ip if doing two times the same requestor more.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-18T20:54:49+00:00">
+        18 Jun 2013
+    </time>
+</p>
+<p>
+<p>As far as icons go, I’d be perfectly happy with a simple icon_file_id.  I’ve already got GW2DatBrowser to extract the files, so I don’t need the file itself presented through the API or on a cloud server or anything like that.</p></p>
+
+<h2 id="">ozma.3498:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-22T10:13:00+00:00">
+        22 Jun 2013
+    </time>
+</p>
+<p>
+<p>Glad to see there is already a lot of interest for icons to be added to item_details.json – I was just going to make a post suggesting it.</p>
+<p>Since ArenaNet are encouraging people to hotlink to their map tiles rather than mirror them, I have hope that they will add icon support to the current items API. As many people have stated, at the minute it’s very much needed.</p>
+<p>While I personally have no issues using GW2DatBrowser to get the icons, I don’t think it would be good practice to have icon IDs in the API without also providing those icons directly.</p>
+<p>The best implementation I can think of would be to have something like “icon_id” in item_details.json, and create item_icons.json with URLs to ArenaNet-hosted PNG files that correspond with the IDs.</p></p>
+
+<h2 id="">Kawakipik.7908:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-25T16:01:08+00:00">
+        25 Jun 2013
+    </time>
+</p>
+<p>
+<p>Hi</p>
+<p>discovering new recipes becomes a technical chalenge.</p></p>
+
+<h2 id="">Yamagawa.5941:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-25T18:15:34+00:00">
+        25 Jun 2013
+    </time>
+</p>
+<p>
+<p>How is discovering we recipes any sort of challenge?</p>
+<p>Maintain a list of known recipe IDs.  If the list changes over time, you know what was added/removed.</p>
+<p>You can spot changed recipes in a similar way… You just need a few thousand API calls.<br>
+//Yamagawa</p></p>
+
+<h2 id="">LadyRhonwyn.2501:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-06T12:27:20+00:00">
+        06 Aug 2013
+    </time>
+</p>
+<p>
+<p>I just found out there’s a new field in the item details json… (two in fact..)<br>
+“icon_file_id”<br>
+“icon_file_signature”</p>
+<p>Now a way to figure out how to use them…</p></p>
+
+<h2 id="">Healix.5819:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-06T14:28:23+00:00">
+        06 Aug 2013
+    </time>
+</p>
+<p>
+<p>icon_file_id is the id of the file in the gw2.dat file. You would have to extra the dat file for that number to be of any use to you.</p>
+<p>I assume they’ll release the icons in the same way they did map tiles.</p></p>
+
+<h2 id="">LadyRhonwyn.2501:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-07T06:15:59+00:00">
+        07 Aug 2013
+    </time>
+</p>
+<p>
+<p>Apparently I was ahead of the official update post<img src="/include/images/smilies/colondee.png"></p>
+<p>Now I’ll need to update my entire list of 26429 items to get the icon id and signature…</p></p>
+
+<h2 id="">Nemetona.6234:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-07T16:44:02+00:00">
+        07 Aug 2013
+    </time>
+</p>
+<p>
+<p>See <a href="/forum-backup/Render-service-for-item-icons-404">https://forum-en.guildwars2.com/forum/community/api/Render-service-for-item-icons-404</a> for ANet Icon Render Service URLs.</p></p>
+
+<h2 id="">ozma.3498:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-09T13:06:23+00:00">
+        09 Aug 2013
+    </time>
+</p>
+<p>
+<p>I’d like to see some kind of filtering options for items.json. For example, being able to only show item IDs for items that are exotic by calling items.json?rarity=6 (or something to that effect). Ideally we’d be able to add as many parameters as we want – for example, Exotic gloves that are heavy armor and usable by Sylvari: items.json?rarity=6&amp;weight=3&amp;slot=4&amp;usable_by=3. Just made up numbers, but you get the idea.</p>
+<p>I’d also like to see the ability to retrieve more than one item’s data at once using item_details.json?item_id=[3012,7610,3478,1029] or something similar.</p></p>
+
+<h2 id="">Faedrivin.5382:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-14T18:59:55+00:00">
+        14 Aug 2013
+    </time>
+</p>
+<p>
+<p>Maybe I just miss it, but I still can’t find the Mystic Forge recipes in the API.<br>
+If I just don’t see them, can anyone tell me where to look for them? If they are still not inside I hereby support the request for Mystic Forge recipes. That would be really good.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-15T00:45:34+00:00">
+        15 Aug 2013
+    </time>
+</p>
+<p>
+<p>Mystic Forge recipes are not in the API.  Only crafting.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-15T23:58:07+00:00">
+        15 Aug 2013
+    </time>
+</p>
+<p>
+<p>Unfortunately many of the mystic forge recipes are still shrouded in mystery and even the current information on the wiki is not entirely correct.</p>
+<p>I may be wrong, but I assume ArenaNet would not release those information as they prefer players to experiment on the mystic forge and share info.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-12T22:38:00+00:00">
+        12 Sep 2013
+    </time>
+</p>
+<p>
+<p>Please bring mystic forge recipes to the recipes API! Please! It gets annoying :o</p></p>
+
+<h2 id="">nino.3946:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-16T22:27:55+00:00">
+        16 Sep 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 23 2013 07:10AM"><a href="/forum/community/api/Item-Recipe-API-suggestions/2077119">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>You would have to match the output_item_id from the recipe list.</p>
+<p>But that would mean you have to download all recipe_details of each recipe to search for the output_item_id of the item that you need to craft.  Since you can only request the recipe_details of 1 recipe at a time it is going to be a performance hit for both server and client.</p></div></blockquote>
+<p>It would only be a performance hit if you made an API request each time . Guild Wars 2 doesn’t release new items <em>that</em>, so you could easily create a cache, or alternatively create a database and sync it with theirs (using the API). This would even eliminate the need for future requests.</p>
+<blockquote><div class="citey"><cite title="Posted on May 23 2013 07:10AM"><a href="/forum/community/api/Item-Recipe-API-suggestions/2077119">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>I suggest we either:<br>
+1.  Allow output_item_id as a parameter to recipe_details.json.</p></div></blockquote>
+<p>Yes please.</p>
+<blockquote><div class="citey"><cite title="Posted on May 23 2013 07:10AM"><a href="/forum/community/api/Item-Recipe-API-suggestions/2077119">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>2.  Like LadyRhonwyn suggests, have a recipe_id field in the item record.  That would also mean having a unique value for this field in items that are not craftable.</p></div></blockquote>
+<p>This could be a bit tricky, as we don’t know how the implementation details of the way items are handled, it’s very variable, but it could cause stress on the server.</p>
+<blockquote><div class="citey"><cite title="Posted on May 23 2013 07:10AM"><a href="/forum/community/api/Item-Recipe-API-suggestions/2077119">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>3.  Have a way for recipe_details.json to return all recipes in 1 call.  Leaving it to the client to search for the required output_item_id.</p></div></blockquote>
+<p>This would create a similar problem that you’re trying to fix:</p>
+<p>Even though the amount of data per recipe is quite minuscule (I’ll estimate it’s between 200 and 300 bytes), imagine multiplying that by 7620 (at the time this post was written), this easily blows up to 1,905,000 bytes (~1.8 Mb), which is a much much bigger load.</p>
+<p>However, the very size is not the only problem, but the problem is that someone could misuse this feature, to make a whole bunch of requests repeatedly (which adds stress on the transfer layer and the database for GW2 servers).</p>
+<p>Of course, you could argue that this type of request could be made once after each update and used for syncing or caching the data (like a similar observation to your first suggestion), but they can’t be certain users would use it that way, which leaves them at risk of increasing load on their servers.</p>
+<p>Your last idea would be very good, if ArenaNet decided to implement the practice of API points (or something similar).</p></p>
+
+<h2 id="">Lazarus.9716:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-17T00:54:48+00:00">
+        17 Sep 2013
+    </time>
+</p>
+<p>
+<p><strong>TL;DR: Batch detail downloads, queries for only objects that have changed.</strong></p>
+<p>I have a number of suggestions on the technical/feed side that would significantly improve mobile app performance and capabilities.  These are largely motivated by the fact that mobile applications really to keep data from the API (items, recipes, etc.) stored locally in a database. This is for a number of reasons.</p>
+<p>1.  Mobile applications should really be usable without a network connection.  That’s pretty much becoming a standard requirement for apps these days.</p>
+<p>2. Functionality I’m implementing would prohibitively expensive in terms of network turnaround.  Right now as I’m testing it takes almost 20 minutes to download full item detail for the ~30k items in the game.  That’s not even including images, or the ~6k recipes  to make them.  So advanced search capabilities (filtering by rarity for example) would be impossible without the full item set requires all the data if there’s no search API.</p>
+<p>3. Hitting your servers for information that rarely (if ever) changes is an unnecessary load on your infrastructure.  Reducing the number of requests would simply make the service faster for everyone and save you infrastructure costs.  Given the search example, I can do search much faster and efficiently with local data (and with better functionality).</p>
+<p>4. Mobile applications should able query for changed data (item details, for example) periodically so that we don’t have to re-seed the local database and release an app update.  User’s simply aren’t going to sit around for 20 minutes while the app reloads everything and sees what changed and that’s the only option right now.</p>
+<p>So, given all that, here are my suggestions.</p>
+<p>1. First off, for v2 of the API I would suggest significant changes to the endpoints, response formats, etc. It would make use of the API much clearer, reduce the number of endpoints, and make applications more robust.  Feel free to PM me if you want to talk about that.</p>
+<p>2. Any API endpoint that returns a large number of IDs that require another endpoint call for the actual object detail (items for example) really needs to have a variant that returns <strong>all</strong> of the detail for the items in one response.  Having to do 30k item detail endpoint calls must be crushing your servers and certainly not performing well for application users considering it takes 20 minutes to download.</p>
+<p>3. Add a <em>changedSince</em> query parameter that specifies returning only ids/objects that have changed since a certain time.  Unfortunately there’s no standard URL-friendly format.  I’d suggest YYYY-MM-DD in UTC.  If your database doesn’t keep track of when an item is updated, you might want to try to convince your DBA’s to add one.  It’s a pretty standard content management feature.</p>
+<p>4. Add an endpoint that returns an array of all the IDs/signatures that are valid for the render service.  Add a <em>changedSince</em> parameter as well.  If that’s not feasible, add it to the render endpoint call and return an empty document to avoid the ~6k download   and the need to compare it on the client side to the stored asset.</p>
+<p>Sorry for the wall of text.  I think that’s about it for now.  These features would make mobile developers’ lives much easier and a much better experience for end-users.</p>
+<p>Keep up the good work.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-17T01:09:03+00:00">
+        17 Sep 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 17 2013 12:54AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2851442">Lazarus.9716:</a></cite></div><div class="quotey"><p>Right now as I’m testing it takes almost 20 minutes to download full item detail for the ~30k items in the game.</p></div></blockquote>
+<p>Wait WHAT? Only 20 minutes? A full update takes <a href="http://gw2wbot.darthmaim.de/smiley/">us</a> about 20 hours (for all 4 languages of course at ~2-3 seconds per request, wiki check and recipe update not included)<br>
+I still think, the most important feature would be an API which provides a list of the changed items/events/recipes since the last patch, so that we can safely do incremental rather than full updates after updates where we don’t exactly know what has changed.</p></p>
+
+<h2 id="">Lazarus.9716:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-17T08:10:19+00:00">
+        17 Sep 2013
+    </time>
+</p>
+<p>
+<p>Yeah, the <em>items</em> call returns in about 2-3 seconds, and the ~30k details requests process at ~24/second.  I’m only doing English right now as I just created the data model, and also not doing recipe or other ancillary requests. But it sounds like your performance is way off mine.  It’s possible that they’re throttling based on requesting IP address or domain if you’ve hit their service a lot or for a while.</p>
+<p>But, yeah, change information would be good for us and for them.   The biggest thing, though, is the N+1 endpoint calls.  My rough estimate is that a single response would only be about 18MB, could easily be cached on their side and would download in seconds rather than minutes or hours in your case.</p>
+<p>The 20 minutes, btw is on ethernet on my dev machine.  I would hate to even think how long it would take on LTE or even 3G mobile service.  (Remember, we yanks live in the mobile stone age compared to Europe.)</p></p>
+
+<h2 id="">Stefan Larimore.6872:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-17T19:25:56+00:00">
+        17 Sep 2013
+    </time>
+</p>
+<p>
+<p>Hi Lazarus, good suggestions.</p>
+<p>I am curious about your ideas for #1.  At the time we roll out the OAuth-based APIs or soon after there will probably be an opportunity to also revisit the existing un-auth APIs.  Feel free to PM me your ideas or post on the forum itself.</p>
+<p>Regarding your idea #2, we have talked about doing this at some point.  We wanted to get the fully factored information out there first, and then consider ways to fetch things in bulk later.</p>
+<p>For your #3 <em>changedSince</em>, tracking new items or recipes etc is easy – but probably of marginal value since you guys can already do that yourself.  Implementing a <em>changedSince</em> for existing items is actually hard given where the API sits relative to the other components.  It is something I will think about though.</p>
+<p>Thanks!</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-18T04:27:32+00:00">
+        18 Sep 2013
+    </time>
+</p>
+<p>
+<p>Here is what I did for my trading post app, I downloaded the entire items and recipes databases into JSON files then I deserialize them async upon app startup.  Chances are, the items would not change but more items could be added at a later date.  If I find an item in the TP that is not in my items database, the code query the API server on the Internet.  If the item is found from the API server, then my database is updated automatically.</p>
+<p>This way, the app “learns” and updates its database through usage.  And of course, I also try to release new versions of the app with updated items/recipes databases from time to time.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-18T05:08:57+00:00">
+        18 Sep 2013
+    </time>
+</p>
+<p>
+<p>The obvious gap in a system like DarkSpirit’s is, of course, when an already known item/recipe changes.  This happened to a lot of them on Sept. 3, when all existing equipment with Magic Find had their attributes removed, upgrade components that affected MF had their attributes/effects modified, and the recipes that crafted MF equipment were updated with a new output_item_id.</p>
+<p>This is the gap that most of us (I assume) are covering by re-downloading the full item/recipe APIs after every release, just to be certain we catch all possible changes.  Any system that could tell us which items had changed would make this step much more efficient.  One option that I remember being mentioned a while back is to add an MD5 hash of the item/recipe’s JSON data to the API (maybe in a new endpoint like items_md5.json/recipes_md5.json).  That way, we can easily tell which items/recipes changed by comparing their MD5 hash between releases.</p></p>
+
+<h2 id="">Drakma.1549:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-18T06:03:31+00:00">
+        18 Sep 2013
+    </time>
+</p>
+<p>
+<p>That is exactly what I do. I download the json and get an md5 hash. I then compare to my database to see if the hash changed. If it has than I update.</p>
+<p>Only one problem tho. I still need to download every item detail.</p>
+<p>Adding an md5 hash to the items.json would be a huge help.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-18T06:52:25+00:00">
+        18 Sep 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 18 2013 05:08AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2862114">Dr Ishmael.9685:</a></cite></div><div class="quotey"><p>The obvious gap in a system like DarkSpirit’s is, of course, when an already known item/recipe changes.  This happened to a lot of them on Sept. 3, when all existing equipment with Magic Find had their attributes removed, upgrade components that affected MF had their attributes/effects modified, and the recipes that crafted MF equipment were updated with a new output_item_id.</p></div></blockquote>
+<p>I would call that an exception rather than the norm.  It is rare for them to change so many items at one go.  Having said that, it is probably wise to do a full item/recipe update after a massive item patch release like that one.</p>
+<p>If you operate under the assumption that the item/recipe data themselves rarely change, then that should not be a big issue.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-18T06:59:55+00:00">
+        18 Sep 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 18 2013 06:03AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2862344">Drakma.1549:</a></cite></div><div class="quotey"><p>That is exactly what I do. I download the json and get an md5 hash. I then compare to my database to see if the hash changed. If it has than I update.</p>
+<p>Only one problem tho. I still need to download every item detail.</p>
+<p>Adding an md5 hash to the items.json would be a huge help.</p></div></blockquote>
+<p>If you still need to download every item detail, then there is no advantage in calculating the md5 hash is there?  Afterall, the performance bottleneck is probably the internet access to download every item.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-18T10:39:30+00:00">
+        18 Sep 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 18 2013 06:52AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2862613">DarkSpirit.7046:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 18 2013 05:08AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2862114">Dr Ishmael.9685:</a></cite></div><div class="quotey"><p>The obvious gap in a system like DarkSpirit’s is, of course, when an already known item/recipe changes.  This happened to a lot of them on Sept. 3, when all existing equipment with Magic Find had their attributes removed, upgrade components that affected MF had their attributes/effects modified, and the recipes that crafted MF equipment were updated with a new output_item_id.</p></div></blockquote>
+<p>I would call that an exception rather than the norm.  It is rare for them to change so many items at one go.  Having said that, it is probably wise to do a full item/recipe update after a massive item patch release like that one.</p>
+<p>If you operate under the assumption that the item/recipe data themselves rarely change, then that should not be a big issue.</p></div></blockquote>
+<p>You guys seem not to know about translation issues and stuff ^.^<br>
+At least the german translations and possibly also the french and spanish change with nearly every patch and so they give us a hard time in the wikis to find and move all that stuff. So once more the suggestion: An API which delivers all IDs of changed items for a given build (and therefore an API which delivers the recent build numbers – this could be done by the already existing build.json)</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-18T12:58:44+00:00">
+        18 Sep 2013
+    </time>
+</p>
+<p>
+<p>I am aware of the translation issues, Smiley. <img src="/include/images/smilies/smile.png">  I just used the MF change as an example because it was recent and still on everyone’s minds.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-18T14:17:28+00:00">
+        18 Sep 2013
+    </time>
+</p>
+<p>
+<p>I belive at least you are aware, Ish.<img src="/include/images/smilies/wink.png"> My comment pointed more at this:</p>
+<blockquote><div class="quotey"><p>I would call that an exception rather than the norm.  It is rare for them to change so many items at one go.</p></div></blockquote></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-18T16:45:37+00:00">
+        18 Sep 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 18 2013 02:17PM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2864912">smiley.1438:</a></cite></div><div class="quotey"><p>I belive at least you are aware, Ish.<img src="/include/images/smilies/wink.png"> My comment pointed more at this:</p>
+<blockquote><div class="quotey"><p>I would call that an exception rather than the norm.  It is rare for them to change so many items at one go.</p></div></blockquote></div></blockquote>
+<p>I am also aware of the other languages.  How often do multiple items change?  I am not referring to items being added as they are discovered by players, I am referring to the existing items themselves being changed.</p>
+<p>Other than that one-time MF patch, do the items themselves change often?  If they do, then there isn’t much of a point to optimize performance by saving all items/recipes as json files in the first place.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-18T17:41:49+00:00">
+        18 Sep 2013
+    </time>
+</p>
+<p>
+<p>There have been countless renamings of several items in the german translation (not only) recently. Some items have been renamed more than once. So if you’d like to maintain a database where you’re able to search items by name, a full update after patches seems to be mandatory.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-18T17:59:39+00:00">
+        18 Sep 2013
+    </time>
+</p>
+<p>
+<p>If the items are renamed from the api, then I presume they were cascading down from the renaming of the items in the game code.  Assuming the patch note is detail enough, then we should expect a list of items that are impacted in the German client, unfortunately they are not.  I can certainly understand why people are asking for this.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-30T04:31:43+00:00">
+        30 Sep 2013
+    </time>
+</p>
+<p>
+<p>Suggestion: Indicate time-gated recipes, for example the recipe to create Lump of Mithrillium.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-30T05:09:17+00:00">
+        30 Sep 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 30 2013 04:31AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2937584">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>Suggestion: Indicate time-gated recipes, for example the recipe to create Lump of Mithrillium.</p></div></blockquote>
+<p>+1</p>
+<p>The “flags” Array is under-used here anyway<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">HackworthGW.8251:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-31T01:30:17+00:00">
+        31 Oct 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 17 2013 01:09AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2851516">smiley.1438:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 17 2013 12:54AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2851442">Lazarus.9716:</a></cite></div><div class="quotey"><p>Right now as I’m testing it takes almost 20 minutes to download full item detail for the ~30k items in the game.</p></div></blockquote>
+<p>Wait WHAT? Only 20 minutes? A full update takes <a href="http://gw2wbot.darthmaim.de/smiley/">us</a> about 20 hours (for all 4 languages of course at ~2-3 seconds per request, wiki check and recipe update not included)<br>
+I still think, the most important feature would be an API which provides a list of the changed items/events/recipes since the last patch, so that we can safely do incremental rather than full updates after updates where we don’t exactly know what has changed.</p></div></blockquote>
+<p>I’ve been starting a tool of my own (in .net), and right now I’m getting ~300 item_details/minute with a naive implementation, synchronous from 1 machine, using 5-6 kB/s down, 1 kB/s up. That’s just under 100 minutes for the full item set per language, or 6.5 hours for 4 languages.  Unless flood control sets in at some point, getting the item_details should not be very time-consuming with let’s say 10 parallel tasks, ~40 minutes.</p>
+<p>By the way, “1 big download with changes since the last patch” would be useful, but not to everyone. Let’s say someone misses the first patch for example, a stand-alone app that updates manually, or if 2 patches with item changes happened very close to each other (same day or so); or if you are just starting out populating your local database; or you simply want a fresh local database for whatever reason. In those cases, a big download with simply the current state of all items would be best.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-31T01:59:44+00:00">
+        31 Oct 2013
+    </time>
+</p>
+<p>
+<p>I made this more clear in this post: <a href="/forum-backup/API-Suggestion-Items-Recipes-and-Crafting">https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2863618</a></p>
+<p>tl;dr: an API which delivers the IDs of changed items starting from a given build number. build.json could be extended and used for this.</p></p>
+
+<h2 id="">Bandlero.6312:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-09T06:40:01+00:00">
+        09 Nov 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 31 2013 01:30AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/3122664">HackworthGW.8251:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 17 2013 01:09AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2851516">smiley.1438:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 17 2013 12:54AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2851442">Lazarus.9716:</a></cite></div><div class="quotey"><p>Right now as I’m testing it takes almost 20 minutes to download full item detail for the ~30k items in the game.</p></div></blockquote>
+<p>Wait WHAT? Only 20 minutes? A full update takes <a href="http://gw2wbot.darthmaim.de/smiley/">us</a> about 20 hours (for all 4 languages of course at ~2-3 seconds per request, wiki check and recipe update not included)<br>
+I still think, the most important feature would be an API which provides a list of the changed items/events/recipes since the last patch, so that we can safely do incremental rather than full updates after updates where we don’t exactly know what has changed.</p></div></blockquote>
+<p>I’ve been starting a tool of my own (in .net), and right now I’m getting ~300 item_details/minute with a naive implementation, synchronous from 1 machine, using 5-6 kB/s down, 1 kB/s up. That’s just under 100 minutes for the full item set per language, or 6.5 hours for 4 languages.  Unless flood control sets in at some point, getting the item_details should not be very time-consuming with let’s say 10 parallel tasks, ~40 minutes.</p>
+<p>By the way, “1 big download with changes since the last patch” would be useful, but not to everyone. Let’s say someone misses the first patch for example, a stand-alone app that updates manually, or if 2 patches with item changes happened very close to each other (same day or so); or if you are just starting out populating your local database; or you simply want a fresh local database for whatever reason. In those cases, a big download with simply the current state of all items would be best.</p></div></blockquote>
+<p>I wrote some code out in .Net to test this on my own against the recipe API.  Using threading (with multiple web requests each on their own thread; concurrently), I was able to download the entire ~7.7k recipes + recipe details + output item details + ingredient details (about 30,800 requests to the API) in about 30 minutes.  It was just some code I quickly hammered out, but I could probably clean it to shave it down to 20 minutes.</p>
+<p>Of course, there’s always the bottleneck of the internet itself, and I do wonder at what point Anet’s servers will perceive a massive amount of near-instantaneous traffic as a DDOS attack.  I would assume that over 1,000 API requests per minute isn’t appreciated by them anyhow, and it’s not code I’d be willing to use again (even infrequently.)</p>
+<p>Honestly, in the current implementations, the recipe/item APIs are bad imo.  There’s no real single item search outside of knowing the recipe/item ids (i.e. no request by name (like the guild API supports), by crafting profession, etc.)  Inefficient and lack of serving data in a meaningful and useful manner.  This is why I’ve yet to release my Recipe/Item related tools to my application’s users.  I won’t force a large download on them to their computers (containing the entire recipe/item data that might need to be frequently re-downloaded/updated), and neither do I wish to host a synced database on my own servers to do what the API is supposed to be doing.</p>
+<p>Really, it’s poor design (be it the over 7.7k recipes in the recipe list or 30k+ items in the item list) to serve just a list of ids that then necessitate making individual requests for each individual item’s/recipe’s details (that then each might also necessitate requesting multiple sub-items.)</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-09T14:40:18+00:00">
+        09 Nov 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on November 09 2013 06:40AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/3176372">Bandlero.6312:</a></cite></div><div class="quotey"><p>There’s no real single item search outside of knowing the recipe/item ids (i.e. no request by name (like the guild API supports), by crafting profession, etc.)</p></div></blockquote>
+<p>Requesting by name wouldn’t make sense for items, because item names are not unique and you could get any number of items returned.  Guild names must be unique, so you know requesting a guild name will return exactly 1 guild (or 0 if it doesn’t exist).</p></p>
+
+<h2 id="">Bandlero.6312:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-09T16:56:18+00:00">
+        09 Nov 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on November 09 2013 02:40PM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/3177412">Dr Ishmael.9685:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on November 09 2013 06:40AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/3176372">Bandlero.6312:</a></cite></div><div class="quotey"><p>There’s no real single item search outside of knowing the recipe/item ids (i.e. no request by name (like the guild API supports), by crafting profession, etc.)</p></div></blockquote>
+<p>Requesting by name wouldn’t make sense for items, because item names are not unique and you could get any number of items returned.  Guild names must be unique, so you know requesting a guild name will return exactly 1 guild (or 0 if it doesn’t exist).</p></div></blockquote>
+<p>Yea, for single items and names to work each item would have to have a unique name.</p>
+<p>What I meant by requesting by name is that you could pass a parameter (for example) like Rabid, and have the API return to you a subset of the items containing Rabid in the name.  Instead of serving the entire list of items and recursively going through items.json and item_details.json just to locate items with Rabid.</p>
+<p>We definitely need more support for additional optional parameters to pass to the API.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-09T17:13:56+00:00">
+        09 Nov 2013
+    </time>
+</p>
+<p>
+<p>I assume your actual intent with that is the ability to query all items with Rabid attributes?  You’re still kitten a bit in that, due to named exotics and karma items that don’t include the stat prefix in their names.</p></p>
+
+<h2 id="">Khisanth.2948:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-09T22:30:46+00:00">
+        09 Nov 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on November 09 2013 06:40AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/3176372">Bandlero.6312:</a></cite></div><div class="quotey"><p>I wrote some code out in .Net to test this on my own against the recipe API.  Using threading (with multiple web requests each on their own thread; concurrently), I was able to download the entire ~7.7k recipes + recipe details + output item details + ingredient details (about 30,800 requests to the API) in about 30 minutes.  It was just some code I quickly hammered out, but I could probably clean it to shave it down to 20 minutes.</p></div></blockquote>
+<p>On what kind of connection?</p>
+<p>If I use my home connection the full recipes + output items + ingredients takes around 40 minutes but on my web host it takes around 18m. Exact same code.</p>
+<p>Looking at the data I have it should only be 15,738 requests. Where is your extra 15k coming from?</p></p>
+
+<h2 id="">Bandlero.6312:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-25T14:20:58+00:00">
+        25 Nov 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on November 09 2013 10:30PM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/3178943">Khisanth.2948:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on November 09 2013 06:40AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/3176372">Bandlero.6312:</a></cite></div><div class="quotey"><p>I wrote some code out in .Net to test this on my own against the recipe API.  Using threading (with multiple web requests each on their own thread; concurrently), I was able to download the entire ~7.7k recipes + recipe details + output item details + ingredient details (about 30,800 requests to the API) in about 30 minutes.  It was just some code I quickly hammered out, but I could probably clean it to shave it down to 20 minutes.</p></div></blockquote>
+<p>On what kind of connection?</p>
+<p>If I use my home connection the full recipes + output items + ingredients takes around 40 minutes but on my web host it takes around 18m. Exact same code.</p>
+<p>Looking at the data I have it should only be 15,738 requests. Where is your extra 15k coming from?</p></div></blockquote>
+<p>For my testing, I used the recipes API (grabbing that file is 1 request), then grabbed the details for each recipe (about 7.7k requests), grabbed the output item details (another ~7.7k requests), then grabbed the ingredient details for each recipe – each recipe has on average 3 ingredients for an additional ~15k  to 23k requests.  This test did not take into account caching already “known” data and was just a brute force test of the speed/time to download data from this API (i.e. like if this was a first time downloading from the API).</p>
+<p>My connection is a dedicated business DSL with a 45 Mbps down / 10 Mbps up.</p>
+<p>And to the person (sorry I forgot the name as I write this) that replied to my thought about searching items by name – yea you would still potentially receive a large amount of items to have to iterate through; however, it would still be a much smaller subset of data, more quicker, and more efficient than the current method of having to search through all 7.7k recipes (and the outputs, etc.) or 30k+ items to locate each item with “rabid.”  Even 200 items with “rabid” is less than having to iterate through the entire recipes and its structure or the items.</p>
+<p>If the APIs functioned a lot more like the Trading Post does in game, that would be the improvement.  We should have URL parameters on the APIs that allow for things such as, “?item_name=rabid”, “?item_level=80”, “?item_rarity=legendary”, “?item_type=armor”, etc.; that allows us to retrieve only a subset of the data instead of having to iterate through the entire collection.  Honestly, I’m assuming there’s an SQL database driving the back-end of the API, so handling these sorts of requests would minimal additional load on the servers.  SELECT * FROM [Items] WHERE [Name] LIKE ‘rabid’.</p>
+<p>I don’t know, perhaps my degree in ISE/DBA is making me over-think this, but a system like this is exactly what I’m trained/educated to analyze and fix.</p></p>
+
+<h2 id="">Chiuna.2538:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-15T00:26:34+00:00">
+        15 Jan 2014
+    </time>
+</p>
+<p>
+<p>I would like to suggest/request that when looking up armor pieces, the item details API shows the number of dyes that can be applied to them.</p></p>
+
+<h2 id="">DasPatAttack.2516:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-24T14:25:55+00:00">
+        24 Jan 2014
+    </time>
+</p>
+<p>
+<p>hi guys,<br>
+thanks for sharing your API knowledge.<br>
+I was wondering how the karma cost and vendor cost can be found? I manage to get all the information using the official APIs and spidy APIs, but no way I can get these remaining informations.<br>
+Any idea would be appreciated.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-24T14:56:35+00:00">
+        24 Jan 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on January 24 2014 02:25PM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/3544374">DasPatAttack.2516:</a></cite></div><div class="quotey"><p>I was wondering how the karma cost and vendor cost can be found? I manage to get all the information using the official APIs and spidy APIs, but no way I can get these remaining informations.<br>
+Any idea would be appreciated.</p></div></blockquote>
+<p>There’s currently no official (or legal) way to get the price of an item. I think this has been requested more than once over here. → see first post</p></p>
+
+<h2 id="">Mehlox.1756:</h2>
+<p class="post-meta">
+    <time datetime="2014-04-29T06:20:18+00:00">
+        29 Apr 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 31 2013 01:59AM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/3122804">smiley.1438:</a></cite></div><div class="quotey"><p>I made this more clear in this post: <a href="/forum-backup/API-Suggestion-Items-Recipes-and-Crafting">https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2863618</a></p>
+<p>tl;dr: an API which delivers the IDs of changed items starting from a given build number. build.json could be extended and used for this.</p></div></blockquote>
+<p><strong>Push – Great idea.</strong> We really need this. “Changelog” for Skills would be great too.</p></p>
+
+<h2 id="">Leylin.3901:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-18T13:29:53+00:00">
+        18 Jun 2014
+    </time>
+</p>
+<p>
+<p>I hope I am in the correct place to add a suggestion for the <b>skin_details</b>.</p>
+<p>It would be great to have an attribute <b>skinset</b> or something like that.</p>
+<p>This way you could group the skins by their set (for example: all embroidered items). Currently I am missing this option in the game as well as in the API.</p>
+<p>Until this is implemented (if it will be) there is no other way than to take all but the last word of the skin as name of the skin set.</p>
+<p>Has anyone experienced if this approach is more or less reliable?<br>
+Has anyone another idea to get the name of the skin sets?</p></p>
+
+<h2 id="">Sariel V.7024:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-22T17:05:50+00:00">
+        22 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 18 2014 01:29PM"><a href="/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/4129357">Leylin.3901:</a></cite></div><div class="quotey"><p>I hope I am in the correct place to add a suggestion for the <b>skin_details</b>.</p>
+<p>It would be great to have an attribute <b>skinset</b> or something like that.</p>
+<p>This way you could group the skins by their set (for example: all embroidered items). Currently I am missing this option in the game as well as in the API.</p>
+<p>Until this is implemented (if it will be) there is no other way than to take all but the last word of the skin as name of the skin set.</p>
+<p>Has anyone experienced if this approach is more or less reliable?<br>
+Has anyone another idea to get the name of the skin sets?</p></div></blockquote>
+<p>I’ve been digging into skins for months now, and I’ve come to one conclusion regarding sets: sets are somewhat arbitrary.</p>
+<p>1. Most skins do conform to having one obvious set name. However, most skins were also part of at least two sets – one for PvE, and one for PvP. Membership in both sets was not always guaranteed. For example, the Bandit weapons overlap with Makeshift weapons, but Makeshift Spear has no PvE counterpart and remains named Makeshift instead of Bandit.</p>
+<p>2. Flame weapons did not include SteamFire until SteamFire was renamed a few months ago, even though they shared obvious visual similarities.</p>
+<p>3. The Phantasmal set on the wiki only includes weapons that appear on Mesmer phantasms, exclude several that share the same obvious purple smoke characteristic, and NONE HAVE PHANTASMAL IN THEIR NAME.<img src="/include/images/smilies/smile.png"></p>
+<p>There’s plenty more like this. So you can do what I do and just go with what seems obvious, because none of these sets are <strong>officially</strong> established outside of the collections and cultural merchants.</p></p>
+
+<h2 id="">Flokkie.9675:</h2>
+<p class="post-meta">
+    <time datetime="2015-01-05T23:45:55+00:00">
+        05 Jan 2015
+    </time>
+</p>
+<p>
+<p>All the resent changes… I welcome them, most r very useful and if not they don’t bother me.<br>
+But with the introduction of the endless tonics also came a shortage in space. If you want to collect (all) tonics it could start costing you space. So my solution: create, like has been done with the mini’s and finishers, a separate tab were you can store all you endless tonics and when you want to use one, you take it out ( a copy) so it becomes like a collectable.</p>
+<p>Don’t really know if this is the right place for this suggestion but….</p></p>
+
+<h2 id="">Sariel V.7024:</h2>
+<p class="post-meta">
+    <time datetime="2015-01-15T16:49:47+00:00">
+        15 Jan 2015
+    </time>
+</p>
+<p>
+<p>Some further followup on skinsets: there are several examples of skins using similar or identical models to skins in existing sets that don’t match the naming conventions:</p>
+<p>Glyphic: X6-31 Beta (Glyphic Speargun with differing partical effects and color)<br>
+Verdant: Rockweed Spire (Verdant Trident with leaves on the haft and different color)<br>
+Flame: Flamebelcher (Flame Rifle as speargun), SteamFire (Flame Staff as trident)<br>
+Aureate: The Maelstrom (Aureate Staff as trident)<br>
+Shiverpeak: OooOoo Shooter (Shiverpeak Arquebus as speargun)<br>
+Legionnaire: Gladium Trident (Legionnaire Staff as trident)<br>
+Tribal: Drakestrike (Tribal Rifle as speargun)</p>
+<p>IME, people are a little too hardheaded to let something like being a complete and obvious copy of another set member be good enough to allow membership in a set when the names don’t match. So, while I might include the wiki skins entries in the same sets, I haven’t bothered with adjusting the membership of the actual weapons.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

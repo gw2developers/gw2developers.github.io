@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>[API Suggestion] Colors</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/API-Suggestion-Colors/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">[API Suggestion] Colors</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Colors
+</p>
+
+
+
+<h2 id="">Rawrfaec.6412:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-01T07:35:57+00:00">
+        01 Jun 2013
+    </time>
+</p>
+<p>
+<p>I think having this return an array of colours, with an explicit ID property, thus mimicking the events API, would make more sense. It’s currently useful as a map but we don’t have easy access to the keys. It’s easier to construct a map from an array on the client side than extracting all the IDs as keys.</p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-01T15:01:41+00:00">
+        01 Jun 2013
+    </time>
+</p>
+<p>
+<p>We made the color API an associative array as a result of this thread: <a href="/forum-backup/API-Request-Results-as-map-id-details">https://forum-en.guildwars2.com/forum/community/api/API-Request-Results-as-map-id-details/first</a></p>
+<p>What programming language do you have trouble accessing the keys? In javascript it should be as simple as “for(var key in obj) {}”</p></p>
+
+<h2 id="">Rawrfaec.6412:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-01T20:24:41+00:00">
+        01 Jun 2013
+    </time>
+</p>
+<p>
+<p>C++. Working around it is easy enough, not having to is just easier. This will require special handling of node names as they now contain information.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-01T22:32:14+00:00">
+        01 Jun 2013
+    </time>
+</p>
+<p>
+<p>Hey Cliff,</p>
+<p>I thought the colors might’ve represented a HSB color with normalized values between 0.0 -&gt; 1.0, but no. Some brightness values are less than 0.0; some hue values are greater than 1.0.</p>
+<p>Question #1: How should we be interpreting the color numbers (i.e., hue might be a value in degrees out of 360?)</p>
+<p>Question #2: This could be outside the scope of the API, but in regards the “lightness” and “contrast” values, <a href="http://docs.opencv.org/doc/tutorials/core/basic_linear_transform/basic_linear_transform.html">I found this page</a> describing a calculation with how these two values might be used. Is this what you meant by <em>color shifting</em> in the API docs?</p>
+<p>Thanks</p>
+<p><em>Edit: I really, really tried to find this all out on the web, but the inconsistency with the number just didn’t make sense. thanks for any info you can provide.</em></p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-01T23:49:39+00:00">
+        01 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 01 2013 10:32PM"><a href="/forum/community/api/API-Suggestion-Colors/2137402">Killer Rhino.6794:</a></cite></div><div class="quotey"><p>Question #1: How should we be interpreting the color numbers (i.e., hue might be a value in degrees out of 360?)</p>
+<p><em>Edit: I really, really tried to find this all out on the web, but the inconsistency with the number just didn’t make sense. thanks for any info you can provide.</em></p></div></blockquote>
+<p>Sorry about the confusion! The API was showing color values that had been partially transformed. I updated the API to show their original values. The colors are in HSL color space.</p>
+<p>I also added localized text names so that it’s easier to identify colors.</p>
+<p>Does this clear things up for you?</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T04:01:33+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<p>Cliff,</p>
+<p>We’re getting closer. Thanks for the names; however, some values are still not consistent with what to expect.</p>
+<p>For instance, Abyss has values greater than 255</p>
+<pre><code>
+473: {
+    name: "Abyss"
+        -cloth: {
+            brightness: "110"
+            contrast: "128"
+            hue: "275"
+            saturation: "3"
+            lightness: "140"
+        }
+}
+</code></pre></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T10:45:10+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 02 2013 04:01AM"><a href="/forum/community/api/API-Suggestion-Colors/2138852">Killer Rhino.6794:</a></cite></div><div class="quotey"><p>Cliff,</p>
+<p>We’re getting closer. Thanks for the names; however, some values are still not consistent with what to expect.</p>
+<p>For instance, Abyss has values greater than 255</p>
+<pre><code>
+473: {
+    name: "Abyss"
+        -cloth: {
+            brightness: "110"
+            contrast: "128"
+            hue: "275"
+            saturation: "3"
+            lightness: "140"
+        }
+}
+</code></pre></div></blockquote>
+<p>As far as i understand HSL, it’s a cylindrical color model where hue represents the angle around the vertical axis (0-360 degrees) while saturation and lightness are values between 0 and 1.</p>
+<p><a href="http://en.wikipedia.org/wiki/HSL_and_HSV">http://en.wikipedia.org/wiki/HSL_and_HSV</a></p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T10:48:01+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<p>I believe the following information is correct, but I’m going to have to check with other people to be sure:</p>
+<p>The data for each color in the API represents a color shift from a base color to a new color. The base color for many dyes, including all guild emblem dyes, is RGB 128,26,26.</p>
+<p>For guild emblems themselves, there are a few color masks such as the one <a href="http://dragonwatch.net/fancyemblemexperiment/images/emblem-parts/7_1.png">here</a> that can be used to define where the color gets applied on the emblem, and slight variances in the color that gets applied (by varying the base color).</p>
+<p>Brightness should be added to or subtracted from each component of the color<br>
+Contrast should used as a multiplier for each component of the color ((color – 128) * contrast + 128)</p>
+<p>Hue is a value from 0-360 degrees. Saturation and Lightness are both multipliers of the original S &amp; L values.</p>
+<p>The order of operations is:<br>
+1) Take the base (RGB) color<br>
+2) Apply brightness and contrast<br>
+3) Convert color to HSL space<br>
+4) Apply HSL shift<br>
+5) Convert color back to RGB space (this is the final color value)</p>
+<p><a href="http://dragonwatch.net/fancyemblemexperiment/">http://dragonwatch.net/fancyemblemexperiment/</a> does most of this math already, using pixastic. The only thing it’s missing is brightness/contrast, which seem to be something that pixastic also supports.</p>
+<p>I’ll make another update tomorrow to the API to make the values in the API match the values in this post.</p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T11:40:36+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 02 2013 10:48AM"><a href="/forum/community/api/API-Suggestion-Colors/2140079">Cliff Spradlin.3512:</a></cite></div><div class="quotey"><p><a href="http://dragonwatch.net/fancyemblemexperiment/">http://dragonwatch.net/fancyemblemexperiment/</a> does most of this math already, using pixastic. The only thing it’s missing is brightness/contrast, which seem to be something that pixastic also supports.</p></div></blockquote>
+<p>It does, yeah. I dug up the non-compiled sources for my little experiment that I did almost a year ago, and it seems I only bothered with hue and value, using 160,32,32 as a base<img src="/include/images/smilies/colondee.png"></p>
+<p>The way I did it on that site is pick the most common color on those masks and the individual colors from a screenshot of the in game guild emblem designer, then force that through a Python script to convert RGB to HSV, get the saturation and value <ins>difference</ins> between the two and dump it all into a HSV array.</p>
+<p>The JS does something like this:</p>
+<pre><code>	var bg = new Image();
+	bg.onload = function() {Pixastic.process(bg, "hsl", {hue:hsv[bgi].h,saturation:hsv[bgi].s,lightness:hsv[bgi].v});}
+	$('#emblem #backg *:first-child').replaceWith(bg);
+	bg.src='images/backgrounds/'+background+'.png';</code></pre>
+<p></p>
+<p>Where <em>hsv</em> is an array that contains hue, staturation and value.. values, <em>bgi</em> is whatever index I gave that color in the array, and <em>background</em> in this case the file name for the emblem background.</p>
+<p>I honestly don’t remember how or why I did some things the way I did, and the whole thing was just a random experiment quickly thrown together to help decide on an emblem for the upcoming launch, but I’m sure people will figure it out, even if it has to be via trial and error like I did it :P</p>
+<p>You can find Pixastic <a href="http://www.pixastic.com/">here</a>, btw.</p></p>
+
+<h2 id="">El Do.9467:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T12:37:51+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 02 2013 11:40AM"><a href="/forum/community/api/API-Suggestion-Colors/2140240">zeeZ.5713:</a></cite></div><div class="quotey"><p>var bg = new Image();<br>
+bg.onload = function() <br>
+{<br>
+     Pixastic.process(bg, “hsl”, {hue:hsv[bgi].h,saturation:hsv[bgi].s,lightness:hsv[bgi].v});<br>
+}<br>
+$(‘#emblem #backg *:first-child’).replaceWith(bg);<br>
+bg.src=‘images/backgrounds/’+background+’.png’;</p></div></blockquote>
+<p>so it should be possible to add something like this before the other process?</p>
+<p>Pixastic.process(bg, “brightness”, {brightness:50,contrast:0.5});</p>
+<p>Lets test some things ^^</p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T12:55:09+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 02 2013 12:37PM"><a href="/forum/community/api/API-Suggestion-Colors/2140419">El Do.9467:</a></cite></div><div class="quotey"><p>so it should be possible to add something like this before the other process?</p>
+<p>Pixastic.process(bg, “brightness”, {brightness:50,contrast:0.5});</p>
+<p>Lets test some things ^^</p></div></blockquote>
+<p>Yes. Though I have found that I have to do this in order to chain them:</p>
+<pre><code>	Pixastic.process(Pixastic.process(img, "brightness", bright_opts), "hsl", hsl_opts);</code></pre>
+<p></p>
+<p>Not sure if you need to use legacy for brightness.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T15:13:10+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<p>Thanks for the update, Cliff.</p>
+<p>So, for the first thing, I’m assuming that all values, except for hue, is within a range between 0-255 (even though the prevalence of 128 throughout suggests that it might be 1-256).</p>
+<p>Second, I’m still getting weird results for many colors, but I suspect it still might be my math.</p>
+<p>I’ve been using a demo I made to try to work through all of this. The band of colors represents the default, cloth, leather, and metal colors, respectively.</p></p>
+
+<h2 id="">Goddchen.4958:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T15:56:51+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<p>I tried for several hours now but I’m unable to generate a RGB color value from the API data in Java<img src="/include/images/smilies/sad.png"></p></p>
+
+<h2 id="">Goddchen.4958:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T18:06:02+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<p>could you please explain how to get to rgb #000 from these values? It think this is the easiest example that we can find:</p>
+<p>“name”: “Black”,<br>
+            “default”: {<br>
+                “brightness”: “128”,<br>
+                “contrast”: “128”,<br>
+                “hue”: “0”,<br>
+                “saturation”: “128”,<br>
+                “lightness”: “128”<br>
+            },</p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T18:17:09+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<p>I have something crazy like this<img src="/include/images/smilies/colondee.png"></p>
+<p>Brightness/contrast for each red, green and blue:</p>
+<pre><code>	(base_rgb.r + cloth.brightness - default.brightness) * ((cloth.contrast - default.contrast) / 128)</code></pre>
+<p></p>
+<p>H/S/L:</p>
+<pre><code>	h: (cloth.hue - color.h) % 360
+	s: (cloth.saturation - color.s) / 255
+	l: (cloth.lightness - color.l) / 255</code></pre>
+<p></p>
+<p>With <em>base_rgb</em> being 128,26,26 and <em>color</em> being the result of the first transformation</p>
+<p>Of course I could be way off<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T18:17:28+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 02 2013 06:06PM"><a href="/forum/community/api/API-Suggestion-Colors/2141670">Goddchen.4958:</a></cite></div><div class="quotey"><p>could you please explain how to get to rgb #000 from these values? It think this is the easiest example that we can find:</p>
+<p>“name”: “Black”,<br>
+            “default”: {<br>
+                “brightness”: “128”,<br>
+                “contrast”: “128”,<br>
+                “hue”: “0”,<br>
+                “saturation”: “128”,<br>
+                “lightness”: “128”<br>
+            },</p></div></blockquote>
+<p>I somehow get the feeling that “default” refers to the base color Cliff mentioned above since these are the same values for a lot of colors.</p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T18:20:26+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 02 2013 06:17PM"><a href="/forum/community/api/API-Suggestion-Colors/2141708">smiley.1438:</a></cite></div><div class="quotey"><p>I somehow get the feeling that “default” refers to the base color Cliff mentioned above since these are the same values for a lot of colors.</p></div></blockquote>
+<p>Default is the default material. There is not necessarily a material-specific color defined for a dye. In this case, the default is used.</p>
+<p>In the quoted dye, the color is actually not black, only the actual material colors are black. I’m still working on more detailed information on how to convert the colors to RGB.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T18:29:57+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 02 2013 06:20PM"><a href="/forum/community/api/API-Suggestion-Colors/2141720">Cliff Spradlin.3512:</a></cite></div><div class="quotey"><p>Default is the default material. There is not necessarily a material-specific color defined for a dye. In this case, the default is used.</p></div></blockquote>
+<p>Does that also mean that the default color is not always specified? That would explain this:<br>
+</p><pre><code>126: {
+  name: "Hot Pink",
+    default: {
+    brightness: "128",
+    contrast: "128",
+    hue: "0",
+    saturation: "128",
+    lightness: "128"
+  },
+...</code></pre><p></p>
+<p>…or did i get you completely wrong?<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T18:34:06+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 02 2013 06:29PM"><a href="/forum/community/api/API-Suggestion-Colors/2141757">smiley.1438:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 02 2013 06:20PM"><a href="/forum/community/api/API-Suggestion-Colors/2141720">Cliff Spradlin.3512:</a></cite></div><div class="quotey"><p>Default is the default material. There is not necessarily a material-specific color defined for a dye. In this case, the default is used.</p></div></blockquote>
+<p>Does that also mean that the default color is not always specified? That would explain this:<br>
+</p><pre><code>126: {
+  name: "Hot Pink",
+    default: {
+    brightness: "128",
+    contrast: "128",
+    hue: "0",
+    saturation: "128",
+    lightness: "128"
+  },
+...</code></pre><p></p>
+<p>…or did i get you completely wrong?<img src="/include/images/smilies/colondee.png"></p></div></blockquote>
+<p>Yes, that’s right. I’m going to update the API to only show the materials that are actually defined.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T18:48:05+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<p>Great, thanks!<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Goddchen.4958:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T18:57:51+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<p>okay, with these two, now you totally got me confused. It is black and white, with the exact same values?<img src="/include/images/smilies/sad.png"></p>
+<p>{"name":“White”,<br>
+“default”:{<br>
+“brightness”:“128”,<br>
+“contrast”:“128”,<br>
+“hue”:“0”,<br>
+“saturation”:“128”,<br>
+“lightness”:"128"}</p>
+<p>{"name":“Black”,<br>
+default":{<br>
+“brightness”:“128”,<br>
+“contrast”:“128”,<br>
+“hue”:“0”,<br>
+“saturation”:“128”,<br>
+“lightness”:"128"}</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T19:22:43+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<p>Did you read the last 4 postings in this thread? O.o</p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T19:34:47+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 02 2013 10:48AM"><a href="/forum/community/api/API-Suggestion-Colors/2140079">Cliff Spradlin.3512:</a></cite></div><div class="quotey"><p>I believe the following information is correct, but I’m going to have to check with other people to be sure:</p>
+<p>The data for each color in the API represents a color shift from a base color to a new color. The base color for many dyes, including all guild emblem dyes, is RGB 128,26,26.</p>
+<p>For guild emblems themselves, there are a few color masks such as the one <a href="http://dragonwatch.net/fancyemblemexperiment/images/emblem-parts/7_1.png">here</a> that can be used to define where the color gets applied on the emblem, and slight variances in the color that gets applied (by varying the base color).</p>
+<p>Brightness should be added to or subtracted from each component of the color<br>
+Contrast should used as a multiplier for each component of the color ((color – 128) * contrast + 128)</p>
+<p>Hue is a value from 0-360 degrees. Saturation and Lightness are both multipliers of the original S &amp; L values.</p>
+<p>The order of operations is:<br>
+1) Take the base (RGB) color<br>
+2) Apply brightness and contrast<br>
+3) Convert color to HSL space<br>
+4) Apply HSL shift<br>
+5) Convert color back to RGB space (this is the final color value)</p>
+<p><a href="http://dragonwatch.net/fancyemblemexperiment/">http://dragonwatch.net/fancyemblemexperiment/</a> does most of this math already, using pixastic. The only thing it’s missing is brightness/contrast, which seem to be something that pixastic also supports.</p>
+<p>I’ll make another update tomorrow to the API to make the values in the API match the values in this post.</p></div></blockquote>
+<p>OK – the API has been updated so that their values match the ones in this guide.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T19:45:08+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<p>Thanks for the quick update <img src="/include/images/smilies/smile.png"></p>
+<p>btw. it’s sunday afternoon and you’re at work :o now go and enjoy your sunday and let us do the maths<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">Goddchen.4958:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T20:37:53+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<p>as soon as anyone can generate a real rgb color from the API data, some sample code would really be appreciated. I can calculate how much I want, with an API “hue” value of 20, I never get even near a value of ~60 to generate a yellow color<img src="/include/images/smilies/sad.png"></p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T21:54:47+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<p>Looks like the most recent API changes have gotten me a lot closer. Thanks for all the effort, Cliff.</p></p>
+
+<h2 id="">Think.8042:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T22:04:36+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<p>How exactly are you supposed to do the HSL shift in step 4? <br>
+Say I have 0.75 Saturation after applying brightness and contrast, and the API says I need to shift by 0.41? What should the results be?</p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T22:35:11+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 02 2013 10:04PM"><a href="/forum/community/api/API-Suggestion-Colors/2142656">Think.8042:</a></cite></div><div class="quotey"><p>How exactly are you supposed to do the HSL shift in step 4? <br>
+Say I have 0.75 Saturation after applying brightness and contrast, and the API says I need to shift by 0.41? What should the results be?</p></div></blockquote>
+<p>Just clarified and fixed the API values a bit. S and L are actually multipliers. If you have a 0.75 saturation, multiply that by the saturation value. Add the H value to the base H value (normally 0 if no brightness or contrast has been applied).</p></p>
+
+<h2 id="">Think.8042:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T22:57:26+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<p>Ok, so let’s see if I got it.<img src="/include/images/smilies/colondee.png"></p>
+<p>I’m using Hot Pink on cloth.</p>
+<p>“cloth”: {<br>
+“brightness”: 14,<br>
+“contrast”: 1.21094,<br>
+“hue”: 340,<br>
+“saturation”: 0.820313,<br>
+“lightness”: 1.44531<br>
+},</p>
+<ol>
+	<li>Start with: RGB 128,26,26</li>
+	<li>Add Brightness: RGB 142,40,40</li>
+	<li>Factor in contrast: RGB 144,21,21</li>
+	<li>Convert to HSL: 0° 75% 32%</li>
+	<li>Apply Shifts: 0°+320°=320°, 0.75*0.82 = 0.615, 0.32*1.44 = 0.46 → HSL 320° 61.5% 46%</li>
+	<li>Convert back to RGB: 189,45,141</li>
+	<li>Hex = #BD2D8D</li>
+</ol>
+<p>Any obvious mistakes?</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T23:52:45+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 02 2013 10:57PM"><a href="/forum/community/api/API-Suggestion-Colors/2142903">Think.8042:</a></cite></div><div class="quotey"><p>Ok, so let’s see if I got it.<img src="/include/images/smilies/colondee.png"></p>
+<p>I’m using Hot Pink on cloth.</p>
+<p>“cloth”: {<br>
+“brightness”: 14,<br>
+“contrast”: 1.21094,<br>
+“hue”: 340,<br>
+“saturation”: 0.820313,<br>
+“lightness”: 1.44531<br>
+},</p>
+<ol>
+	<li>Start with: RGB 128,26,26</li>
+	<li>Add Brightness: RGB 142,40,40</li>
+	<li>Factor in contrast: RGB 144,21,21</li>
+	<li>Convert to HSL: 0° 75% 32%</li>
+	<li>Apply Shifts: 0°+320°=320°, 0.75*0.82 = 0.615, 0.32*1.44 = 0.46 -&gt; HSL 320° 61.5% 46%</li>
+	<li>Convert back to RGB: 189,45,141</li>
+	<li>Hex = #BD2D8D</li>
+</ol>
+<p>Any obvious mistakes?</p></div></blockquote>
+<p>Nice, Think. I just posted a full thread on how to use the Color API, copying your example as well.</p>
+<p><a href="/forum-backup/How-To-Colors-API">You can see it posted here</a></p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T00:04:55+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 02 2013 10:57PM"><a href="/forum/community/api/API-Suggestion-Colors/2142903">Think.8042:</a></cite></div><div class="quotey"><ol>
+	<li>Convert back to RGB: 189,45,141</li>
+	<li>Hex = #BD2D8D</li>
+</ol>
+<p>Any obvious mistakes?</p></div></blockquote>
+<p>Hmm, i don’t know if you’re or i’m wrong…<img src="/include/images/smilies/colondee.png"></p>
+<p>I get RGB 193, 46, 95 with the same input values… and i don’t know where the error is. It’s pink anyway ^.^</p></p>
+
+<h2 id="">Think.8042:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T00:11:46+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>I did some rounding (because I’m even too lazy to type), and my resulting color is a little too dark for “hot pink”, but we’ll need your other steps to verify.</p>
+<p>If my HSL / RGB conversion is wrong, blame <a href="http://serennu.com/colour/hsltorgb.php">them</a> It’s the most calculation-intensive part anyways.</p>
+<p>The conversion might be worth doing a second post on the other thread with some examples in different languages. Python for example seems to have a standard lib for converting, while many other languages need to implement the algorithm themselves. It can be found on <a href="http://en.wikipedia.org/wiki/HSL_and_HSV">Wikipedia</a> or for example <a href="http://www.easyrgb.com/index.php?X=MATH">here</a> (pseudo-code).</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T00:16:55+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Have a look at this: <a href="https://github.com/mjijackson/mjijackson.github.com/blob/master/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript.txt">https://github.com/mjijackson/mjijackson.github.com/blob/master/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript.txt</a></p>
+<p>oh, and this one:<br>
+<a href="http://www.rapidtables.com/convert/color/hsl-to-rgb.htm">http://www.rapidtables.com/convert/color/hsl-to-rgb.htm</a></p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T03:12:51+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 02 2013 10:57PM"><a href="/forum/community/api/API-Suggestion-Colors/2142903">Think.8042:</a></cite></div><div class="quotey"><p>“hue”: 340,</p>
+<p>…</p>
+<ol>
+	<li>Apply Shifts: 0°+320°=320°, 0.75*0.82 = 0.615, 0.32*1.44 = 0.46 -&gt; HSL 320° 61.5% 46%</li>
+</ol></div></blockquote>
+<p>I see a copy error: the hue shift should be 340, not 320.</p>
+<p>I rolled my own Perl methods based on smiley’s PHP functions, and I’m keeping everything as floats throughout.  My unrounded (to 5 decimals) result is 193.46350, 47.02226, 95.83601, which is similar to what smiley posted above.</p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T05:32:55+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Wow, who knew that a simple color API would turn out to be so complicated!</p>
+<p>Thanks a lot for helping me reverse-engineer our color math, and Killer Rhino, thanks for writing a great guide!</p>
+<p>I’m going to keep looking into it on my end and see if there’s a better way for us to provide the API for you. It seems like we’re at least 95% of the way there though.</p>
+<p>Let’s switch over to the “how-to” thread for any more discussion about implementation issues. ( <a href="/forum-backup/How-To-Colors-API">https://forum-en.guildwars2.com/forum/community/api/How-To-Colors-API/first</a> )</p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T05:52:30+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 12:11AM"><a href="/forum/community/api/API-Suggestion-Colors/2143196">Think.8042:</a></cite></div><div class="quotey"><p>The conversion might be worth doing a second post on the other thread with some examples in different languages. Python for example seems to have a standard lib for converting, while many other languages need to implement the algorithm themselves.</p></div></blockquote>
+<p>If you’re talking about <em>colorsys</em> then.. meh. Maybe I’m doing something wrong here, but the result’s off.</p>
+<p><a href="http://codepad.org/9jftbuvW">http://codepad.org/9jftbuvW</a></p></p>
+
+<h2 id="">Think.8042:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T06:13:04+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Hm, annoying. I was going off <a href="http://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion">this SO post</a></p>
+<p>Ish, thanks for noticing, it was a little late yesterday. I’m doing more precise calculations now and seeing the same things smiley got.</p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T06:28:00+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Never mind that…</p>
+<p><a href="http://codepad.org/tvfy3vnz">http://codepad.org/tvfy3vnz</a></p>
+<p>Turns out they represent hue as something between 0.0 and 1.0 for some reason…</p></p>
+
+<h2 id="">Blumoon.5437:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T08:08:39+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Let’s say I develop a web app that shows all of the dye colors accessible in the game. In the future when OAuth support is implemented, will a logged-in player be able to see their favorites and unlocked dye colors for each of their characters?</p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T08:33:25+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 08:08AM"><a href="/forum/community/api/API-Suggestion-Colors/2144848">Blumoon.5437:</a></cite></div><div class="quotey"><p>Let’s say I develop a web app that shows all of the dye colors accessible in the game. In the future when OAuth support is implemented, will a logged-in player be able to see their favorites and unlocked dye colors for each of their characters?</p></div></blockquote>
+<p>That’s the idea. Any references to colors in other APIs would be able to be resolved using this API.</p></p>
+
+<h2 id="">Think.8042:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T08:56:41+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Cliff, do you sleep at all? It’s like 2am.<img src="/include/images/smilies/smile.png"></p>
+<p>Additional request: since “Hot Pink” was used as an example all over, I just noticed that the API returns two colors with that name. I suppose one of them (most likely #1199) is the armor dye unlock, and the other one (#128) is for char creation or something. Any chance we could have their source flagged. I suppose this is a property of the unlock items/char creation data and not something the colors know about themselves, but it would be kind of nice to be able to distinguish.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T09:42:10+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 06:13AM"><a href="/forum/community/api/API-Suggestion-Colors/2144492">Think.8042:</a></cite></div><div class="quotey"><p>Hm, annoying. I was going off <a href="http://stackoverflow.com/questions/2353211/hsl-to-rgb-color-conversion">this SO post</a></p></div></blockquote>
+<p>btw. the answer to this post refers to the [url=‘<a href="https://github.com/mjijackson/mjijackson.github.com/blob/master/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript.txt">https://github.com/mjijackson/mjijackson.github.com/blob/master/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript.txt</a>’<br>
+ ]javascript[/url] i mentioned above – this code works great!</p>
+<p>€: kitten bbcode? :o</p></p>
+
+<h2 id="">BruderTack.8429:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T13:54:38+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>There are eight different blacks and other duplicated colors in the data.<img src="/include/images/smilies/sad.png"> How can I figure out which colors are used in the game?</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T13:57:17+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 01:54PM"><a href="/forum/community/api/API-Suggestion-Colors/2146192">BruderTack.8429:</a></cite></div><div class="quotey"><p>There are eight different blacks and other duplicated colors in the data.<img src="/include/images/smilies/sad.png"> How can I figure out which colors are used in the game?</p></div></blockquote>
+<p><em>Copied my response from another thread</em></p>
+<p>I observed that most (perhaps all) colors that have cloth, leather and metal material values represent dyes. For instance, there are many “Black” colors, but only one “Abyss” color. [The Abyss has cloth, leather and metal materials defined].</p>
+<p>Furthermore, only one of the “Black” colors has material values for cloth, leather, and metal. I suspect that is our “Black” dye.</p>
+<p>The rest are colors for various other things, like skin, and tattoo colors (to name a few). I agree, it might be helpful to add an intent field for the purpose of the color in game.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T14:39:22+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Looking at <a href="https://chillerlan.net/gw2color.php">smiley’s listing</a>, it appears that colors 1222-1230 are the hair colors exclusive to the <a href="http://wiki.guildwars2.com/wiki/Self-Style_Hair_Kit">Self-Style Hair Kit</a>, and colors 1231-1242 are the dyes from the <a href="http://wiki.guildwars2.com/wiki/Flame_Dye_Kit">Flame</a> and <a href="http://wiki.guildwars2.com/wiki/Frost_Dye_Kit">Frost Dye Kits</a>.  The hair colors only have a default material, while the dyes all have cloth/leather/metal.  This definitely supports Rhino’s hypothesis.</p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T20:52:22+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 02:39PM"><a href="/forum/community/api/API-Suggestion-Colors/2146444">Dr Ishmael.9685:</a></cite></div><div class="quotey"><p>Looking at <a href="https://chillerlan.net/gw2color.php">smiley’s listing</a>, it appears that colors 1222-1230 are the hair colors exclusive to the <a href="http://wiki.guildwars2.com/wiki/Self-Style_Hair_Kit">Self-Style Hair Kit</a>, and colors 1231-1242 are the dyes from the <a href="http://wiki.guildwars2.com/wiki/Flame_Dye_Kit">Flame</a> and <a href="http://wiki.guildwars2.com/wiki/Frost_Dye_Kit">Frost Dye Kits</a>.  The hair colors only have a default material, while the dyes all have cloth/leather/metal.  This definitely supports Rhino’s hypothesis.</p></div></blockquote>
+<p>Yes, that’s right. I just updated the API to remove those colors for now, since you can’t really do much with them. So now it’ll only return dye colors. In the future, we could re-add those if there’s an interesting use-case, but I think for now it’s confusing.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T20:54:12+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>ERMAHGERD! You added RGB values and made all our efforts obsolete! Q.Q<br>
+(thanks, was fun to find out anyway<img src="/include/images/smilies/wink.png"> )</p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T21:01:21+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 08:54PM"><a href="/forum/community/api/API-Suggestion-Colors/2148817">smiley.1438:</a></cite></div><div class="quotey"><p>ERMAHGERD! You added RGB values and made all our efforts obsolete! Q.Q<br>
+(thanks, was fun to find out anyway<img src="/include/images/smilies/wink.png"> )</p></div></blockquote>
+<p>You still need the more detailed information if you want to apply dyes against textures yourself, such as for guild emblem compositing.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T21:32:40+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Great now I spent one whole hour at Starbucks and drank three whole Choclate Mocca and made a colour conversion code and now you just waltz in here and throw us the rgb bone… you just cost me 12€! To the walk of shame with you :P</p>
+<p><em>Just kidding</em> thanks for the rgb values!</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

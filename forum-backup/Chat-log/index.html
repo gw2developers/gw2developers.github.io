@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Chat log</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Chat-log/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Chat log</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Chat-log
+</p>
+
+
+
+<h2 id="">Wizeon.3852:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-10T06:56:21+00:00">
+        10 Aug 2015
+    </time>
+</p>
+<p>
+<p>I’ve been playing with the mumble link for a while now and would like to request more data to be released for us.</p>
+<p>What I’m suggesting is that we get access to the chat log box that’s visible to us all the time anyway. We wouldn’t have to use image analysis to read that box, just get the raw data out of it. Any way to reveal it to us would be great, be it a text file, memorymapped file as mumble link is, or some other way you can come up with.</p>
+<p>Or is there some malicious ways to use it? I hate taking screenshots of the whole game window just to save something that was said in chat.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-10T18:08:28+00:00">
+        10 Aug 2015
+    </time>
+</p>
+<p>
+<p>I can’t really think of a malicious way to use it.</p>
+<p>Would be nice to dump the chat (from all chat contexts) to one file, and the combat log to another file. I can’t make any promises but if nothing else it’s something I’ve personally been wanting for awhile.</p></p>
+
+<h2 id="">Halvorn.9831:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-10T18:53:39+00:00">
+        10 Aug 2015
+    </time>
+</p>
+<p>
+<p>If you don’t want DPS meters to come into existence, don’t dump the combat log into a file.</p></p>
+
+<h2 id="">Horus.9685:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-10T20:27:40+00:00">
+        10 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 10 2015 06:53PM"><a href="/forum/community/api/Chat-log/5368475">Halvorn.9831:</a></cite></div><div class="quotey"><p>If you don’t want DPS meters to come into existence, don’t dump the combat log into a file.</p></div></blockquote>
+<p>aren’t there allready dps meters?</p></p>
+
+<h2 id="">Wizeon.3852:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-11T04:01:22+00:00">
+        11 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 10 2015 06:53PM"><a href="/forum/community/api/Chat-log/5368475">Halvorn.9831:</a></cite></div><div class="quotey"><p>If you don’t want DPS meters to come into existence, don’t dump the combat log into a file.</p></div></blockquote>
+<p>They already exist, and you can’t see the damage your party members do anyway from the combat log. And depending on how the file would be updated (periodically, manually?) it could be the most unfeasible source to generate dps data from in real time.</p></p>
+
+<h2 id="">Wizeon.3852:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-11T04:04:24+00:00">
+        11 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 10 2015 06:08PM"><a href="/forum/community/api/Chat-log/5368269">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>I can’t really think of a malicious way to use it.</p>
+<p>Would be nice to dump the chat (from all chat contexts) to one file, and the combat log to another file. I can’t make any promises but if nothing else it’s something I’ve personally been wanting for awhile.</p></div></blockquote>
+<p>Great news then<img src="/include/images/smilies/smile.png"> I’ll start waiting, hope I have enough food stockpiled to last through the winter. And if this really does become a thing I hope we can get system messages there as well, could do some cool timers in the sw for example since we don’t have the event api anymore<img src="/include/images/smilies/lion.png"></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-11T16:21:59+00:00">
+        11 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 11 2015 04:04AM"><a href="/forum/community/api/Chat-log/5370232">Wizeon.3852:</a></cite></div><div class="quotey"><p>And if this really does become a thing I hope we can get system messages there as well, could do some cool timers in the sw for example since we don’t have the event api anymore<img src="/include/images/smilies/lion.png"></p></div></blockquote>
+<p>Ah, good point about the system notifications. If we expose the combat log data I’ll definitely try to jam those in there.</p></p>
+
+<h2 id="">Menadena.7482:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-15T19:56:27+00:00">
+        15 Aug 2015
+    </time>
+</p>
+<p>
+<p>Yay! I play other things with chat logs and I have lost count of use cases. Everything from ‘what nick did so-and-so use’/‘what was it they said about xyz’ to using it with a radar to list who was near me during an event (and, by extension, who might want to know about similar ones in the future) to even a way of doing a proof-of-concept about how people with low vision could interact with a virtual world by piping the log into text-to-speech whenever a line was written to it (ie, tail -f).</p></p>
+
+<h2 id="">Gilj.6304:</h2>
+<p class="post-meta">
+    <time datetime="2016-01-29T14:27:27+00:00">
+        29 Jan 2016
+    </time>
+</p>
+<p>
+<p>The game wasn’t built around having 5 guild chats at a time,<br>
+I can’t have quite enough chat tabs, and follow 5 conversations at once.<br>
+Is there any news about having external access to game chat?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-01-29T18:09:15+00:00">
+        29 Jan 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on January 29 2016 02:27PM"><a href="/forum/community/api/Chat-log/5956803">Gilj.6304:</a></cite></div><div class="quotey"><p>Is there any news about having external access to game chat?</p></div></blockquote>
+<p>It’s still something I really want to do, but haven’t yet been able to commit time to.</p>
+<p>The main crux is just budgeting out a solid month for a feature when there’s a bunch of lower-hanging features and bugs. When I get around to implementing it, pretty much everything else is gonna come to a standstill for awhile, so I want to find a good place for a long pause.</p></p>
+
+<h2 id="">Kraggy.4169:</h2>
+<p class="post-meta">
+    <time datetime="2016-01-29T19:26:57+00:00">
+        29 Jan 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on January 29 2016 06:09PM"><a href="/forum/community/api/Chat-log/5957350">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on January 29 2016 02:27PM"><a href="/forum/community/api/Chat-log/5956803">Gilj.6304:</a></cite></div><div class="quotey"><p>Is there any news about having external access to game chat?</p></div></blockquote>
+<p>It’s still something I really want to do, but haven’t yet been able to commit time to.</p>
+<p>The main crux is just budgeting out a solid month for a feature when there’s a bunch of lower-hanging features and bugs. When I get around to implementing it, pretty much everything else is gonna come to a standstill for awhile, so I want to find a good place for a long pause.</p></div></blockquote>
+<p>Agree with your priorities, in other MMOs the logs are really only of interest for those (usually raiders) who want kitten ed parsers so they can flaunt their uber-DPS numbers and kick those who don’t measure up, if it’s going to take a month to do then as far as I’m concerned Hell can freeze over before you do it.</p></p>
+
+<h2 id="">Gilj.6304:</h2>
+<p class="post-meta">
+    <time datetime="2016-01-30T12:10:36+00:00">
+        30 Jan 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on January 29 2016 06:09PM"><a href="/forum/community/api/Chat-log/5957350">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on January 29 2016 02:27PM"><a href="/forum/community/api/Chat-log/5956803">Gilj.6304:</a></cite></div><div class="quotey"><p>Is there any news about having external access to game chat?</p></div></blockquote>
+<p>It’s still something I really want to do, but haven’t yet been able to commit time to.</p>
+<p>The main crux is just budgeting out a solid month for a feature when there’s a bunch of lower-hanging features and bugs. When I get around to implementing it, pretty much everything else is gonna come to a standstill for awhile, so I want to find a good place for a long pause.</p></div></blockquote>
+<p>Thank you for you quick and honest answer.<br>
+It’s totally understandable<img src="/include/images/smilies/smile.png">.</p></p>
+
+<h2 id="">Cereal.5127:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-01T16:53:43+00:00">
+        01 Feb 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on January 29 2016 07:26PM"><a href="/forum/community/api/Chat-log/5957550">Kraggy.4169:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on January 29 2016 06:09PM"><a href="/forum/community/api/Chat-log/5957350">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on January 29 2016 02:27PM"><a href="/forum/community/api/Chat-log/5956803">Gilj.6304:</a></cite></div><div class="quotey"><p>Is there any news about having external access to game chat?</p></div></blockquote>
+<p>It’s still something I really want to do, but haven’t yet been able to commit time to.</p>
+<p>The main crux is just budgeting out a solid month for a feature when there’s a bunch of lower-hanging features and bugs. When I get around to implementing it, pretty much everything else is gonna come to a standstill for awhile, so I want to find a good place for a long pause.</p></div></blockquote>
+<p>Agree with your priorities, in other MMOs the logs are really only of interest for those (usually raiders) who want kitten ed parsers so they can flaunt their uber-DPS numbers and kick those who don’t measure up, if it’s going to take a month to do then as far as I’m concerned Hell can freeze over before you do it.</p></div></blockquote>
+<p>Thankfully, a lot of the PvE content in guild wars is not DPS gated. With the exception of the raid, I don’t think anyone would take DPS requirements seriously in LFG, but rather just ignore them.</p>
+<p>The raid I can understand though, due to time limits to kill and such. You need a certain level of DPS to complete it. A DPS meter would help groups single out the weak link.</p>
+<p>Though you’re right, that could incite some toxicity. Most raid groups are not formed through the LFG however, and I believe a raiding guild would be more inclined to help the weak link improve, rather than kick him from the group.</p>
+<p>My 2cents</p></p>
+
+<h2 id="">Terrasque.8735:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-04T13:33:34+00:00">
+        04 Feb 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on January 29 2016 06:09PM"><a href="/forum/community/api/Chat-log/5957350">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on January 29 2016 02:27PM"><a href="/forum/community/api/Chat-log/5956803">Gilj.6304:</a></cite></div><div class="quotey"><p>Is there any news about having external access to game chat?</p></div></blockquote>
+<p>It’s still something I really want to do, but haven’t yet been able to commit time to.</p>
+<p>The main crux is just budgeting out a solid month for a feature when there’s a bunch of lower-hanging features and bugs. When I get around to implementing it, pretty much everything else is gonna come to a standstill for awhile, so I want to find a good place for a long pause.</p></div></blockquote>
+<p>I would <strong>love</strong> seeing this implemented, and I hope you find time for it soon! There are so many things I could use it for..</p>
+<p><strong>Edit</strong> Kraggy, Cereal: Remember that you’ll still only see your own data, not other people’s data. That means that</p>
+<ol>
+	<li>it’s an opt-in <em>(player chooses if he want to say the result or not)</em>, and</li>
+	<li>can’t be verified by others <em>(nothing stopping one from giving false numbers)</em>.</li>
+</ol>
+<p>So the toxic impact should be pretty minor</p></p>
+
+<h2 id="">DoM.8396:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-08T17:33:42+00:00">
+        08 Feb 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 10 2015 06:08PM"><a href="/forum/community/api/Chat-log/5368269">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>I can’t really think of a malicious way to use it.</p>
+<p>Would be nice to dump the chat (from all chat contexts) to one file, and the combat log to another file. I can’t make any promises but if nothing else it’s something I’ve personally been wanting for awhile.</p></div></blockquote>
+<p>Sorry for bumping such an old reply but is this still being considered? Having the combat log go to a text file with timestamps would be amazing.</p></p>
+
+<h2 id="">Pandabro.8743:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-08T18:08:32+00:00">
+        08 Feb 2016
+    </time>
+</p>
+<p>
+<p>Throwing my support behind this because I think some smart developers could use this to create some very interesting combat log data that we can use.</p></p>
+
+<h2 id="">deeg.9162:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-08T18:46:39+00:00">
+        08 Feb 2016
+    </time>
+</p>
+<p>
+<p>Adding support to this.</p></p>
+
+<h2 id="">Ares.5613:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-08T19:14:28+00:00">
+        08 Feb 2016
+    </time>
+</p>
+<p>
+<p>Quote: TheTerrasque<br>
+The mumble link is already a memory-mapped file, so I’d not be surprised to see this be similar if it’s added.<br>
+And the format would probably be different than the one in chat log, maybe something like<br>
+timestamp|source|type|spell id|spell name|damage&lt;newline&gt;<br>
+where timestamp would be a dump of the internal timestamp for that frame, possibly a float representing the game runtime.</p>
+<p>I’m also interested in this feature, I feel like this could be a valuable API.</p></p>
+
+<h2 id="">Mehknic.2904:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-08T20:09:59+00:00">
+        08 Feb 2016
+    </time>
+</p>
+<p>
+<p>I would use this feature to an excessive degree.</p></p>
+
+<h2 id="">Serezenith.3501:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-08T20:46:18+00:00">
+        08 Feb 2016
+    </time>
+</p>
+<p>
+<p>Roleplayers have been wanting this for years. I understand prioritising bugs, but I’d consider this a higher value QoL feature than most others I can think of off the top of my head. The only real exception is build templates, and we don’t actually have confirmation of those even being On The Table™, so…</p>
+<p>…give us chat logs or give us death!</p></p>
+
+<h2 id="">LordEnki.9283:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-08T21:35:32+00:00">
+        08 Feb 2016
+    </time>
+</p>
+<p>
+<p>I didn’t spend three years in a game that wasn’t WoW just to have it taken over by WoW players and turned into WoW.  I’m supposed to give my opinion so it’s a strong no.  Sorry if that upsets anyone, but it’s just my opinion so attack all you want.</p></p>
+
+<h2 id="">Pazuzu.6578:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-08T22:08:57+00:00">
+        08 Feb 2016
+    </time>
+</p>
+<p>
+<p>I support this heavily.  It’s a huge benefit for raid teams to actually figure out what their problems are and work on them.  Additionally, it would be nice to see implementation of an indestructible golem somewhere in PvE for personal build testing as well.</p></p>
+
+<h2 id="">Naso.7620:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-08T22:34:17+00:00">
+        08 Feb 2016
+    </time>
+</p>
+<p>
+<p>I would love it so much if anet could make a chat log api, please make it thing anet, please!</p></p>
+
+<h2 id="">CryptoPseudoNym.3125:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-08T23:30:28+00:00">
+        08 Feb 2016
+    </time>
+</p>
+<p>
+<p>I would NOT be happy to see this in any way shape or form…</p>
+<p>All this will do is further the gap between average PvE’rs and elitest players will will willingly kick you from a party because your DPS was 0.002% less than Fred’s…</p>
+<p>That is NOT a state I want this game to go towards and as such I do not want to see this API worked on, or released…</p>
+<p>EVER!!!</p></p>
+
+<h2 id="">Flebeleb.1457:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-09T00:02:27+00:00">
+        09 Feb 2016
+    </time>
+</p>
+<p>
+<p>I do understand concerns about “elitism”. Actually it’s not elitisim, but “jerkism”. You can be a good player, striving to be the best, and not being a jerk to people less skilled or whatever.<br>
+Anyway, the fact is that it’s already the case today. The fact is that players will always find ways to discriminate others for many reasons.</p>
+<p>The fact is that if you want to raid in good conditions, you do it with your guild and friends. If you want to PUG, bend to the rules of the group you try to join. Or make up your own group? Apparently there are plenty of people who do not care about how much damage you do. And guess what, I’m one of them. I’d happily spend an entire night explaining boss mechanics to newcomers. I do it almost every week for what it’s worth.</p>
+<p>The fact is also that if you need to improve (your stuff, your rotation, or whatever), you will never know unless someone/something points it out for you. I’m using Janxnx, and truth is that I noticed I suck. Did my group kick me? Nop, they’re helping me to improve.  And this kind of tools helps, I would not know without them.</p>
+<p>It’s not about discriminating people, it’s about helping each other. I’m pretty sure you have something to teach me. And I’m pretty sure you could learn a thing or two from me.</p>
+<p>This is very much needed for everyone willing to improve. The pros largely overcome the cons.</p></p>
+
+<h2 id="">Vael Victus.2654:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-09T01:18:54+00:00">
+        09 Feb 2016
+    </time>
+</p>
+<p>
+<p>Anything that gets us closer to a DPS meter, yes please!</p></p>
+
+<h2 id="">Waldir.2571:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-09T01:58:55+00:00">
+        09 Feb 2016
+    </time>
+</p>
+<p>
+<p>The ways content creators can use an API like this are endless! just imagine how many apps can come out of a chat log, pretty please!</p></p>
+
+<h2 id="">Quint.8159:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-09T07:19:57+00:00">
+        09 Feb 2016
+    </time>
+</p>
+<p>
+<p>I would love for this to be a thing! Chat logs would be amazing for RP archiving, being able to save entire interactions of text is something a lot of RPers would be interested in.</p>
+<p>Less niche is the ability to go through and ensure that my abilities are performing as expected, and that I’m meeting my own expectations for damage output (after being able to monitor it on a regular basis.)</p>
+<p>From a combat log for DPS metre standpoint, I’d appreciate if it were personal, as this would eliminate discrimination of raid groups. I don’t feel like it’s at all a concern now and I’d like it to stay that way!</p></p>
+
+<h2 id="">tyrox.1352:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-09T07:38:36+00:00">
+        09 Feb 2016
+    </time>
+</p>
+<p>
+<p>I support this aswell! API’s have been great ever since they were release and look how many cool ideas people have! With the possibility of getting your chatlog output im sure there are a lot nice ways to use that information! There might be stuff we couldnt think of directly which can have a huge impact on the RP, Raid or every other part of the community.</p>
+<p>I for myself love to be able to have a DPS Meter, improving your Guild / Groups. Raiding is a new type of content and it is harder than the usual dungeons/fractals.<br>
+Since the implementation of raids i believe a lot of people have improved quite a lot since then, trying new builds, new compositions etc.</p>
+<p>A Damage Meter would only support this, also a meter that gets official data. About the elitism and people getting kicked… i see where people come from to say that. It’s not nice being kicked. But as stated above Raid is a new type and you have to step up your game. If you’re “bad” and you drag your team down you’re literally wasting their time.</p>
+<p>Anything can be taken the toxic way. But for example you could also use such services to spot the problem and support your guildmates. Sometimes people may not know that they’re the problem. Such Services would show at least the Damage and if there is some Problem in Build/Rotation/Gear you could help your guildmate improve.</p></p>
+
+<h2 id="">WipeOut.2603:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-09T08:26:04+00:00">
+        09 Feb 2016
+    </time>
+</p>
+<p>
+<p>I’ve had so long discussions with my friends why our raidgroup is sometimes struggling with DPS, cause it seemed that everyone was running subpar rotations.  <br>
+We just didnt know where the issues where, which one was lacking the DPS?</p>
+<p>With a DPSmeter, we could identify the problems and help our guildmates to improve.  <br>
+I really want to raid with my friends, but raiding with guys who are underperforming and do not improve can get frustrating.  <br>
+Giving them the opportunity to identify their mistakes and working together to improve as a whole raidgroup would be an immidiate benefit of a ChatAPI (→DPSmeter).</p></p>
+
+<h2 id="">louiscarter.3590:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-09T09:53:50+00:00">
+        09 Feb 2016
+    </time>
+</p>
+<p>
+<p>I’m also adding my support to this! It’s not just DPS checks this will bring, shout outs to the RP community! :P</p></p>
+
+<h2 id="">Danaj.3014:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-09T11:19:42+00:00">
+        09 Feb 2016
+    </time>
+</p>
+<p>
+<p>I support a real-time dps meter however it would be accomplished</p></p>
+
+<h2 id="">Ludovicus.7980:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-09T12:22:28+00:00">
+        09 Feb 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 10 2015 06:53PM"><a href="/forum/community/api/Chat-log/5368475">Halvorn.9831:</a></cite></div><div class="quotey"><p>If you don’t want DPS meters to come into existence, don’t dump the combat log into a file.</p></div></blockquote>
+<p>Too late, they already exist.</p></p>
+
+<h2 id="">domness.6719:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-09T13:15:58+00:00">
+        09 Feb 2016
+    </time>
+</p>
+<p>
+<p>Would love to work with the log API, if it were to go ahead, I’d love to build a personalised combat log site where you could visualise your DPS over time (the whole of a Sabetha fight for example), and see where it drops off, and then make an entry for each time you fight Sabetha and see the improvement, or when you change build.</p></p>
+
+<h2 id="">Jacobbs.9468:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-09T17:55:05+00:00">
+        09 Feb 2016
+    </time>
+</p>
+<p>
+<p>I don’t particularly understand the elitism complaint. This kind of stuff already happens without a DPS meter: ping your insights, GW2E your character, AP requires, etc.</p>
+<p>It’s really a way to making sure everyone you bring into a group is on the same page about getting things done. Frankly, a chat log API for both chat and combat would be a huge benefit to the game. Primarily, it gives players the opportunity to improve their own play, as well as potentially log and save fun stories they create together.</p></p>
+
+<h2 id="">TerrorBite.7603:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-09T23:43:49+00:00">
+        09 Feb 2016
+    </time>
+</p>
+<p>
+<p>Lending my support for this.</p>
+<p>I think some people are misunderstanding what this would make possible in terms of DPS meters. Exposing the combat log for external programs to access (whether in realtime, or for later examination) would allow you to accurately monitor and analyze your own DPS, should you choose to do so. It will not allow you to see or monitor anyone else’s DPS. And you are certainly under no obligation to share any personal DPS data should you decide to obtain it.</p>
+<p>Tools to calculate your personal DPS by viewing the combat log already exist (i.e. janxnx), but they work by imperfect methods (capturing screenshots of the combat log) that can be inaccurate, and have annoying prerequisites (combat log must be visible on screen at all times, interface size set to a specific size, etc). A chat API that exposed the combat log would simply make these existing tools reliable, accurate and more convenient to use.</p></p>
+
+<h2 id="">TerrorBite.7603:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-09T23:55:33+00:00">
+        09 Feb 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 08 2016 09:35PM"><a href="/forum/community/api/Chat-log/5976541">LordEnki.9283:</a></cite></div><div class="quotey"><p>I didn’t spend three years in a game that wasn’t WoW just to have it taken over by WoW players and turned into WoW.  I’m supposed to give my opinion so it’s a strong no.  Sorry if that upsets anyone, but it’s just my opinion so attack all you want.</p></div></blockquote>
+<blockquote><div class="citey"><cite title="Posted on February 08 2016 11:30PM"><a href="/forum/community/api/Chat-log/5976713">CryptoPseudoNym.3125:</a></cite></div><div class="quotey"><p>I would NOT be happy to see this in any way shape or form…</p>
+<p>All this will do is further the gap between average PvE’rs and elitest players will will willingly kick you from a party because your DPS was 0.002% less than Fred’s…</p>
+<p>That is NOT a state I want this game to go towards and as such I do not want to see this API worked on, or released…</p>
+<p>EVER!!!</p></div></blockquote>
+<p>Quoting so that you guys see this reply. Again, I think you’re misunderstanding what this chat API would enable. <a href="/forum-backup/Chat-log">My post is above</a>, TL;DR a Chat API would:</p>
+<ul>
+	<li>make existing imperfect-but-legal personal DPS meters accurate, reliable, and convenient</li>
+	<li>NOT reveal your DPS or chat/combat logs to any other players unless you chose to share, which you are under no obligation to do</li>
+	<li>benefit many other people for multiple purposes, such as the RP community</li>
+</ul></p>
+
+<h2 id="">bostrees.5306:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-11T17:35:43+00:00">
+        11 Feb 2016
+    </time>
+</p>
+<p>
+<p>Thank you TerrorBite for a succinct restatement of how exposing this information works. I think a lot of people still have a disconnect between how this information would work for DPS meters versus games like WoW.</p>
+<p>The quick version is that in WoW, when in a party, everyone’s “battle info” (what attacks they used, how much damage it did, etc) is public — everyone in that party in the same combat is able to receive the “battle info” from everyone else. This allows DPS meters to calculate not only individual performances but to also compare them to the performances of everyone else recorded during a certain period.</p>
+<p>In GW2, the “battle info” for everyone is private — even if you’re in the same combat with your entire party, the only information you receive is from yourself. This means DPS meters can only tell you what you did during a certain period. You can consider this method of DPS meter as “opt-in”, as Terrasque said earlier in this thread.</p>
+<p>The other important distinction, since the meter is optional to use and only works for the individual, is that these meters can be falsified. In a WoW style meter, since the information is publicly available to anyone, the data can be corroborated by having multiple meters tracking the same fight, and comparing/averaging the results from all meters. Since GW2 information can only be tracked by one person at a time, it’s no more reliable than a person making up numbers with no evidence at all.</p>
+<p>Overall, that means the general use case for DPS meters are (a) people interested in monitoring/improving their performance, because (b) people who want to rank each other based on “battle info” cannot do accurately (since information cannot be verified)</p></p>
+
+<h2 id="">Rising Dusk.2408:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-23T20:25:11+00:00">
+        23 Feb 2016
+    </time>
+</p>
+<p>
+<p>I greatly support this endeavor and am posting to leave my endorsement. I realize it will take a month of effort for Lawton, but it is a month that carries more value for me than the other low hanging fruit you might be working on. Either way, thank you for the effort!</p></p>
+
+<h2 id="">Shylock.4653:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-29T12:42:37+00:00">
+        29 Feb 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 23 2016 08:25PM"><a href="/forum/community/api/Chat-log/6001261">Rising Dusk.2408:</a></cite></div><div class="quotey"><p>I greatly support this endeavor and am posting to leave my endorsement. I realize it will take a month of effort for Lawton, but it is a month that carries more value for me than the other low hanging fruit you might be working on. Either way, thank you for the effort!</p></div></blockquote>
+<p>This</p></p>
+
+<h2 id="">nicknamenick.2437:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-29T12:52:02+00:00">
+        29 Feb 2016
+    </time>
+</p>
+<p>
+<p>Omg i just made a topic about Combat log &gt; log.txt…..<br>
+Seems like they do want to make something like this but the Dev doesnt get the time.</p>
+<p>If we can only donate money for a Dev team (so the community can give money for something..)  :-P  well lets hope we get something!   even a txt file would do!</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-03-03T18:52:15+00:00">
+        03 Mar 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 29 2016 12:52PM"><a href="/forum/community/api/Chat-log/6014255">nicknamenick.2437:</a></cite></div><div class="quotey"><p>Omg i just made a topic about Combat log &gt; log.txt…..<br>
+Seems like they do want to make something like this but the Dev doesnt get the time.</p>
+<p>If we can only donate money for a Dev team (so the community can give money for something..)  :-P  well lets hope we get something!   even a txt file would do!</p></div></blockquote>
+<p>If you’ve got one, I wouldn’t mind the donation of a time machine.</p>
+<p>:P</p></p>
+
+<h2 id="">mauried.5608:</h2>
+<p class="post-meta">
+    <time datetime="2016-03-25T07:27:27+00:00">
+        25 Mar 2016
+    </time>
+</p>
+<p>
+<p>Im not at all interested in DPS meters, but a simple chat log would be useful so that you can get your PC to ring a bell or make a noise if someone sends you a whisper or says something.<br>
+I leave my PC on in GW2 when Im expecting some of my friends to log in , but Im not sitting in front of it all the time.</p></p>
+
+<h2 id="">Eimhac.5894:</h2>
+<p class="post-meta">
+    <time datetime="2016-04-11T15:00:06+00:00">
+        11 Apr 2016
+    </time>
+</p>
+<p>
+<p>If you could map Chat/Combatlog-information inside this mumble mem-file. We would be able to build stuff like “better” combat announcements, in combat time tracker for raids or even a dps calculation.<br>
+With those announcements and target track/income dmg it could be maybe possible for more ppl to get the raids done than ever before.<br>
+We really looking forward to see this been released.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-04-11T18:10:08+00:00">
+        11 Apr 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on April 11 2016 03:00PM"><a href="/forum/community/api/Chat-log/6091195">Eimhac.5894:</a></cite></div><div class="quotey"><p>If you could map Chat/Combatlog-information inside this mumble mem-file. We would be able to build stuff like “better” combat announcements, in combat time tracker for raids or even a dps calculation.</p></div></blockquote>
+<p>The MumbleLink format is unsuitable for chat logs. The format is fairly rigid and really only meant for data that can be read/written semi-atomically (e.g., camera position and such). Adding more fields to the exposed data runs into both space and synchronization issues (dirty reads are already a thing that applications have to work around).</p></p>
+
+<h2 id="">Nightlark.4029:</h2>
+<p class="post-meta">
+    <time datetime="2016-04-12T18:39:21+00:00">
+        12 Apr 2016
+    </time>
+</p>
+<p>
+<p>A websocket API would be a much better way to expose a real-time chat log API. Though a websocket API for the client is probably a long way out.</p></p>
+
+<h2 id="">BoyC.2653:</h2>
+<p class="post-meta">
+    <time datetime="2016-04-23T10:09:13+00:00">
+        23 Apr 2016
+    </time>
+</p>
+<p>
+<p>You could also do what the default ClientQuery plugin does in TS3 and give us a local TCP telnet stream.</p></p>
+
+<h2 id="">Valento.9852:</h2>
+<p class="post-meta">
+    <time datetime="2016-05-20T21:15:11+00:00">
+        20 May 2016
+    </time>
+</p>
+<p>
+<p>Bumping because this would be AWESOME! Praise them chatlog API.</p></p>
+
+<h2 id="">AndyS.5630:</h2>
+<p class="post-meta">
+    <time datetime="2016-08-17T08:27:26+00:00">
+        17 Aug 2016
+    </time>
+</p>
+<p>
+<p>ChatLog API can let people evaluate their personal performance in a variety of situations and is absolutely welcome. We already know that damage comes from people, not from classes/builds/comps, however there is no reliable way for people to identify if damage comes from them or not. We can also disregard damage numbers while parsing and evaluate quality of rotations (while ignoring gear and buffs).</p>
+<p>Now as for technical part, general purpose way is simply logging to file. However, to support real time applications <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa365590(v=vs.85).aspx">named pipes</a> may be a superior option.</p></p>
+
+<h2 id="">Nokomis.5076:</h2>
+<p class="post-meta">
+    <time datetime="2016-08-24T23:17:54+00:00">
+        24 Aug 2016
+    </time>
+</p>
+<p>
+<p>I would like to show a suggestion, how an endpoint could look for reading a chatlog.</p>
+<p>I know I probably miss many source_details of some message types, but it’s a start I hope<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Ares.5613:</h2>
+<p class="post-meta">
+    <time datetime="2016-12-03T01:48:06+00:00">
+        03 Dec 2016
+    </time>
+</p>
+<p>
+<p>Hey Lawton, is this still something worth looking into? We would really love to see this API come to light.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-12-05T17:48:32+00:00">
+        05 Dec 2016
+    </time>
+</p>
+<p>
+<p>It’s a long-requested feature; the main issue is that most of the chat (and the combat logs in their entirety) aren’t stored in a network-accessible manner — the implementation would have to use some sort of <a href="https://github.com/arenanet/api-cdi/issues/127">local API</a> which is a pretty large undertaking. As such I don’t really have a timeline <img src="/include/images/smilies/sad.png"></p></p>
+
+<h2 id="">Valento.9852:</h2>
+<p class="post-meta">
+    <time datetime="2016-12-06T12:01:05+00:00">
+        06 Dec 2016
+    </time>
+</p>
+<p>
+<p>I’m sorry it’s more complicated, but I still have hope. <img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">JordanJD.3209:</h2>
+<p class="post-meta">
+    <time datetime="2017-02-22T01:46:43+00:00">
+        22 Feb 2017
+    </time>
+</p>
+<p>
+<p>bump from me as well. after the gw2 team stated dps meter was allowed i want to create one.</p></p>
+
+<h2 id="">Nightlark.4029:</h2>
+<p class="post-meta">
+    <time datetime="2017-02-25T04:30:53+00:00">
+        25 Feb 2017
+    </time>
+</p>
+<p>
+<p>Hey Jordan, here’s a proof of concept for something like that you might find interesting that creates a websocket event api that exposes mumble link data (could be easily extended to expose chat/combat data if the right hooks were added): <a href="https://github.com/nightlark/gw2ws">https://github.com/nightlark/gw2ws</a></p></p>
+
+<h2 id="">JordanJD.3209:</h2>
+<p class="post-meta">
+    <time datetime="2017-02-27T18:50:15+00:00">
+        27 Feb 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 25 2017 04:30AM"><a href="/forum/community/api/Chat-log/6509288">Nightlark.4029:</a></cite></div><div class="quotey"><p>Hey Jordan, here’s a proof of concept for something like that you might find interesting that creates a websocket event api that exposes mumble link data (could be easily extended to expose chat/combat data if the right hooks were added): <a href="https://github.com/nightlark/gw2ws">https://github.com/nightlark/gw2ws</a></p></div></blockquote>
+<p>I will look into this, is any part of this process against anet TOS?</p></p>
+
+<h2 id="">SlippyCheeze.5483:</h2>
+<p class="post-meta">
+    <time datetime="2017-02-27T20:52:08+00:00">
+        27 Feb 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 27 2017 06:50PM"><a href="/forum/community/api/Chat-log/6512051">JordanJD.3209:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 25 2017 04:30AM"><a href="/forum/community/api/Chat-log/6509288">Nightlark.4029:</a></cite></div><div class="quotey"><p>Hey Jordan, here’s a proof of concept for something like that you might find interesting that creates a websocket event api that exposes mumble link data (could be easily extended to expose chat/combat data if the right hooks were added): <a href="https://github.com/nightlark/gw2ws">https://github.com/nightlark/gw2ws</a></p></div></blockquote>
+<p>I will look into this, is any part of this process against anet TOS?</p></div></blockquote>
+<p>It shouldn’t be: the ToS says you can’t do things that are not exported, but the mumble data is.  There is nothing about how you process that data once you have read it.</p>
+<p>It’s also literally the model used in the GW2navi tool, which lets the gw2route.com website have GPS features, etc.  (They use a local browser with some custom functions instead of websockets, but it’s basically the same deal.)</p>
+<p>They have been cited as “cool” by anet many times.  So, yeah, exporting this data to a web thingy, that’s cool.</p></p>
+
+<h2 id="">Rogue.8235:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-06T23:06:42+00:00">
+        06 Mar 2017
+    </time>
+</p>
+<p>
+<p>This caught my attention somehow.</p>
+<p>Long story short, I was blinded late 2014 and still play GW2.  Due to extreme visual limitations there is no way I’ll ever be able to see text.</p>
+<p>I utilize two screen readers (JAWS, NVDA) which can read text out loud for me, but they’re still very finnicky.  They work best with plain text only, unformatted strings.  They can also read labels for objects (thank you programmers that actually label objects and not leave them as “button 83.”</p>
+<p>Skimming this thread, will there actually be a way to output in=game chat as text for my screen readers?  Screen readers are absolutely incapable of reading things in a visual environment such as video games.</p>
+<p>If this is true I cannot emphasize how happy I would be to finally be able to “read” what’s going on in game as well as what people are saying.</p></p>
+
+<h2 id="">SlippyCheeze.5483:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-07T01:27:37+00:00">
+        07 Mar 2017
+    </time>
+</p>
+<p>
+<p>I’m afraid that, no, there is currently no way to do that.  The speculated API for chat text does not yet exist.</p>
+<p>It wouldn’t be impossible for someone to develop a tool to achieve that, though, in the same way they develop DPS meters that run in-client.</p></p>
+
+<h2 id="">Valento.9852:</h2>
+<p class="post-meta">
+    <time datetime="2017-05-19T14:41:01+00:00">
+        19 May 2017
+    </time>
+</p>
+<p>
+<p>Hate to bump these difficult to develop endpoints, but I’m doing it so maybe some inspiration sparked meanwhile! <img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">SlippyCheeze.5483:</h2>
+<p class="post-meta">
+    <time datetime="2017-05-22T18:31:30+00:00">
+        22 May 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 19 2017 02:41PM"><a href="/forum/community/api/Chat-log/6593316">Valento.9852:</a></cite></div><div class="quotey"><p>Hate to bump these difficult to develop endpoints, but I’m doing it so maybe some inspiration sparked meanwhile! <img src="/include/images/smilies/colondee.png"></p></div></blockquote>
+<p>Highly unlikely, because as noted, local API.  I’d suggest you are likely to get better results contacting deltaconnected, the developer of arcdps, and asking if they can throw something together for you or whatevs.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Simple C# Example - Rating Calculation</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Simple-C-Example-Rating-Calculation/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Simple C# Example - Rating Calculation</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Simple-C-Example-Rating-Calculation
+</p>
+
+
+
+<h2 id="">Snowreap.5174:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T18:18:40+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<p>Here’s a simple example of a C# console-mode program that accesses data from the GW2 API.  This code was written for .NET 2.0.</p>
+<p>In the default mode of operation, it reads baseline rating information from standard input, gets the current scores from the GW2 API, then calculates new rating, deviation and volatility values for each server and outputs the new information.</p>
+<p>The program also has alternative modes (1, 2 and 3) that can be used to predict the likelihood of matchups under the new randomized matchup system.  In mode 1, it calculates the likelihood of getting a single server as one of your two opponents.  In mode 2, it calculates the likelihood of getting particular pairs of servers as your two opponents.  In mode 3, it calculates the likelihood of getting particular world/color combinations (i.e. not just the likelihoods of getting a particular pair of servers, but also the probabilities for each color combination).</p>
+<p>None of the alternative modes make use of the API, but I don’t feel like editing out that part of the code just to make this example more API-specific.</p>
+<p>The JSON parser implementation is based on earlier code I wrote for a Lua parser, so the “Value” class supports a lot of casting/comparison operators that JSON doesn’t really need.</p>
+<p>Note that by posting this code here, I am not giving up ownership of it (I am not making it “public domain”).  However, you may still freely look at it, copy it, or modify it.  But you may <strong>not</strong> slap a copyright notice on it then tell me (or others) to stop using it.</p>
+<p>-ken</p></p>
+
+<h2 id="">Snowreap.5174:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T18:31:57+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<p>Example input (copied directly from the Leaderboard into Notepad):</p>
+<pre><code>1 	 Sanctum of Rall	 2221.0640 	 173.5353	 0.7634
+2 	 Blackgate	 2157.3918 	 172.9866	 0.7617
+3 	 Jade Quarry	 2133.8296 	 172.6257	 0.7609
+4 	 Tarnished Coast	 2007.7672 	 172.4862	 0.7597
+5 	 Dragonbrand	 1962.8613 	 172.8228	 0.7632
+6 	 Fort Aspenwood	 1960.8502 	 172.6732	 0.7589
+7 	 Maguuma	 1823.5967 	 174.9570	 0.7723
+8 	 Kaineng	 1782.2227 	 175.9198	 0.7935
+9 	 Yak's Bend	 1745.0370 	 173.6684	 0.7620
+10 	 Sea of Sorrows	 1716.8704 	 180.1183	 0.7736
+11 	 Crystal Desert	 1586.2152 	 176.1478	 0.7682
+12 	 Ehmry Bay	 1550.0354 	 182.2718	 0.7824
+13 	 Stormbluff Isle	 1542.7919 	 177.5990	 0.7761
+14 	 Borlis Pass	 1370.9421 	 175.9778	 0.7625
+15 	 Anvil Rock	 1287.0150 	 178.1011	 0.7599
+16 	 Darkhaven	 1272.9904 	 175.5942	 0.7668
+17 	 Sorrow's Furnace	 1219.0934 	 176.3832	 0.7887
+18 	 Isle of Janthir	 1215.2333 	 175.5854	 0.7830
+19 	 Gate of Madness	 1132.9073 	 174.1129	 0.7631
+20 	 Devona's Rest	 1063.6667 	 173.5354	 0.7681
+21 	 Northern Shiverpeaks	 1047.4753 	 173.0216	 0.7570
+22 	 Henge of Denravi	 1012.8758 	 173.1538	 0.7624
+23 	 Ferguson's Crossing	 880.6989 	 173.3165	 0.7702
+24 	 Eredon Terrace	 853.4559 	 173.5841	 0.7701
+</code></pre>
+<p>Example output (default mode 0):</p>
+<pre><code>1	Sanctum of Rall	2218.4790	172.9671	0.7543	-2.5850	
+2	Blackgate	2150.2010	171.9685	0.7525	-7.1908	
+3	Jade Quarry	2143.5600	172.1516	0.7518	+9.7304	
+4	Dragonbrand	1994.6900	184.8914	0.7568	+31.8287	+1
+5	Tarnished Coast	1981.9582	178.2444	0.7521	-25.8090	-1
+6	Fort Aspenwood	1926.8598	176.7001	0.7513	-33.9904	
+7	Sea of Sorrows	1785.7103	188.2244	0.7687	+68.8399	+3
+8	Maguuma	1758.3706	181.6671	0.7665	-65.2261	-1
+9	Kaineng	1731.6037	178.2449	0.7853	-50.6190	-1
+10	Yak's Bend	1731.4483	174.5728	0.7533	-13.5887	-1
+11	Crystal Desert	1652.0692	179.5129	0.7621	+65.8540	
+12	Stormbluff Isle	1582.5558	193.7547	0.7708	+39.7639	+1
+13	Ehmry Bay	1534.2980	186.1550	0.7745	-15.7374	-1
+14	Borlis Pass	1371.7103	177.0362	0.7540	+0.7682	
+15	Anvil Rock	1300.5133	180.5061	0.7521	+13.4983	
+16	Darkhaven	1236.0851	179.5175	0.7593	-36.9053	
+17	Sorrow's Furnace	1199.3135	188.6672	0.7815	-19.7799	
+18	Isle of Janthir	1180.9801	184.8205	0.7758	-34.2532	
+19	Gate of Madness	1131.7128	174.7810	0.7543	-1.1945	
+20	Northern Shiverpeaks	1084.1215	176.6530	0.7495	+36.6462	+1
+21	Devona's Rest	1046.5120	177.6124	0.7598	-17.1547	-1
+22	Henge of Denravi	1015.3208	178.1281	0.7543	+2.4450	
+23	Ferguson's Crossing	932.8182	184.1240	0.7643	+52.1193	
+24	Eredon Terrace	869.3953	184.4527	0.7630	+15.9394	
+</code></pre>
+<p>Note that the output can be saved and used as input for a future run, because it is essentially in the same format (the rating change and rank change values are ignored on input).  In particular, the Mode 0 output is intended to then be used as input for Mode 1/2/3.</p>
+<p>-ken</p></p>
+
+<h2 id="">Samuraiken.9581:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-05T10:26:04+00:00">
+        05 Jun 2013
+    </time>
+</p>
+<p>
+<p>Wow, thanks for that ;-)  The only thing that I would wish for in an “example” would be more comments (that was some pretty intense math being used, without an explanation of what was going on), but perhaps that’s more because I’m still new to the realm of JSON, etc, and have never used an API before in my life.  Well done, though!</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-05T11:21:14+00:00">
+        05 Jun 2013
+    </time>
+</p>
+<p>
+<p>Also: Holy mother of spaghetti code<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Snowreap.5174:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-05T13:35:09+00:00">
+        05 Jun 2013
+    </time>
+</p>
+<p>
+<p>Oh, how standards change over time.  For me, spaghetti code has always been “code with a lot of gotos”.  In this code, the control flow is very straightforward: it flows from top to bottom, except for loops (which execute top to bottom).</p>
+<p>The complaint about a lack of comments is definitely warranted — it wasn’t originally written to be an example; I made it only for my own use, and as such it has all the comments I need.  If I get some time I’ll add more comments and upload again.</p>
+<p>The one part that is hard to understand is the mode 0 code that does the actual Glicko-2 rating calculation.  That part is pretty much a direct implementation of the Glicko-2 algorithm as documented here: <a href="http://www.glicko.net/glicko/glicko2.pdf">http://www.glicko.net/glicko/glicko2.pdf</a>.</p>
+<p>The one bit that’s not covered in Glickman’s paper is ArenaNet’s method of calculating a score (represented by “s”), and their choice of a tau value.  That information is here: <a href="http://www.guildwars2guru.com/news/884-the-math-behind-wvw-ratings/">http://www.guildwars2guru.com/news/884-the-math-behind-wvw-ratings/</a></p>
+<p>The Glicko-2 algorithm is impossible to understand just by looking at the code, but it compares fairly directly to the algorithm as described in Glickman’s paper.  The algorithm in the paper isn’t particularly easy to understand either so in that respect the code isn’t much worse.</p>
+<p>The rest of the modes perform statistical analysis using the Monte Carlo method, where you run a large number of random simulations and count how many of each of the outcomes you get.  The code for that is fairly straightforward, but assumes you know how GW2 matchups are done.  That information is found here: <a href="https://www.guildwars2.com/en/news/big-changes-coming-to-wvw-matchups/">https://www.guildwars2.com/en/news/big-changes-coming-to-wvw-matchups/</a>.</p>
+<p>The JSON code has no comments at all but I’ve provided it only so that the program is complete and will compile — I hadn’t really intended it to be an example of a JSON parser, although if you know the basics of parsing (i.e. the difference between token parsing and lexical analysis), it can certainly serve that purpose.  The Value.GetValue() method contains the JSON parser, which consumes tokens from the Tokenizer (aka the Lexical Analyzer) via the Tokenizer.ReadToken() method.  If you’ve ever had to write your own parser &amp; lexer before, my implementation will be very clear but if you haven’t this code isn’t intended to teach you how.  I suspect most people doing ‘real work’ use tools like bison and flex to auto-generate parsers and lexers, rather than writing them by hand.</p>
+<p>-ken</p></p>
+
+<h2 id="">Snowreap.5174:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-05T16:41:11+00:00">
+        05 Jun 2013
+    </time>
+</p>
+<p>
+<p>Ok, I’ve updated the original post with a newer version of code that has more comments.  But the added comments in the main program are not a substitute for understanding the underlying ideas — be sure to check these web pages for the necessary background information:<br>
+<a href="https://www.guildwars2.com/en/news/big-changes-coming-to-wvw-matchups/">https://www.guildwars2.com/en/news/big-changes-coming-to-wvw-matchups/</a><br>
+<a href="http://www.guildwars2guru.com/news/884-the-math-behind-wvw-ratings/">http://www.guildwars2guru.com/news/884-the-math-behind-wvw-ratings/</a><br>
+<a href="http://www.glicko.net/glicko/glicko2.pdf">http://www.glicko.net/glicko/glicko2.pdf</a></p>
+<p>The JSON code is still relatively comment-free, aside from a reference to consult <a href="http://www.json.org/">http://www.json.org/</a>.  The JSON syntax diagram shown there matches the JSON Tokenizer flow fairly well.</p>
+<p>-ken</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-05T18:34:06+00:00">
+        05 Jun 2013
+    </time>
+</p>
+<p>
+<p>Nice job doing it the “man-ly” way – implementing your own parser and all.  You can breakup some parts into smaller functions/objects, guilty of that myself, but otherwise it looks fine to me.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

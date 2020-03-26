@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Request for /pvp/games and /pvp/stats</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Request-for-pvp-games-and-pvp-stats/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Request for /pvp/games and /pvp/stats</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Request-for-pvp-games-and-pvp-stats
+</p>
+
+
+
+<h2 id="">sookya.8625:</h2>
+<p class="post-meta">
+    <time datetime="2015-12-17T12:30:01+00:00">
+        17 Dec 2015
+    </time>
+</p>
+<p>
+<p>Hello Lawton,</p>
+<p>I’ve a short question for the two endpoints /pvp/games and /pvp/stats:</p>
+<p>/pvp/stats:<br>
+Is there a possibility to get some Info about progress in the actual (and perhaps last?) ladder (the division and tier for example, it’s not necessary for me to know the exact points in a tier)</p>
+<p>/pvp/games:<br>
+Can you please add a field for arena-type (ranked / unranked) and perhaps the ladder progression (how much pips the person lost/won in this game).</p>
+<p>That would be great! Thank you<img src="/include/images/smilies/smile.png"></p>
+<p>Greetings<br>
+Chris</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-12-17T19:36:20+00:00">
+        17 Dec 2015
+    </time>
+</p>
+<p>
+<p>As a note, I probably won’t be able to get to more pvp stuff this year (which means it won’t be ready by the end of the league) — busy with guild stuff and bugfixes — but adding new features is something that I want to start on soon. Since it’s probably going to involve changes that get pretty far from my usual domain I’m estimating like a month of work to get all the bits and pieces I want out of the game server and into the API.</p>
+<blockquote><div class="citey"><cite title="Posted on December 17 2015 12:30PM"><a href="/forum/community/api/Request-for-pvp-games-and-pvp-stats/5861867">sookya.8625:</a></cite></div><div class="quotey"><p>/pvp/stats:<br>
+Is there a possibility to get some Info about progress in the actual (and perhaps last?) ladder (the division and tier for example, it’s not necessary for me to know the exact points in a tier)</p></div></blockquote>
+<p>So, the leagues are all data-driven, so we’re going to need a new endpoint like /pvp/leagues that dumps out the names, how many pips are required, rules, and pip images and stuff. After that, getting the user’s current league standing is pretty  straightforward.</p>
+<blockquote><div class="citey"><cite title="Posted on December 17 2015 12:30PM"><a href="/forum/community/api/Request-for-pvp-games-and-pvp-stats/5861867">sookya.8625:</a></cite></div><div class="quotey"><p>/pvp/games:<br>
+Can you please add a field for arena-type (ranked / unranked) and perhaps the ladder progression (how much pips the person lost/won in this game).</p></div></blockquote>
+<p>Yep, definitely something I’m going to look into adding. I’m actually kind of surprised that the ladder isn’t included in that endpoint already &gt;_&gt;</p></p>
+
+<h2 id="">Hvaran.6327:</h2>
+<p class="post-meta">
+    <time datetime="2015-12-17T23:04:20+00:00">
+        17 Dec 2015
+    </time>
+</p>
+<p>
+<p>would be great to see more then 10 last games (last 100 games) so we could check our actuall progression over the week etc.</p>
+<p>0/</p></p>
+
+<h2 id="">sookya.8625:</h2>
+<p class="post-meta">
+    <time datetime="2015-12-17T23:25:32+00:00">
+        17 Dec 2015
+    </time>
+</p>
+<p>
+<p>First of all: Thank you for this answer Lawton.<img src="/include/images/smilies/smile.png"> It’s good to hear, that there are some other things planned for pvp-endpoints. So I’ve just to wait to get new data delivered by the API some time next year (hopefully early 2016<img src="/include/images/smilies/wink.png"> )</p>
+<p>@Hvaran: <br>
+Why more than 10 games? There is no need for it. You just have to fetch the game-data regulary and store it locally (in a database for example, excel, etc…)</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-12-18T16:48:24+00:00">
+        18 Dec 2015
+    </time>
+</p>
+<p>
+<p>Some other pvp stuff I’d like to see …</p>
+<ul>
+	<li>In /pvp/games include information on if it was with a guild team, and which one (guild id + team name).</li>
+	<li>Statistics on guild teams as shown in the guild panel (likely would require guild leader + guilds permission)</li>
+	<li>Unauthenticated endpoint listing top 1,000 in guild challenger league.</li>
+</ul></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-12-21T19:41:23+00:00">
+        21 Dec 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on December 17 2015 11:04PM"><a href="/forum/community/api/Request-for-pvp-games-and-pvp-stats/5863459">Hvaran.6327:</a></cite></div><div class="quotey"><p>would be great to see more then 10 last games (last 100 games) so we could check our actuall progression over the week etc.</p></div></blockquote>
+<p>I know it’s suboptimal for a lot of use-cases, but this is highly unlikely to change. You’re going to have to poll the endpoint periodically and store the data locally (or use a site to do it — I’ve been using <a href="http://gw2pvp.de/">gw2pvp.de</a>).</p>
+<blockquote><div class="citey"><cite title="Posted on December 18 2015 04:48PM"><a href="/forum/community/api/Request-for-pvp-games-and-pvp-stats/5865373">Nabrok.9023:</a></cite></div><div class="quotey"><p>Some other pvp stuff I’d like to see …</p>
+<ul>
+	<li>In /pvp/games include information on if it was with a guild team, and which one (guild id + team name).</li>
+	<li>Statistics on guild teams as shown in the guild panel (likely would require guild leader + guilds permission)</li>
+	<li>Unauthenticated endpoint listing top 1,000 in guild challenger league.</li>
+</ul></div></blockquote>
+<p>Seems reasonable. Here’s a <a href="https://github.com/arenanet/api-cdi/issues/145">github issue</a> so I don’t forget to do this — again it won’t be ready for the current league, but hopefully it will for the next.</p></p>
+
+<h2 id="">Mysticjedi.6053:</h2>
+<p class="post-meta">
+    <time datetime="2015-12-21T21:41:20+00:00">
+        21 Dec 2015
+    </time>
+</p>
+<p>
+<p>^^^^^^^^^^^</p>
+<p>This would be wonderful to see. I would also like to see player ranks before the match and I would like to know the system’s estimated percentage chance of my team winning, the number of points I need to get a pip, and all other information of that ilk in the details tab. I hate guessing as to why I lost a pip or won a pip.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-12-21T22:32:54+00:00">
+        21 Dec 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on December 21 2015 09:41PM"><a href="/forum/community/api/Request-for-pvp-games-and-pvp-stats/5872512">Mysticjedi.6053:</a></cite></div><div class="quotey"><p>This would be wonderful to see. I would also like to see player ranks before the match and I would like to know the system’s estimated percentage chance of my team winning, the number of points I need to get a pip, and all other information of that ilk in the details tab. I hate guessing as to why I lost a pip or won a pip.</p></div></blockquote>
+<p>To be entirely clear; I’m not changing anything in-game, just adding additional data to the public API. I’ll ask about exposing the matchmaker’s predictions but I’m not certain that’s something I can expose (since we’re not exposing MMR values, I’d assume we wouldn’t expose a value that would you to derive your raw MMR).</p></p>
+
+<h2 id="">sookya.8625:</h2>
+<p class="post-meta">
+    <time datetime="2015-12-22T00:55:20+00:00">
+        22 Dec 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on December 21 2015 07:41PM"><a href="/forum/community/api/Request-for-pvp-games-and-pvp-stats/5872236">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>(or use a site to do it — I’ve been using <a href="http://gw2pvp.de/">gw2pvp.de</a>).</p></div></blockquote>
+<p>Woah.. i’m honoured<img src="/include/images/smilies/smile.png"></p>
+<p></p></p>
+
+<h2 id="">sookya.8625:</h2>
+<p class="post-meta">
+    <time datetime="2015-12-22T10:18:48+00:00">
+        22 Dec 2015
+    </time>
+</p>
+<p>
+<p>Oh, by the way, I forgot to ask in my first post: I’ve asked you a few weeks ago about the Character-ID in the games-api. There is only the profession listed, but if someone has more than 1 character of this profession. Beside this, I’ve asked for team-roster (both sides, with professions they played). Is this still on your list Lawton? That would be awesome<img src="/include/images/smilies/smile.png"></p>
+<p>Greetings and ahead of the upcoming holidays: merry christmas!<img src="/include/images/smilies/smile.png"><br>
+Chris</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-12-22T18:17:06+00:00">
+        22 Dec 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on December 22 2015 10:18AM"><a href="/forum/community/api/Request-for-pvp-games-and-pvp-stats/5873658">sookya.8625:</a></cite></div><div class="quotey"><p>Oh, by the way, I forgot to ask in my first post: I’ve asked you a few weeks ago about the Character-ID in the games-api. There is only the profession listed, but if someone has more than 1 character of this profession. Beside this, I’ve asked for team-roster (both sides, with professions they played). Is this still on your list Lawton? That would be awesome<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>Yeah it is; the roster information isn’t current stored by the matchmaking server, so it’s gonna take some work to plumb all that data through. It’s definitely on the list though.</p>
+<blockquote><div class="citey"><cite title="Posted on December 22 2015 10:18AM"><a href="/forum/community/api/Request-for-pvp-games-and-pvp-stats/5873658">sookya.8625:</a></cite></div><div class="quotey"><p>Greetings and ahead of the upcoming holidays: merry christmas!<img src="/include/images/smilies/smile.png"><br>
+Chris</p></div></blockquote>
+<p>Thanks, you too!</p></p>
+
+<h2 id="">sookya.8625:</h2>
+<p class="post-meta">
+    <time datetime="2016-01-27T08:58:47+00:00">
+        27 Jan 2016
+    </time>
+</p>
+<p>
+<p>Hey Lawton,</p>
+<blockquote><div class="citey"><cite title="Posted on December 17 2015 07:36PM"><a href="/forum/community/api/Request-for-pvp-games-and-pvp-stats/5862939">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on December 17 2015 12:30PM"><a href="/forum/community/api/Request-for-pvp-games-and-pvp-stats/5861867">sookya.8625:</a></cite></div><div class="quotey"><p>/pvp/games:<br>
+Can you please add a field for arena-type (ranked / unranked) and perhaps the ladder progression (how much pips the person lost/won in this game).</p></div></blockquote>
+<p>Yep, definitely something I’m going to look into adding. I’m actually kind of surprised that the ladder isn’t included in that endpoint already &gt;_&gt;</p></div></blockquote>
+<p>do you have any ETA for the ladder type? Would be super awesome to realize some ideas I have in my mind..<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-01-27T18:26:00+00:00">
+        27 Jan 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on January 27 2016 08:58AM"><a href="/forum/community/api/Request-for-pvp-games-and-pvp-stats/5949945">sookya.8625:</a></cite></div><div class="quotey"><p>do you have any ETA for the ladder type? Would be super awesome to realize some ideas I have in my mind..<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>Hmm, looks like ladder type is actually available from the backend I’m talking to. I’ll look into exposing that early next month (as well as some other things). Can’t make any guarentees on per-game pip changes, though exposing the current season standings is on the todo list.</p></p>
+
+<h2 id="">sookya.8625:</h2>
+<p class="post-meta">
+    <time datetime="2016-01-27T21:00:48+00:00">
+        27 Jan 2016
+    </time>
+</p>
+<p>
+<p>Thanks for your answer Lawton! The Ladder-Type would be awesome for the moment (sometimes the small things are such things which makes you smile<img src="/include/images/smilies/smile.png"> )</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-01-27T22:28:06+00:00">
+        27 Jan 2016
+    </time>
+</p>
+<p>
+<p>Here’s <a href="https://github.com/arenanet/api-cdi/pull/199">the proposed endpoint changes</a> for the rating_type (ladder type? not sure what the optimal name is) and some other misc. stuff. Will probably turn it on next week, let me know if you’ve got any feedback before then!</p></p>
+
+<h2 id="">sookya.8625:</h2>
+<p class="post-meta">
+    <time datetime="2016-01-28T08:02:01+00:00">
+        28 Jan 2016
+    </time>
+</p>
+<p>
+<p>Hi Lawton,</p>
+Seems reasonable. In preparations for this update i've namend my database-field "arenatype" (because of ranked, unranked and custom arena<img src="/include/images/smilies/smile.png"> ) but rating_type or ladder_type would be totally okay too<img src="/include/images/smilies/smile.png"><p>So you will roll out the /pvp/season endpoint too? That’s a nice additional information. I think that the division/points of a player will not be added in /pvp/stats with this update? (or i missread/overseen some posts at github PR, I’m not that familiar with the PullRequest-Feature on Github<img src="/include/images/smilies/smile.png"> sorry.)</p>
+<p>Have a nice day,<br>
+Chris</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-01-28T17:52:32+00:00">
+        28 Jan 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on January 28 2016 08:02AM"><a href="/forum/community/api/Request-for-pvp-games-and-pvp-stats/5953258">sookya.8625:</a></cite></div><div class="quotey"><p>I think that the division/points of a player will not be added in /pvp/stats with this update? (or i missread/overseen some posts at github PR, I’m not that familiar with the PullRequest-Feature on Github<img src="/include/images/smilies/smile.png"> sorry.)</p></div></blockquote>
+<p>That’s correct, the current division/pips of a player will not be added to /v2/pvp/stats until later (the backend support for that won’t land until the next game release). I’m hoping to get the rating_type and /v2/pvp/seasons endpoint out sometime next week.</p></p>
+
+<h2 id="">sookya.8625:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-12T10:32:02+00:00">
+        12 Feb 2016
+    </time>
+</p>
+<p>
+<p>Hey Lawton,</p>
+<p>any News on this?<img src="/include/images/smilies/smile.png"></p>
+<p>Greetings</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-12T19:52:26+00:00">
+        12 Feb 2016
+    </time>
+</p>
+<p>
+<p>Backend support <strong>should</strong> be in, but I’ve been out sick all week so I haven’t been able to get anything done. I’m doing a deploy today (which includes frontend support for some of those additions) but I’ll probably waffle until next week before turning it on.</p></p>
+
+<h2 id="">sookya.8625:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-13T00:01:05+00:00">
+        13 Feb 2016
+    </time>
+</p>
+<p>
+<p>Oh, i hope you are well now. Thank you for the info<img src="/include/images/smilies/smile.png"></p>
+<p>Have a nice weekend!</p></p>
+
+<h2 id="">sookya.8625:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-18T17:23:19+00:00">
+        18 Feb 2016
+    </time>
+</p>
+<p>
+<p>Woho, I’ve seen that you deployed this feature – my scripts are fetching the arena-type. Thank you very much<img src="/include/images/smilies/smile.png"></p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

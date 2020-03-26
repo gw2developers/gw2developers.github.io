@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>[API Suggestion] Maps API</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/API-Suggestion-Maps-API/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">[API Suggestion] Maps API</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Maps-API
+</p>
+
+
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-21T12:50:54+00:00">
+        21 Jun 2013
+    </time>
+</p>
+<p>
+<p>Only have two suggestions at the moment, I’m sure other people will have more:</p>
+<ol>
+	<li>Some kind of name for skill challenges.  Unfortunately, I expect this falls under the same caveat as Cliff mentioned in the map_floor.json documentation: “Dynamic content, such as vendors, are not currently available.”</li>
+	<li>Polygons for sectors.  I spent almost two months re-exploring Tyria with a new character, taking screenshots of the map after discovering each sector, then manually drawing the boundaries to make <a href="http://wiki.guildwars2.com/wiki/File:Queensdale_map.jpg">maps for the wiki</a>.  It’s a kitten keeping those updated with new areas (guild puzzles) and other game changes, so being able to access the actual sector boundaries would be a great time-saver.</li>
+</ol>
+<p>Other than that, I’m pretty happy with this API.  I took Cliff’s example jsFiddle, expanded it, and <a href="http://wiki.guildwars2.com/wiki/User:Dr_ishmael/leaflet">turned it into a #widget for the wiki</a>.</p></p>
+
+<h2 id="">Healix.5819:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-21T13:36:03+00:00">
+        21 Jun 2013
+    </time>
+</p>
+<p>
+<p>Skill challenges are a little tricky when it comes to their name, since not all of them have one. A lot of them are events but others are simply objects, items or dialogue.</p>
+<p>I’d like to know what their future plans are, or at least what they don’t plan on supporting. When he says the map doesn’t <strong>currently</strong> support doing something (like events and vendors), I’d like to know if he actually intends on adding it or not. I’ve been manually recording this data for months, and it takes about a week to log everything in a zone, so I’d really like to know how much of it is going to waste – gathering nodes and event trees being the most time consuming.</p>
+<blockquote><div class="citey"><cite title="Posted on June 21 2013 12:50PM"><a href="/forum/community/api/API-Suggestion-Maps-API/2255075">Dr Ishmael.9685:</a></cite></div><div class="quotey"><p>I spent almost two months re-exploring Tyria with a new character, taking screenshots of the map after discovering each sector, then manually drawing the boundaries to make <a href="http://wiki.guildwars2.com/wiki/File:Queensdale_map.jpg">maps for the wiki</a>.</p></div></blockquote>
+<p>I was just wondering yesterday if you actually did that manually.</p></p>
+
+<h2 id="">Tanis.5134:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-21T13:38:25+00:00">
+        21 Jun 2013
+    </time>
+</p>
+<p>
+<p>A mapping of WvW objective IDs to POI IDs would be much appreciated. But this is already a few hundred steps forward from my current mapping system, so I’m happy!</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-21T15:09:37+00:00">
+        21 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 21 2013 12:50PM"><a href="/forum/community/api/API-Suggestion-Maps-API/2255075">Dr Ishmael.9685:</a></cite></div><div class="quotey"><p>I took Cliff’s example jsFiddle, expanded it, and <a href="http://wiki.guildwars2.com/wiki/User:Dr_ishmael/leaflet">turned it into a #widget for the wiki</a>.</p></div></blockquote>
+<p>This is awesomesauce!<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">EnemyCrusher.7324:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-21T17:05:46+00:00">
+        21 Jun 2013
+    </time>
+</p>
+<p>
+<p>Is there a map for the mists? I didn’t see one, but it would definitely help for the WvW app I’m making.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-21T17:23:54+00:00">
+        21 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 21 2013 05:05PM"><a href="/forum/community/api/API-Suggestion-Maps-API/2256621">EnemyCrusher.7324:</a></cite></div><div class="quotey"><p>Is there a map for the mists? I didn’t see one, but it would definitely help for the WvW app I’m making.</p></div></blockquote>
+<p>Have you read the Documentation? *coughs*</p>
+<p><a href="https://api.guildwars2.com/v1/continents.json">https://api.guildwars2.com/v1/continents.json</a></p>
+<p>apparently yes <img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-21T17:43:46+00:00">
+        21 Jun 2013
+    </time>
+</p>
+<p>
+<p>Not directly maps API, but related: “Geotagging” of screenshots for fancy Google Maps style image layers!</p></p>
+
+<h2 id="">EnemyCrusher.7324:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-21T17:53:22+00:00">
+        21 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 21 2013 05:23PM"><a href="/forum/community/api/API-Suggestion-Maps-API/2256729">smiley.1438:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 21 2013 05:05PM"><a href="/forum/community/api/API-Suggestion-Maps-API/2256621">EnemyCrusher.7324:</a></cite></div><div class="quotey"><p>Is there a map for the mists? I didn’t see one, but it would definitely help for the WvW app I’m making.</p></div></blockquote>
+<p>Have you read the Documentation? <strong>coughs</strong></p>
+<p><a href="https://api.guildwars2.com/v1/continents.json">https://api.guildwars2.com/v1/continents.json</a></p>
+<p>apparently yes <img src="/include/images/smilies/wink.png"></p></div></blockquote>
+<p>Thank you. I had read the new post to the API documentation but hadn’t checked the original to see if any changes had been made there.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-22T09:09:32+00:00">
+        22 Jun 2013
+    </time>
+</p>
+<p>
+<p>Is it possible to add/swap the poi/task/sector ids as iterator for easier access and consistency?</p>
+<p>bad (requires ugly workaround to get the poi_id, see <a href="https://github.com/codemasher/gw2api-tools/blob/master/js/gw2maps.js">https://github.com/codemasher/gw2api-tools/blob/master/js/gw2maps.js</a> ):</p>
+<pre><code>points_of_interest: [
+	{
+		poi_id: 1052,
+		name: "Altes Löwenstein",
+		type: "landmark",
+		floor: 1,
+		coord: [
+			15688.1,
+			15253.7
+		]
+	}
+]
+
+
+</code></pre>
+<p>good (directly accessible via: points_of_interest[poi_id]):</p>
+<pre><code>points_of_interest: [
+	1052: {
+		name: "Altes Löwenstein",
+		type: "landmark",
+		floor: 1,
+		coord: [
+			15688.1,
+			15253.7
+		]
+	}
+]
+
+
+
+</code></pre>
+<p>Oh, the skill challenges don’t even have an id – is it possible to add one for direct access (beside the name of the challenge)?</p>
+<p>€:<br>
+Would anyone mind if there would be <strong>one</strong> array, e.g. points, wich contains all point data (like the current points_of_interest array) instead of 4 arrays?</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-22T14:16:38+00:00">
+        22 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 22 2013 09:09AM"><a href="/forum/community/api/API-Suggestion-Maps-API/2261295">smiley.1438:</a></cite></div><div class="quotey"><p>Would anyone mind if there would be <strong>one</strong> array, e.g. points, wich contains all point data (like the current points_of_interest array) instead of 4 arrays?</p></div></blockquote>
+<p>PoIs, tasks, and sectors use three different ID sequences, i.e. a PoI and a Task could share the same ID.  You couldn’t make it an ID-keyed hash if you combined them.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-25T00:32:32+00:00">
+        25 Jun 2013
+    </time>
+</p>
+<p>
+<p>I wouldn’t mind if there was an individual array for each type so that you could loop through with 1 loop instead of 4 – the current map parser is an ugly duckling because of that.</p>
+<p>I’d also like to request a “geocoding” service where you could send an id or a name and get just the data which you requested so that you don’t have to toop through hundreds of thousands arrays just to find 1 (!) point of interest.</p></p>
+
+<h2 id="">Primal Zed.9714:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-26T04:14:35+00:00">
+        26 Jun 2013
+    </time>
+</p>
+<p>
+<p>I’d like there to be some way to differentiate which ‘map’ objects are the primary zones and which are personal story instances.</p>
+<p>Right now I’m working around this by comparing the map_id to map_names.json, but that misses the capitals (I’m guessing because only maps with events in them get into map_names.json).</p></p>
+
+<h2 id="">Pentose.3479:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-30T06:48:10+00:00">
+        30 Jan 2014
+    </time>
+</p>
+<p>
+<p>It would be nice if we could get the 3D position of the POIs rather than just 2D.</p>
+<p>Also, perhaps a heightmap? It could be as simple as giving the Z-buffer of an isometric camera looking down at the map. Or perhaps meshes of the terrain and structures :P.</p></p>
+
+<h2 id="">zeroxsoul.9203:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-20T17:11:16+00:00">
+        20 Jun 2014
+    </time>
+</p>
+<p>
+<p>don’t know if this is right place but possible if could read the locations of nodes and save them so they could be uploaded to ex: gw2nodes.com or is it not possible / against ToS?</p>
+<p>Ty smiley</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-20T17:45:28+00:00">
+        20 Jun 2014
+    </time>
+</p>
+<p>
+<p>Nothing prevents you from datamining as long as it isn’t reverse engineering of the actual game files aka gw2.dat which in fact would be against the EULA<img src="/include/images/smilies/wink.png"></p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

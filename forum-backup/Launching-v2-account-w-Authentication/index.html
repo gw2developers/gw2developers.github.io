@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Launching /v2/account (w/ Authentication)</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Launching-v2-account-w-Authentication/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Launching /v2/account (w/ Authentication)</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Launching-v2-account-w-Authentication
+</p>
+
+
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-24T21:37:09+00:00">
+        24 Feb 2015
+    </time>
+</p>
+<p>
+<p><strong>!!! OAuth2.0 has been DISABLED !!!</strong></p>
+<p><strong>For more information please see the <a href="/forum-backup/HEADS-UP-OAuth2-being-replaced-next-week">API Key Announcement</a> for more details.</strong></p>
+<p><em>Original post follows</em></p>
+<p>As I mentioned in the <a href="/forum-backup/Authenticated-APIs-delayed-to-week-of-2-23">Authenticated APIs delayed to week of 2/23</a> thread we got very close last week to being able to enable to the /v2/account API. Couldn’t quite seal the deal, but the good news is we’ve finished crossing our "t"s and dotting our "i"s on the configuration side of things and everything looks good to go!</p>
+<p>So, details. This is considered <strong>BETA</strong>-quality at the moment and will be more fully fleshed-out later.</p>
+<p>/v2/account currently gets you four basic pieces of information.</p>
+<ol>
+	<li>The user has a GW2 account</li>
+	<li>User’s Account ID (not the game account ID)</li>
+	<li>User’s Account Name</li>
+	<li>User’s World ID (which you can correlate to /v2/worlds)</li>
+</ol>
+<p>Usage is pretty standard OAuth2, the endpoint details are as follows:</p>
+<ul>
+	<li>Authorization URL: <a href="https://account.guildwars2.com/oauth2/authorization">https://account.guildwars2.com/oauth2/authorization</a></li>
+	<li>Token URL: <a href="https://account.guildwars2.com/oauth2/token">https://account.guildwars2.com/oauth2/token</a></li>
+</ul>
+<p>Scopes are a space delimited list, currently we only support two:</p>
+<ul>
+	<li><strong>account</strong> – gives you basic access to the account. It’s required for pretty much any interaction.</li>
+	<li><strong>offline</strong> – gives you a refresh token in addition to the access token. The refresh token allows you to continue obtaining access tokens after they expire. You’ll probably want this for any non-trivial app.</li>
+</ul>
+<p>To access the API you’ll need to turn the code returned by /oauth2/authorization into an access token using /oauth2/token, and then you can use that against /v2/account by passing the following header in your request:</p>
+<ul>
+	<li>Authorization: Bearer &lt;access token&gt;</li>
+</ul>
+<p>I’ve got a <a href="https://github.com/arenanet/api-cdi/pull/10">pull request against the api-cdi github repo</a> that provides a small example script written for NodeJS. This is the bare-minimum necessary to make a sucessful request, it is nowhere near production-ready. That should be immediately clear when you see that the directions ask you to <ins>copy URL params out of the location bar to pass to another script</ins>. I think Lawton’s going to be posting a more complete example in Go shortly.</p>
+<p>The UI for managing applications via the account site isn’t ready yet, so we’ve got ahead and created a demo application that you can use for the OAuth2 flow. This application only supports redirects to localhost, so unfortunately you won’t be able to build anything you can ship just yet.</p>
+<ul>
+	<li><strong>Key</strong> – gw2_api_demo</li>
+	<li><strong>Secret</strong> – 0357A930-2126-4C87-A006-5AB470298ADA</li>
+	<li><strong>Redirects</strong>
+	<ul>
+		<li><a href="http://localhost:3000/oauth2/callback">http://localhost:3000/oauth2/callback</a></li>
+		<li><a href="http://localhost:8080/oauth2/callback">http://localhost:8080/oauth2/callback</a></li>
+		<li><a href="https://localhost/oauth2/callback">https://localhost/oauth2/callback</a></li>
+		<li><a href="http://localhost/oauth2/callback">http://localhost/oauth2/callback</a></li>
+	</ul></li>
+</ul>
+<p>We’re hoping to get the UI for registering &amp; managing applications ready by next week. Sorry about that, there just wasn’t time to get it to where we’re happy with it and we wanted to get the authenticated API endpoint active sooner rather than later.</p></p>
+
+<h2 id="">Khisanth.2948:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-24T21:44:24+00:00">
+        24 Feb 2015
+    </time>
+</p>
+<p>
+<p>What is the difference between the account ID and account name?</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-24T21:48:17+00:00">
+        24 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 24 2015 09:44PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4826146">Khisanth.2948:</a></cite></div><div class="quotey"><p>What is the difference between the account ID and account name?</p></div></blockquote>
+<p>ID is a GUID, Name is a string like the one you can enter into the contacts list in-game.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-24T22:32:16+00:00">
+        24 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 24 2015 09:48PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4826161">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 24 2015 09:44PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4826146">Khisanth.2948:</a></cite></div><div class="quotey"><p>What is the difference between the account ID and account name?</p></div></blockquote>
+<p>ID is a GUID, Name is a string like the one you can enter into the contacts list in-game.</p></div></blockquote>
+<p>Name is also what’s displayed on the forums.</p></p>
+
+<h2 id="">Terrasque.8735:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-24T22:34:32+00:00">
+        24 Feb 2015
+    </time>
+</p>
+<p>
+<p>I’m completely new to Oauth, so bear with me here.. I’ve read <a href="https://aaronparecki.com/articles/2012/07/29/1/oauth2-simplified">https://aaronparecki.com/articles/2012/07/29/1/oauth2-simplified</a> as a simple introduction, and from what I can see it – at least for this app – requires a web server to get the callback, right?</p>
+<p>Is there a way for a native app, like a command line script, to get a token for an account?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-24T23:04:56+00:00">
+        24 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 24 2015 10:34PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4826317">Terrasque.8735:</a></cite></div><div class="quotey"><p>I’m completely new to Oauth, so bear with me here.. I’ve read <a href="https://aaronparecki.com/articles/2012/07/29/1/oauth2-simplified">https://aaronparecki.com/articles/2012/07/29/1/oauth2-simplified</a> as a simple introduction, and from what I can see it – at least for this app – requires a web server to get the callback, right?</p>
+<p>Is there a way for a native app, like a command line script, to get a token for an account?</p></div></blockquote>
+<p>OAuth2 is more-or-less designed for web applications.</p>
+<p>If there’s a lot of demand for native applications we can look into adding EVE-style API keys (wherein the user can generate a long-lived token via the account site and copy-paste it into your application), but for now just assume that you need a webserver.</p>
+<p>Also, unrelated, I pushed my <a href="https://github.com/arenanet/api-cdi/tree/master/examples/auth-go">example Go application</a> to the Github repo.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-24T23:34:52+00:00">
+        24 Feb 2015
+    </time>
+</p>
+<p>
+<p>Google has some <a href="https://developers.google.com/accounts/docs/OAuth2InstalledApp">useful documentation</a>, we don’t support their urn: formatted redirects but you could open a small webserver to receive the redirect. That has all sorts of hurdles around forwarded ports and such of course, it’s not ideal.</p></p>
+
+<h2 id="">drmadison.1385:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T00:00:32+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>Also for mobile apps, it’s standard to give a redirect / response URL that’s handled internally by the app (both iOS and Android SDKs allow you to control a WebView and see any URL’s attempted to navigate to).</p>
+<p>In this case you’d grab the response URL and send the data to your own code instead of a web server…so you don’t specifically NEED a webserver, just a web view that enables you to handle the response.</p></p>
+
+<h2 id="">Remfin.4892:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T00:04:43+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>I’m putting together a .NET (C#) example…it’s not nearly as compact as a node or go example, but whatever :P</p></p>
+
+<h2 id="">Remfin.4892:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T00:29:01+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>A C# example of using a temporary token to get account information:</p>
+<p><a href="https://github.com/Remfin/GuildWars2.API.Authenticated.Samples">https://github.com/Remfin/GuildWars2.API.Authenticated.Samples</a></p>
+<p>The real code is in one file:</p>
+<p><a href="https://github.com/Remfin/GuildWars2.API.Authenticated.Samples/blob/master/GuildWars2.Samples.Account/GuildWars2.Samples.Account/Controllers/HomeController.cs">https://github.com/Remfin/GuildWars2.API.Authenticated.Samples/blob/master/GuildWars2.Samples.Account/GuildWars2.Samples.Account/Controllers/HomeController.cs</a></p>
+<p>Obviously not even remotely production-ready, but at the end of the callback method I now know that the browser I’m talking to is that person, and I could (kind of) use it authenticate users into my website without having to have my own user/pass system.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T00:54:47+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 25 2015 12:29AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4826659">Remfin.4892:</a></cite></div><div class="quotey"><p>but at the end of the callback method I now know that the browser I’m talking to is that person, and I could (kind of) use it authenticate users into my website without having to have my own user/pass system.</p></div></blockquote>
+<p>That’s basically what the “Login with Google/Facebook/Twitter” button on many websites does.</p>
+<p>Btw. for PHP users: <a href="https://code.google.com/p/simple-php-oauth/">https://code.google.com/p/simple-php-oauth/</a></p>
+<pre><code>class GuildWars2 extends SimpleOauth{
+	protected $_prefix = 'guildwars2';
+	protected $_authorize_url = 'https://account.guildwars2.com/oauth2/authorization';
+	protected $_access_token_url = 'https://account.guildwars2.com/oauth2/token';
+	protected $_scope = ['account', 'offline'];
+
+	protected function authorize(array $scope = [], $scope_separator = '+', $attach = null){
+		parent::authorize($scope, $scope_separator, '&amp;response_type=code');
+	}
+
+	protected function requestAccessToken(
+		$method = 'GET', 
+		array $params = ['grant_type' =&amp;gt; 'authorization_code'], 
+		$returnType = 'json', 
+		array $values = ['access_token', 'token_type', 'scope', 'refresh_token']
+	){
+		parent::requestAccessToken($method, $params, $returnType, $values);
+	}
+
+}
+</code></pre>
+<p>€: <a href="https://gist.github.com/codemasher/89a909626724d929fd04">https://gist.github.com/codemasher/89a909626724d929fd04</a></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T02:03:38+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 25 2015 12:29AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4826659">Remfin.4892:</a></cite></div><div class="quotey"><p>A C# example of using a temporary token to get account information</p></div></blockquote>
+<p>I’d recommend just using an <a href="https://github.com/titarenko/OAuth2">existing OAuth2 client library</a>. More meat for the dollar and all.</p></p>
+
+<h2 id="">Glyph.7805:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T07:11:41+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>This is awesome! Thank you for the hard work, this will be very useful for my website!<br>
+I’ll get this up and running to show it off as soon as my hosting gets cleared!</p></p>
+
+<h2 id="">spiritus.7983:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T09:01:20+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>aham, I understand nothing of this.</p></p>
+
+<h2 id="">chaly.7638:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T10:14:12+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>thankyouthankyouthankyouthankyouthankyouthankyouthankyouthankyou<br>
+:-)</p></p>
+
+<h2 id="">Thuron.5648:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T11:03:55+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>It’s great to see what awesome things you guys have been making! Can’t wait to start using this. Keep up the great work<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T13:02:44+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 24 2015 11:04PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4826396">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>OAuth2 is more-or-less designed for web applications.</p>
+<p>If there’s a lot of demand for native applications we can look into adding EVE-style API keys (wherein the user can generate a long-lived token via the account site and copy-paste it into your application), but for now just assume that you need a webserver.</p>
+<p>Also, unrelated, I pushed my <a href="https://github.com/arenanet/api-cdi/tree/master/examples/auth-go">example Go application</a> to the Github repo.</p></div></blockquote>
+<p>I’d love to see EVE style API keys (seriously EVE probably has the best game API out there).<br>
+Since we from GW2.NET develop towards both ends (i.e. Web and Desktop) we are in need of something which does not need a callback server. Building towards only one end is in my eyes a bit narrow minded and we would like to see support for API-Keys.</p>
+<p>I really think the demand is there.  If we look at the <a href="http://wiki.guildwars2.com/wiki/API:List_of_wrappers">wrapper section</a> in the wiki we can see that a good portion of them are written in languages mainly used for desktop applications. The list of <a href="http://wiki.guildwars2.com/wiki/API:List_of_applications">applications</a> looks a bit different, still a good portion of desktop stlye applications. However I think most of these applications will use one of the previously listed wrappers, especially if it gets to complicated things like authentication, since this makes everything a lot easier.</p></p>
+
+<h2 id="">chaly.7638:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T13:28:20+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>@Pat &amp; Lawton<br>
+maybe you want to change the information description for users?<br>
+I know.. this is bleeding edge, but maybe you want to keep this in mind during release:</p>
+<p>Currently a user will be asked if the application is allowed to see some “general account information”. <br>
+As good as I know my ppl from Germany (maybe this isn’t a German-thing after all?) they care about what this general information may be.</p>
+<p>If the application is only able to see the name of the account and its world just tell the user or give him/ her examples. The “general information” is too generic and maybe understood as realname, address information, ..</p>
+<p>Cheers,<br>
+Chaly</p></p>
+
+<h2 id="">Creativewild.6319:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T14:16:49+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>@Pat Cavit @Lawton Campbell</p>
+<p>You guys just made my day<img src="/include/images/smilies/colondee.png">, I’ve been waiting for this one.</p>
+<p>I assume this in the future this will allow us to retrieve information like Achievement points, <br>
+and account characters from the /v2/characters endpoint?</p>
+<p>for the last year I have been developing a custom CMS dedicated exclusively to Guild Wars 2, so you can see how this integration is an awesome news for me ( even bigger than the expansion)</p>
+<p>The API is fully integrated on the system, its used from simple item views to fully track the user investments on TP<img src="/include/images/smilies/colondee.png"></p>
+<p>This is the cherry on the top of CMS, I really believe this will make our users really happy.</p>
+<p>Guys, again you have made my day.<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">BugsBanni.1397:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T14:25:23+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>Hey, first of all, I’m super hyped with this, cause if we get more API’s there are super cool things to do with it, I can’t wait to see that things^^</p>
+<p><strong>BUT</strong> are you serious, Anet? That formatting isn’t funny at all -.-</p></p>
+
+<h2 id="">ntf.7849:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T14:29:02+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>Need some help for this error. Is there anything I am missing?</p>
+<p><a href="https://account.guildwars2.com/oauth2/token?grant_type=authorization_code&redirect_uri=http://localhost:8080/oauth2/callback&client_id=gw2_api_demo&client_secret=0357A930-2126-4C87-A006-5AB470298ADA&code">https://account.guildwars2.com/oauth2/token?grant_type=authorization_code&amp;redirect_uri=http://localhost:8080/oauth2/callback&amp;client_id=gw2_api_demo&amp;client_secret=0357A930-2126-4C87-A006-5AB470298ADA&amp;code</a>=[INSERT-CODE-HERE]</p>
+<pre><code>
+{
+error: "internal_error",
+error_description: "49:1014:8008:353"
+}
+</code></pre></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T16:00:36+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>So here’s a working PHP example: <a href="https://gist.github.com/codemasher/89a909626724d929fd04">https://gist.github.com/codemasher/89a909626724d929fd04</a></p></p>
+
+<h2 id="">chaly.7638:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T17:00:03+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 25 2015 02:25PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4828090">BugsBanni.1397:</a></cite></div><div class="quotey"><p><strong>BUT</strong> are you serious, Anet? That formatting isn’t funny at all -.-</p></div></blockquote>
+<p>Most of the account site isn’t compatible at a resolution less than 800px width. <br>
+You may want to take a look at <a href="https://account.guildwars2.com/account/security">https://account.guildwars2.com/account/security</a> having the same issue as you mentioned above.</p>
+<p>Nobody ever had a problem with the account website on mobile devices. This <strong>may</strong> change when ppl start using authorized apps on their phones or tablets.<br>
+Anyway, I don’t think this is a critical bug, it’s just ..erm..<img src="/include/images/smilies/wink.png"></p>
+<p>Instead I really care about the “general account data” information because of my overcautious countrymen in the EU as mentioned above. Even if this one seems to be a cosmetic issue too.</p></p>
+
+<h2 id="">chaly.7638:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T17:05:31+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 25 2015 04:00PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4828394">smiley.1438:</a></cite></div><div class="quotey"><p>So here’s a working PHP example: <a href="https://gist.github.com/codemasher/89a909626724d929fd04">https://gist.github.com/codemasher/89a909626724d929fd04</a></p></div></blockquote>
+<p>I also used <a href="https://code.google.com/p/simple-php-oauth/">SimpleOpenAuth</a> ,if we’d just already can register apps..<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T17:19:39+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>The account site is from a time before we had the resources to focus on the mobile experience, so it’s pretty bad right now. We’re aware of it and actively working on a solution.</p>
+<p>App registration should be coming “soon”. There’s still some issues we need to solve before it’s something we want external folks to use.</p>
+<p>App keys is something we can discuss longer-term as part of the API CDI, this isn’t really the thread for it. As of right now OAuth2 is the only supported authentication method and we don’t have any infrastructure in place to support anything else.</p>
+<p>We’ll work on making those strings a little more specific, if anyone has any examples of sites that do a really good job of describing OAuth scopes in consumer-friendly language I’d love a link. Most in my experience has been similarly-generic text.</p></p>
+
+<h2 id="">Khisanth.2948:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T19:44:26+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 24 2015 10:32PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4826309">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 24 2015 09:48PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4826161">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 24 2015 09:44PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4826146">Khisanth.2948:</a></cite></div><div class="quotey"><p>What is the difference between the account ID and account name?</p></div></blockquote>
+<p>ID is a GUID, Name is a string like the one you can enter into the contacts list in-game.</p></div></blockquote>
+<p>Name is also what’s displayed on the forums.</p></div></blockquote>
+<p>In that case I suggest some renaming.<img src="/include/images/smilies/smile.png"></p>
+<p>Account Name is the email address according to the launcher and what is displayed on the forum is usually referred to as the Display Name.</p></p>
+
+<h2 id="">veggies.2178:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T20:11:02+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 25 2015 02:16PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4828067">Creativewild.6319:</a></cite></div><div class="quotey"><p>@Pat Cavit @Lawton Campbell</p>
+<p>You guys just made my day<img src="/include/images/smilies/colondee.png">, I’ve been waiting for this one.</p>
+<p>I assume this in the future this will allow us to retrieve information like Achievement points, <br>
+and account characters from the /v2/characters endpoint?</p>
+<p>for the last year I have been developing a custom CMS dedicated exclusively to Guild Wars 2, so you can see how this integration is an awesome news for me ( even bigger than the expansion)</p>
+<p>The API is fully integrated on the system, its used from simple item views to fully track the user investments on TP<img src="/include/images/smilies/colondee.png"></p>
+<p>This is the cherry on the top of CMS, I really believe this will make our users really happy.</p>
+<p>Guys, again you have made my day.<img src="/include/images/smilies/colondee.png"></p></div></blockquote>
+<p>Ola tuga<img src="/include/images/smilies/smile.png"></p>
+<p>Let me know what site u use so i can take a look, here is the one i use for TWIN with fubared login <a href="http://axyd.us/joomla/">http://axyd.us/joomla/</a></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T22:15:34+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 25 2015 07:44PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4829198">Khisanth.2948:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 24 2015 10:32PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4826309">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 24 2015 09:48PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4826161">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 24 2015 09:44PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4826146">Khisanth.2948:</a></cite></div><div class="quotey"><p>What is the difference between the account ID and account name?</p></div></blockquote>
+<p>ID is a GUID, Name is a string like the one you can enter into the contacts list in-game.</p></div></blockquote>
+<p>Name is also what’s displayed on the forums.</p></div></blockquote>
+<p>In that case I suggest some renaming.<img src="/include/images/smilies/smile.png"></p>
+<p>Account Name is the email address according to the launcher and what is displayed on the forum is usually referred to as the Display Name.</p></div></blockquote>
+<p>Yeah, but the  API is never going to provide the “account name” (e.g., you’ll never be able to access email addresses), so just referring to the “display name” as “name” is fine, I think.</p></p>
+
+<h2 id="">Remfin.4892:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T23:29:01+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>Is the ID, Name, or both primary/unchanging keys?</p>
+<p>I imagine that same question is going to come up again for characters<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-26T00:07:16+00:00">
+        26 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 25 2015 11:29PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4829972">Remfin.4892:</a></cite></div><div class="quotey"><p>Is the ID, Name, or both primary/unchanging keys?</p>
+<p>I imagine that same question is going to come up again for characters<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>ID is immutable, Name is not. There are situations where an account’s name will change, though they are rare.</p>
+<p>Characters do not have an immutable identifier that we can expose<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-26T14:56:26+00:00">
+        26 Feb 2015
+    </time>
+</p>
+<p>
+<p>The OAuth2 library I am using (perl’s Net::OAuth2) wants to add “Host: account.guildwars2.com:443” to the access token request header.  This results in a 403 error from the server.</p>
+<p>It works fine if the header is set to “Host: account.guildwars2.com” or left out entirely.</p>
+<p>I was able to make changes to the library code to fix it for myself, but other users and possibly other libraries may come across this problem.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-26T18:28:10+00:00">
+        26 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 26 2015 02:56PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4831623">Nabrok.9023:</a></cite></div><div class="quotey"><p>The OAuth2 library I am using (perl’s Net::OAuth2) wants to add “Host: account.guildwars2.com:443” to the access token request header.  This results in a 403 error from the server.</p>
+<p>It works fine if the header is set to “Host: account.guildwars2.com” or left out entirely.</p>
+<p>I was able to make changes to the library code to fix it for myself, but other users and possibly other libraries may come across this problem.</p></div></blockquote>
+<p>Interesting. My current browser doesn’t appear to send :443 for HTTPS requests, the spec is a bit ambiguous on the issue. We’ll take a look.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-26T18:41:53+00:00">
+        26 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 26 2015 02:56PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4831623">Nabrok.9023:</a></cite></div><div class="quotey"><p>The OAuth2 library I am using (perl’s Net::OAuth2) wants to add “Host: account.guildwars2.com:443” to the access token request header.  This results in a 403 error from the server.</p>
+<p>It works fine if the header is set to “Host: account.guildwars2.com” or left out entirely.</p>
+<p>I was able to make changes to the library code to fix it for myself, but other users and possibly other libraries may come across this problem.</p></div></blockquote>
+<p>Could you capture and paste the request that’s returning 403 (make sure to remove the “code” and “client_secret” parameters from the query string)? I’m totally unable to reproduce the behavior from the host header alone.</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-26T19:06:57+00:00">
+        26 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 26 2015 06:41PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4832252">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 26 2015 02:56PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4831623">Nabrok.9023:</a></cite></div><div class="quotey"><p>The OAuth2 library I am using (perl’s Net::OAuth2) wants to add “Host: account.guildwars2.com:443” to the access token request header.  This results in a 403 error from the server.</p>
+<p>It works fine if the header is set to “Host: account.guildwars2.com” or left out entirely.</p>
+<p>I was able to make changes to the library code to fix it for myself, but other users and possibly other libraries may come across this problem.</p></div></blockquote>
+<p>Could you capture and paste the request that’s returning 403 (make sure to remove the “code” and “client_secret” parameters from the query string)? I’m totally unable to reproduce the behavior from the host header alone.</p></div></blockquote>
+<p>Sure,  I attached the two request headers (one that works, one that doesn’t) to avoid forum formatting.</p>
+<p>Same thing is happening with any of the endpoints, here’s a test perl script ….</p>
+<pre><code>
+#! /usr/bin/perl
+
+use LWP::UserAgent;
+
+my $ua = LWP::UserAgent-&gt;new;
+
+my $api_uri = 'https://api.guildwars2.com';
+my $url = $ARGV[0] || $api_uri.'/v2/build';
+
+my $response_with_port = $ua-&gt;get($url, Host =&gt; 'api.guildwars2.com:443');
+my $response_without_port = $ua-&gt;get($url, Host =&gt; 'api.guildwars2.com');
+
+print "With port: ".$response_with_port-&gt;status_line."\n";
+print "Without port: ".$response_without_port-&gt;status_line."\n";
+
+exit;
+</code></pre>
+<p>And the results …</p>
+<pre><code>
+With port: 403 Forbidden
+Without port: 200 OK
+</code></pre></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-26T20:37:51+00:00">
+        26 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 25 2015 05:19PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4828675">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>We’ll work on making those strings a little more specific, if anyone has any examples of sites that do a really good job of describing OAuth scopes in consumer-friendly language I’d love a link. Most in my experience has been similarly-generic text.</p></div></blockquote>
+<p>GitHub.</p>
+<p><a href="https://help.github.com/articles/connecting-with-third-party-applications/">https://help.github.com/articles/connecting-with-third-party-applications/</a></p></p>
+
+<h2 id="">Moturdrn.2837:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-26T21:31:20+00:00">
+        26 Feb 2015
+    </time>
+</p>
+<p>
+<p>Thanks Pat, Lawton, and everyone else there working on the APIs!</p>
+<p>Looking forward to being able to register applications for use with this, it’ll take some of the headache out of user authentication<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Nicsword.3956:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-27T03:09:41+00:00">
+        27 Feb 2015
+    </time>
+</p>
+<p>
+<p>I am getting mixed results when retrieving back account data from using the token. <br>
+One of my accounts returns back “undefined” while the other does return the four pieces of information.  The only difference I can think of is that the account with undefined results has the mobile authenticator enabled.  Anyone else have similar result?</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-27T04:56:27+00:00">
+        27 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 27 2015 03:09AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4833548">Nicsword.3956:</a></cite></div><div class="quotey"><p>I am getting mixed results when retrieving back account data from using the token. <br>
+One of my accounts returns back “undefined” while the other does return the four pieces of information.  The only difference I can think of is that the account with undefined results has the mobile authenticator enabled.  Anyone else have similar result?</p></div></blockquote>
+<p>I’ve got TOTP on my account I used for testing w/o any problems. I’ll give it another shot in a bit here to see if I can repro.</p>
+<p>You could also modify the node script to dump out more info after the request, modify <a href="https://github.com/arenanet/api-cdi/blob/master/examples/auth-nodejs/request.js#L19">https://github.com/arenanet/api-cdi/blob/master/examples/auth-nodejs/request.js#L19</a> to say</p>
+<p>console.log(arguments);</p>
+<p>and you should be able to get a bit more info in the error case.</p></p>
+
+<h2 id="">Olsria.9608:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-27T07:26:24+00:00">
+        27 Feb 2015
+    </time>
+</p>
+<p>
+<p>I get through the oauth redirect/callback ok and swap the code for an access_token successfully. Requests to /v2/accounts result in {"text":"ErrBadData"}</p>
+<p>Trying the node.js scripts results in printing “undefined”</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-27T13:43:19+00:00">
+        27 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 27 2015 07:26AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4833882">Olsria.9608:</a></cite></div><div class="quotey"><p>I get through the oauth redirect/callback ok and swap the code for an access_token successfully. Requests to /v2/accounts result in {"text":"ErrBadData"}</p>
+<p>Trying the node.js scripts results in printing “undefined”</p></div></blockquote>
+<p>I’m now getting the same error.  Was working yesterday.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-27T17:34:36+00:00">
+        27 Feb 2015
+    </time>
+</p>
+<p>
+<p>Yeah, something’s gone pear-shaped. Investigating.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-27T18:31:09+00:00">
+        27 Feb 2015
+    </time>
+</p>
+<p>
+<p>Lawton found the cause. He’s chatting with some folks about how to a) fix it and b) prevent it from breaking like this in the future.</p>
+<p>Quick reminder…</p>
+<blockquote><div class="citey"><cite title="Posted on February 24 2015 09:37PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4826126">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>This is considered <strong>BETA</strong>-quality at the moment</p></div></blockquote></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-27T19:29:43+00:00">
+        27 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 27 2015 06:31PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4835156">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>Lawton found the cause. He’s chatting with some folks about how to a) fix it and b) prevent it from breaking like this in the future.</p>
+<p>Quick reminder…</p>
+<blockquote><div class="citey"><cite title="Posted on February 24 2015 09:37PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4826126">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>This is considered <strong>BETA</strong>-quality at the moment</p></div></blockquote></div></blockquote>
+<p>The error should now be resolved. Sorry about that.</p></p>
+
+<h2 id="">Nicsword.3956:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-27T21:01:37+00:00">
+        27 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 27 2015 07:29PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4835343">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 27 2015 06:31PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4835156">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>Lawton found the cause. He’s chatting with some folks about how to a) fix it and b) prevent it from breaking like this in the future.</p>
+<p>Quick reminder…</p>
+<blockquote><div class="citey"><cite title="Posted on February 24 2015 09:37PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4826126">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>This is considered <strong>BETA</strong>-quality at the moment</p></div></blockquote></div></blockquote>
+<p>The error should now be resolved. Sorry about that.</p></div></blockquote>
+<p>You guys are awesome, the account works for me now.</p></p>
+
+<h2 id="">I Am Dansker.7105:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-28T04:53:55+00:00">
+        28 Feb 2015
+    </time>
+</p>
+<p>
+<p>How long does the access token and refresh token last before they expire?</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-28T13:59:08+00:00">
+        28 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 28 2015 04:53AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4836520">I Am Dansker.7105:</a></cite></div><div class="quotey"><p>How long does the access token and refresh token last before they expire?</p></div></blockquote>
+<p>Yes, could we get “expires_in” included with the access/refresh token response please?</p></p>
+
+<h2 id="">aRestless.6213:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-28T18:26:33+00:00">
+        28 Feb 2015
+    </time>
+</p>
+<p>
+<p>It’s as offtopic as it gets, but I just wanted to throw in that I’m really amazed by these threads and the work on the repo. This is real collaboration and motivates me as a developer immensely.</p>
+<p>Thank you for working with us!</p></p>
+
+<h2 id="">Teranas.6150:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-01T13:23:15+00:00">
+        01 Mar 2015
+    </time>
+</p>
+<p>
+<p>Just finished my work on OAuth 2 thirdparty authentication and API implementation for WoltLab Burning Boards.</p>
+<p>Can’t wait for the app registration release =D</p>
+<p>You did great job there<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Raif.9507:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-01T14:29:27+00:00">
+        01 Mar 2015
+    </time>
+</p>
+<p>
+<p>Thanks for the new update! This should open up some awesome new avenues for apps. I’ll make sure that all the participants in the Overwolf app challenge are aware of this.</p>
+<p>~ Raif the Overwolf Community Manager</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-01T22:47:02+00:00">
+        01 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 28 2015 04:53AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4836520">I Am Dansker.7105:</a></cite></div><div class="quotey"><p>How long does the access token and refresh token last before they expire?</p></div></blockquote>
+<p>I wanna say … a day?</p>
+<blockquote><div class="citey"><cite title="Posted on February 28 2015 01:59PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4837133">Nabrok.9023:</a></cite></div><div class="quotey"><p>Yes, could we get “expires_in” included with the access/refresh token response please?</p></div></blockquote>
+<p>Will definitely look into adding that.</p>
+<p>I think an okay heuristic for now is to request the “offline” scope and use the refresh token if your access token is a few hours stale. I’m not sure what the turnaround time for getting expires_in on that endpoint is going to look like.</p></p>
+
+<h2 id="">chaly.7638:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-02T23:57:29+00:00">
+        02 Mar 2015
+    </time>
+</p>
+<p>
+<p>If there is a regular expiration date most applications should be able to safe the last timestamp of their refresh, don’t they?  Anyway, I would prefer an information from the leading database, so an API field of an expiration date would be fine.</p>
+<p>Anyway, most of us have to deal with a different (application&lt;&gt;API) timezone and the local architecture of the application server or client. I’m not sure if this is an important feature, but a nice2have. More important would be a 1) documented 2) minimal lease time until a refresh must happen</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-03T00:34:05+00:00">
+        03 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 02 2015 11:57PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4842956">chaly.7638:</a></cite></div><div class="quotey"><p>If there is a regular expiration date most applications should be able to safe the last timestamp of their refresh, don’t they?  Anyway, I would prefer an information from the leading database, so an API field of an expiration date would be fine.</p>
+<p>Anyway, most of us have to deal with a different (application&lt;&gt;API) timezone and the local architecture of the application server or client. I’m not sure if this is an important feature, but a nice2have. More important would be a 1) documented 2) minimal lease time until a refresh must happen</p></div></blockquote>
+<p>I believe the spec calls for an “expires_in” field which is provided in seconds.</p></p>
+
+<h2 id="">Remfin.4892:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-03T01:41:18+00:00">
+        03 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 01 2015 10:47PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4840295">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 28 2015 04:53AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4836520">I Am Dansker.7105:</a></cite></div><div class="quotey"><p>How long does the access token and refresh token last before they expire?</p></div></blockquote>
+<p>I wanna say … a day?</p></div></blockquote>
+<p>Both tokens are a day, or the access token? Because the refresh token isn’t very useful if it expires at the same time<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-03T02:06:46+00:00">
+        03 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 03 2015 12:34AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4843016">Nabrok.9023:</a></cite></div><div class="quotey"><p>I believe the spec calls for an “expires_in” field which is provided in seconds.</p></div></blockquote>
+<p>Yup, it’ll be in seconds once it’s added in.</p>
+<blockquote><div class="citey"><cite title="Posted on March 03 2015 01:41AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4843133">Remfin.4892:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 01 2015 10:47PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4840295">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 28 2015 04:53AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4836520">I Am Dansker.7105:</a></cite></div><div class="quotey"><p>How long does the access token and refresh token last before they expire?</p></div></blockquote>
+<p>I wanna say … a day?</p></div></blockquote>
+<p>Both tokens are a day, or the access token? Because the refresh token isn’t very useful if it expires at the same time<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>Refresh tokens are valid until either the user explicitly revokes them via the management UI <del>or you consume them to get a new access/refresh token pair</del>. The access token should only be valid for a day.</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-03T03:06:55+00:00">
+        03 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 03 2015 02:06AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4843172">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Refresh tokens are valid until either the user explicitly revokes them via the management UI or you consume them to get a new access/refresh token pair. The access token should only be valid for a day.</p></div></blockquote>
+<p>In my testing I was able to use the same refresh token repeatedly.</p></p>
+
+<h2 id="">Remfin.4892:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-03T03:33:39+00:00">
+        03 Mar 2015
+    </time>
+</p>
+<p>
+<p>Sorry for all the dumb questions, just making sure I understand everything<img src="/include/images/smilies/smile.png"></p>
+<p>I forked Microsoft’s Google Middleware and made an OWIN Middleware for external login using the GW2 account api as it exists right now:</p>
+<p><a href="https://github.com/Remfin/gw2-owin-middleware">Source with example</a><br>
+<a href="https://www.nuget.org/packages/Remfin.Owin.Security.GuildWars2/">NuGet package</a></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-03T18:27:45+00:00">
+        03 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 03 2015 03:06AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4843263">Nabrok.9023:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 03 2015 02:06AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4843172">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Refresh tokens are valid until either the user explicitly revokes them via the management UI or you consume them to get a new access/refresh token pair. The access token should only be valid for a day.</p></div></blockquote>
+<p>In my testing I was able to use the same refresh token repeatedly.</p></div></blockquote>
+<p>Hmm, yeah, I was just confused. Our implementation does not regenerate refresh_tokens and they should not expire until the user explicitly revokes them.</p></p>
+
+<h2 id="">chaly.7638:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-04T15:09:44+00:00">
+        04 Mar 2015
+    </time>
+</p>
+<p>
+<p>I sincerely hope it would be released so “soon”</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-05T18:37:05+00:00">
+        05 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 24 2015 09:37PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4826126">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>We’re hoping to get the UI for registering &amp; managing applications ready by next week. Sorry about that, there just wasn’t time to get it to where we’re happy with it and we wanted to get the authenticated API endpoint active sooner rather than later.</p></div></blockquote>
+<p>Any news on this yet?</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-05T18:52:59+00:00">
+        05 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 05 2015 06:37PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4850789">Nabrok.9023:</a></cite></div><div class="quotey"><p>Any news on this yet?</p></div></blockquote>
+<p>Got held up waiting for some translations and ironing out some issues. Those went in yesterday so barring any other excitement hopefully will be shipped next week. Ended up being more work than we anticipated to bang it into shape.</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-05T18:59:52+00:00">
+        05 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 05 2015 06:52PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4850836">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 05 2015 06:37PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4850789">Nabrok.9023:</a></cite></div><div class="quotey"><p>Any news on this yet?</p></div></blockquote>
+<p>Got held up waiting for some translations and ironing out some issues. Those went in yesterday so barring any other excitement hopefully will be shipped next week. Ended up being more work than we anticipated to bang it into shape.</p></div></blockquote>
+<p>Great, thanks for the update!</p></p>
+
+<h2 id="">TranquilInSpirit.6291:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-12T00:59:40+00:00">
+        12 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 26 2015 12:07AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4830070">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>ID is immutable, Name is not. There are situations where an account’s name will change, though they are rare.</p>
+<p>Characters do not have an immutable identifier that we can expose<img src="/include/images/smilies/colondee.png"></p></div></blockquote>
+<p>Would their profession fall under immutable (assuming it’s accessible)? If that could work, maybe doing something with the character’s creation date could mix with that to make some form of ID.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-12T12:24:55+00:00">
+        12 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 12 2015 12:59AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4869640">TranquilInSpirit.6291:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 26 2015 12:07AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4830070">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>ID is immutable, Name is not. There are situations where an account’s name will change, though they are rare.</p>
+<p>Characters do not have an immutable identifier that we can expose<img src="/include/images/smilies/colondee.png"></p></div></blockquote>
+<p>Would their profession fall under immutable (assuming it’s accessible)? If that could work, maybe doing something with the character’s creation date could mix with that to make some form of ID.</p></div></blockquote>
+<p>Account ID + character creation time would work: it should be impossible for two characters on the same account to have been created at the exact same time.  Base64-encode it or MD5-hash it to make it look something like a GUID.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-12T17:40:13+00:00">
+        12 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 05 2015 06:52PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4850836">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 05 2015 06:37PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4850789">Nabrok.9023:</a></cite></div><div class="quotey"><p>Any news on this yet?</p></div></blockquote>
+<p>Those went in yesterday so barring any other excitement hopefully will be shipped next week.</p></div></blockquote>
+<p>We slipped on this release date (PAX and Rezzed are exciting); gonna try again next week.</p>
+<blockquote><div class="citey"><cite title="Posted on March 12 2015 12:24PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4870628">Dr Ishmael.9685:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 12 2015 12:59AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4869640">TranquilInSpirit.6291:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 26 2015 12:07AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4830070">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>ID is immutable, Name is not. There are situations where an account’s name will change, though they are rare.</p>
+<p>Characters do not have an immutable identifier that we can expose<img src="/include/images/smilies/colondee.png"></p></div></blockquote>
+<p>Would their profession fall under immutable (assuming it’s accessible)? If that could work, maybe doing something with the character’s creation date could mix with that to make some form of ID.</p></div></blockquote>
+<p>Account ID + character creation time would work</p></div></blockquote>
+<p>I’ll have to dig creation date up and throw it into the character blob — that should be in there regardless.</p>
+<p>I’ve also been toying with the idea of exposing <code>SHA1(character-guid ++ salt)</code> as another alternative. Not sure how much I like that approach (has some minor issues on the backend w.r.t. resolution back to character-guid), but it seems like a somewhat reasonable workaround.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-12T18:41:56+00:00">
+        12 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 12 2015 05:40PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4871494">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>I’ve also been toying with the idea of exposing <code>SHA1(character-guid ++ salt)</code> as another alternative. Not sure how much I like that approach (has some minor issues on the backend w.r.t. resolution back to character-guid), but it seems like a somewhat reasonable workaround.</p></div></blockquote>
+<p>Mmmm… salt.<img src="/include/images/smilies/colondee.png">  I like that idea better.</p></p>
+
+<h2 id="">TranquilInSpirit.6291:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-12T21:45:58+00:00">
+        12 Mar 2015
+    </time>
+</p>
+<p>
+<p>I was just trying to think of something that didn’t need to be made from scratch or intertwine a bunch of parts here and there. Is there an API IRC or other form of communication? I’ve probably just missed it somewhere but it would be awesome to have that available.</p></p>
+
+<h2 id="">I Am Dansker.7105:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-21T18:49:08+00:00">
+        21 Mar 2015
+    </time>
+</p>
+<p>
+<p>Is the world id updated as soon as someone change server/world? or is it updated once a week with WvW reset?</p>
+<p>imo if the first is true, i would find the second a lot more useful since that is the only place server/world matters now</p></p>
+
+<h2 id="">AlterForm.7045:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-21T20:58:28+00:00">
+        21 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 25 2015 02:29PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4828101">ntf.7849:</a></cite></div><div class="quotey"><p>Need some help for this error. Is there anything I am missing?</p>
+<p><a href="https://account.guildwars2.com/oauth2/token?grant_type=authorization_code&redirect_uri=http://localhost:8080/oauth2/callback&client_id=gw2_api_demo&client_secret=0357A930-2126-4C87-A006-5AB470298ADA&code">https://account.guildwars2.com/oauth2/token?grant_type=authorization_code&amp;redirect_uri=http://localhost:8080/oauth2/callback&amp;client_id=gw2_api_demo&amp;client_secret=0357A930-2126-4C87-A006-5AB470298ADA&amp;code</a>=[INSERT-CODE-HERE]</p>
+<pre><code>
+{
+error: "internal_error",
+error_description: "49:1014:8008:353"
+}
+</code></pre></div></blockquote>
+<p>I’m getting this same error.</p>
+<p>After authorizing my application for my account through /oauth2/application, I’m making the request</p>
+<pre><code>
+https://account.guildwars2.com/oauth2/token?
+    grant_type=authorization_code&amp;
+    code=CODE_FROM_OUATH2_AUTHORIZATION&amp;
+    redirect_uri=http://localhost:8080/oauth2/callback&amp;
+    client_id=MY_CLIENT_ID&amp;
+    client_secret=MY_CLIENT_SECRET
+</code></pre>
+<p>.</p>
+<p>and getting the same unhelpful “internal error” response, which is doubly unhelpful in that the response code is actually 400 so I’m not sure if it’s an <em>actual</em> internal error or some problem on my side. I’ve tried it with both GET and POST requests, same result.</p>
+<p>Messing with the request parameters some more I can produce<br>
+</p><pre><code>
+{
+    "error": "internal_error",
+    "error_description": "10:1014:8039:171 - NetAdjOAuth: missing or invalid user id"
+}
+</code></pre>.<br>
+when I send a “code” parameter of “a”. Munging any of the other parameters results in the same unhelpful error_description as above.<p></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-21T21:45:49+00:00">
+        21 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 12 2015 09:45PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4872193">TranquilInSpirit.6291:</a></cite></div><div class="quotey"><p>Is there an API IRC or other form of communication?</p></div></blockquote>
+<p>There might be an IRC channel or two that other API consumers use, but I personally only use the forums and Github.</p>
+<blockquote><div class="citey"><cite title="Posted on March 21 2015 06:49PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4905384">I Am Dansker.7105:</a></cite></div><div class="quotey"><p>Is the world id updated as soon as someone change server/world? or is it updated once a week with WvW reset?</p></div></blockquote>
+<p>It’s more-or-less as soon as someone changes server/world (there’s some delay due to cache coherency issues). I’ll look into what we can provide as far as server loyalty goes (e.g., so you can tell they switched just before/during the matchup).</p>
+<blockquote><div class="citey"><cite title="Posted on March 21 2015 08:58PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4905658">AlterForm.7045:</a></cite></div><div class="quotey"><p>Getting the same unhelpful “internal error” response, which is doubly unhelpful in that the response code is actually 400 so I’m not sure if it’s an <em>actual</em> internal error or some problem on my side.</p></div></blockquote>
+<p>As a guess, are you sending cookies to /oauth2/token? That <strong>might</strong> cause some confusion on our end. I’ll have to look up the error code on Monday and see what it turns up.</p>
+<blockquote><div class="citey"><cite title="Posted on March 21 2015 08:58PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4905658">AlterForm.7045:</a></cite></div><div class="quotey"><p>Messing with the request parameters some more I can produce<br>
+</p><pre><code>
+{
+    "error": "internal_error",
+    "error_description": "10:1014:8039:171 - NetAdjOAuth: missing or invalid user id"
+}
+</code></pre>.<br>
+when I send a “code” parameter of “a”. Munging any of the other parameters results in the same unhelpful error_description as above.<p></p></div></blockquote>
+<p>This is expected — the code we send is an OAuth2 grant identifier — which is basically the account GUID concatenated with a randomly-generated unique ID. You’re sending something that doesn’t match the format, so it aborts before even looking up to see whether or not the request is valid. The error_description there could probably be made a bit more clear though.</p></p>
+
+<h2 id="">AlterForm.7045:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-21T22:03:36+00:00">
+        21 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 21 2015 09:45PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4905790">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 21 2015 08:58PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4905658">AlterForm.7045:</a></cite></div><div class="quotey"><p>Getting the same unhelpful “internal error” response, which is doubly unhelpful in that the response code is actually 400 so I’m not sure if it’s an <em>actual</em> internal error or some problem on my side.</p></div></blockquote>
+<p>As a guess, are you sending cookies to /oauth2/token? That <strong>might</strong> cause some confusion on our end. I’ll have to look up the error code on Monday and see what it turns up.</p></div></blockquote>
+<p>I don’t believe I am. I’ve sent requests via <a href="https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en">Postman</a> and via a new incognito Chrome session. Thanks in advance for looking into what that code means.</p>
+<blockquote><div class="citey"><cite title="Posted on March 21 2015 08:58PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4905658">AlterForm.7045:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 21 2015 08:58PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4905658">AlterForm.7045:</a></cite></div><div class="quotey"><p>Messing with the request parameters some more I can produce<br>
+</p><pre><code>
+{
+    "error": "internal_error",
+    "error_description": "10:1014:8039:171 - NetAdjOAuth: missing or invalid user id"
+}
+</code></pre>.<br>
+when I send a “code” parameter of “a”. Munging any of the other parameters results in the same unhelpful error_description as above.<p></p></div></blockquote>
+<p>This is expected — the code we send is an OAuth2 grant identifier — which is basically the account GUID concatenated with a randomly-generated unique ID. You’re sending something that doesn’t match the format, so it aborts before even looking up to see whether or not the request is valid. The error_description there could probably be made a bit more clear though.</p></div></blockquote>
+<p>Oh, sure, I didn’t mean to imply it wasn’t unexpected. My point with that error was that there does appear to be code paths for handling malformed parameters in the request and informing the caller with an actual error description to suggest what might have been wrong with the request. I’d love to see a similar one for our friend “49:1014:8008:353” if possible.<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Eastborn.6089:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-23T13:15:06+00:00">
+        23 Mar 2015
+    </time>
+</p>
+<p>
+<p>I am trying to request data from the /v2/account endpoint but when i authorize myself it still gives me the following response, anyone knows what i am doing wrong?</p>
+<p>from: <a href="http://159.253.7.156/GW2/">http://159.253.7.156/GW2/</a></p>
+<div class="spoiler_container"><div class="spoileroncontainer"><button type="button" class="button spoileron" title="Click to show the spoiler.">Show Spoiler</button></div><div class="spoiler"><div class="spoileroffcontainer"><button type="button" class="button spoileroff" title="Click to hide the spoiler.">hide spoiler</button><br></div><div class="spoilertext"><p>Request URL<br>
+<a href="https://api.guildwars2.com/v2/account?access_token=5EC19845-F2B0-4CE3-BBC6-CEEB45D36471&callback=_hellojs_5e9umrjo">https://api.guildwars2.com/v2/account?access_token=5EC19845-F2B0-4CE3-BBC6-CEEB45D36471&amp;callback=_hellojs_5e9umrjo</a></p>
+<p>General<br>
+Remote Address:64.25.47.16:443<br>
+Request URL:<a href="https://api.guildwars2.com/v2/account?access_token=AD0C7E66-5544-4756-B6DF-9A8E05C7C11B&callback=_hellojs_bcrvai9">https://api.guildwars2.com/v2/account?access_token=AD0C7E66-5544-4756-B6DF-9A8E05C7C11B&amp;callback=_hellojs_bcrvai9</a><br>
+Request Method:GET<br>
+Status Code:400 Bad Request</p>
+<p>Response Headers<br>
+view source<br>
+Access-Control-Allow-Origin:*<br>
+Content-Length:21<br>
+Content-Type:application/json; charset=utf-8<br>
+Date:Mon, 23 Mar 2015 13:06:11 GMT<br>
+Server:Microsoft-IIS/7.5<br>
+X-Content-Type-Options:nosniff</p>
+<p>Request Headers<br>
+view source<br>
+Accept:<strong>/</strong><br>
+Accept-Encoding:gzip, deflate, sdch<br>
+Accept-Language:en-US,en;q=0.8,nl;q=0.6<br>
+Cache-Control:no-cache<br>
+Connection:keep-alive<br>
+Cookie:<em>ga=GA1.2.15426245.1425416427; s=7F2F3BB0-27F2-407E-8644-6219444E1E42; _</em>utmt_UA-18978290-1=1; <em>utma=159804514.15426245.1425416427.1427113213.1427115017.7; _</em>utmb=159804514.16.10.1427115017; <em>utmc=159804514; _</em>utmz=159804514.1427115017.7.6.utmcsr=159.253.7.156|utmccn=(referral)|utmcmd=referral|utmcct=/GW2/<br>
+DNT:1<br>
+Host:api.guildwars2.com<br>
+Pragma:no-cache<br>
+Referer:<a href="http://159.253.7.156/GW2/">http://159.253.7.156/GW2/</a><br>
+User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36</p>
+<p>Query String Parameters<br>
+view source<br>
+view URL encoded<br>
+access_token:AD0C7E66-5544-4756-B6DF-9A8E05C7C11B<br>
+callback:_hellojs_bcrvai9</p></div></div></div><p>ps: sorry for my bad English and programming skills, im still new to those things</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-23T13:22:45+00:00">
+        23 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 23 2015 01:15PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4910083">Eastborn.6089:</a></cite></div><div class="quotey"><p>I am trying to request data from the /v2/account endpoint but when i authorize myself it still gives me the following response, anyone knows what i am doing wrong?</p>
+<p>from: <a href="http://159.253.7.156/GW2/">http://159.253.7.156/GW2/</a></p>
+<div class="spoiler_container"><div class="spoileroncontainer"><button type="button" class="button spoileron" title="Click to show the spoiler.">Show Spoiler</button></div><div class="spoiler"><div class="spoileroffcontainer"><button type="button" class="button spoileroff" title="Click to hide the spoiler.">hide spoiler</button><br></div><div class="spoilertext"><pre><code>
+Request URL
+https://api.guildwars2.com/v2/account?access_token=5EC19845-F2B0-4CE3-BBC6-CEEB45D36471&amp;callback=_hellojs_5e9umrjo 
+
+General
+Remote Address:64.25.47.16:443
+Request URL:https://api.guildwars2.com/v2/account?access_token=AD0C7E66-5544-4756-B6DF-9A8E05C7C11B&amp;callback=_hellojs_bcrvai9
+Request Method:GET
+Status Code:400 Bad Request
+
+Response Headers
+view source
+Access-Control-Allow-Origin:*
+Content-Length:21
+Content-Type:application/json; charset=utf-8
+Date:Mon, 23 Mar 2015 13:06:11 GMT
+Server:Microsoft-IIS/7.5
+X-Content-Type-Options:nosniff
+
+Request Headers
+view source
+Accept:*/*
+Accept-Encoding:gzip, deflate, sdch
+Accept-Language:en-US,en;q=0.8,nl;q=0.6
+Cache-Control:no-cache
+Connection:keep-alive
+Cookie:_ga=GA1.2.15426245.1425416427; s=7F2F3BB0-27F2-407E-8644-6219444E1E42; __utmt_UA-18978290-1=1; __utma=159804514.15426245.1425416427.1427113213.1427115017.7; __utmb=159804514.16.10.1427115017; __utmc=159804514; __utmz=159804514.1427115017.7.6.utmcsr=159.253.7.156|utmccn=(referral)|utmcmd=referral|utmcct=/GW2/
+DNT:1
+Host:api.guildwars2.com
+Pragma:no-cache
+Referer:http://159.253.7.156/GW2/
+User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36
+
+Query String Parameters
+view source
+view URL encoded
+access_token:AD0C7E66-5544-4756-B6DF-9A8E05C7C11B
+callback:_hellojs_bcrvai9
+</code></pre></div></div></div><p>ps: sorry for my bad English and programming skills, im still new to those things</p></div></blockquote>
+<p>Looks like the same issue I am having, which was already reported here … <a href="https://github.com/arenanet/api-cdi/issues/19">https://github.com/arenanet/api-cdi/issues/19</a></p>
+<p>Hopefully there is a fix today (it didn’t take them long the last time a similar issue came up).</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-24T00:17:48+00:00">
+        24 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 23 2015 01:22PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4910096">Nabrok.9023:</a></cite></div><div class="quotey"><p>Looks like the same issue I am having, which was already reported here … <a href="https://github.com/arenanet/api-cdi/issues/19">https://github.com/arenanet/api-cdi/issues/19</a></p>
+<p>Hopefully there is a fix today (it didn’t take them long the last time a similar issue came up).</p></div></blockquote>
+<p>Should be fixed now<img src="/include/images/smilies/lion.png"></p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-24T02:16:40+00:00">
+        24 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 24 2015 12:17AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4911932">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 23 2015 01:22PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4910096">Nabrok.9023:</a></cite></div><div class="quotey"><p>Looks like the same issue I am having, which was already reported here … <a href="https://github.com/arenanet/api-cdi/issues/19">https://github.com/arenanet/api-cdi/issues/19</a></p>
+<p>Hopefully there is a fix today (it didn’t take them long the last time a similar issue came up).</p></div></blockquote>
+<p>Should be fixed now<img src="/include/images/smilies/lion.png"></p></div></blockquote>
+<p>Thanks!  I noticed that the account scope now includes “list of guilds” in the description.  Is that something currently available?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-24T17:08:23+00:00">
+        24 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 24 2015 02:16AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4912156">Nabrok.9023:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 24 2015 12:17AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4911932">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 23 2015 01:22PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4910096">Nabrok.9023:</a></cite></div><div class="quotey"><p>Looks like the same issue I am having, which was already reported here … <a href="https://github.com/arenanet/api-cdi/issues/19">https://github.com/arenanet/api-cdi/issues/19</a></p>
+<p>Hopefully there is a fix today (it didn’t take them long the last time a similar issue came up).</p></div></blockquote>
+<p>Should be fixed now<img src="/include/images/smilies/lion.png"></p></div></blockquote>
+<p>Thanks!  I noticed that the account scope now includes “list of guilds” in the description.  Is that something currently available?</p></div></blockquote>
+<p>Not yet, but it’s something I wanted to add into the /v2/account response. Since OAuth2 tokens can last indefinitely if you include the “offline” scope, I didn’t want any end-users to be surprised when that suddenly appeared.</p></p>
+
+<h2 id="">Qwertasy The Amazon.2906:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-25T10:49:03+00:00">
+        25 Mar 2015
+    </time>
+</p>
+<p>
+<p>I’ve been trying to make a OAuth connection from a iOS application but currently I’m stuck due to a problem with getting the token.<br>
+			 The authorization step is working correctly and the website with login shows up and I’m also getting the code/grant back.<br>
+			 But it looks like the problem I’m having has something to do with the redirect_uri in the token step.<br>
+			 <br>
+			 If I don’t send the redirect_uri this is what I get:<br>
+			 {"error":“invalid_request”,“details”:{"valid":false,“data”:{"client_id":&lt;Removed&gt;,“secret”:&lt;Removed&gt;,“grant”:&lt;Removed&gt;,“grant_type”:"authorization_code"},“errors”:{"redirect_uri":“invalid-data”}}}<br>
+			 Now this is clear what is wrong, the redirect_uri that was send is incorrect/unreadable or not send at all.<br>
+			 <br>
+			 If I send ‘redirect_uri=<a href="http://localhost">http://localhost</a>:8080/oauth2/callback’ the response is:<br>
+			 {"error":“internal_error”,“error_description”:“49:1014:8008:353”}<br>
+			 as it has been said before… not really helpfull<br>
+			 but I’ll always get this error even if I fill in complete nonsence like ‘redirect_uri=a’.<br>
+			 <br>
+			 But what I also found out is that if I send ‘redirect_uri=’ (so no value) this is the response:<br>
+			 {"error":“invalid_request”,“details”:{"valid":false,“data”:{"client_id":&lt;Removed&gt;,“secret”:&lt;Removed&gt;,“grant”:&lt;Removed&gt;,“grant_type”:"authorization_code"},“errors”:{"redirect_uri":{"test":“value”,“_value”:""}}}}<br>
+			 I’m not sure what this is suppose to mean but so far I’ve been able to find that this is the only redirect_uri value (or the lack of if) that doesn’t return the for us unreadable error_description.<br>
+			 <br>
+			 I’ve tried sending everything as a query params or as a request body (with and without percent escape encoding) but nothing seems to change the error that is being returned.</p></p>
+
+<h2 id="">Eastborn.6089:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-25T12:15:09+00:00">
+        25 Mar 2015
+    </time>
+</p>
+<p>
+<p>Is it possible that the v2/account endpoint does not have CORS headers set?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-25T18:16:30+00:00">
+        25 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 25 2015 10:49AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4916989">Qwertasy The Amazon.2906:</a></cite></div><div class="quotey"><p>If I don’t send the redirect_uri this is what I get</p></div></blockquote>
+<p>You must send a redirect_uri in the /oauth2/token request.</p>
+<blockquote><div class="citey"><cite title="Posted on March 25 2015 10:49AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4916989">Qwertasy The Amazon.2906:</a></cite></div><div class="quotey"><p>But what I also found out is that if I send ‘redirect_uri=’ (so no value) this is the response</p></div></blockquote>
+<p>I’m guessing that the redirect_uri you’re sending is not configured on your application’s list of redirect_uris (which is a newline-delimited list). That’s the only thing I’m seeing that would cause that error code.</p>
+<blockquote><div class="citey"><cite title="Posted on March 25 2015 12:15PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4917148">Eastborn.6089:</a></cite></div><div class="quotey"><p>Is it possible that the v2/account endpoint does not have CORS headers set?</p></div></blockquote>
+<p>I’m seeing CORS headers.</p></p>
+
+<h2 id="">Eastborn.6089:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-25T18:50:00+00:00">
+        25 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 25 2015 06:16PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4918203">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>I’m seeing CORS headers.</p></div></blockquote>
+<p>Also for the options request that browsers request before a get?</p>
+<div class="spoiler_container"><div class="spoileroncontainer"><button type="button" class="button spoileron" title="Click to show the spoiler.">Response</button></div><div class="spoiler"><div class="spoileroffcontainer"><button type="button" class="button spoileroff" title="Click to hide the spoiler.">hide spoiler</button><br></div><div class="spoilertext"><p>Remote Address:64.25.47.16:443<br>
+Request URL:<a href="https://api.guildwars2.com/v2/account?_=1427309039459">https://api.guildwars2.com/v2/account?_=1427309039459</a><br>
+Request Method:OPTIONS<br>
+Status Code:404 Not Found<br>
+Content-Length:253<br>
+Date:Wed, 25 Mar 2015 18:45:41 GMT<br>
+Server:Microsoft-IIS/7.5</p></div></div></div></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-25T20:44:16+00:00">
+        25 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 25 2015 06:50PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4918334">Eastborn.6089:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 25 2015 06:16PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4918203">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>I’m seeing CORS headers.</p></div></blockquote>
+<p>Also for the options request that browsers request before a get?</p>
+<div class="spoiler_container"><div class="spoileroncontainer"><button type="button" class="button spoileron" title="Click to show the spoiler.">Response</button></div><div class="spoiler"><div class="spoileroffcontainer"><button type="button" class="button spoileroff" title="Click to hide the spoiler.">hide spoiler</button><br></div><div class="spoilertext"><p>Remote Address:64.25.47.16:443<br>
+Request URL:<a href="https://api.guildwars2.com/v2/account?_=1427309039459">https://api.guildwars2.com/v2/account?_=1427309039459</a><br>
+Request Method:OPTIONS<br>
+Status Code:404 Not Found<br>
+Content-Length:253<br>
+Date:Wed, 25 Mar 2015 18:45:41 GMT<br>
+Server:Microsoft-IIS/7.5</p></div></div></div></div></blockquote>
+<p>We only currently support <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Simple_requests">simple requests</a> which don’t require a preceding OPTIONS. This is unlikely to change in the near future.</p></p>
+
+<h2 id="">Qwertasy The Amazon.2906:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-25T23:35:44+00:00">
+        25 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 25 2015 06:16PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4918203">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 25 2015 10:49AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4916989">Qwertasy The Amazon.2906:</a></cite></div><div class="quotey"><p>If I don’t send the redirect_uri this is what I get</p></div></blockquote>
+<p>You must send a redirect_uri in the /oauth2/token request.</p>
+<blockquote><div class="citey"><cite title="Posted on March 25 2015 10:49AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4916989">Qwertasy The Amazon.2906:</a></cite></div><div class="quotey"><p>But what I also found out is that if I send ‘redirect_uri=’ (so no value) this is the response</p></div></blockquote>
+<p>I’m guessing that the redirect_uri you’re sending is not configured on your application’s list of redirect_uris (which is a newline-delimited list). That’s the only thing I’m seeing that would cause that error code.</p></div></blockquote>
+<p>I’m aware that the first and third example I gave the request would never work but that wasn’t the point.<br>
+The point I was trying to make was that i’ve tried several ways to get a different reaction from the server other then the unreadable internal error.<br>
+So far none of my attempts to get a access token from the server has succeeded.<br>
+I’ve tried with a OAuth2 client or write a request myself inside the iOS environment but it always ended with that 49:1014:8008:353 error.</p>
+<p>So in short: what is 49:1014:8008:353 and/or how can I avoid getting it.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-26T00:06:45+00:00">
+        26 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 25 2015 11:35PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4919308">Qwertasy The Amazon.2906:</a></cite></div><div class="quotey"><p>So in short: what is 49:1014:8008:353 and/or how can I avoid getting it.</p></div></blockquote>
+<p>That error code is “permission denied” and, by my reading, is only hit when the redirect_uri supplied does not match one in the application’s list of redirect_uris.</p>
+<p>If you PM me the entire request where the error is returned (without redactions) I might be able to provide further insight.</p>
+<p>EDIT: Note that you need to include redirect_uri both in requests to /oauth2/authorize and /oauth2/token; the value passed to each pair of requests must be the same (and in the application’s whitelist).</p></p>
+
+<h2 id="">KillerRabbit.1946:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-26T16:30:00+00:00">
+        26 Mar 2015
+    </time>
+</p>
+<p>
+<p>I haven’t seen anyone post this, sorry if I’m repeating info.</p>
+<p>I nice resource that I found to test this APIs is <a href="https://developers.google.com/oauthplayground/">https://developers.google.com/oauthplayground/</a></p>
+<p>You can configure custom endpoints there, it manages the whole OAuth2 thing and after a 2 step process you can test the authenticated api. I tried this with /v2/account and it worked nicely<img src="/include/images/smilies/smile.png"><br>
+You just need to be ok with giving them your app id and secret (use a sandbox app).</p>
+<p>I think it helps to understand the OAuth2 process, since it shows the headers sent to do the authentication</p></p>
+
+<h2 id="">I Am Dansker.7105:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-26T17:32:47+00:00">
+        26 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 24 2015 05:08PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4913904">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 24 2015 02:16AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4912156">Nabrok.9023:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 24 2015 12:17AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4911932">Lawton Campbell.8517:</a></cite></div><div class="quotey"></div></blockquote>
+<p>Thanks!  I noticed that the account scope now includes “list of guilds” in the description.  Is that something currently available?</p></div></blockquote>
+<p>Not yet, but it’s something I wanted to add into the /v2/account response. Since OAuth2 tokens can last indefinitely if you include the “offline” scope, I didn’t want any end-users to be surprised when that suddenly appeared.</p></div></blockquote>
+<p>Any expected ETA on when this will be made available?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-26T17:48:53+00:00">
+        26 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 26 2015 05:32PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4921271">I Am Dansker.7105:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 24 2015 05:08PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4913904">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 24 2015 02:16AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4912156">Nabrok.9023:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 24 2015 12:17AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4911932">Lawton Campbell.8517:</a></cite></div><div class="quotey"></div></blockquote>
+<p>Thanks!  I noticed that the account scope now includes “list of guilds” in the description.  Is that something currently available?</p></div></blockquote>
+<p>Not yet, but it’s something I wanted to add into the /v2/account response. Since OAuth2 tokens can last indefinitely if you include the “offline” scope, I didn’t want any end-users to be surprised when that suddenly appeared.</p></div></blockquote>
+<p>Any expected ETA on when this will be made available?</p></div></blockquote>
+<p>Shooting for a couple of weeks at most, might slip on that though.</p></p>
+
+<h2 id="">Teranas.6150:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-28T21:51:16+00:00">
+        28 Mar 2015
+    </time>
+</p>
+<p>
+<p>Hi there,</p>
+<p>I wrote down a documentation for dealing with the OAuth 2.0 implementation. I am not entirely sure if all information are 100% correct, so please contribute to the article!</p>
+<p><a href="http://wiki.guildwars2.com/wiki/API:2/OAuth_2.0">http://wiki.guildwars2.com/wiki/API:2/OAuth_2.0</a></p>
+<p>For example:</p>
+<p>I have not tested if the Guild Wars 2 OAuth server really supports response_type=token (it has to, based on the RFC.) Did anyone tried this?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-30T17:13:09+00:00">
+        30 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 28 2015 09:51PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4927443">Teranas.6150:</a></cite></div><div class="quotey"><p>I have not tested if the Guild Wars 2 OAuth server really supports response_type=token (it has to, based on the RFC.) Did anyone tried this?</p></div></blockquote>
+<p>We do not support the implicit grant flow — we want clients (e.g., OAuth2 implementations) to be authenticated.</p></p>
+
+<h2 id="">Teranas.6150:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-30T23:22:15+00:00">
+        30 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 30 2015 05:13PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4931719">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 28 2015 09:51PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4927443">Teranas.6150:</a></cite></div><div class="quotey"><p>I have not tested if the Guild Wars 2 OAuth server really supports response_type=token (it has to, based on the RFC.) Did anyone tried this?</p></div></blockquote>
+<p>We do not support the implicit grant flow — we want clients (e.g., OAuth2 implementations) to be authenticated.</p></div></blockquote>
+<p>Thanks for clarification. I will remove that text passage.</p></p>
+
+<h2 id="">keneanung.3071:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-13T08:08:26+00:00">
+        13 Apr 2015
+    </time>
+</p>
+<p>
+<p>Since the “Applications” tab is now visible in the account settings, is the OAuth implementation now considered “stable” or are we still in “beta”?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-13T17:08:20+00:00">
+        13 Apr 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on April 13 2015 08:08AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4971293">keneanung.3071:</a></cite></div><div class="quotey"><p>Since the “Applications” tab is now visible in the account settings, is the OAuth implementation now considered “stable” or are we still in “beta”?</p></div></blockquote>
+<p>Beta. We may actually be transitioning away from OAuth2 to an API key style system; I’ll keep you updated as we figure out stuff :|</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-13T18:02:50+00:00">
+        13 Apr 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on April 13 2015 05:08PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4972168">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on April 13 2015 08:08AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4971293">keneanung.3071:</a></cite></div><div class="quotey"><p>Since the “Applications” tab is now visible in the account settings, is the OAuth implementation now considered “stable” or are we still in “beta”?</p></div></blockquote>
+<p>Beta. We may actually be transitioning away from OAuth2 to an API key style system; I’ll keep you updated as we figure out stuff :|</p></div></blockquote>
+<p>OAuth2 is working well for me.</p>
+<p>If you transition, does that mean the 500+ people who have signed in through my app so far will have to re-authorize through some other method?  Preferably you could continue to support both methods?</p></p>
+
+<h2 id="">Nicsword.3956:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-13T19:56:41+00:00">
+        13 Apr 2015
+    </time>
+</p>
+<p>
+<p>An API key could fix one of my current problems with my Overwolf app, but I can deal with the OAuth2 for my purpose.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-13T21:09:38+00:00">
+        13 Apr 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on April 13 2015 06:02PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4972314">Nabrok.9023:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on April 13 2015 05:08PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4972168">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on April 13 2015 08:08AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4971293">keneanung.3071:</a></cite></div><div class="quotey"><p>Since the “Applications” tab is now visible in the account settings, is the OAuth implementation now considered “stable” or are we still in “beta”?</p></div></blockquote>
+<p>Beta. We may actually be transitioning away from OAuth2 to an API key style system; I’ll keep you updated as we figure out stuff :|</p></div></blockquote>
+<p>OAuth2 is working well for me.</p>
+<p>If you transition, does that mean the 500+ people who have signed in through my app so far will have to re-authorize through some other method?  Preferably you could continue to support both methods?</p></div></blockquote>
+<p>We haven’t figured out a timeline or migration strategy for existing applications yet, but it’s definitely possible that all your users will have to re-authorize. I know this is a big deal and a massive pain, and for that I apologize. I’ll keep you updated on our current status.</p></p>
+
+<h2 id="">Remfin.4892:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-13T23:08:04+00:00">
+        13 Apr 2015
+    </time>
+</p>
+<p>
+<p>If you switch to an API-key style, will there still be some method suitable for authentication? I’m guessing no, unless you just kind of leave the OAuth2 stuff around for that…</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-13T23:26:37+00:00">
+        13 Apr 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on April 13 2015 09:09PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4972741">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on April 13 2015 06:02PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4972314">Nabrok.9023:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on April 13 2015 05:08PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4972168">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on April 13 2015 08:08AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4971293">keneanung.3071:</a></cite></div><div class="quotey"><p>Since the “Applications” tab is now visible in the account settings, is the OAuth implementation now considered “stable” or are we still in “beta”?</p></div></blockquote>
+<p>Beta. We may actually be transitioning away from OAuth2 to an API key style system; I’ll keep you updated as we figure out stuff :|</p></div></blockquote>
+<p>OAuth2 is working well for me.</p>
+<p>If you transition, does that mean the 500+ people who have signed in through my app so far will have to re-authorize through some other method?  Preferably you could continue to support both methods?</p></div></blockquote>
+<p>We haven’t figured out a timeline or migration strategy for existing applications yet, but it’s definitely possible that all your users will have to re-authorize. I know this is a big deal and a massive pain, and for that I apologize. I’ll keep you updated on our current status.</p></div></blockquote>
+<p>My main concern is that it will be a more complicated process than go to my website → they click login → login on gw2 website → redirect back to my website.  It’s actually very simple for users to do and all I’ve had to do is allay a few fears about security.</p>
+<p>If, for example, they have to find an API code and enter it somewhere on my site, I can see that that will cause problems for some people.</p>
+<p>As things have seemed pretty stable the past 2.5 weeks, I have been trying to push for getting more of my registered users “linked”.  Currently it’s at about 25%.  If things are going to change I’ll hold off on that, but please know that I’m very happy with the way things are working now<img src="/include/images/smilies/smile.png">.</p>
+<p>I do have offline scope in my tokens for my users, so if migration is necessary hopefully I could use that in a transitional period without having those users take additional steps themselves?</p></p>
+
+<h2 id="">Moturdrn.2837:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-14T08:20:33+00:00">
+        14 Apr 2015
+    </time>
+</p>
+<p>
+<p>This is my main concern too. The large majority connected to our Teamspeak are now authenticated through this, which required little effort on the player’s part to do so. TS is announced in map chat, new people join, a couple of clicks later and they get WvW channel access.</p>
+<p>From my side I can change things to follow how you want the APIs to work. My concern is take up from the player’s side of things, and having to offload the extra complexity onto them.</p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-14T11:05:07+00:00">
+        14 Apr 2015
+    </time>
+</p>
+<p>
+<p>OAuth2 is working great for me, too.</p>
+<p>What are your reasons behind thinking about transitioning away from OAuth2 to an API key style system?</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-14T19:25:38+00:00">
+        14 Apr 2015
+    </time>
+</p>
+<p>
+<p>Phishing via malicious apps.</p></p>
+
+<h2 id="">Remfin.4892:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-15T21:53:09+00:00">
+        15 Apr 2015
+    </time>
+</p>
+<p>
+<p>I’m guessing that means the authentication possibilities are exactly what’s being killed off<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Merus.9475:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-16T02:09:51+00:00">
+        16 Apr 2015
+    </time>
+</p>
+<p>
+<p>OAuth2 is a bad standard, <a href="http://hueniverse.com/2012/07/26/oauth-2-0-and-the-road-to-hell/">to the point where one of the lead authors withdrew their name from the specification.</a> If implemented poorly, it’ll be insecure, and it’s very, very easy to implement it poorly because it’s far too complex.</p>
+<p>The amount of work ANet would have to do to securely support OAuth 2.0 could be spent on building a simpler authentication system, then doing some of the myriad other things people would like from them.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-16T18:58:08+00:00">
+        16 Apr 2015
+    </time>
+</p>
+<p>
+<p>Our OAuth2 implementation avoids a lot of the bad parts of OAuth2 by simply not supporting them, but it was determined that due to the real monetary value of accounts ArenaNet isn’t comfortable with the core phishing problems that affect any system like OAuth.</p>
+<p>Auth is still a possible, in that you can still verify that a user has a valid GW2 account by having them create an API key and enter it. It’s just significantly more annoying. A password manager that can autofill would be the best user experience possible in this new authentication scheme.</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-16T19:13:44+00:00">
+        16 Apr 2015
+    </time>
+</p>
+<p>
+<p>When will API keys become active?</p>
+<p>When will OAuth2 become inactive?</p>
+<p>Will there be an overlap for a transitional period? (please don’t shut off OAuth2 before API keys are ready)</p>
+<p>Will /v2/account still return the same information, but with the API key added as a parameter instead of using OAuth2?</p>
+<p>Is there anything preventing somebody sharing a key and allowing people not them to use it?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-16T21:59:16+00:00">
+        16 Apr 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on April 16 2015 07:13PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4980663">Nabrok.9023:</a></cite></div><div class="quotey"><p>When will API keys become active?</p>
+<p>When will OAuth2 become inactive?</p>
+<p>Will there be an overlap for a transitional period? (please don’t shut off OAuth2 before API keys are ready)</p></div></blockquote>
+<p>I don’t have dates yet, there’s still some moving parts that need to come into place. I’m shooting for a week heads-up once I have a date.</p>
+<blockquote><div class="citey"><cite title="Posted on April 16 2015 07:13PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4980663">Nabrok.9023:</a></cite></div><div class="quotey"><p>Will /v2/account still return the same information, but with the API key added as a parameter instead of using OAuth2?</p></div></blockquote>
+<p>Yeah, the API key is passed in the same manner as the OAuth2 access tokens (via the Authorization header).</p>
+<p>Anyway, we’ll have more details and make a separate posting when there are more details to provide :&lt;</p></p>
+
+<h2 id="">Remfin.4892:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-16T23:08:01+00:00">
+        16 Apr 2015
+    </time>
+</p>
+<p>
+<p>I’m not looking to change anyone’s mind (I understand exactly the phishing concern), but API keys don’t do anything remotely like “auth”; they do nothing to let you verify a user on a repeat visit.</p>
+<p>Now I need to be <em>Yet Another Website With A Username And Password (And I Need To Store Them Securely, Oh And It Needs To Be Able To Send Emails Too)</em></p>
+<p>First time visit is no longer a hybrid sign-in/sign-up link, but “no entry allowed; create and verify an account before preceding.”</p>
+<p>Like I said, not trying to change your mind, but that is why I asked the questions about auth, and that’s why the new thing won’t substitute for that.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-16T23:14:55+00:00">
+        16 Apr 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on April 16 2015 11:08PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4981212">Remfin.4892:</a></cite></div><div class="quotey"><p>Like I said, not trying to change your mind, but that is why I asked the questions about auth, and that’s why the new thing won’t substitute for that.</p></div></blockquote>
+<p>Yep, in my mind, that use-case is pretty much out the window.</p></p>
+
+<h2 id="">Sich.7103:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-17T12:24:53+00:00">
+        17 Apr 2015
+    </time>
+</p>
+<p>
+<p>Hum, I was thinking about making something to check the user on my forum and TS if they are from the good server…. But if all will change soon there is no reason to begin programming something….. <br>
+What will do this new api system ? No release date of course…</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-17T13:07:23+00:00">
+        17 Apr 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on April 16 2015 11:08PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4981212">Remfin.4892:</a></cite></div><div class="quotey"><p>I’m not looking to change anyone’s mind (I understand exactly the phishing concern), but API keys don’t do anything remotely like “auth”; they do nothing to let you verify a user on a repeat visit.</p>
+<p>Now I need to be <em>Yet Another Website With A Username And Password (And I Need To Store Them Securely, Oh And It Needs To Be Able To Send Emails Too)</em></p>
+<p>First time visit is no longer a hybrid sign-in/sign-up link, but “no entry allowed; create and verify an account before preceding.”</p>
+<p>Like I said, not trying to change your mind, but that is why I asked the questions about auth, and that’s why the new thing won’t substitute for that.</p></div></blockquote>
+<p>Yes, this occurred to me also.  Isn’t the main source of compromised accounts from people using the same credentials on 3rd party sites such as forums?</p>
+<p>Even if I do store the passwords securely (which I will of course), I am not going to be purchasing an SSL certificate.</p></p>
+
+<h2 id="">werdernator.6105:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-17T15:35:10+00:00">
+        17 Apr 2015
+    </time>
+</p>
+<p>
+<p>Very sad, i liked the oauth system.</p>
+<p>will there still be a way to access something like those oauth offline-tokens? that is essential for my plans. <br>
+if not, that would be even sadder<img src="/include/images/smilies/sad.png"></p></p>
+
+<h2 id="">Teranas.6150:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-17T17:50:41+00:00">
+        17 Apr 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on April 17 2015 01:07PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4982172">Nabrok.9023:</a></cite></div><div class="quotey"><p>Even if I do store the passwords securely (which I will of course), I am not going to be purchasing an SSL certificate.</p></div></blockquote>
+<p>You don’t have to purchase a certificate. There are free providers like <a href="https://www.startssl.com">StartSSL</a> that should fit most basic use cases.</p>
+<p>However. The whole situation is a really bad compromise.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-17T20:54:34+00:00">
+        17 Apr 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on April 17 2015 03:35PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4982436">werdernator.6105:</a></cite></div><div class="quotey"><p>will there still be a way to access something like those oauth offline-tokens? that is essential for my plans. <br>
+if not, that would be even sadder<img src="/include/images/smilies/sad.png"></p></div></blockquote>
+<p>Yes, API keys do not expire unless the user revokes them.</p></p>
+
+<h2 id="">werdernator.6105:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-17T23:28:29+00:00">
+        17 Apr 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on April 17 2015 08:54PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4982993">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on April 17 2015 03:35PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4982436">werdernator.6105:</a></cite></div><div class="quotey"><p>will there still be a way to access something like those oauth offline-tokens? that is essential for my plans. <br>
+if not, that would be even sadder<img src="/include/images/smilies/sad.png"></p></div></blockquote>
+<p>Yes, API keys do not expire unless the user revokes them.</p></div></blockquote>
+<p>very nice, that’s what i wanted to hear.</p></p>
+
+<h2 id="">TacoSundae.9036:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-19T04:31:08+00:00">
+        19 Apr 2015
+    </time>
+</p>
+<p>
+<p>Is there at least a roughish time frame for moving away from OAuth? Months? Weeks? Even the roughest time frame will help me decide if I should implement this temporarily with OAuth, or if I should just hold off until the new method is ready.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-22T18:57:53+00:00">
+        22 Apr 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on April 19 2015 04:31AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/4985233">TacoSundae.9036:</a></cite></div><div class="quotey"><p>Is there at least a roughish time frame for moving away from OAuth? Months? Weeks? Even the roughest time frame will help me decide if I should implement this temporarily with OAuth, or if I should just hold off until the new method is ready.</p></div></blockquote>
+<p>Probably within weeks. I’m still working on a migration strategy, but I’m hoping to post the full details of the new system and the transition late this week or early next week.</p></p>
+
+<h2 id="">evilandy.7486:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-05T17:07:37+00:00">
+        05 May 2015
+    </time>
+</p>
+<p>
+<p>I got the OAuth stuff working, but then read to the end of this thread and realized that it’s changing. I’m hoping that once it stabilizes, more account attributes would be available via the authenticated API? Things such as characters and their attributes perhaps?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-05T17:46:00+00:00">
+        05 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 05 2015 05:07PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/5035728">evilandy.7486:</a></cite></div><div class="quotey"><p>I’m hoping that once it stabilizes, more account attributes would be available via the authenticated API? Things such as characters and their attributes perhaps?</p></div></blockquote>
+<p>Yeah, we’ll be releasing new authenticated endpoints once the changeover happens. On the docket are <a href="https://github.com/arenanet/api-cdi/pull/6">trading post data</a>, <a href="https://github.com/arenanet/api-cdi/pull/16">character details</a>, account <a href="https://github.com/arenanet/api-cdi/pull/12">bank</a> and <a href="https://github.com/arenanet/api-cdi/pull/13">material storage</a>, as well as some other things.</p>
+<p>Not gonna land all at once, but that’s more-or-less what’s currently in the works.</p></p>
+
+<h2 id="">AfterXII.2761:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-06T14:18:51+00:00">
+        06 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 05 2015 05:46PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/5035867">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 05 2015 05:07PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/5035728">evilandy.7486:</a></cite></div><div class="quotey"><p>I’m hoping that once it stabilizes, more account attributes would be available via the authenticated API? Things such as characters and their attributes perhaps?</p></div></blockquote>
+<p>Yeah, we’ll be releasing new authenticated endpoints once the changeover happens. On the docket are <a href="https://github.com/arenanet/api-cdi/pull/6">trading post data</a>, <a href="https://github.com/arenanet/api-cdi/pull/16">character details</a>, account <a href="https://github.com/arenanet/api-cdi/pull/12">bank</a> and <a href="https://github.com/arenanet/api-cdi/pull/13">material storage</a>, as well as some other things.</p>
+<p>Not gonna land all at once, but that’s more-or-less what’s currently in the works.</p></div></blockquote>
+<p>I can’t wait! I’ve got so many new tool ideas haha</p></p>
+
+<h2 id="">spaeda.8419:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-25T08:48:44+00:00">
+        25 May 2015
+    </time>
+</p>
+<p>
+<p>It will be possible to retrieve last connection/disconnection of an account ?<br>
+This data will be usefull. With tradingpost endpoint and this, we can deduce golds and items awaiting recovery.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-26T17:10:21+00:00">
+        26 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 25 2015 08:48AM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/5097077">spaeda.8419:</a></cite></div><div class="quotey"><p>It will be possible to retrieve last connection/disconnection of an account ?<br>
+This data will be usefull. With tradingpost endpoint and this, we can deduce golds and items awaiting recovery.</p></div></blockquote>
+<p>I didn’t plan to expose that data, but it’s been requested often enough that I probably will at some point.</p>
+<p>For your use-case it may be more fruitful to just expose the items/coin waiting for pickup though  :P</p></p>
+
+<h2 id="">JoluMarti.9165:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-26T22:07:06+00:00">
+        26 May 2015
+    </time>
+</p>
+<p>
+<p>Can we have an array of permissions?<br>
+{…<br>
+permissions: [“characters”,“transactions”],<br>
+…}</p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-27T18:41:56+00:00">
+        27 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 26 2015 10:07PM"><a href="/forum/community/api/Launching-v2-account-w-Authentication/5101541">JoluMarti.9165:</a></cite></div><div class="quotey"><p>Can we have an array of permissions?</p></div></blockquote>
+<p>I just created a new <a href="https://github.com/arenanet/api-cdi/pull/27">Proposal to add a new /v2/permissions endpoint</a>.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-04T19:26:21+00:00">
+        04 Jun 2015
+    </time>
+</p>
+<p>
+<p><strong>OAuth2 is now disabled</strong>.</p>
+<p>For authenticated access to APIs please see the <a href="/forum-backup/HEADS-UP-OAuth2-being-replaced-next-week">API Key Announcement Thread</a></p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>[How To] Colors API</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/How-To-Colors-API/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">[How To] Colors API</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/How-To-Colors-API
+</p>
+
+
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T23:47:21+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<p>Hey all,</p>
+<p>I hope the [How To] tag can become a developer-helping-developer thread which can show examples on certain APIs for the betterment of the dev community.</p>
+<p>The inaugural thread will be on the Color API (since there’s been a lot of confusion with it), inspired by Cliff’s personal assistance in helping me get it working.</p>
+<p><strong>The API</strong></p>
+<p>Colors API is here: <a href="https://api.guildwars2.com/v1/colors.json">https://api.guildwars2.com/v1/colors.json</a></p>
+<p>It has a root key of “colors”, and contained within that are keys of color IDs. Plucking out a single color dictionary in the color response looks like this:</p>
+<pre><code>
+691: {
+    name: "Spring Dew"
+    cloth: {
+        brightness: 27
+        contrast: 1.25
+        hue: 190
+        saturation: 0.3125
+        lightness: 0.644531
+    }
+    leather: {
+        brightness: 27
+        contrast: 1.28906
+        hue: 190
+        saturation: 0.253906
+        lightness: 0.664063
+    }
+    metal: {
+        brightness: 27
+        contrast: 1.28906
+        hue: 190
+        saturation: 0.234375
+        lightness: 0.664063
+    }
+}
+</code></pre>
+<p></p>
+<p><strong>Materials</strong></p>
+<p>Default, cloth, leather, and metal are <em>materials</em>. The dye picker in the game uses the <strong>cloth</strong> material, so if you plan on doing something similar, use the <strong>cloth</strong> material (we’ll get to how to produce colors from these values in a second).</p>
+<p><strong>Color Components</strong></p>
+<p>Each material contains the following: brightness, contrast, hue, saturation, &amp; lightness</p>
+<p><em>brightness:</em></p>
+<ul>
+	<li>A negative or positive number (range unknown)</li>
+</ul>
+<p><em>contrast:</em></p>
+<ul>
+	<li>A value between 0 – 2</li>
+</ul>
+<p><em>hue:</em></p>
+<ul>
+	<li>A value between 0 – 360</li>
+</ul>
+<p><em>saturation:</em></p>
+<ul>
+	<li>A value between 0 – 2</li>
+	<li>A value of 1.0 will mean “no change”</li>
+</ul>
+<p><em>lightness:</em></p>
+<ul>
+	<li>A value between 0 – 2</li>
+	<li>A value of 1.0 will mean “no change”</li>
+</ul>
+<p>The purpose of these components is to <strong>shift a reference (base) color</strong>. What does that mean? Starting with the base color, we’re going to use these values to perform calculations that will get us the actual color we want.</p>
+<p><strong>Base Color</strong></p>
+<p>The base color will start in the RGB colorspace. In whatever language, framework, or library you work in, get a color object in the RGB colorspace that has the values:</p>
+<p>R:128, G:26, B:26.</p>
+<p><strong>The Color Algorithm</strong></p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 08:55PM"><a href="/forum/community/api/How-To-Colors-API/2148826">Cliff Spradlin.3512:</a></cite></div><div class="quotey"><p>I just updated the API to show the base_rgb of colors. I also removed the non-dye colors to make it more uniform and reduce confusion (multiple “black” dyes, etc.).</p>
+<p>I also created a javascript version of our internal color shifting algorithm here: <a href="http://jsfiddle.net/cliff/jQ8ga/">http://jsfiddle.net/cliff/jQ8ga/</a> . This example code uses the sylvester javascript matrix library for math.</p>
+<p>The way it works is pretty different than the processes previously described — it calculates a transformation matrix which is then applied to the color in one pass.</p>
+<p>I also added pre-calculated RGB values to the color API for those who don’t need to deal with HSL transformations and just want an RGB value. It can also be used to test your color shifting algorithm against ours for correctness.</p></div></blockquote>
+<p>smiley.1438 has a site with the <strong>colors shown correctly:</strong> <a href="https://chillerlan.net/gw2color.php">https://chillerlan.net/gw2color.php</a></p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T00:18:41+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Ok, i’ve thrown together an example in php:<br>
+<a href="https://gist.github.com/codemasher/fb407de5587fdbd3e7c5">https://gist.github.com/codemasher/fb407de5587fdbd3e7c5</a></p>
+<p>conversion functions: <br>
+<a href="https://gist.github.com/codemasher/741f30e68c6e9c7921c7">https://gist.github.com/codemasher/741f30e68c6e9c7921c7</a></p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T05:15:46+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>I’ve set this up in my Perl module, and I’m running into cases where the saturation transform results in a value greater than 1, which in turn results in negative RGB values.  I know that hue can just wrap-around (i.e. if hue &gt; 360 {hue = hue – 360} ), but what do you do for saturation?</p></p>
+
+<h2 id="">Goddchen.4958:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T08:33:39+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Awesome, thanks so much.</p>
+<p>A working Java implementation can be seen in my GitHub project:<br>
+<a href="https://github.com/Goddchen/GuildWars2-API-Explorer/blob/master/GuildWars2APIExplorer/src/main/java/de/goddchen/android/gw2/api/data/Color.java">https://github.com/Goddchen/GuildWars2-API-Explorer/blob/master/GuildWars2APIExplorer/src/main/java/de/goddchen/android/gw2/api/data/Color.java</a></p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T10:05:58+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 05:15AM"><a href="/forum/community/api/How-To-Colors-API/2144322">Dr Ishmael.9685:</a></cite></div><div class="quotey"><p>I’ve set this up in my Perl module, and I’m running into cases where the saturation transform results in a value greater than 1, which in turn results in negative RGB values.  I know that hue can just wrap-around (i.e. if hue &gt; 360 {hue = hue – 360} ), but what do you do for saturation?</p></div></blockquote>
+<p>Do you have some specific examples so i can check that?</p></p>
+
+<h2 id="">Think.8042:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T10:28:21+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 10:05AM"><a href="/forum/community/api/How-To-Colors-API/2145246">smiley.1438:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 03 2013 05:15AM"><a href="/forum/community/api/How-To-Colors-API/2144322">Dr Ishmael.9685:</a></cite></div><div class="quotey"><p>I’ve set this up in my Perl module, and I’m running into cases where the saturation transform results in a value greater than 1, which in turn results in negative RGB values.  I know that hue can just wrap-around (i.e. if hue &gt; 360 {hue = hue – 360} ), but what do you do for saturation?</p></div></blockquote>
+<p>Do you have some specific examples so i can check that?</p></div></blockquote>
+<p>Try (144, Umber) or (341, Patina). There’s some more that have saturation &gt; 1.<br>
+EDIT: (947, White) has lightness &gt; 1 instead of saturation.</p></p>
+
+<h2 id="">Moturdrn.2837:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T11:02:58+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>I’m making use of the PHP examples provided by smiley to change the colour of individual pixels of each image (background, emblem part 1, emblem part 2.)</p>
+<p>Some of these seem to be working okay (e.g. Hot Pink) however White and Abyss seem to be somewhat hit or miss.</p>
+<p>Code: <a href="http://pastebin.com/PiFs0Tje">http://pastebin.com/PiFs0Tje</a></p>
+<p>Using the above code, the example below should have the background coloured Abyss, and the octopus White. However the colour seems quite off. Anyone have any ideas?</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T11:27:40+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Not sure how much help this is, but:</p>
+<p>I normalize my base color’s values, and my hue value, between 0 – 1. Part of the reason is that the iOS libraries expect that range. The base color can be represented in HSL as either (0 deg, 66%, 30%), or (360 deg, 66%, 30%). I rely on the later, so that when it comes to my hue shift calculation becomes (360 deg * hue / 360), or rather just hue.</p>
+<p>Also, I observed that most (perhaps all) colors that have cloth, leather and metal material values represent dyes. For instance, there are many “Black” colors, but only one “Abyss” color. Furthermore, only one of the “Black” colors has material values for cloth, leather, and metal. I suspect that is our “Black” dye.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T11:37:19+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Thats where the error in my <a href="https://gist.github.com/codemasher/fb407de5587fdbd3e7c5">example</a> is. I assumed that the S/L values are already normalized to 0-1, i didn’t check that before. (Hot pink has already a l&gt;1, so i should have noticed, but it was like 4am when i wrote that…<img src="/include/images/smilies/colondee.png">)</p></p>
+
+<h2 id="">zwei.9073:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T11:40:20+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Thanks!</p>
+<p>I used it to create simple color sheer, here is code:</p>
+<p><a href="https://code.google.com/p/gw2api/source/browse/trunk/src/cz/zweistein/gw2/app/color/ColorSheet.java">https://code.google.com/p/gw2api/source/browse/trunk/src/cz/zweistein/gw2/app/color/ColorSheet.java</a></p>
+<p>And here is result:</p>
+<p><a href="https://gw2api.googlecode.com/svn/trunk/colorsheet.html">https://gw2api.googlecode.com/svn/trunk/colorsheet.html</a></p>
+<p>(you might want to save it as html file on local drive and then open in broswer)</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T11:50:31+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 11:37AM"><a href="/forum/community/api/How-To-Colors-API/2145587">smiley.1438:</a></cite></div><div class="quotey"><p>Thats where the error in my <a href="https://gist.github.com/codemasher/fb407de5587fdbd3e7c5">example</a> is. I assumed that the S/L values are already normalized to 0-1, i didn’t check that before. (Hot pink has already a l&gt;1, so i should have noticed, but it was like 4am when i wrote that…<img src="/include/images/smilies/colondee.png">)</p></div></blockquote>
+<p>Darn it, I’m not doing a very good job explaining this (and it’s 8AM, what’s my excuse<img src="/include/images/smilies/smile.png"></p>
+<p>I had it wrong when I said S &amp; L are between 0 – 1. And for that matter, brightness is not a value between 0 – 255. Use the values that come in S &amp; L as-is in our HSL shifts. I’ll correct the guide now.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T11:53:04+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 11:40AM"><a href="/forum/community/api/How-To-Colors-API/2145606">zwei.9073:</a></cite></div><div class="quotey"><p>Thanks!</p>
+<p>I used it to create simple color sheer, here is code:</p>
+<p><a href="https://code.google.com/p/gw2api/source/browse/trunk/src/cz/zweistein/gw2/app/color/ColorSheet.java">https://code.google.com/p/gw2api/source/browse/trunk/src/cz/zweistein/gw2/app/color/ColorSheet.java</a></p>
+<p>And here is result:</p>
+<p><a href="https://gw2api.googlecode.com/svn/trunk/colorsheet.html">https://gw2api.googlecode.com/svn/trunk/colorsheet.html</a></p>
+<p>(you might want to save it as html file on local drive and then open in broswer)</p></div></blockquote>
+<p>Zwei, in your color shift code, try changing:</p>
+<p>hsl<sup class="footnote"><a href="#fn0">0</a></sup> = (float) (hsl<sup class="footnote"><a href="#fn0">0</a></sup> * 360 + color.getHue()) / 360;</p>
+<p>to:</p>
+<p>hsl<sup class="footnote"><a href="#fn0">0</a></sup> = (float) (color.getHue() / 360);</p>
+<p>I took a screenshot of your output and mine. Notice the “Celestial” and “Starry Night”, in particular. The colors on the right should be what to expect.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T12:35:44+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 11:50AM"><a href="/forum/community/api/How-To-Colors-API/2145642">Killer Rhino.6794:</a></cite></div><div class="quotey"><p>I had it wrong when I said S &amp; L are between 0 – 1 (saturation is; lightness is not).</p></div></blockquote>
+<p>Actually, they seem both to be between 0 and 2 (or at least &gt;1) :</p>
+<pre><code>7: {
+	name: "Ocean",
+	cloth: {
+		brightness: -21,
+		contrast: 1,
+		hue: 188,
+		saturation: 1.32813, &lt;--
+		lightness: 0.976563
+	},
+	leather: {
+		brightness: -18,
+		contrast: 1,
+		hue: 188,
+		saturation: 1.13281, &lt;--
+		lightness: 1.05469
+	},
+	metal: {
+		brightness: -18,
+		contrast: 1,
+		hue: 188,
+		saturation: 0.78125,
+		lightness: 1.01563
+	}
+}</code></pre></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T12:38:38+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Ah, yes. Cliff even specifically pointed that out to me in our conversations. I’ll update it again. Thanks, smiley!</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T12:40:15+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>It’s not that the API’s saturation/lightness shift values are &gt; 1, most of the time that’s okay because the calculated S/L that they get applied to are small enough that the result is still &lt; 1.  Also, I only see this problem on S, never on L (i.e. L * lightness is always &lt; 1).</p>
+<p>Color 592 “Cherry” has “saturation”=1.17188, however, the cloth and leather materials are okay; only on metal does this output an S &gt; 1.</p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T12:45:10+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 12:35PM"><a href="/forum/community/api/How-To-Colors-API/2145822">smiley.1438:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 03 2013 11:50AM"><a href="/forum/community/api/How-To-Colors-API/2145642">Killer Rhino.6794:</a></cite></div><div class="quotey"><p>I had it wrong when I said S &amp; L are between 0 – 1 (saturation is; lightness is not).</p></div></blockquote>
+<p>Actually, they seem both to be between 0 and 2 (or at least &gt;1) :</p>
+<pre><code>7: {
+	name: "Ocean",
+	cloth: {
+		brightness: -21,
+		contrast: 1,
+		hue: 188,
+		saturation: 1.32813, &amp;lt;--
+		lightness: 0.976563
+	},
+	leather: {
+		brightness: -18,
+		contrast: 1,
+		hue: 188,
+		saturation: 1.13281, &amp;lt;--
+		lightness: 1.05469
+	},
+	metal: {
+		brightness: -18,
+		contrast: 1,
+		hue: 188,
+		saturation: 0.78125,
+		lightness: 1.01563
+	}
+}</code></pre></div></blockquote>
+<p>Just to make that clear, they’re not raw values you take but factors you multiply the current values with.</p>
+<p>How much bigger than 1 is the product? If it’s not much I’d just cut it off.</p></p>
+
+<h2 id="">Think.8042:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T12:51:59+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>I’ve seen this happening up to a resulting RGB value of 111,-32,-8 on #122 (Ruby, metal).<br>
+Changing it up to 111,0,0 doesn’t completely kill the color, but it’s still something to consider.</p>
+<p>You might also want to take a look at colors #144, 145, 146, they have these negative values on all materials.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T12:53:09+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Saturation &amp; Lightness values are ranged between 0 – 2. A value of 1 means “no change”.</p>
+<p>So sorry for the confusion, but the feedback is super helpful.</p>
+<p><em>Edit: I’ve updated the guide to be clearer.</em></p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T12:55:19+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Doh, sorry, I’ve tracked my issue backwards now – it’s when I apply the contrast transform, and it gives me negative values for G and B.</p>
+<p>Color 482 “Midnight Fire” for material “cloth” has “brightness”=-38;“contrast”=1.  Applying that to the base 128,26,26 produces 90,-12,-12.  I’m obviously missing something here, but I’m not sure what it is.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T13:27:42+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Dr Ishmael, Let’s take a look at an example:</p>
+<pre><code>
+name: "Midnight Fire"
+    cloth: {
+        brightness: -38
+        contrast: 1
+        hue: 25
+        saturation: 0.273438
+        lightness: 1.01563
+    }
+</code></pre>
+<p>We start with our baseColor: (R:128, G:26, B:26).</p>
+<p>Dealing with just “cloth”, for now, apply the brightness:<br>
+(128-38, 26-38, 26-38) = (90, -12, -12).</p>
+<p>Now apply the contrast:<br>
+(90 – 128) * 1 + 128 = 90<br>
+(-12 – 128) * 1 + 128 = -12<br>
+(-12 – 128) * 1 + 128 = -12</p>
+<p>Now convert RGB to HSL <br>
+<em>(Not shown: I will normalize the RGB values between 0 – 1. Also, the conversion function I use will output HSL normalized values between 0 – 1)</em><br>
+R:90 -&gt; H:1 (or 360 deg, if you so prefer)<br>
+G:-12 -&gt; S:1 (or 100%, if you so prefer)<br>
+B:-12 -&gt; L:0.176471 (or 17.6471%, if you so prefer)</p>
+<p>Apply the HSL shifts from the response with the “RGB converted-to- HSL” values:<br>
+Hue = 1 * (25 / 360)<br>
+Saturation = 1 * 0.273438<br>
+Lightness = 0.176471 * 1.01563</p>
+<p>So at this point the HSL values I have are:<br>
+hsl_Hue	0.0694444<br>
+hsl_Sat	0.273438<br>
+hsl_Light	0.179229</p>
+<p>Finally converting back to RGB should produce:<br>
+R:0.228237 <br>
+G:0.171061 <br>
+B:0.130221</p></p>
+
+<h2 id="">Think.8042:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T13:42:03+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>What are you normalizing? The RGB input? The calculation results? And how are you doing the normalization considering the fact that RGB is only defined on positive values.</p>
+<p>Converting RGB 90, -12, -12 results in HSL 1 / 1.30 / 0.15 (rounded) for me.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T13:50:18+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 01:42PM"><a href="/forum/community/api/How-To-Colors-API/2146138">Think.8042:</a></cite></div><div class="quotey"><p>What are you normalizing? The RGB input? The calculation results? And how are you doing the normalization considering the fact that RGB is only defined on positive values.</p>
+<p>Converting RGB 90, -12, -12 results in HSL 1 / 1.30 / 0.15 (rounded) for me.</p></div></blockquote>
+<p>Look here: <a href="http://www.workwithcolor.com/color-converter-01.htm">http://www.workwithcolor.com/color-converter-01.htm</a></p>
+<p>Notice that<br>
+R:90 <br>
+G:0 <br>
+B:0<br>
+(as you pointed out, -12 clamps to 0 in RGB)</p>
+<p>converts to</p>
+<p>H:360 deg (0 deg &amp; 360 deg are the same)<br>
+S:100%<br>
+L:18%</p>
+<p>If we normalize the HSL values to be within 0 – 1:</p>
+<p>H: 1 (from 360 deg / 360 deg)<br>
+S: 1 (from 100% / 100%)<br>
+L: 0.18 (from 18%)</p>
+<p>Now look at the values in my example:</p>
+<p><em>Now convert RGB to HSL (The library I use normalizes the values between 0 – 1)<br>
+R:90 -&gt; H:1 (or 360 deg, if you so prefer)<br>
+G:-12 -&gt; S:1 (or 100%, if you so prefer)<br>
+B:-12 -&gt; L:0.176471</em></p>
+<p>They’re pretty close. Did that answer your question?</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T13:57:53+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Rhino, basically what you’re saying is that I should “correct” any negative RGB value to 0 before converting to HSL?  Just want clear confirmation of this before I go put it in my code.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T14:00:54+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 01:57PM"><a href="/forum/community/api/How-To-Colors-API/2146209">Dr Ishmael.9685:</a></cite></div><div class="quotey"><p>Rhino, basically what you’re saying is that I should “correct” any negative RGB value to 0 before converting to HSL?  Just want clear confirmation of this before I go put it in my code.</p></div></blockquote>
+<p>Yes, you should clamp RGB values to the range of 0 – 255. What language are you writing in, btw?</p></p>
+
+<h2 id="">zwei.9073:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T14:05:50+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 11:53AM"><a href="/forum/community/api/How-To-Colors-API/2145653">Killer Rhino.6794:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 03 2013 11:40AM"><a href="/forum/community/api/How-To-Colors-API/2145606">zwei.9073:</a></cite></div><div class="quotey"><p>Thanks!</p>
+<p>I used it to create simple color sheer, here is code:</p>
+<p><a href="https://code.google.com/p/gw2api/source/browse/trunk/src/cz/zweistein/gw2/app/color/ColorSheet.java">https://code.google.com/p/gw2api/source/browse/trunk/src/cz/zweistein/gw2/app/color/ColorSheet.java</a></p>
+<p>And here is result:</p>
+<p><a href="https://gw2api.googlecode.com/svn/trunk/colorsheet.html">https://gw2api.googlecode.com/svn/trunk/colorsheet.html</a></p>
+<p>(you might want to save it as html file on local drive and then open in broswer)</p></div></blockquote>
+<p>Zwei, in your color shift code, try changing:</p>
+<p>hsl<sup class="footnote"><a href="#fn0">0</a></sup> = (float) (hsl<sup class="footnote"><a href="#fn0">0</a></sup> * 360 + color.getHue()) / 360;</p>
+<p>to:</p>
+<p>hsl<sup class="footnote"><a href="#fn0">0</a></sup> = (float) (color.getHue() / 360);</p>
+<p>I took a screenshot of your output and mine. Notice the “Celestial” and “Starry Night”, in particular. The colors on the right should be what to expect.</p></div></blockquote>
+<p>Fixed, thanks :-)</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T14:26:25+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>I’m writing in Perl.  My module is <a href="https://github.com/dr-ishmael/GW2API.pm/blob/master/lib/GW2API.pm">on GitHub</a>.</p>
+<p>Hmm… Correcting up to 0 solves Midnight Fire, but I’m <em>still</em> getting problems with S * saturation &gt; 1.  Let’s go back to color 592 Cherry on metal that I mentioned before.</p>
+<pre><code>name: "Cherry"
+    metal: {
+        brightness: -5
+        contrast: 1.13281
+        hue: 356
+        saturation: 1.17188
+        lightness: 1.05469
+    }</code></pre>
+<p>Base color: (R:128, G:26, B:26)</p>
+<p>Apply brightness: (R:123, G:21, B:21)</p>
+<p>Apply contrast: (R:122.33595, G:6.78933, B:6.78933) &lt;— completely sane, no negative values</p>
+<p>Convert to HSL: (H:0, S:0.89484, L:0.25319) &lt;— matches the workwithcolor.com converter</p>
+<p>Apply HSL transform: (H:0.98889, S:1.04865, L:0.26703) &lt;— S &gt; 1 ???</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T14:31:20+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>I’m still unsure if these are right, but: <a href="https://chillerlan.net/gw2color.php">https://chillerlan.net/gw2color.php</a></p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T14:36:51+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 02:31PM"><a href="/forum/community/api/How-To-Colors-API/2146390">smiley.1438:</a></cite></div><div class="quotey"><p>I’m still unsure if these are right, but: <a href="https://chillerlan.net/gw2color.php">https://chillerlan.net/gw2color.php</a></p></div></blockquote>
+<p><strong>Nailed it!</strong></p>
+<p><em>Edit: added the link to the How-To guide for reference</em></p></p>
+
+<h2 id="">Think.8042:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T14:39:17+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 02:36PM"><a href="/forum/community/api/How-To-Colors-API/2146430">Killer Rhino.6794:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 03 2013 02:31PM"><a href="/forum/community/api/How-To-Colors-API/2146390">smiley.1438:</a></cite></div><div class="quotey"><p>I’m still unsure if these are right, but: <a href="https://chillerlan.net/gw2color.php">https://chillerlan.net/gw2color.php</a></p></div></blockquote>
+<p><strong>Nailed it!</strong></p></div></blockquote>
+<p>Really? Hot Purple, #526<br>
+→ rgb(308,-11,308)</p>
+<p>Same problem as Ish mentioned above, even with clamping, the HSL shift will create values outside of HSL, and subsequently RGB.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T14:44:21+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 02:39PM"><a href="/forum/community/api/How-To-Colors-API/2146443">Think.8042:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 03 2013 02:36PM"><a href="/forum/community/api/How-To-Colors-API/2146430">Killer Rhino.6794:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 03 2013 02:31PM"><a href="/forum/community/api/How-To-Colors-API/2146390">smiley.1438:</a></cite></div><div class="quotey"><p>I’m still unsure if these are right, but: <a href="https://chillerlan.net/gw2color.php">https://chillerlan.net/gw2color.php</a></p></div></blockquote>
+<p><strong>Nailed it!</strong></p></div></blockquote>
+<p>Really? Hot Purple, #526<br>
+-&gt; rgb(308,-11,308)</p>
+<p>Same problem as Ish mentioned above, even with clamping, the HSL shift will create values outside of HSL, and subsequently RGB.</p></div></blockquote>
+<p>Have you tried carrying this through the whole algorithm? What do you get?</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T14:44:24+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 02:36PM"><a href="/forum/community/api/How-To-Colors-API/2146430">Killer Rhino.6794:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 03 2013 02:31PM"><a href="/forum/community/api/How-To-Colors-API/2146390">smiley.1438:</a></cite></div><div class="quotey"><p>I’m still unsure if these are right, but: <a href="https://chillerlan.net/gw2color.php">https://chillerlan.net/gw2color.php</a></p></div></blockquote>
+<p><strong>Nailed it!</strong></p>
+<p><em>Edit: added the link to the How-To guide for reference</em></p></div></blockquote>
+<p>I’ve updated my gist to reflect the changes: <a href="https://gist.github.com/codemasher/fb407de5587fdbd3e7c5">https://gist.github.com/codemasher/fb407de5587fdbd3e7c5</a></p>
+<p>€: i’ve forgot to “correct” the final RGB values earlier.</p></p>
+
+<h2 id="">Think.8042:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T14:48:44+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>I get the same colors that are already visible, because Opera will silently clamp negative or excessive RGB values to [0..255], but is this really the way to go?</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T14:52:15+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 02:48PM"><a href="/forum/community/api/How-To-Colors-API/2146503">Think.8042:</a></cite></div><div class="quotey"><p>I get the same colors that are already visible, because Opera will silently clamp negative or excessive RGB values to [0..255], but is this really the way to go?</p></div></blockquote>
+<p>Sure. The easiest way to know if you’re doing it right: Does #947 White result in R:255 G:255 B:255?</p></p>
+
+<h2 id="">Think.8042:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T14:57:38+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Yeah, it does. The colors look like they’re calculated correctly, but I was wondering if clamping to the RGB space is really the way this is intended to be done.<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T15:05:22+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>947 White actually gives L &gt; 1.  I’m not sure how I didn’t notice this before.</p>
+<pre><code>name: "White"
+    default: {
+        brightness: 52
+        contrast: 1.85938
+        hue: 185
+        saturation: 0
+        lightness: 1.99219
+    }</code></pre>
+<p>Base color: (R:128, G:26, B:26)</p>
+<p>Apply brightness: (R:180, G:78, B:78)</p>
+<p>Apply contrast: (R:224.68776, G:35.031, B:35.031) &lt;— completely sane, no negative values</p>
+<p>Convert to HSL: (H:0, S:0.75777, L:0.50925) &lt;— matches the workwithcolor.com converter</p>
+<p>Apply HSL transform: (H:0, S:0.51389, L:1.01453) &lt;— L &gt; 1 ???</p></p>
+
+<h2 id="">Think.8042:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T15:07:01+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>I posted that earlier <a href="/forum-backup/How-To-Colors-API">up there</a> but the solution should work the same. At least for me it does.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T15:14:27+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>It still seems weird to me to “clamp” results to a given range “just because”, but I have very little experience with colorspace transforms like this.</p>
+<p>So it’s perfectly alright to correct the result of a transformation (like applying contrast to RGB or a saturation-shift to HSL) if said result is outside the allowed range?  If G &lt; 0, just kick it up to 0?  If S &gt; 1, just smack it back down to 1?</p></p>
+
+<h2 id="">Think.8042:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T15:20:18+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>This is exactly my concern, too ^^</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T15:22:27+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 03:14PM"><a href="/forum/community/api/How-To-Colors-API/2146666">Dr Ishmael.9685:</a></cite></div><div class="quotey"><p>It still seems weird to me to “clamp” results to a given range “just because”, but I have very little experience with colorspace transforms like this.</p>
+<p>So it’s perfectly alright to correct the result of a transformation (like applying contrast to RGB or a saturation-shift to HSL) if said result is outside the allowed range?  If G &lt; 0, just kick it up to 0?  If S &gt; 1, just smack it back down to 1?</p></div></blockquote>
+<p>Assuming “0.0 is 0” &amp; “1.0 is 255”, an excerpt from Apple’s official iOS color documentation reads:</p>
+<p><em><strong>Discussion</strong><br>
+Values below 0.0 are interpreted as 0.0, and values above 1.0 are interpreted as 1.0.</em></p>
+<p>This is a restriction for any color library. There’s no way to represent an RGB color outside the range of 0 to 255. It’s not that strange.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T15:26:23+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Yep, that’s probably it. Colors only have a defined range. in RGB you simply cannot go beyond 255 and below zero. So any values above or below the max/min part should be interpreted as their respective max/min values.</p>
+<p>I think that the values above or below the normed values come from mathematical conversion. WE don’t know if ANet uses the same way to storage the color values in the game as they give us via the api.</p></p>
+
+<h2 id="">BruderTack.8429:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T16:04:01+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>I build a php script to get all colors, but I’m not sure if I did everything right.<br>
+Maybe we can compare some RGB values (cloth)?</p>
+<p>#2: 70, 69, 71<br>
+#129: 95, 115, 48<br>
+#443: 187, 186, 185<br>
+#629: 95, 10, 15<br>
+#1154: 252, 161, 15</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T16:09:35+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>I’ve already posted an example, have a look over here: <a href="https://chillerlan.net/gw2color.php">https://chillerlan.net/gw2color.php</a><br>
+(i’ve added title-attributes, so that you can see the RGB values when you hover over a color)</p></p>
+
+<h2 id="">BruderTack.8429:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T16:11:33+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Ah yes, I saw the link in OPs post too late. I compared the values and they are identical, fine.<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T16:36:05+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>I stumbled across those CSS3 filters:</p>
+<pre><code>	-webkit-filter: brightness(1.5) contrast(1.5) hue-rotate(180deg) saturate(2);</code></pre>
+<p>Now if only there was a lightness filter :P</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T17:38:06+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Okay, final question (I think).  Looking at Smiley’s Gist code (post #2 in this thread), he’s not correcting the S/L values before converting HSL back to RGB, and instead just correcting the final RGB values.  If I follow that method, I can produce an exact match of his HTML page.</p>
+<p>However, that doesn’t make sense.  If S &gt; 1 is outside the HSL colorspace, wouldn’t that result in an invalid conversion back to RGB?  Shouldn’t we be correcting S and L to 1 before the final RGB conversion?</p>
+<p>Example: color 1220 Shamrock (default).  Smiley’s result is (0, 255, 0), but if I correct S/L first, I get (0, 220, 37).</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T17:44:02+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>*Notice: i don’t claim that these results are correct, they only match Killer Rhino’s results. I’m still waiting for Cliff to clear things up and tell us if we’re on the right track.<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T19:01:31+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Yeah, some official confirmation would be nice at this point.<img src="/include/images/smilies/smile.png"></p>
+<p>From the looks of Rhino’s code, and the <a href="/forum-backup/How-To-Colors-API">documentation he quoted</a>, it looks like iOS handles all of these corrections internally and silently.  I’m going to go with correcting S/L before the final RGB conversion.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T19:07:27+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 07:01PM"><a href="/forum/community/api/How-To-Colors-API/2148109">Dr Ishmael.9685:</a></cite></div><div class="quotey"><p>Yeah, some official confirmation would be nice at this point.<img src="/include/images/smilies/smile.png"></p>
+<p>From the looks of Rhino’s code, and the <a href="/forum-backup/How-To-Colors-API">documentation he quoted</a>, it looks like iOS handles all of these corrections internally and silently.  I’m going to go with correcting S/L before the final RGB conversion.</p></div></blockquote>
+<p>Not just iOS, the color functions are defined universally. I would check some source material out on the net if you need more affirmative confirmation. Regardless, you shouldn’t need to change any of the values returned by the APis</p>
+<p><em>Edit: take a look again at the detailed example I posted a few responses up.</em></p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T20:55:53+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>The colors you were seeing invalid saturation values for were colors that had a different base_rgb than 128,26,26 (skin, hair, eye, etc. colors).</p>
+<p>I just updated the API to show the base_rgb of colors. I also removed the non-dye colors to make it more uniform and reduce confusion (multiple “black” dyes, etc.).</p>
+<p>I also created a javascript version of our internal color shifting algorithm here: <a href="http://jsfiddle.net/cliff/jQ8ga/">http://jsfiddle.net/cliff/jQ8ga/</a> . This example code uses the sylvester javascript matrix library for math.</p>
+<p>The way it works is pretty different than the processes previously described — it calculates a transformation matrix which is then applied to the color in one pass.</p>
+<p>I also added pre-calculated RGB values to the color API for those who don’t need to deal with HSL transformations and just want an RGB value. It can also be used to test your color shifting algorithm against ours for correctness.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T22:25:37+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 08:55PM"><a href="/forum/community/api/How-To-Colors-API/2148826">Cliff Spradlin.3512:</a></cite></div><div class="quotey"><p>The colors you were seeing invalid saturation values for were colors that had a different base_rgb than 128,26,26 (skin, hair, eye, etc. colors).</p>
+<p>I just updated the API to show the base_rgb of colors. I also removed the non-dye colors to make it more uniform and reduce confusion (multiple “black” dyes, etc.).</p>
+<p>I also created a javascript version of our internal color shifting algorithm here: <a href="http://jsfiddle.net/cliff/jQ8ga/">http://jsfiddle.net/cliff/jQ8ga/</a> . This example code uses the sylvester javascript matrix library for math.</p>
+<p>The way it works is pretty different than the processes previously described — it calculates a transformation matrix which is then applied to the color in one pass.</p>
+<p>I also added pre-calculated RGB values to the color API for those who don’t need to deal with HSL transformations and just want an RGB value. It can also be used to test your color shifting algorithm against ours for correctness.</p></div></blockquote>
+<p>Thanks, Cliff. I updated my library with the new response fields and pushed them up. I’ll update the How-To.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T01:30:27+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 08:55PM"><a href="/forum/community/api/How-To-Colors-API/2148826">Cliff Spradlin.3512:</a></cite></div><div class="quotey"><p>I also created a javascript version of our internal color shifting algorithm here: <a href="http://jsfiddle.net/cliff/jQ8ga/">http://jsfiddle.net/cliff/jQ8ga/</a> . This example code uses the sylvester javascript matrix library for math.</p>
+<p>The way it works is pretty different than the processes previously described — it calculates a transformation matrix which is then applied to the color in one pass.</p></div></blockquote>
+<p>I was able to convert this to Perl easily.  The great thing is that Perl has “native” support for matrices, i.e. just create an array of arrays.  Coupled with a subroutine for matrix multiplication from my Perl books, and I’m able to reproduce all of the pre-calculated RGB values.  Thanks, Cliff!</p></p>
+
+<h2 id="">Goddchen.4958:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T10:57:48+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<p>precalculated RGB values: thanks you so much Cliff<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">zwei.9073:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T11:28:11+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 04 2013 10:57AM"><a href="/forum/community/api/How-To-Colors-API/2152048">Goddchen.4958:</a></cite></div><div class="quotey"><p>precalculated RGB values: thanks you so much Cliff<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>I definitelly seccond this thanks!</p></p>
+
+<h2 id="">Think.8042:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T12:46:14+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<p>Yep, converting this new algorithm to PHP was not too hard, also using arrays for vectors and some algebra functions. Thanks for the precalculated values, too.</p>
+<p>=)</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T14:24:31+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 04 2013 12:46PM"><a href="/forum/community/api/How-To-Colors-API/2152403">Think.8042:</a></cite></div><div class="quotey"><p>Yep, converting this new algorithm to PHP was not too hard, also using arrays for vectors and some algebra functions. Thanks for the precalculated values, too.</p>
+<p>=)</p></div></blockquote>
+<p>Mind to share? I’m still getting incorrect values with this:<br>
+<a href="https://gist.github.com/codemasher/b869faa7603e1934c28d">https://gist.github.com/codemasher/b869faa7603e1934c28d</a></p>
+<p>(my brain melts &gt;.&lt;)</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T15:06:14+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<p>Smiley, I think you just need to change your bgrVector (line 82) from a single-row matrix to a single-column matrix.  Then swap the order in the matrix multiplication, so it matches Cliff’s order.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T15:39:24+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<p>Ah, thanks Dr Ishmael, that helped!<img src="/include/images/smilies/smile.png"></p>
+<p>Updated and cleaned up that gist, you may take it as php example then:<br>
+<a href="https://gist.github.com/codemasher/b869faa7603e1934c28d">https://gist.github.com/codemasher/b869faa7603e1934c28d</a></p>
+<p>Also updated my color list: <a href="https://chillerlan.net/gw2color.php">https://chillerlan.net/gw2color.php</a></p>
+<p>Anyway, theres still <a href="https://gist.github.com/codemasher/fb407de5587fdbd3e7c5">the other conversion approach</a> - i’d still like to know where the flaw is in there…</p></p>
+
+<h2 id="">Think.8042:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T16:48:53+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<p>Sorry, I somehow thought I posted the Gist link here. Since it’s already done now and looks pretty much exactly like mine, I won’t bother posting an identical copy, so people can focus a little more on what’s working.</p></p>
+
+<h2 id="">Primal Zed.9714:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-06T15:28:03+00:00">
+        06 Jun 2013
+    </time>
+</p>
+<p>
+<p>What about the difference between highlight, base, and shadow of each dye?  The Flame &amp; Frost dyes obviously have a greater difference in these values than most dyes do.  How is this determined?</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

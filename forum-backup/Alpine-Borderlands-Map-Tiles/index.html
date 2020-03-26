@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Alpine Borderlands Map Tiles</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Alpine-Borderlands-Map-Tiles/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Alpine Borderlands Map Tiles</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Alpine-Borderlands-Map-Tiles
+</p>
+
+
+
+<h2 id="">Drant.5902:</h2>
+<p class="post-meta">
+    <time datetime="2016-05-04T06:25:53+00:00">
+        04 May 2016
+    </time>
+</p>
+<p>
+<p>Map <a href="http://wiki.guildwars2.com/wiki/API:Tile_service">tiles</a> are used to create a web version of the game’s map. The <a href="http://wiki.guildwars2.com/wiki/API:2/continents">continents</a> endpoint has an array of “floors” numbers which can change the tile images URL, allowing the whole web map to change its map layer, such as for showing different elevations (Verdant Brink canopy) or minimaps (closeup of PvP maps).</p>
+<p>Floor 1 is used to display the majority of the maps and borderlands in the Mists continent, including PvP maps and WvW borderlands. With HoT’s release, this floor which used to have Alpine Borderlands was replaced with Desert Borderlands tiles.</p>
+<p>Since the borderlands will now be on a rotation, I request that we have Alpine and Desert borderlands on separate floors, instead of being replaced. So create a duplicate of Floor 1 (let’s say Floor 2), but with the non-EBG borderlands having Alpine BL.</p>
+<p>This is the URL scheme to get the Floor 1 (which has Desert Borderlands) tiles for web maps:<br>
+<a href="https://tiles.guildwars2.com/2/1/{z}/{x}/{y}.jpg">https://tiles.guildwars2.com/2/1/{z}/{x}/{y}.jpg</a><br>
+Note the “2” in “/2/1/{z}/{x}/{y}.jpg” is the Mists continent number, and “1” is the floor number. Since “Floor 2” is not in the floors array, I assume it is unused, so…</p>
+<p>I request that<br>
+<a href="https://tiles.guildwars2.com/2/2/{z}/{x}/{y}.jpg">https://tiles.guildwars2.com/2/2/{z}/{x}/{y}.jpg</a><br>
+be a duplicate of Floor 1 but with Alpine Borderlands instead.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-05-04T17:20:13+00:00">
+        04 May 2016
+    </time>
+</p>
+<p>
+<p>In the short term, I’m uploading the regenerated tiles right now. Should have the Alpine BL tiles up by the end of the day.</p>
+<p>In the middle term, your proposal sounds reasonable if a bit of a hack. I’ll look into setting it up sometime this week. I opened up a <a href="https://github.com/arenanet/api-cdi/issues/304">tracking issue on Github</a> for this.</p></p>
+
+<h2 id="">Drant.5902:</h2>
+<p class="post-meta">
+    <time datetime="2016-05-04T17:38:02+00:00">
+        04 May 2016
+    </time>
+</p>
+<p>
+<p>Thank you for regenerating the tiles. It will be great for live maps and overlay users.</p>
+<p>In case we do get map rotations often, it would be nice if there is a variable in the wvw/matches endpoint that tells whether we’re having Desert or Alpine currently. Right now the way to determine that is to read the objectives array (which contains respective objectives).</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-05-04T21:45:43+00:00">
+        04 May 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 04 2016 05:38PM"><a href="/forum/community/api/Alpine-Borderlands-Map-Tiles/6137510">Drant.5902:</a></cite></div><div class="quotey"><p>In case we do get map rotations often, it would be nice if there is a variable in the wvw/matches endpoint that tells whether we’re having Desert or Alpine currently. Right now the way to determine that is to read the objectives array (which contains respective objectives).</p></div></blockquote>
+<p>In /v2/wvw/matches, each map object in the .maps array has a id — which somewhat ambiguously is the map_id — that you can inspect or resolve against <a href="https://api.guildwars2.com/v2/maps?ids=38,94,95,96">/v2/maps</a> to get the metadata and localized strings.</p>
+<p>EDIT: also the new map tiles are up.</p></p>
+
+<h2 id="">Drant.5902:</h2>
+<p class="post-meta">
+    <time datetime="2016-05-04T23:12:16+00:00">
+        04 May 2016
+    </time>
+</p>
+<p>
+<p>I see from the new map tiles that the Alpine BL is not at its old spot (overlapping Desert BL), but it was moved to the top left corner. This is great since we only have to use one floor to display both borderland types.</p>
+<p>Maybe it’s because the API hasn’t been completely rolled out, but I’m encountering some issues as seen from this map (Continent 2 Floor 1):<br>
+<a href="http://gw2timer.com/wvw">http://gw2timer.com/wvw</a></p>
+<p>- The Alpine BLs on the northwest portion (top left quadrant) of the Mists map has tiles visible, but the rest is blank. The Desert BLs cannot be seen at their old spot in the bottom right quadrant. It doesn’t seem like the Mists map had changed dimension, so maybe the tiles on other quadrants aren’t updated yet?</p>
+<p>- The /v2/wvw/objectives endpoint I use to get objectives’ coordinates are still positioned at the old bottom right quadrant. Will this be updated to reflect the displacement of Alpine objectives, or should I translate the coordinates manually? Also, EBG from /v2/maps is duplicated to this quadrant, but it has only one set of coordinates (for bottom right quadrant).</p>
+<p>- Finally, this is just a minor issue, but if it could be easily fixed I want to point out that the “Ruins” in the /v2/wvw/objectives endpoint currently has their names as “Demontrance Lake”, which is the sector it’s in, and not their proper name like  “Bauer’s Estate”.</p>
+<p>…</p>
+<p>Edit: It turns out the incorrect objectives placement in my map was because the Mists continent now has 8 zoom levels instead of 7. So /v2/wvw/objectives has correct coordinates.<br>
+But back to the tiles themselves, it’s unfortunate that the new tiles is cropped shortly below the borderlands. Right now it is showing an abrupt blank background below EBG, which previously had terrain.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-05-05T22:45:00+00:00">
+        05 May 2016
+    </time>
+</p>
+<p>
+<p>I spent some time today making my “make sure we don’t leak things while updating the tile data this time” test app presentable and pushed it <a href="https://github.com/arenanet/api-cdi/blob/master/leaflet-example.html">to the api-cdi repo</a>. On the WvW maps it renders the objective markers from the API data and such.</p>
+<p>The ruin names have been bugged for awhile (<a href="https://github.com/arenanet/api-cdi/issues/102">tracking issue</a>); with Alpine BL back I need to root around and see where those map labels are coming from. For all of the other objectives, the labels are from the sectors that the objective is in (and the objectives have no name associated with them).</p>
+<p>The tile cropping is just an artifact of how the tiles are generated — basically with a program that just takes screenshots of the world map UI element. I think the Alpine BL was adjusted to have different bounds which causes there to be no parchment beneath EB. It’s a bit unfortunate, but a bit intractable.</p></p>
+
+<h2 id="">Drant.5902:</h2>
+<p class="post-meta">
+    <time datetime="2016-05-05T23:07:55+00:00">
+        05 May 2016
+    </time>
+</p>
+<p>
+<p>If I zoom all the way out on my map, I can see the original unitary map, with the new Alpine BLs on the top left and the 2012 Alpine lake BLs at bottom right. But since the top left quadrant is all we’re allowed to see right now, then I guess I’ll have to make do.</p>
+<p>Thanks for all your work and support of the community developers.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

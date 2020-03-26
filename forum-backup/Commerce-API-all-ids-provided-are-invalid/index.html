@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Commerce API: &quot;all ids provided are invalid&quot;</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Commerce-API-all-ids-provided-are-invalid/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Commerce API: &quot;all ids provided are invalid&quot;</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Commerce-API-all-ids-provided-are-invalid
+</p>
+
+
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-27T12:58:23+00:00">
+        27 Oct 2014
+    </time>
+</p>
+<p>
+<p>Looks like some valid item ids are flagged as invalid?</p>
+<p><a href="https://api.guildwars2.com/v2/commerce/prices?ids=18753">https://api.guildwars2.com/v2/commerce/prices?ids=18753</a></p>
+<p>returns http status of 400 with:</p>
+<p>{"text":“all ids provided are invalid”}</p>
+<p>This is a valid item id:</p>
+<p><a href="https://api.guildwars2.com/v2/items?id=18753">https://api.guildwars2.com/v2/items?id=18753</a></p>
+<p>If they are just not being sold on the TP, shouldn’t it be returning 404 instead?  Same with these ids around the same range:</p>
+<p><a href="https://api.guildwars2.com/v2/commerce/prices?ids=18117,18118,18119,18120,18121,18122,18123,18125,18126,18127,18128,18129,18130,18131,18132,18133,18134,18135,18136,18137,18138,18139,18140,18141,18142,18143,18144,18145,18146,18147,18148,18149,18150,18151,18152,18153,18154,18155,18156,18157,18158,18159,18160,18161,18162,18163,18164,18165,18166,18167,18428,18429,18430,18431,18432,18433,18434,18435,18436,18437,18438,18439,18440,18441,18442,18443,18444,18445,18446,18447,18448,18449,18450,18451,18452,18453,18454,18455,18456,18457,18458,18459,18460,18461,18462,18463,18576,18577,18578,18579,18580,18581,18582,18583,18584,18585,18586,18587,18588,18589,18590,18591,18592,18593,18594,18595,18596,18597,18598,18599,18600,18601,18602,18603,18604,18605,18606,18607,18608,18609,18610,18611,18724,18725,18726,18727,18728,18729,18730,18731,18732,18733,18734,18735,18736,18737,18739,18740,18742,18743,18744,18745,18746,18748,18749,18750,18751,18752,18753,18754,18755">https://api.guildwars2.com/v2/commerce/prices?ids=18117,18118,18119,18120,18121,18122,18123,18125,18126,18127,18128,18129,18130,18131,18132,18133,18134,18135,18136,18137,18138,18139,18140,18141,18142,18143,18144,18145,18146,18147,18148,18149,18150,18151,18152,18153,18154,18155,18156,18157,18158,18159,18160,18161,18162,18163,18164,18165,18166,18167,18428,18429,18430,18431,18432,18433,18434,18435,18436,18437,18438,18439,18440,18441,18442,18443,18444,18445,18446,18447,18448,18449,18450,18451,18452,18453,18454,18455,18456,18457,18458,18459,18460,18461,18462,18463,18576,18577,18578,18579,18580,18581,18582,18583,18584,18585,18586,18587,18588,18589,18590,18591,18592,18593,18594,18595,18596,18597,18598,18599,18600,18601,18602,18603,18604,18605,18606,18607,18608,18609,18610,18611,18724,18725,18726,18727,18728,18729,18730,18731,18732,18733,18734,18735,18736,18737,18739,18740,18742,18743,18744,18745,18746,18748,18749,18750,18751,18752,18753,18754,18755</a></p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-27T13:27:50+00:00">
+        27 Oct 2014
+    </time>
+</p>
+<p>
+<p>Items that have the “AccountBound” flag can never appear on the trading post, so 404 would be less accurate than 400.</p></p>
+
+<h2 id="">AysonCurrax.3254:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-27T17:29:24+00:00">
+        27 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 27 2014 01:27PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4518574">StevenL.3761:</a></cite></div><div class="quotey"><p>Items that have the “AccountBound” flag can never appear on the trading post, so 404 would be less accurate than 400.</p></div></blockquote>
+<p>Also, its Dungeon Armor :P</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-27T18:56:55+00:00">
+        27 Oct 2014
+    </time>
+</p>
+<p>
+<p>Another thought: the ids returned by /v2/commerce are not item ids, but listing ids that also happen to be item ids. A valid listing id is always a valid item id, but not the other way around.</p></p>
+
+<h2 id="">AysonCurrax.3254:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-28T07:32:19+00:00">
+        28 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 27 2014 06:56PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4519275">StevenL.3761:</a></cite></div><div class="quotey"><p>Another thought: the ids returned by /v2/commerce are not item ids, but listing ids that also happen to be item ids. A valid listing id is always a valid item id, but not the other way around.</p></div></blockquote>
+<p>also, only items with sell listings can actually be obtained ingame. I would ignore those who only have buy listings.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-28T15:01:18+00:00">
+        28 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 27 2014 01:27PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4518574">StevenL.3761:</a></cite></div><div class="quotey"><p>Items that have the “AccountBound” flag can never appear on the trading post, so 404 would be less accurate than 400.</p></div></blockquote>
+<blockquote><div class="citey"><cite title="Posted on October 27 2014 05:29PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4519068">AysonCurrax.3254:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on October 27 2014 01:27PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4518574">StevenL.3761:</a></cite></div><div class="quotey"><p>Items that have the “AccountBound” flag can never appear on the trading post, so 404 would be less accurate than 400.</p></div></blockquote>
+<p>Also, its Dungeon Armor :P</p></div></blockquote>
+<p>Then they are “not found” on the trading post and thus should be 404.  The item ids are valid, just not traded.</p>
+<p>10823567815618, “hello” or even the string “^IFuihrqwudo3”, however, would not be a valid item id and I correctly get 400 back.  I just don’t consider 18753 to be of the same category.  But since they both return 400, my code has to handle them the same way regardless of whether they are not traded or truly invalid.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-28T15:46:43+00:00">
+        28 Oct 2014
+    </time>
+</p>
+<p>
+<p>HTTP 404 doesn’t exclude the possibility of the item being listed at a later time. Why are you including /v2/item IDs in your request for /v2/commerce endpoints?</p>
+<p>There are only two categories:</p>
+<ul>
+	<li>valid: ids returned by the /v2/commerce/prices endpoint</li>
+	<li>invalid: everything else</li>
+</ul></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-28T15:52:49+00:00">
+        28 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 28 2014 03:46PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4521307">StevenL.3761:</a></cite></div><div class="quotey"><p>HTTP 404 doesn’t exclude the possibility of the item being listed at a later time. Why are you including /v2/item IDs in your request for /v2/commerce endpoints?</p></div></blockquote>
+<p>404 just means that the item is “not found” in the database, in this case the commerce or TP database.</p>
+<p>If you don’t include /v2/item IDs then how would your app know the names of the items and their stats just from the /v2/commerce endpoints?</p>
+<p>Also, how would you search for the prices of all the armor, for example?</p>
+<blockquote><div class="citey"><cite title="Posted on October 28 2014 03:46PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4521307">StevenL.3761:</a></cite></div><div class="quotey"><p>HTTP 404 doesn’t exclude the possibility of the item being listed at a later time. Why are you including /v2/item IDs in your request for /v2/commerce endpoints?</p>
+<p>There are only two categories:</p>
+<ul>
+	<li>valid: ids returned by the /v2/commerce/prices endpoint</li>
+	<li>invalid: everything else</li>
+</ul></div></blockquote>
+<p>With that definition, then /v2/items is returning some invalid item ids as these items are not traded and not returned by /v2/commerce.</p>
+<p>However, with 404, I am saying these item ids are valid because they are returned by /v2/items but they just “not found” in /v2/commerce.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-28T16:08:22+00:00">
+        28 Oct 2014
+    </time>
+</p>
+<p>
+<p>valid ids: <a href="https://api.guildwars2.com/v2/commerce/prices">https://api.guildwars2.com/v2/commerce/prices</a><br>
+invalid ids: <a href="https://api.guildwars2.com/v2/items">https://api.guildwars2.com/v2/items</a> unless also on the /v2/commerce list</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-28T16:12:05+00:00">
+        28 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 28 2014 04:08PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4521355">StevenL.3761:</a></cite></div><div class="quotey"><p>valid ids: <a href="https://api.guildwars2.com/v2/commerce/prices">https://api.guildwars2.com/v2/commerce/prices</a><br>
+invalid ids: <a href="https://api.guildwars2.com/v2/items">https://api.guildwars2.com/v2/items</a> unless also on the /v2/commerce list</p></div></blockquote>
+<p>That is one interpretation.  My interpretation is that <strong>/v2/items defines what a valid item and its id is,</strong> not /v2/commerce.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-28T16:17:21+00:00">
+        28 Oct 2014
+    </time>
+</p>
+<p>
+<p>You seem to be under the impression that an item will not appear in /v2/commerce unless it has outstanding buy or sell offers.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-28T16:21:42+00:00">
+        28 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 28 2014 04:17PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4521379">StevenL.3761:</a></cite></div><div class="quotey"><p>You seem to be under the impression that an item will not appear in /v2/commerce unless it has outstanding buy or sell offers.</p></div></blockquote>
+<p>Nope.  My impression is that calling an item id as ‘invalid’ if they are not traded is wrong.</p>
+<p>There are many valid items, with valid item ids, that can’t be traded.</p>
+<p>Furthermore, a good service conveys as much pertinent information to the client as it can.  Differentiating between an invalid item id (e.g. the string “RE78y63”) and a valid item that is not found in the trading post (e.g. the item id string “18753”) would be a start.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-28T16:29:20+00:00">
+        28 Oct 2014
+    </time>
+</p>
+<p>
+<p>Okay, but these are the IDs of the actual buy/sell offers, not the ID of the item being bought/sold. An item does not have to have a listing.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-28T16:44:34+00:00">
+        28 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 28 2014 04:29PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4521438">StevenL.3761:</a></cite></div><div class="quotey"><p>Okay, but these are the IDs of the actual buy/sell offers, not the ID of the item being bought/sold. An item does not have to have a listing.</p></div></blockquote>
+<p>Whether an item id is valid or not would depend on how you define what a valid or invalid item id is.</p>
+<p>I define a valid item id as one that is returned by /v2/items, otherwise it is invalid because it would not represent any known valid item.</p>
+<p>Therefore /v2/commerce does not get to contradict /v2/items and redefine that 18753 is not a valid item id when /v2/items already says that it is.  /v2/commerce can say that item id 18753 is “not found” (i.e. status 404) in its commerce database.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-28T18:31:34+00:00">
+        28 Oct 2014
+    </time>
+</p>
+<p>
+<p>It doesn’t say that there is no item with id 18753. It says that there is no listing with id 18753. Just forget that they are using item ids as listing ids. They could have picked any other number.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-28T21:48:52+00:00">
+        28 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 28 2014 06:31PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4521783">StevenL.3761:</a></cite></div><div class="quotey"><p>It doesn’t say that there is no item with id 18753. It says that there is no listing with id 18753. Just forget that they are using item ids as listing ids. They could have picked any other number.</p></div></blockquote>
+<p>No it says that item id 18753 is invalid:</p>
+<p><a href="https://api.guildwars2.com/v2/commerce/prices?ids=18753">https://api.guildwars2.com/v2/commerce/prices?ids=18753</a><br>
+returns http status of 400 with:<br>
+{"text":“all ids provided are invalid”}</p>
+<p>But if you ask /v2/items, 18753 is a valid item id.  The 2 services shouldn’t contradict each other and there should be a distinction between items “not found” (status 404) and invalid item ids.</p>
+<p><a href="https://api.guildwars2.com/v2/items?ids=18753">https://api.guildwars2.com/v2/items?ids=18753</a></p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-28T22:15:45+00:00">
+        28 Oct 2014
+    </time>
+</p>
+<p>
+<p>Your argument is based on the assumption that the listing service knows (or should know) about both listings and items. It doesn’t know about items, in the exact same way that the quaggans service doesn’t know about items either.</p>
+<p><a href="https://api.guildwars2.com/v2/quaggans?ids=18753">https://api.guildwars2.com/v2/quaggans?ids=18753</a></p>
+<p>At the risk of sounding like a broken record, the commerce service uses LISTING ids, not item ids. (and definitely not quaggan ids)</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-28T23:55:47+00:00">
+        28 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 28 2014 10:15PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4522353">StevenL.3761:</a></cite></div><div class="quotey"><p>Your argument is based on the assumption that the listing service knows (or should know) about both listings and items. It doesn’t know about items,</p></div></blockquote>
+<p>Then it should know about items which is what the API documentation on the wiki depicts.  Otherwise, API documentation wouldn’t match behavior.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-29T01:37:16+00:00">
+        29 Oct 2014
+    </time>
+</p>
+<p>
+<p>The wiki documentation was written players/users, not by Pat or Stefan or anyone else at Anet.  If it’s wrong, change it (if you’re not in the API user group, then post on the talk page and ask for someone else to change it).</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-29T07:35:06+00:00">
+        29 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 29 2014 01:37AM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4522862">Dr Ishmael.9685:</a></cite></div><div class="quotey"><p>The wiki documentation was written players/users, not by Pat or Stefan or anyone else at Anet.  If it’s wrong, change it (if you’re not in the API user group, then post on the talk page and ask for someone else to change it).</p></div></blockquote>
+<p>What would you decide to change?  The documentations or the API?  What is a bug and what is a feature?</p>
+<p>Doesn’t someone in Anet review the documentations depicting how their APIs should behave in their official wiki?  What is the expectation Anet has for developers to learn to use their APIs correctly, if not from the API documentation in their official wiki?</p>
+<p>Again, it benefits both parties (ANet and their developers) to have good communications, which should be one of the reasons for this forum to exist in the first place.  Distancing themselves from their devs who support their APIs and the people who maintain their API documentations is not a good start.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-29T09:36:30+00:00">
+        29 Oct 2014
+    </time>
+</p>
+<p>
+<p>Let’s do a thought experiment. First, explicitly add the item_id to the output.</p>
+<pre><code>
+{  
+   "id":24,
+   "item_id":24,
+   "buys":{  
+      "quantity":1501,
+      "unit_price":2144
+   },
+   "sells":{  
+      "quantity":305,
+      "unit_price":4598
+   }
+}
+</code></pre>
+<p>&nbsp;<br>
+This representation more accurately shows how the API is structured internally (primary key == foreign key pointing at item_id).</p>
+<p>For the experiment, change the primary key scheme to something more arbitrary. I’ll pick auto-incrementing numbers that start at 1.</p>
+<pre><code>
+{  
+   "id":1,
+   "item_id":24,
+   "buys":{  
+      "quantity":1501,
+      "unit_price":2144
+   },
+   "sells":{  
+      "quantity":305,
+      "unit_price":4598
+   }
+}
+</code></pre>
+<p>&nbsp;</p>
+<p>Now that the id is no longer equal to the item_id, what should the error code be when all ids are invalid?</p>
+<p>/v2/commerce/prices?ids=24</p>
+<p>Assume that listing_id 24 does not already exist in the output of /v2/commerce/prices.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-29T15:20:57+00:00">
+        29 Oct 2014
+    </time>
+</p>
+<p>
+<p>I don’t understand your point.  Why do you have to add a new property item_id when there is already id?  The id property is the item id.</p>
+<p><a href="http://wiki.guildwars2.com/wiki/API:2/commerce/prices">http://wiki.guildwars2.com/wiki/API:2/commerce/prices</a></p>
+<p>Sounds like you are making broad assumptions on how they may have implemented this internally without confirmations from them.  Going down this rat hole of assumptions would only lead to more confusion as more broad assumptions are made.  Please stick with the facts that we already know so as to not detract this thread.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-29T15:41:35+00:00">
+        29 Oct 2014
+    </time>
+</p>
+<p>
+<p>Everything I’ve said so far is based entirely on observations. The id is NOT the same as the item id. I can explain it to you, but I can’t understand it for you.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-29T16:12:51+00:00">
+        29 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 29 2014 03:20PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4524424">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>Why do you have to add a new property item_id when there is already id?</p></div></blockquote>
+<p>Just so there are no misunderstandings. This object…</p>
+<pre><code>
+{  
+   "id":24,
+   "buys":{ ... },
+   "sells":{ ... }
+}
+</code></pre>
+<p>&nbsp;<br>
+is semantically equal to this object…<br>
+</p><pre><code>
+{  
+   "id":24,
+   "item_id":24,
+   "buys":{ ... },
+   "sells":{ ... }
+}
+</code></pre>&nbsp;<br>
+This is true no matter how you twist and turn it, because that is how relational databases are designed.<p></p>
+<p>The point of my post was that the primary key (“id”) is not part of the entity. It is simply an implementation detail. Implementation details can be changed without changing the design. In my example, I split the column “id” (PK, FK) into two separate columns “id” (PK) and “item_id” (FK). Just changing the implementation, not the design.</p>
+<p>Once you understand all that, try to answer the original (strictly <strong>hypothetical</strong>) question: if the “id” column is not a foreign key for “item_id”, what should the error code be when all given price ids are non-existent?</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-29T16:31:07+00:00">
+        29 Oct 2014
+    </time>
+</p>
+<p>
+<p>Spoiler:<br>
+<span class="inline_spoiler" style="">The error should be 400 across all possible implementations. The reasoning is that even though the "id" value right now is implemented as a foreign key for the "item_id", it is not appropriate for the API to return 404, because that would be a design that depends on a specific implementation.</span></p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-29T17:59:17+00:00">
+        29 Oct 2014
+    </time>
+</p>
+<p>
+<p>We aren’t going to change this behavior right now, I’m sorry you find it confusing but it’s not something we can easily workaround given that /v2/items and /v2/commerce/prices are going against different systems that have different ideas on what valid items are.</p>
+<p>I’m not comfortable with special casing the commerce APIs right now, so they will continue to return the standard error.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-29T20:32:15+00:00">
+        29 Oct 2014
+    </time>
+</p>
+<p>
+<p>I’ll take a shot at explaining this a different way to try to help DarkSpirit understand.</p>
+<p>The /v2/items endpoint tells you that a given number X is a valid item_id.  Great, you know a valid item ID <strong>in the context of <em>items</em></strong>.</p>
+<p>You take this number X and pass it to the /v2/commerce/listings endpoint.  It tells you it’s an invalid ID <strong>in the context of <em>commerce</em></strong>.</p>
+<p>The different endpoints have complete different contexts.  Just because X is a valid ID in an <em>item</em> context doesn’t mean it’s also a valid ID in a <em>commerce</em> context.  That’s all any endpoint will tell you: whether the ID is valid <strong>within the context of that endpoint</strong>.  These endpoints have no knowledge of each other – commerce is only concerned with its own <em>commerce</em> context, it doesn’t care and it can’t tell you about whether X is valid in an <em>items</em> context.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-29T22:26:50+00:00">
+        29 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 29 2014 08:32PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4525302">Dr Ishmael.9685:</a></cite></div><div class="quotey"><p>I’ll take a shot at explaining this a different way to try to help DarkSpirit understand.</p>
+<p>The /v2/items endpoint tells you that a given number X is a valid item_id.  Great, you know a valid item ID <strong>in the context of <em>items</em></strong>.</p>
+<p>You take this number X and pass it to the /v2/commerce/listings endpoint.  It tells you it’s an invalid ID <strong>in the context of <em>commerce</em></strong>.</p>
+<p>The different endpoints have complete different contexts.  Just because X is a valid ID in an <em>item</em> context doesn’t mean it’s also a valid ID in a <em>commerce</em> context.  That’s all any endpoint will tell you: whether the ID is valid <strong>within the context of that endpoint</strong>.  These endpoints have no knowledge of each other – commerce is only concerned with its own <em>commerce</em> context, it doesn’t care and it can’t tell you about whether X is valid in an <em>items</em> context.</p></div></blockquote>
+<p>That is what I fear that the idea of a valid item would have to boil down to the context of the endpoint which would be confusing because an item may be valid in one end point and yet be invalid in another even though it is a valid item in the game.  But I would have to live with this.</p>
+<blockquote><div class="citey"><cite title="Posted on October 29 2014 05:59PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4524926">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>We aren’t going to change this behavior right now, I’m sorry you find it confusing but it’s not something we can easily workaround given that /v2/items and /v2/commerce/prices are going against different systems that have different ideas on what valid items are.</p>
+<p>I’m not comfortable with special casing the commerce APIs right now, so they will continue to return the standard error.</p></div></blockquote>
+<p>Thanks Pat.  I understand that it is difficult to change the APIs right now but it is already special casing what the valid item ids are, based on what endpoints that you query against.</p>
+<p>Clarification: By the way, I am not trying to be a “hard-kitten ” demanding a fix, I know you guys have your priorities.  I am just stating an opinion.</p></p>
+
+<h2 id="">Illconceived Was Na.9781:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-30T01:19:06+00:00">
+        30 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 29 2014 08:32PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4525302">Dr Ishmael.9685:</a></cite></div><div class="quotey"><p>I’ll take a shot at explaining this a different way to try to help DarkSpirit understand.</p>
+<p>The /v2/items endpoint tells you that a given number X is a valid item_id.  Great, you know a valid item ID <strong>in the context of <em>items</em></strong>.</p>
+<p>You take this number X and pass it to the /v2/commerce/listings endpoint.  It tells you it’s an invalid ID <strong>in the context of <em>commerce</em></strong>.</p>
+<p>The different endpoints have complete different contexts.  Just because X is a valid ID in an <em>item</em> context doesn’t mean it’s also a valid ID in a <em>commerce</em> context.  That’s all any endpoint will tell you: whether the ID is valid <strong>within the context of that endpoint</strong>.  These endpoints have no knowledge of each other – commerce is only concerned with its own <em>commerce</em> context, it doesn’t care and it can’t tell you about whether X is valid in an <em>items</em> context.</p></div></blockquote>
+<p>If I understand you correctly, that would cover items that have appeared in the game, but never been listed or requested on the TP. That is, when item #12345 is first dropped, that number would be a valid v2/items item_id. But until it’s also offered for sale, it would still be an invalid v2/commerce id.</p>
+<p>Seems to me that’s reasonable for the API and then it would be up to 3rd party developers how they want to deal with the distinction, as opposed to ANet imposing a solution.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-30T01:40:32+00:00">
+        30 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 29 2014 10:26PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4525555">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>That is what I fear that the idea of a valid item would have to boil down to the context of the endpoint which would be confusing because an item may be valid in one end point and yet be invalid in another even though it is a valid item in the game.  But I would have to live with this.</p></div></blockquote>
+<p>It’s not confusing, at least not to me.  Context is supremely important: you shouldn’t “boil down” to it, you should start from it.</p>
+<p>The /items endpoint is the only proper place to determine the validity of an <em>item</em> ID precisely because that is this endpoint’s context.  The context of the /commerce endpoints is limited to the trading post, and this limitation means that the validity of an ID in this endpoint does not imply the validity of that ID in a general context.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-30T02:28:58+00:00">
+        30 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 30 2014 01:40AM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4525898">Dr Ishmael.9685:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on October 29 2014 10:26PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4525555">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>That is what I fear that the idea of a valid item would have to boil down to the context of the endpoint which would be confusing because an item may be valid in one end point and yet be invalid in another even though it is a valid item in the game.  But I would have to live with this.</p></div></blockquote>
+<p>It’s not confusing, at least not to me.  Context is supremely important: you shouldn’t “boil down” to it, you should start from it.</p>
+<p>The /items endpoint is the only proper place to determine the validity of an <em>item</em> ID precisely because that is this endpoint’s context.  The context of the /commerce endpoints is limited to the trading post, and this limitation means that the validity of an ID in this endpoint does not imply the validity of that ID in a general context.</p></div></blockquote>
+<p>It is confusing because there is no single endpoint that defines what is a valid item and what is not.  Each endpoint would have its own definition.</p>
+<p>The /items endpoint does not determine the validity of an item id, because the /commerce endpoint can invalidate any of them within its own context (e.g. 18753).  I would think that the items listed in the /items endpoint would be the superset of the items listed in the /commerce endpoint such that some item ids are valid in /items and /commerce while others are only valid in /items.  But I am even sure if that is the current situation right now as far as the current states of the APIs.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-30T02:40:57+00:00">
+        30 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 30 2014 01:19AM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4525855">Illconceived Was Na.9781:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on October 29 2014 08:32PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4525302">Dr Ishmael.9685:</a></cite></div><div class="quotey"><p>I’ll take a shot at explaining this a different way to try to help DarkSpirit understand.</p>
+<p>The /v2/items endpoint tells you that a given number X is a valid item_id.  Great, you know a valid item ID <strong>in the context of <em>items</em></strong>.</p>
+<p>You take this number X and pass it to the /v2/commerce/listings endpoint.  It tells you it’s an invalid ID <strong>in the context of <em>commerce</em></strong>.</p>
+<p>The different endpoints have complete different contexts.  Just because X is a valid ID in an <em>item</em> context doesn’t mean it’s also a valid ID in a <em>commerce</em> context.  That’s all any endpoint will tell you: whether the ID is valid <strong>within the context of that endpoint</strong>.  These endpoints have no knowledge of each other – commerce is only concerned with its own <em>commerce</em> context, it doesn’t care and it can’t tell you about whether X is valid in an <em>items</em> context.</p></div></blockquote>
+<p>If I understand you correctly, that would cover items that have appeared in the game, but never been listed or requested on the TP. That is, when item #12345 is first dropped, that number would be a valid v2/items item_id. But until it’s also offered for sale, it would still be an invalid v2/commerce id.</p>
+<p>Seems to me that’s reasonable for the API and then it would be up to 3rd party developers how they want to deal with the distinction, as opposed to ANet imposing a solution.</p></div></blockquote>
+<p>Precisely why that is confusing.  I don’t know how 3rd party apps can know the difference between an item that has not been offered for sale and an item that can never be sold (e.g. item id 123456 or account-bound items), since I would imagine that they return the same error code in both situations.</p>
+<p>+15 agony infusion should be tradeable but at this point in time, none are being sold.  They give the same 400 http error code.</p>
+<p><a href="https://api.guildwars2.com/v2/items?ids=49438">https://api.guildwars2.com/v2/items?ids=49438</a></p>
+<p><a href="https://api.guildwars2.com/v2/commerce/prices?ids=49438">https://api.guildwars2.com/v2/commerce/prices?ids=49438</a></p>
+<p>Perhaps the way to tell these cases apart is to also check against /items and see if the item exists.  If it exists in /items and not in /commerce and it is not soulbound or accountbound, then maybe it is just not sold.  If it doesn’t exist in /items and doesn’t exist in /commerce then it is an invalid item or an old item that was removed from the game.  If it doesn’t exist in /items but it exists in /commerce then it is a bug maybe?</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-30T07:40:58+00:00">
+        30 Oct 2014
+    </time>
+</p>
+<p>
+<p>So the commerce back-end does not have any record of items up until the first time that they are offered for sale by a player? I think that’s  the real problem.</p>
+<p>I don’t know how item “discovery” works exactly, but that same mechanism should probably create an empty price listing for the newly discovered item.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-30T20:11:35+00:00">
+        30 Oct 2014
+    </time>
+</p>
+<p>
+<p>I had a hunch that the items, prices, listings <strong>endpoints were implemented similarly right down to their error-handling</strong>.</p>
+<p><a href="https://api.guildwars2.com/v2/items">https://api.guildwars2.com/v2/items</a><br>
+<a href="https://api.guildwars2.com/v2/commerce/prices">https://api.guildwars2.com/v2/commerce/prices</a><br>
+<a href="https://api.guildwars2.com/v2/commerce/listings">https://api.guildwars2.com/v2/commerce/listings</a></p>
+<p>They each have their own set of valid item ids.  These sets are not static, items ids are added as they are discovered and can also be removed.  I assume that the discovery process is different between /items and /prices (they better be!).</p>
+<p>For the /items endpoint if the provided item id does not exist within its set of item ids, it is regarded as an invalid item id.  That makes sense for /items, since it defines the set of valid items in the game.</p>
+<p>On the other hand, the /prices endpoint may be implemented in a similar way:  If the provided item id, given to /prices, does not exist within its set of valid item ids, it is regarded as an invalid item id.  This is confusing.  Classifying an item id as invalid because the item is not being sold maybe counter intuitive to customers which is the point of this thread.</p>
+<p>This is not optimal but there are two options for app developers to workaround this:</p>
+<p>1. Show a generic error message (e.g. “item not in trading post”) and let the customer figure it out whether it does not exist in the game, it can’t be traded, it is removed, or it is simply not sold.    Most apps would probably take this option.  Pro: Fast and simple, Con: May confuse newer players.</p>
+<p>Or alternatively,</p>
+<p>2.  Do a second web search on /items to determine why the item is not in /prices or /listings.  Pro: Able to offer a more informative message Con: Slower</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-30T20:45:25+00:00">
+        30 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 30 2014 08:11PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4527538">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>On the other hand, the /prices endpoint may be implemented in a similar way:  If the provided item id, given to /prices, does not exist within its set of valid item ids, <strong>it is regarded as an invalid item id.</strong>  This is confusing.  Classifying an item id as invalid because the item is not being sold maybe counter intuitive to customers which is the point of this thread.</p></div></blockquote>
+<p>Wrong.  That is <strong>NOT</strong> what the /prices endpoint is telling you – that’s the whole point of what I’ve been trying to say.  Instead, it’s telling you that it’s an invalid <strong>Trading Post</strong> ID, because that’s the limit of what /prices knows about.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-30T23:34:14+00:00">
+        30 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 30 2014 08:45PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4527608">Dr Ishmael.9685:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on October 30 2014 08:11PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4527538">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>On the other hand, the /prices endpoint may be implemented in a similar way:  If the provided item id, given to /prices, does not exist within its set of valid item ids, <strong>it is regarded as an invalid item id.</strong>  This is confusing.  Classifying an item id as invalid because the item is not being sold maybe counter intuitive to customers which is the point of this thread.</p></div></blockquote>
+<p>Wrong.  That is <strong>NOT</strong> what the /prices endpoint is telling you – that’s the whole point of what I’ve been trying to say.  Instead, it’s telling you that it’s an invalid <strong>Trading Post</strong> ID, because that’s the limit of what /prices knows about.</p></div></blockquote>
+<p>You see, now you just threw in a new term, “Trading Post ID” which so happens to be very close to “item id”.  So much for confusion…. oh by the way, don’t forget “Listings Trading Post ID” too because they have their own set of ids distinct from prices as it is on a different endpoint but hey they maybe the same but potentially not.  I am so glad that everything is much clearer now!<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-31T02:17:04+00:00">
+        31 Oct 2014
+    </time>
+</p>
+<p>
+<p>Oh kitten it, you’re not listening.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-31T02:30:18+00:00">
+        31 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 31 2014 02:17AM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4528177">Dr Ishmael.9685:</a></cite></div><div class="quotey"><p>Oh kitten it, you’re not listening.</p></div></blockquote>
+<p>listening doesn’t imply agreeing. <img src="/include/images/smilies/smile.png"></p>
+<p>I don’t see how throwing in more new terms is going make this any less messy.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-31T08:58:37+00:00">
+        31 Oct 2014
+    </time>
+</p>
+<p>
+<p>Id for /items has a single meaning: item_id. <br>
+Id for /prices has two meanings: listing_id and item_id.</p>
+<p>When /prices says “invalid id”, it only refers to one meaning: invalid listing_id. Is everyone 100% clear on these concepts?</p>
+<p>There are actually item_ids for which a listing_id is marked invalid when it shouldn’t be. Agony infusion +15 is the perfect example. It is tradeable, so it should have a listing_id. Even if that listing has no current offers, and thus a price of 0 gold.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-31T16:02:38+00:00">
+        31 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 30 2014 08:11PM"><a href="/forum/community/api/Commerce-API-all-ids-provided-are-invalid/4527538">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>I assume that the discovery process is different between /items and /prices (they better be!).</p></div></blockquote>
+<p>I’m starting to believe that when a tradeable item is first discovered, the game should immediately make that item known to the commerce back-end in addition to the items back-end.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-31T18:13:59+00:00">
+        31 Oct 2014
+    </time>
+</p>
+<p>
+<p>If an item doesn’t exist in the commerce systems, then it has never had a sell order placed for it.</p>
+<p>This is to prevent people from placing buy orders for items before there are any being sold and thus influencing markets that don’t exist yet.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-31T21:05:16+00:00">
+        31 Oct 2014
+    </time>
+</p>
+<p>
+<p>Wouldn’t you be able to implement that restriction as an extra boolean flag “has_had_sell_orders” for each record on the database itself?</p>
+<p>The in-game trading post would then filter records where <br>
+(has_had_sell_orders = true) to prevent abuse. The public API would not have the same restriction.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-31T21:22:53+00:00">
+        31 Oct 2014
+    </time>
+</p>
+<p>
+<p>That’s not how it is currently implemented, and changing core tenants of the commerce systems solely to tweak API behavior is incredibly unlikely to happen.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-31T22:00:53+00:00">
+        31 Oct 2014
+    </time>
+</p>
+<p>
+<p>Yeah. It’s easy enough to just catch the error and assume that the price is 0 gold, since that’s what the return value would have been. Still, it’s fun to think about these things.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-31T22:41:03+00:00">
+        31 Oct 2014
+    </time>
+</p>
+<p>
+<p>Suppose that I’m the first and only person to offer +15 agony infusion for sale. That would open up bidding for everyone, right? Considering that there is only a single object for sale, it would probably be gone within minutes, but bidding continues. Did the system succeed in preventing people from influencing the market?</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-31T23:15:33+00:00">
+        31 Oct 2014
+    </time>
+</p>
+<p>
+<p>If anyone else wants to have some fun with this, I compiled a list of all discovered, tradeable items that have never been offered for sale: <a href="http://pastebin.com/fnztsawL">http://pastebin.com/fnztsawL</a> (132 items at the time of writing)</p>
+<p><a href="https://api.guildwars2.com/v2/items?ids=8481,9012,9017,9225,9650,9691,9694,9701,9748,9755,9763,9776,9778,9780,9788,9789,9794,9796,9798,9803,9805,9973,9976,9978,9981,9994,9997,9999,10003,10005,10016,10017,10018,10021,10022,10091,10092,10093,10094,10097,10098,10100,10101,10102,10117,10121,10127,10128,10172,10180,10181,10186,10190,10192,10193,10198,10200,10204,10210,10211,10212,10213,10214,10217,10218,10220,10226,10227,10228,10229,10231,10232,12610,12623,12646,12658,12662,12663,12665,12688,12689,12697,12703,12706,21269,21270,21271,21309,21310,21311,21320,21321,21322,21323,21324,21325,35531,35534,35539,35540,35541,35545,35546,35548,35549,36332,37192,37194,37196,38073,38088,38470,39414,39415,39422,39430,39432,39433,39435,39446,39451,39452,39456,39457,44849,44910,45248,49438,49439,49451,64197,66243">https://api.guildwars2.com/v2/items?ids=8481,9012,9017,9225,9650,9691,9694,9701,9748,9755,9763,9776,9778,9780,9788,9789,9794,9796,9798,9803,9805,9973,9976,9978,9981,9994,9997,9999,10003,10005,10016,10017,10018,10021,10022,10091,10092,10093,10094,10097,10098,10100,10101,10102,10117,10121,10127,10128,10172,10180,10181,10186,10190,10192,10193,10198,10200,10204,10210,10211,10212,10213,10214,10217,10218,10220,10226,10227,10228,10229,10231,10232,12610,12623,12646,12658,12662,12663,12665,12688,12689,12697,12703,12706,21269,21270,21271,21309,21310,21311,21320,21321,21322,21323,21324,21325,35531,35534,35539,35540,35541,35545,35546,35548,35549,36332,37192,37194,37196,38073,38088,38470,39414,39415,39422,39430,39432,39433,39435,39446,39451,39452,39456,39457,44849,44910,45248,49438,49439,49451,64197,66243</a></p>
+<p><strong>edit</strong>: I forgot to filter out PvP items. Sorry.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

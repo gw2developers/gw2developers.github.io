@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Starting an API</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Starting-an-API/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Starting an API</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Starting-an-API
+</p>
+
+
+
+<h2 id="">Wolf Fivousix.4319:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-16T05:31:15+00:00">
+        16 Oct 2013
+    </time>
+</p>
+<p>
+<p>Hello everyone, after reading about the API’s and seeing what they’re able to do I would like to make something of my own. Unfortunately I don’t have a clue how to start it and would like some directions.</p>
+<p>I’m a beginner programmer in C++, but I’m sure I can work my way to whatever I need to learn.</p>
+<p>How can I start something very simple, like seeing the value of an item in the trading post, or looking if an event is up, or anything as simple as that – if there is.</p>
+<p>Any help is welcome, thank you.</p></p>
+
+<h2 id="">Heimdall.4510:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-16T07:55:14+00:00">
+        16 Oct 2013
+    </time>
+</p>
+<p>
+<p>If you want to see some example code in C/C++ for the Gw2-API have a look at my codeplex repo: <a href="https://gw2apicpp.codeplex.com">https://gw2apicpp.codeplex.com</a><br>
+The API-part is currently not rly managed since I don’t have much time atm.<br>
+I would suggest you to start with the official APIs first before implementing the tp-API because for that you need session keys from a login</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-17T02:49:55+00:00">
+        17 Oct 2013
+    </time>
+</p>
+<p>
+<p>Wolf, my first suggestion is to stop thinking about your goal in terms of any specific language.</p>
+<p>Take a step back and look through the API’s wiki page: <a href="http://wiki.guildwars2.com/wiki/API">http://wiki.guildwars2.com/wiki/API</a></p>
+<p>The main API wiki page lists the services (also referred to as “endpoints”) that can be contacted for specific information. It is a good idea to read through each service’s description to better understand what data you can query Also, this is your chance to consider what specific information you’d be most interested in pulling down first when you eventually start coding.</p>
+<p><em>It’s tempting, as a first-time explorer, to say, “I’m going to get ALL the THINGS!” But, if this really is your first foray, having a simple, concrete goal will keep you focused and less prone to failure.</em></p>
+<p>Next, look through a couple of endpoints on the wiki. It might not be obvious, but all of the services return their data in the same lightweight data-interchange format, called <a href="http://www.json.org">JSON</a> (short for “Javascript Object Notation”).</p>
+<p>Portable data formats have come a long way in the last twenty years, and JSON is one of the simplest among them. It only is capable of encoding 6 types of values:</p>
+<ul>
+	<li>string</li>
+	<li>number</li>
+	<li>array
+	<ul>
+		<li>ordered collection of other value types</li>
+	</ul></li>
+	<li>boolean (yes/no)</li>
+	<li>object
+	<ul>
+		<li>a key/value pair;</li>
+		<li>‘key’ must be a string;</li>
+		<li>‘value’ must be one of the 6 other valid types;</li>
+		<li>don’t confuse these with C++-type objects</li>
+	</ul></li>
+	<li>and null
+	<ul>
+		<li>aka, a value defined as having “no value”</li>
+	</ul></li>
+</ul>
+<p>The entirety of a single JSON response can only be structured in one of two ways: as an array of values (referred to as an <em>ordered set</em>), or an object value (referred to as an <em>unordered set</em>). You will never see a valid JSON response that doesn’t begin with one of these two structures.</p>
+<ul>
+	<li>In the case of the array (ordered set), the JSON response starts and ends with square brackets (“[ … ]”).</li>
+</ul>
+<ul>
+	<li>In the case of an object value (unordered set), the JSON response starts and ends with curly braces (“{ … }”).</li>
+</ul>
+<p><em>JSON has no concept of indentation, or other textual formatting attributes. However, it is often helpful to “pretty-print” your responses; paste your JSON text into <a href="http://jsonlint.com">JSONLint</a> to see it human readable.</em></p>
+<p>Now, for an example: let’s take a look at the <a href="http://wiki.guildwars2.com/wiki/API:1/files">/files endpoint</a>.</p>
+<p>This service returns an unordered set of other objects. When we pluck out the first object in the set, we see:<br>
+</p><pre><code>
+    "map_complete": {
+        "file_id": 528724,
+        "signature": "5A4E663071250EC72668C09E3C082E595A380BF7"
+    },
+</code></pre><p></p>
+<p>Turns out, this first object was, itself, an unordered set of other objects.</p>
+<p>If we read the documentation for the /files endpoint, we find out that the data returned is meant to be used in conjunction with the <a href="http://wiki.guildwars2.com/wiki/API:Render_service">render service</a> endpoint. <strong>A lot of GW2 services work like this</strong>; it’s too much of burden to return every single detail about something, so instead, you’ll get a lot of reference IDs to use as input to other services.</p>
+<p>In all, once you’ve comprehended the extent of what information is available from GW2’s APIs, understand the format the data is being transmitted in, and grasp the manner in which services work in tandem, you’re finally ready to write code that does the actual work.</p>
+<p>Like XML in it’s heyday, there is no shortage of languages with frameworks which help you work with JSON. I suggest Python, Ruby, or JavaScript (obviously) to start; these languages enable you to query GW2’s APIs in just few lines of code.</p>
+<p>To see examples of community-built GW2 frameworks (in various language), check out the <a href="http://wiki.guildwars2.com/wiki/API:List_of_wrappers">list of API wrappers on the wiki</a>.</p></p>
+
+<h2 id="">Wolf Fivousix.4319:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-17T23:03:41+00:00">
+        17 Oct 2013
+    </time>
+</p>
+<p>
+<p>Thank you for your fast and thoroughly response. I spent a lot of time in the API wiki page and thanks to your explanation I realized how to use the render service to provide me the image for a specific item using the item and item_details JSON files, like: <a href="https://render.guildwars2.com/file/6F596AB3743DC27A1C7329BF4450A37654914607/339955.png">https://render.guildwars2.com/file/6F596AB3743DC27A1C7329BF4450A37654914607/339955.png</a></p>
+<p>I believe I could try to do something as simple as that to start with, a program that shows me the picture of an item, or just it’s name.</p>
+<p>My problem now is <strong>how to make my own program talk with GW2API servers.</strong> I had been looking into Heimdall’s code and that’s way beyond me so I got lost, but I don’t think I need to get that far for just getting a picture or an ID from the server. I know some Python but I rather use C++ to get things done, so I can improve my skills in the way.</p>
+<p>Thank you.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-18T10:21:11+00:00">
+        18 Oct 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 17 2013 11:03PM"><a href="/forum/community/api/Starting-an-API/3046317">Wolf Fivousix.4319:</a></cite></div><div class="quotey"><p>My problem now is <strong>how to make my own program talk with GW2API servers.</strong></p></div></blockquote>
+<p>So before you start anything with the API stuff, you’ll neeed to figure out how to make <a href="http://lmgtfy.com/?q=c%2B%2B+http+request">a common <acronym title="S">HTTP</acronym> request</a> - either self written or through a library like cURL.</p></p>
+
+<h2 id="">Heimdall.4510:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-18T12:11:14+00:00">
+        18 Oct 2013
+    </time>
+</p>
+<p>
+<p>If you’re coding on a windows machine there is either the winhttp Lib (more useful for server implementations) or the wininet Lib which i would recommend you. <br>
+Another Option would simply be to connect a Socket with the server (Port 443) and Set up the http headers by yourself. If you do so make sure you didn’t forget the ssl handshake</p></p>
+
+<h2 id="">Wolf Fivousix.4319:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-20T08:21:56+00:00">
+        20 Oct 2013
+    </time>
+</p>
+<p>
+<p>Thank you guys, I’ll be studying that and as soon as I get something working with it I’ll come back!</p>
+<p>Yes, Heimdall, I’m conding in a windows machine, using Dev C++ by Bloodshed.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-21T23:22:20+00:00">
+        21 Oct 2013
+    </time>
+</p>
+<p>
+<p>Wolf,</p>
+<p>This should help you get started: <a href="http://devmentor.org/articles/network/Socket%20Programming(v2).pdf">Client/Server Programming with TCP/IP</a>. It’s quite descriptive, with specific client-side C++ examples for Windows using <em>winsock</em>.</p></p>
+
+<h2 id="">Wolf Fivousix.4319:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-23T19:43:24+00:00">
+        23 Oct 2013
+    </time>
+</p>
+<p>
+<p>Thank you very much Killer, I’m still working on the WinINet but I’ll definitely check your link, seems amazing!</p></p>
+
+<h2 id="">Wolf Fivousix.4319:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-24T01:06:00+00:00">
+        24 Oct 2013
+    </time>
+</p>
+<p>
+<p>Ok, I got both WinINet working and Winsock kind of working. I’ll be following with the one that woks while studying more about winsock.</p>
+<p>Now I can make requests to the server  and I get the text answer. I’ll play a little bit with what I have and try to filter an item name or something.</p>
+<p>I’ll be back as soon as I get something more elaborated.</p></p>
+
+<h2 id="">Wolf Fivousix.4319:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-25T00:43:38+00:00">
+        25 Oct 2013
+    </time>
+</p>
+<p>
+<p>Have been playing with it a while and my program that requests and filters the answer for giving me a name of a specific item is working beautifully. Attached if anyone want’s to see how it ended up.</p>
+<div class="spoiler_container"><div class="spoileroncontainer"><button type="button" class="button spoileron" title="Click to show the spoiler.">Show Spoiler</button></div><div class="spoiler"><div class="spoileroffcontainer"><button type="button" class="button spoileroff" title="Click to hide the spoiler.">hide spoiler</button><br></div><div class="spoilertext"><p>// Created by Wolf Fivousix – 2013.<br>
+// Special thanks to Heimdal.4510, Killer Rhino.6794 and smiley.1438<br>
+// Don`t forget to put -lwininet in the Parameter &gt; Linker for the Windows library.<br>
+#include&lt;iostream&gt;<br>
+#include&lt;wininet.h&gt;<br>
+using namespace std;<br>
+int Request();<br>
+char Website<sup class="footnote"><a href="#fn4096">4096</a></sup>=“<a href="https://api.guildwars2.com/v1/item_details.json?item_id">https://api.guildwars2.com/v1/item_details.json?item_id</a>=”;</p>
+<p>int main (void)<br>
+{<br>
+    cout&lt;&lt;“20523 for a Dye item.\n”;<br>
+    cout&lt;&lt; "Item ID: ";<br>
+    char itemid<sup class="footnote"><a href="#fn6">6</a></sup>;<br>
+    gets (itemid);<br>
+    cout&lt;&lt;endl;<br>
+    strncat (Website, itemid, 6);<br>
+    Request();<br>
+    cout&lt;&lt; endl &lt;&lt; “———————————————————————————————————————-\n”;<br>
+system(“PAUSE”);<br>
+}</p>
+<p>int Request()<br>
+{<br>
+   HINTERNET connect = InternetOpen(“MyBrowser”,INTERNET_OPEN_TYPE_PRECONFIG,NULL, NULL, 0);<br>
+   if(!connect){<br>
+      cout&lt;&lt;“Connection Failed or Syntax error”;<br>
+      return 0;<br>
+   }<br>
+   HINTERNET OpenAddress = InternetOpenUrl(connect,Website, NULL, 0, INTERNET_FLAG_PRAGMA_NOCACHE|INTERNET_FLAG_KEEP_CONNECTION, 0);<br>
+   if ( !OpenAddress )<br>
+   {<br>
+      DWORD ErrorNum = GetLastError();<br>
+      cout&lt;&lt;"Failed to open URL \nError No: "&lt;&lt;ErrorNum;<br>
+      InternetCloseHandle(connect);<br>
+      return 0;<br>
+   }<br>
+   char DataReceived<sup class="footnote"><a href="#fn4096">4096</a></sup>;<br>
+   DWORD NumberOfBytesRead = 0;<br>
+   while(InternetReadFile(OpenAddress, DataReceived, 4096, &amp;NumberOfBytesRead) &amp;&amp; NumberOfBytesRead )<br>
+   {<br>
+       int i;       <br>
+       for (i=0; i &lt;4096; i++)<br>
+       {<br>
+           if (DataReceived[i] == ‘n’)<br>
+           {<br>
+              if (DataReceived[i+1] == ‘a’)<br>
+              {<br>
+                 if (DataReceived[i+2] == ‘m’)<br>
+                 {<br>
+                     if (DataReceived[i+3] == ‘e’)<br>
+                     {<br>
+                        cout &lt;&lt; "Name of the Item: “;<br>
+                        i = i+7;      // Skipping to the name of the item.<br>
+                        break;<br>
+                     }<br>
+                 }<br>
+              }<br>
+           }<br>
+       }<br>
+       while (DataReceived[i] != ’”’ )<br>
+       {<br>
+          cout &lt;&lt; DataReceived[i];<br>
+          i++;<br>
+       }<br>
+   }<br>
+   InternetCloseHandle(OpenAddress);<br>
+   InternetCloseHandle(connect);    <br>
+}</p></div></div></div><p>Now I moved a little bit further and tried to show the names of all item going from 1 to 99999, so I could “mine” the server for the names and their ID’s, BUT my program keeps closing after some requests (arond 66). So I assume the server would be dropping my connection for too many requests?</p>
+<p><strong>Does anyone know if there’s a limit for the number of requests that can be done for the server?</strong></p>
+<p>Going to the next step I would like to retrieve the image of an item. I know how to construct the link for it and with some modifications on my code I can get it to request that image, but <strong>how can I display a .PNG image in my program?</strong> I assume I can’t do that using the command prompt window, so what should I do?</p></p>
+
+<h2 id="">Anen.1742:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-25T02:30:09+00:00">
+        25 Oct 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 25 2013 12:43AM"><a href="/forum/community/api/Starting-an-API/3089667">Wolf Fivousix.4319:</a></cite></div><div class="quotey"><p>for (i=0; i &lt;4096; i++)<br>
+{if (DataReceived[i] == ‘n’)<br>
+{<br>
+if (DataReceived[i+1] == ‘a’)<br>
+{<br>
+if (DataReceived[i+2] == ‘m’)<br>
+{<br>
+if (DataReceived[i+3] == ‘e’)<br>
+{<br>
+cout &lt;&lt; "Name of the Item: “;<br>
+i = i+7; // Skipping to the name of the item.<br>
+break;</p></div></blockquote>
+<p>You may want to have a JSON parser instead of this ugly code.</p></p>
+
+<h2 id="">Wolf Fivousix.4319:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-25T21:49:59+00:00">
+        25 Oct 2013
+    </time>
+</p>
+<p>
+<p>Thank you Anen, I’ll be looking at JSON parser to see what I find, any recommendation of one I could use with C++ ?</p>
+<p>I added 1s delay to the multiple request code but it still closing at the same spot, any clue about what it could be?</p></p>
+
+<h2 id="">Heimdall.4510:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-25T22:09:23+00:00">
+        25 Oct 2013
+    </time>
+</p>
+<p>
+<p>You could use the one I created for my API project there’s one written in C++ and one in pure C. If you care about Efficiency you might be more interested in the C Version but it’s also the more trickier one.</p></p>
+
+<h2 id="">Wolf Fivousix.4319:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-02T06:39:20+00:00">
+        02 Nov 2013
+    </time>
+</p>
+<p>
+<p>Heimdall, I tried to figure out your JSON parser, but that’s too advanced for me, can’t find a way to integrate that in my program =( . As I learn more about C++ and programming I will go back to it.</p>
+<p>I solved the problem in my program, so I could dump the 49.102 current item list in a txt file so I can start playing around with different kind of itens.</p>
+<p>Any idea of what I could do next? I saw a topic about the Trading Post but I want play a round a little more before going to that, since I know I’ll need a session key and that will probably get complicated.</p>
+<p>I was thinking about creating a non MS-DOS window to show information (maybe I can play with some events info). I know some BGI graphics and will be trying to use it to display images taken from the server. <strong>Anyone know how I can make my program download a png or jpg in the item ID link</strong>, like this one: <a href="https://render.guildwars2.com/file/02EFB1C5E11B2FF4B4AC25A84E2302D244C82AA3/66958.png">https://render.guildwars2.com/file/02EFB1C5E11B2FF4B4AC25A84E2302D244C82AA3/66958.png</a> ?</p>
+<p>Thank you.</p></p>
+
+<h2 id="">Heimdall.4510:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-03T20:36:13+00:00">
+        03 Nov 2013
+    </time>
+</p>
+<p>
+<p>If you access the link via the wininet Library for example you get the img data as response. This means you could either save the Data in a file or use it directly from your memory to display it.</p></p>
+
+<h2 id="">Wolf Fivousix.4319:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-10T03:15:35+00:00">
+        10 Nov 2013
+    </time>
+</p>
+<p>
+<p>Heimdall, I have been struggling to make the download of the image. By my researches I can use the WinInet function InternetReadFile to download the file. Do you have any direction that I could use?</p></p>
+
+<h2 id="">sorenrye.7238:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-11T21:57:19+00:00">
+        11 Nov 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on November 10 2013 03:15AM"><a href="/forum/community/api/Starting-an-API/3179725">Wolf Fivousix.4319:</a></cite></div><div class="quotey"><p>Anyone know how I can make my program download a png or jpg in the item ID link, like this one: <a href="https://render.guildwars2.com/file/02EFB1C5E11B2FF4B4AC25A84E2302D244C82AA3/66958.png">https://render.guildwars2.com/file/02EFB1C5E11B2FF4B4AC25A84E2302D244C82AA3/66958.png</a> ?</p></div></blockquote>
+<blockquote><div class="citey"><cite title="Posted on November 10 2013 03:15AM"><a href="/forum/community/api/Starting-an-API/3179725">Wolf Fivousix.4319:</a></cite></div><div class="quotey"><p>I have been struggling to make the download of the image. By my researches I can use the WinInet function InternetReadFile to download the file. Do you have any direction that I could use?</p></div></blockquote>
+<p>Here is a small example of how you can use wininet to download a file:</p>
+<p><a href="http://stackoverflow.com/questions/6960084/downloading-binary-files-with-wininet">http://stackoverflow.com/questions/6960084/downloading-binary-files-with-wininet</a></p>
+<p>Open the link and search the page for this text “program that fetches”. Below the text you will see a small example program that shows you how to use wininet to download a file.</p>
+<p>Start visual studio, create a new project ’Win32 Console Application". Copy the code example from stackoverflow into your new project and build the project.</p>
+<p>Currently the program downloads stackoverflows main page and writes it to the file output.txt. You should run the compiled program to test that this is the case.</p>
+<p>If you change this line in the program from:</p>
+<p>&nbsp;&nbsp;const ::WCHAR URL[] = L"http://stackoverflow.com/";</p>
+<p>to</p>
+<p>&nbsp;&nbsp;const ::WCHAR URL[] = L"https://render.guildwars2.com/file/02EFB1C5E11B2FF4B4AC25A84E2302D244C82AA3/66958.png";</p>
+<p>Then the program will download the image to the file output.txt. Rename the file to output.png and view it in your browser to verify that this is the case. Note that each line above (theWCHAR URL lines)  are a single lines – your browser may wrap the lines.</p>
+<p>I tested the example on an old PC that had visual studio 2010 installed, and it worked fine.</p>
+<p>If you are new at programming, you should learn by example. Stackoverflow has a lot of other examples that you can learn from.</p>
+<p>I wish you luck in your endeavors.</p>
+<p>PS. You may want to change the inline filenames to command line arguments. I don’t know in which context you want to use this, but for testing purposes the example is ok. I am not associated with stackoverflow in any way, and I hope I didn’t break any forum rules by refering to stackoverflow.</p>
+<p>PPS: You may want to take a look at the microsoft project: C++ REST SDK (codename “Casablanca”). The framework is designed to be easier to use than wininet. Especially wrt async transfers/jobs.</p></p>
+
+<h2 id="">Heimdall.4510:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-12T00:18:18+00:00">
+        12 Nov 2013
+    </time>
+</p>
+<p>
+<p>This is just a little example using the wininet-lib to save some binary data into a file.<br>
+There’s no need to save the data within a file if you save it in a buffer in your memory from there you can access it directly.</p>
+<pre><code>
+open = InternetOpen(TEXT(APP_AGENT), INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 1);
+request = InternetOpenUrl(open, convertToWideChar(loadURLFromDB()), NULL, NULL, 
+INTERNET_FLAG_SECURE, 1);
+ofstream out("image.png", ios::out|ios::binary);
+char buffer;
+DWORD size;
+while(InternetReadFile(request, &amp;buffer, 1, &amp;size)){
+                                 if(size != 1)
+                                 break;
+                                 out.write((char*)&amp;buffer, sizeof(char));
+}
+out.close();
+InternetCloseHandle(request);
+InternetCloseHandle(open);</code></pre></p>
+
+<h2 id="">Wolf Fivousix.4319:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-12T08:50:41+00:00">
+        12 Nov 2013
+    </time>
+</p>
+<p>
+<p>Thank you Sorenrye and Heimdall, I managed to make both codes work, but I still can’t see how I’d got into this stuff even playing around with the functions. I’m sure that’s a lot I still need to learn to dig through this codes and really understand them.</p>
+<p>About the inline functions, I don’t see where I use them, but I suppose they’re inside the WinInet code, which is something I don’t fully understand but I’m going through until I have more knowledge to fix them.</p>
+<p>C++ REST SDK (codename “Casablanca”) seems really nice, but for the sake of continuity I’ll keep using WinINet for this API, thank you for the tip though, I’ll study it further in the road, once I understand more about all of this.</p>
+<p>I’ll be using the Heimdall code as a base since I can understand it more than the exemple in stackoverflow. I want to play around a little bit with this code before going further, hopefully I’ll manage to learn more once I break and fix it.</p>
+<p>As soon as I get something concrete I’ll come back to let you know.</p>
+<p>Thank you very much.</p></p>
+
+<h2 id="">sorenrye.7238:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-12T09:38:31+00:00">
+        12 Nov 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on November 12 2013 08:50AM"><a href="/forum/community/api/Starting-an-API/3189669">Wolf Fivousix.4319:</a></cite></div><div class="quotey"><p>About the inline functions, I don’t see where I use them, but I suppose they’re inside the WinInet code, which is something I don’t fully understand but I’m going through until I have more knowledge to fix them.</p></div></blockquote>
+<p>0) Inside the WinInet code.<br>
+The WinInet code is build on sockets. Goole ‘socket programming in c’. Here is the first search result, a small introduction to socket programming (it can’t get smaller than that):</p>
+<p><a href="http://www.codeproject.com/Articles/586000/Networking-and-Socket-programming-tutorial-in-C">http://www.codeproject.com/Articles/586000/Networking-and-Socket-programming-tutorial-in-C</a></p>
+<p>If you want to understand the core components of network programming, you should look at socket programing. The example link above is for unix socket programming. You may want to refine your google search to find out the small differences to make it work on windows or to find examples for windows. When you have learned the absolute basics, you will want to look into blocking/non-blocking I/O and/or asynchronous I/O (ioctl handlers and/or multi-theading).</p>
+<p>I am not sure what you mean by ‘the inline functions … inside the wininet code’. But see below ‘Documentation’.</p>
+<p>1) Documentation<br>
+Use msdn to view documentation about the microsoft functions. Google is your friend. Usually I just google the function, fx ‘google internetreadfile’. Then I look for a link to msdn.com. The first link if you google is ‘InternetReadFile function (Windows) – MSDN – Microsoft’. Read the page. And if you have the time, spend some time browsing msdn. When you have read about the function then search for examples using the function. Always use google to (or books) to see documentation for the individual functions. To learn general windows programing I recommend the book ‘Programming Windows, 5th Edition, by Charles Petzold’.  If you don’t have it  already, get the C bible ‘Kernighan and Ritchie: The C Programming Language’. Also get the C++ bible ‘The C++ Programming Language by Bjarne Stroustrup’. Bjarne has written some additional books, fx books that describe C++11. I don’t think MSVC supports C++11 fully yet – if you want to play with C++11 you should install a unix like operating systsem (using a vm if you like) and take a look at the CLANG compiler and play around with it. The good thing about CLANG (and you should use the VIM editor) is that you can get additional modules for it that enables you to beautify your code, test for memory leaks, stack/buffer under/overflows, race conditions etc. So CLANG is really IMO top of the pops with regards to C++ compilers atm.</p>
+<p>2) Learn by example<br>
+You should try to develop some examples from scratch by yourself. This is a very good learning process. Also, if you can find a book or links that contains examples or exercises and solutions – do that.</p>
+<p>3) Divide and conquer / Keep it simple<br>
+You should try to make your projects as small as possible. Each project should be about something that you will eventually use in y our bigger projects. Some examples could be:<br>
+- a program that combines 2 images (image files/buffers) into another image (image file/buffer).<br>
+- a program that reads a file from the internet (examples are already mentioned above)<br>
+- a program that plays with JSON data.<br>
+- etc</p>
+<p>4) Encapsulate your code to make it robust and re-usable<br>
+When you divide and conquer and keep things simple, it enables you to more easily encapsulate your code. And eventually it will make it easy to reuse your small projects in  your bigger projects.</p></p>
+
+<h2 id="">sorenrye.7238:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-12T10:02:36+00:00">
+        12 Nov 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on November 12 2013 12:18AM"><a href="/forum/community/api/Starting-an-API/3188131">Heimdall.4510:</a></cite></div><div class="quotey"><p>There’s no need to save the data within a file if you save it in a buffer in your memory from there you can access it directly.</p></div></blockquote>
+<p>The point was to show him how to use InternetReadFile(). The example has some bad code (fx it doesn’t break the loop if a read error occurs, main() doesn’t return an interger, it writes the ouput to a file, etc and so on). But it shows how to use InternetReadFile().</p>
+<blockquote><div class="citey"><cite title="Posted on November 12 2013 12:18AM"><a href="/forum/community/api/Starting-an-API/3188131">Heimdall.4510:</a></cite></div><div class="quotey"><pre><code>
+
+InternetReadFile(request, &amp;buffer, 1, &amp;size)
+</code></pre></div></blockquote>
+<p>When reading or writing data from/to anywhere, you should never read or write 1 byte at a time. Always read and write as many bytes as possible. Sorry for being pedantic. But performance can really suffer if you don’t use this rule of thumb. I assume you read 1 byte at a time to make the example simple and easier to read.</p></p>
+
+<h2 id="">Heimdall.4510:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-12T11:59:41+00:00">
+        12 Nov 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite>sorenrye.7238</cite></div><div class="quotey"><p>I don’t think MSVC supports C++11 fully yet</p></div></blockquote>
+<p>In fact MSVC was the first compiler featuring full C++11 Support it has even some of the fixes coming with C++14.<br>
+With my example code you’re absolutely right this snipped is not meant to be used like I presented it. I took it out of an application I build for personal purpose. This section and some more are handled by an observer which handles all trouble occurances. Just the bitwise read operation is really intended because the benefit of gained performance if you use larger buffers is negligible here (especially in cobination with some inline asm I dropped off here).</p></p>
+
+<h2 id="">sorenrye.7238:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-12T13:04:47+00:00">
+        12 Nov 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on November 12 2013 11:59AM"><a href="/forum/community/api/Starting-an-API/3190240">Heimdall.4510:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite>sorenrye.7238</cite></div><div class="quotey"><p>I don’t think MSVC supports C++11 fully yet</p></div></blockquote>
+<p>In fact MSVC was the first compiler featuring full C++11 Support it has even some of the fixes coming with C++14.</p></div></blockquote>
+<p>First let me say, that you may be right. I am not a Visual Studio C++ guru.</p>
+<p>I think you are mistaken though. Earlier, when development of the C++11 features was ongoing, it was the leading compiler in that regard. Check fx:</p>
+<p><a href="http://cpprocks.com/c11-compiler-support-shootout-visual-studio-gcc-clang-intel/">http://cpprocks.com/c11-compiler-support-shootout-visual-studio-gcc-clang-intel/</a></p>
+<p>At the moment it has already implemented all C++14 features:</p>
+<p><a href="http://clang.llvm.org/cxx_status.html">http://clang.llvm.org/cxx_status.html</a><br>
+<a href="http://www.phoronix.com/scan.php?page=news_item&px=MTM1NjM">http://www.phoronix.com/scan.php?page=news_item&amp;px=MTM1NjM</a><br>
+<a href="http://en.wikipedia.org/wiki/Clang">http://en.wikipedia.org/wiki/Clang</a></p>
+<p>If I am in the wrong, please let me know. But the point I was trying to make, is that CLANG is the leading edge when it comes to support of the new C++xx standards.</p>
+<p>Another nice feature, that I forgot to mention, is that intel developed a module that converts old C++ code to C++11 code. Very neat. And if the programmers of the old C++ code have been ‘slacking’ significant performance increases may be achieved by using this conversion tool.</p>
+<p>Unfortunately CLANG is not mature on the Windows platform yet. Hence the hint to check it out on a unix like OS.</p></p>
+
+<h2 id="">sorenrye.7238:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-14T16:13:16+00:00">
+        14 Nov 2013
+    </time>
+</p>
+<p>
+<p>To Wolf Fivousix.4319:</p>
+<p>If u are new to C++ and want an easy time working with the GW2 json based service, you really should look more at the REST API. Check this:</p>
+<p><a href="http://msdn.microsoft.com/en-us/library/jj950082.aspx">http://msdn.microsoft.com/en-us/library/jj950082.aspx</a></p>
+<p>Isn’t that easy and simple?</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-14T19:08:04+00:00">
+        14 Nov 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on November 14 2013 04:13PM"><a href="/forum/community/api/Starting-an-API/3203550">sorenrye.7238:</a></cite></div><div class="quotey"><p>To Wolf Fivousix.4319:</p>
+<p>If u are new to C++ and want an easy time working with the GW2 json based service, you really should look more at the REST API. Check this:</p>
+<p><a href="http://msdn.microsoft.com/en-us/library/jj950082.aspx">http://msdn.microsoft.com/en-us/library/jj950082.aspx</a></p></div></blockquote>
+<p>Here is the <a href="http://blogs.msdn.com/b/vcblog/archive/2013/02/26/the-c-rest-sdk-quot-casablanca-quot.aspx">MSDN Blog post</a> about Casablanca from back in February, which, I feel, could help provide some context for less experienced coders.</p></p>
+
+<h2 id="">Wolf Fivousix.4319:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-15T00:34:25+00:00">
+        15 Nov 2013
+    </time>
+</p>
+<p>
+<p>I spent some time working with <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa385473%28v=vs.85%29.aspx">http://msdn.microsoft.com/en-us/library/windows/desktop/aa385473%28v=vs.85%29.aspx</a> and <a href="http://www.cplusplus.com/doc/tutorial/files/">http://www.cplusplus.com/doc/tutorial/files/</a> so now I understand a little bit better how things are working, although the 1 byte read/write still confusing I shall leave like that since they’re small images and I’m not really concerned about performance at this point.</p>
+<p>Thank you for the directions and the references, they will be valuable sources of knowledge. Casablanca looks nice to work with, but I plan using it to remake the program once I finish it, so I can clearly see the differences between them.</p>
+<p>This is the final version of the program downloading one image and saving it in my computer for further use.</p>
+<div class="spoiler_container"><div class="spoileroncontainer"><button type="button" class="button spoileron" title="Click to show the spoiler.">Show Spoiler</button></div><div class="spoiler"><div class="spoileroffcontainer"><button type="button" class="button spoileroff" title="Click to hide the spoiler.">hide spoiler</button><br></div><div class="spoilertext"><p>// Created by Wolf Fivousix – 2013.<br>
+// Special thanks to sorenrye.7238 and Heimdall.4510.<br>
+// This proram will go to GW2render and get the image saving it in my computer.<br>
+// Don`t forget to put -lwininet in the Parameter &gt; Linker for the Windows library.<br>
+#include&lt;iostream&gt;<br>
+#include&lt;wininet.h&gt;<br>
+#include&lt;fstream&gt;<br>
+using namespace std;<br>
+int Request(char IMAGE_WEBSITE[]);</p>
+<p>int main (void)<br>
+{<br>
+    // Link of the image to be downloaded.<br>
+    char render_image_link<sup class="footnote"><a href="#fn4096">4096</a></sup>=“<a href="https://render.guildwars2.com/file/02EFB1C5E11B2FF4B4AC25A84E2302D244C82AA3/66958.png">https://render.guildwars2.com/file/02EFB1C5E11B2FF4B4AC25A84E2302D244C82AA3/66958.png</a>”;<br>
+    Request(render_image_link);<br>
+    // Open the downloaded file.<br>
+    system(“Image.png”);<br>
+}</p>
+<p>int Request(char IMAGE_WEBSITE[])<br>
+{<br>
+   // Initializes an application’s use of the WinINet functions. (Creates the handleE for the function to work.)<br>
+   HINTERNET link_open = InternetOpen(IMAGE_WEBSITE,INTERNET_OPEN_TYPE_PRECONFIG, NULL, NULL, 0);<br>
+   // Checks if InternetOpen() got a correct handle.<br>
+   if(!link_open)<br>
+   {<br>
+      cout&lt;&lt;“InternetOpen() problem.”;<br>
+   }<br>
+   // Opens a resource specified by a complete FTP or HTTP URL.<br>
+   HINTERNET open_url = InternetOpenUrl(link_open,IMAGE_WEBSITE, NULL, 0, INTERNET_FLAG_SECURE, 0);<br>
+   // Checks for errors of InternetOpenUrl().<br>
+   if(!open_url)<br>
+   {<br>
+      DWORD ErrorNum = GetLastError();<br>
+      cout&lt;&lt;"Failed to open URL \nError No: “&lt;&lt;ErrorNum;<br>
+      InternetCloseHandle(link_open);<br>
+   }<br>
+   // Open the file for output through binary.<br>
+   ofstream IMAGE (”Image.png", ios::out|ios::binary);<br>
+   char Data_Received;<br>
+   DWORD NumberOfBytesRead;<br>
+   // Write on the file.<br>
+   while(InternetReadFile(open_url, &amp;Data_Received, 1, &amp;NumberOfBytesRead))<br>
+   {<br>
+      if (NumberOfBytesRead != 1)<br>
+         break;<br>
+      IMAGE.write((char*)&amp;Data_Received, sizeof(char));<br>
+   }<br>
+   // Closes the file.<br>
+   IMAGE.close();<br>
+   // Closes the handle.<br>
+   InternetCloseHandle(open_url);<br>
+   InternetCloseHandle(link_open);<br>
+}</p></div></div></div><p>Now I’ll play around a little bit and learn how to display images using Borland Graphic Interface before coming back to make the API interact with the Black Lion Trading Company. I saw an extensive post about making API work with the  BLTC and I’ve got a lot of reading and testing to go through before asking another question.</p>
+<p>I would like to thank you once more for the invaluable help offered.<br>
+See you all in a couple of weeks (hopefully with a screen shot of something more visual).</p></p>
+
+<h2 id="">sorenrye.7238:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-17T12:03:59+00:00">
+        17 Nov 2013
+    </time>
+</p>
+<p>
+<p>I tried to create a bare minimum simple example, for people that want use the GW2 Api and learn C++ – both with regards to readability and ease of use. The example requires Windows XP and Visual Studio.</p>
+<p>For json parsing I looked at rapidjson, BOOST and REST (casablanca) and decided to use rapidjson (most portable, easiest to install and supports unicode fully) (REST requires Windows 7 and BOOST doesn’t fully support unicode).</p>
+<p>&nbsp;&nbsp; <a href="http://pastebin.com/54YmUN0J">http://pastebin.com/54YmUN0J</a></p>
+<p>Have fun.</p></p>
+
+<h2 id="">sorenrye.7238:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-24T20:43:04+00:00">
+        24 Nov 2013
+    </time>
+</p>
+<p>
+<p>Was so lazy I forgot to add newlines and spacing in the output – sorry. Here is the example again, with some more comments.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

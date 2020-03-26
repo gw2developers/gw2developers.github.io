@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Looks like some of the API is broken...</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Looks-like-some-of-the-API-is-broken/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Looks like some of the API is broken...</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Looks-like-some-of-the-API-is-broken
+</p>
+
+
+
+<h2 id="">Aerodin.2795:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-03T01:01:57+00:00">
+        03 May 2014
+    </time>
+</p>
+<p>
+<p>Was just spending some time working on my GW2 tool and found the following isn’t returning ANY results:</p>
+<p><a href="https://api.guildwars2.com/v1/event_details.json">https://api.guildwars2.com/v1/event_details.json</a><br>
+<a href="https://api.guildwars2.com/v1/event_names.json?lang=en">https://api.guildwars2.com/v1/event_names.json?lang=en</a><br>
+<a href="https://api.guildwars2.com/v1/map_names.json?lang=en">https://api.guildwars2.com/v1/map_names.json?lang=en</a><br>
+<a href="https://api.guildwars2.com/v1/world_names.json?lang=en">https://api.guildwars2.com/v1/world_names.json?lang=en</a></p>
+<p>This might be temporary, but it seems to have lasted for a good 30 minutes now.</p></p>
+
+<h2 id="">fro.8967:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-03T03:18:50+00:00">
+        03 May 2014
+    </time>
+</p>
+<p>
+<p>Author of <a href="http://wvwintel.com">WvW Intelligence</a> here.</p>
+<p>Definitely appears to be an API issue. I’ve updated my site to better indicate the errors that are occurring.</p>
+<p>I might even speculate that the China severs are being added to the world names API. Who knows?<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-03T03:18:55+00:00">
+        03 May 2014
+    </time>
+</p>
+<p>
+<p>Hopefully this means good things!</p></p>
+
+<h2 id="">Narax.7605:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-03T10:19:13+00:00">
+        03 May 2014
+    </time>
+</p>
+<p>
+<p>Can someone send ma a cached world_names.json?</p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-03T15:39:24+00:00">
+        03 May 2014
+    </time>
+</p>
+<p>
+<p><a href="https://github.com/codemasher/gw2api-tools/blob/master/json/gw2_worlds.json">https://github.com/codemasher/gw2api-tools/blob/master/json/gw2_worlds.json</a></p></p>
+
+<h2 id="">Narax.7605:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-04T11:14:26+00:00">
+        04 May 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 03 2014 03:39PM"><a href="/forum/community/api/Looks-like-some-of-the-API-is-broken/3985307">darthmaim.6017:</a></cite></div><div class="quotey"><p><a href="https://github.com/codemasher/gw2api-tools/blob/master/json/gw2_worlds.json">https://github.com/codemasher/gw2api-tools/blob/master/json/gw2_worlds.json</a></p></div></blockquote>
+<p>Thank you!<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Tanis.5134:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-07T13:45:31+00:00">
+        07 May 2014
+    </time>
+</p>
+<p>
+<p>I’m a bit disappointed that this has been going on for 4 days now and we haven’t even gotten acknowledgement of the issue.</p>
+<p>Definitely not instilling confidence in the API.</p></p>
+
+<h2 id="">Stefan Larimore.6872:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-07T17:48:26+00:00">
+        07 May 2014
+    </time>
+</p>
+<p>
+<p>Hi All, thank you for the report.  Turns out there were more APIs affected by megaservers that I originally thought.  I am working on a fix and hope to have it out shortly.</p></p>
+
+<h2 id="">Eowin Of Rohan.2619:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-07T19:30:24+00:00">
+        07 May 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 07 2014 05:48PM"><a href="/forum/community/api/Looks-like-some-of-the-API-is-broken/3999815">Stefan Larimore.6872:</a></cite></div><div class="quotey"><p>Hi All, thank you for the report.  Turns out there were more APIs affected by megaservers that I originally thought.  I am working on a fix and hope to have it out shortly.</p></div></blockquote>
+<p>Hi !</p>
+<p>I know this is probably not the right thread, but I really need a fast answer since the API v1 is 1 year old and so are a lot of domain names we bought when creating sites 1 year ago ==&gt; is there any chance that an "api v2" comes out and revives event-api-based sites by using megaservers ? =&gt; should I renew my domain name ?</p>
+<p><a href="/forum-backup/Events-API-2-0">https://forum-en.guildwars2.com/forum/community/api/Events-API-2-0</a></p>
+<p>thanks</p>
+<p>Eowyn</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-07T21:04:34+00:00">
+        07 May 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 07 2014 07:30PM"><a href="/forum/community/api/Looks-like-some-of-the-API-is-broken/4000170">Eowin Of Rohan.2619:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 07 2014 05:48PM"><a href="/forum/community/api/Looks-like-some-of-the-API-is-broken/3999815">Stefan Larimore.6872:</a></cite></div><div class="quotey"><p>Hi All, thank you for the report.  Turns out there were more APIs affected by megaservers that I originally thought.  I am working on a fix and hope to have it out shortly.</p></div></blockquote>
+<p>Hi !</p>
+<p>I know this is probably not the right thread, but I really need a fast answer since the API v1 is 1 year old and so are a lot of domain names we bought when creating sites 1 year ago ==&gt; is there any chance that an "api v2" comes out and revives event-api-based sites by using megaservers ? =&gt; should I renew my domain name ?</p>
+<p><a href="/forum-backup/Events-API-2-0">https://forum-en.guildwars2.com/forum/community/api/Events-API-2-0</a></p>
+<p>thanks</p>
+<p>Eowyn</p></div></blockquote>
+<p>Don’t take this the wrong way, and it’s entirely my own opinion, but I don’t think you should expect an answer (or indication) from ANet on the state of your domain renewals. Even still, these questions should be sent directly to ANet’s community managers, and not blindly posted on forum threads.</p>
+<p>It’s a bit…ummm…not their problem? More explicitly, they (or any company in a similar position) aren’t beholden to your particular business needs because they’ve provided public APIs.</p>
+<p>Again, these thoughts are my own. I would expect that if dev energy <em>is</em> spent on this forum, it would be focused on only those discussions which are universally relevant to all API developers.</p></p>
+
+<h2 id="">Eowin Of Rohan.2619:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-07T22:22:13+00:00">
+        07 May 2014
+    </time>
+</p>
+<p>
+<p>No they don’t have to decide whether I should renew my domain or not. <br>
+No they aren’t beholden on what you call my particular business.</p>
+<p>But they probably know whether they have mid term plans of reworking the events API to make it work with MegaServers.<br>
+And API users (probably not only me) need info about it so that we can decide whether to renew domain names or not; info which imho Anet should give hints about.</p>
+<p>I know that can’t promise "we"ll make event API 2.0 in 08/2014".<br>
+But they can say either <br>
+- <em>events will probably not have a new API now, we’re sorry MegaServer system broke a few sites for good</em><br>
+OR<br>
+- <em>we [may / are talking about / have plans for / don’t know yet if ] release an Event API based on MegaServers that could be used to adapt sites that were using the old API. No promise, it’s up to you to decide if you want to renew your domain in case this new API ends up being released</em></p></p>
+
+<h2 id="">sebrandon.2835:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-08T02:00:05+00:00">
+        08 May 2014
+    </time>
+</p>
+<p>
+<p>Any updates???  It has been 8 hours since the last dev post.</p></p>
+
+<h2 id="">Veron.8645:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-08T21:25:33+00:00">
+        08 May 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 07 2014 07:30PM"><a href="/forum/community/api/Looks-like-some-of-the-API-is-broken/4000170">Eowin Of Rohan.2619:</a></cite></div><div class="quotey"><p>I know this is probably not the right thread, but I really need a fast answer since the API v1 is 1 year old and so are a lot of domain names we bought when creating sites 1 year ago ==&gt; is there any chance that an "api v2" comes out and revives event-api-based sites by using megaservers ? =&gt; should I renew my domain name ?</p>
+<p><a href="/forum-backup/Events-API-2-0">https://forum-en.guildwars2.com/forum/community/api/Events-API-2-0</a></p>
+<p>thanks</p>
+<p>Eowyn</p></div></blockquote>
+<p>If you just use some critical thinking, it’s pretty obvious that the current way megaservers work would not be amenable to event-tracking. How do you know what megaserver shard you’re on? If the API tells you that shard #4 has X event up, how do you reasonably get yourself onto that shard?</p>
+<p>Any realistically useful implementation of the API would require nontrivial changes or added features to megaservers, so I highly doubt anything will happen in the near future.</p></p>
+
+<h2 id="">Tanis.5134:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-09T01:54:43+00:00">
+        09 May 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 07 2014 05:48PM"><a href="/forum/community/api/Looks-like-some-of-the-API-is-broken/3999815">Stefan Larimore.6872:</a></cite></div><div class="quotey"><p>Hi All, thank you for the report.  Turns out there were more APIs affected by megaservers that I originally thought.  I am working on a fix and hope to have it out shortly.</p></div></blockquote>
+<p>Thanks for the update!</p></p>
+
+<h2 id="">Mehlox.1756:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-13T14:40:16+00:00">
+        13 May 2014
+    </time>
+</p>
+<p>
+<p>It’s been 4 days now – <strong>Still no update? …</strong></p></p>
+
+<h2 id="">sebrandon.2835:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-14T22:24:55+00:00">
+        14 May 2014
+    </time>
+</p>
+<p>
+<p>Any updates?  Might as well put my programming on hold for a while….</p></p>
+
+<h2 id="">Foghladha.2506:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-15T17:31:18+00:00">
+        15 May 2014
+    </time>
+</p>
+<p>
+<p>I built a quick array table for anyone using PHP. This got around having to try to come up with more creative imports.<br>
+</p><pre><code>
+$world[1001] = "Anvil Rock";
+$world[1002] = "Borlis Pass";
+$world[1003] = "Yak's Bend";
+$world[1004] = "Henge of Denravi";
+$world[1005] = "Maguuma";
+$world[1006] = "Sorrow's Furnace";
+$world[1007] = "Gate of Madness";
+$world[1008] = "Jade Quarry";
+$world[1009] = "Fort Aspenwood";
+$world[1010] = "Ehmry Bay";
+$world[1011] = "Stormbluff Isle";
+$world[1012] = "Darkhaven";
+$world[1013] = "Sanctum of Rall";
+$world[1014] = "Crystal Desert";
+$world[1015] = "Isle of Janthir";
+$world[1016] = "Sea of Sorrows";
+$world[1017] = "Tarnished Coast";
+$world[1018] = "Northern Shiverpeaks";
+$world[1019] = "Blackgate";
+$world[1020] = "Ferguson's Crossing";
+$world[1021] = "Dragonbrand";
+$world[1022] = "Kaineng";
+$world[1023] = "Devona's Rest";
+$world[1024] = "Eredon Terrace";
+</code></pre><p></p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-15T19:45:55+00:00">
+        15 May 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 15 2014 05:31PM"><a href="/forum/community/api/Looks-like-some-of-the-API-is-broken/4025670">Foghladha.2506:</a></cite></div><div class="quotey"><p>I built a quick array table for anyone using PHP.</p></div></blockquote>
+<p><a href="https://github.com/codemasher/gw2api-tools/blob/master/json/gw2_worlds.json">https://github.com/codemasher/gw2api-tools/blob/master/json/gw2_worlds.json</a></p>
+<pre><code>$worlds = json_decode(file_get_contents('gw2_worlds.json'), true);
+
+foreach($worlds as $w){
+    // do stuff...
+}</code></pre></p>
+
+<h2 id="">Stefan Larimore.6872:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-16T17:42:25+00:00">
+        16 May 2014
+    </time>
+</p>
+<p>
+<p>The API fixes will go out with our upcoming 5/20 release.  I wasn’t sure of the date until recently.</p>
+<p>Regarding a megaserver-compatible live events API:  For a few reasons, there are no plans to build this in the short/medium term, unfortunately.</p></p>
+
+<h2 id="">Lone Wolf.4129:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-16T18:12:53+00:00">
+        16 May 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 16 2014 05:42PM"><a href="/forum/community/api/Looks-like-some-of-the-API-is-broken/4028746">Stefan Larimore.6872:</a></cite></div><div class="quotey"><p>The API fixes will go out with our upcoming 5/20 release.  I wasn’t sure of the date until recently.</p></div></blockquote>
+<p>And that date is?</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-16T18:21:24+00:00">
+        16 May 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 16 2014 06:12PM"><a href="/forum/community/api/Looks-like-some-of-the-API-is-broken/4028843">Lone Wolf.4129:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 16 2014 05:42PM"><a href="/forum/community/api/Looks-like-some-of-the-API-is-broken/4028746">Stefan Larimore.6872:</a></cite></div><div class="quotey"><p>The API fixes will go out with our upcoming 5/20 release.  I wasn’t sure of the date until recently.</p></div></blockquote>
+<p>And that date is?</p></div></blockquote>
+<p>5/20?? Or: 20.05.2014.</p></p>
+
+<h2 id="">Lone Wolf.4129:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-16T18:29:30+00:00">
+        16 May 2014
+    </time>
+</p>
+<p>
+<p>oeps i had read v 2.0 release. guess i’m not quite awake yet.</p>
+<p>my apologies</p></p>
+
+<h2 id="">fro.8967:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-20T21:59:37+00:00">
+        20 May 2014
+    </time>
+</p>
+<p>
+<p>I hope this isn’t the intended result of the world_names fix…:</p>
+<pre><code>[{"id":"30","name":null},
+{"id":"114","name":null},
+{"id":"80","name":null},
+{"id":"107","name":null},
+{"id":"134","name":null},
+{"id":"20","name":null},
+{"id":"110","name":null},
+{"id":"76","name":null},
+{"id":"25","name":null},
+{"id":"117","name":null},
+{"id":"27","name":null},
+{"id":"16","name":null},
+{"id":"75","name":null},
+{"id":"99","name":null},
+{"id":"35","name":null},
+{"id":"17","name":null},
+{"id":"22","name":null},
+{"id":"69","name":"Istan [D]"},
+{"id":"93","name":null},
+{"id":"128","name":null},
+{"id":"147","name":null},
+{"id":"82","name":null},
+{"id":"31","name":null},
+{"id":"81","name":null},
+{"id":"55","name":null},
+{"id":"2","name":"Borlis Pass [D]"},
+{"id":"18","name":null},
+{"id":"121","name":null},
+{"id":"133","name":null},
+{"id":"154","name":null},
+{"id":"38","name":null},
+{"id":"15","name":null},
+{"id":"97","name":null},
+{"id":"155","name":null},
+{"id":"137","name":null},
+{"id":"151","name":null},
+{"id":"26","name":null},
+{"id":"132","name":null},
+{"id":"111","name":null},
+{"id":"122","name":null},
+{"id":"77","name":null},
+{"id":"6","name":"Sorrow's Furnace [D]"},
+{"id":"140","name":null},
+{"id":"58","name":null},
+{"id":"146","name":null},
+{"id":"12","name":null},
+{"id":"71","name":null},
+{"id":"49","name":null},
+{"id":"8","name":"Jade Quarry [D]"},
+{"id":"139","name":null},
+{"id":"90","name":null},
+{"id":"41","name":null},
+{"id":"86","name":null},
+{"id":"68","name":"Blacktide [D]"},
+{"id":"56","name":null},
+{"id":"88","name":null},
+{"id":"36","name":null},
+{"id":"126","name":null},
+{"id":"14","name":null},
+{"id":"73","name":null},
+{"id":"23","name":null},
+{"id":"78","name":null},
+{"id":"3","name":"Yak's Bend [D]"},
+{"id":"72","name":null},
+{"id":"19","name":null},
+{"id":"92","name":null},
+{"id":"157","name":null},
+{"id":"109","name":null},
+{"id":"83","name":null},
+{"id":"130","name":null},
+{"id":"104","name":null},
+{"id":"65","name":"Kodonur [D]"},
+{"id":"59","name":null},
+{"id":"7","name":"Kaineng [D]"},
+{"id":"95","name":null},
+{"id":"145","name":null},
+{"id":"131","name":null},
+{"id":"57","name":null},
+{"id":"9","name":"Fort Aspenwood [D]"},
+{"id":"119","name":null},
+{"id":"113","name":null},
+{"id":"87","name":null},
+{"id":"148","name":null},
+{"id":"66","name":"Gandara [D]"},
+{"id":"32","name":null},
+{"id":"47","name":null},
+{"id":"60","name":null},
+{"id":"37","name":null},
+{"id":"124","name":null},
+{"id":"129","name":null},
+{"id":"108","name":null},
+{"id":"5","name":"Maguuma [D]"},
+{"id":"141","name":null},
+{"id":"50","name":"Dragon's Grove [D]"},
+{"id":"98","name":null},
+{"id":"127","name":null},
+{"id":"143","name":null},
+{"id":"156","name":null},
+{"id":"118","name":null},
+{"id":"42","name":null},
+{"id":"40","name":null},
+{"id":"158","name":null},
+{"id":"70","name":"Vabbi [D]"},
+{"id":"94","name":null},
+{"id":"123","name":null},
+{"id":"64","name":null},
+{"id":"48","name":null},
+{"id":"125","name":null},
+{"id":"61","name":null},
+{"id":"74","name":null},
+{"id":"52","name":null},
+{"id":"150","name":null},
+{"id":"91","name":null},
+{"id":"84","name":null},
+{"id":"51","name":null},
+{"id":"62","name":null},
+{"id":"21","name":null},
+{"id":"136","name":null},
+{"id":"29","name":null},
+{"id":"100","name":null},
+{"id":"144","name":null},
+{"id":"63","name":null},
+{"id":"116","name":null},
+{"id":"10","name":null},
+{"id":"33","name":null},
+{"id":"4","name":"Henge of Denravi [D]"},
+{"id":"44","name":null},
+{"id":"106","name":null},
+{"id":"105","name":null},
+{"id":"39","name":null},
+{"id":"85","name":null},
+{"id":"102","name":null},
+{"id":"115","name":null},
+{"id":"120","name":null},
+{"id":"34","name":null},
+{"id":"11","name":null},
+{"id":"45","name":null},
+{"id":"103","name":null},
+{"id":"89","name":null},
+{"id":"54","name":null},
+{"id":"138","name":null},
+{"id":"152","name":null},
+{"id":"1","name":"Anvil Rock [D]"},
+{"id":"53","name":null},
+{"id":"96","name":null},
+{"id":"43","name":null},
+{"id":"67","name":"Kodash [DE]  [D]"},
+{"id":"24","name":null},
+{"id":"112","name":null},
+{"id":"153","name":null},
+{"id":"135","name":null},
+{"id":"28","name":null},
+{"id":"101","name":null},
+{"id":"46","name":null},
+{"id":"149","name":null},
+{"id":"142","name":null},
+{"id":"13","name":null},
+{"id":"79","name":null}]</code></pre></p>
+
+<h2 id="">Stefan Larimore.6872:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-21T01:16:07+00:00">
+        21 May 2014
+    </time>
+</p>
+<p>
+<p>Ah rats!  Yes, turns out there was another aspect of megaservers I didn’t understand and wasn’t apparent in the development environment.  We will need to temporarily disable that API until I can get it fixed for real.</p></p>
+
+<h2 id="">AysonCurrax.3254:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-21T10:06:31+00:00">
+        21 May 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 20 2014 09:59PM"><a href="/forum/community/api/Looks-like-some-of-the-API-is-broken/4041121">fro.8967:</a></cite></div><div class="quotey"><p>I hope this isn’t the intended result of the world_names fix…:</p>
+<p><strong>snip</strong></p></div></blockquote>
+<p>Good to see you already posted that, I was about to point that out aswell, seeing how i was going to use that api to make use of the wvw matches api. Guess I will have to settle for a static list for now.</p>
+<p>Megaserver really does more harm than good. ._.</p></p>
+
+<h2 id="">Vako.3078:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-14T19:40:55+00:00">
+        14 Jun 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 21 2014 01:16AM"><a href="/forum/community/api/Looks-like-some-of-the-API-is-broken/4041910">Stefan Larimore.6872:</a></cite></div><div class="quotey"><p>Ah rats!  Yes, turns out there was another aspect of megaservers I didn’t understand and wasn’t apparent in the development environment.  We will need to temporarily disable that API until I can get it fixed for real.</p></div></blockquote>
+<p>Any update on this?</p></p>
+
+<h2 id="">Didis.3984:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-19T16:54:50+00:00">
+        19 Oct 2014
+    </time>
+</p>
+<p>
+<p>Please give us the (dynamic) events api. It’s a powerfull tool for people to keep track on collection specific events. It is a positive way people stick to the game. Now you travel to a place in the hope that specific event is live. If i have to wait to long, i leave the area, resulting indisconfort and more easily leaving the game totaly. So please make it easy to see which event is running where. Keep you’re beautyfull game running the way gamers like it…not the way investers want it.</p></p>
+
+<h2 id="">AysonCurrax.3254:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-20T07:13:56+00:00">
+        20 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 19 2014 04:54PM"><a href="/forum/community/api/Looks-like-some-of-the-API-is-broken/4496834">Didis.3984:</a></cite></div><div class="quotey"><p>Please give us the (dynamic) events api. It’s a powerfull tool for people to keep track on collection specific events. It is a positive way people stick to the game. Now you travel to a place in the hope that specific event is live. If i have to wait to long, i leave the area, resulting indisconfort and more easily leaving the game totaly. So please make it easy to see which event is running where. Keep you’re beautyfull game running the way gamers like it…not the way investers want it.</p></div></blockquote>
+<p>Problem is:<br>
+- You currently have no way of telling what megaserver shard you are currently on and hence cant give that as a parameter to the events api<br>
+- Even if you knew that, you wouldnt have a way to travel to a specific megaserver shard where the event is currently running, ultimately making you wait around anyways</p>
+<p>I do agree with you though. I would like to see this fixed sometime soon too.</p></p>
+
+<h2 id="">Sariel V.7024:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-20T18:22:08+00:00">
+        20 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 20 2014 07:13AM"><a href="/forum/community/api/Looks-like-some-of-the-API-is-broken/4498113">AysonCurrax.3254:</a></cite></div><div class="quotey"><p>Problem is:<br>
+- You currently have no way of telling what megaserver shard you are currently on and hence cant give that as a parameter to the events api<br>
+- Even if you knew that, you wouldnt have a way to travel to a specific megaserver shard where the event is currently running, ultimately making you wait around anyways</p>
+<p>I do agree with you though. I would like to see this fixed sometime soon too.</p></div></blockquote>
+<p>Type /ip     <br>
+That’s your megaserver.</p>
+<p>The other problem is insurmountable, though :/</p></p>
+
+<h2 id="">AysonCurrax.3254:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-21T07:40:26+00:00">
+        21 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 20 2014 06:22PM"><a href="/forum/community/api/Looks-like-some-of-the-API-is-broken/4499355">Sariel V.7024:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on October 20 2014 07:13AM"><a href="/forum/community/api/Looks-like-some-of-the-API-is-broken/4498113">AysonCurrax.3254:</a></cite></div><div class="quotey"><p>Problem is:<br>
+- You currently have no way of telling what megaserver shard you are currently on and hence cant give that as a parameter to the events api<br>
+- Even if you knew that, you wouldnt have a way to travel to a specific megaserver shard where the event is currently running, ultimately making you wait around anyways</p>
+<p>I do agree with you though. I would like to see this fixed sometime soon too.</p></div></blockquote>
+<p>Type /ip     <br>
+That’s your megaserver.</p>
+<p>The other problem is insurmountable, though :/</p></div></blockquote>
+<p>I meant in an automatic way, such as grabbing the world/shard_id and map_id from the mumble plugin and feeding it into another application.<br>
+Sadly, the mumble plugin currently returns rubbish when it comes to that, and we have no official events api we could feed that into even if we had it.</p>
+<p>I was aware of the manual way of finding out what ip you are on, but that still isnt the same as a shard_id i suppose.</p></p>
+
+<h2 id="">Rashy.4165:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-24T19:37:20+00:00">
+        24 Oct 2014
+    </time>
+</p>
+<p>
+<p>It could potentially work that way.</p>
+<p>Consider something like map_details API which tracks available megaserver IPs for that particular map. map_details for Dry Top contains all instance of Dry Top currently running. Use that same IP to access event_details API which contains a list of all events currently running, including an IP field which ties into the instance the event is running on.</p>
+<p>If that makes any sense.</p>
+<p>There’s no way to travel to a particular megaserver instance (unless you know someone on the instance), but at least the API will allow tracking of events in your current instance of whichever zone map you’re in, since not all of them appear on the map.</p>
+<p>It’ll probably still be a problem of keeping track of multiple instances of every map and keeping track of the IP.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

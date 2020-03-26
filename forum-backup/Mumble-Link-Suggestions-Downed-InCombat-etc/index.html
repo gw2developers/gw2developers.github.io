@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>[Mumble Link Suggestions] Downed,InCombat,etc</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Mumble-Link-Suggestions-Downed-InCombat-etc/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">[Mumble Link Suggestions] Downed,InCombat,etc</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Mumble-Link-Suggestions-Downed-InCombat-etc
+</p>
+
+
+
+<h2 id="">Talus.1402:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-30T20:10:59+00:00">
+        30 Aug 2013
+    </time>
+</p>
+<p>
+<p><strong>Hello everyone.</strong>  The reason for this post is to make some suggestions for the information contained in the mumble link data, namely the <em>Identity</em> field.</p>
+<p>I have two suggestions:</p>
+<ol>
+	<li>Changing the kinds of data stored in the Identity field.</li>
+	<li>Changing the format of the Identity field.</li>
+</ol>
+<p><ins><strong>Additions and Removals in Current Implementation</strong></ins></p>
+<p>Currently the identity field is in JSON format and looks like:<br>
+{<br>
+  “name”: <em>“John Doe”</em>,<br>
+  “profession”: <em>1</em>,<br>
+  “map_id”: <em>50</em>,<br>
+  “world_id”: <em>1006</em>,<br>
+  “team_color_id”: <em>9</em>,<br>
+  “commander”: <em>true</em><br>
+}</p>
+<p>What we’ve been given is pretty awesome already.  However, I find myself wanting a bit more information about a player’s status.</p>
+<p><strong>Here are some of my suggestions for additional information to be included in the identity field:</strong></p>
+<ul>
+	<li>health (a 32-bit integer should work): health of character</li>
+	<li>supply (a 32-bit unsigned integer): supply being carried by character</li>
+	<li>in_combat (true or false)</li>
+	<li>state (0 = up, 1 = downed, 2 = defeated)</li>
+	<li>is_capturing (true or false): true if character is taking an objective, for example a capture point in PvP or a camp in WvW</li>
+</ul>
+<p>My other suggestions are shown in the attached image.  Note that items H through L are some pieces of information others might want to know.</p>
+<p><strong>Here are my suggestions for removal of redundant information from the identity field due to their inclusion in the context field:</strong></p>
+<ul>
+	<li>map_id</li>
+	<li>world_id</li>
+</ul>
+<p><ins><strong>Reformatting the Identity Field for Use in High Frequency Retrieval</strong></ins></p>
+<p>Since the health, combat status, and state are things that could very well change quite frequently, I propose a new format for the identity field similar to the way the context field is defined: using set field lengths and byte offsets instead of a JSON string.  The 512-byte identity field has a lot of room left to implement the new format.</p>
+<p>This will allow developers to read data directly from the memory-mapped file instead of having to parse the JSON string prior to retrieving what they need.  Also, character names are limited to 19 characters, so representing it as an array of 20 2-byte wchar_t’s (total of 40 bytes of data) should suffice.</p>
+<p><strong>Attached is my proposed layout.  Let me know what you think!</strong></p></p>
+
+<h2 id="">Wothor.4781:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-31T08:42:15+00:00">
+        31 Aug 2013
+    </time>
+</p>
+<p>
+<p>Hm, depending on what high frequency is the target, one could think about just using another transport mechanism for those, e.g. a “GWLink”, to meet the requirement of rare updates set by Mumble.<br>
+Personally I prefer the context blob method over the JSON string.<br>
+The last char of the character name being a null char? Putting that there should avoid messing up the mumble default gui with the data which would be nice indeed.<br>
+I guess in_combat could be added to state, saving a byte.</p></p>
+
+<h2 id="">CyFreeze.1275:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-31T11:11:35+00:00">
+        31 Aug 2013
+    </time>
+</p>
+<p>
+<pre><code>
+struct identity {
+   wchar_t name;
+   int           team_color : 2;
+   int           health            : 16;
+   int           supply            : 6;
+   int           profession     : 2;
+   int           state                : 2;
+   int           commander : 1;
+   int           combat          : 1;
+   int           capturing      : 1;
+   int           instanced      : 1;
+}</code></pre>
+<p>This would result in a total of 8 bytes for the whole structure. I removed a few of the attributes as I found them to be mostly unsusable like gathering (period is way to short) or dungeon which is more or less a duplicate of instanced. But of course all your fields could still be added which would add another 4 bytes due to byte alignment.</p></p>
+
+<h2 id="">Wothor.4781:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-31T15:49:08+00:00">
+        31 Aug 2013
+    </time>
+</p>
+<p>
+<p>Given that there’s a lot of space left, from the perspective of a Teamspeak 3 plugin dev, I actually could make most use of having the groupmembers and commander name (replacing the bool in the progress?) if in a squad.<br>
+Think whispering to your group only etc. up to (if the ids play along) the option to talk to your team in single join tournaments if a server hosts that for a region. Hu, maybe that last one ain’t a good idea hehe.</p>
+<p>From the former thread I think guild tag or name would be worth a honorable mention.</p></p>
+
+<h2 id="">Caldrick.6920:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-31T18:37:38+00:00">
+        31 Aug 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 31 2013 08:42AM"><a href="/forum/community/api/Mumble-Link-Suggestions-Downed-InCombat-etc/2739236">Wothor.4781:</a></cite></div><div class="quotey"><p>Hm, depending on what high frequency is the target, one could think about just using another transport mechanism for those, e.g. a “GWLink”, to meet the requirement of rare updates set by Mumble.<br>
+Personally I prefer the context blob method over the JSON string.<br>
+The last char of the character name being a null char? Putting that there should avoid messing up the mumble default gui with the data which would be nice indeed.<br>
+I guess in_combat could be added to state, saving a byte.</p></div></blockquote>
+<p>Indeed it is actually desirable to change the Identity information from a string to a binary structure.  The main reason for this being the frequency of the updates.  Currently the Identity isn’t updated regularly however, the IsCommander field might be switched often enough to warrant this information as binary so that the JSON string isn’t parsed for each access or in some update thread.</p></p>
+
+<h2 id="">Caldrick.6920:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-31T18:44:39+00:00">
+        31 Aug 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 31 2013 11:11AM"><a href="/forum/community/api/Mumble-Link-Suggestions-Downed-InCombat-etc/2739691">CyFreeze.1275:</a></cite></div><div class="quotey"><pre><code>
+struct identity {
+   wchar_t name;
+   int           team_color : 2;
+   int           health            : 16;
+   int           supply            : 6;
+   int           profession     : 2;
+   int           state                : 2;
+   int           commander : 1;
+   int           combat          : 1;
+   int           capturing      : 1;
+   int           instanced      : 1;
+}</code></pre>
+<p>This would result in a total of 8 bytes for the whole structure. I removed a few of the attributes as I found them to be mostly unusable like gathering (period is way to short) or dungeon which is more or less a duplicate of instanced. But of course all your fields could still be added which would add another 4 bytes due to byte alignment.</p></div></blockquote>
+<p>Agreed, this would be fine, assuming of course that the upper/lower bounds of the data are met.  For example, aren’t there more than 4 professions?</p></p>
+
+<h2 id="">Talus.1402:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-31T19:13:52+00:00">
+        31 Aug 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 31 2013 08:42AM"><a href="/forum/community/api/Mumble-Link-Suggestions-Downed-InCombat-etc/2739236">Wothor.4781:</a></cite></div><div class="quotey"><p>Hm, depending on what high frequency is the target, one could think about just using another transport mechanism for those, e.g. a “GWLink”, to meet the requirement of rare updates set by Mumble.<br>
+Personally I prefer the context blob method over the JSON string.<br>
+The last char of the character name being a null char? Putting that there should avoid messing up the mumble default gui with the data which would be nice indeed.<br>
+I guess in_combat could be added to state, saving a byte.</p></div></blockquote>
+<p>The “GWLink” would be nice, then ArenaNet wouldn’t be bound to the mumble link structure.  Depends on if they want to implement one.  Mumble link seems to take care of both cases: providing positional audio and additional info for developers.  I’m torn on the issue because it would be really nice if they made one catering to developers specifically.  Like all the extra stuff we want that is above and beyond the basic mumble requirements can be put in a GWLink memory-mapped file.</p>
+<p>The last char of the character name is expected to be null char as well as making the name 4-byte aligned.</p>
+<p>Good catch on combining in_combat and state.  An enumeration for the state could look like this:<br>
+enum PlayerState<br>
+{<br>
+     Up = 0,<br>
+     Up_Combat = 1,<br>
+     Downed = 2,<br>
+     Downed_Combat = 3,<br>
+     Defeated<br>
+};</p></p>
+
+<h2 id="">Wothor.4781:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-31T19:37:57+00:00">
+        31 Aug 2013
+    </time>
+</p>
+<p>
+<p>I wouldn’t swear an oath that there’s an out of combat downed state, but yeah, sth. like that<img src="/include/images/smilies/smile.png"><br>
+If there ain’t I’d probably go<br>
+0: 00 not up, not incombat = dead<br>
+1: 01 not up, in combat = downed<br>
+2: 10 up, ooc<br>
+3: 11 up, ic<br>
+just in case, for the fun of it and have a couple of bits left for other bools.<br>
+But after all that’s details the devs will know best what they wanna do that.</p></p>
+
+<h2 id="">Talus.1402:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-31T20:01:18+00:00">
+        31 Aug 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 31 2013 06:44PM"><a href="/forum/community/api/Mumble-Link-Suggestions-Downed-InCombat-etc/2741558">Caldrick.6920:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 31 2013 11:11AM"><a href="/forum/community/api/Mumble-Link-Suggestions-Downed-InCombat-etc/2739691">CyFreeze.1275:</a></cite></div><div class="quotey"><pre><code>
+struct identity {
+wchar_t name;
+   int           team_color : 2;
+   int           health            : 16;
+   int           supply            : 6;
+   int           profession     : 2;
+   int           state                : 2;
+   int           commander : 1;
+   int           combat          : 1;
+   int           capturing      : 1;
+   int           instanced      : 1;
+}</code></pre>
+<p>This would result in a total of 8 bytes for the whole structure. I removed a few of the attributes as I found them to be mostly unusable like gathering (period is way to short) or dungeon which is more or less a duplicate of instanced. But of course all your fields could still be added which would add another 4 bytes due to byte alignment.</p></div></blockquote>
+<p>Agreed, this would be fine, assuming of course that the upper/lower bounds of the data are met.  For example, aren’t there more than 4 professions?</p></div></blockquote>
+<p>Team color is based on <a href="https://api.guildwars2.com/v1/colors.json">dye color</a>.  Since the highest Color ID is 1242, we would require 11 bits to hold that information.  If more colors are added at a later date, might be best to round up to 2 bytes.  As of now, Red Team uses Color ID 376: Salmon and Blue Team uses Color ID 9: Blue Rose (I haven’t figured out Green Team yet).  So as far as I know, we would need 9 bits minimum to hold the Red Team Color ID.</p>
+<p>Correct about profession.  We would need at least 4 bits to hold that.</p>
+<p>Max health I saw on the forums was ~70k, so 16 bits for health sounds right.</p>
+<p>With Wothor.4781’s suggestions, the changes could look like:<br>
+</p><pre><code>struct identity {
+   wchar_t    name[ 20 ];
+   char           guild_id[ 16 ]; //guild_id looks like a 32-digit hexadecimal
+   int              team_color   : 16;
+   int              health            : 19; // EDIT: increased from 16 to 19
+   int              supply            : 6;
+   int              profession      : 8;
+   int              state               : 4;
+   int              commander  : 1;
+   int              capturing       : 1;
+   int              instanced       : 1;
+}
+</code></pre><p></p>
+<p>63 bytes total out of 512 used.  I think we might even be able to get that Squad info on here!</p></p>
+
+<h2 id="">CyFreeze.1275:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-01T16:21:02+00:00">
+        01 Sep 2013
+    </time>
+</p>
+<p>
+<p>The update to the health was necessary I totally forgot about golem suits. Your max health in a golem is about 270k. So slightly more then 2^18. Good choice with the number. The rest seems to be appropriate too. Now that we have so much space left maybe some player identifiers would be nice so that we can get the whole party in there. I don’t think a squad could fit in there. But in the end that would require identifiers to be implemented first.</p></p>
+
+<h2 id="">Wothor.4781:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-02T09:13:33+00:00">
+        02 Sep 2013
+    </time>
+</p>
+<p>
+<p>Since squads, unlike parties, do have a leader, the leader name/identifier would suffice (for me, at least).<br>
+Via character names that should total in (4+1)*40 = 200 bytes altogether isup.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

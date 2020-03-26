@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>API Maintenance 2/13</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/API-Maintenance-2-13/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">API Maintenance 2/13</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/API-Maintenance-2-13
+</p>
+
+
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-13T18:22:08+00:00">
+        13 Feb 2015
+    </time>
+</p>
+<p>
+<p>We’re going to be doing some behind-the-scenes maintenance in a few minutes, in theory there should be few/no user facing changes but you never know. Tests are looking good.</p>
+<p>We’ll be switching the API frontends over to a brand-new version that is easier to maintain for us. This work also sets up the last bit of groundwork required to ship authenticated APIs, which we’re hoping to do <strong>next week</strong>.<img src="/include/images/smilies/smile.png"></p>
+<p>It’s not ready, but we’re working on a post with more details about our near &amp; mid-term hopes and dreams for the API. We’ll be looking for feedback on the authenticated APIs as well as trying to give some sense of what we’re planning to ship going forward. The intent is to model it along the lines of the CDI threads you see for game design.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-13T18:56:09+00:00">
+        13 Feb 2015
+    </time>
+</p>
+<p>
+<p>The switchover has completed. We’re not quite done with the maintenance, next we’ll be changing the DNS record for api.guildwars2.com to use latency-based routing to send folks to either the US or EU. Previously all API traffic was served from our US datacenter.</p>
+<p>We’ve also enabled most of the rest of the /v2 APIs that were still disabled, though a few are still hanging out pending a more complete review.</p>
+<p>The newly-enabled /v2 APIs are:</p>
+<ul>
+	<li>/v2/build</li>
+	<li>/v2/colors</li>
+	<li>/v2/continents</li>
+	<li>/v2/files</li>
+	<li>/v2/floors</li>
+	<li>/v2/maps</li>
+	<li>/v2/skins</li>
+</ul></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-13T19:40:05+00:00">
+        13 Feb 2015
+    </time>
+</p>
+<p>
+<p>Thanks Pat!</p>
+<p>I wish the floors API would have been changed to be more useful. Seems like we still need to loop through the whole thing to find a single POI.</p>
+<p>Also: <br>
+<a href="/forum-backup/API-Suggestion-Maps-API">https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Maps-API/first#post2261295</a><br>
+<a href="/forum-backup/It-has-become-silent-in-here">https://forum-en.guildwars2.com/forum/community/api/It-has-become-silent-in-here/2501399</a></p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-13T20:15:58+00:00">
+        13 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 13 2015 07:40PM"><a href="/forum/community/api/API-Maintenance-2-13/4793880">smiley.1438:</a></cite></div><div class="quotey"><p>Thanks Pat!</p>
+<p>I wish the floors API would have been changed to be more useful. Seems like we still need to loop through the whole thing to find a single POI.</p>
+<p>Also: <br>
+<a href="/forum-backup/API-Suggestion-Maps-API">https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Maps-API/first#post2261295</a><br>
+<a href="/forum-backup/It-has-become-silent-in-here">https://forum-en.guildwars2.com/forum/community/api/It-has-become-silent-in-here/2501399</a></p></div></blockquote>
+<p>The floors API hasn’t gotten much love, as you can see. I’m open to changing the format because it’s straightforward for us to do. So far we’ve been focused on porting the previous API code onto the new backend and prepping for authenticated APIs.</p>
+<p>What we should change the format to will be something we should discuss as part of the upcoming API discussion thread. We can use the posts you linked as a starting point for that discussion.</p></p>
+
+<h2 id="">Aerodin.2795:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-13T22:20:31+00:00">
+        13 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 13 2015 06:22PM"><a href="/forum/community/api/API-Maintenance-2-13/4793642">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>We’ll be switching the API frontends over to a brand-new version that is easier to maintain for us. This work also sets up the last bit of groundwork required to ship authenticated APIs, which we’re hoping to do <strong>next week</strong>.<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>Wow this is pretty huge news, and really exciting!! Just so it’s clear, is the plan/hope to have a thread to talk about future plans next week, or for the actual authenticated APIs to be available next week?</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-13T22:25:37+00:00">
+        13 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 13 2015 10:20PM"><a href="/forum/community/api/API-Maintenance-2-13/4794424">Aerodin.2795:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 13 2015 06:22PM"><a href="/forum/community/api/API-Maintenance-2-13/4793642">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>We’ll be switching the API frontends over to a brand-new version that is easier to maintain for us. This work also sets up the last bit of groundwork required to ship authenticated APIs, which we’re hoping to do <strong>next week</strong>.<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>Wow this is pretty huge news, and really exciting!! Just so it’s clear, is the plan/hope to have a thread to talk about future plans next week, or for the actual authenticated APIs to be available next week?</p></div></blockquote>
+<p>Both. The switchover in code happened this morning. Next week we’ll definitely kick off the CDI thread.</p>
+<p>Not going to 100% promise that we will be able to enable the authenticated APIs then but it’s what we’re shooting for.</p>
+<p>In the “managing expectations” department: The first authenticated API will be <strong>very simple</strong>. We’re starting with something simple and with low technical risk in case everything lights itself on fire.</p></p>
+
+<h2 id="">Aerodin.2795:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-13T22:30:04+00:00">
+        13 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 13 2015 10:25PM"><a href="/forum/community/api/API-Maintenance-2-13/4794443">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 13 2015 10:20PM"><a href="/forum/community/api/API-Maintenance-2-13/4794424">Aerodin.2795:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 13 2015 06:22PM"><a href="/forum/community/api/API-Maintenance-2-13/4793642">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>We’ll be switching the API frontends over to a brand-new version that is easier to maintain for us. This work also sets up the last bit of groundwork required to ship authenticated APIs, which we’re hoping to do <strong>next week</strong>.<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>Wow this is pretty huge news, and really exciting!! Just so it’s clear, is the plan/hope to have a thread to talk about future plans next week, or for the actual authenticated APIs to be available next week?</p></div></blockquote>
+<p>Both. The switchover in code happened this morning. Next week we’ll definitely kick off the CDI thread.</p>
+<p>Not going to 100% promise that we will be able to enable the authenticated APIs then but it’s what we’re shooting for.</p>
+<p>In the “managing expectations” department: The first authenticated API will be <strong>very simple</strong>. We’re starting with something simple and with low technical risk in case everything lights itself on fire.</p></div></blockquote>
+<p>Makes sense. Looking forward to it!</p></p>
+
+<h2 id="">Keider.8652:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-14T00:08:53+00:00">
+        14 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 13 2015 10:25PM"><a href="/forum/community/api/API-Maintenance-2-13/4794443">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 13 2015 10:20PM"><a href="/forum/community/api/API-Maintenance-2-13/4794424">Aerodin.2795:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 13 2015 06:22PM"><a href="/forum/community/api/API-Maintenance-2-13/4793642">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>We’ll be switching the API frontends over to a brand-new version that is easier to maintain for us. This work also sets up the last bit of groundwork required to ship authenticated APIs, which we’re hoping to do <strong>next week</strong>.<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>Wow this is pretty huge news, and really exciting!! Just so it’s clear, is the plan/hope to have a thread to talk about future plans next week, or for the actual authenticated APIs to be available next week?</p></div></blockquote>
+<p>Both. The switchover in code happened this morning. Next week we’ll definitely kick off the CDI thread.</p>
+<p>Not going to 100% promise that we will be able to enable the authenticated APIs then but it’s what we’re shooting for.</p>
+<p>In the “managing expectations” department: The first authenticated API will be <strong>very simple</strong>. We’re starting with something simple and with low technical risk in case everything lights itself on fire.</p></div></blockquote>
+<p>Very nice to get the old endpoints standardized, and so quickly! I’m looking forward to that CDI thread <img src="/include/images/smilies/colondee.png"><br>
+I’ll have to agree with smiley.1438 though, the floor endpoint has room for improvement.</p></p>
+
+<h2 id="">aRestless.6213:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-14T00:35:54+00:00">
+        14 Feb 2015
+    </time>
+</p>
+<p>
+<p>Quick question: Does the floor-API allow to (indirectly) convert from character position to floor?</p>
+<p>Cause that’s something I could use for Markers. A lot.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-14T00:45:29+00:00">
+        14 Feb 2015
+    </time>
+</p>
+<p>
+<p>After some deep thoughts and a quick huddle over here we’re disabling /v2/floors, we’re not happy with how it looks and want to revisit it before anyone writes code to depend on it.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-14T01:42:37+00:00">
+        14 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 14 2015 12:45AM"><a href="/forum/community/api/API-Maintenance-2-13/4794776">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>After some deep thoughts and a quick huddle over here we’re disabling /v2/floors, we’re not happy with how it looks and want to revisit it before anyone writes code to depend on it.</p></div></blockquote>
+<p>What can i say? Yay, go for it! Help us to create shiny maps, especially on the Wikis! Everyone wants them but the floors API isn’t handy at all.</p></p>
+
+<h2 id="">Chokapik.3741:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-14T08:33:40+00:00">
+        14 Feb 2015
+    </time>
+</p>
+<p>
+<p>Oh, that’s so cool! <br>
+Although, have you considered adding the dye item ID in the /v2/colors API? It would be really nice because right now, we have no way to make the conversion from a color to an actual in-game dye.<br>
+Edit: Actually we have the dye name, but I think it would be more useful to get the ID.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-14T15:57:31+00:00">
+        14 Feb 2015
+    </time>
+</p>
+<p>
+<p>Well, having the item database makes this a simple task. Speaking of the colors API:<br>
+<a href="/forum-backup/API-Suggestion-Colors-API">https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Colors-API/2910450</a></p>
+<p>(dang, why has the master sticky thread been unstickied?)</p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-14T20:50:24+00:00">
+        14 Feb 2015
+    </time>
+</p>
+<p>
+<p>Those are awesome news!</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-15T02:29:20+00:00">
+        15 Feb 2015
+    </time>
+</p>
+<p>
+<p>Chokapik: What smiley was referring to is the color_id attribute of the <a href="http://wiki.guildwars2.com/wiki/API:2/items#Consumable">consumables detail object</a> on the /v2/items endpoint.  If you have an item database available, you can join your consumables to your colors on that field.</p></p>
+
+<h2 id="">Chokapik.3741:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-15T13:16:14+00:00">
+        15 Feb 2015
+    </time>
+</p>
+<p>
+<p>Yes, that would work, but I don’t think iterating through ALL the items when you just want to get the dyes is very efficient. <br>
+If you simply want to do something where the user can check all the colors, choose one they like before buying it in-game, at some point you’re going to need a way to make the conversion between a color and a dye (consumable).</p></p>
+
+<h2 id="">AysonCurrax.3254:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-15T14:23:46+00:00">
+        15 Feb 2015
+    </time>
+</p>
+<p>
+<p>I noticed some odd behaviour with the v1/skin_details.json end point. It seems to have some encoding issues, but i am not sure if that is related to the maintenance or not, so i am posting it here just incase.<br>
+namely, the “Einhänder” and “Zweihänder” got their names all messed up in the v1 endpoint as can be seen here:<br>
+<a href="https://api.guildwars2.com/v1/skin_details.json?skin_id=5231">https://api.guildwars2.com/v1/skin_details.json?skin_id=5231</a><br>
+<a href="https://api.guildwars2.com/v1/skin_details.json?skin_id=5193">https://api.guildwars2.com/v1/skin_details.json?skin_id=5193</a></p>
+<p>the same thing doesnt seem to happen in the new v2 api though :<br>
+<a href="https://api.guildwars2.com/v2/skins/5231">https://api.guildwars2.com/v2/skins/5231</a><br>
+<a href="https://api.guildwars2.com/v2/skins/5193">https://api.guildwars2.com/v2/skins/5193</a></p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-15T14:24:45+00:00">
+        15 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 15 2015 02:23PM"><a href="/forum/community/api/API-Maintenance-2-13/4798231">AysonCurrax.3254:</a></cite></div><div class="quotey"><p>I noticed some odd behaviour with the v1/skin_details.json end point. It seems to have some encoding issues, but i am not sure if that is related to the maintenance or not, so i am posting it here just incase.<br>
+namely, the “Einhänder” and “Zweihänder” got their names all messed up in the v1 endpoint as can be seen here:<br>
+<a href="https://api.guildwars2.com/v1/skin_details.json?skin_id=5231">https://api.guildwars2.com/v1/skin_details.json?skin_id=5231</a><br>
+<a href="https://api.guildwars2.com/v1/skin_details.json?skin_id=5193">https://api.guildwars2.com/v1/skin_details.json?skin_id=5193</a></p>
+<p>the same thing doesnt seem to happen in the new v2 api though :<br>
+<a href="https://api.guildwars2.com/v2/skins/5231">https://api.guildwars2.com/v2/skins/5231</a><br>
+<a href="https://api.guildwars2.com/v2/skins/5193">https://api.guildwars2.com/v2/skins/5193</a></p></div></blockquote>
+<p>See: <a href="/forum-backup/Guild-API-strings-are-UTF-8-encoded-twice">https://forum-en.guildwars2.com/forum/community/api/Guild-API-strings-are-UTF-8-encoded-twice</a></p></p>
+
+<h2 id="">AysonCurrax.3254:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-15T14:32:13+00:00">
+        15 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 15 2015 02:24PM"><a href="/forum/community/api/API-Maintenance-2-13/4798234">smiley.1438:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 15 2015 02:23PM"><a href="/forum/community/api/API-Maintenance-2-13/4798231">AysonCurrax.3254:</a></cite></div><div class="quotey"><p>I noticed some odd behaviour with the v1/skin_details.json end point. It seems to have some encoding issues, but i am not sure if that is related to the maintenance or not, so i am posting it here just incase.<br>
+namely, the “Einhänder” and “Zweihänder” got their names all messed up in the v1 endpoint as can be seen here:<br>
+<a href="https://api.guildwars2.com/v1/skin_details.json?skin_id=5231">https://api.guildwars2.com/v1/skin_details.json?skin_id=5231</a><br>
+<a href="https://api.guildwars2.com/v1/skin_details.json?skin_id=5193">https://api.guildwars2.com/v1/skin_details.json?skin_id=5193</a></p>
+<p>the same thing doesnt seem to happen in the new v2 api though :<br>
+<a href="https://api.guildwars2.com/v2/skins/5231">https://api.guildwars2.com/v2/skins/5231</a><br>
+<a href="https://api.guildwars2.com/v2/skins/5193">https://api.guildwars2.com/v2/skins/5193</a></p></div></blockquote>
+<p>See: <a href="/forum-backup/Guild-API-strings-are-UTF-8-encoded-twice">https://forum-en.guildwars2.com/forum/community/api/Guild-API-strings-are-UTF-8-encoded-twice</a></p></div></blockquote>
+<p>ahh, thank you. well, instead of meddling with a workaround for now, ill just leave it as is and wait for it to be fixed. Just figured it might be related to the maintenance, since an older database of mine didnt seem to have that weird issue. it being here might raise some attention, though, so it probably isnt that bad to be where it might not belong :x</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

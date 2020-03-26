@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Bloodstone Fen [Tile Service]</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Bloodstone-Fen-Tile-Service/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Bloodstone Fen [Tile Service]</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Bloodstone-Fen-Tile-Service
+</p>
+
+
+
+<h2 id="">Reincarnated.1754:</h2>
+<p class="post-meta">
+    <time datetime="2016-07-29T16:40:39+00:00">
+        29 Jul 2016
+    </time>
+</p>
+<p>
+<p>Is the some issue with some of the Tile Service <strong><em>subdomains</em></strong>?</p>
+<p>I have had to change some code to see Bloodstone Fen maps.</p>
+<p><strong>Changed from:</strong><br>
+        tiles = L.tileLayer(“<a href="https://tiles{s}.guildwars2.com/1/1/{z}/{x}/{y}.jpg">https://tiles{s}.guildwars2.com/1/1/{z}/{x}/{y}.jpg</a>”, {<br>
+            zIndex: 0,<br>
+            minZoom: 3,<br>
+            maxZoom: 7,<br>
+            continuousWorld: true,<br>
+            subdomains: [1, 2, 3, 4]<br>
+        }).addTo(map);</p>
+<p><strong>To:</strong><br>
+        tiles = L.tileLayer(“<a href="https://tiles.guildwars2.com/1/1/{z}/{x}/{y}.jpg">https://tiles.guildwars2.com/1/1/{z}/{x}/{y}.jpg</a>”, {<br>
+            zIndex: 0,<br>
+            minZoom: 3,<br>
+            maxZoom: 7,<br>
+            continuousWorld: true<br>
+        }).addTo(map);</p>
+<p>I removed the use of subdomains.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-07-29T16:57:33+00:00">
+        29 Jul 2016
+    </time>
+</p>
+<p>
+<p>I’m unable to repro. All of the subdomains are configured with the same CloudFront distribution — so they’re all identical in both origin configuration and invalidation. There was some talk the other day about tiles taking an unreasonable amount of time to invalidate at certain EU edge servers but I haven’t been able to repro it.</p>
+<p>Do you have an example URL that serves different tile data than tiles.guildwars2.com? i.e. a specific tile. The ones I’ve peeked at are identical between domains.</p></p>
+
+<h2 id="">Reincarnated.1754:</h2>
+<p class="post-meta">
+    <time datetime="2016-07-29T20:02:11+00:00">
+        29 Jul 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on July 29 2016 04:57PM"><a href="/forum/community/api/Bloodstone-Fen-Tile-Service/6265232">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>I’m unable to repro. All of the subdomains are configured with the same CloudFront distribution — so they’re all identical in both origin configuration and invalidation. There was some talk the other day about tiles taking an unreasonable amount of time to invalidate at certain EU edge servers but I haven’t been able to repro it.</p>
+<p>Do you have an example URL that serves different tile data than tiles.guildwars2.com? i.e. a specific tile. The ones I’ve peeked at are identical between domains.</p></div></blockquote>
+<p>I’ve left my main app. changed so it works ok, atm.<br>
+I have this which I made to get info on the event api.<br>
+<a href="http://www.timscloud.uk/Tim/GW2/EventTool/Event_Tool.html">http://www.timscloud.uk/Tim/GW2/EventTool/Event_Tool.html</a> <br>
+I have left this configured to use the subdomains.</p>
+<p>If you go to the bottom part and enter 1165 (Bloodstone Fen) in Map ID box and click Get map details.</p>
+<p>Then zoom in and out of Bloodstone Fen map you should hopefully get what I was getting, which is missing tiles.</p>
+<p>you can do it for each floor by changing floor number and clicking the button.</p>
+<p>I found floor 1 was the worst. when zoomed in max.<br>
+Also the effect is with Stronghold of the faithful.</p>
+<p><em>sorry if the page looks squashed, I use it on a portrait monitor</em><img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-07-29T20:11:52+00:00">
+        29 Jul 2016
+    </time>
+</p>
+<p>
+<p>I can’t repro it at all — I don’t see any weirdness with the new tiles (Bloodstone Fen, Stronghold of the Faithful, Raid on Capricorn, etc) with either your tool or mine.</p>
+<p>I highly suspect there’s some kind of cache coherency error on one of the EU CloudFront edge servers — it’s possible that it somehow cached a bad request or something. I’m not entirely sure <em>how</em> that’d be possible given the origin is an S3 bucket, but I kicked off another invalidation of the entire CloudFront distribution to <em>hopefully</em> do <em>something</em>.</p>
+<p>Invalidations usually take 20-40 minutes from what I’ve seen; I can’t connect to the broken edge servers so let me know if that changes anything ;__;</p>
+<p>EDIT: As an additional datapoint, smiley <a href="https://gitter.im/arenanet/api-cdi?at=579a50dfac80b5ea3f143542">mentioned on gitter</a> that this is a regular occurance whenever tiles are updated and it usually resolves itself after awhile. It might be worth investigating setting the CloudFront edge servers to NA-only to see if that fixes the problem (at the cost of CDN latency for non-NA tile consumers) :/</p>
+<p>EDIT2: The invalidation I kicked off says it’s completed.</p></p>
+
+<h2 id="">Reincarnated.1754:</h2>
+<p class="post-meta">
+    <time datetime="2016-07-30T08:25:25+00:00">
+        30 Jul 2016
+    </time>
+</p>
+<p>
+<p>Thank you for looking into it Lawton, I think it could be a cache thing.<br>
+More tiles are showing as time passes.</p>
+<p>Hopefully it will sort its self out over time, and I’ll change my code back when it settles down.<img src="/include/images/smilies/smile.png"></p>
+<p>floor 0<br>
+<a href="http://img.techpowerup.org/160730/capture010.jpg">http://img.techpowerup.org/160730/capture010.jpg</a><br>
+floor 1<br>
+<a href="http://img.techpowerup.org/160730/capture008.jpg">http://img.techpowerup.org/160730/capture008.jpg</a><br>
+floor 2<br>
+<a href="http://img.techpowerup.org/160730/capture011.jpg">http://img.techpowerup.org/160730/capture011.jpg</a></p>
+<p>Thanks</p>
+<p><strong>EDIT:</strong> sorted I think<br>
+I am using <strong>Microsoft Edge</strong>.<br>
+Tried it with <strong>Explorer</strong>, no problems.<br>
+Sorry about that.<br>
+<strong>Microsoft Edge</strong>, the piece of ****, it should be called <strong>Microsoft ALFA Kitten Edge</strong> (use with care). lol</p>
+<p><strong>EDIT:</strong> Just did daily (Southsun survival). map 920 floor 37<br>
+Don’t Know if this is a separate issue?<br>
+I think it is. Looks more to do with the maps API.<br>
+<a href="http://img.techpowerup.org/160730/capture015.jpg">http://img.techpowerup.org/160730/capture015.jpg</a><br>
+The default floor is not listed in the floors.<br>
+Floors show 12, not 1, 2 (not coma separated)</p>
+<p>In <strong>MS Edge:</strong><br>
+My main app. <a href="http://img.techpowerup.org/160730/capture012127.jpg">http://img.techpowerup.org/160730/capture012127.jpg</a><br>
+In <strong>MS Explorer:</strong><br>
+My main app. <a href="http://img.techpowerup.org/160730/capture014.jpg">http://img.techpowerup.org/160730/capture014.jpg</a><br>
+Using my tool I linked.  <a href="http://img.techpowerup.org/160730/capture013.jpg">http://img.techpowerup.org/160730/capture013.jpg</a></p>
+<p><strong>EDIT:</strong> 95% sure it’s MS Edge.<br>
+… =&gt; settings =&gt; Clear Browsing Data “Choose what to clear” =&gt; Tick: “Cached data and files”. Click: “Clear”.<br>
+I now see all tiles in Bloodstone Fen and Raid map.</p>
+<p>Sorry if it caused you trouble.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-09-13T19:56:02+00:00">
+        13 Sep 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on July 30 2016 08:25AM"><a href="/forum/community/api/Bloodstone-Fen-Tile-Service/6266550">Reincarnated.1754:</a></cite></div><div class="quotey"><p><strong>EDIT:</strong> Just did daily (Southsun survival). map 920 floor 37<br>
+Don’t Know if this is a separate issue?<br>
+I think it is. Looks more to do with the maps API.<br>
+<a href="http://img.techpowerup.org/160730/capture015.jpg">http://img.techpowerup.org/160730/capture015.jpg</a><br>
+The default floor is not listed in the floors.<br>
+Floors show 12, not 1, 2 (not coma separated)</p></div></blockquote>
+<p>This may be a bug. In the actual data for Southsun Survival, the default floor is not listed in the list of floors. For some reason, it is for pretty much all the other maps. It may make sense to have the API frontend normalize the data so that the default floor is always in the floors list (because that would make sense).</p>
+<p>Created a <a href="https://github.com/arenanet/api-cdi/issues/356">tracking issue for this</a>.</p></p>
+
+<h2 id="">Reincarnated.1754:</h2>
+<p class="post-meta">
+    <time datetime="2016-09-15T20:39:20+00:00">
+        15 Sep 2016
+    </time>
+</p>
+<p>
+<p>Thank you Lawton.</p>
+<p>Welcome back, hope you had a nice vacation<img src="/include/images/smilies/smile.png"></p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

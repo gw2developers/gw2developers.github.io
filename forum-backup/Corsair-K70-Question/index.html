@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Corsair K70 Question</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Corsair-K70-Question/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Corsair K70 Question</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Corsair-K70-Question
+</p>
+
+
+
+<h2 id="">seiyria.4792:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T23:55:51+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<p>Hi all,</p>
+<p>I suspect what I want to do is against the ToS but I want to ask anyway. I just got a Corsair K70 and it’s <a href="https://www.youtube.com/watch?v=LrWM9EdlJSE">pretty neat</a> to say the least.</p>
+<p>I wanted to make use of some client data to “theme” my keyboard depending on character / class and some other things, like so:</p>
+<ul>
+	<li>Have my current stamina shown visually across f5-f12</li>
+	<li>Have my HP shown in vertically on the numpad (ie, less hp = fewer lit keys)</li>
+	<li>Color my keyboard according to race / profession (sylvari would have a green keyboard, with an elementalist having WASD colored red, for example)</li>
+	<li>Have certain F1-F4 keys colored based on profession, ie, for an elementalist we have fire, water, air, and earth, so my F1 would be red, F2 would be blue, etc.</li>
+</ul>
+<p>Or maybe there’d be some sort of scriptable API like WoW has in the future?</p>
+<p>Thanks!</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T00:33:20+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<p>The only bit of data we currently expose is the current character’s profession. You can get this info from the super poorly-documented <a href="http://wiki.guildwars2.com/wiki/Mumble">Mumble link API</a> (see <a href="/forum-backup/GW2-s-Mumble-Link-context-data-format">this thread</a>). Specifically, the <code>identity</code> field of the <a href="http://wiki.mumble.info/wiki/Link">Link data</a> contains a JSON blob which looks like</p>
+<p>{ “name” : “character name”<br>
+, “profession” : 1<br>
+, “map_id” : 2<br>
+, “world_id” : 3<br>
+, “team_color_id” : 4<br>
+, “commander” : true<br>
+}</p>
+<p>Where “profession” has the following mapping:</p>
+<p>1 = Guardian<br>
+2 = Warrior<br>
+3 = Engineer<br>
+4 = Ranger<br>
+5 = Thief<br>
+6 = Elementalist<br>
+7 = Mesmer<br>
+8 = Necro</p>
+<p>“map_id” corresponds (or, should) to a map accessible via <a href="http://wiki.guildwars2.com/wiki/API:2/maps">/v2/maps</a>, “world_id” to an id in <a href="http://wiki.guildwars2.com/wiki/API:2/worlds">/v2/worlds</a>, and “team_color_id” to a color id which can be resolved against <a href="http://wiki.guildwars2.com/wiki/API:2/colors">/v2/colors</a> (I … think). Oh, and “commander” is set to true iff you’re running a commander tag.</p></p>
+
+<h2 id="">seiyria.4792:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T01:03:31+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<p>Hm. So I could write a desktop program that interfaces with gw2.exe (not querying a web service)? Just want to be clear on how this API works.</p>
+<p>Is there any chance this will be expanded to provide some of the data above (current hp, max hp, stamina, race?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T01:07:35+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<p>Yeah, it’d be a desktop program that uses a shared memory-mapped file which uses the <a href="http://wiki.mumble.info/wiki/Link">Mumble link data format</a>.</p>
+<p>There’s really only two fields in that format that we can put data into; each of them are only 256 bytes long. One of them, “context”, is used to determine which players should hear which other players (so we can’t change it). The other, “identity”, is documented as “shouldn’t change more than a few times per second if at all during a game”. So there isn’t really any place we can put real-time data without breaking existing usages of that API<img src="/include/images/smilies/sad.png"></p></p>
+
+<h2 id="">seiyria.4792:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T01:25:19+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<p>Great to hear that it’s a desktop API (sorry, I’m a web developer by trade so I am hardwired to think APIs are for remote locations, so I wanted to clarify).</p>
+<p>Aw, now that is a shame. Maybe a new API for more “realtime tracking”? I would really like to get my hands on something like that; the possibilities are grand. Not only would I be able to do this thing with my keyboard, but I’m sure there could be some widgets made that do some very nice things, like enhanced alerts (for low hp or low stamina), or some neat conditional display based on race / profession.</p>
+<p>Maybe if the map location were also put in this theoretical API, you could do a heatmap of the world too, to see where the players using this widget are, currently.</p>
+<p>Of course, I’m not familiar with a codebase as complex as GW2 (probably) is, so I don’t really understand the level of effort something like this would take. Surely there isn’t a whole lot of data that people would want, though.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T01:29:14+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 21 2015 01:25AM"><a href="/forum/community/api/Corsair-K70-Question/4815100">seiyria.4792:</a></cite></div><div class="quotey"><p>Great to hear that it’s a desktop API (sorry, I’m a web developer by trade so I am hardwired to think APIs are for remote locations, so I wanted to clarify).</p>
+<p>Aw, now that is a shame. Maybe a new API for more “realtime tracking”? I would really like to get my hands on something like that; the possibilities are grand. Not only would I be able to do this thing with my keyboard, but I’m sure there could be some widgets made that do some very nice things, like enhanced alerts (for low hp or low stamina), or some neat conditional display based on race / profession.</p>
+<p>Maybe if the map location were also put in this theoretical API, you could do a heatmap of the world too, to see where the players using this widget are, currently.</p>
+<p>Of course, I’m not familiar with a codebase as complex as GW2 (probably) is, so I don’t really understand the level of effort something like this would take. Surely there isn’t a whole lot of data that people would want, though.</p></div></blockquote>
+<p>This is probably what you’re looking for: <br>
+<a href="/forum-backup/Gw2-Location-Tracker">https://forum-en.guildwars2.com/forum/community/api/Gw2-Location-Tracker/first#post2379754</a><br>
+<a href="/forum-backup/Map-API-Mumble-Mashup">https://forum-en.guildwars2.com/forum/community/api/Map-API-Mumble-Mashup</a></p></p>
+
+<h2 id="">seiyria.4792:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T01:42:50+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 21 2015 01:29AM"><a href="/forum/community/api/Corsair-K70-Question/4815109">smiley.1438:</a></cite></div><div class="quotey"><p>This is probably what you’re looking for: <br>
+<a href="/forum-backup/Gw2-Location-Tracker">https://forum-en.guildwars2.com/forum/community/api/Gw2-Location-Tracker/first#post2379754</a><br>
+<a href="/forum-backup/Map-API-Mumble-Mashup">https://forum-en.guildwars2.com/forum/community/api/Map-API-Mumble-Mashup</a></p></div></blockquote>
+<p>This would not really cover most of what I was requesting, as far as I can tell, sorry<img src="/include/images/smilies/sad.png"> The maps thing was just a spur of the moment idea, but it seems someone has covered that base already.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T01:48:15+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<p>Oh i see, you meant espeacially for your keyboard (realtime tracking was the buzzword<img src="/include/images/smilies/colondee.png">). Well, lets see what the future brings.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T10:06:43+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<p>I don’t know how, but it’s possible to tap into data that is meant to be consumed by certain types of gaming keyboards.</p>
+<p>Here’s an example of how this can be used: <a href="http://www.gw2hud.com/">http://www.gw2hud.com/</a></p>
+<p>If anyone actually knows how to do this in code, that would be awesome.</p></p>
+
+<h2 id="">seiyria.4792:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T14:38:30+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<p>Nice find, StevenL! It looks like that has most of the data I want, just not HP or Stamina, but it’s distinctly possible that they send that information around as well.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T16:32:12+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<p>Well… I still don’t know how they did it. I can’t find any documentation on the matter. Not even a reference to the existence of the API behind it. Seems like gw2hud was an inside job(?)</p></p>
+
+<h2 id="">Terrasque.8735:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T17:31:06+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<p><a href="http://support.logitech.com/en_us/article/21508?product=a0qi00000069vCHAAY">http://support.logitech.com/en_us/article/21508?product=a0qi00000069vCHAAY</a> might be of some help.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T20:14:41+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<p>Oh, wow. I’ve had that SDK installed on my computer for months without even knowing it. Let’s see what I can find.</p>
+<p>(…)</p>
+<p>Hmm… I think that the way to do it is to create a DLL (written in native code) that exports the same interfaces as the Logitech keyboard software. Then, somehow, you have to trick the game into calling your DLL instead of a Logitech DLL. What your DLL does with the data is up to you.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T21:19:55+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<p>Figured it out. When you install the “Logitech Gaming Software” application, it creates the following registry key: HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{fe750200-b72e-11d9-829b-0050da1a72d3}\ServerBinary</p>
+<p>The value of this key is a path to the LCD’s API library. On my machine, the value is: C:\Program Files\Logitech Gaming Software\SDK\LCD\x64\LgLcdApi.dll (yours may differ)</p>
+<p>Presumably, the game client uses this registry key to locate the entry point for the LCD.  Replace the path with a path to any other DLL, and the game client will use that path as the entry point instead.</p>
+<p>Beware that for people who actually have a keyboard with an LCD, this hack will disable communication between all games and the physical LCD.</p>
+<p>Side note: you probably don’t need to install the LGS software. Just create the registry key manually.</p></p>
+
+<h2 id="">seiyria.4792:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T22:39:39+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<p>Hm. That seems like a lot of work for someone who wants this but I’ll definitely not rule it out. Obviously I would only be targeting people with the Corsair K70 which does not have an LCD, so I don’t think a collision of interest is an outcome that will occur. If it does, that can be tackled later.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T23:08:58+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<p>The phsycial LCD disconnect only applies to Logitech keyboards, so that shouldn’t be an issue.</p>
+<p>Just to be safe, you could activate the official Logitech DLL from your custom DLL in order to forward game data and still keep the physical LCD display working.</p>
+<p>So, now, how would we implement that DLL? The real DLL exports the following functions…</p>
+<ul>
+	<li>DllRegisterServer</li>
+	<li>DllUnregisterServer</li>
+	<li>GetInterface</li>
+</ul>
+<p>The first two are specific to COM programming (used by regsvr32). The third one, I don’t know. Is anybody with COM programming experience willing to take a stab at this?</p></p>
+
+<h2 id="">Terrasque.8735:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T23:34:16+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<p>I have no experience with native programming, I’m afraid, but keeping an eye on this.</p>
+<p>In principle it seems easy, make a DLL with the same exported functions as in the documentation, expecting the same arguments, then export it somewhere else (first pass, probably send the raw data to a file, just to see what data it gets). I just don’t know any language that will allow me to create such a DLL.</p>
+<p>“LogitechGamingLCDSDK.pdf” page 9 list about 10 functions. Would be interesting to know which (if any) gw2 uses.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-22T00:12:45+00:00">
+        22 Feb 2015
+    </time>
+</p>
+<p>
+<p>Here’s a nice visual representation of how it’s supposed to work (taken from a piece of SDK documentation).<br>
+<a href="https://i.imgur.com/ZWXGZzb.png">https://i.imgur.com/ZWXGZzb.png</a></p>
+<p>Here’s an adjusted version of where and how GW2HUD hijacks this process.<br>
+<a href="https://i.imgur.com/Vpqysex.png">https://i.imgur.com/Vpqysex.png</a></p>
+<p>Source: <a href="https://github.com/Fire-Dragon-DoL/CsLglcd/tree/master/CsLglcd/Pdf">https://github.com/Fire-Dragon-DoL/CsLglcd/tree/master/CsLglcd/Pdf</a></p></p>
+
+<h2 id="">Aerodin.2795:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-22T00:26:19+00:00">
+        22 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 22 2015 12:12AM"><a href="/forum/community/api/Corsair-K70-Question/4817465">StevenL.3761:</a></cite></div><div class="quotey"><p>Here’s a nice visual representation of how it’s supposed to work (taken from a piece of SDK documentation).<br>
+<a href="https://i.imgur.com/ZWXGZzb.png">https://i.imgur.com/ZWXGZzb.png</a></p>
+<p>Here’s an adjusted version of where and how GW2HUD hijacks this process.<br>
+<a href="https://i.imgur.com/Vpqysex.png">https://i.imgur.com/Vpqysex.png</a></p>
+<p>Source: <a href="https://github.com/Fire-Dragon-DoL/CsLglcd/tree/master/CsLglcd/Pdf">https://github.com/Fire-Dragon-DoL/CsLglcd/tree/master/CsLglcd/Pdf</a></p></div></blockquote>
+<p>I like how you made the broken lines all drippy looking.<img src="/include/images/smilies/smile.png"></p>
+<p>Looking at the documentation, I could be wrong, but it looks like the interface allows for a passing actual bitmaps that are then drawn to the LCD display. There’s no contextual/generic information like what the mumble interface provides.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-22T00:35:35+00:00">
+        22 Feb 2015
+    </time>
+</p>
+<p>
+<p>Yeah. I suspect that the game client generates images with drawn text, so that the Logitech software has to do nothing other than render the images at a specified position.<br>
+You could use OCR to get the actual text, but we’re skipping too far ahead.</p></p>
+
+<h2 id="">Light.7493:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-22T14:12:06+00:00">
+        22 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 21 2015 01:07AM"><a href="/forum/community/api/Corsair-K70-Question/4815071">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Yeah, it’d be a desktop program that uses a shared memory-mapped file which uses the <a href="http://wiki.mumble.info/wiki/Link">Mumble link data format</a>.</p>
+<p>There’s really only two fields in that format that we can put data into; each of them are only 256 bytes long. One of them, “context”, is used to determine which players should hear which other players (so we can’t change it). The other, “identity”, is documented as “shouldn’t change more than a few times per second if at all during a game”. So there isn’t really any place we can put real-time data without breaking existing usages of that API :(</p></div></blockquote>
+<p>Well, you could create a new shared memory file not related to mumble and give us the structure :3</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-22T15:09:42+00:00">
+        22 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 22 2015 02:12PM"><a href="/forum/community/api/Corsair-K70-Question/4818692">Light.7493:</a></cite></div><div class="quotey"><p>Well, you could create a new shared memory file not related to mumble and give us the structure<img src="/include/images/smilies/lion.png"></p></div></blockquote>
+<p>+1</p>
+<p>Please?</p></p>
+
+<h2 id="">seiyria.4792:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-22T16:12:54+00:00">
+        22 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 22 2015 02:12PM"><a href="/forum/community/api/Corsair-K70-Question/4818692">Light.7493:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 21 2015 01:07AM"><a href="/forum/community/api/Corsair-K70-Question/4815071">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Yeah, it’d be a desktop program that uses a shared memory-mapped file which uses the <a href="http://wiki.mumble.info/wiki/Link">Mumble link data format</a>.</p>
+<p>There’s really only two fields in that format that we can put data into; each of them are only 256 bytes long. One of them, “context”, is used to determine which players should hear which other players (so we can’t change it). The other, “identity”, is documented as “shouldn’t change more than a few times per second if at all during a game”. So there isn’t really any place we can put real-time data without breaking existing usages of that API<img src="/include/images/smilies/sad.png"></p></div></blockquote>
+<p>Well, you could create a new shared memory file not related to mumble and give us the structure<img src="/include/images/smilies/lion.png"></p></div></blockquote>
+<p>I was hoping for this as well!<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">NSKL.3174:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-31T20:54:14+00:00">
+        31 Aug 2015
+    </time>
+</p>
+<p>
+<p>Any progress on this amazing project?!<br>
+I would love having a part of my K65 displaying my HP as well as the outer keys pulsing in red (as a frame) when in down-state and green / light blue when actively ressing and something similar for stomps as well.<br>
+Maybe hotkeys for skills light up in green when ready and red when on cooldown.<br>
+This would be nothing less than amazing!<br>
+I know nothing about programming so I really hop that someone will keep working on this<img src="/include/images/smilies/smile.png"></p>
+<p>Best regards!</p></p>
+
+<h2 id="">AllIsVain.6409:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-01T23:23:02+00:00">
+        01 Sep 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 31 2015 08:54PM"><a href="/forum/community/api/Corsair-K70-Question/5440662">NSKL.3174:</a></cite></div><div class="quotey"><p>Any progress on this amazing project?!<br>
+I would love having a part of my K65 displaying my HP as well as the outer keys pulsing in red (as a frame) when in down-state and green / light blue when actively ressing and something similar for stomps as well.<br>
+Maybe hotkeys for skills light up in green when ready and red when on cooldown.<br>
+This would be nothing less than amazing!<br>
+I know nothing about programming so I really hop that someone will keep working on this<img src="/include/images/smilies/smile.png"></p>
+<p>Best regards!</p></div></blockquote>
+<p>I’ve looked at getting these things from the game before. What you can do is screenshot the game ~10-20 times a second then look at rgb data at the endurance bar and HP bar.</p>
+<p>If the bars are missing = toggle downed state readouts.</p>
+<p>Completely within the ToS</p></p>
+
+<h2 id="">Archomeda.6472:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-02T04:07:53+00:00">
+        02 Sep 2015
+    </time>
+</p>
+<p>
+<p>Just to clarify some stuff here that has been discussed after this topic started.</p>
+<p>In order to have these features be the most efficient, the – let’s say – local client API (or Mumble Link API to be more precise) has to be improved and/or changed. The API devs have said that they want to do this, but it’s in its early stages, like, they’ve only thought of having it. That’s it. It’s probably far away on their roadmap. You have to keep in mind that instead, they’ve been very busy with the /v2 APIs. And this takes a lot of time.</p>
+<p>Instead, let me introduce you to a different, but similar feature that GW2 natively supports. It’s called AlienFX. The saddest part about it, is that it’s only for Alienware devices. So for the last half year (a little bit more), I’ve been working on and off on extending it to, for example, Logitech devices. When I started, I’ve created a video showing what it does on my Lightpack: <a href="https://youtu.be/nBnYySAUF88">https://youtu.be/nBnYySAUF88</a>.</p>
+<p>It’s a pretty cool feature, but the data what GW2 sends, is only the color data for each separate light. Not the state of your game. So it’s impossible to read if a skill is off CD this way. Still, AlienFX is something fun to try out.</p>
+<p>If you’re interested, go to my repository on GitHub: <a href="https://github.com/Archomeda/lightfx-extender">https://github.com/Archomeda/lightfx-extender</a>. Currently, it only extends to Logitech and Lightpack, since these are the only devices I have available. Also, it’s entirely possible that this will crash your game in one way or another. A small note: I still have to release v0.4.2 with some significant changes/fixes.</p>
+<p>If you are concerned about this plugin interfacing with GW2 and ToS, this plugin only intercepts the calls GW2 makes to Alienware’s AlienFX, does some stuff with it and forwards it to other devices. It does no such things as reading GW2’s memory.</p>
+<p>Also, now that more than 50% of my post is about advertising my project, the last thing I want to add, is that I’m actually looking for enthusiastic people willing to implement support for other devices, like Razer’s and Corsair’s.</p></p>
+
+<h2 id="">NSKL.3174:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-02T20:36:19+00:00">
+        02 Sep 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 01 2015 11:23PM"><a href="/forum/community/api/Corsair-K70-Question/5445020">AllIsVain.6409:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 31 2015 08:54PM"><a href="/forum/community/api/Corsair-K70-Question/5440662">NSKL.3174:</a></cite></div><div class="quotey"><p>Any progress on this amazing project?!<br>
+I would love having a part of my K65 displaying my HP as well as the outer keys pulsing in red (as a frame) when in down-state and green / light blue when actively ressing and something similar for stomps as well.<br>
+Maybe hotkeys for skills light up in green when ready and red when on cooldown.<br>
+This would be nothing less than amazing!<br>
+I know nothing about programming so I really hop that someone will keep working on this<img src="/include/images/smilies/smile.png"></p>
+<p>Best regards!</p></div></blockquote>
+<p>I’ve looked at getting these things from the game before. What you can do is screenshot the game ~10-20 times a second then look at rgb data at the endurance bar and HP bar.</p>
+<p>If the bars are missing = toggle downed state readouts.</p>
+<p>Completely within the ToS</p></div></blockquote>
+<p>Hi AllIsVain.6409</p>
+<p>Thank you for your reply!<br>
+It sounds interesting but I have very little knowledge on working with a computer so it seems I will have to wait for someone to actually write a finished program that I can install and enjoy<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">NSKL.3174:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-02T20:38:26+00:00">
+        02 Sep 2015
+    </time>
+</p>
+<p>
+<p>Hi Archomeda.6472</p>
+<p>Your project looks super cool<img src="/include/images/smilies/smile.png"><br>
+Keep me posted if you move on to Corsair!<br>
+Maybe they will give you a keyboard free of charge if you write them and show them what you’ve got going on. Seemingly they have been very good to reviewers and they were all over at the WTS so it seems they are very aware of GW2 as well.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

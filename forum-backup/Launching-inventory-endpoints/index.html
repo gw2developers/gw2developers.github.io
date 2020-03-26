@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Launching inventory endpoints</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Launching-inventory-endpoints/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Launching inventory endpoints</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Launching-inventory-endpoints
+</p>
+
+
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T20:55:22+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<p>Activated a handful of new endpoints — mostly authenticated and require the “inventories” permission — that provide access to an account’s various inventories:</p>
+<ul>
+	<li><a href="https://api.guildwars2.com/v2/materials?ids=all">/v2/materials</a> - unauthenticated endpoint which provides localized names and contents for each of the material storage tabs. (<a href="https://github.com/arenanet/api-cdi/pull/13">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/account/bank?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/account/bank</a> - the contents of the account’s bank. (<a href="https://github.com/arenanet/api-cdi/pull/12">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/account/materials?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/account/materials</a> - the contents of the account’s material storage. (<a href="https://github.com/arenanet/api-cdi/pull/13">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/characters/Helga%20Wintercrest?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/characters</a> - will now contain equipment and inventory fields when the token has the “inventories” scope. (<a href="https://github.com/arenanet/api-cdi/pull/36">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/characters/Helga%20Wintercrest/inventory?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/characters/:id/inventory</a> - just the inventory data. (<a href="https://github.com/arenanet/api-cdi/pull/36">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/characters/Helga%20Wintercrest/equipment?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/characters/:id/equipment</a> - just the equipment. (<a href="https://github.com/arenanet/api-cdi/pull/36">CDI</a>)</li>
+</ul>
+<p>Note that, as with all authenticated endpoints you can pass the API key either via an “Authorization: Bearer $key” header, or with the access_token parameter. Details about each of the endpoints can be found in the CDI pull requests on Github (linked for each one).</p>
+<p>Finally, there’s a bug in the API enumeration that incorrectly and unconditionally lists the characters inventory/equipment endpoints as disabled. We’ll look to fix that at some point in the future so it shows the status of those endpoints properly.</p>
+<p>Questions/comments? Happy developing<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Gilj.6304:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T21:07:47+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<p>Wow, it’s finally here \o/!<br>
+tyvm for the hard work!<br>
+&lt;3 &lt;3 &lt;3, Gilj.</p></p>
+
+<h2 id="">Ludovicus.7980:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T21:15:18+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<p>GW2 armory, here we go!</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T21:25:11+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 25 2015 09:15PM"><a href="/forum/community/api/Launching-inventory-endpoints/5211734">Ludovicus.7980:</a></cite></div><div class="quotey"><p>GW2 armory, here we go!</p></div></blockquote>
+<p>I think the last bit we’re missing for the MVP is traits/skills <img src="/include/images/smilies/lion.png"></p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T21:32:51+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<p>This is awesome, thanks!</p>
+<p>Edit: What is up with all those (mostly non existing) items in characters “equipment” without a “slot” (IDs 62,63,64,…)? Some of them seem to be old town clothing (ID 36370) and some old PvP weapons (have PvP Sigils as upgrade, (ID 5365 with upgrade 21207)).</p></p>
+
+<h2 id="">AllIsVain.6409:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T21:44:43+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<p>If I have a stat selected item, does the inventory API let me see what the selected stat is?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T21:52:18+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 25 2015 09:44PM"><a href="/forum/community/api/Launching-inventory-endpoints/5211866">AllIsVain.6409:</a></cite></div><div class="quotey"><p>If I have a stat selected item, does the inventory API let me see what the selected stat is?</p></div></blockquote>
+<p>Uhh, I completely forgot about that. For the 1-time stat selections it does — those are actually containers that just create the selected item. For legendary weapons which let you switch at-will, it won’t currently display which stats are selected. I’ll have that fixed at some point.</p>
+<p>Completely forgot that was a thing.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T21:53:59+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 25 2015 09:32PM"><a href="/forum/community/api/Launching-inventory-endpoints/5211814">darthmaim.6017:</a></cite></div><div class="quotey"><p>Edit: What is up with all those (mostly non existing) items in characters “equipment” without a “slot” (IDs 62,63,64,…)? Some of them seem to be old town clothing (ID 36370) and some old PvP weapons (have PvP Sigils as upgrade, (ID 5365 with upgrade 21207)).</p></div></blockquote>
+<p>O_o.</p>
+<p>That’s a super weird bug, not sure how that slipped through the unit tests. Looking into it now.</p></p>
+
+<h2 id="">rodadams.5963:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T21:54:30+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<p>Much coolness.<br>
+I think we’ve just hit critical mass on data to make some truly cool tools.</p>
+<p>I could see getting the wallet info out to complete some projects, such as checking Spirit Shard and gold count for questions like “Can I finish my Legendary with what I have right now?”</p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T21:57:17+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<p>I admit, haven’t logged in with those characters for ages.</p></p>
+
+<h2 id="">Faedrivin.5382:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T22:02:56+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<p>I especially like the equipped stuff etc – now I can easily see all my characters’ stuff without having to rotate through them… I hope I find the time soon to code a little bit with it! <br>
+It’s great that this API is possible!</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T22:03:21+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 25 2015 09:57PM"><a href="/forum/community/api/Launching-inventory-endpoints/5211925">darthmaim.6017:</a></cite></div><div class="quotey"><p>I admit, haven’t logged in with those characters for ages.</p></div></blockquote>
+<p>Those broken equipment slots are on my linked examples (which are from my account) — after digging around in the code a bit, older characters still apparently have things equipped in clothing slots (whereas newer ones don’t). Super weird, but easy enough to fix.</p></p>
+
+<h2 id="">Rashy.4165:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T22:03:25+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 25 2015 09:25PM"><a href="/forum/community/api/Launching-inventory-endpoints/5211787">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 25 2015 09:15PM"><a href="/forum/community/api/Launching-inventory-endpoints/5211734">Ludovicus.7980:</a></cite></div><div class="quotey"><p>GW2 armory, here we go!</p></div></blockquote>
+<p>I think the last bit we’re missing for the MVP is traits/skills <img src="/include/images/smilies/lion.png"></p></div></blockquote>
+<p>Yes, please! Would be awesome to have easy access to skills/traits for build calculators.</p></p>
+
+<h2 id="">Leg.7632:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T22:08:45+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<p>It looks like the backpack and aquatic helm are missing the ‘skin’ field under character</p>
+<p>{"equipment":<br>
+[{"id":64050,“slot”:“HelmAquatic”,<a href="[24739]}">upgrades</a>,<br>
+{"id":62921,“slot”:"Backpack"},<br>
+{"id":6913,“slot”:“Coat”,<a href="1484}">skin</a>,</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T22:11:40+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 25 2015 10:08PM"><a href="/forum/community/api/Launching-inventory-endpoints/5212003">Leg.7632:</a></cite></div><div class="quotey"><p>It looks like the backpack and aquatic helm are missing the ‘skin’ field under character</p>
+<p>{"equipment":<br>
+[{"id":64050,“slot”:“HelmAquatic”,<a href="[24739]}">upgrades</a>,<br>
+{"id":62921,“slot”:"Backpack"},<br>
+{"id":6913,“slot”:“Coat”,<a href="1484}">skin</a>,</p></div></blockquote>
+<p>They’re not transmuted — they’re using the default skin of the item.</p></p>
+
+<h2 id="">Vegeta.2563:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T22:56:45+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<p>Is sharing API Keys with other players ok to do, or should I keep this information to myself?    I wasn’t sure if say giving someone an API Key would put me at risk for account compromisation, or something related to that.</p></p>
+
+<h2 id="">derzwo.3672:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T23:21:00+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<p>woooooooow! just want coding – but first… get some sleep^^<br>
+(1:20 am in germany)</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T23:29:26+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 25 2015 10:56PM"><a href="/forum/community/api/Launching-inventory-endpoints/5212235">Vegeta.2563:</a></cite></div><div class="quotey"><p>Is sharing API Keys with other players ok to do, or should I keep this information to myself?    I wasn’t sure if say giving someone an API Key would put me at risk for account compromisation, or something related to that.</p></div></blockquote>
+<p>API keys are meant to be shared — but try to make a different key for each application so that if you later change your mind you can revoke only the application you don’t want to use anymore. When you delete the key, you’re effectively retracting any access you granted by sharing them.</p>
+<p>All of the links in the original post use an API key from my personal account, for example.</p>
+<p>Using API keys does not increase your risk for account compromise.</p></p>
+
+<h2 id="">Tamasan.6457:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-25T23:40:58+00:00">
+        25 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 25 2015 10:56PM"><a href="/forum/community/api/Launching-inventory-endpoints/5212235">Vegeta.2563:</a></cite></div><div class="quotey"><p>Is sharing API Keys with other players ok to do, or should I keep this information to myself?    I wasn’t sure if say giving someone an API Key would put me at risk for account compromisation, or something related to that.</p></div></blockquote>
+<p>Yes, it’s fine to share an API key with other people/websites.  That’s actually the entire point of the API, to enable cool tools and such without risking account compromise.  Data from the API is only read-only.</p>
+<p>(In and of itself, sharing your API key does not increase your risk of account compromise.  However, if for example you were to create an account at some website that lets you store your API key with them, do not under any circumstance reuse your game or email password.)</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T00:01:31+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 25 2015 10:03PM"><a href="/forum/community/api/Launching-inventory-endpoints/5211969">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 25 2015 09:57PM"><a href="/forum/community/api/Launching-inventory-endpoints/5211925">darthmaim.6017:</a></cite></div><div class="quotey"><p>I admit, haven’t logged in with those characters for ages.</p></div></blockquote>
+<p>Those broken equipment slots are on my linked examples (which are from my account) — after digging around in the code a bit, older characters still apparently have things equipped in clothing slots (whereas newer ones don’t). Super weird, but easy enough to fix.</p></div></blockquote>
+<p>Just deployed the fix for this.</p></p>
+
+<h2 id="">Eight Samurai.6840:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T00:37:11+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 25 2015 08:55PM"><a href="/forum/community/api/Launching-inventory-endpoints/5211613">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Activated a handful of new endpoints — mostly authenticated and require the “inventories” permission — that provide access to an account’s various inventories:</p>
+<ul>
+	<li><a href="https://api.guildwars2.com/v2/materials?ids=all">/v2/materials</a> - unauthenticated endpoint which provides localized names and contents for each of the material storage tabs. (<a href="https://github.com/arenanet/api-cdi/pull/13">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/account/bank?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/account/bank</a> - the contents of the account’s bank. (<a href="https://github.com/arenanet/api-cdi/pull/12">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/account/materials?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/account/materials</a> - the contents of the account’s material storage. (<a href="https://github.com/arenanet/api-cdi/pull/13">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/characters/Helga%20Wintercrest?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/characters</a> - will now contain equipment and inventory fields when the token has the “inventories” scope. (<a href="https://github.com/arenanet/api-cdi/pull/36">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/characters/Helga%20Wintercrest/inventory?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/characters/:id/inventory</a> - just the inventory data. (<a href="https://github.com/arenanet/api-cdi/pull/36">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/characters/Helga%20Wintercrest/equipment?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/characters/:id/equipment</a> - just the equipment. (<a href="https://github.com/arenanet/api-cdi/pull/36">CDI</a>)</li>
+</ul>
+<p>Note that, as with all authenticated endpoints you can pass the API key either via an “Authorization: Bearer $key” header, or with the access_token parameter. Details about each of the endpoints can be found in the CDI pull requests on Github (linked for each one).</p>
+<p>Finally, there’s a bug in the API enumeration that incorrectly and unconditionally lists the characters inventory/equipment endpoints as disabled. We’ll look to fix that at some point in the future so it shows the status of those endpoints properly.</p>
+<p>Questions/comments? Happy developing<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>This stuff sounds really important…. but I don’t get it? What does all of this stuff mean?</p></p>
+
+<h2 id="">Fatali.4819:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T01:53:49+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 26 2015 12:37AM"><a href="/forum/community/api/Launching-inventory-endpoints/5212586">Eight Samurai.6840:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 25 2015 08:55PM"><a href="/forum/community/api/Launching-inventory-endpoints/5211613">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Activated a handful of new endpoints — mostly authenticated and require the “inventories” permission — that provide access to an account’s various inventories:</p>
+<ul>
+	<li><a href="https://api.guildwars2.com/v2/materials?ids=all">/v2/materials</a> - unauthenticated endpoint which provides localized names and contents for each of the material storage tabs. (<a href="https://github.com/arenanet/api-cdi/pull/13">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/account/bank?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/account/bank</a> - the contents of the account’s bank. (<a href="https://github.com/arenanet/api-cdi/pull/12">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/account/materials?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/account/materials</a> - the contents of the account’s material storage. (<a href="https://github.com/arenanet/api-cdi/pull/13">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/characters/Helga%20Wintercrest?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/characters</a> - will now contain equipment and inventory fields when the token has the “inventories” scope. (<a href="https://github.com/arenanet/api-cdi/pull/36">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/characters/Helga%20Wintercrest/inventory?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/characters/:id/inventory</a> - just the inventory data. (<a href="https://github.com/arenanet/api-cdi/pull/36">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/characters/Helga%20Wintercrest/equipment?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/characters/:id/equipment</a> - just the equipment. (<a href="https://github.com/arenanet/api-cdi/pull/36">CDI</a>)</li>
+</ul>
+<p>Note that, as with all authenticated endpoints you can pass the API key either via an “Authorization: Bearer $key” header, or with the access_token parameter. Details about each of the endpoints can be found in the CDI pull requests on Github (linked for each one).</p>
+<p>Finally, there’s a bug in the API enumeration that incorrectly and unconditionally lists the characters inventory/equipment endpoints as disabled. We’ll look to fix that at some point in the future so it shows the status of those endpoints properly.</p>
+<p>Questions/comments? Happy developing<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>This stuff sounds really important…. but I don’t get it? What does all of this stuff mean?</p></div></blockquote>
+<p>These API endpoints will allow a user to generate an API key which will give an application access to various pieces of information about an account.</p>
+<p>Some new possibilities for websites/apps include:</p>
+<p>-  View inventory away from home.<br>
+- Cross-list bank contents against one of the various market trackers to see current wealth, as well as find stuff like price spikes in some old dusty skin on your storage ranger.<br>
+- Get currently equipped gear/traits(eventually)  loaded directly into a build calculator.</p></p>
+
+<h2 id="">MithranArkanere.8957:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T01:54:17+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<p>This is one of the greatest steps towards having sites that can show account profiles.</p></p>
+
+<h2 id="">Eearslya.6309:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T02:11:53+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<p>So, I just made a simple page that fetches all the items in my bank and displays them on the page for me. It works fine, except for one problem.</p>
+<p>For whatever reason, the last 14 bank slots are returned as null. They’re not empty, they’re full of Bloodstone Dust, Empyreal Fragments, and Dragonite Ore. I have 9 bank tabs, and they all work fine except for the last tab in those final 14 slots.</p>
+<p>EDIT: After a little more thought, I realize that 270 (9*30) minus 14 is 256. So apparently anything over 256 slots isn’t shown?</p></p>
+
+<h2 id="">Vavume.8065:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T02:15:42+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<p>I find this all so ghetto, just make an official arenanet armory like wow has…</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T02:26:16+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 26 2015 02:11AM"><a href="/forum/community/api/Launching-inventory-endpoints/5212876">Eearslya.6309:</a></cite></div><div class="quotey"><p>For whatever reason, the last 14 bank slots are returned as null. They’re not empty, they’re full of Bloodstone Dust, Empyreal Fragments, and Dragonite Ore.</p></div></blockquote>
+<p>That’s super weird. Can you PM the API key you’re using? I can take at it tomorrow.</p></p>
+
+<h2 id="">fishball.7204:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T08:49:48+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<p>Can confirm that this does not currently allow more than 256 slots in the bank, at least for me.</p>
+<p><a href="https://api.guildwars2.com/v2/account/bank?access_token=B3779B48-829C-6544-AEC3-13FF13C40542D36D225F-961E-4EBD-9F04-642C61962615">https://api.guildwars2.com/v2/account/bank?access_token=B3779B48-829C-6544-AEC3-13FF13C40542D36D225F-961E-4EBD-9F04-642C61962615</a></p>
+<p>The last part of the thingy returns</p>
+<pre><code>
+ {"id":46733,"count":250},{"id":46752,"count":2},{"id":46733,"count":250},null,null,null,null,null,null,null,null,null,
+null,null,null,null,null] 
+</code></pre>
+<p>which is the Augur Stone (2) + Dragonite Ore (250).</p>
+<p>I would also like the add that for example, my Mini Queen Jennahs of which I have multiple, the API returns that I only have 1.</p></p>
+
+<h2 id="">Grax.9204:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T08:53:05+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<p>Thanks for those amazing APIs!</p>
+<p>I am currently having issues with invalid(?) inventory item IDs.<br>
+As an example, from the character API I get the ID 8702 for what are supposed to be my harpy feathers. The item API then tells me that there is no such ID.</p>
+<p>I’ve uploaded a page to <a href="http://gw2maps.ch/char/">http://gw2maps.ch/char/</a>.  All the broken image icons show items with invalid IDs (the ID is visible in the html elements title). For me that’s quite a bunch. I can pass on my access token if that helps.</p>
+<p>Here’s a list of IDs I get which seem to be invalid:<br>
+8702, 8764, 8680, 8678, 8714, 8464, 8677, 8729, 8733, 8696, 6467, 8704, 4646, 4579, 37274, 8781, 8792, 8698, 4651, 42041, 8789, 39141, 39151, 4652, 4582, 4585, 4653, 4655</p></p>
+
+<h2 id="">Dawntree.7246:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T09:03:36+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<p>Awesome, I can instacheck my progression to legendaries! Thank you.</p>
+<p>Just 1 question, is wallet data included? I can’t find it…</p>
+<p>If that’s not the case, any chance to have those as well soon?</p></p>
+
+<h2 id="">Eearslya.6309:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T09:50:03+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 26 2015 08:53AM"><a href="/forum/community/api/Launching-inventory-endpoints/5213860">Grax.9204:</a></cite></div><div class="quotey"><p>Thanks for those amazing APIs!</p>
+<p>I am currently having issues with invalid(?) inventory item IDs.<br>
+As an example, from the character API I get the ID 8702 for what are supposed to be my harpy feathers. The item API then tells me that there is no such ID.</p>
+<p>I’ve uploaded a page to <a href="http://gw2maps.ch/char/">http://gw2maps.ch/char/</a>.  All the broken image icons show items with invalid IDs (the ID is visible in the html elements title). For me that’s quite a bunch. I can pass on my access token if that helps.</p>
+<p>Here’s a list of IDs I get which seem to be invalid:<br>
+8702, 8764, 8680, 8678, 8714, 8464, 8677, 8729, 8733, 8696, 6467, 8704, 4646, 4579, 37274, 8781, 8792, 8698, 4651, 42041, 8789, 39141, 39151, 4652, 4582, 4585, 4653, 4655</p></div></blockquote>
+<p>This has been a long-standing issue. (See: <a href="/forum-backup/Item-IDs-Omitted-from-API">https://forum-en.guildwars2.com/forum/community/api/Item-IDs-Omitted-from-API/first</a> )<br>
+The problem with the items endpoint is every item currently has to be manually whitelisted in order to show up in the API. (So they don’t accidentally release some in-progress HoT item or such.)</p></p>
+
+<h2 id="">Tacco Raw.3168:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T10:48:14+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<p>What does {"text":"ErrUnknown"} mean? Keep seeing this for <a href="https://api.guildwars2.com/v2/materials?ids=all">/v2/materials</a> and <a href="https://api.guildwars2.com/v2/account/materials?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/account/materials</a> but not <a href="https://api.guildwars2.com/v2/account/bank?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/account/bank</a>.</p></p>
+
+<h2 id="">Chiuna.2538:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T10:59:03+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<p>Is it possible to see how equipped items are dyed from the /eqiupment API?  If not, can that be added?</p></p>
+
+<h2 id="">Aralicia.6157:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T13:01:39+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 26 2015 10:59AM"><a href="/forum/community/api/Launching-inventory-endpoints/5214192">Chiuna.2538:</a></cite></div><div class="quotey"><p>Is it possible to see how equipped items are dyed from the /eqiupment API?  If not, can that be added?</p></div></blockquote>
+<p>Not possible for now. But I personally like the idea, especially since dye/color data is already present thanks to the /colors endpoint.</p>
+<p>That said, seems there’s a WIP about extending guild infos. Dyes may or may not appear afterward.</p></p>
+
+<h2 id="">quenoz.3859:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T14:06:17+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<p>this is super useful!</p>
+<blockquote><div class="citey"><cite title="Posted on June 25 2015 09:25PM"><a href="/forum/community/api/Launching-inventory-endpoints/5211787">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 25 2015 09:15PM"><a href="/forum/community/api/Launching-inventory-endpoints/5211734">Ludovicus.7980:</a></cite></div><div class="quotey"><p>GW2 armory, here we go!</p></div></blockquote>
+<p>I think the last bit we’re missing for the MVP is traits/skills <img src="/include/images/smilies/lion.png"></p></div></blockquote>
+<p>does that mean that these will be added soon…? : &gt;</p></p>
+
+<h2 id="">Natir.7364:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T15:49:02+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<p>I have a question with these changes. Would it allow someone to make an armory similar to World of Warcraft with being able to see what equipment they have on and maybe what abilities/traits they picked?</p>
+<p>Obviously I didn’t see abilities/traits but I think that would be an amazing feature to see who is running what build and what equipment and runes/sigils they are using. Outside of what our entire outfit wants (because we want this with a passion), I think it would be nice to see what top players in each area are using. Like WvW, SPvP, PvE, et.</p></p>
+
+<h2 id="">Ayusaki.6739:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T16:19:35+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 26 2015 02:06PM"><a href="/forum/community/api/Launching-inventory-endpoints/5214829">quenoz.3859:</a></cite></div><div class="quotey"><p>this is super useful!</p>
+<blockquote><div class="citey"><cite title="Posted on June 25 2015 09:25PM"><a href="/forum/community/api/Launching-inventory-endpoints/5211787">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 25 2015 09:15PM"><a href="/forum/community/api/Launching-inventory-endpoints/5211734">Ludovicus.7980:</a></cite></div><div class="quotey"><p>GW2 armory, here we go!</p></div></blockquote>
+<p>I think the last bit we’re missing for the MVP is traits/skills <img src="/include/images/smilies/lion.png"></p></div></blockquote>
+<p>does that mean that these will be added soon…? : &gt;</p></div></blockquote>
+<p><a href="https://github.com/arenanet/api-cdi/pull/42">https://github.com/arenanet/api-cdi/pull/42</a><br>
+<a href="https://github.com/arenanet/api-cdi/pull/5">https://github.com/arenanet/api-cdi/pull/5</a></p>
+<p>Its on the todo list</p></p>
+
+<h2 id="">quenoz.3859:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T17:10:58+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 26 2015 04:19PM"><a href="/forum/community/api/Launching-inventory-endpoints/5215567">Ayusaki.6739:</a></cite></div><div class="quotey"><p><a href="https://github.com/arenanet/api-cdi/pull/42">https://github.com/arenanet/api-cdi/pull/42</a><br>
+<a href="https://github.com/arenanet/api-cdi/pull/5">https://github.com/arenanet/api-cdi/pull/5</a></p>
+<p>Its on the todo list</p></div></blockquote>
+<p>ah, thanks! not checking github enough<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Natir.7364:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T18:14:21+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<p>Are there any plans to have these things be automated where its just mined from the player’s data automatically and they don’t have to get an API key?</p>
+<p>Kind of further explanation from my post above but one of the things we do for our WvW is we run the same builds and gear setup for each class to make sure we maximize what we are doing. Sometimes when people keep dying, we figure out they are not running the same gear/build setup but we don’t know and thus cannot help them and show them what they may be doing wrong. It would be so much easier to just look at who is in our guild or just look up their info via their ID and check out their info to see what they are running.</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T19:54:49+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 26 2015 06:14PM"><a href="/forum/community/api/Launching-inventory-endpoints/5216118">Natir.7364:</a></cite></div><div class="quotey"><p>Are there any plans to have these things be automated where its just mined from the player’s data automatically and they don’t have to get an API key?</p>
+<p>Kind of further explanation from my post above but one of the things we do for our WvW is we run the same builds and gear setup for each class to make sure we maximize what we are doing. Sometimes when people keep dying, we figure out they are not running the same gear/build setup but we don’t know and thus cannot help them and show them what they may be doing wrong. It would be so much easier to just look at who is in our guild or just look up their info via their ID and check out their info to see what they are running.</p></div></blockquote>
+<p>You can do this as of yesterday, but each of your guild members needs to “opt-in” by providing an API key.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T19:59:42+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 26 2015 08:49AM"><a href="/forum/community/api/Launching-inventory-endpoints/5213847">fishball.7204:</a></cite></div><div class="quotey"><p>Can confirm that this does not currently allow more than 256 slots in the bank, at least for me.</p></div></blockquote>
+<p>The bug that caused this is annoyingly in a fairly low-level component, so deploying the proper fix is going to take awhile. I’ve got a potential bandaid fix that I could conceivably deploy today, but it’s got some edge-cases (where the player’s bank is mostly empty) that still return broken data.</p>
+<p>I’ll probably push it out, because I doubt that the edge cases are that common.</p>
+<blockquote><div class="citey"><cite title="Posted on June 26 2015 08:53AM"><a href="/forum/community/api/Launching-inventory-endpoints/5213860">Grax.9204:</a></cite></div><div class="quotey"><p>I am currently having issues with invalid(?) inventory item IDs.</p></div></blockquote>
+<p>There’s a bunch of ways to acquire items that don’t cause them to be whitelisted properly (e.g., buying them from a vendor). I’m working on fixing these bits up now, but I don’t have an ETA for when they go live <img src="/include/images/smilies/sad.png"></p>
+<blockquote><div class="citey"><cite title="Posted on June 26 2015 09:03AM"><a href="/forum/community/api/Launching-inventory-endpoints/5213900">Dawntree.7246:</a></cite></div><div class="quotey"><p>Just 1 question, is wallet data included? I can’t find it…</p>
+<p>If that’s not the case, any chance to have those as well soon?</p></div></blockquote>
+<p>Wallet data is not yet included.</p>
+<blockquote><div class="citey"><cite title="Posted on June 26 2015 10:59AM"><a href="/forum/community/api/Launching-inventory-endpoints/5214192">Chiuna.2538:</a></cite></div><div class="quotey"><p>Is it possible to see how equipped items are dyed from the /eqiupment API?  If not, can that be added?</p></div></blockquote>
+<p>It’s not currently possible, but a good idea for an improvement.</p>
+<blockquote><div class="citey"><cite title="Posted on June 26 2015 06:14PM"><a href="/forum/community/api/Launching-inventory-endpoints/5216118">Natir.7364:</a></cite></div><div class="quotey"><p>Are there any plans to have these things be automated where its just mined from the player’s data automatically and they don’t have to get an API key?</p></div></blockquote>
+<p>Nope. If you want their data, you’re going to need their permission (in the form of their API key). Once we have the bits to pull full builds (e.g., traits/skillbar) I imagine someone will make a site which lets you easily share what builds you’re running, so they can just copy-paste a URL into TS/Mumble.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T20:54:40+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 26 2015 07:59PM"><a href="/forum/community/api/Launching-inventory-endpoints/5216587">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 26 2015 08:49AM"><a href="/forum/community/api/Launching-inventory-endpoints/5213847">fishball.7204:</a></cite></div><div class="quotey"><p>Can confirm that this does not currently allow more than 256 slots in the bank, at least for me.</p></div></blockquote>
+<p>The bug that caused this is annoyingly in a fairly low-level component, so deploying the proper fix is going to take awhile. I’ve got a potential bandaid fix that I could conceivably deploy today, but it’s got some edge-cases (where the player’s bank is mostly empty) that still return broken data.</p>
+<p>I’ll probably push it out, because I doubt that the edge cases are that common.</p></div></blockquote>
+<p>Just deployed the bandaid fix for this. The API will still return invalid data if:</p>
+<ul>
+	<li>The user has no items in the first 255 slots <strong>OR</strong></li>
+	<li>If the slot index of the last item in the first 255 slots is less than the slot index of the first item after 255 — e.g., if you’ve got only got items in slots 4 and 235.</li>
+</ul>
+<p>I expect most players will have quite a bit of stuff in their bank, so the above cases are fairly unlikely, I think.</p>
+<p>The full fix should be released whenever the next patch lands.</p></p>
+
+<h2 id="">Vegeta.2563:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-27T05:42:20+00:00">
+        27 Jun 2015
+    </time>
+</p>
+<p>
+<p>Is it possible to see what traits or utility skills are being used on each character using API Keys ?</p></p>
+
+<h2 id="">Ayusaki.6739:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-27T15:46:44+00:00">
+        27 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 27 2015 05:42AM"><a href="/forum/community/api/Launching-inventory-endpoints/5218862">Vegeta.2563:</a></cite></div><div class="quotey"><p>Is it possible to see what traits or utility skills are being used on each character using API Keys ?</p></div></blockquote>
+<p>Scroll up 7 posts…</p>
+<p><a href="/forum-backup/Launching-inventory-endpoints">https://forum-en.guildwars2.com/forum/community/api/Launching-inventory-endpoints/first#post5215567</a></p></p>
+
+<h2 id="">queicherius.2563:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-27T20:33:07+00:00">
+        27 Jun 2015
+    </time>
+</p>
+<p>
+<p>Hey there,</p>
+<p>after playing around with the new APIs I came up with a Armory-Style to display your characters (WIP)</p>
+<p><a href="http://gw2efficiency.com/account/character/Bloodstone%20Deposit/A3966375-40A4-FA40-B32B-48AE840660746BA3DAAA-69FA-4271-8CBA-5E100C5FB28D">http://gw2efficiency.com/account/character/Bloodstone%20Deposit/A3966375-40A4-FA40-B32B-48AE840660746BA3DAAA-69FA-4271-8CBA-5E100C5FB28D</a></p></p>
+
+<h2 id="">fishball.7204:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-28T05:11:23+00:00">
+        28 Jun 2015
+    </time>
+</p>
+<p>
+<p>Is the materials end point down right now? can’t seem to access it at all getting error.</p>
+<pre><code>{"text":"ErrUnknown"}</code></pre></p>
+
+<h2 id="">Eearslya.6309:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-28T06:40:23+00:00">
+        28 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 28 2015 05:11AM"><a href="/forum/community/api/Launching-inventory-endpoints/5223176">fishball.7204:</a></cite></div><div class="quotey"><p>Is the materials end point down right now? can’t seem to access it at all getting error.</p>
+<pre><code>{"text":"ErrUnknown"}</code></pre></div></blockquote>
+<p>Seems to be working fine for me, both /v2/materials and /v2/account/materials. Where and how are you trying to load it?</p></p>
+
+<h2 id="">fishball.7204:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-28T06:49:39+00:00">
+        28 Jun 2015
+    </time>
+</p>
+<p>
+<p>Just using this:</p>
+<p><a href="https://keeky.github.io/Guild-Wars-2-API-Explorer/#v2/account/materials">https://keeky.github.io/Guild-Wars-2-API-Explorer/#v2/account/materials</a></p>
+<p>T=</p>
+<p>Edit: ok it works on my end, idk why it doesn’t work for him and it doesn’t work in my web browser (the other stuff usually displays as a blob of data but I still see it in the browser this just says error)</p></p>
+
+<h2 id="">LAzraeL.2346:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-28T14:20:47+00:00">
+        28 Jun 2015
+    </time>
+</p>
+<p>
+<p>Are the skins in characters equipments just simple items id?</p>
+<p>Seems like I’m getting the wrong skin for some armors and backpacks..<br>
+In your example, the backpack skin is showing “Dolyak Greaves”, gloves skin is “Nika’s Pauldrons”,etc.</p>
+<p>Edit: ah.. nvm. Didn’t realize there’s another API for skins.</p></p>
+
+<h2 id="">MentalFS.2589:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-28T16:05:05+00:00">
+        28 Jun 2015
+    </time>
+</p>
+<p>
+<p>Is there a way to find out if an item is soulbound? I can see “SoulBindOnUse” when I query the items endpoint, but not if the item was already used or not. I’m also not sure if there’s something like “AccountBindOnUse”, but the same would apply there.</p></p>
+
+<h2 id="">Tacco Raw.3168:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-28T16:13:36+00:00">
+        28 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 28 2015 06:40AM"><a href="/forum/community/api/Launching-inventory-endpoints/5223384">Eearslya.6309:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 28 2015 05:11AM"><a href="/forum/community/api/Launching-inventory-endpoints/5223176">fishball.7204:</a></cite></div><div class="quotey"><p>Is the materials end point down right now? can’t seem to access it at all getting error.</p>
+<pre><code>{"text":"ErrUnknown"}</code></pre></div></blockquote>
+<p>Seems to be working fine for me, both /v2/materials and /v2/account/materials. Where and how are you trying to load it?</p></div></blockquote>
+<p>It shows when using Chrome or IE, but request sent by python code works fine.</p></p>
+
+<h2 id="">Vegeta.2563:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-28T17:02:16+00:00">
+        28 Jun 2015
+    </time>
+</p>
+<p>
+<p>I did find out that most consumables like flamethrowers, or ogre pet whistles, fire elemental powders.. things like these show up as question marks.  So they don’t have an icon yet.</p></p>
+
+<h2 id="">fro.8967:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-29T14:48:31+00:00">
+        29 Jun 2015
+    </time>
+</p>
+<p>
+<p>Yes there appear to be several items that do not return from the item API when queried by ID. Some skins too probably. I noticed this a lot when making the updates to GW2 Account Viewer <a href="http://mygw2.wvwintel.com/">http://mygw2.wvwintel.com/</a></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-29T17:26:31+00:00">
+        29 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 28 2015 04:05PM"><a href="/forum/community/api/Launching-inventory-endpoints/5224866">MentalFS.2589:</a></cite></div><div class="quotey"><p>Is there a way to find out if an item is soulbound?</p></div></blockquote>
+<p>Not yet.</p>
+<blockquote><div class="citey"><cite title="Posted on June 28 2015 05:02PM"><a href="/forum/community/api/Launching-inventory-endpoints/5225071">Vegeta.2563:</a></cite></div><div class="quotey"><p>I did find out that most consumables like flamethrowers, or ogre pet whistles, fire elemental powders.. things like these show up as question marks.  So they don’t have an icon yet.</p></div></blockquote>
+<p>It’s because not all items show up on the API — they only appear once some conditions are met (e.g., someone loots it from a drop). Unfortunately, the conditions aren’t all inclusive and don’t pick up karma vendor purchases (among other things). Working on fixing that at some point in the future.</p></p>
+
+<h2 id="">MentalFS.2589:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-29T21:22:00+00:00">
+        29 Jun 2015
+    </time>
+</p>
+<p>
+<p>I’ve noticed that I get wrong counts with some items. At least minis seem to always get count 1, regardless of how many I have stacked.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-30T00:15:02+00:00">
+        30 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 29 2015 09:22PM"><a href="/forum/community/api/Launching-inventory-endpoints/5230368">MentalFS.2589:</a></cite></div><div class="quotey"><p>I’ve noticed that I get wrong counts with some items. At least minis seem to always get count 1, regardless of how many I have stacked.</p></div></blockquote>
+<p>I actually haven’t had a chance to look into that one yet (won’t be able to deploy the fix for awhile); my current hypothesis is that the stacked quantity for certain items is encoded … differently.</p>
+<p>I’m interested to know if you’ve got any non-mini items doing this. My hunch is that it was just some debris from the patch which moved minis from collections into the wardrobe.</p></p>
+
+<h2 id="">Loex.5104:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-30T05:57:45+00:00">
+        30 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 25 2015 08:55PM"><a href="/forum/community/api/Launching-inventory-endpoints/5211613">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Activated a handful of new endpoints — mostly authenticated and require the “inventories” permission — that provide access to an account’s various inventories:</p>
+<ul>
+	<li><a href="https://api.guildwars2.com/v2/materials?ids=all">/v2/materials</a> - unauthenticated endpoint which provides localized names and contents for each of the material storage tabs. (<a href="https://github.com/arenanet/api-cdi/pull/13">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/account/bank?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/account/bank</a> - the contents of the account’s bank. (<a href="https://github.com/arenanet/api-cdi/pull/12">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/account/materials?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/account/materials</a> - the contents of the account’s material storage. (<a href="https://github.com/arenanet/api-cdi/pull/13">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/characters/Helga%20Wintercrest?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/characters</a> - will now contain equipment and inventory fields when the token has the “inventories” scope. (<a href="https://github.com/arenanet/api-cdi/pull/36">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/characters/Helga%20Wintercrest/inventory?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/characters/:id/inventory</a> - just the inventory data. (<a href="https://github.com/arenanet/api-cdi/pull/36">CDI</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/characters/Helga%20Wintercrest/equipment?access_token=1B410E2E-DECA-D248-9354-82724F218D753D7EAAC2-BBC8-4051-9AEB-FD3DEC6BD0FF">/v2/characters/:id/equipment</a> - just the equipment. (<a href="https://github.com/arenanet/api-cdi/pull/36">CDI</a>)<br>
+)</li>
+</ul></div></blockquote>
+<p>pretty neat ;D</p>
+<p>now we just need some endpoints for the current Gold and the current Gems on an Account plz<img src="/include/images/smilies/smile.png"></p>
+<p>also an Flag on the character/inventory+bank that shows if the item is actually soul / account bound or not would be awesome</p></p>
+
+<h2 id="">Devata.6589:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-30T08:22:29+00:00">
+        30 Jun 2015
+    </time>
+</p>
+<p>
+<p>I am just getting into the API (V1 didn’t really have the guild-related options I needed / wanted) so maybe a stupid question, but would this then also mean we are able to get an image of the character, maybe even an 3D object?<br>
+—<br>
+In addition I was wondering if Authentication would also get an update to allow more options for guild. So we could also use this character information for guild-members. At this moment authentication is done based on your own account-details, but that would mean (correct me if I am wrong) that I would not be able to get this information from anybody else then myself. So I cannot make a guild-roster (I know we are getting a function to get the guild-roster) where (for example) we then show the characters or the guild-members and their gear.</p>
+<p>Guild-members could have the ability to (in advanced security options) allow guilds / guild-leaders to see some information like the armor their character have on. (some information could be on by default and some could be off by default). Than have the ability to put a password on a guild and allow for authentication using that password (So you don’t authenticate as a player but as a guild). The guild could also have its own authentication roles (what information should be available).</p>
+<p>In that way you have a secure way to show all the type of information guilds might want to show on their site. Guild-roster, including specs of the guild-members (if members do not disable that ability), message of the day, items in the guild-bank, completed guild-missions, combined gold of all members (if members would share their amount of gold with the guild). Everything is possible, but everything can also been closed off for privacy / security reasons.</p>
+<p>One of the main features would be the guild-roster with detailed character information of all guild-members. That is why I mention it in this thread.</p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-30T08:35:08+00:00">
+        30 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 30 2015 08:22AM"><a href="/forum/community/api/Launching-inventory-endpoints/5231860">Devata.6589:</a></cite></div><div class="quotey"><p>maybe a stupid question, but would this then also mean we are able to get an image of the character, maybe even an 3D object?</p></div></blockquote>
+<blockquote><div class="citey"><cite title="Posted on May 22 2015 11:40PM"><a href="/forum/community/api/Launching-v2-characters/5091958">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Rest assured, this is something I really, really want too. There’s a lot of moving parts that need to be ironed out before it’s feasible though, so we’ll probably be sticking to low-hanging fruit for awhile yet  :&lt;</p></div></blockquote>
+<p>—</p>
+<blockquote><div class="citey"><cite title="Posted on June 30 2015 08:22AM"><a href="/forum/community/api/Launching-inventory-endpoints/5231860">Devata.6589:</a></cite></div><div class="quotey"><p>In addition I was wondering if Authentication would also get an update to allow more options for guild. So we could also use this character information for guild-members. At this moment authentication is done based on your own account-details, but that would mean (correct me if I am wrong) that I would not be able to get this information from anybody else then myself. So I cannot make a guild-roster (I know we are getting a function to get the guild-roster) where (for example) we then show the characters or the guild-members and their gear.</p></div></blockquote>
+<blockquote><div class="citey"><cite title="Posted on June 22 2015 11:03PM"><a href="/forum/community/api/More-guild-options/5190470">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>With respect to privacy, the conclusion was that the best solution is to have an in-game rank permission that grants API access. Since that’s going to take some time to implement, the initial release will be restricted to allow access only to guild leaders.</p></div></blockquote></p>
+
+<h2 id="">Devata.6589:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-30T08:48:47+00:00">
+        30 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 30 2015 08:35AM"><a href="/forum/community/api/Launching-inventory-endpoints/5231890">darthmaim.6017:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 30 2015 08:22AM"><a href="/forum/community/api/Launching-inventory-endpoints/5231860">Devata.6589:</a></cite></div><div class="quotey"><p>maybe a stupid question, but would this then also mean we are able to get an image of the character, maybe even an 3D object?</p></div></blockquote>
+<blockquote><div class="citey"><cite title="Posted on May 22 2015 11:40PM"><a href="/forum/community/api/Launching-v2-characters/5091958">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Rest assured, this is something I really, really want too. There’s a lot of moving parts that need to be ironed out before it’s feasible though, so we’ll probably be sticking to low-hanging fruit for awhile yet  :&lt;</p></div></blockquote>
+<p>—</p>
+<blockquote><div class="citey"><cite title="Posted on June 30 2015 08:22AM"><a href="/forum/community/api/Launching-inventory-endpoints/5231860">Devata.6589:</a></cite></div><div class="quotey"><p>In addition I was wondering if Authentication would also get an update to allow more options for guild. So we could also use this character information for guild-members. At this moment authentication is done based on your own account-details, but that would mean (correct me if I am wrong) that I would not be able to get this information from anybody else then myself. So I cannot make a guild-roster (I know we are getting a function to get the guild-roster) where (for example) we then show the characters or the guild-members and their gear.</p></div></blockquote>
+<blockquote><div class="citey"><cite title="Posted on June 22 2015 11:03PM"><a href="/forum/community/api/More-guild-options/5190470">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>With respect to privacy, the conclusion was that the best solution is to have an in-game rank permission that grants API access. Since that’s going to take some time to implement, the initial release will be restricted to allow access only to guild leaders.</p></div></blockquote></div></blockquote>
+<p>I missed that first reply. Thanks!</p>
+<p>The second one I did read (it was an answer to another question of me) but does not fully answer the question.</p>
+<p>What does this ‘in-game rank permission that grants API access’ mean?, as I see it, it would only allow a guild to toggle on or off the ability for anybody to get access to guild-information (maybe detailing what information). Something you might not want. As guild I might not want everybody being able to get the guild-roster or MotD, but I might want to have the ability myself to put it on the guild-site. In addition it would not allow to get detailed character information from characters as that still requires authentication with the account from the owner of that character.<br>
+(Heck you could even allow for two rights, one for public use, and one for personal / guild-site use)</p>
+<p>Or maybe the ‘in-game rank permission that grants API access’ is more in line with what I talk about here. But that is not completely clear to me.</p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-30T08:52:18+00:00">
+        30 Jun 2015
+    </time>
+</p>
+<p>
+<p>To get character info you will probably always need the API key of the owner-account, you will only be able to get guild informations with the ingame permission.</p></p>
+
+<h2 id="">Devata.6589:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-30T09:20:42+00:00">
+        30 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 30 2015 08:52AM"><a href="/forum/community/api/Launching-inventory-endpoints/5231926">darthmaim.6017:</a></cite></div><div class="quotey"><p>To get character info you will probably always need the API key of the owner-account, you will only be able to get guild informations with the ingame permission.</p></div></blockquote>
+<p>If this is the case then see what I talked about as a suggestion, as that would allow for much more freedom / options (especially for guild-sites) while still allowing for the same (or more) security and privacy-options.</p></p>
+
+<h2 id="">MentalFS.2589:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-30T10:40:14+00:00">
+        30 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 30 2015 12:15AM"><a href="/forum/community/api/Launching-inventory-endpoints/5230905">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>I’m interested to know if you’ve got any non-mini items doing this. My hunch is that it was just some debris from the patch which moved minis from collections into the wardrobe.</p></div></blockquote>
+<p>I couldn’t find any other items with that problem. Actually I did remove the minis from the old materials section and place them in the bank yesterday, maybe it’s one of those problems that would autofix when I take the items on a ride to another map? I’ll try that later.</p>
+<blockquote><div class="citey"><cite title="Posted on June 30 2015 08:48AM"><a href="/forum/community/api/Launching-inventory-endpoints/5231917">Devata.6589:</a></cite></div><div class="quotey"><p>What does this ‘in-game rank permission that grants API access’ mean?</p></div></blockquote>
+<p>I think it’s a permission in the rank system (like guild vault access) that grants the member access to guild information with the API, not the other way around and definately nothing for public access. At least that’s how I understood it.</p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-30T10:43:39+00:00">
+        30 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 30 2015 10:40AM"><a href="/forum/community/api/Launching-inventory-endpoints/5232133">MentalFS.2589:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 30 2015 08:48AM"><a href="/forum/community/api/Launching-inventory-endpoints/5231917">Devata.6589:</a></cite></div><div class="quotey"><p>What does this ‘in-game rank permission that grants API access’ mean?</p></div></blockquote>
+<p>I think it’s a permission in the rank system (like guild vault access) that grants the member access to guild information with the API, not the other way around and definately nothing for public access. At least that’s how I understood it.</p></div></blockquote>
+<p>That also what I am thinking.</p></p>
+
+<h2 id="">Devata.6589:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-30T12:02:54+00:00">
+        30 Jun 2015
+    </time>
+</p>
+<p>
+<p>Oke, so then the member with that permission uses his personal key to authenticate and then has access to all the guild-information, that makes much more sense.</p>
+<p>It would however still be nice if guild-members could also give permissions to the guild, to get some details from their personal account.</p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-30T13:15:03+00:00">
+        30 Jun 2015
+    </time>
+</p>
+<p>
+<p>But they can… by giving their guild their API keys<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">Devata.6589:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-30T14:33:05+00:00">
+        30 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 30 2015 01:15PM"><a href="/forum/community/api/Launching-inventory-endpoints/5232496">zeeZ.5713:</a></cite></div><div class="quotey"><p>But they can… by giving their guild their API keys<img src="/include/images/smilies/wink.png"></p></div></blockquote>
+<p>Yeah I did think about that, but then you have to get all members to give the key and then you immediately can see all information, including what is on their bank and so on.</p>
+<p>It would make sense that members might want to show their gear but not what is on the bank.</p></p>
+
+<h2 id="">MentalFS.2589:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-30T14:55:44+00:00">
+        30 Jun 2015
+    </time>
+</p>
+<p>
+<p>Gearchecks come to mind. It might be worth a discussion to either include the equipment regardless of the inventories permission (but some people might not want to reveal that, only their names and race/profession) or make an additional permission only for equipment (although we don’t want permission creep with seventy thousand checkboxes on the API key page).</p></p>
+
+<h2 id="">MatHack.4316:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-30T15:45:52+00:00">
+        30 Jun 2015
+    </time>
+</p>
+<p>
+<p>Considering what Lawton has said in the past, I highly doubt any guild member will be able to get more information about another guild member than is currently visible in the in-game guild panels.</p>
+<p>I do feel something for the suggestion made above about a guild member giving the whole guild permission to see (a limited) amount of data from their account. In my opinion this should be a limited set of data, and not all data available through /account and /characters. If you want all the data from a guild member, just ask them for an api-key and save those on a guild website/database.</p>
+<p>I do however think that it will take a while before this suggestion (if approved) will be implemented considering Lawtons reaction about the guild permissions. I also think this will probably be a new permission within the api-key account page. To limit the user’s confusion/overwhelming about permissions I do agree with ArenaNets philosophy to keep the permission count limited. Just some things to ponder over.</p></p>
+
+<h2 id="">AysonCurrax.3254:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-30T16:29:00+00:00">
+        30 Jun 2015
+    </time>
+</p>
+<p>
+<p>Would it be possible to add what crafting professions a particular character has, including the level? perhaps make it an endpoint of its own that would list all the recipes a particular character has learned? <br>
+something along the lines of adding a crafting_professions field to v2/characters, and then perhaps a sub-endpoint along the lines of <br>
+v2/characters/:id/crafting_professions/{id} <br>
+or <br>
+v2/characters/:id/crafting_professions/{profession_name}<br>
+with a list of all available recipes.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-30T16:58:32+00:00">
+        30 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 30 2015 10:43AM"><a href="/forum/community/api/Launching-inventory-endpoints/5232141">darthmaim.6017:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 30 2015 10:40AM"><a href="/forum/community/api/Launching-inventory-endpoints/5232133">MentalFS.2589:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 30 2015 08:48AM"><a href="/forum/community/api/Launching-inventory-endpoints/5231917">Devata.6589:</a></cite></div><div class="quotey"><p>What does this ‘in-game rank permission that grants API access’ mean?</p></div></blockquote>
+<p>I think it’s a permission in the rank system (like guild vault access) that grants the member access to guild information with the API, not the other way around and definately nothing for public access. At least that’s how I understood it.</p></div></blockquote>
+<p>That also what I am thinking.</p></div></blockquote>
+<p>Yeah, that’s what I meant.</p>
+<blockquote><div class="citey"><cite title="Posted on June 30 2015 02:33PM"><a href="/forum/community/api/Launching-inventory-endpoints/5232729">Devata.6589:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 30 2015 01:15PM"><a href="/forum/community/api/Launching-inventory-endpoints/5232496">zeeZ.5713:</a></cite></div><div class="quotey"><p>But they can… by giving their guild their API keys<img src="/include/images/smilies/wink.png"></p></div></blockquote>
+<p>It would make sense that members might want to show their gear but not what is on the bank.</p></div></blockquote>
+<p>I’ve been thinking about this; I think I’m going to add a “builds” permissions that grants access to traits/skillbar/equipment — such that you can get the “equipment” with either the “builds” or “inventory” permissions.</p>
+<p>It might be kind of gross like that, but having it enabled by “inventory” allows the “dude-wheres-my-mini.com” use-case for solving “which character has my ascended gs?”</p>
+<blockquote><div class="citey"><cite title="Posted on June 30 2015 03:45PM"><a href="/forum/community/api/Launching-inventory-endpoints/5233013">MatHack.4316:</a></cite></div><div class="quotey"><p>I do feel something for the suggestion made above about a guild member giving the whole guild permission to see (a limited) amount of data from their account.</p></div></blockquote>
+<p>For the initial release of the guild endpoint, the roster will only have the account name. My idea was to leverage the API key permission bits to allow guild members to select exactly what they want to share (by requiring them to give out an API key).</p>
+<p>It might be possible to move that in-game but that’s not my department, so it’ll take quite a bit more time and effort.</p>
+<blockquote><div class="citey"><cite title="Posted on June 30 2015 04:29PM"><a href="/forum/community/api/Launching-inventory-endpoints/5233165">AysonCurrax.3254:</a></cite></div><div class="quotey"><p>Would it be possible to add what crafting professions a particular character has, including the level?</p></div></blockquote>
+<p>Yes. Also which ones are currently active.</p></p>
+
+<h2 id="">MentalFS.2589:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-30T17:19:30+00:00">
+        30 Jun 2015
+    </time>
+</p>
+<p>
+<p>I just took my Mini Queen Jennas on a ride to Lion’s Arch and put them back in the bank, but it’s still showing count = 1 (I’ve waited about 15 minutes).</p></p>
+
+<h2 id="">Devata.6589:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-30T20:23:54+00:00">
+        30 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 30 2015 04:58PM"><a href="/forum/community/api/Launching-inventory-endpoints/5233290">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 30 2015 10:43AM"><a href="/forum/community/api/Launching-inventory-endpoints/5232141">darthmaim.6017:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 30 2015 10:40AM"><a href="/forum/community/api/Launching-inventory-endpoints/5232133">MentalFS.2589:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 30 2015 08:48AM"><a href="/forum/community/api/Launching-inventory-endpoints/5231917">Devata.6589:</a></cite></div><div class="quotey"><p>What does this ‘in-game rank permission that grants API access’ mean?</p></div></blockquote>
+<p>I think it’s a permission in the rank system (like guild vault access) that grants the member access to guild information with the API, not the other way around and definately nothing for public access. At least that’s how I understood it.</p></div></blockquote>
+<p>That also what I am thinking.</p></div></blockquote>
+<p>Yeah, that’s what I meant.</p>
+<blockquote><div class="citey"><cite title="Posted on June 30 2015 02:33PM"><a href="/forum/community/api/Launching-inventory-endpoints/5232729">Devata.6589:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 30 2015 01:15PM"><a href="/forum/community/api/Launching-inventory-endpoints/5232496">zeeZ.5713:</a></cite></div><div class="quotey"><p>But they can… by giving their guild their API keys<img src="/include/images/smilies/wink.png"></p></div></blockquote>
+<p>It would make sense that members might want to show their gear but not what is on the bank.</p></div></blockquote>
+<p>I’ve been thinking about this; I think I’m going to add a “builds” permissions that grants access to traits/skillbar/equipment — such that you can get the “equipment” with either the “builds” or “inventory” permissions.</p>
+<p>It might be kind of gross like that, but having it enabled by “inventory” allows the “dude-wheres-my-mini.com” use-case for solving “which character has my ascended gs?”</p>
+<blockquote><div class="citey"><cite title="Posted on June 30 2015 03:45PM"><a href="/forum/community/api/Launching-inventory-endpoints/5233013">MatHack.4316:</a></cite></div><div class="quotey"><p>I do feel something for the suggestion made above about a guild member giving the whole guild permission to see (a limited) amount of data from their account.</p></div></blockquote>
+<p>For the initial release of the guild endpoint, the roster will only have the account name. My idea was to leverage the API key permission bits to allow guild members to select exactly what they want to share (by requiring them to give out an API key).</p>
+<p>It might be possible to move that in-game but that’s not my department, so it’ll take quite a bit more time and effort.</p>
+<blockquote><div class="citey"><cite title="Posted on June 30 2015 04:29PM"><a href="/forum/community/api/Launching-inventory-endpoints/5233165">AysonCurrax.3254:</a></cite></div><div class="quotey"><p>Would it be possible to add what crafting professions a particular character has, including the level?</p></div></blockquote>
+<p>Yes. Also which ones are currently active.</p></div></blockquote>
+<p>Thanks for considering it.</p>
+<p>It would be a huge improvement from a guild-perspective as it would allow them to make detailed guild-rosters of all members (and possible old members) showing how they are geared, maybe in the future even the achievements.<br>
+If we would be able to get the character coordinates you could even make a real-time map showing where all members are. <br>
+Well it would give a lot of options while still allowing the guild-members their privacy they deserve / want.</p>
+<p>At the current approach it would be everything or nothing. I understand that at the current stage requesting API-keys is the most logical option, but if that could eventually move to a member giving the guild permissions you could really have an automated system without having to ask new members for an API-key.</p>
+<p>Again thanks for considering it and keep up the good work.</p></p>
+
+<h2 id="">isingrel.2350:</h2>
+<p class="post-meta">
+    <time datetime="2015-07-01T00:28:20+00:00">
+        01 Jul 2015
+    </time>
+</p>
+<p>
+<p>Would it be possible to get the current number of charges on a consumable item; salvage kits, gathering tools?</p></p>
+
+<h2 id="">Eearslya.6309:</h2>
+<p class="post-meta">
+    <time datetime="2015-07-01T04:20:19+00:00">
+        01 Jul 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 30 2015 04:58PM"><a href="/forum/community/api/Launching-inventory-endpoints/5233290">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>I’ve been thinking about this; I think I’m going to add a “builds” permissions that grants access to traits/skillbar/equipment — such that you can get the “equipment” with either the “builds” or “inventory” permissions.</p>
+<p>It might be kind of gross like that, but having it enabled by “inventory” allows the “dude-wheres-my-mini.com” use-case for solving “which character has my ascended gs?”</p></div></blockquote>
+<p>If you wanted to make an endpoint just for builds, perhaps all that is necessary to give is the stats/runes/sigils of the armor and weapons, rather than the actual items and skins equipped?</p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2015-07-01T08:24:03+00:00">
+        01 Jul 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on July 01 2015 12:28AM"><a href="/forum/community/api/Launching-inventory-endpoints/5234982">isingrel.2350:</a></cite></div><div class="quotey"><p>Would it be possible to get the current number of charges on a consumable item; salvage kits, gathering tools?</p></div></blockquote>
+<blockquote><div class="quotey"><p>Gathering tool uses aren’t currently pulled out of the character data, but it’s something I can look into adding.</p></div></blockquote>
+<p>(<a href="https://github.com/arenanet/api-cdi/pull/16#issuecomment-77945931">source</a>)</p>
+<p>—</p>
+<blockquote><div class="citey"><cite title="Posted on July 01 2015 04:20AM"><a href="/forum/community/api/Launching-inventory-endpoints/5235446">Eearslya.6309:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 30 2015 04:58PM"><a href="/forum/community/api/Launching-inventory-endpoints/5233290">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>I’ve been thinking about this; I think I’m going to add a “builds” permissions that grants access to traits/skillbar/equipment — such that you can get the “equipment” with either the “builds” or “inventory” permissions.</p>
+<p>It might be kind of gross like that, but having it enabled by “inventory” allows the “dude-wheres-my-mini.com” use-case for solving “which character has my ascended gs?”</p></div></blockquote>
+<p>If you wanted to make an endpoint just for builds, perhaps all that is necessary to give is the stats/runes/sigils of the armor and weapons, rather than the actual items and skins equipped?</p></div></blockquote>
+<p>Lawton was talking about a new <strong>permission</strong>, not an endpoint. Both the inventory and build permissions give access to the endpoint /v2/characters/:id/equipment.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

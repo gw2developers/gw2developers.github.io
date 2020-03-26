@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>PHP SDK</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/PHP-SDK/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">PHP SDK</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/PHP-SDK
+</p>
+
+
+
+<h2 id="">Sorrow.7384:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T07:38:24+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<p>Hey guys,</p>
+<p>I wrote a PHP SDK. Would appreciate some help adding more functionality to it once Arenanet improves the API (like adding straight up server incomes and Objective values etc..)</p>
+<p><a href="https://github.com/defunctl/Gw2-SDK">https://github.com/defunctl/Gw2-SDK</a></p>
+<p>You can see a little example I whipped up to see whakitten ’s capable of:</p>
+<p><a href="http://sdk.teamriot.org/">http://sdk.teamriot.org/</a></p></p>
+
+<h2 id="">omniomi.7351:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T17:27:23+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<p>I used the SDK to create a simple Joomla module.</p>
+<p><strong>mod_wvwscores.php</strong></p>
+<pre><code>&lt;?php
+/**
+* WvW Scores Modules
+*
+* @version              $Id: mod_wvwscores.php 172 2013-05-23 01:44:00Z omniomi $
+* @license              GNU/GPL - http://www.gnu.org/copyleft/gpl.html
+*/
+
+// No direct access
+defined('_JEXEC') or die;
+
+// Required
+require (dirname(__FILE__).'/src/vesu/SDK/Gw2/Gw2SDK.php');
+require (dirname(__FILE__) .'/src/vesu/SDK/Gw2/Gw2Exception.php');
+use \vesu\SDK\Gw2\Gw2SDK;
+use \vesu\SDK\Gw2\TwitchException;
+
+$gw2 = new Gw2SDK(dirname(__FILE__).'/cache');
+
+$matches = $gw2-&gt;getMatchByWorldId(1019);
+
+foreach($matches as $match):
+    // This grabs just the scores from the match details
+    $scores = $gw2-&gt;getScoresByMatchId($match-&gt;wvw_match_id);
+
+?&gt;
+
+&lt;div class="wvw_match"&gt;
+    &lt;div class="server red" style="color: #b80202;font-weight: bold;"&gt;&lt;?php echo $gw2-&gt;parseWorldName($match-&gt;red_world_id) ?&gt;: &lt;span style="color: #fff;font-weight: normal;"&gt;&lt;?php echo number_format($scores[0]); ?&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="server blue" style="color: #3d63d1;font-weight: bold;"&gt;&lt;?php echo $gw2-&gt;parseWorldName($match-&gt;blue_world_id) ?&gt;: &lt;span style="color: #fff;font-weight: normal;"&gt;&lt;?php echo number_format($scores[1]); ?&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="server green" style="color: green;font-weight: bold;"&gt;&lt;?php echo $gw2-&gt;parseWorldName($match-&gt;green_world_id) ?&gt;: &lt;span style="color: #fff;font-weight: normal;"&gt;&lt;?php echo number_format($scores[2]); ?&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;?php
+endforeach;
+
+// END
+
+?&gt;</code></pre>
+<p><strong>mod_wvwscores.xml</strong></p>
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;install type="module" version="1.0.0"&gt;
+   &lt;!-- Name of the Module --&gt;
+        &lt;name&gt;WvW Scores&lt;/name&gt;
+
+    &lt;!-- Name of the Author --&gt;
+        &lt;author&gt;omniomi with SDK by Sorrow.7384&lt;/author&gt;
+
+    &lt;!-- Version Date of the Module --&gt;
+        &lt;creationDate&gt;2013-05-23&lt;/creationDate&gt;
+
+    &lt;!-- Copyright information --&gt;
+        &lt;copyright&gt;None&lt;/copyright&gt;
+
+    &lt;!-- License Information --&gt;
+        &lt;license&gt;GPL 2.0&lt;/license&gt;
+
+    &lt;!-- Author's email address --&gt;
+        &lt;authorEmail&gt;REDACTED&lt;/authorEmail&gt;
+
+    &lt;!-- Author's website --&gt;
+        &lt;authorUrl&gt;http://www.REDACTED.com&lt;/authorUrl&gt;
+
+    &lt;!-- Module version number --&gt;
+        &lt;version&gt;1.0.0&lt;/version&gt;
+
+    &lt;!-- Description of what the module does --&gt;
+        &lt;description&gt;Provides WvW Scores&lt;/description&gt;
+
+    &lt;!-- Listing of all files that should be installed for the module to function --&gt;
+        &lt;files&gt;
+        &lt;!-- The "module" attribute signifies that this is the main controller file --&gt;
+                &lt;folder&gt;src&lt;/folder&gt;
+                &lt;folder&gt;cache&lt;/folder&gt;
+                &lt;filename module="mod_wvwscores"&gt;mod_wvwscores.php&lt;/filename&gt;
+                &lt;filename&gt;index.htm&lt;/filename&gt;
+        &lt;/files&gt;
+
+    &lt;!-- Optional parameters --&gt;
+        &lt;params /&gt;
+&lt;/install&gt;</code></pre>
+<p>The src file from the git repo is included in the mod_wvwscores folder and the structure is untouched. The only change I made was the cache time down to 10 minutes.</p>
+<p>When I have a bit more time I will integrate joomla caching and make the server ID an option on the module page; for now it’s hard coded in mod_wvwscores.php.</p></p>
+
+<h2 id="">omniomi.7351:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T17:37:58+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<p>Here’s a screenshot of the module.</p></p>
+
+<h2 id="">Sorrow.7384:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T18:46:26+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<p>You shouldn’t need to modify the SDK to change the cache, you can do it right in your joomla module</p>
+<pre><code>$scores = $gw2-&gt;getScoresByMatchId($match-&gt;wvw_match_id, 600); // cache for 600 seconds</code></pre></p>
+
+<h2 id="">omniomi.7351:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T18:56:25+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<p>Fair point, I am going to completely rip out the caching though and use the caching built into Joomla/JAT3. That way I can add a LifeTime variable to the module config page which if unset will use the Joomla global lifetime and so that if necessary people can disable caching on the fly.</p>
+<p>Once I’m done people should be able to install the tar-ball and do all the config from Extensions -&gt; Modules.</p></p>
+
+<h2 id="">Sorrow.7384:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T19:10:46+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<p>Nice!</p>
+<p>You can disable caching by not including a caching dir.</p>
+<p>e.g. $gw2 = new Gw2SDK();</p>
+<p>If caching is enabled, each call has its own cache time so you could just pass your global lifetime to them. Some of them are cached for a day (like matches, world list etc…) because they rarely update.</p>
+<p>Hopefully they add income right into the Match Details, or at the very least fix their Objectives to include their weight so we can add the +300 to the scores. I know people have provided their own json files for this, but I want this SDK to only represent what the actual API has to offer.</p>
+<p>Glad someone found some use for it!</p></p>
+
+<h2 id="">Valento.9852:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T02:37:50+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>This is so awesome, thank you!</p></p>
+
+<h2 id="">Sorrow.7384:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T02:49:13+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>You’re welcome! Patches are also welcome if any of you guys are PHP devs.</p></p>
+
+<h2 id="">Eolh.5436:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-12T13:26:14+00:00">
+        12 Jul 2013
+    </time>
+</p>
+<p>
+<p>Hi guys, sorry for my bad english, but i really need help. I want to create a simple module for joomla 2.5 like omniomi one. I put in the zip archive: the src folder, the php and xml files. Now, when i install the module, joomla gives me this error: <br>
+JInstaller: :Install: file dosent exist /var/www/vhosts/nameofmydomain/httpdocs/tmp/install_51e000884c590/com_WvW/cache</p>
+<p>You can help me please?</p></p>
+
+<h2 id="">Hardist.3104:</h2>
+<p class="post-meta">
+    <time datetime="2014-03-13T16:05:19+00:00">
+        13 Mar 2014
+    </time>
+</p>
+<p>
+<p>Sorry for the bump, but better that than creating a whole new topic since my question is mostly relevant for this. Small question about this. I used that small code what omniomi wrote in combination with the PHP SDK. The only thing I want is to show the “Points Per Tick” aswell on my website, for my server. Any “fix” for this yet, seeing as how with the above information it wasn’t possible yet?</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-03-13T16:48:01+00:00">
+        13 Mar 2014
+    </time>
+</p>
+<p>
+<p>You might want to have a look at this:</p>
+<p><a href="https://github.com/codemasher/gw2-wvwstats/blob/master/classes/gw2api.class.php#L181">https://github.com/codemasher/gw2-wvwstats/blob/master/classes/gw2api.class.php#L181</a></p></p>
+
+<h2 id="">Hardist.3104:</h2>
+<p class="post-meta">
+    <time datetime="2014-03-13T17:50:13+00:00">
+        13 Mar 2014
+    </time>
+</p>
+<p>
+<p>Thanks a lot, will play around with that!<img src="/include/images/smilies/smile.png"> Thank you!</p></p>
+
+<h2 id="">ljubo.8793:</h2>
+<p class="post-meta">
+    <time datetime="2014-04-04T10:23:37+00:00">
+        04 Apr 2014
+    </time>
+</p>
+<p>
+<p>Hello and thanks for this great post,<br>
+I would like if someone can make .zip module for Joomla 2.5/3.0 with this WWW stats, and second one with Dragon timer.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>HEADS UP: rate limiting is coming</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/HEADS-UP-rate-limiting-is-coming/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">HEADS UP: rate limiting is coming</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/HEADS-UP-rate-limiting-is-coming
+</p>
+
+
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-19T02:49:33+00:00">
+        19 Mar 2017
+    </time>
+</p>
+<p>
+<p>Due to increased popularity, the API needs to have rate limits added to ensure that it can continue functioning properly. This is going to be a bumpy transition, but here’s what I’m thinking so far —</p>
+<ul>
+	<li>The rate limit is per-IP,</li>
+	<li>Global across all endpoints (e.g., separate endpoints do not have separate rate limits),</li>
+	<li>Is (probably) tracked on a per-minute basis, and</li>
+	<li>Is continuously updated, rather than resetting at a specific interval.</li>
+</ul>
+<p>The main change is that, upon reaching the rate limit, more requests just return “HTTP 429 Limit Exceeded” with the response body {"error":“rate limit exceeded”}. Rate-limited requests <em>still</em> count against the limit (this is an implementation detail of the existing backend service that manages limits). Additionally, responses will contain a new header:</p>
+<ul>
+	<li>X-Rate-Limit-Limit is the maximum number of requests that may be issued within a minute. This is a static value doesn’t contain count for requests you have already sent.</li>
+</ul>
+<p>At some point in the future I’d like to add X-Rate-Limit-Remaining, which would contain the actual number of requests that can still be made before hitting the limit, but that needs more extensive backend changes to support.</p>
+<p>For the actual limit, the current number I’m thinking of is 600 requests/minute. I think that’s enough to pull all of the trading post listings every 30 seconds (which is how long they’re cached for). The limit is a rolling limit, so if an application makes 600 requests, then waits for 30 seconds, it should be able to make another 300 requests without going over.</p>
+<p>This isn’t set in stone yet, so let me know if you have feedback/concerns/questions. Rate limiting <em>does</em> need to be implemented before the API can be turned back on, though, otherwise the API will just continue falling over. I would like to get everything back up and running on Monday, but the schedule might slip a bit if something unexpected happens.</p></p>
+
+<h2 id="">Drant.5902:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-19T03:49:26+00:00">
+        19 Mar 2017
+    </time>
+</p>
+<p>
+<p><a href="https://api.guildwars2.com/v2/items/12345">https://api.guildwars2.com/v2/items/12345</a><br>
+and<br>
+<a href="https://api.guildwars2.com/v2/items/?ids=12345,12346,12347,12348,12349">https://api.guildwars2.com/v2/items/?ids=12345,12346,12347,12348,12349</a> (up to 200 IDs)<br>
+Both are considered one request, right?</p>
+<p>I guess more developers will have to learn the “bulk expansion” feature if they haven’t already.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-19T06:52:11+00:00">
+        19 Mar 2017
+    </time>
+</p>
+<p>
+<p>Yeah, those are both single requests.</p></p>
+
+<h2 id="">Tao Ythaq.6582:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-19T10:37:17+00:00">
+        19 Mar 2017
+    </time>
+</p>
+<p>
+<p>This is a very good idea : it will force people to have good practises. <br>
+I am the gw2tool.net developper and I hate wasting computer resources. I made a huge work to build my own caching and so on … <br>
+I was horrified when I saw a few years ago the wasting of requests everywhere in the community.</p>
+<p>600 requests/minute is nice, but I want to know if authenticated endpoints (/v2/account* for example) count in this limit ?</p>
+<p>I guess yes, but I need to know, because  I made a public tool and if a lot of people use it, I will work on a way to spread authenticated requests to avoid peaks (I previously already added a random margin into my cache retention to spread global item requests).</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-19T19:35:16+00:00">
+        19 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 19 2017 10:37AM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6531655">Tao Ythaq.6582:</a></cite></div><div class="quotey"><p>600 requests/minute is nice, but I want to know if authenticated endpoints (/v2/account* for example) count in this limit ?</p>
+<p>I guess yes, but I need to know, because  I made a public tool and if a lot of people use it, I will work on a way to spread authenticated requests to avoid peaks (I previously already added a random margin into my cache retention to spread global item requests).</p></div></blockquote>
+<p>They do count towards the limit. It’s altogether possible that 600 reqs/minute is too low a number; if your application can’t fit within that, let me know what numbers would work better. The goal here is to break as few things as possible while being able to keep the APIs from crashing.</p></p>
+
+<h2 id="">Drant.5902:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-19T19:59:56+00:00">
+        19 Mar 2017
+    </time>
+</p>
+<p>
+<p>Some users have hundreds of thousands of Trading Post transactions. My client-side program has “page_size=200” in the transactions request URL, but the “X-Page-Total” header (number of requests to be made) may be in the thousands, so if a user somehow manages to download over 600 requests in under a minute, a throttling algorithm would have to kick in so the limit isn’t reached. Is there a better way to retrieve these mass transactions?</p>
+<p>Other than that, with caching and bulk expanded IDs, requests could be kept under that limit. But we don’t have the API back up yet to see how that 600 req/min performs in practice.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-19T20:55:56+00:00">
+        19 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 19 2017 07:59PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6531978">Drant.5902:</a></cite></div><div class="quotey"><p>Some users have hundreds of thousands of Trading Post transactions.</p></div></blockquote>
+<p>what.</p>
+<p>Well, that’s not a use-case I considered.</p>
+<p>600 requests/minute with 200 results/request is 120000 results/minute — depending on how the data’s being presented adding a throttle and a progress bar to the client might be okay? It’s unfortunate the data is structured the way it is — it would be a lot more efficient for everyone if there was a better way to communicate a diff of what’s been bought/sold/listed since a given point in time, but alas.</p>
+<p>It’s definitely going to be a bit bumpy though, I’m planning on keeping a close eye on things when this gets turned on.</p></p>
+
+<h2 id="">Tao Ythaq.6582:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-19T21:28:26+00:00">
+        19 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 19 2017 07:35PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6531959">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 19 2017 10:37AM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6531655">Tao Ythaq.6582:</a></cite></div><div class="quotey"><p>600 requests/minute is nice, but I want to know if authenticated endpoints (/v2/account* for example) count in this limit ?</p>
+<p>I guess yes, but I need to know, because  I made a public tool and if a lot of people use it, I will work on a way to spread authenticated requests to avoid peaks (I previously already added a random margin into my cache retention to spread global item requests).</p></div></blockquote>
+<p>They do count towards the limit. It’s altogether possible that 600 reqs/minute is too low a number; if your application can’t fit within that, let me know what numbers would work better. The goal here is to break as few things as possible while being able to keep the APIs from crashing.</p></div></blockquote>
+<p>At the moment there are not enough people using gw2tool.net everyday to reach the limit. But I will implement another algorthm to spread requests to avoid to reach the limit, don’t worry, I don’t need more than 600/min.</p></p>
+
+<h2 id="">Nightlark.4029:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-19T23:46:50+00:00">
+        19 Mar 2017
+    </time>
+</p>
+<p>
+<p>One thought is that you could perform those API requests client side (so that the origin IP is of the person using your site), then have the client send the received information to your server. That’s assuming that access to account information is limited to the owner of the API key so that it isn’t exposed to other users, and that the site has a need of storing historical info for later reference (or caching purposes for people with really high-frequency trading).</p></p>
+
+<h2 id="">TPMN.1483:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-20T06:41:55+00:00">
+        20 Mar 2017
+    </time>
+</p>
+<p>
+<p>Let’s correct this a few users have millions of listings on the Trading Post – I know I’m one of them.</p></p>
+
+<h2 id="">Wanze.8410:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-20T09:20:15+00:00">
+        20 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 19 2017 08:55PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6532032">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 19 2017 07:59PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6531978">Drant.5902:</a></cite></div><div class="quotey"><p>Some users have hundreds of thousands of Trading Post transactions.</p></div></blockquote>
+<p>what.</p>
+<p>Well, that’s not a use-case I considered.</p>
+<p>600 requests/minute with 200 results/request is 120000 results/minute — depending on how the data’s being presented adding a throttle and a progress bar to the client might be okay? It’s unfortunate the data is structured the way it is — it would be a lot more efficient for everyone if there was a better way to communicate a diff of what’s been bought/sold/listed since a given point in time, but alas.</p>
+<p>It’s definitely going to be a bit bumpy though, I’m planning on keeping a close eye on things when this gets turned on.</p></div></blockquote>
+<p>I am a high volume trader with about 1 million items listed on the TP and probably even more items bought within the last 90 days. I dont have much knowledge about programming, so I am wondering, how your proposed limit will effect my account performance. Will it only influence the utilization of my account api keys on 3rd party tools like gw2bltc, if I want to load my full listing overview or purchase history or also my trading post performance in game?</p>
+<p>Trading Post performance has gone way down for me in recent weeks and months to a point that it sometimes takes a couple of seconds for an item info screen to load. Not sure, if this is somehow related, as the game is laggy in general.</p>
+<p>Anyways, if you need any specific feedback from a high volume trader, once you switch the API on again, let me know and I will try to help.</p>
+<p>And thanks for the weekend shift, the game is only half as fun for me without the API.</p></p>
+
+<h2 id="">DarkMagister.7429:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-20T11:08:30+00:00">
+        20 Mar 2017
+    </time>
+</p>
+<p>
+<p>Well, the change is reasonable (man, we could get prices every minute and that’s not a problem? I downloaded prices every 5 minutes not to be stress, and only for those craft-used items).</p>
+<p>I was afraid cases like re-creating locally saved items and recipes information would hit  the limit, but:</p>
+<p>At this moment I have 55k items and 12k recipes in lists. 67k / 200 = 335 requests.</p>
+<p>So yeah, the limit looks fine. But for the above-mentioned cases with lots of pages of trading history (I don’t download all my history, I download only till the transaction that is already present in my data).</p></p>
+
+<h2 id="">Zok.4956:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-20T11:45:42+00:00">
+        20 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 19 2017 02:49AM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6531456">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>This isn’t set in stone yet, so let me know if you have feedback/concerns/questions. Rate limiting <em>does</em> need to be implemented before the API can be turned back on, though, otherwise the API will just continue falling over. I would like to get everything back up and running on Monday, but the schedule might slip a bit if something unexpected happens.</p></div></blockquote>
+<p>For gw2gh.com I implemented rate limiting. Before every new api request the API client checks if it should wait a few secs or microsecs before sending the next API request.</p>
+<p>I think this is a fine-grade rate limit from the client side and it is better than burst-api-calls (send 300 api calls … wait 30-50 secs, send 300 api-calls, wait 30-50 secs) and it hopefully reduces the burden on the server side.</p>
+<p>However, to check if it works as expected, the API has to be turned on again.<img src="/include/images/smilies/smile.png"></p>
+<p>I understand, that at first the rate limit counting is per IP-address because it is easiest to implement on the server side.</p>
+<p>But this puts backend-server-based-api-calls (where all API-calls for all users of the website come from i.e. PHP with the same server-ip) at a disadvantage in comparison to client-side-api-calls (where the API-calls come from i.e. JavaScript with the IP of the browser of each user ).</p>
+<p>So a website that does do client-side/Javascript API calls requests can make parallel requests for i.e. 10.000 users at the same time (10.000 IPs) where a website that does backend-server/PHP API calls has to do the requests for the 10.000 users sequential, one after the other (only 1 IP), which will take a lot longer.</p>
+<p>But the same use case (requesting API data for 10.000 users) should in general have the same rate-limit constrains.</p>
+<p>Hopefully, in the future, there will be an “api-app-key” for every app/website and the rate-limit will be evenly counted per app/website and not per ip?</p></p>
+
+<h2 id="">Valento.9852:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-20T13:28:06+00:00">
+        20 Mar 2017
+    </time>
+</p>
+<p>
+<p>Eh… Lawton, was the outage caused by someone request thousands of times?</p></p>
+
+<h2 id="">Leablo.2651:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-20T13:28:45+00:00">
+        20 Mar 2017
+    </time>
+</p>
+<p>
+<p>To clarify a possible point of confusion in some of the above posts, 1 item is not equal to 1 transaction. A transaction where somebody buys or sells 1 item is the same as if they bought 250 in a stack. If you’re a bulk trader, your average load (based on naive mathematics) across 1 million individual items will be about 8000 transactions.</p></p>
+
+<h2 id="">DarkMagister.7429:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-20T15:07:50+00:00">
+        20 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 20 2017 01:28PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6532534">Leablo.2651:</a></cite></div><div class="quotey"><p>To clarify a possible point of confusion in some of the above posts, 1 item is not equal to 1 transaction. A transaction where somebody buys or sells 1 item is the same as if they bought 250 in a stack. If you’re a bulk trader, your average load (based on naive mathematics) across 1 million individual items will be about 8000 transactions.</p></div></blockquote>
+<p>However if you are selling a stack of 250 items, and those are bought by 250 different people – you get 250 transactions in Sell History, which you get in 1,25 requests.<br>
+So if you sell/buy lots of small items, your Buy/Sell history can become rather long.<br>
+Isn’kitten</p></p>
+
+<h2 id="">Leablo.2651:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-20T17:08:13+00:00">
+        20 Mar 2017
+    </time>
+</p>
+<p>
+<p>That’s why I gave the average. The ideal would be half that.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-20T17:36:40+00:00">
+        20 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 20 2017 09:20AM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6532422">Wanze.8410:</a></cite></div><div class="quotey"><p>Will it only influence the utilization of my account api keys on 3rd party tools like gw2bltc, if I want to load my full listing overview or purchase history or also my trading post performance in game?</p></div></blockquote>
+<p>This will only affect API keys on 3rd party tools. This has no effect on anything in-game.</p>
+<blockquote><div class="citey"><cite title="Posted on March 20 2017 11:45AM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6532478">Zok.4956:</a></cite></div><div class="quotey"><p>Hopefully, in the future, there will be an “api-app-key” for every app/website and the rate-limit will be evenly counted per app/website and not per ip?</p></div></blockquote>
+<p>It’s kind of a hassle on my end, but that’s what we’re probably going to have to do. The main logic is that, since we’re doing IP-based rate limiting, it’s trivial to get around by just buying a $2.50 VPS or twelve. That’s silly and wasteful, so we’ll probably have a signup process for getting IPs whitelisted for a higher limit.</p>
+<p>Whitelisting is a super annoying approach for everyone, but it lets me explicitly tag requests with the originating site and graph them and so forth. So if something goes totally haywire I can look at the chart and have a better clue what’s going wrong, which is something I can’t easily do today.</p>
+<blockquote><div class="citey"><cite title="Posted on March 20 2017 01:28PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6532532">Valento.9852:</a></cite></div><div class="quotey"><p>Eh… Lawton, was the outage caused by someone request thousands of times?</p></div></blockquote>
+<p>Tens of thousands. This is my fault for not implementing rate-limiting sooner :&lt;</p></p>
+
+<h2 id="">lynnae.4095:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-20T17:42:46+00:00">
+        20 Mar 2017
+    </time>
+</p>
+<p>
+<p>an unintended bonus of explicit rate limiting is that I will no longer have to guess what’s a reasonable request rate. Being the mostly nice person that I am, I try to minimize my requests, however once my new backend is up and running, I’d like to make calls more often.</p>
+<p>A rate limit helps me plan as well<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">Illconceived Was Na.9781:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-20T17:54:33+00:00">
+        20 Mar 2017
+    </time>
+</p>
+<p>
+<p>@Lawton: thanks for working on the weekend to address the issues. And thanks for thinking ahead down the road to how this affects the popular websites, high volume individuals, and the rest of us. I appreciate the detailed and frequent updates.</p>
+<p>PS the wiki is another consumer of API data; I have no idea how that affects volume.</p></p>
+
+<h2 id="">Chieftain Alex.2851:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-20T19:10:20+00:00">
+        20 Mar 2017
+    </time>
+</p>
+<p>
+<p>The wiki doesn’t store any responses at all, and makes all API requests with widgets using the bulk expanded API queries (i.e. most pages should only make one request maximum) via the viewer’s IP.</p>
+<p>Theoretically we could implement some client-side per session caching with sessionstorage (e.g. it could check for local information before performing another api query, and used cached results for 30 minutes).</p></p>
+
+<h2 id="">Xultair.7954:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-20T20:02:16+00:00">
+        20 Mar 2017
+    </time>
+</p>
+<p>
+<p>Do we know if the problem is individual users or popular apps that may be poorly designed?  Is there a way to require an app provide the api key/account that generated the request so the app’s volume can be split out by account to track if its individuals within an app or the app itself?</p>
+<p>I’m just trying to think how I’d figure out where the volume was coming from if all of the requests were being logged and it should be easy enough to track the requesting IP/app but if that IP was required to supply additional information such as an api key that can be grouped by its governing account you can then see if the volume by a given app is high across all of its users or if its limited to a handful of users and then you could rate limit the users directly.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-20T21:54:24+00:00">
+        20 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 20 2017 08:02PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6532911">Xultair.7954:</a></cite></div><div class="quotey"><p>Do we know if the problem is individual users or popular apps that may be poorly designed?</p></div></blockquote>
+<p>Not currently. Due to volume, we don’t keep detailed request logs; I know how many requests each endpoint handles, but not where the requests are coming from.</p>
+<blockquote><div class="citey"><cite title="Posted on March 20 2017 08:02PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6532911">Xultair.7954:</a></cite></div><div class="quotey"><p>Is there a way to require an app provide the api key/account that generated the request so the app’s volume can be split out by account to track if its individuals within an app or the app itself?</p></div></blockquote>
+<p>Not currently; probably going to add something like that in for applications to request higher rate limits, but not require it for access. Not requiring this means there’s no barrier to entry, which is something I prefer. Requiring it for high-usage apps means I can track request volume on a per-application basis and can get a better idea of what happens when something goes wrong.</p>
+<p>Note that since we’re going to use IP-based rate-limiting, this is mostly moot for client-side requests. If you’ve got a browser app sending more than 600 requests/minute that’s … probably not the best way of going about it. Increased rate limits only really make sense when you’re doing a bunch of stuff on a server (with a fixed IP, hopefully) like persisting historical data, tracking aggregate metrics, providing indexing, etc.</p>
+<p>I still need to work out all the details though, so I don’t really have much on how the higher rate-limit bits will work yet.</p></p>
+
+<h2 id="">Kythan Myr.4719:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-21T04:00:12+00:00">
+        21 Mar 2017
+    </time>
+</p>
+<p>
+<p>I really hope that the wait is short. I did not realize how much I depend on the use of APIs until it was down. I understand the need to limit and have often wondered the load on the servers. Thanks for the notice, I’m just concerned the wait will turn into days, then weeks, then months and then into years with the system never really returning. I can’t count how many times these “temporary” things in the programming world never come back.</p></p>
+
+<h2 id="">zeronomore.2381:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-21T08:56:16+00:00">
+        21 Mar 2017
+    </time>
+</p>
+<p>
+<p>Really wonder how this will work for the item api. I cache all the items and only refresh them once a month or less. But with 55k items, it would take a rather long time to cache them. Dont think it would be great idea to let users request the data, but if i have to spend hours trying to get all data, it’s easier to let users just hit you with requests from their own ip. This would result in an insane request increase instead of decrease. Please think this trough.</p>
+<p>Just read the whole thing, seems it would be no problem. Already using the ‘ids=’ on all requests. This has a max of 200 items if i remember correctly, so 275 requests would be all that’s needed ^^</p></p>
+
+<h2 id="">WeAreTwO.9780:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-21T21:38:11+00:00">
+        21 Mar 2017
+    </time>
+</p>
+<p>
+<p>Would it be legit if I use my own server for static API requests and only use the official API for account bounded requests? My Server would then have its own database of items for example and only updates this database like every 24h? This would help reducing traffic, but I’m not sure if this would count as stealing content or intellectual property.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-21T21:44:04+00:00">
+        21 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 21 2017 09:38PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6533907">WeAreTwO.9780:</a></cite></div><div class="quotey"><p>Would it be legit if I use my own server for static API requests and only use the official API for account bounded requests? My Server would then have its own database of items for example and only updates this database like every 24h? This would help reducing traffic, but I’m not sure if this would count as stealing content or intellectual property.</p></div></blockquote>
+<p>This isn’t an official answer, but from my reading of the <a href="https://www.guildwars2.com/en/legal/guild-wars-2-content-terms-of-use/">content terms of use</a> that’s perfectly fine. There’s a lot of value-add that get for running your own copy of e.g. the items database — for example, searching items by name.</p></p>
+
+<h2 id="">Drant.5902:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-22T06:25:03+00:00">
+        22 Mar 2017
+    </time>
+</p>
+<p>
+<p>In order to lower my program’s requests, I’m trying to bulk expand the public (not account) guild details. According to the <a href="https://github.com/arenanet/api-cdi/blob/master/v2/guild/details.js">api-cdi</a><br>
+the URL below should work, but why does it not?</p>
+<p><a href="https://api.guildwars2.com/v2/guilds?ids=4BBB52AA-D768-4FC6-8EDE-C299F2822F0F,CB2347E3-076F-438D-9C94-E53F0967A7E9,B63949DA-C5C0-E611-80D4-E4115BE8E905,9A732AAF-5D86-4800-943D-92C81820F80A">https://api.guildwars2.com/v2/guilds?ids=4BBB52AA-D768-4FC6-8EDE-C299F2822F0F,CB2347E3-076F-438D-9C94-E53F0967A7E9,B63949DA-C5C0-E611-80D4-E4115BE8E905,9A732AAF-5D86-4800-943D-92C81820F80A</a></p>
+<p>Retrieving one guild detail at a time works:<br>
+<a href="https://api.guildwars2.com/v2/guild/4BBB52AA-D768-4FC6-8EDE-C299F2822F0F">https://api.guildwars2.com/v2/guild/4BBB52AA-D768-4FC6-8EDE-C299F2822F0F</a></p>
+<p>I’ve tried both “v2/guild?ids=” and “v2/guilds?ids=”. What is the proper format for retrieving multiple guild details with a single URL request?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-22T06:29:20+00:00">
+        22 Mar 2017
+    </time>
+</p>
+<p>
+<p>The guilds endpoint isn’t bulk-expanded. The current implementation only lets you request one guild at a time.</p>
+<p>That documentation is a bit wrong; I’ll update it. (EDIT: <a href="https://github.com/arenanet/api-cdi/commit/544db504bc1b0b1c324e17c4b2a4baa92b809add">blam</a>)</p></p>
+
+<h2 id="">Drant.5902:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-22T06:39:16+00:00">
+        22 Mar 2017
+    </time>
+</p>
+<p>
+<p>From <a href="https://api.guildwars2.com/v2">https://api.guildwars2.com/v2</a></p>
+<blockquote><div class="quotey"><p>All APIs offer bulk expansion.  There are several ways to do so.  The simplest<br>
+is by specifying multiple ids via query parameter, as in:<br>
+  /v2/colors?ids=1,2,3</p></div></blockquote>
+<p>Will v2/guild be bulk expandable in the future?</p></p>
+
+<h2 id="">DarkMagister.7429:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-22T16:37:24+00:00">
+        22 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 21 2017 09:38PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6533907">WeAreTwO.9780:</a></cite></div><div class="quotey"><p>Would it be legit if I use my own server for static API requests and only use the official API for account bounded requests? My Server would then have its own database of items for example and only updates this database like every 24h?</p></div></blockquote>
+<p>I really think everyone should go this way.<br>
+It requires less time, more search variety, and so on and so forth.<br>
+For my software I planned to check for the change in version name, to trigger a database rebuild, but found it is too often, so just press a button after major updates.</p></p>
+
+<h2 id="">ProperDave.7425:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-22T18:09:18+00:00">
+        22 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 22 2017 04:37PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6534529">DarkMagister.7429:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 21 2017 09:38PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6533907">WeAreTwO.9780:</a></cite></div><div class="quotey"><p>Would it be legit if I use my own server for static API requests and only use the official API for account bounded requests? My Server would then have its own database of items for example and only updates this database like every 24h?</p></div></blockquote>
+<p>I really think everyone should go this way.<br>
+It requires less time, more search variety, and so on and so forth.<br>
+For my software I planned to check for the change in version name, to trigger a database rebuild, but found it is too often, so just press a button after major updates.</p></div></blockquote>
+<p>Caching responses from the GW2API is a good way to go – it gives your own projects more fault-tolerance for when situations like this occur.<img src="/include/images/smilies/smile.png"><br>
+For my part, I try and cache everything I pull from the API for at least 24 hours, and vary request intervals back to the API so that I don’t flood the servers with requests.<br>
+Who on Tyria would need to make 600 requests a minute? That’s sounds like bad programming to me. My earlier versions of Plotty were a little unforgiving on the API calls, but I’ve hopefully fixed all that in the latest builds. :o</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-22T18:29:48+00:00">
+        22 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 22 2017 06:39AM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6534175">Drant.5902:</a></cite></div><div class="quotey"><p>Will v2/guild be bulk expandable in the future?</p></div></blockquote>
+<p>Probably not. Bulk expansion only makes sense when all ids can be enumerated, and guild IDs are not enumerable for technical reasons (e.g., there’s no master list of all guild IDs that’s accessible to the API frontend).</p>
+<blockquote><div class="citey"><cite title="Posted on March 22 2017 06:09PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6534613">ProperDave.7425:</a></cite></div><div class="quotey"><p>Who on Tyria would need to make 600 requests a minute? That’s sounds like bad programming to me.</p></div></blockquote>
+<p>Eh, /v2/commerce/listings is updated every ~30 seconds and takes ~150 requests to pull all the data from. Sites that additionally maintain a large pool of API keys (e.g., for grabbing /v2/pvp/games) also might require higher request rates.</p>
+<p>600 requests/minute is certainly a lot, but there are definitely cases where it’s not enough.</p>
+<p>For static endpoints though, I highly <em>highly</em> recommend just pulling the data into your own database every time /v2/build updates. None of the API’s backend data is stored in a relational database so there’s a lot of things the API will never be able to provide — but that’s easily overcome by just throwing it into e.g. PostgreSQL and building your own indexes.</p></p>
+
+<h2 id="">SlippyCheeze.5483:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-22T20:41:58+00:00">
+        22 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 22 2017 04:37PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6534529">DarkMagister.7429:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 21 2017 09:38PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6533907">WeAreTwO.9780:</a></cite></div><div class="quotey"><p>Would it be legit if I use my own server for static API requests and only use the official API for account bounded requests? My Server would then have its own database of items for example and only updates this database like every 24h?</p></div></blockquote>
+<p>I really think everyone should go this way.<br>
+It requires less time, more search variety, and so on and so forth.<br>
+For my software I planned to check for the change in version name, to trigger a database rebuild, but found it is too often, so just press a button after major updates.</p></div></blockquote>
+<p>Most of it is static enough that a background job updating the records, and simply serving “outdated” content that is almost certainly identical, while it runs … works fine.</p></p>
+
+<h2 id="">Tshakaar.6429:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-23T10:23:46+00:00">
+        23 Mar 2017
+    </time>
+</p>
+<p>
+<p>Ohh, happy to see the API is back, and more, one of my suggestion starting to be implemented.<br>
+Thank you Lawton!</p>
+<p>I always believed all endpoints was refresh on a 5minute timer. I recently learned, mainly because i wasn’t interested in TP before, /v2/commerce/listings has a 30s refresh.<br>
+Could these timers be reported in <a href="https://api.guildwars2.com/v2">https://api.guildwars2.com/v2</a> details?<br>
+And maybe a timestamp in here to count from it to know the refreshes?<br>
+And to finish, le’ts be crazy, the number of requests/minute left for the actual IP?</p></p>
+
+<h2 id="">ProperDave.7425:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-23T12:19:48+00:00">
+        23 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 22 2017 06:29PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6534632">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 22 2017 06:09PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6534613">ProperDave.7425:</a></cite></div><div class="quotey"><p>Who on Tyria would need to make 600 requests a minute? That’s sounds like bad programming to me.</p></div></blockquote>
+<p>Eh, /v2/commerce/listings is updated every ~30 seconds and takes ~150 requests to pull all the data from. Sites that additionally maintain a large pool of API keys (e.g., for grabbing /v2/pvp/games) also might require higher request rates.</p>
+<p>600 requests/minute is certainly a lot, but there are definitely cases where it’s not enough.</p></div></blockquote>
+<p>This inspires me to write some general purpose best-practice guides on API consumption that I’ll see if I can sneak into the references on the Wiki’s API page when I’m done.</p>
+<p>And also; Keep up the good work Lawton! We really do appreciate it!<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-23T15:23:41+00:00">
+        23 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 23 2017 10:23AM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6535180">Tshakaar.6429:</a></cite></div><div class="quotey"><p>I always believed all endpoints was refresh on a 5minute timer. I recently learned, mainly because i wasn’t interested in TP before, /v2/commerce/listings has a 30s refresh.<br>
+Could these timers be reported in <a href="https://api.guildwars2.com/v2">https://api.guildwars2.com/v2</a> details?</p></div></blockquote>
+<p>Each response contains cache headers with the correct times used by the endpoint.</p>
+<blockquote><div class="citey"><cite title="Posted on March 23 2017 10:23AM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6535180">Tshakaar.6429:</a></cite></div><div class="quotey"><p>And to finish, le’ts be crazy, the number of requests/minute left for the actual IP?</p></div></blockquote>
+<p>This is currently not possible but will come one day.</p></p>
+
+<h2 id="">Tshakaar.6429:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-24T12:29:50+00:00">
+        24 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 23 2017 03:23PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6535387">darthmaim.6017:</a></cite></div><div class="quotey"><p>Each response contains cache headers with the correct times used by the endpoint.</p></div></blockquote>
+<p>From what i see, it’s just the timestamp of when i received the json, not when it was cached on the server.</p></p>
+
+<h2 id="">SlippyCheeze.5483:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-24T15:51:09+00:00">
+        24 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 24 2017 12:29PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6536149">Tshakaar.6429:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 23 2017 03:23PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6535387">darthmaim.6017:</a></cite></div><div class="quotey"><p>Each response contains cache headers with the correct times used by the endpoint.</p></div></blockquote>
+<p>From what i see, it’s just the timestamp of when i received the json, not when it was cached on the server.</p></div></blockquote>
+<p>I just did a quick check, and at least the achievement endpoint tells me:</p>
+<p>&lt; Expires: Fri, 24 Mar 2017 15:54:35 GMT</p>
+<p>when requested at 15:50 GMT.  so, it’s telling me I can hold it for a little under four minutes… not an amazing cache lifetime for api.guildwars2.com/v2/achievements?id=1 but not zero either.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-24T17:10:08+00:00">
+        24 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 24 2017 03:51PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6536338">SlippyCheeze.5483:</a></cite></div><div class="quotey"><p>I just did a quick check, and at least the achievement endpoint tells me:</p>
+<p>&lt; Expires: Fri, 24 Mar 2017 15:54:35 GMT</p>
+<p>when requested at 15:50 GMT.  so, it’s telling me I can hold it for a little under four minutes… not an amazing cache lifetime for api.guildwars2.com/v2/achievements?id=1 but not zero either.</p></div></blockquote>
+<p>I should probably increase that to 24h and flush the cache when the build updates. Hmm.</p></p>
+
+<h2 id="">Tshakaar.6429:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-24T21:18:56+00:00">
+        24 Mar 2017
+    </time>
+</p>
+<p>
+<p>SlippyCheeze, teach me your sorcery. Where do you see that? I’m using network tab of dev tool from Firefox.</p></p>
+
+<h2 id="">KillerRabbit.1946:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-25T13:03:44+00:00">
+        25 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 24 2017 09:18PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6536657">Tshakaar.6429:</a></cite></div><div class="quotey"><p>SlippyCheeze, teach me your sorcery. Where do you see that? I’m using network tab of dev tool from Firefox.</p></div></blockquote>
+<p>On the network tab you should look for the Response headers, and within that the one called ‘Expires’</p></p>
+
+<h2 id="">Tshakaar.6429:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-25T18:49:39+00:00">
+        25 Mar 2017
+    </time>
+</p>
+<p>
+<p>Hmm, ok, i tried more endpoints.<br>
+I’m surprised to see this “Expires” on /v2/backstory/answers but not on /v2/account or /v2/characters/:id/core or /v2/account/wallet…<br>
+So, i can’t count on this to know how much time to keep data in cache.</p></p>
+
+<h2 id="">SlippyCheeze.5483:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-27T15:55:00+00:00">
+        27 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 24 2017 09:18PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6536657">Tshakaar.6429:</a></cite></div><div class="quotey"><p>SlippyCheeze, teach me your sorcery. Where do you see that? I’m using network tab of dev tool from Firefox.</p></div></blockquote>
+<p>I used `curl -V` on it, but it should be present as the Expires header in the response.  (I think the format is human readable by default, btw, but if not it’ll be a unix timestamp.  How spoilekittenhat I don’t even need remember that any more, huh?<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">SlippyCheeze.5483:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-27T15:56:58+00:00">
+        27 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 25 2017 06:49PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6537347">Tshakaar.6429:</a></cite></div><div class="quotey"><p>Hmm, ok, i tried more endpoints.<br>
+I’m surprised to see this “Expires” on /v2/backstory/answers but not on /v2/account or /v2/characters/:id/core or /v2/account/wallet…<br>
+So, i can’t count on this to know how much time to keep data in cache.</p></div></blockquote>
+<p>You can read the <a href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html">official rules about HTTP cache headers</a> for details of how this works if you want, but…</p>
+<p>…short answer is: no Expires or ETag header =&gt; no caching.  (Unless you have some out of band knowledge about it.  but see my next comment to our friendly dev about that one…)</p></p>
+
+<h2 id="">SlippyCheeze.5483:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-27T16:01:29+00:00">
+        27 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 24 2017 05:10PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6536427">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 24 2017 03:51PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6536338">SlippyCheeze.5483:</a></cite></div><div class="quotey"><p>I just did a quick check, and at least the achievement endpoint tells me:</p>
+<p>&lt; Expires: Fri, 24 Mar 2017 15:54:35 GMT</p>
+<p>when requested at 15:50 GMT.  so, it’s telling me I can hold it for a little under four minutes… not an amazing cache lifetime for api.guildwars2.com/v2/achievements?id=1 but not zero either.</p></div></blockquote>
+<p>I should probably increase that to 24h and flush the cache when the build updates. Hmm.</p></div></blockquote>
+<p>Is there any chance, Lawton, that you could stick the build number in the ETag header, or something that included the build number?  That is probably the most useful cache control indicator for this.</p>
+<p>In a past life I used an etag header of “etag: ${build}:YYYY-MM-DD” to track something we didn’t want to live more than 24 hours in a cache, but might want to invalidate sooner, as a cheap way to do that without having to do anything that required deeper knowledge of the content.</p>
+<p>(In that case, because we wanted to do cache control and rate limiting in a separate front-end service, that would spare our “real” front-end the cost of fielding lots of “etag match 304” responses, for the usual sort of horrible reasons.  It had cheap access to the build number, and local access to the date, so it could tell if the etag was valid or not and respond without coordination with the things that could actually generate the answer.)</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-27T17:36:27+00:00">
+        27 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 27 2017 04:01PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6538471">SlippyCheeze.5483:</a></cite></div><div class="quotey"><p>Is there any chance, Lawton, that you could stick the build number in the ETag header, or something that included the build number?  That is probably the most useful cache control indicator for this.</p>
+<p>In a past life I used an etag header of “etag: ${build}:YYYY-MM-DD” to track something we didn’t want to live more than 24 hours in a cache, but might want to invalidate sooner, as a cheap way to do that without having to do anything that required deeper knowledge of the content.</p></div></blockquote>
+<p>The API doesn’t currently support either HEAD requests or If-Modified-Since headers, so putting it in an etag feels really wonky to me. How does just having X-Build-Id sound instead?</p></p>
+
+<h2 id="">SlippyCheeze.5483:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-27T18:45:26+00:00">
+        27 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 27 2017 05:36PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6538544">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 27 2017 04:01PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6538471">SlippyCheeze.5483:</a></cite></div><div class="quotey"><p>Is there any chance, Lawton, that you could stick the build number in the ETag header, or something that included the build number?  That is probably the most useful cache control indicator for this.</p>
+<p>In a past life I used an etag header of “etag: ${build}:YYYY-MM-DD” to track something we didn’t want to live more than 24 hours in a cache, but might want to invalidate sooner, as a cheap way to do that without having to do anything that required deeper knowledge of the content.</p></div></blockquote>
+<p>The API doesn’t currently support either HEAD requests or If-Modified-Since headers, so putting it in an etag feels really wonky to me. How does just having X-Build-Id sound instead?</p></div></blockquote>
+<p>I’d rather just see nothing until you did add those features, if you ever do.  If we need to know out of band that we should check the build ID and flush or refresh a local cache of, eg, skill info, then we can just know that.  The extra header doesn’t bring that much value, I think.</p></p>
+
+<h2 id="">Neural.1824:</h2>
+<p class="post-meta">
+    <time datetime="2017-04-20T04:12:49+00:00">
+        20 Apr 2017
+    </time>
+</p>
+<p>
+<p>Not sure if this is information that has changed, but as it is related to limiting and proper use of the API…</p>
+<p>How often is data from the Trading Post updated such that it can be obtained via API?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2017-04-20T17:05:41+00:00">
+        20 Apr 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on April 20 2017 04:12AM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6559075">Neural.1824:</a></cite></div><div class="quotey"><p>How often is data from the Trading Post updated such that it can be obtained via API?</p></div></blockquote>
+<p>/v2/commerce/listings is every 20 minutes.<br>
+/v2/commerce/prices is every 2 minutes.<br>
+/v2/commerce/transactions is every 1 minute.</p>
+<p>These change on occasion, refer to the Cache-Control and Expires headers.</p></p>
+
+<h2 id="">Neural.1824:</h2>
+<p class="post-meta">
+    <time datetime="2017-04-20T19:22:54+00:00">
+        20 Apr 2017
+    </time>
+</p>
+<p>
+<p>Thank you.  This explains some things, like when I place an order and the price info doesn’t show up when expected (I thought prices and transactions were both 1 minute).</p></p>
+
+<h2 id="">Karasu.9483:</h2>
+<p class="post-meta">
+    <time datetime="2017-09-12T14:10:34+00:00">
+        12 Sep 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 19 2017 02:49AM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6531456">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>For the actual limit, the current number I’m thinking of is 600 requests/minute. I think that’s <strong>enough to pull all of the trading post listings every 30 seconds (which is how long they’re cached for).</strong> The limit is a rolling limit, so if an application makes 600 requests, then waits for 30 seconds, it should be able to make another 300 requests without going over.</p></div></blockquote>
+<blockquote><div class="citey"><cite title="Posted on March 22 2017 06:29PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6534632">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>/v2/commerce/listings is updated every ~30 seconds and takes ~150 requests to pull all the data from.</p></div></blockquote>
+<blockquote><div class="citey"><cite title="Posted on April 20 2017 05:05PM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6559424">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on April 20 2017 04:12AM"><a href="/forum/community/api/HEADS-UP-rate-limiting-is-coming/6559075">Neural.1824:</a></cite></div><div class="quotey"><p>How often is data from the Trading Post updated such that it can be obtained via API?</p></div></blockquote>
+<p>/v2/commerce/listings is every 20 minutes.<br>
+/v2/commerce/prices is every 2 minutes.<br>
+/v2/commerce/transactions is every 1 minute.</p>
+<p>These change on occasion, refer to the Cache-Control and Expires headers.</p></div></blockquote>
+<p>Did listings expiration change from 30 seconds to 20 minutes? I’m a bit confused</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

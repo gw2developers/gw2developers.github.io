@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Guide to the Black Lion Trading Co API</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Guide-to-the-Black-Lion-Trading-Co-API/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Guide to the Black Lion Trading Co API</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API
+</p>
+
+
+
+<h2 id="">The Talcmaster.7391:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T01:30:30+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>Since we now have a dedicated spot for API discussions, I figured I would take the liberty of sharing what I know about the Trading Post / Gem Store API so that anyone interested in making something with it will have a thorough reference to go off of.  Thanks to all the people in the #gw2spidy chatroom who showed me much of this.</p>
+<p><strong>DISCLAIMER:  This API is not an official-release API and is not intended for public use.  Therefore, it is unsupported by Arenanet, NCsoft or any other company.  It is subject to change without any notification.  USE AT YOUR OWN RISK.</strong></p>
+<p><strong>Web addresses involved:</strong></p>
+<ul>
+	<li><a href="https://tradingpost-live.ncplatform.net">https://tradingpost-live.ncplatform.net</a> – trading post page</li>
+	<li><a href="https://gemstore-live.ncplatform.net">https://gemstore-live.ncplatform.net</a> – gem store page</li>
+	<li><a href="https://exchange-live.ncplatform.net">https://exchange-live.ncplatform.net</a> – gem exchange page</li>
+</ul>
+<p><strong>Accessing the Trading Post:</strong>  <br>
+The external login page is /authenticate after one of the above address:</p>
+<ul>
+	<li><a href="https://tradingpost-live.ncplatform.net/authenticate">https://tradingpost-live.ncplatform.net/authenticate</a></li>
+	<li><a href="https://gemstore-live.ncplatform.net/authenticate">https://gemstore-live.ncplatform.net/authenticate</a></li>
+	<li><a href="https://exchange-live.ncplatform.net/authenticate">https://exchange-live.ncplatform.net/authenticate</a></li>
+</ul>
+<p>These pages use a fairly standard SSO (Single Sign On) setup, so if you are already logged into the forum, it will check against the forum and automatically redirect you to that particular site’s landing page.  If you are not logged in, it will redirect you to account.guildwars2.com so you can enter your information.  If you already have a valid session ID, you can add it as a parameter: &lt;site&gt;/authenticate?id=&lt;session-id&gt;</p>
+<p>If, like me, you are trying to access these parameters outside of a web browser and don’t retain cookies, you can add the session-id in the form of s=&lt;session-id&gt; as a custom header called Cookie (this is how cookies are automatically passed in a browser) whenever you make an API call.</p>
+<p>Note that session-ids do expire, and you will need to update these regularly or finding a way of retrieving a new one automatically as necessary.</p>
+<p><strong>tradingpost outputs:</strong></p>
+<ul>
+	<li><a href="https://tradingpost-live.ncplatform.net/ws/search.json">https://tradingpost-live.ncplatform.net/ws/search.json</a><br>
+This output is the one that does the majority of functions on the TP.  By default it won’t return anything as it requires a combination of different parameters depending on what you are trying to accomplish.</li>
+	<li>?text=&amp;levelmin=0&amp;levelmax=80<br>
+This combination will return a list of all the items along with their buy and sell listings and prices.  By default this only returns 10 items at a time, but this is adjustable by the count= parameter. If count=0 it will return all of the items in the list.  The offset= parameter starts the listing based on that number in the list (1 is the first item) The text= can be filled in to filter by the item name, but leaving it blank is still valid.  levelmin and levelmax require valid numbers to be entered.  Other filters that are optional are removeunavailable=true, rarity=, type=, and subtype= (these last 3 require their numeric representation, not characters).  <strong>WARNING: This can pull in ALL ITEMS and can take a long time to run and take a great deal of memory to process</strong></li>
+	<li>?text=text&amp;typeahead=1<br>
+This combination returns just the type, id, and name of an item.  This is what is called when you type something into the search box and it gives you a list of items.  It requires some sort of text to be entered to work. The count=0 trick works on this as well, and you can use offset= as well.  Optional parameters levelmin, levelmax, removeunavailable, rarity, type, and subtype all function the same as above.</li>
+	<li>?ids=27321,24354<br>
+This allows you to enter a comma delimited list of item ids (up to 250) and pull in the same info as you do from the first set of parameters.  All of the other parameters are rendered inoperable when this parameter is specified.</li>
+</ul>
+<p>Continued in next post…</p></p>
+
+<h2 id="">The Talcmaster.7391:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T01:31:02+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>…Continued from above</p>
+<ul>
+	<li><a href="https://tradingpost-live.ncplatform.net/ws/listings.json?id=27321">https://tradingpost-live.ncplatform.net/ws/listings.json?id=27321</a><br>
+This will pull in the buy and sell listings for the first 20 prices as seen when you click on a specific item in the trading post.  It returns the price, number of listings at that price, and the total of numbers ordered at that price.  If you specify type=buys or type=sells it will return that type, but by default returns both.  The data is not all listings for an item, and since only one item can be returned at a time is a much slower way of getting data out than search.json so if you have no reason to look at specific listings, just stick to search.json</li>
+</ul>
+<ul>
+	<li><a href="https://tradingpost-live.ncplatform.net/ws/trends.json">https://tradingpost-live.ncplatform.net/ws/trends.json</a><br>
+This odd little output shows all the trending information you see on the main page.  It has all the standard item information for the items, and a list if IDs for each category.  There are no parameters for it, and may not even be up to date at a given time.  I would not rely on it for much, but am including it here for the sake of completeness.</li>
+</ul>
+<ul>
+	<li><a href="https://tradingpost-live.ncplatform.net/ws/me.json">https://tradingpost-live.ncplatform.net/ws/me.json</a><br>
+This output actually requires a session-id that originates in game to be able to access.  I won’t get into how to retrieve that particular session-id.  This is what you see when you view your transactions, and requires a combination of parameters to return a valid result.  The type=buy or type=sell will return either your buy or sell transactions respectively.  The time=now or time=past shows either your current listings or your historical transactions.</li>
+</ul>
+<p><strong>gemstore outputs:</strong></p>
+<ul>
+	<li><a href="https://gemstore-live.ncplatform.net/ws/search.json">https://gemstore-live.ncplatform.net/ws/search.json</a><br>
+This outputs all of the information about a given gemstore item and requires either the discounted=1 parameter,  the category= parameter, or the text= to return a valid list.  Using a combination will limit it further.  The category= uses actual words for the categories, and the following are valid: decorative, consumable, convenience, boosts, minipets, account. The text= parameter must have a valid text search after it to return results.  Optional parameters are offset and count, which behave the same as the tradingpost search.json.</li>
+</ul>
+<ul>
+	<li><a href="https://gemstore-live.ncplatform.net/ws/history.json">https://gemstore-live.ncplatform.net/ws/history.json</a><br>
+This outputs items previously bought on the gemstore, and requires a session-id that originates from the game.  It is the same information as the search returns, except historical based on your account.  The only known parameter is count=</li>
+</ul>
+<p><strong>exchange outputs:</strong></p>
+<ul>
+	<li><a href="https://exchange-live.ncplatform.net/ws/trends.json">https://exchange-live.ncplatform.net/ws/trends.json</a><br>
+This outputs the raw data powering the little graph seen on the bottom of the exchange.  With no type specified, it by default outputs the equivalent of a type=ReceivingCoins parameter, with the gem counterpart being type=ReceivingGems.</li>
+</ul>
+<ul>
+	<li><a href="https://exchange-live.ncplatform.net/ws/rates.json">https://exchange-live.ncplatform.net/ws/rates.json</a><br>
+This is another one that requires a session-id from the game.  It is what provides the conversion rates between coins and gems.  It requires a coins= and/or gems= number parameter added on to return values of that type.  I have not managed to get this to successfully work myself, so I think this also requires some sort of character id to be passed.  I do know that it is how Gw2spidy and some others pull in data.</li>
+</ul>
+<p>That’s pretty much everything I know about these APIs.  If there is anything I missed that needs to be clarified or if you have anything to share, let me know and I will add it.</p></p>
+
+<h2 id="">marnick.4305:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T06:30:28+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>Is it possible to buy with this api or merely watch prices?</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T06:48:50+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2013 06:30AM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/2071718">marnick.4305:</a></cite></div><div class="quotey"><p>Is it possible to buy with this api or merely watch prices?</p></div></blockquote>
+<p>Yes it is possible to buy.  For buy, you have to do a https post</p>
+<p><a href="https://tradingpost-live.ncplatform.net/ws/item/&lt;itemId&gt;/buy">https://tradingpost-live.ncplatform.net/ws/item/&lt;itemId&gt;/buy</a></p>
+<p>with the following parameters:</p>
+<p>{count=int,price=int,charid=&lt;char guid&gt;}</p>
+<p>You also need your game session key.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T13:14:44+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>The Talcmaster, this is phenomenal! Thank you!</p></p>
+
+<h2 id="">The Talcmaster.7391:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T14:43:59+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>I believe it is possible to do any of the functions that you can do normally in those pages, such as buying and selling items, buying and redeeming gems, buying gemstore items, etc.  I haven’t played with any of these functions because 1) I don’t know how to retrieve my charid, 2) I don’t want to mess with things that can cause permanent unwanted changes, and 3) I’m currently only interested in pulling out the data so I can create some nifty visualizations.  I didn’t mention them in the doc for much the same reasons, as well as not wanting to be responsible for people playing with things they may regret.  Of course, I welcome DarkSpirit and other people who have played with it to add to this in their own posts and make it more thorough and complete.</p></p>
+
+<h2 id="">Healix.5819:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T15:06:24+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>Selling and picking up items are done directly though the client. Basically, you can’t “touch” items through the API.</p>
+<p>The charid has to be intercepted by either reading memory or the url used to authenticate. The in-game session key has to be obtained the same way or by reading the cookie file located in gw2cache.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T17:15:44+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>I would be surprised if ArenaNet finally decides to release their trading post API as it is right now.  I don’t think it is ready.</p>
+<p>Most of the interesting functions require the game session key and char id guid and having this requirement hampers their use in mobile apps, which is why I didn’t post any detail information about their Trading Post API.  I also would not know what I post would be outdated by the time ArenaNet decides to officially release this.</p>
+<p>However, since The Talcmaster has already posted this information, I can help by supplementing any info that he may have missed out.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T17:33:39+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>If you want complete C# code using this API, you can look at Zicore’s TP Notifier:</p>
+<p><a href="https://forum-en.guildwars2.com/forum/game/bltc/Zicore-s-Trading-Post-Notifier-Open-Source/first">https://forum-en.guildwars2.com/forum/game/bltc/Zicore-s-Trading-Post-Notifier-Open-Source/first</a></p>
+<p>It uses .NET 4.0.  I have also written my own C# app in .NET 4.5 (for its async programming) but it is still work-in-progress.</p>
+<p>Here are some of the enums that I use:</p>
+<p>public enum RarityEnum<br>
+    {<br>
+        Junk = 0,<br>
+        Basic,<br>
+        Fine,<br>
+        Masterwork,<br>
+        Rare,<br>
+        Exotic,<br>
+        Ascended,<br>
+        Legendary<br>
+    };</p>
+<p>public enum TypeEnum<br>
+    {<br>
+        Armor = 0,<br>
+        Back = 1,<br>
+        Bag = 2,<br>
+        Consumable,<br>
+        Container,<br>
+        [EnumMember(Value = “CraftingMaterial”)]<br>
+        Crafting_Material,<br>
+        Gathering,<br>
+        Gizmo,<br>
+        MiniPet = 11,<br>
+        Tool = 13,<br>
+        Trinket = 15,<br>
+        Trophy,<br>
+        [EnumMember(Value = “UpgradeComponent”)]<br>
+        Upgrade_Component,<br>
+        Weapon<br>
+    };</p>
+<p>// for TypeEnum.Armor<br>
+    public enum ArmorSubTypeEnum<br>
+    {<br>
+        Coat = 0,<br>
+        Leggings,<br>
+        Gloves,<br>
+        Helm,<br>
+        [EnumMember(Value = “HelmAquatic”)]<br>
+        Aquatic_Helm,<br>
+        Boots,<br>
+        Shoulders<br>
+    };</p>
+<p>// for TypeEnum.Consumable<br>
+    public enum ConsumableSubTypeEnum<br>
+    {<br>
+        Alcohol = 1,<br>
+        Generic,<br>
+        Food = 3,<br>
+        Tonics = 4,         // Suppose to be Generic?<br>
+        Transmutation = 5,<br>
+        Unlock,<br>
+        Skins = 7,<br>
+        Dyes_and_Recipes = 8,  // Suppose to be Unlock?<br>
+        Utility = 9,<br>
+        [EnumMember(Value = “ContractNpc”)]<br>
+        Contract_Npc,<br>
+        [EnumMember(Value = “AppearanceChange”)]<br>
+        Appearance_Change,<br>
+        Immediate,<br>
+        Halloween<br>
+    };</p>
+<p>// for TypeEnum.Container<br>
+    public enum ContainerSubTypeEnum<br>
+    {<br>
+        Default = 0,<br>
+        [EnumMember(Value = “GiftBox”)]<br>
+        Gift_Box<br>
+    };</p>
+<p>// for TypeEnum.Gathering<br>
+    public enum GatheringSubTypeEnum<br>
+    {<br>
+        Foraging = 0,<br>
+        Logging,<br>
+        Mining<br>
+    };</p>
+<p>// for TypeEnum.Gizmo<br>
+    public enum GizmoSubTypeEnum<br>
+    {<br>
+        Default = 0,<br>
+        Salvage = 2,<br>
+        [EnumMember(Value = “RentableContractNpc”)]<br>
+        Rentable_Contract_Npc,<br>
+        [EnumMember(Value = “UnlimitedConsumable”)]<br>
+        Unlimited_Consumable<br>
+    };</p>
+<p>// for TypeEnum.Tool<br>
+    public enum ToolSubTypeEnum<br>
+    {<br>
+        Crafting = 0,<br>
+        Salvage = 2<br>
+    };</p>
+<p>// for TypeEnum.Trinket<br>
+    public enum TrinketSubTypeEnum<br>
+    {<br>
+        Accessory = 0,<br>
+        Amulet,<br>
+        Ring<br>
+    };</p>
+<p>// for TypeEnum.UpgradeComponent<br>
+    public enum UpgradeComponentSubTypeEnum<br>
+    {<br>
+        Default = 0,<br>
+        Gem = 1,<br>
+        Rune = 2,<br>
+        Sigil = 3<br>
+    };</p>
+<p>// for TypeEnum.Weapon<br>
+    public enum WeaponSubTypeEnum<br>
+    {<br>
+        Sword = 0,<br>
+        Hammer,<br>
+        [EnumMember(Value = “LongBow”)]<br>
+        Long_Bow,<br>
+        [EnumMember(Value = “ShortBow”)]<br>
+        Short_Bow,<br>
+        Axe,<br>
+        Dagger,<br>
+        Greatsword,<br>
+        Mace,<br>
+        Pistol,<br>
+        Rifle = 10,<br>
+        Scepter,<br>
+        Staff,<br>
+        Focus,<br>
+        Torch,<br>
+        Warhorn,<br>
+        Shield,<br>
+        [EnumMember(Value = “Harpoon”)]<br>
+        Spear = 19,<br>
+        [EnumMember(Value = “Speargun”)]<br>
+        Harpoon_Gun,<br>
+        Trident,<br>
+        [EnumMember(Value = “TwoHandedToy”)]<br>
+        Toy<br>
+    };</p>
+<p>Note that there are currently some bugs surrounding ArenaNet’s search filters.  They don’t have Back Item search and some of the consumable sub types that I have above, implemented in their TP dialog web page.  So keep in mind that these enums may change by the time ArenaNet releases this api.</p></p>
+
+<h2 id="">The Talcmaster.7391:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T17:43:00+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>I totally agree, DarkSpirit.  As it stands, the API that the trading post comes with exists primarily for facilitating its in game functionality, which is why it is a little bit more confusing than the newer API stuff just released.  It was built a bit with external applications in mind, otherwise it wouldn’t be accessible outside the game at all.  This hasn’t stopped people from figuring out how to pull all sorts of useful information from it and building those many excellent sites.  I’ve been informed that the ability to check prices without needing to authenticate may be in the cards but right now it is necessary to prevent people from abusing the TP with too many calls.  I don’t expect this to be truly outdated any time soon since right now is more of a focus on making new information available.  The only changes that I know of was the last release adding the count= parameter to the trading post’s search.json and the release before that making the listings.json not require an in-game session-id.  If people let me know about small changes like that, I’ll try my best to keep this up to date.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T20:07:04+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>Thanks for the update, The Talcmaster.  Personally, I am so glad that they added the count parameter to the trading post’s search.json.  My app sorting feature for computed columns, is much faster now.</p>
+<p>I would be very excited when they officially release their trading post api.</p></p>
+
+<h2 id="">The Talcmaster.7391:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T20:19:47+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>Yeah, that count feature reduced the run time of my ETL from around an hour to less than a minute.  Being able to pull in item and recipe information from the game itself will go a long way towards making people’s Trading post apps more robust than before.</p></p>
+
+<h2 id="">zaced.7948:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T16:08:18+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<p>dear dudes and dudesses from anet. this thread needs a sticky before it leaves the front page and people start making new threads with the same questions over and over again.<br>
+centralist organization always pays off in terms of administration efficiency, i won’t mention examples since you probably are selling copies there.<br>
+greetings<br>
+zach</p></p>
+
+<h2 id="">anzenketh.3759:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T20:17:10+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 23 2013 04:08PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/2079115">zaced.7948:</a></cite></div><div class="quotey"><p>dear dudes and dudesses from anet. this thread needs a sticky before it leaves the front page and people start making new threads with the same questions over and over again.<br>
+centralist organization always pays off in terms of administration efficiency, i won’t mention examples since you probably are selling copies there.<br>
+greetings<br>
+zach</p></div></blockquote>
+<p>Problem is I don’t think they want it there yet. This API is not likely the one ready for Prime Time.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-29T07:00:17+00:00">
+        29 May 2013
+    </time>
+</p>
+<p>
+<p>I have updated my enums above as best as I can with the current schema from the items api shown here:</p>
+<p><a href="http://wiki.guildwars2.com/wiki/API/item_details">http://wiki.guildwars2.com/wiki/API/item_details</a></p>
+<p>There are still some confusion with the subtypes because the items api returns strings while the TP api returns integer ids.  Plus the fact that there are existing bugs surrounding the TP search filters so items may not have been listed correctly on the TP at the moment.  However, in the context of the TP, they should not matter since the items in the new enums, returned by the items api, are bounded and are not able to be traded in the TP.</p>
+<p>If my enum value is spelled differently as the strings returned from the items api, I have indicated those through the EnumMember attribute.</p></p>
+
+<h2 id="">athanor.7410:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-29T21:35:28+00:00">
+        29 Sep 2013
+    </time>
+</p>
+<p>
+<p>There is a JAVA implementation here:<br>
+<a href="https://code.google.com/p/gw2world/source/browse/trunk/Gw2worldWebApp/src/main/java/com/gw2/gw2world/web/server/mod/TradingPostManager.java">Java class</a><br>
+You can connect and get trading post outputs</p></p>
+
+<h2 id="">Lil Puppy.5216:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-02T12:28:18+00:00">
+        02 Oct 2013
+    </time>
+</p>
+<p>
+<p>Does the parameter  &amp;weight=[0,1,2]  no longer do anything? I think it was 0,1,2 but it might be 1,2,3. It was used to filter out light, medium, and heavy armor types in the beginning.</p>
+<p>tested 1: yep, it doesn’t do anything now… that’s a shame since it worked beautifully.<br>
+tested 2: &amp;weightclass=[integer]  is a parameter but integer values don’t return anything useful – still getting mixed weight classes returned (heavy,medium,light).</p>
+<p><a href="https://tradingpost-live.ncplatform.net/ws/search.json?text=&levelmin=80&levelmax=80&rarity=5&type=0&weightclass=0">https://tradingpost-live.ncplatform.net/ws/search.json?text=&amp;levelmin=80&amp;levelmax=80&amp;rarity=5&amp;type=0&amp;weightclass=0</a><br>
+Returns Aidan’s medium armors and just after that is Apothecary’s Draconic heavy armors.<br>
+</p><pre><code>
+{
+	"args": {
+		"offset": 1,
+		"count": 10,
+		"rarity": 5,
+		"weightclass": 0,
+		"levelmin": 80,
+		"levelmax": 80,
+		"type": 0
+	},
+	"total": "326",
+	"results": [
+		{
+			"type_id": "3",
+			"data_id": "323",
+			"item_image_hash": "761944b",
+			"guid": "AD0B4245-74D8-4713-88D2-EABA36DEF013",
+			"name": "Aidan's Boots",
+			"description": "",
+			"level": "80",
+			"rarity": "5",
+			"vendor": "264",
+			"sell_price": "30192",
+			"sell_count": "101",
+			"buy_price": "21801",
+			"buy_count": "127",
+			"passwords": [],
+			"rarity_word": "Exotic",
+			"img": "https://dfach8bufmqqv.cloudfront.net/gw2/img/content/761944b_icon_small.png",
+			"tradeable": true
+		}, {...}
+	]
+}
+</code></pre><p></p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-03T19:46:36+00:00">
+        03 Oct 2013
+    </time>
+</p>
+<p>
+<p>Interesting, I never knew that the TP server supported armor weight class filtering.  My app  search function simply applies a second filter to the returned result matched against the weight class specified by the official API or GW2DB, if armor weight class is specified by the user.</p></p>
+
+<h2 id="">Lil Puppy.5216:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-28T07:54:17+00:00">
+        28 Oct 2013
+    </time>
+</p>
+<p>
+<p>During beta the check box that currently filters things that are currently available was used to filter items the character could use like armor and weapons. The API had it as &amp;weight=[int] parameter, now &amp;weightclass=[int].</p></p>
+
+<h2 id="">enjoyaol.2398:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-13T11:10:32+00:00">
+        13 Nov 2013
+    </time>
+</p>
+<p>
+<p>Any way to get the historical prices of the items from the API ? (sell and buy sides)<br>
+Right now I’m using GW2Spidy api but relying on GW2 servers would be better for me.<br>
+thx !</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-13T14:01:03+00:00">
+        13 Nov 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on November 13 2013 11:10AM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/3196424">enjoyaol.2398:</a></cite></div><div class="quotey"><p>Any way to get the historical prices of the items from the API ? (sell and buy sides)<br>
+Right now I’m using GW2Spidy api but relying on GW2 servers would be better for me.<br>
+thx !</p></div></blockquote>
+<p>Nope. In order to aggregate TP data over time, you would need to do exactly what gw2spidy.com is already doing, which is to say, constantly poll, collect and store the TP data in some manner.</p>
+<p>If you don’t want to rely on gw2spidy.com remotely, you can fire up your own version of the site. For some time, the author of gw2spidy.com has graciously open sourced his code and provided detailed instructions on how to use it on the project’s <a href="https://github.com/rubensayshi/gw2spidy">GitHub page</a></p>
+<p><em>Shameless Plug</em>: If you want to write iOS or OS X apps which can query gw2spidy.com, check out  <a href="https://github.com/KevinVitale/GW2Kit">GW2Kit</a></p></p>
+
+<h2 id="">BlazingZero.9702:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-28T07:16:34+00:00">
+        28 Nov 2013
+    </time>
+</p>
+<p>
+<p>hello everyone, firstly thank you The Talcmaster for creating this awesome post. This really helps a lot for people like me who want to write a bit of program to access the TP outside of the game.</p>
+<p>As I’m pretty new to using JSON, I would like to know how can I authenticate myself when accessing the TP? I’m using C# on Unity.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-12-03T17:11:01+00:00">
+        03 Dec 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on November 28 2013 07:16AM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/3278423">BlazingZero.9702:</a></cite></div><div class="quotey"><p>hello everyone, firstly thank you The Talcmaster for creating this awesome post. This really helps a lot for people like me who want to write a bit of program to access the TP outside of the game.</p>
+<p>As I’m pretty new to using JSON, I would like to know how can I authenticate myself when accessing the TP? I’m using C# on Unity.</p></div></blockquote>
+<p>The purpose of authenticating is to obtain a session key which you can then set in your cookie (i.e. s=&lt;your session key guid&gt;) to accompany further transactions with the TP server.  2 ways of authenticating:</p>
+<p>1.  Obtain a higher privileged session key that has access to your account transactions, etc. :- You need to login with your GW2 client then obtain this session key either through fiddler or through other means (e.g. reading it off the GW2 client process memory or reading it off the GW2 browser cache).</p>
+<p>2.  Obtain a lower privileged session key by doing a HTTPS POST to <a href="https://account.guildwars2.com/login?redirect_uri=http%3A%2F%2Ftradingpost-live.ncplatform.net%2Fauthenticate%3Fsource%3D%252F&game_code=gw2">https://account.guildwars2.com/login?redirect_uri=http%3A%2F%2Ftradingpost-live.ncplatform.net%2Fauthenticate%3Fsource%3D%252F&amp;game_code=gw2</a> with the following parameters:</p>
+<p>email = &lt;your email address that you use to login to GW2&gt;<br>
+password = &lt;your password that you use to login to GW2&gt;</p>
+<p>Note that method 2 doesn’t require your GW2 client to be running and is useful for querying most of the data that you may need from the TP.  I recommend using method 2 as your default means of authentication and only fall back to method 1 when you need to perform privileged transactions (e.g. create buy orders, cancel transactions, query current or past transactions, etc.) on your account.</p></p>
+
+<h2 id="">Tonikor.5637:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-06T23:22:05+00:00">
+        06 Jan 2014
+    </time>
+</p>
+<p>
+<p>What do I do when i get an “ERROR: Invalid authorization” message?</p>
+<p>I’m asking this (and on an “old” post) because I used the tool a couple of days ago and it worked fine.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-06T23:59:20+00:00">
+        06 Jan 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on January 06 2014 11:22PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/3461000">Tonikor.5637:</a></cite></div><div class="quotey"><p>What do I do when i get an “ERROR: Invalid authorization” message?</p>
+<p>I’m asking this (and on an “old” post) because I used the tool a couple of days ago and it worked fine.</p></div></blockquote>
+<p>Since it worked fine earlier, I suggest that you check the status of your account.  Do a login at this URL and check your credentials:</p>
+<p><a href="https://account.guildwars2.com/login?redirect_uri=http%3A%2F%2Ftradingpost-live.ncplatform.net%2Fauthenticate%3Fsource%3D%252F&game_code=gw2">https://account.guildwars2.com/login?redirect_uri=http%3A%2F%2Ftradingpost-live.ncplatform.net%2Fauthenticate%3Fsource%3D%252F&amp;game_code=gw2</a></p></p>
+
+<h2 id="">Tonikor.5637:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-07T00:08:13+00:00">
+        07 Jan 2014
+    </time>
+</p>
+<p>
+<p>works perfect now, thank you</p></p>
+
+<h2 id="">DasPatAttack.2516:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-09T11:34:22+00:00">
+        09 Jan 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on December 03 2013 05:11PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/3307210">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>1.  Obtain a higher privileged session key that has access to your account transactions, etc. :- You need to login with your GW2 client then obtain this session key either through fiddler or through other means (e.g. reading it off the GW2 client process memory or reading it off the GW2 browser cache).</p></div></blockquote>
+<p>Awesome job guys.<br>
+I’m actually interested in knowing how to pass the higher privileged session key to connect and get my personal ackitten info.<br>
+I manage to get this session id, I’ll find my way fining the well formed url to get my specific user account transaction details but I’m missing the way to connect to your services using the higher privileged session key.<br>
+Could you help?<br>
+Thanks a bunch.</p></p>
+
+<h2 id="">Ryan.9387:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-09T18:19:58+00:00">
+        09 Jan 2014
+    </time>
+</p>
+<p>
+<p>The SessionID is included in most of the API requests you send. How I went about it was by using fiddler and copying the format of the requests sent by the game.</p>
+<p>Go into the game with fiddler running and open something like “my buy orders.” The youcan minimize the game and look at the request that the game sent to the TP website. From there you simply have to copy the headers and values in your program’s html request.</p>
+<p>Here is an example function from python that returns a list of your over cut WTBs. You can see where I pass the SessionID to the TPAPI.</p>
+<p>import urllib<br>
+import urllib2<br>
+import json</p>
+<p>def TPMyBuys(SessionID,count):<br>
+      values = {"time" : “now”,“type” : “buy”,“charid” : "",“offset” : “1”,“count” : count}<br>
+      data = urllib.urlencode(values)<br>
+      req = urllib2.Request(“<a href=""></a>%s” %data)<br>
+      req.add_header(“Accept” , “<strong>/</strong>”)<br>
+      req.add_header(“Accept-Charset” , “iso-8859-1,*,utf-8”)<br>
+      req.add_header( “Accept-Encoding” , “gzip;q=0”)<br>
+      req.add_header(“Accept-Language” , “en”)<br>
+      req.add_header(“Cookie” , SessionID) #&lt;—————-<br>
+      req.add_header( “User-Agent” , “Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1003.1 Safari/535.19 Awesomium/1.7.1”)<br>
+      req.add_header(“Connection” , “keep-alive”)<br>
+      req.add_header(“Host” , “tradingpost-live.ncplatform.net”)<br>
+      req.add_header(“Referer” ,“<a href="https://tradingpost-live.ncplatform.net/me">https://tradingpost-live.ncplatform.net/me</a>”)<br>
+      req.add_header( “X-Requested-With” , “XMLHttpRequest”)<br>
+      response = urllib2.urlopen(req)<br>
+      parsed_json = json.loads(response.read())<br>
+      return parsed_json</p>
+<p>def TPMyBuysCheck(SessionID):<br>
+      list = []<br>
+      OBJ =  TPMyBuys(SessionID,0)<br>
+      OBJ =  TPMyBuys(SessionID,str(OBJ[u’total’]))<br>
+      for Item in OBJ[u’listings’]:<br>
+            if int(Item[u’buy_price’]) &gt; int(Item[u’unit_price’]):<br>
+                  list.append([str(Item[u’listing_id’]),str(Item[u’data_id’])])<br>
+      return list</p></p>
+
+<h2 id="">DasPatAttack.2516:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-10T07:45:58+00:00">
+        10 Jan 2014
+    </time>
+</p>
+<p>
+<p>thanks a lot, going to try that ASAP.</p></p>
+
+<h2 id="">Maximilian.1926:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-19T23:11:48+00:00">
+        19 Jan 2014
+    </time>
+</p>
+<p>
+<p>regarding SessionID, how long is it active for after log-out from the game client? and is there a way to “refresh” it to keep it alive? or would something like that be a violation of the rules?</p></p>
+
+<h2 id="">Ryan.9387:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-20T04:06:57+00:00">
+        20 Jan 2014
+    </time>
+</p>
+<p>
+<p>I found it expires within 10 min or less. Constant use has no effect on it. It seems that you must have the client running to use the API.</p></p>
+
+<h2 id="">Galowin.6089:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-21T21:54:31+00:00">
+        21 Jan 2014
+    </time>
+</p>
+<p>
+<p>is it possible to extract ur bought/sold items lists (to datasheet)?</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-22T07:02:24+00:00">
+        22 Jan 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on January 21 2014 09:54PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/3529739">Galowin.6089:</a></cite></div><div class="quotey"><p>is it possible to extract ur bought/sold items lists (to datasheet)?</p></div></blockquote>
+<p>Yes you can do that programmatically.</p>
+<p>In fact, I did that for my historical records of past items bought/sold, when I realized that I can do this to optimize my app.</p>
+<p>My app saves a copy of my past items bought/sold in persistent memory.  The next time I launch my app, it only downloads my past transactions up to the latest transactions stored in my persistent memory, saving on downloads, then does a merge of both the newer and older lists dynamically.</p></p>
+
+<h2 id="">Maximilian.1926:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-25T00:59:59+00:00">
+        25 Jan 2014
+    </time>
+</p>
+<p>
+<p>anyone know the difference between <br>
+<a href="https://tradingpost-live.ncplatform.net/ws/listings.json?id">https://tradingpost-live.ncplatform.net/ws/listings.json?id</a>=##### and <a href="https://tradingpost-live.ncplatform.net/ws/me.json">https://tradingpost-live.ncplatform.net/ws/me.json</a>, encoding wise?<br>
+Im using python (urllisb2 and json) and I can read the me.json but I keep getting errors on the listings</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-25T19:07:03+00:00">
+        25 Jan 2014
+    </time>
+</p>
+<p>
+<p>me.json – gets your buy/sell/past buys/past sells transactions.<br>
+listings.json – gets the current buy and sell listings on an item.</p>
+<p>me.json requires you to have the game client session key in your cookie when you communicate with the server.  listing.json doesn’t need to and only requires the session key that you get by posting to “<a href="https://account.guildwars2.com/login?redirect_uri=http%3A%2F%2Ftradingpost-live.ncplatform.net%2Fauthenticate%3Fsource%3D%252F&game_code=gw2">https://account.guildwars2.com/login?redirect_uri=http%3A%2F%2Ftradingpost-live.ncplatform.net%2Fauthenticate%3Fsource%3D%252F&amp;game_code=gw2</a>” with your login email and password.  Therefore, listing.json does not require your guild wars 2 client to be running and logined while me.json does.</p></p>
+
+<h2 id="">Maximilian.1926:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-25T20:26:46+00:00">
+        25 Jan 2014
+    </time>
+</p>
+<p>
+<p>ok, I know about me.json needing the session key from the client, and I have that working, but I was tiring to use the same key with listings.json, could that be my problem?  <br>
+I need to get both keys separately? I would think the client session key one should cover it as I can view that data in the client</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-25T20:51:21+00:00">
+        25 Jan 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on January 25 2014 08:26PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/3549950">Maximilian.1926:</a></cite></div><div class="quotey"><p>ok, I know about me.json needing the session key from the client, and I have that working, but I was tiring to use the same key with listings.json, could that be my problem?  <br>
+I need to get both keys separately? I would think the client session key one should cover it as I can view that data in the client</p></div></blockquote>
+<p>You do not need both keys if you already have the game client session key from your guild wars 2 client.  That game client session key seems to have a higher privilege in the sense that it has access to more features of the web service (e.g. me.json) than the session key obtained from logging in to a web site.  Therefore, if you have access to the game client session key, that is enough.</p>
+<p>However, you have to keep your guild wars 2 client running in the background as the game client session key expires, if you log out, after a short while.  The other session key lasts longer though and does not require your guild wars 2 client to be running.</p></p>
+
+<h2 id="">Maximilian.1926:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-25T22:14:24+00:00">
+        25 Jan 2014
+    </time>
+</p>
+<p>
+<p>ya that was my assumption,<br>
+I don’t know why im not able to decode the listing.json… I do get a response in my python program but then it fails at decoding it, while it works fine for me.json, (I have matched the hosts and header info for both requests according to what I get in fiddler from an in client action)</p>
+<p>NVM<br>
+figured it out, I set accept-encoding to “gzip,q=0”, and now it seems to read it fine… although im now getting “gzip,deflate” from fideller…</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-26T01:22:54+00:00">
+        26 Jan 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on January 25 2014 10:14PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/3550332">Maximilian.1926:</a></cite></div><div class="quotey"><p>ya that was my assumption,<br>
+I don’t know why im not able to decode the listing.json… I do get a response in my python program but then it fails at decoding it, while it works fine for me.json, (I have matched the hosts and header info for both requests according to what I get in fiddler from an in client action)</p>
+<p>NVM<br>
+figured it out, I set accept-encoding to “gzip,q=0”, and now it seems to read it fine… although im now getting “gzip,deflate” from fideller…</p></div></blockquote>
+<p>Setting gzip compression is usually a good idea.  Although I have not written any python code before for that, I am sure you can easily search for how to uncompress the data in python.</p>
+<p>It has been easy enough for me to handle gzip compression on my C# client.</p></p>
+
+<h2 id="">Ryan.9387:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-26T07:27:03+00:00">
+        26 Jan 2014
+    </time>
+</p>
+<p>
+<p>All you have to do is ask the API not to compress it in your headers. Read my posted code and note the gzip header. I get the json returned with that code.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-26T22:33:54+00:00">
+        26 Jan 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on January 26 2014 07:27AM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/3551718">Ryan.9387:</a></cite></div><div class="quotey"><p>All you have to do is ask the API not to compress it in your headers. Read my posted code and note the gzip header. I get the json returned with that code.</p></div></blockquote>
+<p>Then you are wasting bandwidth.  Gzip reduces the time it takes for the website to transfer the data to your client.  If you are not using it, then you are not being efficient.</p>
+<p>If your client supports it, you should enable it, especially when it is so easy to uncompress the data.</p>
+<p><a href="http://love-python.blogspot.com/2008/07/accept-encoding-gzip-to-make-your.html">http://love-python.blogspot.com/2008/07/accept-encoding-gzip-to-make-your.html</a></p></p>
+
+<h2 id="">Ryan.9387:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-27T00:38:35+00:00">
+        27 Jan 2014
+    </time>
+</p>
+<p>
+<p>That works too. I have no bandwidth issues though. Thank my uni internet for that. I may change my code later, but it remains fully functional at the moment.</p></p>
+
+<h2 id="">Fossilized Amber.1352:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-20T02:05:54+00:00">
+        20 Jun 2014
+    </time>
+</p>
+<p>
+<p>Question that I haven’t found to see in this thread I was directed to. How can you log into the TP and make api calls? I’ve used Fiddler and grabbed my session ID. I’m getting an access control origin error when I try to GET from the above-mentioned urls (to grab item data).</p>
+<p>I am trying to keep this simple in JS/HTML, is this possible or do I need a server?</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-20T02:32:38+00:00">
+        20 Jun 2014
+    </time>
+</p>
+<p>
+<p>You need to be authenticated against their server in order to access the TP data.  This will not allow you to access your own account as that would require a session key from the client itself.</p>
+<p>Check this out:</p>
+<p><a href="https://account.guildwars2.com/login?redirect_uri=http%3A%2F%2Ftradingpost-live.ncplatform.net%2Fauthenticate%3Fsource%3D%252F&game_code=gw2">https://account.guildwars2.com/login?redirect_uri=http%3A%2F%2Ftradingpost-live.ncplatform.net%2Fauthenticate%3Fsource%3D%252F&amp;game_code=gw2</a></p></p>
+
+<h2 id="">Fossilized Amber.1352:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-20T02:39:19+00:00">
+        20 Jun 2014
+    </time>
+</p>
+<p>
+<p>DarkSpirit, thanks for answering me, although my question isn’t exactly that. I have the session id and don’t know <em>how</em> to make api calls. I can re-direct to the page you linked to, but <em>how</em> can I make the api calls that I want to?</p>
+<p>Threads? Server? I’m lost at this point.</p>
+<p>I get access cross origin errors, because I am running a server (IIS from a c# project) – if that helps anybit</p>
+<p>*Edit, I fixed my issue.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-20T06:52:27+00:00">
+        20 Jun 2014
+    </time>
+</p>
+<p>
+<p>If this is a C# project, then the usual way of dealing with this is to do all of the authentication and stuff on the server side in an ASP.NET Web API project. Your JS script should never need to call the TP service directly. Instead, it should call your own API controller. Your API controller should then take care of network handshakes and all that, then return the requested data from the TP service.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-20T23:56:21+00:00">
+        20 Jun 2014
+    </time>
+</p>
+<p>
+<p>There 2 levels of session ids.</p>
+<p>1.  Level 1, you can get by sending your account information to <a href="https://account.guildwars2.com">https://account.guildwars2.com</a>. <br>
+2.  Level 2, gives you level 1 access + more privileges like accessing your own account.  You can read it of process memory from your guild wars 2 client itself.</p>
+<p>Check up the OP on accessing the TP</p></p>
+
+<h2 id="">Fossilized Amber.1352:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-23T03:45:55+00:00">
+        23 Jun 2014
+    </time>
+</p>
+<p>
+<p>Yes, thank you for clarifying what I wanted to say. How does an API controller work when talking to the TP? I can login but I am stuck on how to get my GET requests from the TP to my code. I am loading up the TP in an iframe and heard you can send messages to get around cross origin problems. Currently I can access the TP, change the URL and get my data; how can I program code to change the URL and get data?</p>
+<p>Is there code I can see?</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-23T09:12:53+00:00">
+        23 Jun 2014
+    </time>
+</p>
+<p>
+<p>Your JS script calls the API controller on your own server: <a href="http://yourserver/tradingpost/listings">http://yourserver/tradingpost/listings</a>. This when your C# code takes over. Your API controller first ensures that your server has a valid session, then gets the requested data from the TP service. Returning the data to your script can be as simple as calling ‘Response.Write(json)’. This is when your JS script takes over again. It’s not particularly hard, and I think you’re overthinking this.</p>
+<p>tl;dr: your API controller acts as a proxy that hides the complexity of maintaining a session</p></p>
+
+<h2 id="">Dryalkiel.1385:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-25T01:29:32+00:00">
+        25 Jun 2014
+    </time>
+</p>
+<p>
+<p>I’m getting the problems with listings.json as well.  My Service had been running for months with no problems.  Now listings.json doesn’t seem to work anymore.  I tried it in my browser and it still throws an Access Denied response.  search.json still works though.</p>
+<p>Anyone aware of this issue?</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-25T03:00:47+00:00">
+        25 Jun 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 25 2014 01:29AM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/4145049">Dryalkiel.1385:</a></cite></div><div class="quotey"><p>I’m getting the problems with listings.json as well.  My Service had been running for months with no problems.  Now listings.json doesn’t seem to work anymore.  I tried it in my browser and it still throws an Access Denied response.  search.json still works though.</p>
+<p>Anyone aware of this issue?</p></div></blockquote>
+<p>I think they made a change to listing.json to also require your game client session key.  You can’t use the session key that you get from logging in to their web site.</p>
+<p>As for an example with C# source code, you can look here:</p>
+<p><a href="http://notifier.zicore.de/">http://notifier.zicore.de/</a></p>
+<p>Note:  I am not Zicore and that is not my code.  So, use it at your own risk.</p></p>
+
+<h2 id="">Dryalkiel.1385:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-26T23:10:44+00:00">
+        26 Jun 2014
+    </time>
+</p>
+<p>
+<p>Thanks… I tried this and unfortunately, the app cannot find my session key<img src="/include/images/smilies/sad.png">  It just gives “squares” and some \0</p></p>
+
+<h2 id="">Dryalkiel.1385:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-26T23:18:40+00:00">
+        26 Jun 2014
+    </time>
+</p>
+<p>
+<p>The thing is, I AM able to get the sessionId from my application but when I use it to lookup search.json, it get a 401 error.</p>
+<p>If I login with a browser and get the session Id from the cookie and skip the whole “GetSessionKey” part of my app, it works.</p>
+<p>It’s like my session key expires as soon as I get it or something<img src="/include/images/smilies/sad.png"></p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-27T03:03:56+00:00">
+        27 Jun 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 26 2014 11:18PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/4151237">Dryalkiel.1385:</a></cite></div><div class="quotey"><p>The thing is, I AM able to get the sessionId from my application but when I use it to lookup search.json, it get a 401 error.</p>
+<p>If I login with a browser and get the session Id from the cookie and skip the whole “GetSessionKey” part of my app, it works.</p>
+<p>It’s like my session key expires as soon as I get it or something<img src="/include/images/smilies/sad.png"></p></div></blockquote>
+<p>You may have extracted the session key wrongly.  Make sure the session key you got from the app. exactly matches the one showed in fiddler.</p></p>
+
+<h2 id="">Dryalkiel.1385:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-27T21:29:21+00:00">
+        27 Jun 2014
+    </time>
+</p>
+<p>
+<p>They can’t match since everytime you start a new session, you get a new one.  I’ll mess around with it some more and if I find a solution I’ll post here.</p></p>
+
+<h2 id="">Fossilized Amber.1352:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-27T22:13:42+00:00">
+        27 Jun 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 23 2014 09:12AM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/4140552">StevenL.3761:</a></cite></div><div class="quotey"><p>Your JS script calls the API controller on your own server: <a href="http://yourserver/tradingpost/listings">http://yourserver/tradingpost/listings</a>. This when your C# code takes over. Your API controller first ensures that your server has a valid session, then gets the requested data from the TP service. Returning the data to your script can be as simple as calling ‘Response.Write(json)’. This is when your JS script takes over again. It’s not particularly hard, and I think you’re overthinking this.</p>
+<p>tl;dr: your API controller acts as a proxy that hides the complexity of maintaining a session</p></div></blockquote>
+<p>Yes I might be, can I ask you again. Can you walk me through how to get “logged in” to the TP and then request some JSON data?</p>
+<p>I have a controller action (MVC – asp.net) that has a cookie set (gotten from fiddler). What I don’t know how to do in asp.net, I don’t know if you can help me, is get my cookie from the server and start making requests so I can get json data. This is what I have so far:</p>
+<p>public ActionResult <acronym title=")<br />
+        {<br />
+            //HttpCookie myCookie = new HttpCookie(&quot;s&quot;, &quot;XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX&quot;">GW2</acronym>;<br>
+            //myCookie.Expires = DateTime.Now.AddDays(1d);<br>
+            //Response.Cookies.Add(myCookie);</p>
+<p>Response.AddHeader(“s”, “XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX”);<br>
+            Response.Redirect(“<a href="https://tradingpost-live.ncplatform.net/">https://tradingpost-live.ncplatform.net/</a>”);</p>
+<p>return View();<br>
+        }</p>
+<p>*Edit, I just don’t know how to do this, I haven’t done this before.</p></p>
+
+<h2 id="">Dryalkiel.1385:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-27T23:15:22+00:00">
+        27 Jun 2014
+    </time>
+</p>
+<p>
+<p>Yay!  Finally repaired it!</p>
+<p>Basically, when you access the login page BEFORE login in, you get a session id in the cookies.  You need to login with your email, password AND sessionId.  this seems to “bind” the sessionid to your user.  You also need to set the path and domain for your cookie → new Cookie(“s”, _SessionId, “/”, “guildwars2.com”);</p>
+<p>@Fossilized Amber :  You don’t want to use the sessionId from fiddler since everytime you login, you get a new sessionId.  You’ll want to automate the “GetSessionKey” part of your application.  You also don’t need to set the time the cookie expires.  The response’s cookiecontainer will probably not return a Cookie object but you can retrieve it from Response.Headers[“Set-Cookie”].</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-28T03:36:49+00:00">
+        28 Jun 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 27 2014 11:15PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/4153555">Dryalkiel.1385:</a></cite></div><div class="quotey"><p>Yay!  Finally repaired it!</p>
+<p>Basically, when you access the login page BEFORE login in, you get a session id in the cookies.  You need to login with your email, password AND sessionId.  this seems to “bind” the sessionid to your user.  You also need to set the path and domain for your cookie -&gt; new Cookie(“s”, _SessionId, “/”, “guildwars2.com”);</p>
+<p>@Fossilized Amber :  You don’t want to use the sessionId from fiddler since everytime you login, you get a new sessionId.  You’ll want to automate the “GetSessionKey” part of your application.  You also don’t need to set the time the cookie expires.  The response’s cookiecontainer will probably not return a Cookie object but you can retrieve it from Response.Headers[“Set-Cookie”].</p></div></blockquote>
+<p>Like I have said, there are 2 levels of session ids.  The one that you get from the website is the less useful form of session id because it would not allow you to buy items from the TP or see your own transactions.  You may not even be able to use that to see the listings.json of each item.</p>
+<p>The session id from the client would allow you to do all that and you can see that session id through fiddler when you open the TP dialog in the game.</p>
+<p>They are BOTH set in the cookie of your requests.  The session id usually remains valid for a long while.</p></p>
+
+<h2 id="">Fossilized Amber.1352:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-28T04:07:23+00:00">
+        28 Jun 2014
+    </time>
+</p>
+<p>
+<p>Email, password and session id. Besides finding a way to automate getting a session id from fiddler, if I am understanding this more, I need to have my email, password and session id on hand?</p>
+<p>While I hate sounding like a broken record, Dryalkiel, can you explain what you mean by Response.Headers[“set-cookie”]? I don’t have enough experience to know what classes to use to do this. I was looking around at an HttpResponse class (something like that) in order to POST my information to the server (and bind this all to my user?). Should I be using a GET?</p>
+<p>I understand this conceptually but not how to do it in code.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-28T04:13:48+00:00">
+        28 Jun 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 28 2014 04:07AM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/4153866">Fossilized Amber.1352:</a></cite></div><div class="quotey"><p>Email, password and session id. Besides finding a way to automate getting a session id from fiddler, if I am understanding this more, I need to have my email, password and session id on hand?</p></div></blockquote>
+<p>Once you have your session id, you don’t need your email and password anymore.</p>
+<p>If you plan to get the less useful session id from the website, then you need to login using your email and password.</p>
+<p>If you plan to get the more useful session id from the game client, you don’t need those.  But you would probably need to write a program to access that session id.</p></p>
+
+<h2 id="">Dryalkiel.1385:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-28T15:23:29+00:00">
+        28 Jun 2014
+    </time>
+</p>
+<p>
+<p>That’s okay, the web sessionId is enough for me.  My application just looks up prices.  It doesn’t buy or sell so I don’t need the ingame key.  Search.json does return a buy and sell price so I won’t need listings.json anymore.  Thanks for the help though<img src="/include/images/smilies/smile.png"></p>
+<p>@Fossilized Amber : Well, if you don’t have enough experience in this, isn’t this too big a project for you?<img src="/include/images/smilies/sad.png">  At any rates, you might want to read up on a few things before diving in.</p>
+<p>Here’s some useful links : <br>
+<a href="http://www.w3schools.com/tags/ref_httpmethods.asp">http://www.w3schools.com/tags/ref_httpmethods.asp</a><br>
+<a href="http://msdn.microsoft.com/en-us/library/system.net.httpwebrequest.aspx">http://msdn.microsoft.com/en-us/library/system.net.httpwebrequest.aspx</a><br>
+<a href="http://msdn.microsoft.com/en-us/library/system.net.httpwebresponse.aspx">http://msdn.microsoft.com/en-us/library/system.net.httpwebresponse.aspx</a></p>
+<p>And no, not automate from FIDDLER.  Fiddler is just a tool to lookup the info sent and obtained from your browser.  You’ll want to automate the sessionId part from within your application by loging in with some HttpWebRequests.</p>
+<p>You’ll want to lookup GW2Spidy too.  It’s in PHP but the logic is basically the same.</p></p>
+
+<h2 id="">Rand.3186:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-28T19:15:43+00:00">
+        28 Jun 2014
+    </time>
+</p>
+<p>
+<p>It looks like they dropped the use of the “Character GUID.”  When I run fiddler I no longer see the Character GUID being passed along with the session ID in the cookies section.</p>
+<p>I looked into this because a program I made a few months ago was throwing an authorization error at me when I started it up today.  It’s been a few weeks since I used it last.</p>
+<p>The other change I noticed is that:  tradingpost-live.ncplatform.net has been changed to: tradingpost-dfw-live.ncplatform.net.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-28T19:16:52+00:00">
+        28 Jun 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 28 2014 03:23PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/4154536">Dryalkiel.1385:</a></cite></div><div class="quotey"><p>That’s okay, the web sessionId is enough for me.  My application just looks up prices.  It doesn’t buy or sell so I don’t need the ingame key.  Search.json does return a buy and sell price so I won’t need listings.json anymore.  Thanks for the help though<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>That why I said it depends on what you need; the type of application that you want to write.</p>
+<p>One thing to watch out for though, even if you are looking at the buy/sell price you have to be aware that there is a caching bug on the TP especially on fast moving items where the buy/sell price obtained from the TP (through search or items.json) is an outdated cached version.  Listings.json does not have this problem and buy/sell price without quantity is limited for most usage.  You only need 1 crazy buyer or seller to give you the wrong impression on the demand/supply of that item.</p>
+<blockquote><div class="citey"><cite title="Posted on June 28 2014 07:15PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/4154899">Rand.3186:</a></cite></div><div class="quotey"><p>It looks like they dropped the use of the “Character GUID.”  When I run fiddler I no longer see the Character GUID being passed along with the session ID in the cookies section.</p>
+<p>I looked into this because a program I made a few months ago was throwing an authorization error at me when I started it up today.  It’s been a few weeks since I used it last.</p>
+<p>The other change I noticed is that:  tradingpost-live.ncplatform.net has been changed to: tradingpost-dfw-live.ncplatform.net.</p></div></blockquote>
+<p>Just return an empty string now for character guid.  You can still use tradingpost-live.</p></p>
+
+<h2 id="">Rand.3186:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-28T20:09:18+00:00">
+        28 Jun 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 28 2014 07:16PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/4154904">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>Just return an empty string now for character guid.  You can still use tradingpost-live.</p></div></blockquote>
+<p>Yeah, that’s how I got around to fixing it.   Wasn’t a problem once I realized what was changed.  I only posted it so that anyone else bumping into the issue would know why.</p>
+<p>One other thing I noticed around a month or so ago was that you more or less have to use listings.json now in order to be sure that you’re getting the current highest buy order / lowest sell price of an item.</p>
+<p>Example: <a href="http://www.gw2spidy.com/item/20853">http://www.gw2spidy.com/item/20853</a> — Shows 99g.  Cheapest is actually 9g. (This is not a fast moving item). This might only be an issue with relatively new items on the trading post?  I haven’t quite figured out what the deal is with it.  I think this might have been an intentional change to speed up the Trading Post; there was a patch a month or so ago that made the trading post much more responsive.</p></p>
+
+<h2 id="">Fossilized Amber.1352:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-29T01:29:31+00:00">
+        29 Jun 2014
+    </time>
+</p>
+<p>
+<p>Ok, I’ve made progress. Dryalkiel can you look at this?</p>
+<p><a href="http://pastebin.com/ybP0zqer">http://pastebin.com/ybP0zqer</a></p>
+<p>I’ve used my session id from fiddler and I’m getting an “unauthorized” message back.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-29T09:40:01+00:00">
+        29 Jun 2014
+    </time>
+</p>
+<p>
+<p>Why are you setting UseCookies to false? Also, did you realize that you are never actually injecting your instance of HttpClientHandler into the HttpClient?</p>
+<p><strong>Line 35</strong></p>
+<p>UseCookies = <strong>true</strong></p>
+<p><strong>Line 38</strong></p>
+<p>using (httpClient = new HttpClient(<strong>httpClientHandler</strong>) { BaseAddress = baseAddress })</p></p>
+
+<h2 id="">Fossilized Amber.1352:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-30T02:01:34+00:00">
+        30 Jun 2014
+    </time>
+</p>
+<p>
+<p>Of course! How did I not see that, thank you for your eagle-eyes StevenL.</p>
+<p>I’ve got an updated pastebin here, it’s almost done. Another question I’m sending out, I am trying to save the HttpResponseMessage in a private variable in my class. The console doesn’t change output so this variable isn’t being correctly set. Any clue why that is?</p>
+<p><a href="http://pastebin.com/Hzubkr5h">http://pastebin.com/Hzubkr5h</a></p>
+<p>*You can copy/paste the code as is (filling in the session id from fiddler) if you’d like to try it out yourself</p></p>
+
+<h2 id="">FlacMatic.4258:</h2>
+<p class="post-meta">
+    <time datetime="2014-11-06T22:34:41+00:00">
+        06 Nov 2014
+    </time>
+</p>
+<p>
+<p>they changed something in their tradingpost link. can’t get it work anymore. and i’m too lazy right now to check for a new link</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-11-06T23:28:23+00:00">
+        06 Nov 2014
+    </time>
+</p>
+<p>
+<p><a href="https://tradingpost-dfw-live.ncplatform.net">https://tradingpost-dfw-live.ncplatform.net</a><br>
+<a href="https://tradingpost-fra-live.ncplatform.net">https://tradingpost-fra-live.ncplatform.net</a></p>
+<p>You should really use the <a href="http://wiki.guildwars2.com/wiki/API:2">Official API</a> though, we provide zero guarantees that we won’t break everything out from underneath you if you’re going against the TP directly.</p></p>
+
+<h2 id="">ameerpostalman.8975:</h2>
+<p class="post-meta">
+    <time datetime="2014-12-04T23:54:55+00:00">
+        04 Dec 2014
+    </time>
+</p>
+<p>
+<p>Looks like this doesnt work anymore?</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-12-05T18:02:27+00:00">
+        05 Dec 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on December 04 2014 11:54PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/4604562">ameerpostalman.8975:</a></cite></div><div class="quotey"><p>Looks like this doesnt work anymore?</p></div></blockquote>
+<p>TP was completely rewritten and all these endpoints are gone, yes.</p>
+<blockquote><div class="citey"><cite title="Posted on November 06 2014 11:28PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/4543948">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>You should really use the <a href="http://wiki.guildwars2.com/wiki/API:2">Official API</a> though, we provide zero guarantees that we won’t break everything out from underneath you if you’re going against the TP directly.</p></div></blockquote></p>
+
+<h2 id="">Risingashes.8694:</h2>
+<p class="post-meta">
+    <time datetime="2014-12-06T14:43:56+00:00">
+        06 Dec 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on December 05 2014 06:02PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/4606371">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on December 04 2014 11:54PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/4604562">ameerpostalman.8975:</a></cite></div><div class="quotey"><p>Looks like this doesnt work anymore?</p></div></blockquote>
+<p>TP was completely rewritten and all these endpoints are gone, yes.</p></div></blockquote>
+<p>When was the TP completely rewritten? Because they only stopped working on 2nd Dec.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-12-06T15:09:36+00:00">
+        06 Dec 2014
+    </time>
+</p>
+<p>
+<p>Assuming that the original ncplatform APIs were reverse-engineered using web debugging proxies, what is stopping anybody from doing the same for the updated trading post?</p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2014-12-06T15:11:12+00:00">
+        06 Dec 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on December 06 2014 02:43PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/4608206">Risingashes.8694:</a></cite></div><div class="quotey"><p>When was the TP completely rewritten? Because they only stopped working on 2nd Dec.</p></div></blockquote>
+<p><a href="https://www.guildwars2.com/en/news/introducing-the-new-trading-post/">https://www.guildwars2.com/en/news/introducing-the-new-trading-post/</a></p></p>
+
+<h2 id="">Risingashes.8694:</h2>
+<p class="post-meta">
+    <time datetime="2014-12-07T03:09:54+00:00">
+        07 Dec 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on December 06 2014 03:11PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/4608234">darthmaim.6017:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on December 06 2014 02:43PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/4608206">Risingashes.8694:</a></cite></div><div class="quotey"><p>When was the TP completely rewritten? Because they only stopped working on 2nd Dec.</p></div></blockquote>
+<p><a href="https://www.guildwars2.com/en/news/introducing-the-new-trading-post/">https://www.guildwars2.com/en/news/introducing-the-new-trading-post/</a></p></div></blockquote>
+<p>Yes obviously the TP was rewritten at that point, yet the web endpoints were disabled this patch. Meaning the causal statement: The Trading Post was rewritten and as a result the web endpoints were broken- which @Pat Cavit seems to be suggesting doesn’t seem true.</p>
+<p>If there were multiple rewritings that would make sense.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-12-08T17:24:23+00:00">
+        08 Dec 2014
+    </time>
+</p>
+<p>
+<p>Sure, I see how what I said is confusing. I’ll elaborate.</p>
+<p>As part of the rewrite we also set it up so that the Commerce apps could go over the existing game connection instead of making HTTP requests. It’s more efficient (there’s no per-host limit on the number of requests we can make) and avoids some of the overhead. Until we could do some more testing of that on live we had a simple HTTP proxy for requests.</p>
+<p>Once we cut over completely to the game connection the HTTP proxy was automatically disabled. It’s been deleted entirely in dev so it will start 404ing before too long.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-12-08T17:51:29+00:00">
+        08 Dec 2014
+    </time>
+</p>
+<p>
+<p>Does that imply that we should get faster loading times now than back when the updated TP was launched?</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-12-08T19:15:58+00:00">
+        08 Dec 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on December 08 2014 05:51PM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/4612258">StevenL.3761:</a></cite></div><div class="quotey"><p>Does that imply that we should get faster loading times now than back when the updated TP was launched?</p></div></blockquote>
+<p>Yeah, once the UI has loaded it’s noticeably faster searching/switching between sections/etc. We can avoid a lot of the TCP overhead of HTTP by re-using the existing game connection.</p></p>
+
+<h2 id="">Len.1879:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-29T06:01:37+00:00">
+        29 Jun 2015
+    </time>
+</p>
+<p>
+<p>So, is direct interaction with the TP still allowed though? I’d like to manage my transactions and especially add new ones while in university, where I can’t run GW2 on my netbook.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-29T17:34:31+00:00">
+        29 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 29 2015 06:01AM"><a href="/forum/community/api/Guide-to-the-Black-Lion-Trading-Co-API/5227389">Len.1879:</a></cite></div><div class="quotey"><p>So, is direct interaction with the TP still allowed though? I’d like to manage my transactions and especially add new ones while in university, where I can’t run GW2 on my netbook.</p></div></blockquote>
+<p>Selling has always required a game client. Buying now requires a game client as well. Neither of those are likely to be exposed via the API any time soon.</p>
+<p>Those restrictions could be worked around with a really convincing fake client, but I’m pretty sure that’s against our TOS.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>DurmandPriory; Objective-C API for iOS &amp; OSX</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/DurmandPriory-Objective-C-API-for-iOS-OSX/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">DurmandPriory; Objective-C API for iOS &amp; OSX</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/DurmandPriory-Objective-C-API-for-iOS-OSX
+</p>
+
+
+
+<h2 id="">Parthis.2091:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T14:32:58+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>Hi,</p>
+<p><strong>This is Durmand Priory.</strong> An Objective-C API for the Guild Wars 2 REST suite. It’s a little different to a lot of the current API wrappers. It’s a domain-first framework, meaning that you deal with domain objects, not services.</p>
+<p><a href="https://github.com/dannywartnaby/DurmandPriory">https://github.com/dannywartnaby/DurmandPriory</a></p>
+<p>Durmand Priory uses <strong>ARC</strong> and has a dependency on <strong>AFNetworking</strong>. (<a href="https://github.com/AFNetworking/AFNetworking">https://github.com/AFNetworking/AFNetworking</a>).</p>
+<p><strong>Why Durmand Priory?</strong><br>
+<em>“The Durmand Priory is a scholarly order dedicated to protecting knowledge”</em> <a href="http://wiki.guildwars2.com/wiki/Durmand_Priory">wiki</a></p>
+<p>The idea is that you deal with the domain first and foremost for all but the most obscure of services. Services are fully abstracted from the client and you never deal with endpoints, server addresses, rest versions or parameters, unless you really want to. You deal with classes and instances.</p>
+<p>For example, fetching all items is simply;</p>
+<p>[DurmandPriory fetch:[GW2Item class] completionBlock:^(id domain) {<br>
+}];</p>
+<p>That’s all you need in order to fetch all items, you provide a block to execute on completion. The GW2Item class holds in memory all items for you. You can ask it for all or any item you wish;</p>
+<p>[GW2Item itemById:@"12345"]; // Specific items.<br>
+[GW2Item items]; // All items.</p>
+<p>As you’ll know the GW2 Rest API for items returns all known item IDs. In order to know about an item you need to hit a different endpoint, passing the item ID. With Durmand Priory you simply pass the instance of the item you want;</p>
+<p>GW2Item * item = [GW2Item itemById:@"12345"];<br>
+[DurmandPriory fetch:item completionBlock:^(id domain) {<br>
+   <br>
+}];</p>
+<p>And it’s done. No need to know about endpoints, no worries about parameters, languages and restrictions. This is the pattern employed throughout the framework; pass the CLASS to load data (items, events, recipes, etc) and pass an INSTANCE to get specific details.</p>
+<p>For more information please do read the README at <a href="https://github.com/dannywartnaby/DurmandPriory">https://github.com/dannywartnaby/DurmandPriory</a> – The framework is very flexible, very stable and very consistent in it’s approach and pattern. If you’re looking for a more traditional ‘service orientated’ framework have a look at Rhino’s GW2Kit (<a href="/forum-backup/GW2Kit-An-Obj-C-framework-for-iOS-OS-X">https://forum-en.guildwars2.com/forum/community/api/GW2Kit-An-Obj-C-framework-for-iOS-OS-X</a>).</p>
+<p>Happy coding!</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T15:03:01+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>Great stuff, Parthis. This is a really interesting design, too.<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Parthis.2091:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T16:29:53+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>Thanks Rhino.</p>
+<p>It’s always interesting to see how different developers tackle the same problem, given the same toolset and language. For everyone else choice of framework is always great.</p>
+<p>Small update pushed to github; ‘framework’ code now resides in a subfolder for ease of use. I’m not planning on having the project build a library just yet, atleast not while the codebase is this small and the remote services are still evolving. It’ll be easy to switch to a framework later.</p>
+<p>Also updated the README. Lots of useful information in there, so do give it a read chaps.</p>
+<p>Now that I have this… time to get on with an app!</p>
+<p>Cheers,<br>
+p.</p></p>
+
+<h2 id="">Parthis.2091:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-27T10:37:05+00:00">
+        27 May 2013
+    </time>
+</p>
+<p>
+<p>A work in progress. It’s a bank holiday, which means some free time in the UK! Spent an hour putting together a quick iPhone app to show you your world’s WubWub scores in almost-realtime. It uses the Durmand Priory ‘fetchCollection:GW2APIDomainCollectionWorldVsWorld’ method to quickly get WvW scores for a world (in this example it’s hardcoded).</p>
+<p>Very straight forward;</p>
+<pre><code> [DurmandPriory fetchCollection:GW2APIDomainCollectionWorldVsWorld
+                   completionBlock:^(GW2APIDomainCollection collection) {
+                       
+                       GW2World * activeWorld = [GW2World worldById:@"2003"];
+                       [DurmandPriory fetch:activeWorld.matchup completionBlock:^(id domain) {
+
+                           [self.totalChart reloadData];
+                           [self.ebChart reloadData];
+                           [self.rblChart reloadData];
+                           [self.gblChart reloadData];
+                           [self.bblChart] reloadData;
+                       }];
+                   }];</code></pre>
+<p>It uses XYPieChart (<a href="https://github.com/xyfeng/XYPieChart">https://github.com/xyfeng/XYPieChart</a>) and all 5 charts are simply delegates, the data is provided by;</p>
+<pre><code>- (CGFloat)pieChart:(XYPieChart *)pieChart valueForSliceAtIndex:(NSUInteger)index {
+    GW2MatchScores scores;
+    
+    if ( pieChart == self.totalChart ) {
+        scores = world_.matchup.totalScores;
+    }
+    if ( pieChart == self.rblChart ) {
+        scores = [world_.matchup mapByTypeName:@"RedHome"].scores;
+    }
+    if ( pieChart == self.gblChart ) {
+        scores = [world_.matchup mapByTypeName:@"GreenHome"].scores;
+    }
+    if ( pieChart == self.bblChart ) {
+        scores = [world_.matchup mapByTypeName:@"BlueHome"].scores;
+    }
+    if ( pieChart == self.ebChart ) {
+        scores = [world_.matchup mapByTypeName:@"Center"].scores;
+    }
+    
+    if ( index == 0 ) {
+        return scores.red;
+    }
+    if ( index == 1 ) {
+        return scores.green;
+    }
+    if ( index == 2 ) {
+        return scores.blue;
+    }
+    return 0;
+}</code></pre>
+<p>And that’s it; a complete WubWub score viewer in &lt;20 lines of app code and a delegate method for a charting framework.</p>
+<p>Will polish the app up, make it pretty and push a build to the app store soon.</p></p>
+
+<h2 id="">Parthis.2091:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-30T00:13:01+00:00">
+        30 May 2013
+    </time>
+</p>
+<p>
+<p>A small update, and not strictly API related, but just finished my first iPhone app using Durmand Priory. This lead to a few improvements and additions to the API which will be pushed to github tomorrow.</p>
+<p>I wanted to start with a simple app to bed-in the API and push something live. The app is called “Stonemist” and is, in essence, the in-game WvW score board but on your iPhone.</p>
+<p>I’ve submitted it to Apple for review and will post against when it’s live.</p></p>
+
+<h2 id="">Parthis.2091:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-06T20:21:24+00:00">
+        06 Jun 2013
+    </time>
+</p>
+<p>
+<p>A small update, made another small app as a way of shaping updates to the Durmand Priory API. The app is called “Identified Dye” and runs on iOS. It presents, sorts, allows filtering, previewing and price checking of all dyes in guild wars 2. It will also show the subtle variations in colour when applied to light, medium and heavy armors.</p>
+<p>Identified Dye has been submitted to the App Store.</p>
+<p>The updates to Durmand Priory will be pushed to the repo in the next day or two, and includes updates to cover all new APIs and also provides a mechanism to access pricing information for items on the trade post. Now that the GW2 API is increasing it’s coverage Durmand Priory builds as a static library. I’ll update the Wiki with integration details shortly.</p>
+<p>Thanks to the people using the lib who’ve contacted me with suggestions, ideas and ‘thank yous’ – you’re welcome!</p>
+<p>Cheers,<br>
+p.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

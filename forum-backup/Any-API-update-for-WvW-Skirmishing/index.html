@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Any API update for WvW Skirmishing?</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Any-API-update-for-WvW-Skirmishing/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Any API update for WvW Skirmishing?</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Any-API-update-for-WvW-Skirmishing
+</p>
+
+
+
+<h2 id="">Jirayu.5834:</h2>
+<p class="post-meta">
+    <time datetime="2016-09-09T12:10:07+00:00">
+        09 Sep 2016
+    </time>
+</p>
+<p>
+<p>I’m writing a web app that will log wvw score and automatically create a weekly report (just for fun) but since Anet is going to implement Skirmishing to wvw which will have another “Victory Score” in the data.</p>
+<p>I’ve checked wiki for API respond. it still return only War Score and say nothing about victory score.</p>
+<p>Will the API update to support this? Can I have sample data? so I can start implementing it and make it work by reset.</p>
+<p>Thank you.</p></p>
+
+<h2 id="">chaly.7638:</h2>
+<p class="post-meta">
+    <time datetime="2016-09-10T14:01:42+00:00">
+        10 Sep 2016
+    </time>
+</p>
+<p>
+<p>Hi,</p>
+<p>same here: an extension for the new world-vs-world scores would be really great. I guess this is an issue for everyone providing a fanwebsite for wvw (e.g. mos-millenium and many others) including our matchup status for our Teamspeak community.</p>
+<p>Cheers,<br>
+Chaly</p></p>
+
+<h2 id="">Oxylus.7985:</h2>
+<p class="post-meta">
+    <time datetime="2016-09-11T00:30:21+00:00">
+        11 Sep 2016
+    </time>
+</p>
+<p>
+<p>Interested in this as well. I guess we can drive victory points by calculating the winners ourselves on the same time period, but I fear this is racy on close skirmishes (i.e. clock synch problem). Best would be if Anet provided the authoritative VPs directly.</p></p>
+
+<h2 id="">fro.8967:</h2>
+<p class="post-meta">
+    <time datetime="2016-09-11T03:41:27+00:00">
+        11 Sep 2016
+    </time>
+</p>
+<p>
+<p>Please do the needful!</p></p>
+
+<h2 id="">chaly.7638:</h2>
+<p class="post-meta">
+    <time datetime="2016-09-11T22:47:57+00:00">
+        11 Sep 2016
+    </time>
+</p>
+<p>
+<p>Not only on close matchups but also for our users a self calculated approach won’t be an option. Ppl interested in apps/ websites aren’t interested in semi-correct matchup data, regardless of whether it even shows a wrong matchup winner or not.</p>
+<p>Cheers</p></p>
+
+<h2 id="">Jirayu.5834:</h2>
+<p class="post-meta">
+    <time datetime="2016-09-11T23:35:15+00:00">
+        11 Sep 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 11 2016 12:30AM"><a href="/forum/community/api/Any-API-update-for-WvW-Skirmishing/6322612">Oxylus.7985:</a></cite></div><div class="quotey"><p>Interested in this as well. I guess we can drive victory points by calculating the winners ourselves on the same time period, but I fear this is racy on close skirmishes (i.e. clock synch problem). Best would be if Anet provided the authoritative VPs directly.</p></div></blockquote>
+<p>If we are going to calculate v score ourself, we gonna need to scrap API every 2 hours to calculate the different score between each skirmish. Since API still returning only total war score.</p>
+<p>Yeah anet need to implement this into API. Give us data about v score and skirmish war score alongside with total war score</p></p>
+
+<h2 id="">Shtra Quo.1932:</h2>
+<p class="post-meta">
+    <time datetime="2016-09-12T16:54:49+00:00">
+        12 Sep 2016
+    </time>
+</p>
+<p>
+<p>Since the API needs an update anyway, perhaps you could also add an skirmish-history for the current matchup?<br>
+If it’s to heavy for the Details-Call perhaps add a new endpoint? Something like wvw/matches/2-1/history?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-09-13T22:56:23+00:00">
+        13 Sep 2016
+    </time>
+</p>
+<p>
+<p>History probably won’t happen, but I’ll be working on making backend changes this week to support skirmishes. They won’t be ready for the next release; shooting for the one after.</p>
+<p>History outside of the current matchup is unlikely to happen, unfortunately.</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2016-09-15T14:23:59+00:00">
+        15 Sep 2016
+    </time>
+</p>
+<p>
+<p>Without a full history, would it be possible to include the war score of the previous skirmish (including kill/death breakdowns)?  That way we don’t have to try and catch it just before it switches over to the next one.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-09-15T20:46:43+00:00">
+        15 Sep 2016
+    </time>
+</p>
+<p>
+<p>I’m still reviewing the implementation bits for the skirmish stuff, but by my reading the API <em>should</em> be able to expose the skirmish results for all skirmishes within the current match. I can’t make any guarantees yet though, still in the reading phase and haven’t written a line of code yet :/</p>
+<p>Timeline-wise, definitely won’t be with the next release. Hoping to make the one after next, but it’s going to be a bit tight time-wise. I’ll keep you guys up-to-date when I have more concrete data about the implementation progress (including more specifics about what the updated endpoints will/can expose).</p></p>
+
+<h2 id="">fro.8967:</h2>
+<p class="post-meta">
+    <time datetime="2016-10-04T19:20:50+00:00">
+        04 Oct 2016
+    </time>
+</p>
+<p>
+<p>Do you happen to have any new info or a release date for the Skirmish changes?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-10-04T20:08:34+00:00">
+        04 Oct 2016
+    </time>
+</p>
+<p>
+<p>It should be ready with the next release.</p>
+<p>Meant to have it in for this one, but the implementation turned out to be fairly complex and I slipped the cutoff date by a few days <img src="/include/images/smilies/sad.png"></p></p>
+
+<h2 id="">fro.8967:</h2>
+<p class="post-meta">
+    <time datetime="2016-10-04T21:33:48+00:00">
+        04 Oct 2016
+    </time>
+</p>
+<p>
+<p>Awesome thanks! Is there any preview of what the new structure will be like?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-10-04T23:23:45+00:00">
+        04 Oct 2016
+    </time>
+</p>
+<p>
+<p>Uhh, that reminds me — I still need to write the frontend bits for it. <a href="https://github.com/arenanet/api-cdi/pull/381">Here’s what I’m thinking</a> — let me know if there’s a better structure.</p>
+<p>Unfortunately, because kills/deaths are tracked in a totally separate system (that has no persistent storage) I haven’t been able to add those into the skirmish data — but the scores at skirmish end (for all skirmishes in the match) are in there.</p></p>
+
+<h2 id="">Jirayu.5834:</h2>
+<p class="post-meta">
+    <time datetime="2016-10-05T16:07:01+00:00">
+        05 Oct 2016
+    </time>
+</p>
+<p>
+<p>That looks great!</p>
+<p>Anyway, I’d suggest to add skirmish start/end (or just one) into each skirmish. I know I can calculate time at my end. but I ‘d love to see it comes with API. (TBH, I’m too lazy to calculate it myself.)</p></p>
+
+<h2 id="">Drant.5902:</h2>
+<p class="post-meta">
+    <time datetime="2016-10-07T00:28:56+00:00">
+        07 Oct 2016
+    </time>
+</p>
+<p>
+<p>Can objective upgrades/tier be included? Like the three little gray shields over the tower icon. I don’t think this can simply be computed using the last_flipped time, because upgrades are dependent on the number of dolyaks that makes it alive to the objective.</p></p>
+
+<h2 id="">Bjyoric Orcstone.1728:</h2>
+<p class="post-meta">
+    <time datetime="2016-10-09T20:13:27+00:00">
+        09 Oct 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 05 2016 04:07PM"><a href="/forum/community/api/Any-API-update-for-WvW-Skirmishing/6352438">Jirayu.5834:</a></cite></div><div class="quotey"><p>That looks great!</p>
+<p>Anyway, I’d suggest to add skirmish start/end (or just one) into each skirmish. I know I can calculate time at my end. but I ‘d love to see it comes with API. (TBH, I’m too lazy to calculate it myself.)</p></div></blockquote>
+<p>The skirmish_end_time is provided. You are always in the current skirmish and the end time tells you how long there is until the next skirmish. What would you need a skirmish start time for? It’s in the past and can’t help your team. You know later skirmishs will be starting a fixed time from the skirmish_end_time. Just really curious about the use.</p></p>
+
+<h2 id="">fro.8967:</h2>
+<p class="post-meta">
+    <time datetime="2016-10-14T15:11:55+00:00">
+        14 Oct 2016
+    </time>
+</p>
+<p>
+<p>He’s asking for the purpose of displaying skirmish history. Much simpler to output skirmish.start_time and skirmish.end_time rather than calculating them all out based on the current skirmish end time.</p></p>
+
+<h2 id="">Julian.7532:</h2>
+<p class="post-meta">
+    <time datetime="2016-10-19T12:53:49+00:00">
+        19 Oct 2016
+    </time>
+</p>
+<p>
+<p>any update? Thought it would be in the patch yesterday.</p></p>
+
+<h2 id="">Svafa.3098:</h2>
+<p class="post-meta">
+    <time datetime="2016-11-04T09:54:31+00:00">
+        04 Nov 2016
+    </time>
+</p>
+<p>
+<p>Hi everyone,i’d like to have some news about the API’s update ? I think i’v not find yet skirmishes data is that right ? Do we have a release date ?</p>
+<p>Thanks for the tremendous work done !</p></p>
+
+<h2 id="">Jargus the Veiled.9367:</h2>
+<p class="post-meta">
+    <time datetime="2016-11-16T20:36:32+00:00">
+        16 Nov 2016
+    </time>
+</p>
+<p>
+<p>I looked today (11/16/2016) and the current API still doesn’t seem expose the skirmish scores. I’m working on an app and am interested in this updates release date. The current reporting directly impedes my ability to release with a direct, accurate accounting of the current match scoring schema to my users.</p>
+<p>Thanks in advance.</p></p>
+
+<h2 id="">Malediktus.3740:</h2>
+<p class="post-meta">
+    <time datetime="2016-11-16T21:59:18+00:00">
+        16 Nov 2016
+    </time>
+</p>
+<p>
+<p>The API does not get developed any further at the moment (Lawton if gone again for an unknown amount of time again, probably months), so it can take a long time until the skirmish stuff gets implemented.</p></p>
+
+<h2 id="">Jirayu.5834:</h2>
+<p class="post-meta">
+    <time datetime="2016-11-25T21:27:09+00:00">
+        25 Nov 2016
+    </time>
+</p>
+<p>
+<p>Right now ANet just give different score for different objective tier.</p>
+<p>If I understand correctly, There is no way to determine objective tier from API, right?</p></p>
+
+<h2 id="">thetoothpick.4028:</h2>
+<p class="post-meta">
+    <time datetime="2016-11-27T00:26:50+00:00">
+        27 Nov 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on November 25 2016 09:27PM"><a href="/forum/community/api/Any-API-update-for-WvW-Skirmishing/6412306">Jirayu.5834:</a></cite></div><div class="quotey"><p>Right now ANet just give different score for different objective tier.</p>
+<p>If I understand correctly, There is no way to determine objective tier from API, right?</p></div></blockquote>
+<p>Correct.</p>
+<p><a href="https://github.com/arenanet/api-cdi/issues/118">https://github.com/arenanet/api-cdi/issues/118</a></p></p>
+
+<h2 id="">I Am Dansker.7105:</h2>
+<p class="post-meta">
+    <time datetime="2017-01-29T03:26:56+00:00">
+        29 Jan 2017
+    </time>
+</p>
+<p>
+<p>Any update on this?<br>
+Not to hurry you or anything, just wondering ^^</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2017-01-30T20:48:21+00:00">
+        30 Jan 2017
+    </time>
+</p>
+<p>
+<p>I’ve had to roll it back on stage because I am a terrible programmer and it kept crashing.</p>
+<p>Then I had to roll it back again since there were further issues causing it to crash.</p>
+<p>Then, in the second rollback I did something wrong and the rollback propagated further down then it should have.</p>
+<p>Long story short I missed the cutoff for the next release but I’m really hopeful that the release after will be the <a href="https://www.youtube.com/watch?v=nU2y6ztlMAQ">strongest castle in all of Tyria</a>.</p></p>
+
+<h2 id="">DragonHeart.7201:</h2>
+<p class="post-meta">
+    <time datetime="2017-02-02T14:05:26+00:00">
+        02 Feb 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on January 30 2017 08:48PM"><a href="/forum/community/api/Any-API-update-for-WvW-Skirmishing/6479100">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>I’ve had to roll it back on stage because I am a terrible programmer and it kept crashing.</p>
+<p>Then I had to roll it back again since there were further issues causing it to crash.</p>
+<p>Then, in the second rollback I did something wrong and the rollback propagated further down then it should have.</p>
+<p>Long story short I missed the cutoff for the next release but I’m really hopeful that the release after will be the <a href="https://www.youtube.com/watch?v=nU2y6ztlMAQ">strongest castle in all of Tyria</a>.</p></div></blockquote>
+<p>Your first 3 lines are going to look lovely on your resumé.<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">zerorogue.9410:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-20T23:10:09+00:00">
+        20 Mar 2017
+    </time>
+</p>
+<p>
+<p>I just want to bump this up again for a reminder that this still needs to be done. I’m right now in the mist of making a script that displays/processes WvW data and it would make my(and probably many others) job easier if we can get this out.</p>
+<p>Thanks.</p></p>
+
+<h2 id="">Eearslya.6309:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-21T20:48:04+00:00">
+        21 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 20 2017 11:10PM"><a href="/forum/community/api/Any-API-update-for-WvW-Skirmishing/6533051">zerorogue.9410:</a></cite></div><div class="quotey"><p>I just want to bump this up again for a reminder that this still needs to be done. I’m right now in the mist of making a script that displays/processes WvW data and it would make my(and probably many others) job easier if we can get this out.</p>
+<p>Thanks.</p></div></blockquote>
+<p><strong>victory_points</strong> are already exposed in the API (once it comes back up).</p></p>
+
+<h2 id="">zerorogue.9410:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-21T22:16:35+00:00">
+        21 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 21 2017 08:48PM"><a href="/forum/community/api/Any-API-update-for-WvW-Skirmishing/6533878">Eearslya.6309:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 20 2017 11:10PM"><a href="/forum/community/api/Any-API-update-for-WvW-Skirmishing/6533051">zerorogue.9410:</a></cite></div><div class="quotey"><p>I just want to bump this up again for a reminder that this still needs to be done. I’m right now in the mist of making a script that displays/processes WvW data and it would make my(and probably many others) job easier if we can get this out.</p>
+<p>Thanks.</p></div></blockquote>
+<p><strong>victory_points</strong> are already exposed in the API (once it comes back up).</p></div></blockquote>
+<p>is this new? Because as far as I can find on any site (wiki,forums,all wvw sites) they all say its not exposed.</p></p>
+
+<h2 id="">Eearslya.6309:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-21T22:49:52+00:00">
+        21 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 21 2017 10:16PM"><a href="/forum/community/api/Any-API-update-for-WvW-Skirmishing/6533945">zerorogue.9410:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 21 2017 08:48PM"><a href="/forum/community/api/Any-API-update-for-WvW-Skirmishing/6533878">Eearslya.6309:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 20 2017 11:10PM"><a href="/forum/community/api/Any-API-update-for-WvW-Skirmishing/6533051">zerorogue.9410:</a></cite></div><div class="quotey"><p>I just want to bump this up again for a reminder that this still needs to be done. I’m right now in the mist of making a script that displays/processes WvW data and it would make my(and probably many others) job easier if we can get this out.</p>
+<p>Thanks.</p></div></blockquote>
+<p><strong>victory_points</strong> are already exposed in the API (once it comes back up).</p></div></blockquote>
+<p>is this new? Because as far as I can find on any site (wiki,forums,all wvw sites) they all say its not exposed.</p></div></blockquote>
+<p>Got pushed out 3/16, but the API fell over shortly afterwards, so I’m guessing nobody had the time to update code.</p>
+<p><a href="https://gitter.im/arenanet/api-cdi?at=58cb130305a31d5a4a66a3e2">gitter ref</a></p></p>
+
+<h2 id="">Anhim.3156:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-21T22:49:56+00:00">
+        21 Mar 2017
+    </time>
+</p>
+<p>
+<p>It is new (from last week), and the wiki definitely shows it. Check again: <a href="https://wiki.guildwars2.com/wiki/API:2/wvw/matches">https://wiki.guildwars2.com/wiki/API:2/wvw/matches</a></p></p>
+
+<h2 id="">Drant.5902:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-21T22:51:10+00:00">
+        21 Mar 2017
+    </time>
+</p>
+<p>
+<p>If you want API news, check these places (by order of recency):</p>
+<p>1. <a href="https://gitter.im/arenanet/api-cdi">https://gitter.im/arenanet/api-cdi</a> – Live chat with API devs<br>
+2. <a href="https://api.guildwars2.com/v2">https://api.guildwars2.com/v2</a> – Shows live endpoints<br>
+3. <a href="https://github.com/arenanet/api-cdi/commits/master">https://github.com/arenanet/api-cdi/commits/master</a> – Update notes by ArenaNet programmers</p>
+<p>The wiki is reliable but would probably be chronologically the last place to be updated.</p></p>
+
+<h2 id="">Anhim.3156:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-21T23:02:03+00:00">
+        21 Mar 2017
+    </time>
+</p>
+<p>
+<p>Since the wiki pulls the info from one of the 3 sources above, can confirm wiki will be no earlier than #4 on that list.</p></p>
+
+<h2 id="">MaLeVoLenT.8129:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-28T14:35:43+00:00">
+        28 Mar 2017
+    </time>
+</p>
+<p>
+<p>So I noticed victory points were added to wvw/matches endpoint but not wvw/matches/scores is there a reason for this? Also isn’t the warscore a pointless thing to have considering its victory points being fed into glicko2. Are we going to get victory points tied into scores within the API?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2017-03-28T17:56:02+00:00">
+        28 Mar 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 28 2017 02:35PM"><a href="/forum/community/api/Any-API-update-for-WvW-Skirmishing/6539221">MaLeVoLenT.8129:</a></cite></div><div class="quotey"><p>So I noticed victory points were added to wvw/matches endpoint but not wvw/matches/scores is there a reason for this? Also isn’t the warscore a pointless thing to have considering its victory points being fed into glicko2. Are we going to get victory points tied into scores within the API?</p></div></blockquote>
+<p>The omission from wvw/matches/scores is a bug. <a href="https://github.com/arenanet/api-cdi/issues/472">Tracking issue</a>. Overall warscore might be semi-pointless, but I don’t want to break backwards compat. Once .skirmishes is available, you’ll be able to pull the current skirmish warscore.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

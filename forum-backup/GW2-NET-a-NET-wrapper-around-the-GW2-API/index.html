@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>GW2.NET a .NET wrapper around the GW2 API</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/GW2-NET-a-NET-wrapper-around-the-GW2-API/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">GW2.NET a .NET wrapper around the GW2 API</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/GW2-NET-a-NET-wrapper-around-the-GW2-API
+</p>
+
+
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-21T11:47:49+00:00">
+        21 May 2013
+    </time>
+</p>
+<p>
+<p>This is the official topic on GW2.NET. Here you will find firsthand information about the library, ways to obtain it for use and information about development</p>
+<p><strong>What is GW2.NET?</strong><br>
+At first GW2.NET was a simple wrapper around the public GW2 API that helped the user with transforming the response into well written C# and .NET code. Since then it has eveloved in many ways. Now it is the most complete wrapper built on the .NET Framework featuring a consitent and easy to use method to fetch data from the API itseld.</p>
+<p><strong>Features</strong></p>
+<ul>
+	<li>Unified query syntax for each API endpoint</li>
+	<li>Every v1/ endpoint is available</li>
+	<li>Every unauthorized v2/ endpoint.</li>
+	<li>Tile &amp; Render Services support</li>
+	<li>Mumble Support</li>
+	<li><em>Full async support!</em></li>
+</ul>
+<p><strong>Obtaining GW2.NET</strong><br>
+The easiest way of obtaining a working copy of the code is via NuGet. Open the Package Manger Console and type: <br>
+</p><pre><code>
+Install-Package GW2.NET
+</code></pre><p></p>
+<p>Other ways to obtain the code can be found on the <a href="https://gw2dotnet.codeplex.com/wikipage?title=Obtaining%20GW2.NET&referringTitle=Documentation">documentation page</a></p>
+<p><strong>I’m clueless and don’t know how to start <em>aká</em> Quickstart</strong><br>
+Using the library is really simple. At first you have to reference the following GW2.NET libraries:</p>
+<ul>
+	<li>GW2NET.dll</li>
+	<li>GW2NET.Core.dll</li>
+</ul>
+<p>If you are using NuGet those references are automatically added for you, no additional work needed.</p>
+<p>After that you have to import the namespace <br>
+</p><pre><code>
+    using GW2NET;
+</code></pre><p></p>
+<p>At last you can use the facade class which manages the most common features for you. Below is an example how to get some Quaggans IDs. <br>
+</p><pre><code>
+    var service = GW2.V2;
+    ICollection&lt;string&gt; keys = service.Discover();
+    Task&lt;Collection&lt;string&gt;&gt; keysAsync = service.DiscoverAsync(); // Do everything asynchronously.
+</code></pre><p></p>
+<p>If you still have questions you can always look at the <a href="https://gw2dotnet.codeplex.com/documentation">Documentation</a>. If you still don’t know what you have to do, you can also ask a question in this thread or (better) in the <a href="https://gw2dotnet.codeplex.com/discussions">Discussions</a></p>
+<p><strong>I don’t like the way you have done x/y. You suck and I’m sure I can do it better!</strong><br>
+<em>Laugh</em> If you think so go ahead, nobody is stopping you! After all the libary is completely open source. Check out our <a href="https://gw2dotnet.codeplex.com/license">License</a> and code away. If you think you’ve developed a great feature that should be added to the main library simply supply a patch at the Source Code Tab. We will definetly look into it!</p>
+<p><strong>Where to go from here?</strong><br>
+Recently ArenaNet has opened up some more API endpoints in the v2/ namespace and those need to be included. The next big milestone however is the authorized API that is currently been worked on. We are as eager as you are to the idea to query a characters bank or his skills from outside the game.</p>
+<p><strong>How can I contact you?</strong><br>
+The simplest way to contact us is right here in the forum. If you want to get sure your question, request or criticism is not lost between other posts, the best option is the <a href="https://gw2dotnet.codeplex.com/discussions">Discussions</a> section on Codeplex. You can also contact me via Codeplex <a href="https://www.codeplex.com/site/users/view/Ruhrpottpatriot">directly</a> I also have a <a href="http://stackoverflow.com/users/1922663/ruhrpottpatriot">Stackoverflow Account</a>. Of course I am not the only one working on the project. There is a <a href="https://gw2dotnet.codeplex.com/team/view">whole team</a> behind me who have all done an excellent job of improving every aspect of the code. Onne big <em>Thanks!</em> goes directly to <a href="https://www.codeplex.com/site/users/view/StevenLiekens">Steven Liekens</a> who made the currently layout possible. Thanks Steven!</p></p>
+
+<h2 id="">Varonth.5830:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-21T12:43:39+00:00">
+        21 May 2013
+    </time>
+</p>
+<p>
+<p>.NET 4.5 can handle JSON: <a href="http://msdn.microsoft.com/en-us/library/bb410770.aspx">http://msdn.microsoft.com/en-us/library/bb410770.aspx</a></p>
+<p>SSL connections are available for basically any language you want:<br>
+<a href="http://msdn.microsoft.com/en-us/library/system.net.security.sslstream.aspx?cs-save-lang=1&cs-lang=csharp#code-snippet-1">http://msdn.microsoft.com/en-us/library/system.net.security.sslstream.aspx?cs-save-lang=1&amp;cs-lang=csharp#code-snippet-1</a></p>
+<p>So I don’t know what exactly you need.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-21T12:56:39+00:00">
+        21 May 2013
+    </time>
+</p>
+<p>
+<p>No my aims was not to provide a json serializer (I’d rather not use 4.5 because 4.5 does not support XP anymore and most users are still using XP and the whole data contract thing is more than just basic) or SSL connections, but a class library which provides developers who write .Net Applications with classes and methods to develop their program more easily.<br>
+Think of it as a wrapper around the GW2 API for .NET</p></p>
+
+<h2 id="">kousei.5914:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-21T21:46:08+00:00">
+        21 May 2013
+    </time>
+</p>
+<p>
+<p>I’ve started one for my own purposes but I don’t have a problem splitting off the API Wrapper pieces and dropping them on CodePlex if I can get some help maintaining it.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-21T22:00:51+00:00">
+        21 May 2013
+    </time>
+</p>
+<p>
+<p>Sounds great. I’ll do some things on the codeplex site today and tomorrow and publish the thing as soon as possible.</p>
+<p>Ok, I’m done with the codeplex page (can be found here: <a href="https://gw2dotnet.codeplex.com/">https://gw2dotnet.codeplex.com/</a>). The code is pretty basic and rudimentary as I didn’t have much time and I’m fairly new to the whole WebRequest thing. I’m willing to learn though and I hope to do so by providing to this project.</p></p>
+
+<h2 id="">Remfin.4892:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T00:23:22+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>I’d be happy to give you what I have so far, although it’s not much more but a little more structure and models around the API.</p>
+<p>If I could make a suggestion…use HttpClient instead of WebRequests, it’s supposedly much better (it’s also much easier to use).</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T00:31:21+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>Yeah I hope to clean up the code a little bit and write some more basic wrapper methods which just return the JSON Data as .NET objects. Will see if I Get to that later.</p>
+<p>Also, if you have a codeplex account (or Microsoft account) pm it to me so I can add you to the team.</p></p>
+
+<h2 id="">Rohan.1403:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T08:03:15+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>I have been working on my own implementation <a href="https://github.com/Rohansi/GuildWars2-API">here</a>. Just learned that RestSharp exists so I will see about switching to that tomorrow.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T11:22:19+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>I’ll look into RestSharp myself and if it offers the functionality wee need I’ll include it in the project.</p></p>
+
+<h2 id="">poke.3712:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T12:02:51+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>I’ve created an example using RestSharp, if anyone is interested: <a href="https://gist.github.com/poke/5627036">https://gist.github.com/poke/5627036</a></p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T12:10:56+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2013 12:02PM"><a href="/forum/community/api/NET-Implemenation/2072779">poke.3712:</a></cite></div><div class="quotey"><p>I’ve created an example using RestSharp, if anyone is interested: <a href="https://gist.github.com/poke/5627036">https://gist.github.com/poke/5627036</a></p></div></blockquote>
+<p>Thanks for sharing, poke! Awesome work.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T13:03:08+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>Yeah, thanks for the example I’m currently including it in the codeplex project.</p></p>
+
+<h2 id="">Gilosean.3805:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T13:25:51+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>Awesome!  The API is really exciting news, and I’m so happy to see that people are already doing stuff in C# with it.  Anyone thinking about using Mono/Xamarin to get an Android app out of this?</p>
+<p>Some people are setting up a GW2 Trello board and chat room to help coordinate development.  The thread is here if you’re interested:  <a href="/forum-backup/Want-to-collaborate-on-GW2-apps-Start-here">https://forum-en.guildwars2.com/forum/community/api/Want-to-collaborate-on-GW2-apps-Start-here/first</a></p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T13:56:12+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>Ok, I included a call with Rest# to the project (much faster thanks for the tip) and added equality comparison and hash code to the event, world and map models.</p>
+<p>Still need help with caching though.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T14:04:07+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2013 01:25PM"><a href="/forum/community/api/NET-Implemenation/2073100">Gilosean.3805:</a></cite></div><div class="quotey"><p>Awesome!  The API is really exciting news, and I’m so happy to see that people are already doing stuff in C# with it.  Anyone thinking about using Mono/Xamarin to get an Android app out of this?</p></div></blockquote>
+<p>As this is library is coded purely in .NET and will not include any UI stuff it should be pretty safe to use this with mono (I don’t have any experience with mono however). Still looking for more developers though. Everyone who wants to contribute can PM me here with their Codeplex/MS username and I’ll add him to the developer list.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T23:35:08+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>Ok, quick heads up.<br>
+Implementation runs fine. We are debating some internal issue (for those who want to help and participate: <a href="https://gw2dotnet.codeplex.com/discussions/444658">https://gw2dotnet.codeplex.com/discussions/444658</a>) but apart from that we are doing good.</p>
+<p>I welcome any input here, but I request that “bigger” topics be discussed on the codeplex site where we have a dedicated discussion section for that.</p>
+<p>See you</p></p>
+
+<h2 id="">Thurfir.6381:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T00:03:05+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<p>Hi everyone, mostly out of curiosity, why do you require a plugin to perform the task? I understand that the 4.5 framework isn’t suitable for everyone, but to my experience the DataContractJsonSerializer is available in .NET 3.5 too, I used it to seralize in some of my projects ;-).</p>
+<p><a href="http://msdn.microsoft.com/en-us/library/bb412179%28v=vs.90%29.aspx">http://msdn.microsoft.com/en-us/library/bb412179%28v=vs.90%29.aspx</a><br>
+<a href="http://msdn.microsoft.com/en-us/library/system.runtime.serialization.json.datacontractjsonserializer.readobject%28v=vs.90%29.aspx">http://msdn.microsoft.com/en-us/library/system.runtime.serialization.json.datacontractjsonserializer.readobject%28v=vs.90%29.aspx</a></p>
+<p>Have fun!</p></p>
+
+<h2 id="">Rawrfaec.6412:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T05:57:54+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<p>I don’t know the reason in this case but .NET SDK JSON serializers are relatively slow compared to third party alternatives.</p></p>
+
+<h2 id="">poke.3712:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T08:44:06+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 23 2013 12:03AM"><a href="/forum/community/api/NET-Implemenation/2075858">Thurfir.6381:</a></cite></div><div class="quotey"><p>Hi everyone, mostly out of curiosity, why do you require a plugin to perform the task?</p></div></blockquote>
+<p>I assume you mean RestSharp? The reason is simply to not re-invent the wheel. The RestSharp library (not a plugin) makes using REST resources very simple and consistent. And especially later when the API is expanded and adds some authentication mechanism, you can just configure RestSharp once to use it and you’re done.</p>
+<p>Of course you can write it all in standard .NET framework code—RestSharp is written like that too after all—but you can save quite a bit of work by reusing working and <em>tested</em> libraries.</p></p>
+
+<h2 id="">Thurfir.6381:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T09:30:01+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<p>Thanx ;-) . I had some bad experiences with some plugins which became more of an hindrance than an actual help, is why I tend to either use the built-in functionnalities, or well-tried plugins only.</p>
+<p>About the .NET serializer, If I remember correctly that one is the one used by the WCF Web services, so I genuinely hope the performance difference isn’t that bad xD .</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T12:24:32+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<p>Wcf web service (afaik) builds heavily on xml that’s also the reason why there’s a great support for that (LinqtoXml, etc.)</p>
+<p>As the api uses json not xmlwe have to use a different method to de-serialize the json contetn into .Net objects we can use. The .Net framework gives us a tool for that, the DataContractSerializer. However DCS is slow, not as slow as the other alternative – JavaScript Serializer – but still slower than the Json.Net library we were using. (see here: for features of Json.Net and performance: <a href="https://json.codeplex.com/">https://json.codeplex.com/</a>).</p>
+<p>The reason why we are suing third party de-serializes is as poke said: “not to reinvent the weel”. Why write custom code, which we have to maintain if a better solution is out there.<br>
+It’s the same as if you would buy a car, without wheels because you make them in your own garage instead of buying goodyear stuff<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">steckums.9108:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T22:43:54+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 21 2013 10:00PM"><a href="/forum/community/api/NET-Implemenation/2070046">Ruhrpottpatriot.7293:</a></cite></div><div class="quotey"><p>Sounds great. I’ll do some things on the codeplex site today and tomorrow and publish the thing as soon as possible.</p>
+<p>Ok, I’m done with the codeplex page (can be found here: <a href="https://gw2dotnet.codeplex.com/">https://gw2dotnet.codeplex.com/</a>). The code is pretty basic and rudimentary as I didn’t have much time and I’m fairly new to the whole WebRequest thing. I’m willing to learn though and I hope to do so by providing to this project.</p></div></blockquote>
+<p>Just wanted to let you know, I’m using your API. I’ve found at least one error so far:</p>
+<p>WVW→Models→Match is a struct, which is great and usable.<br>
+WvW→Models→MatchDetails is NOT a struct (it’s a class). Changing it to a struct, and re-adding the .dll to my project solved the problem of being able to access that datatype.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T23:49:51+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>Yeah little bug there. Fixed it and it should be in the repository now.</p>
+<p>On another note: We completely rewrote the events engine (or at least are 90% done with the rewriting) which we will implement to the other areas asap. The user now has a manager class which will manage the cache and everything else. This removed thee need for singletons. As the end-user now cannot directly create instances of the calling functions, but only the manger itself.<br>
+This ensures that the cached data is used, presumed that the user only creates one manager class!</p>
+<p>Some examples should be up in the next few days.</p></p>
+
+<h2 id="">steckums.9108:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T14:57:16+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 24 2013 11:49PM"><a href="/forum/community/api/NET-Implemenation/2087731">Ruhrpottpatriot.7293:</a></cite></div><div class="quotey"><p>Yeah little bug there. Fixed it and it should be in the repository now.</p>
+<p>On another note: We completely rewrote the events engine (or at least are 90% done with the rewriting) which we will implement to the other areas asap. The user now has a manager class which will manage the cache and everything else. This removed thee need for singletons. As the end-user now cannot directly create instances of the calling functions, but only the manger itself.<br>
+This ensures that the cached data is used, presumed that the user only creates one manager class!</p>
+<p>Some examples should be up in the next few days.</p></div></blockquote>
+<p>Since you’re using RestSharp for this, how would I use this for a Windows 8 application? The target versions of .NET aren’t compatible between the two.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T20:35:52+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<p>it should be. WE are targeting .Net 4.0 and Win 8 should have 4.5. Compatibility is therefore given.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-27T11:25:01+00:00">
+        27 May 2013
+    </time>
+</p>
+<p>
+<p>Some examples are up. Currently they are pretty bare-bones, but they’ll grow with time:<br>
+<a href="https://gw2dotnet.codeplex.com/documentation">https://gw2dotnet.codeplex.com/documentation</a></p></p>
+
+<h2 id="">steckums.9108:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-28T13:00:17+00:00">
+        28 May 2013
+    </time>
+</p>
+<p>
+<p>It looks like in the latest version, GW2.NET/V1/WvW was not included in the source code, but if you open the project, it’s looking for a reference for WvWManager.cs (And, of course, the model and DataProvider folders are empty).</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-28T16:28:31+00:00">
+        28 May 2013
+    </time>
+</p>
+<p>
+<p>Yeah my bad. I worked in University on the WvW, then shelved the changes to continue work later at home, but forgot to submit the changes into the repository.</p></p>
+
+<h2 id="">steckums.9108:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-28T16:54:01+00:00">
+        28 May 2013
+    </time>
+</p>
+<p>
+<p>Next question: If I were to want to query the API on a specific event to see if the status has changed, how would I do that with your wrapper?</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-28T17:43:18+00:00">
+        28 May 2013
+    </time>
+</p>
+<p>
+<p>Updated documentation to have examples on how to retrieve events.</p></p>
+
+<h2 id="">Rohan.1403:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-28T19:34:44+00:00">
+        28 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 28 2013 04:54PM"><a href="/forum/community/api/NET-Implemenation/2106308">steckums.9108:</a></cite></div><div class="quotey"><p>Next question: If I were to want to query the API on a specific event to see if the status has changed, how would I do that with your wrapper?</p></div></blockquote>
+<p>If you’re going to be checking for changes consider using <a href="https://github.com/Rohansi/GwSharp">Gw#</a>. It provides events for exactly what you need.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-28T21:05:06+00:00">
+        28 May 2013
+    </time>
+</p>
+<p>
+<p>Currently our Wrapper does not support a event status change, this is the next big thing we want to implement.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-30T03:04:00+00:00">
+        30 May 2013
+    </time>
+</p>
+<p>
+<p>Are you guys using RestSharp?  I am not familiar with it but how well does it support deserializing the flags array from the item details into a bit flags enum?</p>
+<p>Sorry for jumping the gun because you have not worked on that yet. <img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-30T13:56:06+00:00">
+        30 May 2013
+    </time>
+</p>
+<p>
+<p>Yes we are using RestSharp to get the Json from the ANet server. However we are using Json.Net to deserialize the string as Json.Net is the fastest Json deserializer out there and we can use every bit off speed.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-30T14:29:19+00:00">
+        30 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 30 2013 01:56PM"><a href="/forum/community/api/NET-Implementation/2120981">Ruhrpottpatriot.7293:</a></cite></div><div class="quotey"><p>Yes we are using RestSharp to get the Json from the ANet server. However we are using Json.Net to deserialize the string as Json.Net is the fastest Json deserializer out there and we can use every bit off speed.</p></div></blockquote>
+<p>Cool, so am I.  I had to implement my own JSONConverter to deserialize the flags JSON array to a flags enum.  It works but I am not too happy with the way I did it so I am looking for a more elegant solution.</p>
+<p>I’ll wait for you guys to get to the items API then.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-30T19:11:25+00:00">
+        30 May 2013
+    </time>
+</p>
+<p>
+<p>OK I fixed a bug whereas the wrapper did not parse the wvw objects properly. THis is now fixed.</p>
+<p>The documentation also has recieved a new topic on how to retrieve the wvw matches.</p></p>
+
+<h2 id="">Healix.5819:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-30T20:24:58+00:00">
+        30 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 30 2013 02:29PM"><a href="/forum/community/api/NET-Implementation/2121149">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>Cool, so am I.  I had to implement my own JSONConverter to deserialize the flags JSON array to a flags enum.  It works but I am not too happy with the way I did it so I am looking for a more elegant solution.</p></div></blockquote>
+<p>I’m assuming something like?</p>
+<blockquote><div class="quotey"><pre><code>[Flags]
+enum ItemFlags 
+{ 
+    None = 0, 
+    AccountBound = 1 &lt;&lt; 0, 
+    HideSuffix = 1 &lt;&lt; 1, 
+    NoMysticForge = 1 &lt;&lt; 2, 
+    NoSalvage = 1 &lt;&lt; 3, 
+    NoSell = 1 &lt;&lt; 4, 
+    NotUpgradeable = 1 &lt;&lt; 5, 
+    NoUnderwater = 1 &lt;&lt; 6, 
+    SoulBindOnAcquire = 1 &lt;&lt; 7, 
+    SoulBindOnUse = 1 &lt;&lt; 8,
+    Unique = 1 &lt;&lt; 9
+};</code></pre></div></blockquote>
+<p>And then however you read the original flags,</p>
+<blockquote><div class="quotey"><pre><code>ItemFlags flags = ItemFlags.None;
+foreach (string flag in item.flags)
+    flags |= (ItemFlags)Enum.Parse(typeof(ItemFlags), flag, true); //try/catch this for unknown types</code></pre></div></blockquote>
+<p>It’s a pretty simple way to get an enum representation of their string array.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-30T20:50:26+00:00">
+        30 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 30 2013 08:24PM"><a href="/forum/community/api/NET-Implementation/2123379">Healix.5819:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 30 2013 02:29PM"><a href="/forum/community/api/NET-Implementation/2121149">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>Cool, so am I.  I had to implement my own JSONConverter to deserialize the flags JSON array to a flags enum.  It works but I am not too happy with the way I did it so I am looking for a more elegant solution.</p></div></blockquote>
+<p>I’m assuming something like?</p>
+<blockquote><div class="quotey"><pre><code>[Flags]
+enum ItemFlags 
+{ 
+    None = 0, 
+    AccountBound = 1 &amp;lt;&amp;lt; 0, 
+    HideSuffix = 1 &amp;lt;&amp;lt; 1, 
+    NoMysticForge = 1 &amp;lt;&amp;lt; 2, 
+    NoSalvage = 1 &amp;lt;&amp;lt; 3, 
+    NoSell = 1 &amp;lt;&amp;lt; 4, 
+    NotUpgradeable = 1 &amp;lt;&amp;lt; 5, 
+    NoUnderwater = 1 &amp;lt;&amp;lt; 6, 
+    SoulBindOnAcquire = 1 &amp;lt;&amp;lt; 7, 
+    SoulBindOnUse = 1 &amp;lt;&amp;lt; 8,
+    Unique = 1 &amp;lt;&amp;lt; 9
+};</code></pre></div></blockquote>
+<p>And then however you read the original flags,</p>
+<blockquote><div class="quotey"><pre><code>ItemFlags flags = ItemFlags.None;
+foreach (string flag in item.flags)
+    flags |= (ItemFlags)Enum.Parse(typeof(ItemFlags), flag, true); //try/catch this for unknown types</code></pre></div></blockquote>
+<p>It’s a pretty simple way to get an enum representation of their string array.</p></div></blockquote>
+<p>Something like that except that I have to make the ItemFlags type more generic since I would want to use the same JSONConverter for the other flag-like enums.</p>
+<p>I also use the EnumMember attribute to map certain JSON strings to enum flags since I am picky with the way my flags are spelled, but that is just extra code to handle it.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-31T11:55:36+00:00">
+        31 May 2013
+    </time>
+</p>
+<p>
+<p>Json.Net can directly deserialze to enums.</p>
+<p>haven an enum like this:</p>
+<blockquote><div class="quotey"><p>/// &lt;summary&gt;<br>
+    /// Enumerates all possible states an event can be.<br>
+    /// &lt;/summary&gt;<br>
+    public enum GwEventState<br>
+    {<br>
+        /// &lt;summary&gt;<br>
+        ///  The event is running now.<br>
+        /// &lt;/summary&gt;<br>
+        Active,</p>
+<p>/// &lt;summary&gt;<br>
+        /// The event has succeeded.<br>
+        /// &lt;/summary&gt;<br>
+        Success,</p>
+<p>/// &lt;summary&gt;<br>
+        /// The event has failed.<br>
+        /// &lt;/summary&gt;<br>
+        Fail,</p>
+<p>/// &lt;summary&gt;<br>
+        /// The event is inactive, <br>
+        /// and will only become active once certain criteria are met.<br>
+        /// &lt;/summary&gt;<br>
+        Warmup,</p>
+<p>/// &lt;summary&gt;<br>
+        /// The criteria for the event to start have been met, <br>
+        /// but certain activities (such as an NPC dialogue) have not completed yet. <br>
+        /// After the activities have been completed, the event will become Active.<br>
+        /// &lt;/summary&gt;<br>
+        Preparation,</p>
+<p>/// &lt;summary&gt;<br>
+        /// The event is invalid. <br>
+        /// For now no further information were released by Arena Net<br>
+        /// &lt;/summary&gt;<br>
+        Invalid<br>
+    }</p></div></blockquote>
+<p>and then have a property on the model like this:</p>
+<blockquote><div class="quotey"><p>/// &lt;summary&gt;<br>
+        /// Gets the state.<br>
+        /// &lt;/summary&gt;<br>
+        [JsonProperty(“state”)]<br>
+        public GwEventState State<br>
+        {<br>
+            get { return this.state; }<br>
+        }</p></div></blockquote></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-31T16:29:18+00:00">
+        31 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 31 2013 11:55AM"><a href="/forum/community/api/NET-Implementation/2127047">Ruhrpottpatriot.7293:</a></cite></div><div class="quotey"><p>Json.Net can directly deserialze to enums. <br>
+snip</p></div></blockquote>
+<p>I meant deserializing enum Flags from JSON array, look at Healix’s example.  For straight deserializing into enum, you can just use the built-in StringEnumConverter.</p>
+<p>In order to make ItemFlags a generic type and also use the bitwise OR operator on it, I had to use the dynamic type.  That works but I am not happy with resorting to that and I wonder if there is a better way.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-31T16:41:12+00:00">
+        31 May 2013
+    </time>
+</p>
+<p>
+<p>Yes that’s what my example also does. You create an object and annotate it with the [JsonProperty] attribute if the naming differs from the naming in the json string. Json.Net will then automatically try and find the enum and deserialize into.</p>
+<p>You could also not define a type and let Json.Net deserialize for itself. But then you’dprobably get an object back.</p>
+<p>Look how we did it in Gw2.Net (V1.World namespace and there look at the models).</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-31T16:54:44+00:00">
+        31 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 31 2013 04:41PM"><a href="/forum/community/api/NET-Implementation/2128480">Ruhrpottpatriot.7293:</a></cite></div><div class="quotey"><p>Yes that’s what my example also does. You create an object and annotate it with the [JsonProperty] attribute if the naming differs from the naming in the json string. Json.Net will then automatically try and find the enum and deserialize into.</p>
+<p>You could also not define a type and let Json.Net deserialize for itself. But then you’dprobably get an object back.</p>
+<p>Look how we did it in Gw2.Net (V1.World namespace and there look at the models).</p></div></blockquote>
+<p>I know all that but what we wanted is to deserialize JSON like this:</p>
+<p>“flags”:[“AccountBound”,“SoulBindOnUse”]</p>
+<p>into:<br>
+    [Flags]<br>
+    public enum GW2APIFlagsEnum<br>
+    {<br>
+          None = 0,<br>
+          AccountBound = 0×01,<br>
+          SoulBindOnUse = 0×02,<br>
+          HideSuffix = 0×04,<br>
+          NoMysticForge = 0×08,<br>
+          NoSell = 0×010,<br>
+…<br>
+    }<br>
+So the property looks like:</p>
+<p>public GW2APIFlagsEnum Flags;</p>
+<p>So Flags can take on the state of BOTH AccountBound and SoulBindOnUse at the same time, according to the JSON array, since they are bit-flags.  You can use them like this by checking if individual bits are set:</p>
+<p>if ((item.Flags &amp; GW2APIFlagsEnum.NoSell) != 0) ….</p>
+<p>if ((item.Flags &amp; GW2APIFlagsEnum.SoulBindOnUse) != 0) ….</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-31T17:19:31+00:00">
+        31 May 2013
+    </time>
+</p>
+<p>
+<p>Is an IEnumerable&lt;GW2APIFlagsEnum&gt; a solution?</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-31T17:22:57+00:00">
+        31 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 31 2013 05:19PM"><a href="/forum/community/api/NET-Implementation/2128775">Ruhrpottpatriot.7293:</a></cite></div><div class="quotey"><p>Is an IEnumerable&lt;GW2APIFlagsEnum&gt; a solution?</p></div></blockquote>
+<p>I already have a solution but I am just looking for a better one, if it exists.  I had to implement my own JSONConverter to deserialize the JSON array values into bits and bitwise-OR them (see Healix’s post above).  But I had to use the dynamic type to make my JSONConverter generic enough for all the Flags enum, which I am not happy about.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-31T22:01:01+00:00">
+        31 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="quotey"><p>I already have a solution but I am just looking for a better one, if it exists. I had to implement my own JSONConverter to deserialize the JSON array values into bits and bitwise-OR them (see Healix’s post above).</p></div></blockquote>
+<p>Well on that topic I’m not that great. I recommend you ask your question over at <a href="http://stackoverflow.com/">Stackoverflow</a> I’m sure they can help you with it.</p>
+<p>On a more topic related note:<br>
+The basic implementation of the items &amp; recipe API part is now in the depot/repository (don’t be confuse if I say depot in one sentence and repository in another I work with SVN and P4 on other projects and they use different terms but they mean the same).</p>
+<p>You now can query the server for all the available recipes (WARNING!!!:: This will take a very, very long time) or for one recipe at a time.</p>
+<p>I’m still looking for willing people to help me and the others code, especially on the subject of async requests.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-31T22:14:01+00:00">
+        31 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 31 2013 10:01PM"><a href="/forum/community/api/NET-Implementation/2130972">Ruhrpottpatriot.7293:</a></cite></div><div class="quotey"><p>You now can query the server for all the available recipes (WARNING!!!:: This will take a very, very long time) or for one recipe at a time.</p>
+<p>I’m still looking for willing people to help me and the others code, especially on the subject of async requests.</p></div></blockquote>
+<p>Thanks.</p>
+<p>I would advise people to use the data dump for items and recipes because these are not suppose to change often except maybe after a game patch.  You can read the data into a dictionary when your app starts up, which doesn’t take too long, then do a dictionary lookup after that.  This saves bandwidth and improves the performance of your app significantly at the same time.</p>
+<p>Granted that the api is still beta and there is an existing bug where some items are missing.  Cliff is looking into that.  But after release, I expect the data to be more stable.</p>
+<p>It is so fast, that I use this data to build item tooltips on my app on the fly.  I cached the images of course.  It would not have been possible if I have to go fetch data from the web each time I want to build up a tooltip as the mouse pointer moves across the items.</p>
+<p>You can use the item and recipe data dump here:</p>
+<p><a href="https://www.dropbox.com/sh/zucn218fhneva3c/-MjOkUsTtI">https://www.dropbox.com/sh/zucn218fhneva3c/-MjOkUsTtI</a></p>
+<p>Discussion:</p>
+<p><a href="/forum-backup/Data-dump-All-recipes-and-created-items">https://forum-en.guildwars2.com/forum/community/api/Data-dump-All-recipes-and-created-items/first#post2129446</a></p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-31T23:00:30+00:00">
+        31 May 2013
+    </time>
+</p>
+<p>
+<p>Yeah I’ll probably do that. Still, I want to build querying functionality first (that should be ready by tomorrow or the day after), then build async support plus data refreshing around it and then think about a more efficient way of caching the data.</p>
+<p>This project mainly aims to be a helper library (aka, you request an event and get the map and world details with it so you don’t have to query the api three times, the library will do that) not a fully fledged program, So I’m inclined to let caching of data more permanently than a session fall into the end-users hand (Still I might offer some “adapters” to ease the use of caching for the end user).</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-02T14:49:22+00:00">
+        02 Jun 2013
+    </time>
+</p>
+<p>
+<p>Hey fellas, <br>
+our implementation now includes the colour api. This has thrown the items implementation a bit back but I hope I can deliver it to you in the next days.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T14:52:02+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>I’m somewhat proud to present you the first implementation of the items api in GW2.Net</p>
+<p>I believe this is on of the most complete implementation (if not the most complete) of the items api in any wrapper currently out there.</p>
+<p>The code is already in the depot, as it builds, but it hasn’t been tested yet  so there are definetly some bugs in there. But the unt tests are running and I’m fixing those asap.</p>
+<p>You can get all items or just a single item by it’s id. The other new thing is the caching. If you request one item by it’s id the wrapper will check if the items cache is already populated, if it is it will pull the item out of the cache. If the cache is not populated it will make a connection to the api and pull the single item from the server without touching the overall cache.</p>
+<p>If you find any bugs please report them at the <a href="https://gw2dotnet.codeplex.com/workitem/list/basic">Issue Tracker</a></p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T17:12:40+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Hey Ruhrpottpatriot, I noticed that you deserialized item flags into a List.  Although that is easier to deserialize, it is going to be harder for your client to use.</p>
+<p>For example, if I am to look for items that are AccountBound, then I would have to search through the Flags List for AccountBound for each item.  This is why I deserialize it to bit flags so I can just do this:</p>
+<p>if ((pair.Value.Flags &amp; GW2APIFlagsEnum.AccountBound) != 0) {…}</p>
+<p>If you agree, let me know if you want to see my item flags JSONConverter or any part of my code if you want.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T17:45:25+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>First: I’m deserializing into a collection not a list (IEnumerable&lt;T&gt; is specifically <em>not</em> a list, for good reasons)</p>
+<p>Second: On first sight it may look like deserializing into a collection is more work, but if you use LINQ (which is the recommended way of accessing the collections in this wrapper), the code becomes much shorter.  Example: I want to get all items that are account bound, I’d do it like this:</p>
+<blockquote><div class="quotey"><p>ItemsManager manager = new ItemsManager();</p>
+<p>// need to convert to a list for the Find all method but everything is also doable with just IEnumerable&lt;T&gt;<br>
+var itemsCollection = manager.Items.ToList();</p>
+<p>var accountBoundItems = itemsCollection.FindAll(i =&gt; i.Flags.Contains(ItemFlags.AccountBound));</p></div></blockquote>
+<p>It’s slightly longer than your code, but it’s much easier to implement for the developer on the wrapper side.</p>
+<p>You can do so much with LINQ, and  the performance cost of being evaluated each time the function is called can easily be circumvented and is usually (even here in collections with 8k to 10k items in a collection) negligible)</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T18:03:16+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>You are converting to a List first anyway and that is still an O(n) operation compared to mine which is an O(1) operation.  Furthermore, to check for the flag, my client only needs 1 line of code so the complexity is much lower.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T18:14:31+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>The fist line is to get the general collection, this is needed at your code too I presume.</p>
+<p>Furthermore with LINQ you don’t have to convert it into a list. I just wrote the operation upon the existing unit test I had in place for geting al items.</p>
+<p>I’m currently in the train to get home and the mobile internet is mediocre and I don’t have the VS (my MBA is running low on battery), but I can assure you that the whole operation is also possible with an IEnumerable. It should be <em>SelectMany&lt;TSource, TResult&gt;(IEnumerable&lt;TSource&gt;, Func&lt;TSource, IEnumerable&lt;TResult&gt;&gt;)</em> or something in that direction.</p>
+<blockquote><div class="quotey"><p>// Get all items<br>
+ItemManager manger = new Manger();</p>
+<p>// use SelectMany() to get all items that are account bound<br>
+var items = manger.Items.SelectMany(accountBound =&gt;accountBound.Flags.Contains(ItemFlags.AccountBound));</p></div></blockquote>
+<p>Yes in the end your operation is faster (duh! its O(1) after all :P), but I deem the speed benefit not great enough to justify the additional work I and the other developers have to do, unless you can prove that it is really that much faster.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T18:30:37+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 06:14PM"><a href="/forum/community/api/NET-Implementation/2147833">Ruhrpottpatriot.7293:</a></cite></div><div class="quotey"><p>Yes in the end your operation is faster (duh! its O(1) after all :P), but I deem the speed benefit not great enough to justify the additional work I and the other developers have to do, unless you can prove that it is really that much faster.</p></div></blockquote>
+<p>Well like you said, I do deem it to be more efficient because it is O(1) versus O(n).  You are comparing the speed at which a computer processor performs a bitwise-AND versus FindAll.  Even though I like LINQ myself, there is just no comparison the bitwise-AND operation is going to be faster.  Sorry you would just have to trust my words since I don’t have the time to do performance testing. <img src="/include/images/smilies/smile.png"></p>
+<p>Like I have said, if you prefer my approach, I am willing to share my code to reduce the amount of work you guys need to use it.  My code uses the dynamic type, from .NET 4, so I hesitated to share it earlier.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T20:35:55+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>I’m not denying that your method is faster, I’m aware of that. However things that speak against your code:</p>
+<ul>
+	<li>The expression <em>if ((pair.Value.Flags &amp; GW2APIFlagsEnum.AccountBound) != 0) {…}</em> is not per se more friendly for the end user. My code on the other hand tells the user what it does. In the statement <em>itemsReturn.Where(item =&gt; item.Flags.Contains(ItemFlags.AccountBound))</em> even a newcomer to c# can see what is happening. Even more so id use I’d query notation.</li>
+	<li>Your code has 60 characters (without anything in-between the curly brackets, which is still needed and without the call to the api/cache to get the items in the first place). My code is 95 characters in length (with conversion to the final collection, but without the call to the api/cache). Therefore I deem your code – without knowing a more detailed example – marginally shorter than mine.</li>
+	<li>It is more work to implement. Not harder to implement not necessarily harder, but it is more work. Therefore it is more error prone and more time consuming than a simple conversion to a collection.</li>
+</ul>
+<p>On the other hand your code is definitely faster. I’m currently running a simple stopwatch experiment to get the rough time it needs to call the api, get all items and filter the items that are account bound. I’ll post the times as soon as I get them.</p>
+<p>For me personally I don’t deem the performance gain via the use of bitwise-AND to be great enough to justify a lengthier implementation time (we might have the current api complete but who knows what will come in the future and how many enums we might need) with potentially more errors.</p>
+<p>I also want to make the code as easy to use for the end user as it possibly can be. I also want to keep as many doors open as I can, therefore the simple conversion to a collection of enums, no more no less (side effect: I simply declare them and leave Json.Net to do the rest)</p>
+<p>In the end I have to decline thankfully to your offer.</p>
+<p>/edit: I find <a href="http://stackoverflow.com/a/4045801/1922663">this</a> post from a SO user on the performance cost of LINQ pretty good.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T20:52:10+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>That seems to be a fair analysis and in the end, it is your call.  Thanks for looking into it though.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T22:26:02+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>So, I did the following query in LINQPad, with a slightly modified data dump from this forum (all I did was to add <em>{"items":{</em> to the beginning, so I could parse it more easily and I attached the modified json to this post).</p>
+<blockquote><div class="quotey"><pre><code>
+
+//read from file to leave the api call time out
+string[] lineArray = File.ReadAllLines(@"C:\recipe_created_items.json");
+string jsonString = string.Join("", lineArray);
+
+/Deserialize
+var items = JsonConvert.DeserializeObject&amp;lt;Dictionary&amp;lt;string, Dictionary&amp;lt;int, Item&amp;gt;&amp;gt;&amp;gt;(jsonString)["items"].Values;
+
+
+Stopwatch watch = new Stopwatch();
+
+List&amp;lt;long&amp;gt; ticksCounter = new List&amp;lt;long&amp;gt;();
+
+for (int i = 0; i &amp;lt; 1000; i++)
+{
+        watch.Start();
+
+        var accountBound = items.Where(item =&amp;gt; item.Flags.Contains(ItemFlags.AccountBound));
+        watch.Stop();
+
+        ticksCounter.Add(watch.ElapsedTicks);
+
+        watch.Reset();
+}
+
+var averageTicks = ticksCounter.Average();
+
+Debug.WriteLine("Average time 24 items out of 6849: {1} ms({0} ticks)", averageTicks, averageTicks / TimeSpan.TicksPerMillisecond);
+
+// Result: Average time 24 items out of 6849: 0.0003 ms(3 ticks)
+</code></pre></div></blockquote>
+<p>If I convert the query into a list I get the following result:<br>
+[qutote]<br>
+Average time 24 items out of 6849: 0.5012394 ms(5012.394 ticks)<br>
+[/quote]<br>
+I had to measure the ticks, milliseconds was too inaccurate, all I got was 0 :P</p>
+<p>And I guess I can live with 3 ticks and even with ~5000ticks time<img src="/include/images/smilies/colondee.png">. The real bottleneck is not LINQ but the server, if you do a whole query you will wait about 15 to 30 munutes :P<br>
+Btw: the first call takes about 4600 ticks every query after that goes between 0 and 2 ticks.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T22:30:51+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Lol…I knew the bottle-neck would be the server which was why I asked you to take the data dump in the first place. <img src="/include/images/smilies/colondee.png"></p>
+<p><a href="/forum-backup/NET-Implementation">https://forum-en.guildwars2.com/forum/community/api/NET-Implementation/first#post2131073</a></p>
+<p>This would impact performance even more than what we talked about recently.  Asking your user to wait 15 to 30 minutes is extremely long.</p>
+<p>You should try a bitwise-AND operation and see how many ticks it takes, if it even registers.  If you take the outer loop of going through nth items in your list + going through your Flags enum List, your algorithm becomes O(n-square) while mine would be O(n).  If ArenaNet introduces more items and Flags in the future, which they probably would, your algorithm performance would be impacted more than mine, at least in theory.  But I can understand if you think that bitwise operations are not as intuitive and you decided to sacrifice efficiency to make your code look more intuitive.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T10:20:10+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<p>yeah well one millisecond are 10000 ticks so half a millisecond is still fast enough. Even if Anet introduces so much flags that it goes up another 5000 ticks, no one should complain about the speed. We are not in real life business applications where every ms counts or you loose half a million Dollar<img src="/include/images/smilies/wink.png"></p>
+<p>In my eyes using bitwise flags for every bit of efficiency is a little bit over engineering the code.</p>
+<p>But If you drop me your dll and a sample unit test code I’ll gladly run it through LINQ-Pad</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T17:16:09+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 04 2013 10:20AM"><a href="/forum/community/api/NET-Implementation/2151923">Ruhrpottpatriot.7293:</a></cite></div><div class="quotey"><p>yeah well one millisecond are 10000 ticks so half a millisecond is still fast enough. Even if Anet introduces so much flags that it goes up another 5000 ticks, no one should complain about the speed. We are not in real life business applications where every ms counts or you loose half a million Dollar<img src="/include/images/smilies/wink.png"></p>
+<p>In my eyes using bitwise flags for every bit of efficiency is a little bit over engineering the code.</p>
+<p>But If you drop me your dll and a sample unit test code I’ll gladly run it through LINQ-Pad</p></div></blockquote>
+<p>I am not sure if you are seeing this from the perspective of an actual app.  Performance is critical when you are displaying large amounts of data where the code to access the item data don’t just get run once, but many times.  Any performance inefficiency in your core library data accessors get multiplied.</p>
+<p>That said, I don’t wish to sound all “doom-and-gloom” if you don’t use bitwise operations.  Your library performance may just be good enough for most apps, plus you do have better code readability your way, I’ll give you that.<img src="/include/images/smilies/smile.png"></p>
+<p>I am not ready to drop my dll yet as I am in the middle of making changes.  But I can share my code to deserialize JSON flags to bit flags so you can copy-and-paste to integrate it to yours and test it, if you wish.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T18:09:26+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<p>The thing is: Why should the code get run more than once? There is no need to run multiple subsequent queries to filter the data. And even then. My test did exactly that. 1000 iterations of the LINQ code. The first was at 5000 ticks the other 999 were at 0 to 2 ticks or ~0,0001 milliseconds, that is simply not measurable for the human.</p>
+<p>Even if we are talking about 5000 ticks or 0,5 ms – the time of the first query –  a normal human will not be able to make the difference between 0,5ms or 1ms. After all the average human reaction time is 1 second or 1000 ms.</p>
+<p>It is the same with Google, you just feel it is faster because google tells you with a number it is faster the human brain will not be able to tell if it’s faster.</p>
+<p>I will start thinking about changing the background code if we get to times about 150 to 200ms but we are far from that.</p>
+<p>Just for teh lulz I ran the following code:</p>
+<blockquote><div class="quotey"><pre><code>
+
+ Stopwatch watch = new Stopwatch();
+
+            watch.Start();
+
+            string[] lineArray = File.ReadAllLines(@"C:\recipe_created_items.json");
+
+            string jsonString = string.Join(string.Empty, lineArray);
+
+            var items = JsonConvert.DeserializeObject&lt;Dictionary&lt;string, Dictionary&lt;int, Item&gt;&gt;&gt;(jsonString)["items"].Values;
+
+            var biggerList = items.ToList();
+
+            biggerList.AddRange(items);
+            biggerList.AddRange(biggerList);
+            biggerList.AddRange(biggerList);
+            biggerList.AddRange(biggerList);
+            biggerList.AddRange(biggerList);
+            biggerList.AddRange(biggerList);
+            biggerList.AddRange(biggerList);
+            biggerList.AddRange(biggerList);
+
+            var totalItems = biggerList.Count;
+            
+            IEnumerable&lt;Item&gt; accountBound = null;
+
+            for (int i = 0; i &lt; 1000; i++)
+            {
+                accountBound = items.Where(item =&gt; item.Flags.Contains(ItemFlags.AccountBound));
+            }
+
+            watch.Stop();
+
+            Debug.WriteLine("Average time {3} items out of {2}: {1} ms({0} ticks)", watch.ElapsedTicks, (watch.ElapsedTicks / TimeSpan.TicksPerMillisecond), totalItems, accountBound.Count());
+</code></pre></div></blockquote>
+<p>and this code</p>
+<blockquote><div class="quotey"><pre><code>
+
+string[] lineArray = File.ReadAllLines(@"C:\recipe_created_items.json");
+
+            string jsonString = string.Join(string.Empty, lineArray);
+
+            var items = JsonConvert.DeserializeObject&lt;Dictionary&lt;string, Dictionary&lt;int, Item&gt;&gt;&gt;(jsonString)["items"].Values;
+
+            var biggerList = items.ToList();
+
+            biggerList.AddRange(items);
+            biggerList.AddRange(biggerList);
+            biggerList.AddRange(biggerList);
+            biggerList.AddRange(biggerList);
+            biggerList.AddRange(biggerList);
+            biggerList.AddRange(biggerList);
+            biggerList.AddRange(biggerList);
+            biggerList.AddRange(biggerList);
+
+            var totalItems = biggerList.Count;
+
+            Stopwatch watch = new Stopwatch();
+
+            List&lt;long&gt; ticksCounter = new List&lt;long&gt;();
+
+            IEnumerable&lt;Item&gt; accountBound = null;
+
+            for (int i = 0; i &lt; 1000; i++)
+            {
+                watch.Start();
+
+                accountBound = items.Where(item =&gt; item.Flags.Contains(ItemFlags.AccountBound));
+                watch.Stop();
+
+                ticksCounter.Add(watch.ElapsedTicks);
+                watch.Reset();
+            }
+
+            var averageTicks = ticksCounter.Average();
+
+            Debug.WriteLine("Average time {3} items out of {2}: {1} ms({0} ticks)", averageTicks, (averageTicks / TimeSpan.TicksPerMillisecond), totalItems, accountBound.Count());
+</code></pre></div></blockquote>
+<p>The first one took 500ms to run, the second took 0.0897975 ms or 897.975 ticks. If I increase the for loop runs to 100000 it takes 0.003133942 ms or 31.33942 ticks to  get all items that are flagged as account bound out of a list of 1753344.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T18:52:57+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<p>The code needs to run more than once when you are looking for different items at different times.  The performance does look good enough.  I am curious though, if you need to check more than one flag (e.g. AccountBound + SoulBound, etc), how much does the performance differ, if at all.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T19:20:49+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="quotey"><p>The code needs to run more than once when you are looking for different items at different times.</p></div></blockquote>
+<p>That’s why every single lookup first looks if there is a cache and pulls the single item from the cache. Not before is a connection to the server made and the single item from the server pulled.</p>
+<p>This is not implemented at every data provider, but I’m working to do that.</p>
+<p>Also The next thing I want to include is asnyc support and then I want to change the data provider so that they can get the items from the disk or a database in addition to the server.</p>
+<p>Also I have to correct myself the result for the iteration over the bigger list is <br>
+<em>Average time 6144 items out of 1753344: 0.010616829 ms(106.16829 ticks)</em> in the above code I was still iterating over the small list. Still the ms count is under 1 ms, so not noticeable.</p>
+<p>As for your query: I ran this query:</p>
+<blockquote><div class="quotey"><p>accountBound = biggerList.Where(item =&gt; item.Flags.Contains(ItemFlags.AccountBound) &amp;&amp; item.Flags.Contains(ItemFlags.NoSalvage));</p></div></blockquote>
+<p>and the result is: <em>Average time 5376 items out of 1753344: 0.00635732 ms(63.5732 ticks)</em></p>
+<p>and with the Unqique flag in addition: <em>Average time 0 items out of 1753344: 0.006504914 ms(65.04914 ticks)</em></p>
+<p>and</p>
+<blockquote><div class="quotey"><p>accountBound = biggerList.Where(item =&gt; item.Flags.Contains(ItemFlags.NoSell) &amp;&amp; item.Flags.Contains(ItemFlags.SoulbindOnAcquire));</p></div></blockquote>
+<p>results in: <em>Average time 2816 items out of 1753344: 0.010707205 ms(107.07205 ticks)</em></p>
+<p>So from the results I make that more flags == faster. Which confirms my suspicion that the truly resouce intensive progress is the adding to the list. Which also explains that it takes 500ms to run the complete test, but only about 0.006 ms to run the LINQ query.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T19:30:10+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<p>Thanks for the experiments.  I dont think there should be any big performance issue with that so I am convinced.</p>
+<p>On a side note, for enum flags, you can also use the <a href="http://msdn.microsoft.com/en-us/library/system.enum.hasflag.aspx">Enum.HasFlag</a> method to make your code more readable instead of checking the bit states yourself.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T19:38:58+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<p>To use Enum.HasFlag() I’d have to decorate all enums with the Flags attribute and mark everything with bits. Enum.Has() flag is furthermore not in LINQ itself.</p>
+<p>Since I did all the above tests with LINQ and my  code as it is in the repository I cannot use the HasFlag() method.</p>
+<p>/edit: I did some research on List&lt;T&gt; (since I did all the tests with List&lt;Item&gt;) seems the backing part of a list is in fact an array which holds – as per .Net specification the internal array has a size for up to 500 items. If the item count exceeds the list will double it’s capacity to allow storing more items.</p>
+<p>I haven’t found out if the second resize is from 1000 to 2000 or simply from 1000 to 1500.</p>
+<p>This would explain why the first of 1000 method calls in the first example takes 5000 ticks (create the list and add the first item) and all subsequent calls (simple adds) are that fast.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T20:10:04+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<p>I don’t use flags on all my enums either.  I only use enum flags in GameType, Item Flags, Restrictions, Infusion slot flags (i.e. Defense, Offense, Utility), and upgrade component flags because these come in the form of JSON arrays and can hold more than one enum value.  But yes, I agree there would be quite a bit of work involved if you do the change.</p>
+<p>You can pass a capacity parameter to the List constructor and test your theory.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T20:16:10+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<p>Yeah I think I’ll test that out in the next few days when I’ve got a bit more time.</p>
+<p>// edit: It further seems that if I use the syntactic sugar (i.e. from, in, select, where) with linq it performs slower than the method query (which makes somewhat sense, but I’d have to see the IL to confirm this).<br>
+Second: It also seems that if you specify the output type of a linq query instead of using var linq also performs slower.<br>
+See <a href="http://ox.no/posts/linq-vs-loop-a-performance-test">here</a> and especially the comment from “Pavel” further down. (Keep in mind however that the first code is built upon a beta of LINQ and the code from pavel upon the final .Net 3.5 release. And I’m currently using 4.0 which is even faster)<br>
+Third: It also makes a huge difference to run the release code instead of just the VS code. All my tests I have made have used the debug release version. I’d have to make some tests with the release build</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T22:10:26+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<p>Ok a litte heads up for the people who don’t harcore spam F5 in the codeplex source tab or have it subscribed via RSS</p>
+<p>Since the last update we have fixed many bugs, especially in the items wrapper. We have added a guild lookup functionality and we have updated the colours api to support the latest changes.</p>
+<p>I hope we can keep up the current pace and start with the async support in a few days.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-10T20:33:10+00:00">
+        10 Jun 2013
+    </time>
+</p>
+<p>
+<p>I’m proud to tell you taht we just released version 0.5.0.0 of our GW2.NET library. This marks our first official release besides the usual source code.<br>
+You can grab the pre compiled binaries together with the dependencies and the xml documentation files from our <a href="https://gw2dotnet.codeplex.com/releases/view/107606">Codeplex Download page</a>.</p>
+<p>This is only a first step in the direction we want to go.<br>
+Our goal is to make this library as easy to use as a Bobby-Car! If you want to know where we are headed and want to follow us just drop by at our <a href="https://gw2dotnet.codeplex.com/">Codeplex page</a> and subscribe.</p>
+<p>Have fun working with this release.</p>
+<p>Ruhrpottpatriot</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-14T22:34:29+00:00">
+        14 Jun 2013
+    </time>
+</p>
+<p>
+<p>Code looks pretty clean.  Why don’t you return an interface to the client instead of a class?</p>
+<p>I suggest looking into the <a href="http://en.wikipedia.org/wiki/Inversion_of_control">Inversion of Control design pattern</a>  That should help make your *Data objects pluggable with test classes using test data or other data providers.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-22T16:44:56+00:00">
+        22 Jun 2013
+    </time>
+</p>
+<p>
+<p>where should I return an interface? could you point me to the code in question?</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-23T04:32:51+00:00">
+        23 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 22 2013 04:44PM"><a href="/forum/community/api/NET-Implementation/2262736">Ruhrpottpatriot.7293:</a></cite></div><div class="quotey"><p>where should I return an interface? could you point me to the code in question?</p></div></blockquote>
+<p>I am on vacation right now but, if I recall, by looking at your code in the past, didn’t you return ItemData to the client?</p>
+<p>If you did, then you have created a dependency between the client code and your class.  <br>
+Look into the design pattern to loosen the coupling between client code and your lib.  For example, your Gw2ApiManager class seems like it can be modified into a Service Locator or you may decide to use a Dependency Injection pattern.</p>
+<p>These are just some suggestions to loosen the coupling with your client code, so you may choose to ignore them if you like.  I will not be offended.<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">timidobserver.7925:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-10T18:46:14+00:00">
+        10 Aug 2013
+    </time>
+</p>
+<p>
+<p>So, is anyone able to help me figure out where I am going wrong at trying to get this to work. Here are my steps.</p>
+<p>1.Downloaded the 0.5.0.0 release(this doesn’t happen if I use the latest source code. It works fine with the latest source code.)<br>
+2. Opened visual studio 2012 professional.<br>
+3.  Started new project.<br>
+4. Right click references and added all of the dlls in the place that I saved the latest release.<br>
+5. Put using gw2dotnet.v1 in my new project.<br>
+6. Put the following items in my code directly from the example.<br>
+GW2DotNET.V1.World.WorldManager wm = new</p>
+<p>GW2DotNET.V1.World.WorldManager(); <br>
+var allEvents = wm.Events.ToList();</p>
+<p>I got the following error. <br>
+Newtonsoft.Json.JsonSerializationException was unhandled<br>
+  HResult=-2146233088<br>
+  Message=Error converting value “Inactive” to type ‘GW2DotNET.V1.World.Models.GwEventState’. Path ‘events<sup class="footnote"><a href="#fn10">10</a></sup>.state’, line 11, position 99.<br>
+  Source=Newtonsoft.Json</p></p>
+
+<h2 id="">poke.3712:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-10T23:53:51+00:00">
+        10 Aug 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 10 2013 06:46PM"><a href="/forum/community/api/NET-Implementation/2600256">timidobserver.7925:</a></cite></div><div class="quotey"><p>1.Downloaded the 0.5.0.0 release(this doesn’t happen if I use the latest source code. It works fine with the latest source code.)</p></div></blockquote>
+<p>And that’s the problem<img src="/include/images/smilies/smile.png"> The 0.5.0.0 release was released when the `Inactive` event status did not exist in the API yet. So whenever the API outputs an inactive event, the deserialization fails because there is no equivalent enum value it can map to.</p>
+<p>Support for the status was apparently added in the version directly after the 0.5.0.0 release, so you should be fine using any newer version than the released one.</p></p>
+
+<h2 id="">timidobserver.7925:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-16T23:30:35+00:00">
+        16 Aug 2013
+    </time>
+</p>
+<p>
+<p>Makes sense. Thank you.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-12T19:04:52+00:00">
+        12 Nov 2013
+    </time>
+</p>
+<p>
+<p>Long time no see!</p>
+<p>After a few months on hiatus (Real Life, at least for me) we are back in action. We just released version 0.7.0.1 of the library and are working (hard) on the next bigger release.<br>
+You can grab the pre-compiled binaries <a href="https://gw2dotnet.codeplex.com/releases/view/114748">HERE</a>.<br>
+Of course you are also invited to grab the <a href="https://gw2dotnet.codeplex.com/SourceControl/latest">Source Code</a> directly and modify it according to our license.</p>
+<p>I also updated the first post with lots of new information, look around if you have the time!</p>
+<p>As always we are looking for developers to help us out. If you think you have it in you, contact me here on the forum (with your Codepley username) or on Codeplex directly.</p>
+<p>See you in the game.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-29T17:44:33+00:00">
+        29 Nov 2013
+    </time>
+</p>
+<p>
+<p>Soooooo…..<br>
+Nothing new on the development front, well almost.<br>
+I took some time to get a NuGet package up and running. Now updating will be even easier. You can grab the NuGet package <a href="https://www.nuget.org/packages/GW2.NET/"><em>here</em></a></p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-12-23T19:00:54+00:00">
+        23 Dec 2013
+    </time>
+</p>
+<p>
+<p>So heads up for the days after christmas:</p>
+<p>I hope to get the events implementation done before new year, but cannot guarantee it. Before that I’ll update the package with better documentation that will be available online via NuDoq.</p>
+<p>Have a happy christmas and new year</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2014-02-12T13:53:15+00:00">
+        12 Feb 2014
+    </time>
+</p>
+<p>
+<p>We just released version 0.8.01 of our api. With this release the current API implementation is done (save mumble and chat links).<br>
+You can grab the new version on the <a href="https://gw2dotnet.codeplex.com/releases/view/117939">Codeplex Download page</a> or via <a href="https://www.nuget.org/packages/GW2.NET/0.8.0.1">NuGet</a> .</p>
+<p>The <a href="https://gw2dotnet.codeplex.com/documentation">new documentation</a> is up in parts and the rest will follow shorty (I hope).</p>
+<p>Have fun with the new version.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2014-02-20T17:55:34+00:00">
+        20 Feb 2014
+    </time>
+</p>
+<p>
+<p>A small bug fix release: Grab it via  <a href="https://gw2dotnet.codeplex.com/releases/view/117939">Codeplex</a> or <a href="https://www.nuget.org/packages/GW2.NET/0.8.0.2">NuGet</a></p>
+<p>Changes:</p>
+<ul>
+	<li>Fixed a bug where the source code would not build in release mode thanks to a wrong csproj element.</li>
+	<li>Changed version number to 0.8.0.2</li>
+	<li>Ran R# code cleanup function to unify code looks.</li>
+	<li>Removed optimize code from debug config for easier debugging.</li>
+	<li>Added x86 and x64 as platform targets to solution.</li>
+</ul></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2014-03-20T17:24:33+00:00">
+        20 Mar 2014
+    </time>
+</p>
+<p>
+<p>So a little heads up on what we are doing right now:</p>
+<p>We are in the finishing steps of our big rework wich will make the library much easier to use for you and for us to maintain. The latest version which you can grab via our <a href="https://forum-en.guildwars2.com/external?l=https%3A%2F%2Fgw2dotnet.codeplex.com%2F">Codeplex</a> page includes every endpoint the API has (except mumble), on contrast to the previous version which didn’t include the image endpoint.</p>
+<p>Currently we are working on a way to reliable store the contents of the api after you fetched them. We are completely aware, that querying the item API is not the way to go as the content of that endpoint is not going to change often. <br>
+However, going with our design philosophy we want to make the library as much extendible as possible. Each user has it’s own preferences on how to store the cache, some will want to store them as JSON files again, some will want to use a backend database and some will want to use another method. We want to satisfy all of them and because of that we are not ready to release the new version just yet.</p>
+<p>With the new release we will provide one standard implementation, so the whole package is ready to go directly after you installed it, but if something does not suit you, you can easily change it through dependency injection.</p>
+<p>One of our coders (<a href="https://www.codeplex.com/site/users/view/StevenLiekens">Steven Liekens</a>) has written an example page. He will upload it in the next few days, so you can see what you can do with our library. After the release of the new version we will provide more examples (definitely a WPF integration, WinForms is still up to debate, as that API is going to vanish sooner or later)</p>
+<p>Now back from the future to some current problems:</p>
+<ul>
+	<li>I am aware that the current version is not working with the latest GW2 patch, since it introduced a new property for items and therefore deserializing the JSON response will break. We will release a hotfix for that problem today or tomorrow.</li>
+	<li>I am also aware that the current documentation on NuDoq is not working. I am in contact with the site and hope to change that in the next few days.</li>
+	<li>I am more than aware that the documentation on the Codeplex page is not complete (far from it). I am currently a bit stressed with my university homework and have not much time for writing it. I hope to get it done in the next days.</li>
+</ul>
+<p>At the end I want to thank my team for putting so much effort into this. Without you we would not be here today.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-03-23T13:59:43+00:00">
+        23 Mar 2014
+    </time>
+</p>
+<p>
+<p>Thanks for taking the time to post all that. You saved me a lot of typing. :P</p>
+<p>Here’s the demo website that was mentioned in the post above: <a href="http://guildwars2netdemo.apphb.com/">http://guildwars2netdemo.apphb.com/</a></p>
+<p>This website is also entirely open-source (currently without a license, but I’m leaning towards the MIT license). To anyone reading this: I am desperately in need of someone who knows how to tame HTML/CSS/JavaScript and has experience with (or is willing to learn about) ASP.NET MVC 4.</p>
+<p>Your job will be to:</p>
+<ul>
+	<li>figure out how to use the GW2.NET library (with my personal guidance)</li>
+	<li>provide feedback about code that we’ve written</li>
+	<li>develop example applications that demonstrate how the library can be put to good use</li>
+</ul>
+<p>If you are this person, send me a private message. I check these forums at least daily.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2014-04-26T22:00:45+00:00">
+        26 Apr 2014
+    </time>
+</p>
+<p>
+<p>A bit late for an Easter present, but we had to tackle some stuff, so forgive us.</p>
+<p>Here is version 0.9.0.0 of the GW2.NET library. It already implements the new skins endpoint and is otherwise a spring cleaned version, with many improvements.</p>
+<p>We also provide you now with a second package which uses RestSharp to make the API calls, if you prefer that install the additional package too.</p>
+<p>As always you can either grab the library as binarys on our <a href="https://gw2dotnet.codeplex.com/releases/view/121466">download site</a> or via  <a href="https://www.nuget.org/packages/GW2.NET">NuGet</a> (<a href="https://www.nuget.org/packages/GW2.NET.RSharp/">R# implementation</a>). NuGet is totally recommended over that standard download way.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-04T10:22:51+00:00">
+        04 May 2014
+    </time>
+</p>
+<p>
+<p><strong>v0.9.1.0</strong></p>
+<p>I’ve gone ahead and updated the library to include all of the latest bugfixes and features that didn’t make it into the previous release. Mostly regarding the item_details endpoint.</p>
+<p>You can get the updated binaries from the <a href="https://forum-en.guildwars2.com/external?l=https%3A%2F%2Fgw2dotnet.codeplex.com%2Freleases%2Fview%2F121466">project page</a>. The updated Nuget package should follow soon(ish).</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-29T16:28:03+00:00">
+        29 Jun 2014
+    </time>
+</p>
+<p>
+<p>So it has been some busy weeks for me, as you could have guessed for the lack of updates I did. Gladly the team did not stop working and we put out three new releases!</p>
+<p>Some of you might have gotten them already from out <a href="https://gw2dotnet.codeplex.com/">Codeplex</a> site, but those who rely on NuGet were surely disappointed.</p>
+<p>Rejoice! I have updated the packages and you can get them just by updating the package in your solution.</p>
+<p>Have fun coding.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2014-07-06T13:53:39+00:00">
+        06 Jul 2014
+    </time>
+</p>
+<p>
+<p>We released version 0.9.6.0 and the hotfix 0.9.6.1 for the main GW2.NET library, we also released 0.9.6.0 for the Rest# specific implementation, as always you can grab it via NuGet as alwys</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-12T22:26:41+00:00">
+        12 Sep 2014
+    </time>
+</p>
+<p>
+<p>Hey guys</p>
+<p>I published version 0.9.9.0 of GW2.NET on the Codeplex project page.<br>
+This release adds support for all /v2/commerce services.</p>
+<p><a href="https://gw2dotnet.codeplex.com/">https://gw2dotnet.codeplex.com/</a></p>
+<p>Enjoy!</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-27T13:27:19+00:00">
+        27 Sep 2014
+    </time>
+</p>
+<p>
+<p>Hello again</p>
+<p>You can now download version 0.9.10.0 of the library. This release adds support for the /v2/items service, and fixes some issues with the implementation for the /v1/item_details.json service.</p>
+<p><a href="https://gw2dotnet.codeplex.com/releases/view/133598">https://gw2dotnet.codeplex.com/releases/view/133598</a></p>
+<p>Enjoy!</p></p>
+
+<h2 id="">Aerodin.2795:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-27T14:39:39+00:00">
+        27 Sep 2014
+    </time>
+</p>
+<p>
+<p>Awesome work, as always. Thanks guys!!</p></p>
+
+<h2 id="">TehGear.8702:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-28T08:45:51+00:00">
+        28 Sep 2014
+    </time>
+</p>
+<p>
+<p>Hey Steven,</p>
+<p>I currently have an issue with this method: IDictionaryRange&lt;TKey, TValue&gt; FindAll(ICollection&lt;TKey&gt; identifiers); it gives back no prices at all. (GW2DotNET.V2.Commerce.PriceService)</p>
+<p>Regards</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-28T09:18:47+00:00">
+        28 Sep 2014
+    </time>
+</p>
+<p>
+<p>Can you give me the collection of identifiers that causes the problem? I’ll take a look at what’s going on.</p></p>
+
+<h2 id="">TehGear.8702:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-28T09:35:03+00:00">
+        28 Sep 2014
+    </time>
+</p>
+<p>
+<p>var prices = PriceService.FindAll(new Collection&lt;int&gt;() { 9591, 12852 }); //Doesn’t work</p>
+<p>var p1 = PriceService.Find(9591); // Works<br>
+            var p2 = PriceService.Find(12852); // Works</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-28T10:05:08+00:00">
+        28 Sep 2014
+    </time>
+</p>
+<p>
+<p>I’m taking a look at it. Bug confirmed, but I’m not sure why this is happening. Both “Find()” and “FindAll()” use the exact same serialization engine. The only difference is that one object is part of a collection, the other isn’t.</p>
+<p><strong>Edit</strong></p>
+<p>Turns out it is a copy-paste-programming error. The ‘FindAll()’ method is talking to the /commerce/listings service instead of the /commerce/prices service. Thanks for the feedback!</p></p>
+
+<h2 id="">TehGear.8702:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-28T11:11:20+00:00">
+        28 Sep 2014
+    </time>
+</p>
+<p>
+<p>I was trying to find it myself, but I couldn’t find out how to reference the projects correctly.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-28T11:13:23+00:00">
+        28 Sep 2014
+    </time>
+</p>
+<p>
+<p>You only have to reference GW2.NET.dll and GW2.NET.Core.dll for that. Don’t reference the Contracts.dll libraries. You can reference other libraries, but you don’t have to.</p></p>
+
+<h2 id="">TehGear.8702:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-28T11:16:55+00:00">
+        28 Sep 2014
+    </time>
+</p>
+<p>
+<p>I mean I tried to find the bug, with debugging, but I couldn’t find out how to reference the projects properly.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-28T11:27:43+00:00">
+        28 Sep 2014
+    </time>
+</p>
+<p>
+<ul>
+	<li>Open your solution</li>
+	<li>Select your main project in the solution explorer</li>
+	<li>Project | Add Existing Item… | GW2.NET.csproj</li>
+	<li>Project | Add Existing Item… | GW2.NET.Core.csproj</li>
+	<li>Project | Add Reference… | Solution | Projects | GW2.NET, GW2.NET.Core</li>
+</ul>
+<p><strong>edit</strong></p>
+<p>I see the problem now. The GW2.NET.Core.csproj configuration file wasn’t source controlled for some reason.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-28T15:06:02+00:00">
+        28 Sep 2014
+    </time>
+</p>
+<p>
+<p>I uploaded version 0.9.11.0 of the library. This is a bugfix release that, among others, fixes the problem with the ‘FindAll()’ method on the prices service.</p>
+<p><a href="https://gw2dotnet.codeplex.com/releases/view/133644">https://gw2dotnet.codeplex.com/releases/view/133644</a></p></p>
+
+<h2 id="">TehGear.8702:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-29T17:01:14+00:00">
+        29 Sep 2014
+    </time>
+</p>
+<p>
+<p>I’m not sure if it’s FindAll or in general, but when I call the FindAll function with more than 350 Ids, it get’s a parser error instead of the endpoint is limited to 200 error.</p>
+<p>I think, it’s because of the hardlimit of the URL.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-29T18:06:06+00:00">
+        29 Sep 2014
+    </time>
+</p>
+<p>
+<p>That’s just our error logic tripping over the HTML response when it was expecting JSON instead. Nothing much that I can do about besides ensuring that the content type header is application/json before attempting to parse the error content.</p></p>
+
+<h2 id="">TehGear.8702:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-29T18:59:23+00:00">
+        29 Sep 2014
+    </time>
+</p>
+<p>
+<p>No problem, just wondered.</p>
+<p>Besides, great work so far, thank you ;-)</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2014-12-26T17:55:44+00:00">
+        26 Dec 2014
+    </time>
+</p>
+<p>
+<p><strong>MERRY CHRISTMAS FOLKS</strong> (or whatever you might celebrate these days)</p>
+<p>Finally after months of hard work we have released version <em>0.9.12</em> of our popular library. Much has been done since the last version. Finally everything the ANet API has to offer is present in our library. You can query your Quaggans as well as you can use the integrated GW2 Mumble support.</p>
+<p>But what has changed exactly? Now that’s too much to remember, but here are the key points:</p>
+<ul>
+	<li>Every endpoint covered</li>
+	<li>Unified query system for everything, safe some few nodes where appropriate documentation is written as you read this text here. You don’t have to keep in mind that the maps endpoint is queried in a different way than events, or items. <strong>We</strong> did the work <strong>for you</strong>, so <strong>you</strong> can code more efficiently and with less errors.</li>
+	<li>Many optimizations to the codebase. Now almost everything can run in parallel. This means, you can query the <strong>whole</strong> items database in around 30 seconds, opposed to the previous 15 minutes.</li>
+	<li>More strongly typed object, meaning less magic strings and thus even less errors than before.</li>
+</ul>
+<p>But where to go from here on?<br>
+Sadly we have to announce that this release will be the last release for .NET 4. Operating systems based on XP or even older are in steady decline. With the release of Windows 10 in a few months XP will be more than 13 years old and it’s time to retire it. This and the move to open source for the .NET framework means a wider audience for .NET 4.5 and above. Of course we want to get the biggest user base we can have and this is not possible with .NET 4 anymore.<br>
+Therefore we will move to at least .NET 4.5 with the coming versions. We waited so long because we didn’T forget the XP users out there and we wanted to give them the best experience we could offer.<br>
+But as I already said: Windows 10 and an open source .NET framework put the nails in the coffin for the current framework version.</p>
+<p>I know not everyone is happy about this, but it is final.</p>
+<p>So long folks. Happy coding over your (hopefully) free days.</p>
+<p>P.S. Yes I know the first post and the Codeplex site are not updated yet. This will happen in the next few hours and days.</p></p>
+
+<h2 id="">Aerodin.2795:</h2>
+<p class="post-meta">
+    <time datetime="2014-12-30T13:32:33+00:00">
+        30 Dec 2014
+    </time>
+</p>
+<p>
+<p>Nice job guys. I know a lot of work went into this release, and it shows. Thanks for continuing to update and be active with your library!</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-24T18:24:10+00:00">
+        24 Feb 2015
+    </time>
+</p>
+<p>
+<p>So I finally got to update the first post. Now with more information for everyone free of charge.</p>
+<p>So that you know: We are currently implementing the last of the recently released endpoints. They should be finished in a week, not because they are so hard to implement, but it takes time and between university exams and a job most of the team is currently busy elsewhere.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-28T08:59:02+00:00">
+        28 Feb 2015
+    </time>
+</p>
+<p>
+<p>I think that the NuGet package is outdated. This sounds like a bug that I fixed months ago in 0.9.12.1</p>
+<p>Does the same code crash for any other repository besides QuagganRepository?</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-28T18:05:10+00:00">
+        28 Feb 2015
+    </time>
+</p>
+<p>
+<p>The Codeplex project page always has the most recent package. There are two ways to install the binaries.</p>
+<p>1)<br>
+download the zip-file, extract the contents, and add references to GW2NET.dll and GW2NET.Core.dll to your project. Also add references to Json.NET (can use NuGet).</p>
+<p>2)<br>
+download the nupkg file, move it to a directory somewhere memorable (e.g. C:\NuGet), add that folder as a NuGet package source in the NuGet package manager settings, then use the package manager to install the package from the local directory instead of the online NuGet feed</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-28T18:09:20+00:00">
+        28 Feb 2015
+    </time>
+</p>
+<p>
+<p>FYI: we don’t filter unknown cultures like “th-TH”. Instead, we let the API decide which language to use for the response. For “lang=th”, the response defaults to English, so that’s what you get.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-01T17:05:44+00:00">
+        01 Mar 2015
+    </time>
+</p>
+<p>
+<p>I’ll check it out.</p>
+<p>Oh… yeah, the code is still broken. Seems that I didn’t fully understand the problem last time I came across this bug.</p>
+<p>Update: a new package is available on the Codeplex project page. This package includes a fix for the null references in the QuagganRepository class.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-03T18:26:16+00:00">
+        03 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="quotey"><p>It works now, thanks : )<br>
+In Quaggans part the <em>IDictionaryRange&lt;string, Quaggan&gt;.TotalCount</em> property doesn’t work for me, it always shows 0.</p></div></blockquote>
+<p>I’ll check it out.</p>
+<blockquote><div class="quotey"><p>*In ChatLinks part when you decode I think you are using wrong type, it should be ItemChatLink not ChatLink, as it doesn’t have the <em>ItemId</em> property.</p></div></blockquote>
+<p>Decoding as ‘ChatLink’ is by design. The reason is because we use the same ‘Decode()’ method for all types of chat links, not just item chat links.</p>
+<p>You can use a safe cast in combination with a null check to get the item identifier.</p>
+<pre><code>
+    int GetItemId(string chatLinkAsBase64)
+    {
+        var chatLink = ChatLink.Factory.Decode(chatLinkAsBase64) as ItemChatLink;
+        if (chatLink == null)
+        {
+            return -1;
+        }
+
+        return chatLink.ItemId;
+    }
+
+</code></pre>
+<p>Alternatively, you can use the generic ‘Decode&lt;T&gt;()’ overload. Beware that this method throws exceptions (I forgot which type) if the input is not an item chat link .</p>
+<pre><code>
+    int GetItemId(string chatLinkAsBase64)
+    {
+        try
+        {
+            var chatLink = ChatLink.Factory.Decode&amp;lt;ItemChatLink&amp;gt;(chatLinkAsBase64);
+            return chatLink.ItemId;
+        }
+        catch
+        {
+            return -1;
+        }
+    }
+</code></pre></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-03T19:10:49+00:00">
+        03 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="quotey"><p>In Quaggans part the <em>IDictionaryRange&lt;string, Quaggan&gt;.TotalCount</em> property doesn’t work for me, it always shows 0.</p></div></blockquote>
+<p>I remember now. This happens because the quaggans API returns the X-Result-Count header, but not the X-Result-Total header. I’ll create a new issue on GitHub.</p>
+<p>Edit<br>
+<a href="https://github.com/arenanet/api-cdi/issues/15">https://github.com/arenanet/api-cdi/issues/15</a></p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-07T19:05:44+00:00">
+        07 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 07 2015 05:36PM"><a href="/forum/community/api/GW2-NET-a-NET-wrapper-around-the-GW2-API/4856414">Grey.5731:</a></cite></div><div class="quotey"><p>This won’t compile, as <em>chatLink.ItemId</em> will be marked red due to declaration <em>ChatLink chatLink</em> and <em>ChatLink</em> class has no <em>ItemId</em> property.</p></div></blockquote>
+<p>It probably should be this:</p>
+<blockquote><div class="quotey"><pre><code>ItemChatLink chatLink = ChatLink.Factory.Decode("[&amp;AgHblwAA]") as ItemChatLink;
+
+// Write to console, but of course you can use it wherever you want.
+Console.WriteLine(chatLink.ItemId);</code></pre></div></blockquote></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-07T19:28:56+00:00">
+        07 Mar 2015
+    </time>
+</p>
+<p>
+<p>Ohhh… yeah, that’s an error in the documentation. Nice find!</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-20T23:11:55+00:00">
+        20 Mar 2015
+    </time>
+</p>
+<p>
+<p>I updated the Nuget feed to be the same version as the Codeplex page. Should work now too.</p>
+<p>@Steven: If you update to a new version, send me a mail. There is a greater chance I’ll see that<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-15T11:09:06+00:00">
+        15 May 2015
+    </time>
+</p>
+<p>
+<p>So everyone. I haven’t posted here in a while, since I was busy with my university classes.<br>
+You can expect a new release this weekend. The release will NOT contain any of the new authenticated endpoints.</p>
+<p>To clarify:<br>
+With the next release we are officially moving out of Beta and into version 1.0. This version will be the last to support the v1 endpoints. Future versions will throw a warning and at some point an error (expect this to be around 1.5 or so).<br>
+Of course this does not hold true for endpoints which are not yet available through the v2 interface.</p>
+<p>Since 1.0 is a good foundation to implement bigger changes in the deployment process and the like, you will also see a change in Version numbers. From 1.0 onwards we are using <a href="http://semver.org/">semantic versioning</a> so you can finetune which versions you want to use and which not.</p>
+<p>As for the authenticated endpoints, expect them around 1.1 or 1.2, that will be released in a month or so (I hope).</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-25T13:45:40+00:00">
+        25 May 2015
+    </time>
+</p>
+<p>
+<p>It took us about a week, but we finally released version 1.0.0 of our popular library. We are sorry for the delay, but we had to fix some last minute issues so everything now and in the future is going smoothly.</p>
+<div class="spoiler_container"><div class="spoileroncontainer"><button type="button" class="button spoileron" title="Click to show the spoiler.">Changelog</button></div><div class="spoiler"><div class="spoileroffcontainer"><button type="button" class="button spoileroff" title="Click to hide the spoiler.">hide spoiler</button><br></div><div class="spoilertext"><ul>
+	<li>Split the package into smaller packages to make updating and publishing more modular and therefore faster. <strong>See bottom of this post more more details!</strong></li>
+	<li>Made GetParameters and GetPathSegment in DiscoveryRequest virtual so they can be used with the /v2/floors url style</li>
+	<li>Changed constructor of abstract class FactoryBase to protected</li>
+	<li>Stylecop fixes across the board</li>
+	<li>Added Support for v2/floors endpoint and made it publicly available although the api endpoint is currently disabled.</li>
+	<li>Added Support for v2/maps endpoint</li>
+	<li>Added Support for v2/skins endpoint</li>
+	<li>Added Support for v2/continents endpoint</li>
+	<li>Added Support for v2/files endpoint</li>
+	<li>Renamed WvW property in Factoryfor V1 to WorldVersusWorld</li>
+	<li>Added missing ObjectInvariant methods.</li>
+	<li>V2 Factories now implement RepositoryFactoryBase to reduce code repitition</li>
+	<li>Added obsolete warnings for all currently available v2 endpoints</li>
+	<li>Added an obsolete error for the v1 events endpoint since it is already disabled</li>
+	<li>Fixed some bugs in the request classes</li>
+	<li>Added interface and model class for v2/files since the old model/interface is not compatible with the new api layout</li>
+	<li>Updated StyleCop settings</li>
+</ul></div></div></div><p>Still there are some things to consider when upgrading:<br>
+First of all: We changed the ID of the NuGet package to be in line with the namespaces we use in the project itself. However updating from 0.×.x to 1.0.1 is still possible with a helper package. To use this helper package you don’t have to do anything besides updating your GW2.NET NuGet Package. The helper package is appropriately labeled and will download all required packages by itself. After the update process has been completed you can remove the helper package without consequences.</p>
+<p>You then might notice that you have dozens of GW2.NET.xyz packages in your package manager. As already stated in the changelog we have split our one big package into multiple smaller ones so we can deliver updates more frequently in the future. This also allows users to modularise the packages according to their needs.<br>
+For erxample: A website which only displays WvW scores will definitely not need the items package. So the developers can simply download <em>GW2.NET World versus World Matches</em> and be done with it.<br>
+This of course requires more work form the user since he by himself has to create and maintain the repositoriesby himself, which is currently done by the GW2.NET main package, but this is not hard and documentation on this topic will be updated in the next weeks.</p>
+<p>This said: <strong>For the masses of developers installing the <em>GW2.NET</em> main package is absolutely sufficient!</strong></p>
+<p>For anything else, just leave a message here or read the documentation over at <a href="https://gw2dotnet.codeplex.com/documentation">Codeplex</a></p>
+<p>And now: Happy coding</p>
+<p>~~ Ruhrpottpatriot</p>
+<p>P.S. We will be moving to another OSS provider in the near future. We will keep you appraised of that, should anything change for you.</p></p>
+
+<h2 id="">Lone Wolf.4129:</h2>
+<p class="post-meta">
+    <time datetime="2017-07-30T23:48:10+00:00">
+        30 Jul 2017
+    </time>
+</p>
+<p>
+<p>Did anyone got this working with unity?</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

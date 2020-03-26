@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>API Changes with upcoming WvW changes?</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/API-Changes-with-upcoming-WvW-changes/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">API Changes with upcoming WvW changes?</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/API-Changes-with-upcoming-WvW-changes
+</p>
+
+
+
+<h2 id="">Drakma.1549:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-06T18:32:19+00:00">
+        06 Sep 2013
+    </time>
+</p>
+<p>
+<p>So I was wondering if there are any changes to the way the WvW API works with the upcoming changes to League play and the objective changes.</p>
+<p>If so, will we be able to get a preview of them before they actually go live so we can fix our applications and wrappers?</p></p>
+
+<h2 id="">Seiishizo.7162:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-11T23:02:22+00:00">
+        11 Sep 2013
+    </time>
+</p>
+<p>
+<p>i would very much like this aswell.</p></p>
+
+<h2 id="">Chris Barrett.3280:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-13T17:00:41+00:00">
+        13 Sep 2013
+    </time>
+</p>
+<p>
+<p>There won’t be any API changes for WvW Season 1 or the new Ruins objectives in the Borderlands.</p>
+<p>However, there will be some new data related to the Ruins in the match_details and objective_names resources.</p>
+<p>These are the new objective ids you’ll be seeing in the resources:<br>
+62: Red Borderlands’ Temple of Lost Prayers<br>
+63: Red Borderlands’ Battle’s Hollow<br>
+64: Red Borderlands’ Bauer’s Estate<br>
+65: Red Borderlands’ Orchard Overlook<br>
+66: Red Borderlands’ Carver’s Ascent<br>
+67: Blue Borderlands’ Carver’s Ascent<br>
+68: Blue Borderlands’ Orchard Overlook<br>
+69: Blue Borderlands’ Bauer’s Estate<br>
+70: Blue Borderlands’ Battle’s Hollow<br>
+71: Blue Borderlands’ Temple of Lost Prayers<br>
+72: Green Borderlands’ Carver’s Ascent<br>
+73: Green Borderlands’ Orchard Overlook<br>
+74: Green Borderlands’ Bauer’s Estate<br>
+75: Green Borderlands’ Battle’s Hollow<br>
+76: Green Borderlands’ Temple of Lost Prayers</p>
+<p>The attached files are:</p>
+<ul>
+	<li>A close-up screenshot of the new Borderlands map showing where the Ruins objectives are located.</li>
+	<li>All the Ruins icons in red, blue, green, and neutral colors.</li>
+</ul></p>
+
+<h2 id="">Drakma.1549:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-13T19:34:26+00:00">
+        13 Sep 2013
+    </time>
+</p>
+<p>
+<p>Awesome!  Thank you so much. So can we assume that the matches.json will handle all of the wins and losses?  Or is this something that will need to be done locally?</p>
+<p>Also, will it be possible to get a high res version of the entire wvw map?</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-13T20:23:57+00:00">
+        13 Sep 2013
+    </time>
+</p>
+<p>
+<p>@Chris: Thanks for that! Could you please also provide us icons for the “old” objectives in the same resolution? I believe most of us still use those in poor quality and in the old colors.</p>
+<p>@Drakma: just wait for the maps api to be updated<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-14T00:49:08+00:00">
+        14 Sep 2013
+    </time>
+</p>
+<p>
+<p>Are the supply camp, tower, keep, and castle icons available anywhere?</p>
+<p>I have ones I edited out of screenshots, but these look much better.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-14T01:02:06+00:00">
+        14 Sep 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 14 2013 12:49AM"><a href="/forum/community/api/API-Changes-with-upcoming-WvW-changes/2834735">Nabrok.9023:</a></cite></div><div class="quotey"><p>Are the supply camp, tower, keep, and castle icons available anywhere?</p></div></blockquote>
+<p>This is what i asked for! (the “old” objectives)<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Seiishizo.7162:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-14T01:37:13+00:00">
+        14 Sep 2013
+    </time>
+</p>
+<p>
+<p>Thank you very much chris<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Drakma.1549:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-14T05:17:55+00:00">
+        14 Sep 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 13 2013 08:23PM"><a href="/forum/community/api/API-Changes-with-upcoming-WvW-changes/2833167">smiley.1438:</a></cite></div><div class="quotey"><p>@Chris: Thanks for that! Could you please also provide us icons for the “old” objectives in the same resolution? I believe most of us still use those in poor quality and in the old colors.</p>
+<p>@Drakma: just wait for the maps api to be updated<img src="/include/images/smilies/colondee.png"></p></div></blockquote>
+<p>But that would mean that <strong>I</strong> would have to do the work!</p></p>
+
+<h2 id="">Narax.7605:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-14T21:42:40+00:00">
+        14 Sep 2013
+    </time>
+</p>
+<p>
+<p>Will the Glicko 2 system be obsolete then?</p></p>
+
+<h2 id="">NeHoMaR.9812:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-16T04:50:04+00:00">
+        16 Sep 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 13 2013 05:00PM"><a href="/forum/community/api/API-Changes-with-upcoming-WvW-changes/2831867">Chris Barrett.3280:</a></cite></div><div class="quotey"><p>…..</p>
+<p>The attached files are:</p>
+<ul>
+	<li>A close-up screenshot of the new Borderlands map showing where the Ruins objectives are located.</li>
+	<li>All the Ruins icons in red, blue, green, and neutral colors.</li>
+</ul></div></blockquote>
+<p>Could you please make the blue icons darker? or rollback to the old colors of icons? this is seriously annoying to me.</p></p>
+
+<h2 id="">Ice of Dragons.1637:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-16T09:40:05+00:00">
+        16 Sep 2013
+    </time>
+</p>
+<p>
+<p>can we have all the icon pack ?</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-16T13:28:32+00:00">
+        16 Sep 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 16 2013 04:50AM"><a href="/forum/community/api/API-Changes-with-upcoming-WvW-changes/2845863">NeHoMaR.9812:</a></cite></div><div class="quotey"><p>Could you please make the blue icons darker? or rollback to the old colors of icons? this is seriously annoying to me.</p></div></blockquote>
+<p>Any provided icons should match the in-game colors.</p></p>
+
+<h2 id="">fooey.5824:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-16T23:40:50+00:00">
+        16 Sep 2013
+    </time>
+</p>
+<p>
+<p>Could we get the Spanish, French and German names?</p>
+<p>I’ll also chime in to ask for a full icon set to go with these too</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-17T00:06:19+00:00">
+        17 Sep 2013
+    </time>
+</p>
+<p>
+<p>The best way would actually be to provide all the WvW icons via the <a href="https://api.guildwars2.com/v1/files.json">https://api.guildwars2.com/v1/files.json</a> API<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">Tanis.5134:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-17T17:21:30+00:00">
+        17 Sep 2013
+    </time>
+</p>
+<p>
+<p>It does not appear as though the tiles service has been updated to show the new WvW borderlands maps.</p>
+<p>Do we have an ETA on that?</p></p>
+
+<h2 id="">werdernator.6105:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-17T18:18:10+00:00">
+        17 Sep 2013
+    </time>
+</p>
+<p>
+<p><ins><strong>German Translation:</strong></ins><br>
+Carver’s Ascent → Aufstieg des Schnitzers<br>
+Orchard Overlook  → Obstgarten Aussichtspunkt<br>
+Bauer’s Estate → Bauers Anwesen<br>
+Battle’s Hollow → Schlachten-Senke<br>
+Temple of Lost Prayers → Tempel der Verlorenen Gebete</p></p>
+
+<h2 id="">fooey.5824:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-17T18:57:57+00:00">
+        17 Sep 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 17 2013 06:18PM"><a href="/forum/community/api/API-Changes-with-upcoming-WvW-changes/2856265">werdernator.6105:</a></cite></div><div class="quotey"><p><ins><strong>German Translation:</strong></ins><br>
+Carver’s Ascent -&gt; Aufstieg des Schnitzers<br>
+Orchard Overlook  -&gt; Obstgarten Aussichtspunkt<br>
+Bauer’s Estate -&gt; Bauers Anwesen<br>
+Battle’s Hollow -&gt; Schlachten-Senke<br>
+Temple of Lost Prayers -&gt; Tempel der Verlorenen Gebete</p></div></blockquote>
+<p>Danke werdernator!</p></p>
+
+<h2 id="">Narax.7605:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-17T19:48:16+00:00">
+        17 Sep 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 17 2013 06:57PM"><a href="/forum/community/api/API-Changes-with-upcoming-WvW-changes/2856669">fooey.5824:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 17 2013 06:18PM"><a href="/forum/community/api/API-Changes-with-upcoming-WvW-changes/2856265">werdernator.6105:</a></cite></div><div class="quotey"><p><ins><strong>German Translation:</strong></ins><br>
+Carver’s Ascent -&gt; Aufstieg des Schnitzers<br>
+Orchard Overlook  -&gt; Obstgarten Aussichtspunkt<br>
+Bauer’s Estate -&gt; Bauers Anwesen<br>
+Battle’s Hollow -&gt; Schlachten-Senke<br>
+Temple of Lost Prayers -&gt; Tempel der Verlorenen Gebete</p></div></blockquote>
+<p>Danke werdernator!</p></div></blockquote>
+<p>If your game language is German you can press <strong>right</strong> “Ctrl” and it instantly shows english labels until you release the key.</p></p>
+
+<h2 id="">ElGreenGo.6734:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-20T04:34:53+00:00">
+        20 Sep 2013
+    </time>
+</p>
+<p>
+<p>Here are the Spanish and French translations for anyone who was wondering.</p>
+<p><strong><ins>ES</ins></strong><br>
+Carver’s Ascent -&gt; Ascenso del Trinchador<br>
+Orchard Overlook -&gt; Mirador del Huerto<br>
+Bauer’s Estate -&gt; Hacienda de Bauer <br>
+Battle’s Hollow -&gt; Hondonada de la Battalla<br>
+Temple of Lost Prayers -&gt; Templo de las Pelgarias</p>
+<p><strong><ins>FR</ins></strong><br>
+Carver’s Ascent -&gt; Côte du couteau<br>
+Orchard Overlook -&gt; Belvédère du Verger<br>
+Bauer’s Estate -&gt; Domaine de Bauer<br>
+Battle’s Hollow -&gt; Vallon de bataille<br>
+Temple of Lost Prayers -&gt; Temple des prières perdues</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-20T12:44:39+00:00">
+        20 Sep 2013
+    </time>
+</p>
+<p>
+<p>I’ve added the translations as well as the approx coordinates to my gist – grab this for a full featured objectives.json:<br>
+<a href="https://gist.github.com/codemasher/bac2b4f87e7af128087e">https://gist.github.com/codemasher/bac2b4f87e7af128087e</a><br>
+;)</p></p>
+
+<h2 id="">Polonium.4725:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-20T14:17:06+00:00">
+        20 Sep 2013
+    </time>
+</p>
+<p>
+<p>Is there any way to know who has the bloodlust bonuses? Do we need to monitor it ourself ?<br>
+The buff changes owner when another server keeps 3 points for 2 minutes.</p></p>
+
+<h2 id="">Narax.7605:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-20T16:43:51+00:00">
+        20 Sep 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 20 2013 02:17PM"><a href="/forum/community/api/API-Changes-with-upcoming-WvW-changes/2881050">Polonium.4725:</a></cite></div><div class="quotey"><p>Is there any way to know who has the bloodlust bonuses? Do we need to monitor it ourself ?<br>
+The buff changes owner when another server keeps 3 points for 2 minutes.</p></div></blockquote>
+<p>That would mean you have to call the match_details every second and it still would be error-prone.</p></p>
+
+<h2 id="">Drakma.1549:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-20T16:44:14+00:00">
+        20 Sep 2013
+    </time>
+</p>
+<p>
+<p>you’ll have to do it yourself.</p>
+<p>Which is currently near impossible, because the API data is not reflecting what is actually happening in game.</p>
+<p>The API is still not returning when a BL point is neutralized/decayed back to neutral</p></p>
+
+<h2 id="">titanlectro.5029:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-20T16:54:31+00:00">
+        20 Sep 2013
+    </time>
+</p>
+<p>
+<p>The API needs to return neutral if no one controls the point anymore.</p></p>
+
+<h2 id="">cyyrix.6105:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-20T19:45:46+00:00">
+        20 Sep 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 20 2013 04:54PM"><a href="/forum/community/api/API-Changes-with-upcoming-WvW-changes/2881988">titanlectro.5029:</a></cite></div><div class="quotey"><p>The API needs to return neutral if no one controls the point anymore.</p></div></blockquote>
+<p>Agreed! The “last capped” team is incredibly insufficient when the points are constantly being neutralized by enemies and/or the decay timer. Give us neutralization info please<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Stefan Larimore.6872:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-25T17:08:35+00:00">
+        25 Sep 2013
+    </time>
+</p>
+<p>
+<p>I’ve posted about this “neutral” bug on another thread: <a href="/forum-backup/WvW-Ruins-after-Patch">https://forum-en.guildwars2.com/forum/community/api/WvW-Ruins-after-Patch</a></p>
+<p>In short, the WvW team is planning a fix, but I don’t have an ETA at this time.  Thank you for the report.</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-26T15:06:32+00:00">
+        26 Sep 2013
+    </time>
+</p>
+<p>
+<p>Don’t suppose there’s any word on getting the other icons?</p></p>
+
+<h2 id="">Stefan Larimore.6872:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-26T19:50:05+00:00">
+        26 Sep 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 17 2013 12:06AM"><a href="/forum/community/api/API-Changes-with-upcoming-WvW-changes/2851239">smiley.1438:</a></cite></div><div class="quotey"><p>The best way would actually be to provide all the WvW icons via the <a href="https://api.guildwars2.com/v1/files.json">https://api.guildwars2.com/v1/files.json</a> API<img src="/include/images/smilies/wink.png"></p></div></blockquote>
+<p>Yes, we are going to expose these via the files.json API fairly soon.</p>
+<p>Nobrok, is this also what you are waiting on when you ask, “any word on getting the other icons”?</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-26T20:15:41+00:00">
+        26 Sep 2013
+    </time>
+</p>
+<p>
+<p>Great, thanks for that one, Stefan!<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Chris Barrett.3280:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-02T19:03:50+00:00">
+        02 Oct 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 20 2013 02:17PM"><a href="/forum/community/api/API-Changes-with-upcoming-WvW-changes/2881050">Polonium.4725:</a></cite></div><div class="quotey"><p>Is there any way to know who has the bloodlust bonuses? Do we need to monitor it ourself ?<br>
+The buff changes owner when another server keeps 3 points for 2 minutes.</p></div></blockquote>
+<p>When the October 15th update goes live, the match_details resource will include Borderlands Bloodlust information in a new “bonuses” array.  The format looks like…</p>
+<pre><code>
+"maps": [
+    {
+      "type": "RedHome",
+      "scores": [ 80148, 7022, 18582 ],
+      "objectives": [
+        { "id": 32, "owner": "Red", "owner_guild": "277CCE76-6254-4CF2-8A2D-15A30B7110BD" },
+        { "id": 35, "owner": "Green" },
+        ...
+      ],
+      "bonuses": [
+        { "type": "bloodlust", "owner": "Red" }
+      ]
+    },
+    ...
+</code></pre>
+<p>Every map object will have a bonuses array.  In maps which are not providing any bonus to any player team, that array will be empty.  So the bonuses array will empty on the Center map, and on any Borderlands map which is not providing the bonus to one of the Red, Blue, or Green teams.</p>
+<p>The frequency of match_details updates will be the same as it is now.</p></p>
+
+<h2 id="">Narax.7605:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-04T01:09:14+00:00">
+        04 Oct 2013
+    </time>
+</p>
+<p>
+<p>Will the October 15th update fix the ruins’ neutral status in the match_details?</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-07T15:07:10+00:00">
+        07 Oct 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 26 2013 07:50PM"><a href="/forum/community/api/API-Changes-with-upcoming-WvW-changes/2919654">Stefan Larimore.6872:</a></cite></div><div class="quotey"><p>Nobrok, is this also what you are waiting on when you ask, “any word on getting the other icons”?</p></div></blockquote>
+<p>Sorry, didn’t check the forum for a while.  Yes, I mean the icons for supply camps, towers, keeps and the castle.</p></p>
+
+<h2 id="">Chris Barrett.3280:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-07T17:39:52+00:00">
+        07 Oct 2013
+    </time>
+</p>
+<p>
+<p>Narax:<br>
+After the October 15th release, Ruins capture points will properly return to “Neutral” in the match_details resource when they naturally decay to a neutral state.</p>
+<p>Nabrok:<br>
+The Supply Camp, Tower, Keep, and Castle icons are handled differently from the Ruins icons.  The Ruins icons we have in all three team’s colors.  The other icons are greyscale, which we then colorize in code.  Since the files API doesn’t support the same sort of colorization process, making these other icons available will take more time (no ETA).</p></p>
+
+<h2 id="">Daraku.5389:</h2>
+<p class="post-meta">
+    <time datetime="2014-04-07T08:26:49+00:00">
+        07 Apr 2014
+    </time>
+</p>
+<p>
+<p>any update on this problem? still missing the icons in the files.json</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

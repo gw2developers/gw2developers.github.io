@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>API keys are not a viable proof of identity</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/API-keys-are-not-a-viable-proof-of-identity/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">API keys are not a viable proof of identity</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/API-keys-are-not-a-viable-proof-of-identity
+</p>
+
+
+
+<h2 id="">MentalFS.2589:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-02T15:02:13+00:00">
+        02 Jun 2015
+    </time>
+</p>
+<p>
+<p>With the introduction of OAuth, many places like TS3 servers or forums used it for authentication, especially WvW-based ones. It was all fine and good until OAuth got replaced for security reasons. Lots of those places did what seems the right thing: Replacing the OAuth flow with prompting the user to enter an API key.</p>
+<p>The thing is: While you had to register your OAuth app and tokens where only usable by that app, API keys are reusable. As the API is expanded, a lot of more or less useful apps are seeing the day of light. Users enter their API keys. And those keys can be used everywhere.</p>
+<p>So imagine you want to spy on rival WvW world’s forums. You create an app, let’s say one that creates a banner for forum signatures. People use it, enter API keys and voilà – tons of reusable API keys from all servers are in your database. You can go sniffing in those forums and even post under a false name.</p>
+<p>I’m just leaving this here as a starting point for a discussion, but to me this means that an API key is no proof that the account assiociated with it is actually the user’s account and should not be used as such, especially if it could lead to blocking or even reporting an account based on actions on that platform.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-02T15:27:04+00:00">
+        02 Jun 2015
+    </time>
+</p>
+<p>
+<p>This was also my concern mentioned in this thread: <a href="/forum-backup/HEADS-UP-OAuth2-being-replaced-next-week">https://forum-en.guildwars2.com/forum/community/api/HEADS-UP-OAuth2-being-replaced-next-week</a></p>
+<p>€:<br>
+See also this thread: <a href="/forum-backup/Web-registration-using-keys">https://forum-en.guildwars2.com/forum/community/api/Web-registration-using-keys</a></p></p>
+
+<h2 id="">MentalFS.2589:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-02T15:52:34+00:00">
+        02 Jun 2015
+    </time>
+</p>
+<p>
+<p>Thanks, I remembered someone mentioning it but it didn’t get the attention that it deserved.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-02T17:37:29+00:00">
+        02 Jun 2015
+    </time>
+</p>
+<p>
+<p>You’re totally right — API keys aren’t usable for authentication. There’s really no way around that, since API keys provide symmetric authorization.</p>
+<p>The strategy I’ve recommended to others is a kludge, but the most viable I can come up with: when you get an API key, resolve the account name and world via /v2/account, then bind the account name to the TS3 identity. If the account name has already been used, have the automated system fall back to the usual manual verification step (and de-authorize the account that was using that name). You can add in special process for having multiple TS3 identities with a single GW2 account (presumably people who need multiple idents will be few and well known within the community).</p>
+<p>This prevents, at least, sharing API keys as it basically maps each GW2 account to a TS3 identity 1:1.</p></p>
+
+<h2 id="">Slyfer.6478:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-04T23:36:11+00:00">
+        04 Jun 2015
+    </time>
+</p>
+<p>
+<p>Yup, this issue is a pain. Needless to say if you have a guild forum, this type of security hole will be an even bigger pain. Was thinking of temporarily banning the valid user if someone uses their key and resort to moderators to sort it out. If it turns out the first key user is a fraud, ask the valid registering user to delete key &gt; make new key &gt; register again. If it’s the other way around though… should i get the user to manually make a new key or make them exempt from future temporary bans?</p>
+<p>EDIT: On another note i’d like to see statistical proof of some sor (if anyone has researched this more in-depth please link me to an article, i’m unable to find any that provide statistical proof) that API keys are more secure, as i see it both have exactly the same security hole just OAuth is more convenient and can actually be used for authenticating. People aware of phishing already check the address and people unaware can still be victims of phishing by redirecting them to a make-shift ‘login to generate key’ page for sake of convenience. How many really write down their api-key or use an auto-filler? Any time i use mine i login to account page to copy-paste anyway (and if the third-party provides a redirect to gw2 login i’d take it instead of typing the valid address myself) but i have no idea if i’m in the minority or majority.</p></p>
+
+<h2 id="">Risingashes.8694:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-05T15:15:03+00:00">
+        05 Jun 2015
+    </time>
+</p>
+<p>
+<p>Couldn’t you just require two API keys in order to verify?</p>
+<p>That’d mean the spoofer would need to get multiple different keys from a single source in order to fake an identity.</p>
+<p>This doesn’t seem possible unless the person created multiple apps and somehow convinced users to provide different keys, which seems unlikely.</p>
+<p>Once more options for keys are revealed, you could demand keys that require access to very specific areas only (such as account and something innocuous and unrelated like armor dyes and talent selections), this would almost guarantee that users created new keys for this specific purpose as malicious key requesters would find it hard to justify requiring those specific unrelated permissions and those only.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-05T16:47:49+00:00">
+        05 Jun 2015
+    </time>
+</p>
+<p>
+<p>I’m less concerned about the verification of an API key since this PR (<a href="https://github.com/arenanet/api-cdi/pull/27">https://github.com/arenanet/api-cdi/pull/27</a>) might be a solution, i’m more concerned about the fact that authorization (log in with gw2) is impossible.</p>
+<p>Imagine a GW related website which would attract a huge amount of users. Each user provides an email address and a password along with some other personal information. A hacker finds an exploit and gets his hands on the user database via some SQL injection on the poorly programmed backend and is able to decrypt the md5-hashed passwords in no time (thanks to rainbow tables). He tries to log-in on the GW account website with each of those credentials with a huge success rate due to ignorant users who use the same credentials all over the web. <br>
+<strong>THIS HAPPENED FOR REAL IN THE PAST!</strong></p>
+<p>If the whole thing would have run with an OAuth log-in, noone would have been harmed (except for maybe a few PEBCAK who fell prey to the natural selection. sorry.). The OAuth tokens don’t let you access the account itself – just the API.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-05T17:23:55+00:00">
+        05 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 05 2015 03:15PM"><a href="/forum/community/api/API-keys-are-not-a-viable-proof-of-identity/5124197">Risingashes.8694:</a></cite></div><div class="quotey"><p>Couldn’t you just require two API keys in order to verify?</p>
+<p>That’d mean the spoofer would need to get multiple different keys from a single source in order to fake an identity.</p></div></blockquote>
+<p>That doesn’t work. If requiring two keys becomes the norm, then the spoofer will have two keys for each of their users.</p>
+<blockquote><div class="citey"><cite title="Posted on June 05 2015 04:47PM"><a href="/forum/community/api/API-keys-are-not-a-viable-proof-of-identity/5124412">smiley.1438:</a></cite></div><div class="quotey"><p>I’m less concerned about the verification of an API key since this PR (<a href="https://github.com/arenanet/api-cdi/pull/27">https://github.com/arenanet/api-cdi/pull/27</a>) might be a solution, i’m more concerned about the fact that authorization (log in with gw2) is impossible.</p></div></blockquote>
+<p>I’m not clear on how that’s a solution for verification. Would the application only accept keys that have a specific name?</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-05T17:51:33+00:00">
+        05 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 05 2015 05:23PM"><a href="/forum/community/api/API-keys-are-not-a-viable-proof-of-identity/5124496">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 05 2015 04:47PM"><a href="/forum/community/api/API-keys-are-not-a-viable-proof-of-identity/5124412">smiley.1438:</a></cite></div><div class="quotey"><p>I’m less concerned about the verification of an API key since this PR (<a href="https://github.com/arenanet/api-cdi/pull/27">https://github.com/arenanet/api-cdi/pull/27</a>) might be a solution, i’m more concerned about the fact that authorization (log in with gw2) is impossible.</p></div></blockquote>
+<p>I’m not clear on how that’s a solution for verification. Would the application only accept keys that have a specific name?</p></div></blockquote>
+<p>Exactly. You would check the API key against /v2/tokeninfo an look for a keyname like “my awesome website SOME_RANDOM_HASH” which you provided to the user while he was about to register with your website.</p></p>
+
+<h2 id="">lynnae.4095:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-05T21:39:09+00:00">
+        05 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 05 2015 04:47PM"><a href="/forum/community/api/API-keys-are-not-a-viable-proof-of-identity/5124412">smiley.1438:</a></cite></div><div class="quotey"><p>i’m more concerned about the fact that authorization (log in with gw2) is impossible.</p></div></blockquote>
+<p>Authentication is not possible right now. Delegated authorization is.</p>
+<p>I think what you’re looking for is OpenIdConnect, which uses JWT tokens to build authentication using the OAuth specifications.</p></p>
+
+<h2 id="">Bugabuga.9721:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-06T00:07:56+00:00">
+        06 Jun 2015
+    </time>
+</p>
+<p>
+<p>Basically, in order for API keys to be somewhat useful for authentication, they should:<br>
+- contain verifiable time of creation<br>
+- allow “customization” of the token with destination/application field.</p>
+<p>This would allow applications to be a bit more certain about the owner of the keys.<br>
+When user is asked for API Key, time of “ask” gets recorded, and keys earlier than that timestamp would be rejected. Same with destination field.</p>
+<p>The reason for app name / destination versus “Name” user gives the token is that user might provide something sensitive there under impression that name is private. So “Application” could be useful.</p>
+<p>API Key creation time probably can be exposed as-is<img src="/include/images/smilies/smile.png"></p>
+<p><a href="https://github.com/arenanet/api-cdi/pull/27#issuecomment-109486617">https://github.com/arenanet/api-cdi/pull/27#issuecomment-109486617</a></p></p>
+
+<h2 id="">Risingashes.8694:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-06T00:48:34+00:00">
+        06 Jun 2015
+    </time>
+</p>
+<p>
+<p>I actually just realized that we’re all missing a fairly foolproof and non-fiddly method of ensuring a key is not a stolen one.</p>
+<p>All we’d need is a /v2/apikey endpoint (something I’m sure had been proposed and approved but for some reason I can’t find the thread) that exposed the chosen name of the key and then our apps/sites would only recognize keys with a specific and unmistakable name. Eg. BlackRockWvW would require keys with the name “This key should only be used for BlackRockWvW.com” (with certain required permissions as appropriate).</p>
+<p>Any other site trying to get someone to make a key with that name would be obvious to even the most unattentive of users. Malicious users with second accounts would have to be thought about, but this is a problem outside the scope of this discussion.</p>
+<p>Edit: “I’m not clear on how that’s a solution for verification. Would the application only accept keys that have a specific name?”</p>
+<p>Because I only read the reply to my specific post I completely missed that this was already brought up by @Lawton. But since they phrased it in the form of a question I’m still claiming credit<img src="/include/images/smilies/carethappy.png"></p>
+<blockquote><div class="citey"><cite title="Posted on June 05 2015 05:23PM"><a href="/forum/community/api/API-keys-are-not-a-viable-proof-of-identity/5124496">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>That doesn’t work. If requiring two keys becomes the norm, then the spoofer will have two keys for each of their users.</p></div></blockquote>
+<p>The above being said, which makes what I’m about to say redundant, I still think what you’ve said misses the point.</p>
+<p>It would result in two keys becoming the norm for apps using keys for the purpose of identification.</p>
+<p>Let’s say the spoofer ran GW2TheBestTP.com. Them asking for two keys would be suspicious as there would be no need to require ensuring identity, only to draw information. Obviously end-users may not view this as suspicious, or it’d be fairly straight forward for a site to trick a user in to providing two keys via a simulated error message about the original key being ‘damaged’.</p>
+<p>So in that case you’d refer to the second part of my post and require specific permissions. Once authorized endpoints are complete we’re likely to have a fair few options. So if BlackrockWvW.com required two API keys with \WvW\, \Character\, \Traits\, \WvWTraits\, \Achievements\, \GraphicalSettings\ and those categories only exposed then a malicious GW2TheBestTP.com requiring an two API keys with all these endpoints and only these endpoints would be automatically suspicious because endusers are not even exposing data relevant to the site.</p>
+<p>This would mean spoofer sites would need to develop concept functionality which is relevant to the categories chosen by BlackrockWvW.com.</p>
+<p>So I don’t think it’s as simple as “two keys would become the norm”. Each additional requirement would dramatically increase the suspicion levels of users when dealing with malicious sites.</p>
+<p>That being said, my above solution (exposing names of keys and having sites choose unique names) would be far less taxing on users and most intuitive.</p></p>
+
+<h2 id="">AllIsVain.6409:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-06T15:20:41+00:00">
+        06 Jun 2015
+    </time>
+</p>
+<p>
+<p>For local applications you can tie in to the Mumble Link API and validate the account name – API key that way as an extra step (Overwolf applications included in that). Not the best way of doing it but it works.</p></p>
+
+<h2 id="">MentalFS.2589:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-07T17:55:43+00:00">
+        07 Jun 2015
+    </time>
+</p>
+<p>
+<p>Exposing the name was brought up in the github pull request linked by smiley, so the credit goes there.</p>
+<p>I do think this would make an easy and pretty safe solution to request, for example, your domain name to be part of the API key name. Still not very user friendly though, but that ship sailed with the introduction of API keys altogether.</p>
+<p>I think there <em>was</em> an additional field beyond name that was removed to reduce clutter. The creation date could be useful too, if you <em>really</em> want to ensure that it’s a fresh key.</p></p>
+
+<h2 id="">Slyfer.6478:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-08T00:14:48+00:00">
+        08 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 06 2015 12:48AM"><a href="/forum/community/api/API-keys-are-not-a-viable-proof-of-identity/5125493">Risingashes.8694:</a></cite></div><div class="quotey"><p>That being said, my above solution (exposing names of keys and having sites choose unique names) would be far less taxing on users and most intuitive.</p></div></blockquote>
+<p>This. It is still a hack on top of a hack for a still persistent security issue but this is something that i could work with.</p></p>
+
+<h2 id="">MentalFS.2589:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-08T10:38:56+00:00">
+        08 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 08 2015 12:14AM"><a href="/forum/community/api/API-keys-are-not-a-viable-proof-of-identity/5129267">Slyfer.6478:</a></cite></div><div class="quotey"><p>This. It is still a hack on top of a hack for a still persistent security issue but this is something that i could work with.</p></div></blockquote>
+<p>Yo dawg, I heard you like hacks…</p>
+<p>Edit: <a href="/forum-backup/Launching-v2-tokeninfo">tokeninfo is now active</a>, with name and permissions.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

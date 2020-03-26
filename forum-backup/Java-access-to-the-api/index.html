@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Java access to the api</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Java-access-to-the-api/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Java access to the api</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Java-access-to-the-api
+</p>
+
+
+
+<h2 id="">Alex.1503:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-21T18:04:43+00:00">
+        21 May 2013
+    </time>
+</p>
+<p>
+<p>I’m working on integrating the API with java. <br>
+There’s a couple of things I’ve done.  It can parse information that comes from the json files. I threw a couple of gui’s together so that you can select a server and it lists all of the events on that server and their status. The parser should work with most the json files (needs to be slightly adapted for the recipes).</p>
+<p>Anyway, here’s a link for the code.</p>
+<p><a href="http://code.google.com/p/gw2-java-api/">http://code.google.com/p/gw2-java-api/</a></p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-21T18:11:49+00:00">
+        21 May 2013
+    </time>
+</p>
+<p>
+<p>Good stuff, but…</p>
+<p>Correct me if I’m wrong, but it looks like you’re <a href="http://code.google.com/p/gw2-java-api/source/browse/trunk/src/gw2lol/Gw2ApiInterface.java#61">blinding trusting any SSL cert provided by all server.</a></p>
+<p><a href="/forum-backup/HTTP-access">As suggested by Cliff</a>, it’s probably a lot better for your code to install the cert provided by <a href="https://api.guildwars2.com">https://api.guildwars2.com</a>, before others start getting man-in-the-middle’d while using your code.</p></p>
+
+<h2 id="">Varonth.5830:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-21T18:19:33+00:00">
+        21 May 2013
+    </time>
+</p>
+<p>
+<p>Well, I am working on a real solution. Can’t give an ETA yet, as I also want to do other stuff.<br>
+Perhaps Oracle will add the Root Certificate of StartCom into their Default KeyStore, who knows.</p>
+<p>But until then, it is atleast a way to test the implementations that you made so far.<br>
+Not the best thing to publish as a complete program, but until then you can work on said program, and just use a real solution once that one is available.</p></p>
+
+<h2 id="">Alex.1503:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-21T19:22:18+00:00">
+        21 May 2013
+    </time>
+</p>
+<p>
+<p>Yeah, I googled around but didn’t find any way to add the certificate into the keystore from within the program.</p>
+<p>The trust manager is stupid, but I couldn’t find any real solution. The trust manager was just a way to actually be able to access the data.</p></p>
+
+<h2 id="">Varonth.5830:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-21T21:46:11+00:00">
+        21 May 2013
+    </time>
+</p>
+<p>
+<p>Making good progress.<br>
+So far I have a not very nice looking implementation of a class which will read in a crt file in runtime and use that one while creating a SSL connection.<br>
+Tested it with the StartCom root certificate (which worked, could query the API), and the root certificated used by google, which denied the connection.<br>
+It’s looking rather promising<img src="/include/images/smilies/lion.png"></p></p>
+
+<h2 id="">Alex.1503:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-21T23:34:11+00:00">
+        21 May 2013
+    </time>
+</p>
+<p>
+<p><a href="http://www.clearfield.com/key_store_browser/key_store_browser.html">http://www.clearfield.com/key_store_browser/key_store_browser.html</a></p>
+<p>Look at the source code of that, from what I understand, it has methods that can add certificates to existing keystores.</p>
+<p>What about grabbing the user’s keystore (making a copy of it), adding the new cert to it, and setting it as the javax.net.ssl.keyStore for your app?</p>
+<p>Wouldn’t that avoid:<br>
+a) Using a trust manager that trusts everything?<br>
+b) Editing the user’s actual keyStore, as it’s only creating a new one for the app’s execution?</p></p>
+
+<h2 id="">Varonth.5830:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T00:42:12+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>Have something working for now:<br>
+<a href="http://code.google.com/p/j-gw2-api/">http://code.google.com/p/j-gw2-api/</a></p>
+<p>It includes the StartCom Root Certificate as Byte array, if you don’t want to download your own certificate, but it also allows you to use a .crt file on your computer.</p>
+<p>The JSON object are the official implementation over at json.org.</p>
+<p>Edit:<br>
+And yeah, I know it is missing the HostnameVerifier.<br>
+So it is not entirely save for now, but it’s a beginning.<br>
+But I guess the default one will do the job good enough. Have to take a look how that one is implemented to see if it really does verify the hostnames correctly when using custom KeyStores, Certificates etc.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T00:53:44+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2013 12:42AM"><a href="/forum/community/api/Java-access-to-the-api/2070603">Varonth.5830:</a></cite></div><div class="quotey"><p>Have something working for now:<br>
+<a href="http://code.google.com/p/j-gw2-api/">http://code.google.com/p/j-gw2-api/</a></p>
+<p>It includes the StartCom Root Certificate as Byte array, if you don’t want to download your own certificate, but it also allows you to use a .crt file on your computer.</p>
+<p>The JSON object are the official implementation over at json.org.</p></div></blockquote>
+<p>Excellent work, Varonth!</p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T01:01:49+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2013 12:42AM"><a href="/forum/community/api/Java-access-to-the-api/2070603">Varonth.5830:</a></cite></div><div class="quotey"><p>Have something working for now:<br>
+<a href="http://code.google.com/p/j-gw2-api/">http://code.google.com/p/j-gw2-api/</a></p>
+<p>It includes the StartCom Root Certificate as Byte array, if you don’t want to download your own certificate, but it also allows you to use a .crt file on your computer.</p>
+<p>The JSON object are the official implementation over at json.org.</p>
+<p>Edit:<br>
+And yeah, I know it is missing the HostnameVerifier.<br>
+So it is not entirely save for now, but it’s a beginning.<br>
+But I guess the default one will do the job good enough. Have to take a look how that one is implemented to see if it really does verify the hostnames correctly when using custom KeyStores, Certificates etc.</p></div></blockquote>
+<p>Awesome, you rock! Thanks so much for doing this.</p></p>
+
+<h2 id="">ifoxe.4890:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T09:43:09+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>Wont be better to include your own keystore inside your jar ?</p>
+<p>keytool.exe -importcert -file $(GW2 Cert) -keystore MyTrustStore -alias “GW2”</p>
+<p>then</p>
+<p>System.setProperty(“javax.net.ssl.keyStorePassword”,“123456”);<br>
+    System.setProperty(“javax.net.ssl.trustStore”, “MyTrustStore.jks”);</p></p>
+
+<h2 id="">Varonth.5830:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T12:59:52+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2013 09:43AM"><a href="/forum/community/api/Java-access-to-the-api/2072359">ifoxe.4890:</a></cite></div><div class="quotey"><p>Wont be better to include your own keystore inside your jar ?</p>
+<p>keytool.exe -importcert -file $(GW2 Cert) -keystore MyTrustStore -alias “GW2”</p>
+<p>then</p>
+<p>System.setProperty(“javax.net.ssl.keyStorePassword”,“123456”);<br>
+    System.setProperty(“javax.net.ssl.trustStore”, “MyTrustStore.jks”);</p></div></blockquote>
+<p>I am generating an emtpy keystore during runtime, add a single key to it, and use that keystore just on the SSLSockets generated by the jGW2API class.</p>
+<p>If I would instead use a prebuild keystore, and set the properties to use that one default, then I would also affect other SSLsockets. What if someone wants to access to GW2 API but also needs a SSL connection to another server. Unless that server also used StartCom for verification, the connection would fail (unless I include that certificate aswell).</p></p>
+
+<h2 id="">McVillano.9256:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T17:40:36+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>Would be posible to have acces to the project?<br>
+I want to learn from it and colaborate if possible</p></p>
+
+<h2 id="">ifoxe.4890:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T18:02:16+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2013 12:59PM"><a href="/forum/community/api/Java-access-to-the-api/2072977">Varonth.5830:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 22 2013 09:43AM"><a href="/forum/community/api/Java-access-to-the-api/2072359">ifoxe.4890:</a></cite></div><div class="quotey"><p>Wont be better to include your own keystore inside your jar ?</p>
+<p>keytool.exe -importcert -file $(GW2 Cert) -keystore MyTrustStore -alias “GW2”</p>
+<p>then</p>
+<p>System.setProperty(“javax.net.ssl.keyStorePassword”,“123456”);<br>
+    System.setProperty(“javax.net.ssl.trustStore”, “MyTrustStore.jks”);</p></div></blockquote>
+<p>I am generating an emtpy keystore during runtime, add a single key to it, and use that keystore just on the SSLSockets generated by the jGW2API class.</p>
+<p>If I would instead use a prebuild keystore, and set the properties to use that one default, then I would also affect other SSLsockets. What if someone wants to access to GW2 API but also needs a SSL connection to another server. Unless that server also used StartCom for verification, the connection would fail (unless I include that certificate aswell).</p></div></blockquote>
+<p>Nice Point. Anyways if someone else use  SSL Connections to other sources,  im pretty sure they will know how to add Theyr own Certs to your keystore.</p></p>
+
+<h2 id="">Varonth.5830:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T18:38:08+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2013 06:02PM"><a href="/forum/community/api/Java-access-to-the-api/2074548">ifoxe.4890:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 22 2013 12:59PM"><a href="/forum/community/api/Java-access-to-the-api/2072977">Varonth.5830:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 22 2013 09:43AM"><a href="/forum/community/api/Java-access-to-the-api/2072359">ifoxe.4890:</a></cite></div><div class="quotey"><p>Wont be better to include your own keystore inside your jar ?</p>
+<p>keytool.exe -importcert -file $(GW2 Cert) -keystore MyTrustStore -alias “GW2”</p>
+<p>then</p>
+<p>System.setProperty(“javax.net.ssl.keyStorePassword”,“123456”);<br>
+    System.setProperty(“javax.net.ssl.trustStore”, “MyTrustStore.jks”);</p></div></blockquote>
+<p>I am generating an emtpy keystore during runtime, add a single key to it, and use that keystore just on the SSLSockets generated by the jGW2API class.</p>
+<p>If I would instead use a prebuild keystore, and set the properties to use that one default, then I would also affect other SSLsockets. What if someone wants to access to GW2 API but also needs a SSL connection to another server. Unless that server also used StartCom for verification, the connection would fail (unless I include that certificate aswell).</p></div></blockquote>
+<p>Nice Point. Anyways if someone else use  SSL Connections to other sources,  im pretty sure they will know how to add Theyr own Certs to your keystore.</p></div></blockquote>
+<p>Sure they should know it, or atleast will get the knowledge once they start working on it.<br>
+But there are other things to consider, like the possibility of IOException when the KeyStore file isn’t located were the program searches for it.<br>
+That is also the reason why I hardcoded the certificate as byte array into the class itself.<br>
+I added an overloaded constructor if someone wants to load a certificate from a file. But in that case, I also don’t ‘handle’ the exceptions, as there might be all sorts of Exceptions, starting from IOExceptions because the file wasn’t found over security exception because the user doesn’t have read rights to the certificate to CertificateExceptions because the stuff read in wasn’t an actual or incomplete certificate.</p>
+<p>Is there room for improvement? Yes, quite a bit, which I will probably address over the next few days. For example:<br>
+Currently everytime I contruct an APIRequest object I initialize alot of stuff, just so that at the end, I get an SSLSocketFactory which I can use for SSLSockets combatible with the StartCom certificates.<br>
+Obviously, I can just generate the SSLSocketFactory once, save such a Factory instance somewhere, and just use that one everytime I contruct a new APIRequest instance.</p>
+<p>I also want to add direct access to the HTTP header and content in case someone want to use the direct data for his own JSON implementation or whatever else reason someone has to use direct data.</p>
+<p>Just had a bit of free time yesterday evening, and this initial thing turned out to work quite good.</p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2013 05:40PM"><a href="/forum/community/api/Java-access-to-the-api/2074439">McVillano.9256:</a></cite></div><div class="quotey"><p>Would be posible to have acces to the project?<br>
+I want to learn from it and colaborate if possible</p></div></blockquote>
+<p>It’s open source, using the MIT License.<br>
+You can download it on the googlecode page under <a href="http://code.google.com/p/j-gw2-api/source/checkout">Source</a></p>
+<p>You can either use a git client, or go to the browse tab and download it there directly.<br>
+You can also clone it, copy it, modify it however you like. You can see the full license within the source or on the googlecode page.</p></p>
+
+<h2 id="">zwei.9073:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T21:28:00+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<p>I have decided not to wait and redo most critical issues (swallowing exceptions? recreating tons of stuff for each request? Raw json output? etc…)</p>
+<p><a href="https://code.google.com/p/gw2api/">https://code.google.com/p/gw2api/</a></p>
+<p>Usage is now like this:</p>
+<p>GW2API api = new GW2API();</p>
+<p>List&lt;Long&gt; items = api.getItems();<br>
+		for (Long id : items) {<br>
+			api.getItemDetails(id, null).getName();<br>
+		}<br>
+		<br>
+Currently, parsing items is in progress – there is ton on needed research to find out all flags, types and type-specific data.</p></p>
+
+<h2 id="">McVillano.9256:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T08:25:30+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>Varonth i have being using your api and i have problems with wWwmastchDetails<br>
+the problem come from the last return of the method the code is return null, and when you call WwWMatchDetails(string id) you call, and the url that you get is …..?match=2-2null , then you cannot acces the url because null is extra.<br>
+I will try to change null for return void, i tell what happen</p></p>
+
+<h2 id="">McVillano.9256:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T08:44:24+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>Hello again Varonth, the problem was that the string in the return sentence was:<br>
+new URL jGW2API.Standard_URL+jGW2API.API_Version+"wvw/match_details.?match_id=“<ins>id <br>
+and it has to be:<br>
+new URL jGW2API.Standard_URL</ins>jGW2API.API_Version+”wvw/match_details.json?match_id="+id <br>
+It was only a misspell, sorry for warning</p></p>
+
+<h2 id="">zwei.9073:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T12:50:02+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>Small heads up:</p>
+<p>I have finished mapping all data structures to java objects, my current to-do is:</p>
+<ul>
+	<li>Decide what id and values have to remain strings and which can be parsed to integers<br>
+ * Possibly refactor Item class<br>
+ * Find out which flags, constants and types are missing – right now, exception will be raised when unknown is ecnountered.</li>
+</ul>
+<p>Distribution is here: <a href="https://gw2api.googlecode.com/svn/trunk/dist/gw2api.jar">https://gw2api.googlecode.com/svn/trunk/dist/gw2api.jar</a></p>
+<p>Home here: <a href="https://code.google.com/p/gw2api/">https://code.google.com/p/gw2api/</a></p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T14:26:09+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>@zwei Please do not use <code>com.guildwars2.api</code> as a package name. Java naming conventions suggest you should use a domain you own, making this one imply it’s an official thing (plus there’s a (tiny) chance an official package will conflict with yours should they ever release one). Personally I see this as a no-go, though I do tend to be a little strict on random things from time to time<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">zwei.9073:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T15:51:15+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 24 2013 02:26PM"><a href="/forum/community/api/Java-access-to-the-api/2084747">zeeZ.5713:</a></cite></div><div class="quotey"><p>@zwei Please do not use &lt;code&gt;com.guildwars2.api&lt;/code&gt; as a package name. Java naming conventions suggest you should use a domain you own, making this one imply it’s an official thing (plus there’s a (tiny) chance an official package will conflict with yours should they ever release one). Personally I see this as a no-go, though I do tend to be a little strict on random things from time to time<img src="/include/images/smilies/wink.png"></p></div></blockquote>
+<p>I was considering using my own domain, but it felt wrong to do that considering that it was fork of Alex.1503s work and whatnot.</p>
+<p>But you have a point – if anet ever decides to make offcial library, they would collide.</p>
+<p>So it is repackaged. And I hate SVN a bit more.</p></p>
+
+<h2 id="">zwei.9073:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T16:16:00+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<p>Small heads-up:</p>
+<p>I have added support to read offline datasets ( from this thread: <a href="/forum-backup/Data-dump-All-recipes-and-created-items">https://forum-en.guildwars2.com/forum/community/api/Data-dump-All-recipes-and-created-items/first#post2091313</a> ) , so far it is fairly ugly, but really usefull.</p>
+<p>Cheers!</p></p>
+
+<h2 id="">zwei.9073:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-28T12:58:19+00:00">
+        28 May 2013
+    </time>
+</p>
+<p>
+<p>Bigger heads-up:</p>
+<p>Offline data lists are complete for everything that makes sense, added some utils (item chat code), fixed parsing of non-english texts and completed using proper Long values instead of String.</p></p>
+
+<h2 id="">Varonth.5830:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-30T02:40:50+00:00">
+        30 May 2013
+    </time>
+</p>
+<p>
+<p>So I also updated a bit of jGW2API.<br>
+Latest update is Version 0.2-RC.</p>
+<p>What does it add?<br>
+A new high level API for those that don’t want to use direct JSON data.<br>
+This is fully optional, and if wanted you can still use the JSON objects themself (nothing changed in how you access those).<br>
+For those wanting a more Java like access to objects I added a new package jGW2API.util, with some subpackages for the different API types.<br>
+You just need jGW2API.util.HighLevelAPI static methods to generate Java objects of the JSONObjects.<br>
+These then include all you needs, from IDs, over enums (for clean if and switch statements) to HashMaps for fast access of Mapable data (like EventID -&gt; EventName).</p>
+<p>There might be some issues still, as it is quite hard to get every kind of possible item and combination, which might result in some odd variations.<br>
+Just throw in a Bugreport in the Issue tracker of the googlecode project or write me a small PM.</p>
+<p>Once this version is stable, I will continue to work on the next milestone, which will be SQL support via JDBC (mySQL, SQL or SQLite should be possible with different free JDBC drivers).</p></p>
+
+<h2 id="">McVillano.9256:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-31T15:47:01+00:00">
+        31 May 2013
+    </time>
+</p>
+<p>
+<p>I´ve created a mini app that creates a localldb over derby (its included on jdk) that takes all event status in the game and the name of the events wordls and maps in other tables.<br>
+i’ve used the varonth first api if someone wants it i can post it somwere.</p>
+<p>@Varonth.5830 where can i find sun.misc.BASE64Encoder packAge?</p></p>
+
+<h2 id="">Varonth.5830:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-31T16:25:20+00:00">
+        31 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 31 2013 03:47PM"><a href="/forum/community/api/Java-access-to-the-api/2128131">McVillano.9256:</a></cite></div><div class="quotey"><p>I´ve created a mini app that creates a localldb over derby (its included on jdk) that takes all event status in the game and the name of the events wordls and maps in other tables.<br>
+i’ve used the varonth first api if someone wants it i can post it somwere.</p>
+<p>@Varonth.5830 where can i find sun.misc.BASE64Encoder packAge?</p></div></blockquote>
+<p>The standard Oracle implementation (Java SE 6 and Java SE 7 etc) comes with it, as it should also be included in openJDK. Let me know if you, or of course anyone else here, is using some sort of exotic java implementation. I can also split that one method into a transformer module, which could be excluded then (excluding Item does not seem like a good solution :P ).<br>
+As it is available as open source as part of the openJDK ( <a href="http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/sun/misc/BASE64Encoder.java">http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/sun/misc/BASE64Encoder.java</a>) one could also just add it to the exotic implementation, as if someone really does not use openJDK or Java SE X should really know what he does.</p></p>
+
+<h2 id="">McVillano.9256:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-01T07:28:02+00:00">
+        01 Jun 2013
+    </time>
+</p>
+<p>
+<p>Don’t worry varonth i wiil find it, and don’t worry either because the version of the api RC0.2 for you i have readed and place it in the eclipse but for now i only need the rc0.1 methods for having jsonobjects and arrays. it´s just that i dont like red signs at mi code jajajajajja</p></p>
+
+<h2 id="">zwei.9073:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-01T15:25:57+00:00">
+        01 Jun 2013
+    </time>
+</p>
+<p>
+<p>sun packages should not be used at all thou – they are explicitly not guaranteed to work between versions, existing in different platforms is least of worries. Historically, quite few of them got repackaged to java.util or javax packages, breaking any older code. Beware.</p>
+<p>For my API methods concerning item chat code, i have simply used achace codecs library.</p></p>
+
+<h2 id="">zwei.9073:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-01T17:29:52+00:00">
+        01 Jun 2013
+    </time>
+</p>
+<p>
+<p>I have added sample GUI application (Event Watcher) and started on OAuth2 implementation.</p>
+<p>And updated api for new stuff (colors, guilds, build and misc updates)</p></p>
+
+<h2 id="">ManCaptain.3154:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-06T11:33:07+00:00">
+        06 Jun 2013
+    </time>
+</p>
+<p>
+<p>Like many reference implementations sun.misc Base64 encoder is extremely slow. Also have you tested the org.json parser speed vs other parsers?</p></p>
+
+<h2 id="">Varonth.5830:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-06T12:22:53+00:00">
+        06 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 06 2013 11:33AM"><a href="/forum/community/api/Java-access-to-the-api/2165075">ManCaptain.3154:</a></cite></div><div class="quotey"><p>Like many reference implementations sun.misc Base64 encoder is extremely slow. Also have you tested the org.json parser speed vs other parsers?</p></div></blockquote>
+<p>Might be that the Base64 encoder is slow, but to be honest, it doesn’t matter as it is just needed in a single method which is generating copy&amp;paste-able chatlinks.</p>
+<p>And no, I didn’t test the speed vs. the other 23 available JSON parsers. I used that one because I already had experience with it. If you want to test the speed of the other parsers, feel free to do so and post the results.</p></p>
+
+<h2 id="">zwei.9073:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-06T16:25:18+00:00">
+        06 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 06 2013 11:33AM"><a href="/forum/community/api/Java-access-to-the-api/2165075">ManCaptain.3154:</a></cite></div><div class="quotey"><p>Like many reference implementations sun.misc Base64 encoder is extremely slow. Also have you tested the org.json parser speed vs other parsers?</p></div></blockquote>
+<p>I dont think that parser speed matter that much now. i use org.json.simple and it was hardy improvement over plain org.json.</p>
+<p>What matters more is quality of output (i.e, some parsers would mix and match Double and Long values)</p>
+<p>Anyhow, i have posted last update for recent color changes, even with sample app that makes chart of colors and made bigger app:</p>
+<p><a href="http://www.reddit.com/r/Guildwars2/comments/1fsqzq/api_wvw_notifier_for_pve_exloration_completers/">http://www.reddit.com/r/Guildwars2/comments/1fsqzq/api_wvw_notifier_for_pve_exloration_completers/</a></p></p>
+
+<h2 id="">zwei.9073:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-09T16:49:43+00:00">
+        09 Jun 2013
+    </time>
+</p>
+<p>
+<p>Updated for latest items changes.</p></p>
+
+<h2 id="">zwei.9073:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-23T16:52:16+00:00">
+        23 Jun 2013
+    </time>
+</p>
+<p>
+<p>Updated for recent map api.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

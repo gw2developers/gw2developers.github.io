@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Online Character Viewer</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Online-Character-Viewer/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Online Character Viewer</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Online-Character-Viewer
+</p>
+
+
+
+<h2 id="">ArtifexDominus.8675:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-17T21:32:22+00:00">
+        17 Mar 2015
+    </time>
+</p>
+<p>
+<p>I am sorry if my searching couldn’t find this, or if this forum is not the right place for this. (I tried my best really!)</p>
+<p>I would like to have an Online Character Viewer, where I can see my characters, their character screen info (map completion, achieves etc) and possibly skills/traits etc from the Hero panel.</p>
+<p>It would be a fun way to share (out of game) my character and how i have chosen to play them, with friends that do, (or do not), play the game.</p>
+<p>From what I have been reading, this MIGHT be possible through the Auth API?</p>
+<p>Thank you in advance for any responses.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-17T21:59:12+00:00">
+        17 Mar 2015
+    </time>
+</p>
+<p>
+<p>The idea has already been mentioned in another thread, but i forgot where it was.</p>
+<p><a href="https://gateway.playneverwinter.com/">https://gateway.playneverwinter.com/</a> (hint, hint!)</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-17T23:29:25+00:00">
+        17 Mar 2015
+    </time>
+</p>
+<p>
+<p>It’s definitely something I’m working on. If you’re technically-minded, there’s a <a href="https://github.com/arenanet/api-cdi/pull/16">pull request on Github</a> that details our plans for the initial release of an API endpoint that will allow the creation of sites that can access your character data.</p></p>
+
+<h2 id="">Forgotten Legend.9281:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-18T02:57:52+00:00">
+        18 Mar 2015
+    </time>
+</p>
+<p>
+<p>please keep in mind that by allowing character data to be accessed by third parties, security for GW1 accounts might be compromised, based on the requirement for having to enter a character name with the account.</p>
+<p>please take extra steps to ensure that any pulls of character data cannot be linked to account information by any third party, as this could possibly give a backdoor access for hackers to steal peoples’ accounts.</p>
+<p>please remember that people who have linked their GW1 and GW2 accounts may have used at least one character name from GW1 when creating GW2 characters. allowing any third party, access to my character names via API pulls could compromise my GW1 account, and therefore possibly my GW2 account.</p>
+<p>now, i may be simply paranoid about this, but i want to be sure that my account is secure. i’d hate to lose it to hackers due to official apps making a back door.</p>
+<p>thank you for listening.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-18T13:28:50+00:00">
+        18 Mar 2015
+    </time>
+</p>
+<p>
+<p>@Forgotten Legend.9281: Two-factor authentication should render all of those concerns moot.</p></p>
+
+<h2 id="">ItIsFinished.9462:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-18T15:35:31+00:00">
+        18 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 17 2015 11:29PM"><a href="/forum/community/api/Online-Character-Viewer/4891383">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>It’s definitely something I’m working on. If you’re technically-minded, there’s a <a href="https://github.com/arenanet/api-cdi/pull/16">pull request on Github</a> that details our plans for the initial release of an API endpoint that will allow the creation of sites that can access your character data.</p></div></blockquote>
+<p>What kind of time frame are you looking at before we see any kind of release?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-18T17:26:20+00:00">
+        18 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 18 2015 03:35PM"><a href="/forum/community/api/Online-Character-Viewer/4893781">ItIsFinished.9462:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 17 2015 11:29PM"><a href="/forum/community/api/Online-Character-Viewer/4891383">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>It’s definitely something I’m working on. If you’re technically-minded, there’s a <a href="https://github.com/arenanet/api-cdi/pull/16">pull request on Github</a> that details our plans for the initial release of an API endpoint that will allow the creation of sites that can access your character data.</p></div></blockquote>
+<p>What kind of time frame are you looking at before we see any kind of release?</p></div></blockquote>
+<p>As a non-committal estimate, late March – early April?</p></p>
+
+<h2 id="">Sytherek.7689:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-18T18:08:44+00:00">
+        18 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 17 2015 11:29PM"><a href="/forum/community/api/Online-Character-Viewer/4891383">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>It’s definitely something I’m working on. If you’re technically-minded, there’s a <a href="https://github.com/arenanet/api-cdi/pull/16">pull request on Github</a> that details our plans for the initial release of an API endpoint that will allow the creation of sites that can access your character data.</p></div></blockquote>
+<p>What about privacy?</p>
+<p>Will I be able to set a per-character flag saying I don’t want my character exposed by the API?</p></p>
+
+<h2 id="">CureForLiving.5360:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-18T18:23:32+00:00">
+        18 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 18 2015 06:08PM"><a href="/forum/community/api/Online-Character-Viewer/4894423">Sytherek.7689:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 17 2015 11:29PM"><a href="/forum/community/api/Online-Character-Viewer/4891383">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>It’s definitely something I’m working on. If you’re technically-minded, there’s a <a href="https://github.com/arenanet/api-cdi/pull/16">pull request on Github</a> that details our plans for the initial release of an API endpoint that will allow the creation of sites that can access your character data.</p></div></blockquote>
+<p>What about privacy?</p>
+<p>Will I be able to set a per-character flag saying I don’t want my character exposed by the API?</p></div></blockquote>
+<p>Ah the ever constant fear of gear inspecting and elitism that follows</p></p>
+
+<h2 id="">EnemyCrusher.7324:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-18T19:14:27+00:00">
+        18 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 18 2015 06:08PM"><a href="/forum/community/api/Online-Character-Viewer/4894423">Sytherek.7689:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 17 2015 11:29PM"><a href="/forum/community/api/Online-Character-Viewer/4891383">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>It’s definitely something I’m working on. If you’re technically-minded, there’s a <a href="https://github.com/arenanet/api-cdi/pull/16">pull request on Github</a> that details our plans for the initial release of an API endpoint that will allow the creation of sites that can access your character data.</p></div></blockquote>
+<p>What about privacy?</p>
+<p>Will I be able to set a per-character flag saying I don’t want my character exposed by the API?</p></div></blockquote>
+<p>Why? If my understanding is correct, only you will be able to see your characters anyway.</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-18T20:16:10+00:00">
+        18 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 18 2015 07:14PM"><a href="/forum/community/api/Online-Character-Viewer/4894640">EnemyCrusher.7324:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 18 2015 06:08PM"><a href="/forum/community/api/Online-Character-Viewer/4894423">Sytherek.7689:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 17 2015 11:29PM"><a href="/forum/community/api/Online-Character-Viewer/4891383">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>It’s definitely something I’m working on. If you’re technically-minded, there’s a <a href="https://github.com/arenanet/api-cdi/pull/16">pull request on Github</a> that details our plans for the initial release of an API endpoint that will allow the creation of sites that can access your character data.</p></div></blockquote>
+<p>What about privacy?</p>
+<p>Will I be able to set a per-character flag saying I don’t want my character exposed by the API?</p></div></blockquote>
+<p>Why? If my understanding is correct, only you will be able to see your characters anyway.</p></div></blockquote>
+<p>You would give your permission to a website or app that would then allow it to pull the character data.  After you have done that, it may just present it back to you, but it could also store it and make it publicly available.  If you also give it the offline permission it will even be able to keep its records up to date.</p>
+<p>You will be able to revoke permissions at any time, of course.</p></p>
+
+<h2 id="">Sytherek.7689:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-18T21:00:26+00:00">
+        18 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 18 2015 08:16PM"><a href="/forum/community/api/Online-Character-Viewer/4894862">Nabrok.9023:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 18 2015 07:14PM"><a href="/forum/community/api/Online-Character-Viewer/4894640">EnemyCrusher.7324:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 18 2015 06:08PM"><a href="/forum/community/api/Online-Character-Viewer/4894423">Sytherek.7689:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 17 2015 11:29PM"><a href="/forum/community/api/Online-Character-Viewer/4891383">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>It’s definitely something I’m working on. If you’re technically-minded, there’s a <a href="https://github.com/arenanet/api-cdi/pull/16">pull request on Github</a> that details our plans for the initial release of an API endpoint that will allow the creation of sites that can access your character data.</p></div></blockquote>
+<p>What about privacy?</p>
+<p>Will I be able to set a per-character flag saying I don’t want my character exposed by the API?</p></div></blockquote>
+<p>Why? If my understanding is correct, only you will be able to see your characters anyway.</p></div></blockquote>
+<p>You would give your permission to a website or app that would then allow it to pull the character data.  After you have done that, it may just present it back to you, but it could also store it and make it publicly available.  If you also give it the offline permission it will even be able to keep its records up to date.</p>
+<p>You will be able to revoke permissions at any time, of course.</p></div></blockquote>
+<p>Thank you much.</p>
+<p>I’m not entirely against my choices being visible to others. But I want to control that visibility.</p></p>
+
+<h2 id="">Remfin.4892:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-18T22:23:07+00:00">
+        18 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 18 2015 09:00PM"><a href="/forum/community/api/Online-Character-Viewer/4895031">Sytherek.7689:</a></cite></div><div class="quotey"><p>Thank you much.</p>
+<p>I’m not entirely against my choices being visible to others. But I want to control that visibility.</p></div></blockquote>
+<p>From the current design, that’s going to be up to the website, not ANet. They’re giving rather coarse-grained permissions right now.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-18T22:31:47+00:00">
+        18 Mar 2015
+    </time>
+</p>
+<p>
+<p>In the end you, the user, are responsible for determining who gets access to your data. If you don’t like what they do with it revoke their access.</p>
+<p>We just provide a safe, standardized way to authenticate and say “Yes, App &lt;XYZ&gt; can read parts of my private data.”</p></p>
+
+<h2 id="">Sytherek.7689:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-18T22:43:25+00:00">
+        18 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 18 2015 10:31PM"><a href="/forum/community/api/Online-Character-Viewer/4895411">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>In the end you, the user, are responsible for determining who gets access to your data. If you don’t like what they do with it revoke their access.</p>
+<p>We just provide a safe, standardized way to authenticate and say “Yes, App &lt;XYZ&gt; can read parts of my private data.”</p></div></blockquote>
+<p>I assume character data is private unless explicitly made visible by the account holder to specific web sites.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-18T23:49:34+00:00">
+        18 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 18 2015 10:43PM"><a href="/forum/community/api/Online-Character-Viewer/4895455">Sytherek.7689:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 18 2015 10:31PM"><a href="/forum/community/api/Online-Character-Viewer/4895411">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>In the end you, the user, are responsible for determining who gets access to your data. If you don’t like what they do with it revoke their access.</p>
+<p>We just provide a safe, standardized way to authenticate and say “Yes, App &lt;XYZ&gt; can read parts of my private data.”</p></div></blockquote>
+<p>I assume character data is private unless explicitly made visible by the account holder to specific web sites.</p></div></blockquote>
+<p>Yes, anything not available on the public APIs is private until the user explicitly gives an application access to it.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-19T01:02:17+00:00">
+        19 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 18 2015 11:49PM"><a href="/forum/community/api/Online-Character-Viewer/4895705">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 18 2015 10:43PM"><a href="/forum/community/api/Online-Character-Viewer/4895455">Sytherek.7689:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 18 2015 10:31PM"><a href="/forum/community/api/Online-Character-Viewer/4895411">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>In the end you, the user, are responsible for determining who gets access to your data. If you don’t like what they do with it revoke their access.</p>
+<p>We just provide a safe, standardized way to authenticate and say “Yes, App &lt;XYZ&gt; can read parts of my private data.”</p></div></blockquote>
+<p>I assume character data is private unless explicitly made visible by the account holder to specific web sites.</p></div></blockquote>
+<p>Yes, anything not available on the public APIs is private until the user explicitly gives an application access to it.</p></div></blockquote>
+<p>Which, to clarify, is everything that involves information associated with your account.</p></p>
+
+<h2 id="">Forgotten Legend.9281:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-19T04:01:32+00:00">
+        19 Mar 2015
+    </time>
+</p>
+<p>
+<p>here goes attempt number two, since the forums ate my post. my apologies if this sounds abrasive. if you read any negative attitude between the lines, it’s mostly due to the frustration of having to rewrite all this less perfectly than before.<img src="/include/images/smilies/sad.png"></p>
+<p>A) will there be a setting in game or in my account page so that i can set a definitive “no app is allowed to access my account / character information, ever, even if the app is able to produce the proper credentials” option? (please answer yes. this seems to me to be a “must have” option.)</p>
+<p>B) will there be another secondary option to “send me an email informing me of any automatically blocked attempt of an app to access my account.” <br>
+~ this email would NOT ask me permission for the app to access my account. this email would simply state that an app tried to access my account, and was blocked due to my account settings.<br>
+~ this would avoid confusion that the email authentication system could bring. i’d hate to have checked the box for “A” option, and then get an email asking me permission for an app to access my account.<br>
+~ i understand that “app” access might then need to be coded differently than “game access” for these purposes</p>
+<p>C) presuming the above options are included, if neither A nor B options are checked, i would presume that email authentication settings would take over. <br>
+~ preferably adding a separate option specifically for app access email authentication (defaulting to the game access email authentication setting?)<br>
+~ a separate option could then be treated as an either / or / neither option with “B” above (ie, either B, or C, or neither, but never both)<br>
+~EDIT: for clarification, it would be either: “A” and “B” auto-block and email notifying me of the block, OR “C” email me asking me for permission, OR neither</p>
+<p>D) presuming both A and B options above, i would suggest making sure they override the email authentication requesting permission.<br>
+~ if i check the box for “A”, and email authentication sends me an email, and i say yes, then “A” automatically denies permission unless i change the setting for “A”<br>
+~ however. if “C” suggestions are implemented with either / or / neither functionality, this wouldn’t be a problem</p>
+<p>E) even if none of the above options are included, the bare minimum security requirement would be the email authentication applies to any app that attempts access to account / character information.</p>
+<p>basically, i’m saying i want an account setting to override any app’s permissions. i don’t want any app accessing my account / character info because some app got permission.</p>
+<p>please forgive me for my paranoia, and my obsession with asking for clarification on this. I know a lot of people want these kinds of apps. i want them to be able to have them, too. i just want to be able to opt out of it in “one easy step,” (checking 2 boxes still falls within the hyperbole) and never have to worry about it again.</p>
+<p>Thanks for listening again, and bacon to you too!</p></p>
+
+<h2 id="">Moturdrn.2837:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-19T09:10:13+00:00">
+        19 Mar 2015
+    </time>
+</p>
+<p>
+<p>Your opt out is this:</p>
+<ul>
+	<li>Do not authorize API access to your Account/Character to applications; and</li>
+	<li>If you have authorized API access to your Account/Character to applications, revoke that access within whatever security page ANet provide for this.</li>
+</ul>
+<p>You don’t provide sites with your username/password combination. Instead what happens is you log in to a page provided by ANet using a special link (which tells ANet what permissions are being requested, and where to return what’s called an access token) which then asks if you want to allow access for this application, and also tells you which permissions you’re giving (i.e. Character, Account, Offline, etc – these are the scopes or permissions that you want the application to have). If you never allow an application to use a particular scope (or revoke access) then the app cannot access that data. After allowing the application access, they get returned an access token to retrieve data (and a refresh token if you allowed the Offline scope, so they can get new access tokens when the old one expires.) When you revoke an application’s permission, the access token will no longer work (and they cannot use the refresh to get another one) and they can no longer access the data.</p>
+<p>Each application will have its own App ID, and each application should also have its own access token to use. By giving access to say smiley’s super-duper character viewer application, you’re not giving permission to my character logging application (note: these are just examples.) – you’d need to grant permissions to both if you wanted both apps to work.</p>
+<p>Not sure if ANet is intending on a button to revoke all applications at once, maybe this could work for your requirements if they did?</p>
+<p>You will know, however, if an app is requesting access to your credentials before you even allow it since you’ll get a page like this: <a href="http://i.imgur.com/E9XKVy3.png">http://i.imgur.com/E9XKVy3.png</a> which actually sits on ANet’s servers.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-19T09:41:46+00:00">
+        19 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 19 2015 09:10AM"><a href="/forum/community/api/Online-Character-Viewer/4896703">Moturdrn.2837:</a></cite></div><div class="quotey"><p>You will know, however, if an app is requesting access to your credentials before you even allow it since you’ll get a page like this: <a href="http://i.imgur.com/E9XKVy3.png">http://i.imgur.com/E9XKVy3.png</a> which actually sits on ANet’s servers.</p></div></blockquote>
+<p>After the login screen you’ll get a screen which will be similar like the following (similar as in: <a href="/forum-backup/Launching-v2-account-w-Authentication">the wording will be clarified</a>). Note the URL, the login and the authorization will always happen on Anet’s servers.</p>
+<p>€: If you’re interested in how OAuth2 actually works, you might want to read this: <a href="https://aaronparecki.com/articles/2012/07/29/1/oauth2-simplified">https://aaronparecki.com/articles/2012/07/29/1/oauth2-simplified</a> (or just google for OAuth2<img src="/include/images/smilies/wink.png">)</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-19T13:22:26+00:00">
+        19 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 19 2015 04:01AM"><a href="/forum/community/api/Online-Character-Viewer/4896279">Forgotten Legend.9281:</a></cite></div><div class="quotey"><p>A) will there be a setting in game or in my account page so that i can set a definitive “no app is allowed to access my account / character information, ever, even if the app is able to produce the proper credentials” option? (please answer yes. this seems to me to be a “must have” option.)</p></div></blockquote>
+<p>All access to authenticated APIs is <strong>opt in</strong>.  That means you have to <strong>explicitly</strong> give permission to specific apps/websites to access your data on those APIs.</p>
+<p><strong>If you do nothing, no one will be able to access your account/character data.</strong></p></p>
+
+<h2 id="">Forgotten Legend.9281:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-20T05:07:13+00:00">
+        20 Mar 2015
+    </time>
+</p>
+<p>
+<p>so, if i understand this right… i would have to be using the app, and then log in to my account on guildwars2.com… and then grant permission. so if i never use any apps, then they’ll never gain access to any of my information. ( i still wouldn’t mind having a “block all apps” setting just in case, but seeing that it wouldn’t be needed if i never use any apps to begin with, my paranoia is sated. )</p>
+<p>thank you so very much everybody for explaining how this works. i’m glad you all saw through my post (and Bacon Deficiency) and saw that some respectful “there’s no need to worry. this is how it works.” is really all i needed to alleviate my concerns.</p>
+<p>the trouble with BDD (bacon deficiency disorder) is that sometimes, the one suffering from it overthinks things.</p>
+<p>golden brown delicious crispy bacon to all of you.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-20T09:45:20+00:00">
+        20 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 20 2015 05:07AM"><a href="/forum/community/api/Online-Character-Viewer/4900198">Forgotten Legend.9281:</a></cite></div><div class="quotey"><p>so, if i understand this right… i would have to be using the app, and then log in to my account on guildwars2.com… and then grant permission. so if i never use any apps, then they’ll never gain access to any of my information.</p></div></blockquote>
+<p>Exactly this.</p></p>
+
+<h2 id="">ETBlue.1963:</h2>
+<p class="post-meta">
+    <time datetime="2016-08-04T18:27:20+00:00">
+        04 Aug 2016
+    </time>
+</p>
+<p>
+<p>hi ArtifexDominus.8675,</p>
+<p>This little tool may fit your needs: <a href="https://etblue.github.io/gw2inventory/">https://etblue.github.io/gw2inventory/</a></p>
+<p>Submit your API key (with account, inventories, characters, wallet, builds, guilds permissions) and then bookmark the page, then you will be able to access your characters anytime you want.</p>
+<p>But beware, if you share the bookmarked url with your friends, you are sharing your API key with them, too.</p></p>
+
+<h2 id="">Moderator.5731:</h2>
+<p class="post-meta">
+    <time datetime="2016-08-11T05:12:49+00:00">
+        11 Aug 2016
+    </time>
+</p>
+<p>
+<p>Please remember to check the date of a thread before posting. Commenting on an out of date thread and bumping it to the top of the forums is considered necroposting and is against forum rules. This thread will now be locked. Thank you.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

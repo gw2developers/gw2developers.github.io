@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>v2 item_details and recipe_details?</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/v2-item-details-and-recipe-details/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">v2 item_details and recipe_details?</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/v2-item-details-and-recipe-details
+</p>
+
+
+
+<h2 id="">Mystic.5934:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-17T06:26:31+00:00">
+        17 Sep 2014
+    </time>
+</p>
+<p>
+<p>I can’t find any mention of how to get item_details or recipe_details with v2, do we still use v1?<br>
+such as <a href="https://api.guildwars2.com/v1/recipe_details.json?recipe_id=200">https://api.guildwars2.com/v1/recipe_details.json?recipe_id=200</a></p>
+<p>On a different topic, gem prices.  Why do the coins_per_gem change depending on the quantity requested?  I know they would change as the price changes, but this is too much, and is predictable (smaller the quantity, larger the price):<br>
+<a href="https://api.guildwars2.com/v2/commerce/exchange/coins?quantity=10000000">https://api.guildwars2.com/v2/commerce/exchange/coins?quantity=10000000</a><br>
+quantity_in_url = coins_per_gem<br>
+10000000 = 1279<br>
+1000000 = 1277<br>
+100000 = 1279<br>
+10000 = 1380<br>
+8000 = 1502<br>
+7000 = 1288<br>
+6000 = 1341<br>
+5000 = 1431<br>
+4000 = 1610<br>
+3000 = 2147</p>
+<p>hmmmm. I decided to check the in-game gem exchange.  It looks like it costs 21s57c to buy 1 gem, and 2g16s12c to buy 17 gems (12s71c per gem).  I guess that explains why the api would give those numbers, but why does buying single-digit amounts of gems cost up to 70% more per gem than double-digit?</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-17T09:28:50+00:00">
+        17 Sep 2014
+    </time>
+</p>
+<p>
+<p>You can still use v1 for now. The data that v2 will return should be the same. Only the response format will be different. Consider converting incoming response data to custom class layouts that are reusable for v2 when that becomes available.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-17T19:31:51+00:00">
+        17 Sep 2014
+    </time>
+</p>
+<p>
+<p>The /v2 api combines the /v1/items.json &amp; /v1/item_details.json APIs into a single, simpler API. You can look a /v2/commerce/listings for an example of the behavior. Requesting the root of /v2/items returns a list of all item IDs, exactly like /v1/items.json. You can then request for /v2/items/&lt;id&gt; or use any of the other querying mechanisms like ?ids=&lt;id&gt;,&lt;id&gt;,&lt;id&gt; or pagination to get individual item details.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-17T19:36:19+00:00">
+        17 Sep 2014
+    </time>
+</p>
+<p>
+<p>Will the json schema for item details change at all? Or will it be the same as v1, but with added support for bulk requests and pagination?</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-17T20:52:33+00:00">
+        17 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 17 2014 07:36PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4422783">StevenL.3761:</a></cite></div><div class="quotey"><p>Will the json schema for item details change at all? Or will it be the same as v1, but with added support for bulk requests and pagination?</p></div></blockquote>
+<p>Very similar, but we’ve fixed some types &amp; done some of the work for you in terms of turning items into icons.</p>
+<p><a href="https://gist.github.com/tivac/59fbb6474fece53ad97b">https://gist.github.com/tivac/59fbb6474fece53ad97b</a></p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-17T20:59:33+00:00">
+        17 Sep 2014
+    </time>
+</p>
+<p>
+<p>Way more interesting would actually be the [item_type] part (hope you also changed the naming of that because it was a pain to “guess” the right identifier for that subobject).</p>
+<p>Example:<br>
+<a href="https://api.guildwars2.com/v1/item_details.json?item_id=49412">https://api.guildwars2.com/v1/item_details.json?item_id=49412</a></p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-17T21:06:34+00:00">
+        17 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 17 2014 08:59PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4423052">smiley.1438:</a></cite></div><div class="quotey"><p>Way more interesting would actually be the [item_type] part (hope you also changed the naming of that because it was a pain to “guess” the right identifier for that subobject).</p>
+<p>Example:<br>
+<a href="https://api.guildwars2.com/v1/item_details.json?item_id=49412">https://api.guildwars2.com/v1/item_details.json?item_id=49412</a></p></div></blockquote>
+<p>Nope, sorry. That’s still passed-through as-is. Only difference is that we send back numbers as numbers instead of strings.</p></p>
+
+<h2 id="">Alcarin.9024:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-17T21:08:56+00:00">
+        17 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 17 2014 08:52PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4423036">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 17 2014 07:36PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4422783">StevenL.3761:</a></cite></div><div class="quotey"><p>Will the json schema for item details change at all? Or will it be the same as v1, but with added support for bulk requests and pagination?</p></div></blockquote>
+<p>Very similar, but we’ve fixed some types &amp; done some of the work for you in terms of turning items into icons.</p>
+<p><a href="https://gist.github.com/tivac/59fbb6474fece53ad97b">https://gist.github.com/tivac/59fbb6474fece53ad97b</a></p></div></blockquote>
+<p>Thanks for the info! Have you also fixed armor/weapon bonus for boon duration and condition duration that are listed inside “buff” instead of “attribute”?</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-17T21:15:38+00:00">
+        17 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 17 2014 09:06PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4423083">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 17 2014 08:59PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4423052">smiley.1438:</a></cite></div><div class="quotey"><p>Way more interesting would actually be the [item_type] part (hope you also changed the naming of that because it was a pain to “guess” the right identifier for that subobject).</p>
+<p>Example:<br>
+<a href="https://api.guildwars2.com/v1/item_details.json?item_id=49412">https://api.guildwars2.com/v1/item_details.json?item_id=49412</a></p></div></blockquote>
+<p>Nope, sorry. That’s still passed-through as-is. Only difference is that we send back numbers as numbers instead of strings.</p></div></blockquote>
+<p>Oh, that isn’t too bad at all, though. Thanks for the info! However, any chance to get that subobject renamed in a more common way, something like “item_details” (or “itemDetails” in correct camelCase) or just “details”?</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-17T21:19:34+00:00">
+        17 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 17 2014 09:15PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4423133">smiley.1438:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 17 2014 09:06PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4423083">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 17 2014 08:59PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4423052">smiley.1438:</a></cite></div><div class="quotey"><p>Way more interesting would actually be the [item_type] part (hope you also changed the naming of that because it was a pain to “guess” the right identifier for that subobject).</p>
+<p>Example:<br>
+<a href="https://api.guildwars2.com/v1/item_details.json?item_id=49412">https://api.guildwars2.com/v1/item_details.json?item_id=49412</a></p></div></blockquote>
+<p>Nope, sorry. That’s still passed-through as-is. Only difference is that we send back numbers as numbers instead of strings.</p></div></blockquote>
+<p>Oh, that isn’t too bad at all, though. Thanks for the info! However, any chance to get that subobject renamed in a more common way, something like “item_details” (or “itemDetails” in correct camelCase) or just “details”?</p></div></blockquote>
+<p>I misunderstood your question, sorry. It’s been standardized to “details”. I updated the gist w/ examples of the item you used.</p>
+<p><a href="https://gist.github.com/tivac/59fbb6474fece53ad97b">https://gist.github.com/tivac/59fbb6474fece53ad97b</a></p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-17T21:20:51+00:00">
+        17 Sep 2014
+    </time>
+</p>
+<p>
+<p>Brilliant! Thank you!<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Alcarin.9024:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-17T21:31:50+00:00">
+        17 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 17 2014 09:19PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4423145">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 17 2014 09:15PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4423133">smiley.1438:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 17 2014 09:06PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4423083">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 17 2014 08:59PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4423052">smiley.1438:</a></cite></div><div class="quotey"><p>Way more interesting would actually be the [item_type] part (hope you also changed the naming of that because it was a pain to “guess” the right identifier for that subobject).</p>
+<p>Example:<br>
+<a href="https://api.guildwars2.com/v1/item_details.json?item_id=49412">https://api.guildwars2.com/v1/item_details.json?item_id=49412</a></p></div></blockquote>
+<p>Nope, sorry. That’s still passed-through as-is. Only difference is that we send back numbers as numbers instead of strings.</p></div></blockquote>
+<p>Oh, that isn’t too bad at all, though. Thanks for the info! However, any chance to get that subobject renamed in a more common way, something like “item_details” (or “itemDetails” in correct camelCase) or just “details”?</p></div></blockquote>
+<p>I misunderstood your question, sorry. It’s been standardized to “details”. I updated the gist w/ examples of the item you used.</p>
+<p><a href="https://gist.github.com/tivac/59fbb6474fece53ad97b">https://gist.github.com/tivac/59fbb6474fece53ad97b</a></p></div></blockquote>
+<p>Ok, I saw that the answer for my previous question is no, and I can understand why.</p>
+<p>From your last example ( API v2), I can see that “suffix_item_id” is not present but “secondary_suffix_item_id” is present (but empty). I suppose that “suffix_item_id” is not present because Trinket don’t have a slot for rune/sigil, but why “secondary_suffix_item_id” is still present?</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-17T22:12:20+00:00">
+        17 Sep 2014
+    </time>
+</p>
+<p>
+<p>I’ve always wanted to know why an item’s combat attributes is a collection instead of an object. Don’t you store each attribute as a separate table column?</p>
+<p>Can items have multiple inherent attributes of the same type? Even if so, why not add them together?</p>
+<p>To clarify, this would make more sense to me:<br>
+</p><pre><code>
+"attributes": {
+	"Power": 33,
+	"Precision" : 33,
+	"Toughness" : 33,
+	"Vitality : 33,
+	"Healing" : 33,
+	"ConditionDamage" : 33,
+	"CritDamage" : 33
+}
+</code></pre><p></p></p>
+
+<h2 id="">Mystic.5934:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-18T18:54:45+00:00">
+        18 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 17 2014 07:31PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4422766">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>The /v2 api combines the /v1/items.json &amp; /v1/item_details.json APIs into a single, simpler API. You can look a /v2/commerce/listings for an example of the behavior. Requesting the root of /v2/items returns a list of all item IDs, exactly like /v1/items.json. You can then request for /v2/items/&lt;id&gt; or use any of the other querying mechanisms like ?ids=&lt;id&gt;,&lt;id&gt;,&lt;id&gt; or pagination to get individual item details.</p></div></blockquote>
+<p>I see that <a href="https://api.guildwars2.com/v2/commerce/listings">https://api.guildwars2.com/v2/commerce/listings</a> returns a list of all Item ID’s<br>
+Should this be the same list of items as /v1/items.json ?  Looks like v2/commerce/listings has 22,125 Items, while v1/items.json has 37,817 Items.</p>
+<p>But <a href="https://api.guildwars2.com/v2/items/12138">https://api.guildwars2.com/v2/items/12138</a> just says "{"text":“API not active”}"<br>
+same for <a href="https://api.guildwars2.com/v2/items?id=12138">https://api.guildwars2.com/v2/items?id=12138</a><br>
+maybe it’s not implemented yet, or I’m reading the example wrong?</p></p>
+
+<h2 id="">TehGear.8702:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-18T19:08:38+00:00">
+        18 Sep 2014
+    </time>
+</p>
+<p>
+<p>Yeah experiencing the same issue. Wanted to make multiple requests but v1 doesn’t seem to support it…</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-18T19:09:45+00:00">
+        18 Sep 2014
+    </time>
+</p>
+<p>
+<p>/commerce/listings only returns identifiers for items that are currently listed on the trading post. That explains why there are well over 15000 identifiers missing from the listing service.</p>
+<p>What it doesn’t expain is why there are item identifiers in the listing service that are not in the items.json service?!</p>
+<p>example:</p>
+<p><a href="https://api.guildwars2.com/v2/commerce/listings/9102">https://api.guildwars2.com/v2/commerce/listings/9102</a><br>
+<a href="https://api.guildwars2.com/v1/item_details.json?item_id=9102">https://api.guildwars2.com/v1/item_details.json?item_id=9102</a></p>
+<p><strong>edit</strong></p>
+<p>Mystery solved. You can place bids for that item on the trading post, but nobody actually has it. Only discovered items appear in the items service.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-18T21:21:27+00:00">
+        18 Sep 2014
+    </time>
+</p>
+<p>
+<p>The /v2/items API doesn’t know about 9102 either. I wonder if the /v1 API feeding it hasn’t been updated correctly? Not something I’ve got a hand in so tough to answer.</p>
+<p>/v2/items API isn’t active yet as we’re still polishing up some bits. I’m just providing examples to hopefully answer questions and maybe unblock folks that are writing libs that want to consume /v2 APIs.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-19T15:07:10+00:00">
+        19 Sep 2014
+    </time>
+</p>
+<p>
+<p>It looks to me as if these items are not supposed to be listed on the trading post. I converted some of the identifiers to chat links and pasted them in-game to see what item they correspond to. Items include things like “Cinematic Weapon Sword Charr”.</p>
+<div class="spoiler_container"><div class="spoileroncontainer"><button type="button" class="button spoileron" title="Click to show the spoiler.">Show Spoiler</button></div><div class="spoiler"><div class="spoileroffcontainer"><button type="button" class="button spoileroff" title="Click to hide the spoiler.">hide spoiler</button><br></div><div class="spoilertext"><p>[&amp;AgGOIwAA]<br>
+[&amp;AgGjPQAA]<br>
+[&amp;AgFhSQAA]<br>
+[&amp;AgEoSgAA]<br>
+[&amp;AgFLWgAA]<br>
+[&amp;AgFPWgAA]<br>
+[&amp;AgFgYQAA]<br>
+[&amp;AgF1YQAA]<br>
+[&amp;AgF/ZAAA]<br>
+[&amp;AgGQZAAA]<br>
+[&amp;AgGSZAAA]<br>
+[&amp;AgGVZAAA]<br>
+[&amp;AgGXZAAA]<br>
+[&amp;AgFKcgAA]<br>
+[&amp;AgEAdQAA]<br>
+[&amp;AgEIdQAA]<br>
+[&amp;AgEMdQAA]<br>
+[&amp;AgEWdQAA]<br>
+[&amp;AgGJeQAA]<br>
+[&amp;AgGQeQAA]<br>
+[&amp;AgGUeQAA]<br>
+[&amp;AgGXeQAA]<br>
+[&amp;AgGaeQAA]<br>
+[&amp;AgGbeQAA]<br>
+[&amp;AgGceQAA]<br>
+[&amp;AgGdeQAA]<br>
+[&amp;AgGfeQAA]<br>
+[&amp;AgGgeQAA]<br>
+[&amp;AgGheQAA]<br>
+[&amp;AgGjeQAA]<br>
+[&amp;AgGkeQAA]<br>
+[&amp;AgGoeQAA]<br>
+[&amp;AgGpeQAA]<br>
+[&amp;AgG/eQAA]<br>
+[&amp;AgHAeQAA]<br>
+[&amp;AgHBeQAA]<br>
+[&amp;AgHHeQAA]<br>
+[&amp;AgHKeQAA]<br>
+[&amp;AgECfgAA]<br>
+[&amp;AgE1jgAA]<br>
+[&amp;AgE3jgAA]</p></div></div></div></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-19T15:17:43+00:00">
+        19 Sep 2014
+    </time>
+</p>
+<p>
+<p>There are actually a lot of questionable items on the TP. Items that are either soul- or account bound or like the one you discovered, items which are not meant for player use. Seems like there are (or hopefully “were”) a couple of bugs in there so that one could list invalid items – most likely through “inofficial” TP API use.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-19T22:24:05+00:00">
+        19 Sep 2014
+    </time>
+</p>
+<p>
+<p>Yeah, we chatted about it some internally and have a hypothesis. There was a bug around launch that let you place buy orders for items before they’d ever been “discovered” (sold). Folks were using our unsupported web service endpoints in the TP to place buy orders by incrementing item IDs blindly, so there’s all sorts of weird gunk on there now.</p>
+<p>Commerce team is looking at how hard it’d be to clean that stuff up because it’s just cluttering things and making for weird situations like this. Since those items have never been discovered in-game (unsurprising, given that they’re internal-only NPC things) the items endpoint doesn’t know anything about them. That disconnect sucks, so we’d like to clean it up.</p></p>
+
+<h2 id="">meh.6784:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-20T14:30:22+00:00">
+        20 Sep 2014
+    </time>
+</p>
+<p>
+<p>I have a stupid question, will there be a way to search for items or do we still have to download the whole database to do any meaningful search?</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-20T14:38:53+00:00">
+        20 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 20 2014 02:30PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4431003">meh.6784:</a></cite></div><div class="quotey"><p>will there be a way to search for items</p></div></blockquote>
+<p>Given the current information i’d say “no”. I wish we had something for the maps/map_floor endpoints, though.</p>
+<blockquote><div class="citey"><cite title="Posted on September 12 2014 11:46PM"><a href="/forum/community/api/Signs-of-hope/4405519">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>A few, most of /v2 is just exposing existing /v1 data in a cleaner &amp; more useful way. We’ll keep adding new APIs as they make sense to it, but don’t expect seismic shifts in the data you can get out.</p></div></blockquote></p>
+
+<h2 id="">meh.6784:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-20T14:43:08+00:00">
+        20 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 20 2014 02:38PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4431026">smiley.1438:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 20 2014 02:30PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4431003">meh.6784:</a></cite></div><div class="quotey"><p>will there be a way to search for items</p></div></blockquote>
+<p>Given the current information i’d say “no”. I wish we had something for the maps/map_floor endpoints, though.</p>
+<blockquote><div class="citey"><cite title="Posted on September 12 2014 11:46PM"><a href="/forum/community/api/Signs-of-hope/4405519">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>A few, most of /v2 is just exposing existing /v1 data in a cleaner &amp; more useful way. We’ll keep adding new APIs as they make sense to it, but don’t expect seismic shifts in the data you can get out.</p></div></blockquote></div></blockquote>
+<p>Well, it doesn’t change the data, it would expose it in a cleaner &amp; more useful way :P</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-20T17:40:36+00:00">
+        20 Sep 2014
+    </time>
+</p>
+<p>
+<p>We could expose the commerce search endpoint, but it only knows about items that can be put on the Trading Post. We don’t have any other search backends wired up to items that I’m aware of.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-20T17:58:24+00:00">
+        20 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 20 2014 05:40PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4431340">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>We could expose the commerce search endpoint, but it only knows about items that can be put on the Trading Post. We don’t have any other search backends wired up to items that I’m aware of.</p></div></blockquote>
+<p>This would be helpful too – at least for people who want to build their own TP listings.<img src="/include/images/smilies/colondee.png"></p>
+<p>Anyway, having an “own” database makes it easier to play around and keep track of changes. That being said: any chance on an endpoint which lists the ids of changed items after a patch has been pushed?</p></p>
+
+<h2 id="">meh.6784:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-21T14:50:30+00:00">
+        21 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 20 2014 05:40PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4431340">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>We could expose the commerce search endpoint, but it only knows about items that can be put on the Trading Post. We don’t have any other search backends wired up to items that I’m aware of.</p></div></blockquote>
+<p>That’s better than nothing, also what Smiley said would be useful, I could make the initial download for the whole database, and then just do proper upgrades.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-21T17:51:16+00:00">
+        21 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 20 2014 05:58PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4431372">smiley.1438:</a></cite></div><div class="quotey"><p>any chance on an endpoint which lists the ids of changed items after a patch has been pushed?</p></div></blockquote>
+<p>It’s not something we have currently, and I don’t think it’s anything we’re planning to build. Hopefully once /v2/items is out it’ll be easier for people to compile those sorts of things themselves.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-21T18:20:08+00:00">
+        21 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 21 2014 05:51PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4433555">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 20 2014 05:58PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4431372">smiley.1438:</a></cite></div><div class="quotey"><p>any chance on an endpoint which lists the ids of changed items after a patch has been pushed?</p></div></blockquote>
+<p>It’s not something we have currently, and I don’t think it’s anything we’re planning to build. Hopefully once /v2/items is out it’ll be easier for people to compile those sorts of things themselves.</p></div></blockquote>
+<p>Thanks for the heads up!<br>
+I wonder how that process would be easier with v2 since it basically delivers the same data. Currently the only way to find and update changed items is to retrieve the info for each and every item over and over. So the only advantage of v2 will be the bulk request which may speed up this process (which currently takes about a day).</p>
+<p>€: see also: <a href="/forum-backup/API-Suggestion-Items-Recipes-and-Crafting">https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/2863618</a></p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-22T06:10:39+00:00">
+        22 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 21 2014 06:20PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4433599">smiley.1438:</a></cite></div><div class="quotey"><p>I wonder how that process would be easier with v2 since it basically delivers the same data. Currently the only way to find and update changed items is to retrieve the info for each and every item over and over. So the only advantage of v2 will be the bulk request which may speed up this process (which currently takes about a day).</p></div></blockquote>
+<p>That’s what I’m referring to, yes. Getting back 200 items at a time is going to speed up that process.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-22T08:22:01+00:00">
+        22 Sep 2014
+    </time>
+</p>
+<p>
+<p>Feature request: could you add a response header ‘X-Build’ that represents the current game build number?</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-22T16:32:44+00:00">
+        22 Sep 2014
+    </time>
+</p>
+<p>
+<p>We already have /v2/build (&amp; /v1/build.json) which returns that info. Why do you want it w/ every request?</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-22T16:39:56+00:00">
+        22 Sep 2014
+    </time>
+</p>
+<p>
+<p>The only way this information would make sense with each request would be for the item details, like build_introduced and build_changed so that we could keep track of these. But i guess thats over the top anyway…<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-22T17:10:12+00:00">
+        22 Sep 2014
+    </time>
+</p>
+<p>
+<p>I’m a little paranoid about the build number changing while I’m updating my database. My workflow now is to get the build number, then retrieve a batch of items, then verify that the build number hasn’t changed. Only if the build hasn’t changed can I be sure that each item was assigned the correct build identifier. If it did change, I have to discard that batch.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-22T17:29:16+00:00">
+        22 Sep 2014
+    </time>
+</p>
+<p>
+<p>I’ll think about it, but it’s not going to be a high priority compared to getting the rest of the /v2 APIs enabled.</p></p>
+
+<h2 id="">xanthic.9478:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-22T18:02:27+00:00">
+        22 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 21 2014 06:20PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4433599">smiley.1438:</a></cite></div><div class="quotey"><p>Currently the only way to find and update changed items is to retrieve the info for each and every item over and over. So the only advantage of v2 will be the bulk request which may speed up this process (which currently takes about a day).</p></div></blockquote>
+<p>The bottleneck here at the moment is the completion of the request.  If you thread your requests it goes significantly faster.  The script that builds the recipe list for my website grabs every individual recipe(num_recipes/10_x_num_procs at a time), and (currently 7228) craftable item details in 4 languages.  And completes in about 3-5 minutes depending on network traffic.</p>
+<p><a href="https://github.com/xanthics/gw2craft/blob/master/Create_recipes.py">https://github.com/xanthics/gw2craft/blob/master/Create_recipes.py</a></p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-22T18:22:32+00:00">
+        22 Sep 2014
+    </time>
+</p>
+<p>
+<p>Threading is the bomb.  I’m currently running on my work laptop – not the most powerful beast in the world (Core i5-3210M @ 2.50 GHz), but the LAN has very fat bandwidth.  I’m using my custom Perl module posting to a MySQL database.</p>
+<ul>
+	<li>My original single-threaded version took about 7 hours to process all items back when we only had 30k of them.</li>
+	<li>A few months ago I rewrote it to fork 4 child threads to process items in parallel, and this version only takes about 2 hours with 38k items now.</li>
+</ul></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-23T23:35:56+00:00">
+        23 Sep 2014
+    </time>
+</p>
+<p>
+<p>I was tempted to say thats hard to do in PHP due to the lack of multi threading, but hey, it isn’t (there is an extension but it’s nothing to rely on: <a href="http://php.net/pthreads">http://php.net/pthreads</a>). I built the updater around this example: <a href="https://gist.github.com/Xeoncross/2362936">https://gist.github.com/Xeoncross/2362936</a> and it looks promising – ok, it isn’t multi threaded but at least asynchronous.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-24T03:43:19+00:00">
+        24 Sep 2014
+    </time>
+</p>
+<p>
+<p>I’ve used <a href="https://code.google.com/p/rolling-curl/">https://code.google.com/p/rolling-curl/</a> in the past with success, looks like it might be a similar implementation.</p></p>
+
+<h2 id="">keneanung.3071:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-24T07:25:15+00:00">
+        24 Sep 2014
+    </time>
+</p>
+<p>
+<p>gw2spidy uses <a href="https://github.com/jmathai/php-multi-curl">https://github.com/jmathai/php-multi-curl</a> which seems to be yet another implementation<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-24T11:53:09+00:00">
+        24 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 24 2014 03:43AM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4440542">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>I’ve used <a href="https://code.google.com/p/rolling-curl/">https://code.google.com/p/rolling-curl/</a> in the past with success, looks like it might be a similar implementation.</p></div></blockquote>
+<p>It’s in fact based on the same implementation by Josh Fraser: <a href="http://www.onlineaspect.com/2009/01/26/how-to-use-curl_multi-without-blocking/">http://www.onlineaspect.com/2009/01/26/how-to-use-curl_multi-without-blocking/</a></p>
+<p>€: <br>
+Just did a couple test runs with 1000 requests (250 items) which have been completed in ~72 seconds on a very slow connection, would be in total about 3 hours, assuming 38k items (152k requests).</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-25T13:42:30+00:00">
+        25 Sep 2014
+    </time>
+</p>
+<p>
+<p>How many requests out of 1000 does it send and post-process at a time? Would you be able to queue up all 1000 requests at the same time, then handle each one as it completes?</p>
+<p>My understanding is that the total duration should approach the sum of (the time it takes to queue all requests) plus (the time of the slowest HTTP query). How does it still take over a minute? (honest question)</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-25T13:58:21+00:00">
+        25 Sep 2014
+    </time>
+</p>
+<p>
+<p>I’ve tested it and it’d be able to do so. But there’s 2 problems:</p>
+<p>first: it’ll blow up your cpu and memory<br>
+second: there may be a limit of concurrent connections to the same host or you might get blocked when you’re hammering too hard, so there’s a limit which you can specify</p>
+<p>The first example which i’ve posted works basically like that – no limits, just hammering. The one Pat posted has those limitations built in, one might use this for production.</p>
+<p>Y U EDIT WHILE I ANSWER?<img src="/include/images/smilies/colondee.png"></p>
+<p>The total duration is just approx, mileage may vary. I’m currently rewriting my database updater, so i can maybe give you real results tomorrow.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-26T07:00:36+00:00">
+        26 Sep 2014
+    </time>
+</p>
+<p>
+<p>Forget about /v1, show us the numbers for /v2/items. The new APIs seem fast enough to not require asynchronous code, but I’m curious to see how far it can be pushed.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-26T08:57:04+00:00">
+        26 Sep 2014
+    </time>
+</p>
+<p>
+<p>36 minutes on my connection for a full update (4 languages) – while downloading chunks of just 50. I guess it’ll be done in a few minutes on darthmaim’s server then (gw2treasures.de). I ran a v1 update before just for testing and it was like i predicted ~ 3 hours.</p></p>
+
+<h2 id="">poke.3712:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-26T15:11:37+00:00">
+        26 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 26 2014 08:57AM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4446611">smiley.1438:</a></cite></div><div class="quotey"><p>36 minutes on my connection for a full update</p></div></blockquote>
+<p>I’m down to 2 minutes for a single language now… ;D</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-26T15:25:02+00:00">
+        26 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 26 2014 03:11PM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4447192">poke.3712:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 26 2014 08:57AM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4446611">smiley.1438:</a></cite></div><div class="quotey"><p>36 minutes on my connection for a full update</p></div></blockquote>
+<p>I’m down to 2 minutes for a single language now… ;D</p></div></blockquote>
+<p>You can have my connection – 3 times dual channel ISDN… you know how “fast” that is, right?<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-26T17:50:12+00:00">
+        26 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 26 2014 08:57AM"><a href="/forum/community/api/v2-item-details-and-recipe-details/4446611">smiley.1438:</a></cite></div><div class="quotey"><p>36 minutes on my connection for a full update (4 languages) – while downloading chunks of just 50. I guess it’ll be done in a few minutes on darthmaim’s server then (gw2treasures.de). I ran a v1 update before just for testing and it was like i predicted ~ 3 hours.</p></div></blockquote>
+<p>?page_size=200 is very useful here.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-26T18:39:56+00:00">
+        26 Sep 2014
+    </time>
+</p>
+<p>
+<p>I’ve tested with 50 and 200, but 200 took way too long on the initial download. I can live with a full database refresh in half an hour – thats nothing compared to the old version<img src="/include/images/smilies/colondee.png"><br>
+Darthmaim’s server has at least a 1Gbit connection (if not 10Gbit+) – not much of a problem there.</p>
+<p>(WIP already on github: <a href="https://github.com/codemasher/gw2-database/blob/master/classes/gw2items.class.php#L156">https://github.com/codemasher/gw2-database/blob/master/classes/gw2items.class.php#L156</a>)</p></p>
+
+<h2 id="">Mystic.5934:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-01T08:32:51+00:00">
+        01 Oct 2014
+    </time>
+</p>
+<p>
+<p>v2/items is great to work with<img src="/include/images/smilies/smile.png"><br>
+I assume v2/recipes is on it’s way?<img src="/include/images/smilies/smile.png"></p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Event Details API location coordinates</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Event-Details-API-location-coordinates/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Event Details API location coordinates</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Event-Details-API-location-coordinates
+</p>
+
+
+
+<h2 id="">Goddchen.4958:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-22T11:41:51+00:00">
+        22 Jun 2013
+    </time>
+</p>
+<p>
+<p>Hey everyone,</p>
+<p>I’m kind of confused by the event details API’s center coordinates.</p>
+<p>For example I get:</p>
+<p>“center”:<br>
+[-9463.6,<br>
+-40310.2,<br>
+-785.799]</p>
+<p>But the continent itself only has a dimension of 32768×32768 pixels.</p>
+<p>Doesn’t make much sense to me<img src="/include/images/smilies/sad.png"></p>
+<p>Could someone please explain those coordinates?</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-22T12:19:15+00:00">
+        22 Jun 2013
+    </time>
+</p>
+<p>
+<p>Hmm, the points in the event details are actually weird. My first thought was that these are relative values, but this wouldn’t make sense too.</p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-22T12:27:03+00:00">
+        22 Jun 2013
+    </time>
+</p>
+<p>
+<p>Currently I’m under the impression that those coordinates are supposed to be inside <em>map_rect</em>, which sits inside <em>continent_rect</em> on the map, but I didn’t put a lot of effort into trying to verify that (None)</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-22T12:33:53+00:00">
+        22 Jun 2013
+    </time>
+</p>
+<p>
+<p>Yep, thats the impression i have too after further investigation:</p>
+<pre><code>15: {
+	map_name: "Queensdale",
+	min_level: 1,
+	max_level: 17,
+	default_floor: 1,
+	floors: [0, 1, 2],
+	region_id: 4,
+	region_name: "Kryta",
+	continent_id: 1,
+	continent_name: "Tyria",
+	map_rect: [
+		[-43008, -27648],
+		[43008, 30720]
+	],
+	continent_rect: [
+		[9856, 11648],
+		[13440, 14080]
+	]
+}
+
+
+D77349CE-E422-469E-905B-827AA138D88F: {
+	name: "Stop the elder earth elemental from destroying the dam.",
+	level: 4,
+	map_id: 15,
+	flags: [ ],
+	location: {
+		type: "sphere",
+		center: [-28975, 27321.2, -785.732],
+		radius: 2000,
+		rotation: 0
+	}
+}
+
+
+</code></pre>
+<p>….but: currently i don’t use the map_rect at all, nor do i have an idea how to translate the coords :o</p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-22T12:34:38+00:00">
+        22 Jun 2013
+    </time>
+</p>
+<p>
+<p>Yes, math hard. Cliff?<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Healix.5819:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-22T14:24:34+00:00">
+        22 Jun 2013
+    </time>
+</p>
+<p>
+<p>Those coordinates ([-28975, 27321.2, -785.732]) look like what the in-game coordinates look like.</p>
+<p>In-game, coordinates are calculated from the center of the map, where a negative on the Z axis is above sea level (Z is jumping). Moving West from the center of the map is negative on the X axis and moving South from the center of the map is negative on the Y axis. This is why there are negative coordinates.</p>
+<p>The map_rect appears to be the [south east corner], [north west corner] coordinates. From what I’ve recorded, Queensdale is around that size (86016w, 58368h). Using map_rect, you can find the center and from that, place the event coordinate.</p>
+<p>The continent_rect appears to be [x, y], [x + width, y + height] in pixels based on the world map when fully zoomed in. Using this, you should be able to calculate the center along with map_rect to place the coordinate on the map.</p>
+<p>I haven’t played with these APIs yet, so I’m judging everything based on the Queensdale example above, and what I’ve personally recorded using in-game coordinates.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-22T15:00:31+00:00">
+        22 Jun 2013
+    </time>
+</p>
+<p>
+<p>It’s basic algebra and coordinate translation.</p></p>
+
+<h2 id="">Goddchen.4958:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-22T15:39:03+00:00">
+        22 Jun 2013
+    </time>
+</p>
+<p>
+<p>Got it working by doing some percentage calulcations to calculate the continent coordinates from the map coordinates:<br>
+<a href="https://github.com/Goddchen/GuildWars2-API-Explorer/blob/master/GuildWars2APIExplorer/src/main/java/de/goddchen/android/gw2/api/fragments/ContinentFragment.java#L132">https://github.com/Goddchen/GuildWars2-API-Explorer/blob/master/GuildWars2APIExplorer/src/main/java/de/goddchen/android/gw2/api/fragments/ContinentFragment.java#L132</a></p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-22T16:17:04+00:00">
+        22 Jun 2013
+    </time>
+</p>
+<p>
+<p>Yep, you’re using the exact same equations I posted.</p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-22T16:35:52+00:00">
+        22 Jun 2013
+    </time>
+</p>
+<p>
+<p>I was using a numpy matrix, but even if I only built it once per map your pile of random characters is a lot faster.</p>
+<p>All condensed in one ugly block of code so I don’t have to look at it so much:</p>
+<pre><code>
+def continent_coords(continent_rect, map_rect, point, game=False):
+    return (
+        (point[0]-map_rect[0][0])/(map_rect[1][0]-map_rect[0][0])*(continent_rect[1][0]-continent_rect[0][0])+continent_rect[0][0],
+        ((-point[1] if game else point[1])-map_rect[0][1])/(map_rect[1][1]-map_rect[0][1])*(continent_rect[1][1]-continent_rect[0][1])+continent_rect[0][1]
+    )</code></pre></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-23T03:20:59+00:00">
+        23 Jun 2013
+    </time>
+</p>
+<p>
+<p>On caveat that I forgot about, ozma caught me on it in a PM: the Y coordinates are inverted between map and continent.  So you have to take the complement of the delta ( 1 – delta ) in the Y equation.</p>
+<p>This attachment shows just the final equations for X and Y without the derivation I showed above.</p>
+<p>(How do you show an image inside your post?  The IMG tags don’t seem to work.)</p></p>
+
+<h2 id="">jefe.2705:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-26T22:43:45+00:00">
+        26 Jun 2013
+    </time>
+</p>
+<p>
+<p>Looking through the Event Details API the coordinate system used is different then the one used by the Map API coordinates.  Is there a conversion equation/system to convert the coordinates given in the Event Details API to the one used by the Map API coordinates?</p>
+<p>Example:<br>
+[-9463.6,<br>
+-40310.2,<br>
+-785.799]</p>
+<p>to something like</p>
+<p>[20002.2,<br>
+16128.5]</p>
+<p>(a random event coord and a random POI coord used as examples)</p>
+<p>Thanks for any help</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-26T22:52:08+00:00">
+        26 Jun 2013
+    </time>
+</p>
+<p>
+<p>Covered over here:</p>
+<p><a href="/forum-backup/Event-Details-API-location-coordinates">https://forum-en.guildwars2.com/forum/community/api/Event-Details-API-location-coordinates/first#post2265375</a></p>
+<p>The third number is the Z-coordinate, which doesn’t matter for plotting on a 2D map.</p></p>
+
+<h2 id="">jefe.2705:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-26T22:57:10+00:00">
+        26 Jun 2013
+    </time>
+</p>
+<p>
+<p>Thanks for the equation, can you provide an example of it being used as I’m having a hard time assigning variables to known numbers?</p></p>
+
+<h2 id="">The Last Engineer.6492:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-26T23:23:52+00:00">
+        26 Jun 2013
+    </time>
+</p>
+<p>
+<p>Event info :<br>
+	“location”: “type” : “poly”, " center " : [ xxx ,  xxx ,  xxx ]  … <br>
+	<br>
+	Map info :<br>
+	“map_rect”: [ [ xxx, xxx ], [ xxx, xxx ] ] …<br>
+	“continent_rect”:[ [ xxx,xxx ],[ xxx , xxx ] ] …</p>
+<p>Map Event location :<br>
+	<br>
+	event_center_x = location.center [ 0 ] ;<br>
+	event_center_y = location.center [ 1 ] ;<br>
+	<br>
+	percentageX = (event_center_x – map_rect [ 0 ] [ 0 ] ) / (map_rect [ 1 ] [ 0 ] – map_rect [ 0 ] [ 0 ] );<br>
+	percentageY = 1-(event_center_y – map_rect [ 0 ] [ 1 ] ) / (map_rect [ 1 ] [ 1 ] – map_rect [ 0 ] [ 1 ] );<br>
+	<br>
+	continentX = (continent_rect [ 0 ] [ 0 ] + (continent_rect [ 1 ] [ 0 ] – continent_rect [ 0 ] [ 0 ] ) * percentageX);<br>
+	continentY = (continent_rect [ 0 ] [ 1 ] + (continent_rect [ 1 ] [ 1 ] – continent_rect [ 0 ] [ 1 ] ) * percentageY);<br>
+	<br>
+	// the coords for the event<br>
+	event_coords = FromPixelToCoords([continentX, continentY], map.GetMaxZoom()); // map.GetMaxZoom() is set to 7 for Gw2 Map</p></p>
+
+<h2 id="">The Last Engineer.6492:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-26T23:40:37+00:00">
+        26 Jun 2013
+    </time>
+</p>
+<p>
+<p>This is a short sample to convert Pixel To coordinates :</p>
+<pre><code>
+public class APIProjection
+    {
+        private readonly double PixelTileSize = 256d;
+        private readonly double DegreesToRadiansRatio = 180d / Math.PI;
+        private readonly Point PixelGlobeCenter;
+        private readonly double XPixelsToDegreesRatio;
+        private readonly double YPixelsToRadiansRatio;
+
+        public APIProjection(double zoomLevel)
+        {
+            var pixelGlobeSize = this.PixelTileSize * Math.Pow(2d, zoomLevel);
+            this.XPixelsToDegreesRatio = pixelGlobeSize / 360d;
+            this.YPixelsToRadiansRatio = pixelGlobeSize / (2d * Math.PI);
+            var halfPixelGlobeSize = Convert.ToSingle(pixelGlobeSize / 2d);
+            this.PixelGlobeCenter = new Point(
+                halfPixelGlobeSize, halfPixelGlobeSize);
+        }
+
+        public Location FromPixelToCoordinates(Point pixel)
+        {
+            var longitude = (pixel.X - this.PixelGlobeCenter.X) /
+                this.XPixelsToDegreesRatio;
+            var latitude = (2 * Math.Atan(Math.Exp(
+                (pixel.Y - this.PixelGlobeCenter.Y) / -this.YPixelsToRadiansRatio))
+                - Math.PI / 2) * DegreesToRadiansRatio;
+            return new Location(
+                Convert.ToSingle(latitude),
+                Convert.ToSingle(longitude));
+        }
+    }
+</code></pre></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-26T23:52:18+00:00">
+        26 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 26 2013 10:52PM"><a href="/forum/community/api/Event-Details-API-Coords/2296303">Dr Ishmael.9685:</a></cite></div><div class="quotey"><p>The third number is the Z-coordinate, which doesn’t matter for plotting on a 2D map.</p></div></blockquote>
+<p>Isn’t that the center of the sphere (if applies) so that you would draw a spherical segment on the map?</p>
+<blockquote><div class="citey"><cite title="Posted on June 26 2013 11:40PM"><a href="/forum/community/api/Event-Details-API-Coords/2296599">The Last Engineer.6492:</a></cite></div><div class="quotey"><p>This is a short sample to convert Pixel To coordinates</p></div></blockquote>
+<p>If you work with leaflet.js, the similar methods are L.Map.project() and L.Map.unproject() btw. <a href="http://leafletjs.com/reference.html#map-conversion-methods">http://leafletjs.com/reference.html#map-conversion-methods</a></p>
+<p>While we’re at it: i’m trying to do the same with the gmaps API – they have a simple example there. However, translating latlng to pixel works fine with that, but i believe i’m too dumb to figure out how to translate back from pixel to latlng – the example function doesn’t seem to work as expected. There are a gazillion threads on the net, asking how that works, most answers are just RTFM like or “yay, solved!” with no comment on the final solution.</p>
+<p>So, anyone please?</p>
+<p><a href="https://developers.google.com/maps/documentation/javascript/examples/map-coordinates">https://developers.google.com/maps/documentation/javascript/examples/map-coordinates</a></p></p>
+
+<h2 id="">The Last Engineer.6492:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-27T00:58:53+00:00">
+        27 Jun 2013
+    </time>
+</p>
+<p>
+<p>the pixel globe size is provided by the Gw2 API.<br>
+That’s the texture_dims defined in v1/map_floor.json?continent_id=1&amp;floor=1</p>
+<pre><code>
+"texture_dims": [32768, 32768]
+</code></pre>
+<p>you are able to compute it by doing that :</p>
+<pre><code>
+pixelTileSize = 256
+pixelGlobeSize = pixelTileSize * (2 ^ 7) = 32768 (7 is the max zoom level).
+PixelGlobeCenter = [16384, 16384]  ( [32768/2, 32768/2] )
+</code></pre>
+<p>For the location : </p><pre><code> "coord":[19765.9,16239.2] </code></pre><p></p>
+<p>you can do this as below :</p>
+<pre><code>
+longitude = (coord[0] - 16384) / (32768 / 360);
+latitude = (2 * arctan(  e^( (coord[1] - 16384) / -(32768 / (2 * PI))))- PI / 2) * (180/PI);
+</code></pre>
+<p>Details :</p>
+<pre><code>
+coord[x, y] is the item location.
+
+degreesToRadiansRatio = 180/PI
+pixelTileSize = 256
+pixelGlobeSize = pixelTileSize * 2^maxZoomLevel
+XPixelsToDegreesRatio = pixelGlobeSize / 360
+YPixelsToRadiansRatio = pixelGlobeSize / (2 * PI)
+pixelGlobeCenter = [pixelGlobeSize /2, pixelGlobeSize /2]
+
+xDiff = coord[0] - pixelGlobeCenter[0]
+yDiff = coord[1] - pixelGlobeCenter[1]
+
+longitude = xDiff / XPixelsToDegreesRatio
+latitude = (2 * arctan(e^(yDiff  / -YPixelsToRadiansRatio)) - PI / 2) * degreesToRadiansRatio
+</code></pre></p>
+
+<h2 id="">jefe.2705:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-27T01:25:03+00:00">
+        27 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 26 2013 11:23PM"><a href="/forum/community/api/Event-Details-API-location-coordinates/2296497">The Last Engineer.6492:</a></cite></div><div class="quotey"><p>Event info :<br>
+	“location”: “type” : “poly”, " center " : [ xxx ,  xxx ,  xxx ]  … <br>
+	<br>
+	Map info :<br>
+	“map_rect”: [ [ xxx, xxx ], [ xxx, xxx ] ] …<br>
+	“continent_rect”:[ [ xxx,xxx ],[ xxx , xxx ] ] …</p>
+<p>Map Event location :<br>
+	<br>
+	event_center_x = location.center [ 0 ] ;<br>
+	event_center_y = location.center [ 1 ] ;<br>
+	<br>
+	percentageX = (event_center_x – map_rect [ 0 ] [ 0 ] ) / (map_rect [ 1 ] [ 0 ] – map_rect [ 0 ] [ 0 ] );<br>
+	percentageY = 1-(event_center_y – map_rect [ 0 ] [ 1 ] ) / (map_rect [ 1 ] [ 1 ] – map_rect [ 0 ] [ 1 ] );<br>
+	<br>
+	continentX = (continent_rect [ 0 ] [ 0 ] + (continent_rect [ 1 ] [ 0 ] – continent_rect [ 0 ] [ 0 ] ) * percentageX);<br>
+	continentY = (continent_rect [ 0 ] [ 1 ] + (continent_rect [ 1 ] [ 1 ] – continent_rect [ 0 ] [ 1 ] ) * percentageY);<br>
+	<br>
+	// the coords for the event<br>
+	event_coords = FromPixelToCoords([continentX, continentY], map.GetMaxZoom()); // map.GetMaxZoom() is set to 7 for Gw2 Map</p></div></blockquote>
+<p>Thank you, this was exactly what I was looking for</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-29T22:25:03+00:00">
+        29 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 27 2013 12:58AM"><a href="/forum/community/api/Event-Details-API-location-coordinates/2297046">The Last Engineer.6492:</a></cite></div><div class="quotey"><p>you can do this as below : <br>
+</p><pre><code>
+longitude = (coord[0] - 16384) / (32768 / 360);
+latitude = 2 * arctan( e ^ ( ( coord[1] - 16384 ) / -(32768 / (2 * PI)) ) - PI / 2 ) * (180/PI);
+</code></pre><p></p></div></blockquote>
+<p>Thanks so much for this, i got it working now – the hint about the map size was essential, but a few missing brackets made me crazy…<img src="/include/images/smilies/colondee.png"></p>
+<p><a href="http://gw2.chillerlan.net/examples/gw2maps-gmaps-simple.html">http://gw2.chillerlan.net/examples/gw2maps-gmaps-simple.html</a></p>
+<p>so it looks like this now:</p>
+<pre><code>function fromPointToLatLng(point, max_zoom) {
+	var size = (1 &lt;&lt; max_zoom) * 256,
+		lat = (2 * Math.atan(Math.exp((point.y - size/2) / -(size/(2 * Math.PI)))) - (Math.PI / 2)) * (180/Math.PI),
+		lng = (point.x - size/2) * (360/size);
+	return new google.maps.LatLng(lat, lng);
+}
+
+</code></pre>
+<p>and LatLng to pixel conversion:</p>
+<pre><code>function fromLatLngToPoint(ll, max_zoom){
+	var point = new google.maps.Point(0, 0),
+		origin = new google.maps.Point(128, 128),
+		tiles = 1 &lt;&lt; max_zoom,
+		bound = function(value, min, max){
+			if (min != null) value = Math.max(value, min);
+			if (max != null) value = Math.min(value, max);
+			return value;
+		},
+		sin_y = bound(Math.sin(ll.lat() * (Math.PI / 180)), -0.9999, 0.9999);
+	point.x = origin.x + ll.lng() * (256 / 360);
+	point.y = origin.y + 0.5 * Math.log((1 + sin_y) / (1 - sin_y)) * -(256 / (2 * Math.PI));
+	return new google.maps.Point(Math.floor(point.x * tiles), Math.floor(point.y * tiles));
+}
+
+
+</code></pre></p>
+
+<h2 id="">murven.7581:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-04T21:13:36+00:00">
+        04 Jul 2013
+    </time>
+</p>
+<p>
+<p>I guess I am not fully understanding what map_rect and continent_rect are in the map_floor API.</p>
+<p>In my mind, content_rect should always be [[0,0],[32768,32768]], but for Queensdale it is [[9856,11648],[13440,14080]].</p>
+<p>I know I am looking at this from the wrong perspective, but I need to understand how and why. If anyone has any guidance I would really appreciate it.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-04T21:33:06+00:00">
+        04 Jul 2013
+    </time>
+</p>
+<p>
+<p>continent_rect (and clamped_view) are the map bounds corners in absolute pixels within the worldmap (usually given by the texture_dims), where x/y 0 is the top left corner.</p>
+<p>see <a href="https://github.com/codemasher/gw2api-tools/blob/9f5d2edd105ec535b248919de231a3c611a82f09/js/gw2maps-jquery.js#L131">that part of my parser</a> for the use of that.</p>
+<p>For the map_rect see a few postings above<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-04T21:42:06+00:00">
+        04 Jul 2013
+    </time>
+</p>
+<p>
+<p>I made a silly picture<img src="/include/images/smilies/colondee.png"></p>
+<p>All events are within map_rect of their respective map.<br>
+All maps are within continent_rect of their continent.</p>
+<p>To figure out where something is on the continent you need to know their place within map_rect on the map, then fit map_rect inside continent_rect on the continent.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-04T21:50:54+00:00">
+        04 Jul 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on July 04 2013 09:42PM"><a href="/forum/community/api/Event-Details-API-location-coordinates/2350376">zeeZ.5713:</a></cite></div><div class="quotey"><p>To figure out where something is on the continent you need to know their place within map_rect on the map, then fit map_rect inside continent_rect on the continent.</p></div></blockquote>
+<p>In fact we wouldn’t need to mess around with the map_rect at all if the data was consistent. Why can’t the events in the event_details.json have absolute coordinates like the POIs ’n stuff in the floor.json?</p>
+<p>(i have currently ~400 <a href="https://github.com/codemasher/gw2api-tools/blob/9f5d2edd105ec535b248919de231a3c611a82f09/js/gw2maps-jquery.js#L176">extra</a> lines of <a href="https://github.com/codemasher/gw2api-tools/blob/9f5d2edd105ec535b248919de231a3c611a82f09/js/gw2maps-jquery.js#L488">code</a> just to clean up the inconsitent mess of the API o.O)</p></p>
+
+<h2 id="">murven.7581:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-04T22:46:20+00:00">
+        04 Jul 2013
+    </time>
+</p>
+<p>
+<p>Thanks, I finally got it! My math was working at some point, but the inverted nature of the Y axis was causing me troubles as well and I just couldn’t understand why it was so close, but still wrong. By now I know by heart where on the map Barthol’s event starts and my little pointer was not in the sweet spot. Then I did the (1-delta) and voila!! That is exactly where Barthol sits waiting for you go talk to him!</p>
+<p>Thank you very much, I really appreciate the time you took to explain what continent_rect meant. I just never figured out that continent_rect and map_rect were exactly the same rectangle within different coordinate systems.</p></p>
+
+<h2 id="">murven.7581:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-04T22:55:58+00:00">
+        04 Jul 2013
+    </time>
+</p>
+<p>
+<p>Oh, and I agree that the lack of consistency in the coordinate systems is puzzling, especially given the fact that the exact same API where you get map_rect and continent_rect you also get coordinates already in their absolute representation for the continent, while the event details API has coordinates which depend on rectangles which are not even present there.</p>
+<p>Anyway, it is what it is and we just have to know how it works. Thanks for all the clarification.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-05T19:01:28+00:00">
+        05 Jul 2013
+    </time>
+</p>
+<p>
+<p>SICK KITTEN!</p>
+<p><a href="http://gw2.chillerlan.net/examples/gw2maps-jquery.html">http://gw2.chillerlan.net/examples/gw2maps-jquery.html</a></p>
+<p>:D</p>
+<blockquote><div class="citey"><cite title="Posted on June 22 2013 04:35PM"><a href="/forum/community/api/Event-Details-API-location-coordinates/2262702">zeeZ.5713:</a></cite></div><div class="quotey"><p>IAll condensed in one ugly block of code so I don’t have to look at it so much</p></div></blockquote>
+<p>Ugly function is ugly:<br>
+</p><pre><code>function recalcEventCoords(cr, mr, p){ // continent_rect, map_rect, point
+	return [(cr[0][0]+(cr[1][0]-cr[0][0])*(p[0]-mr[0][0])/(mr[1][0]-mr[0][0])),(cr[0][1]+(cr[1][1]-cr[0][1])*(1-(p[1]-mr[0][1])/(mr[1][1]-mr[0][1])))]
+}</code></pre><p></p></p>
+
+<h2 id="">The Last Engineer.6492:</h2>
+<p class="post-meta">
+    <time datetime="2014-01-25T00:15:36+00:00">
+        25 Jan 2014
+    </time>
+</p>
+<p>
+<p>Hi all,</p>
+<p>- positionPoint  is x,y event center location.<br>
+- positionToPixelRatio : 1/24</p>
+<p>- <strong>Mumble</strong> : use left handed coordinate system, you have to use the x,z coordinates (not x,y). The x,y,z coords are in meter so you have to convert it to inches knowing that 1 meter = 39.3700787 inches.</p>
+<p><strong>According to Cliff :</strong></p>
+<blockquote><div class="quotey"><p>Some implementation notes:<br>
+The coordinate system used by mumble is slightly different than the game. GW2 uses inches (don’t ask), but mumble uses meters. So you’ll need to convert the coordinates back to inches for use with the map API.</p></div></blockquote>
+<p>The coordinates in inches are : {x*39.3700787, z*39.3700787}. After that, you may apply these expressions below :</p>
+<p>(these expressions can be used for mumble and events)</p>
+<p><strong>xPixelCoord</strong> = ContinentRectangle [ 0 ] [ 0 ] + (positionPoint.X – MapRectangle [ 0 ][ 0 ]) * poistionToPixelRatio</p>
+<p><strong>yPixelCoord</strong> = ContinentRectangle[ 0 ] [ 1 ] + (MapRectangle [ 1 ] [ 1 ] – positionPoint.Y) * poistionToPixelRatio</p>
+<p><strong>LatLng</strong> = FromPixelToCoordinate(xPixelCoord , yPixelCoord, maxZoomLevel)</p>
+<p>If you need the current map zoom. You have to apply a projection.<br>
+You need the continent’s MaxZoom level and you can compute the projection like this :<br>
+- <strong>DeltaZoom</strong> : Continent’s max zoom level – current map Zoom.<br>
+- <strong>Projection</strong> : 2^(DeltaZoom).<br>
+- XPixelCoord  = XPixelCoord   / Projection, YPixelCoord  = YPixelCoord   / Projection</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

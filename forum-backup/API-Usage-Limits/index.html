@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>API Usage Limits?</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/API-Usage-Limits/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">API Usage Limits?</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/API-Usage-Limits
+</p>
+
+
+
+<h2 id="">das moran fool.1072:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-29T18:30:12+00:00">
+        29 May 2013
+    </time>
+</p>
+<p>
+<p>Are there suggested/hard limits as to how often we can call the APIs?</p>
+<p>I’m writing a desktop program for viewing/managing events, and I’m calling the API for getting the events for an entire world (yes, the entire world, and not just a map or event).  However, to make everything timely, I’d like to call this fairly often, such as every minute or two (I’m sure users would love it to be every 30 seconds, but I don’t think anet would like that).  With http compression, the bandwidth usage seems to be 40-50KB per call.  Assuming 50KB and an update every minute, an hour’s bandwidth is ~3MB, and a day’s is ~72MB.  Keep in mind that this is for each user.</p>
+<p>So, are there API usage limits?</p>
+<p>I’m also setting user-agent to uniquely identify my desktop program, so that anet can track it’s usage (however, since I’m probably the only one using it atm, the BW usage is probably tiny compared to everything else).</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-29T19:22:47+00:00">
+        29 May 2013
+    </time>
+</p>
+<p>
+<p>By simply typing “limit” into the search box, you’d find this:</p>
+<blockquote><div class="citey"><cite title="Posted on May 20 2013 09:24PM"><a href="/forum/community/api/How-often-is-the-event-data-updated/2063497">Cliff Spradlin.3512:</a></cite></div><div class="quotey"><p>The event data is updated in real-time, and there is no perceptible delay between an event state changing on the game server and it being updated in the API view.</p>
+<p>Feel free to update as often as you’d like, though you probably don’t need to update more often than every 30 seconds or so.</p></div></blockquote>
+<p>also this: <a href="/forum-backup/How-Often-I-can-Access-the-api">https://forum-en.guildwars2.com/forum/community/api/How-Often-I-can-Access-the-api/2071877</a></p>
+<p>This information may be useful, too:</p>
+<blockquote><div class="citey"><cite title="Posted on May 21 2013 12:17AM"><a href="/forum/community/api/names-json-static/2064473">Cliff Spradlin.3512:</a></cite></div><div class="quotey"><p>Yes, please cache the results!</p>
+<p>The names are guaranteed to be static between game patches/builds, but it’s possible for the list to grow between patches. The Events API, like the Item API, only shows events and maps that have been discovered by players.</p>
+<p>So the ‘perfect’ logic would be to cache the results, and only do a lookup after a patch or if you don’t have a cached result for a particular event ID. And you probably don’t really need to do it between patches, as event names will rarely if ever change after being created.</p></div></blockquote></p>
+
+<h2 id="">das moran fool.1072:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-29T20:33:18+00:00">
+        29 May 2013
+    </time>
+</p>
+<p>
+<p>Thanks.  For some reason, I tried everything but “limits”.</p>
+<p>60 seconds it is. <img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Lil Puppy.5216:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-13T22:24:14+00:00">
+        13 Jun 2013
+    </time>
+</p>
+<p>
+<p>This should be included in the Documentation sticky, you wouldn’t want someone overloading your api’s with 250ms calls now would you!</p>
+<p>Most public API’s for larger companies have api usage limits, this should be documented so that you can also update the usage limit in the future when there are hundreds or thousands of apps and websites hitting you several times a minute.</p>
+<p>Sorry for the bump but as a developer, this is important info.</p></p>
+
+<h2 id="">Polarbear.5896:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-14T13:30:13+00:00">
+        14 Jun 2013
+    </time>
+</p>
+<p>
+<p>Really, you could optimize an event list in a known chain [A,B,C] and if [A] is in ‘Warmup" or “Preparation” or “Active”, you don’t need to call events [B,C] until A reads “Success”, depending on how you’re programming it.</p></p>
+
+<h2 id="">Healix.5819:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-14T14:01:18+00:00">
+        14 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 14 2013 01:30PM"><a href="/forum/community/api/API-Usage-Limits/2212357">Polarbear.5896:</a></cite></div><div class="quotey"><p>Really, you could optimize an event list in a known chain [A,B,C] and if [A] is in ‘Warmup" or “Preparation” or “Active”, you don’t need to call events [B,C] until A reads “Success”, depending on how you’re programming it.</p></div></blockquote>
+<p>You also need to factor in the previous state, since every event is a little different. For example, some events progress from active to warmup instead of success and some events will progress to preparation once their chain starts, while some change to warmup and others don’t change at all.</p>
+<p>To actually know if an event was completed for example, you need to look for an active event that is no longer active. To check if it was completed successfully or not, you need to check for a failed condition or if the chained fail event is starting. In cases where the event actually failed, but the state progressed to warmup and the fail event is in warmup, it’s practically a guess unless you watch that event for the next few minutes to see if it becomes active.</p></p>
+
+<h2 id="">Polarbear.5896:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-14T16:25:47+00:00">
+        14 Jun 2013
+    </time>
+</p>
+<p>
+<p>Yeah if you want timers, I didn’t really need them for my desktop app however, just enough to display if they’re up, and I’m only pinging for 32 events that I try to get to a day.</p></p>
+
+<h2 id="">Yamagawa.5941:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-17T17:26:39+00:00">
+        17 Jun 2013
+    </time>
+</p>
+<p>
+<p>That’s great limits for the event APIs</p>
+<p>I’m looking at releasing my own crafting tool, the ones I’ve looked at just have not catered well to people working to make a profit…</p>
+<p>So at first launch, my tool spams the API for recipes and items tied to the recipes.  This is a few thousand API hits, with no real delay imposed between hits (currently)</p>
+<p>Once its finished that, it spams the API to get detail for every known item, so that it can match up items not in the recipe API.</p>
+<p>Ideally,  I’d like to get 200 or so results/hit, but I’m limited to one result a hit, and a total of tens of thousands of queries.  One thread going full speed gets 4-6 hits a second for me… But it occurs to me…<br>
+That’s a kitten ton of server hits.   The server may not like them (add a delay?). Users may not like waiting for them (add more threads?)</p>
+<p>So:<br>
+  Plan 1)<br>
+   Find out formal  limits for API access.<br>
+  One hit every 30 seconds will simply not do</p>
+<p>Plans 2,3,4,5) handle any user needs not met with plan 1.</p></p>
+
+<h2 id="">Healix.5819:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-17T17:50:53+00:00">
+        17 Jun 2013
+    </time>
+</p>
+<p>
+<p>You should be caching all items and recipes. You only need to use the API when you’re initially building the cache and when new items/recipes are added, which you could check once a day or week. The cache should be packaged with your app so the user doesn’t have to take the time to build it themselves.</p>
+<p>The once every 30 seconds was simply a suggestion on how often to lookup an event. 30s is about 3x too long though, since some events can come and go that quickly.</p>
+<p>There is no actual limit though. For example, when I build my item cache from scratch, I do about 130 calls per second. For events, I’ve been doing 23 per second for the last few weeks.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-17T18:36:37+00:00">
+        17 Jun 2013
+    </time>
+</p>
+<p>
+<p>I agree with Healix, you should be caching all the items and recipes as they should hardly change.</p>
+<p>I have a script that pulls down all the items and recipes to cache them into files, so my app doesn’t ever need to pull them from the web.  This improves app performance significantly.</p></p>
+
+<h2 id="">Yamagawa.5941:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-17T18:47:15+00:00">
+        17 Jun 2013
+    </time>
+</p>
+<p>
+<p>Yes, I am already caching the data.<br>
+A pre built cache (plan 2)  is part of this weeks work, as is plan 3 (priority loading).</p>
+<p>Data changes.  When recipes change, users will delete the recipe cache.<br>
+When items change, users will delete the item cache.</p>
+<p>Regardless of any changes I make to cache data better, to load data smarter, kitten happens and the data needs loaded.  How fast do I load it?</p>
+<p>//Yamagawa</p></p>
+
+<h2 id="">Healix.5819:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-18T04:52:18+00:00">
+        18 Jun 2013
+    </time>
+</p>
+<p>
+<p>Some item data will rarely change, as those items are either buffed, nerfed or fixed. Most items will however never change and remain static for the life of the game. You could either never account for modified items, manually update these items by looking at patch notes or re-lookup item data based on how old that item’s cache is, for example, once a month.</p>
+<p>For new items, you just need to pull the list of item IDs and check which IDs you don’t already have cached. You then only request and cache those IDs. No need to start from scratch.</p>
+<p>As for how fast to make requests, make it simple, do 1 thread with a 0s delay. If they ever enforce a limit, it probably wouldn’t matter how fast you make calls, but rather how many you’ve made recently, for example a limit of 1000 requests per hour. If they ever did limit it, you’d basically just have to watch out for timed out or bad responses and delay for X minutes. Other parts of the GW2 site are limited for example, where after 10 or so requests, you start to get internal server errors. Both the leaderboards and the trading post (when selling) do this for example.</p>
+<p>Also, SQLite for an easy way to cache using a database.</p></p>
+
+<h2 id="">Yamagawa.5941:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-18T06:30:49+00:00">
+        18 Jun 2013
+    </time>
+</p>
+<p>
+<p>So… keep the load process as I have it now. Test the DB cross-platform, fix as needed.   Implement prioritized loading to improve start from blank DBs.  Implement on demand refresh of select items to discourage dumping the DB.  Save 4&amp;5 for when I’m bored.    If they implement access limits… Eh, my tools design already allows for graceful handling of server errors.   And hope they allow soon for multiple items/recipes in a single request.</p>
+<p>//Yamagawa</p></p>
+
+<h2 id="">das moran fool.1072:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-19T20:45:29+00:00">
+        19 Jun 2013
+    </time>
+</p>
+<p>
+<p>For my current program, which I’m rewriting into a web app, I’m sucking down all events for my server (currently 1665 events), once a minute, and I’m saving the historical event change data into a database (not all events, but only events when they change status).  Right now, I’m keeping a week’s worth of data, and that’s currently over 330,000+ event status changes, just for one server (around ~30 event changes a minute).  It’s really cool, in a geeky-sort-of-way, to see how often an event occurs, along with server resets.</p>
+<p>I’d love to suck down all events for all servers, but my database server is running on my slow home fileserver, and there’s no way it could handle databases of that size.</p></p>
+
+<h2 id="">Yamagawa.5941:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-19T21:50:04+00:00">
+        19 Jun 2013
+    </time>
+</p>
+<p>
+<p>Oofh.  That’s…. Ambitious.  And I thought all items and recipes was big stuff…</p>
+<p>Oh, what I could do with your data had I only the time…<br>
+I might start in the direction of <a href="http://www.torrenal.com/Census/">http://www.torrenal.com/Census/</a> – plot the events on a map, and contrast how different servers hit events.<br>
+//Yamagawa</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

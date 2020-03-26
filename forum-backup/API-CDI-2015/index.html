@@ -1,0 +1,2150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>API CDI 2015</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/API-CDI-2015/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">API CDI 2015</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/API-CDI-2015
+</p>
+
+
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T19:11:02+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>Welcome to the 2015 API CDI thread!</p>
+<p>This is intended to be a slightly more structured location for us to discuss the various current &amp; upcoming public APIs. In the past these threads were scattered all over the place (though <a href="/forum-backup/API-Suggestions-Master-Sticky">the old suggestions sticky</a> has some useful links) and I’d like to centralize things a bit. Especially as we start shipping the first of the authenticated APIs it feels like the right time to start this process.</p>
+<p>So here’s how I’d like this to work.</p>
+<ul>
+	<li>Discussion around more philosophical topics like future APIs, high-level details, etc will be handled in this thread.</li>
+	<li>Actual API details (fields, formats, etc) will be discussed via pull requests against the <a href="https://github.com/arenanet/api-cdi">api-cdi GitHub repository</a>. These provide trackable history of changes as well as cleaner formatting options.
+	<ul>
+		<li>As an example, here’s my PR for moving /v2/floors under /v2/continents and cleaning up a bunch of the formatting. <a href="https://github.com/arenanet/api-cdi/pull/2">https://github.com/arenanet/api-cdi/pull/2</a></li>
+	</ul></li>
+	<li>Try to keep your posts relatively brief. Giant walls of text are hard to parse and discuss succinctly.</li>
+	<li>Other CDI caveats and warnings apply. In the API forum we try to be more open about what we’re working on, but things change quickly and we try to spend more time working than posting.</li>
+	<li>If you’re going to comment on a PR on the forums instead of on GitHub, quote the exact commit you want to discuss.</li>
+</ul>
+<p><strong>Example post commenting on a commit:</strong></p>
+<blockquote><div class="quotey"><blockquote><div class="quotey"><p><a href="https://github.com/arenanet/api-cdi/commit/8ad156a98721b91954beeb5ee15793f29463bdea">https://github.com/arenanet/api-cdi/commit/8ad156a98721b91954beeb5ee15793f29463bdea</a></p></div></blockquote>
+<p>I think that lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse commodo augue sit amet augue fermentum maximus. Suspendisse eu faucibus neque, sagittis bibendum arcu. Mauris hendrerit.</p></div></blockquote>
+<p>The <strong>most important</strong> thing to remember is that this whole idea is a work in progress! We’re open to modifying the process based on your feedback.</p>
+<p><strong>Current Proposals</strong></p>
+<ul>
+	<li><a href="https://github.com/arenanet/api-cdi/pull/2">New format for /v2/floors, moved under /v2/continents</a></li>
+	<li><a href="https://github.com/arenanet/api-cdi/pull/3">Add /v2/account — basic scope only</a></li>
+	<li><a href="https://github.com/arenanet/api-cdi/pull/5">Initial pass at /v2/skills</a></li>
+	<li><a href="https://github.com/arenanet/api-cdi/pull/6">https://github.com/arenanet/api-cdi/pull/6</a></li>
+</ul></p>
+
+<h2 id="">dlonie.6547:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T19:24:05+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>One API endpoint I’d like to see would provide access to historical trading post data — for example, to get the data to produce a graph similar to those on gw2spidy, gw2tp, etc.</p>
+<p>Doing this currently requires constructing an external database and scraping the APIs regularly to populate it, and data from before the scrapes started is never accessible.</p>
+<p>Before putting up a proposal for the endpoint parameters and response format, would something like this be possible? I.e., does ArenaNet store a detailed history of trading point data? Would the sheer amount of data that would potentially be pushed through their servers be problematic?</p>
+<p>And thanks for starting this Pat — the APIs are one of the coolest things about this game for people like me<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T19:29:48+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 07:24PM"><a href="/forum/community/api/API-CDI-2015/4810767">dlonie.6547:</a></cite></div><div class="quotey"><p>One API endpoint I’d like to see would provide access to historical trading post data — for example, to get the data to produce a graph similar to those on gw2spidy, gw2tp, etc.</p>
+<p>Doing this currently requires constructing an external database and scraping the APIs regularly to populate it, and data from before the scrapes started is never accessible.</p>
+<p>Before putting up a proposal for the endpoint parameters and response format, would something like this be possible? I.e., does ArenaNet store a detailed history of trading point data? Would the sheer amount of data that would potentially be pushed through their servers be problematic?</p>
+<p>And thanks for starting this Pat — the APIs are one of the coolest things about this game for people like me<img src="/include/images/smilies/colondee.png"></p></div></blockquote>
+<p>Lawton’s got a proposal for a user-specific TP transactions history endpoint he should be putting up as a PR. We need to get authenticated APIs up &amp; stable before that API can become a reality though.</p>
+<p>AFAIK we don’t track historical buy/sell data for items on the TP due to not having a need for it &amp; it’s a lot of data. Something I can double-check though.</p></p>
+
+<h2 id="">MithranArkanere.8957:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T19:41:12+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>All I want for now is just 3 things:</p>
+<ul>
+	<li>Some sort of authentication, so the API can get permission to get info about an account and its characters.</li>
+	<li>A way to get the info of all copies of a map, and the info of a particular copy of a map. Combined with the authentication and the events API, it’ll be able to tell you the event of the particular copy of the map the current character of an account is in just like before megaserver.</li>
+	<li>Also combined with the authentication, a way to pull contact lists, and be able to pull the locations of the reciprocal friends of that account if they are in the same copy of the map.</li>
+</ul></p>
+
+<h2 id="">Elrey.5472:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T20:01:06+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>Something that i’d like (but i don’t know if you guys want or can provide) is an API for enemies information such as:</p>
+<ul>
+	<li>Enemy skills (to check their cooldowns and effects) .</li>
+	<li>Enemy stats (base stats, not scaled ones).</li>
+	<li>Enemy buffs</li>
+	<li>Other enemies information.</li>
+</ul>
+<p>This information could be used to understand a fight better than guessing, which is a problem sometimes.</p></p>
+
+<h2 id="">anzenketh.3759:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T20:10:20+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>Due to the frequency of changes to skills it is hard to create a build calculator. It would be nice if we had a API that gave us skill information.</p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T20:16:15+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>I might try to go through the old suggestion thread this weekend and create issues for everything that deserves more discussion. <br>
+It’s great that you guys are finally using github, so that it’s easier for us to make suggestions, discuss features and follow updates than it is in a forum.</p></p>
+
+<h2 id="">Cronos.6532:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T20:52:17+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>It would be pretty nice to still be able to use the API to pinpoint which events are taking place on a certain /ip server address; this was removed with megaservers.</p></p>
+
+<h2 id="">Torsailr.8456:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T20:55:41+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 07:41PM"><a href="/forum/community/api/API-CDI-2015/4810815">MithranArkanere.8957:</a></cite></div><div class="quotey"><p>All I want for now is just 3 things:</p>
+<ul>
+	<li>Some sort of authentication, so the API can get permission to get info about an account and its characters.</li>
+	<li>A way to get the info of all copies of a map, and the info of a particular copy of a map. Combined with the authentication and the events API, it’ll be able to tell you the event of the particular copy of the map the current character of an account is in just like before megaserver.</li>
+	<li>Also combined with the authentication, a way to pull contact lists, and be able to pull the locations of the reciprocal friends of that account if they are in the same copy of the map.</li>
+</ul></div></blockquote>
+<p>Is it possible to take this a step further?</p>
+<p>Be able to get a list of what events are active, or the timers on the inactive events for all instances of a given map?</p>
+<p>IE, if I wanted to do Balthazar but I’m in Queensdale.  Being able to see if there are any instances in progress or about to start would be nice.  This would make it easier for people to organize on specific maps to do these events.</p></p>
+
+<h2 id="">Samuirai.4561:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T21:02:29+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p><a href="https://github.com/arenanet/api-cdi/pull/4">I believe the GW2 API is great, but too passive. This change would allow players to actively interact with their characters.</a></p></p>
+
+<h2 id="">BLUna.7928:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T21:04:45+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>Some PvP API would be fantastic. I think it would be really cool if we could potentially create something like <a href="http://www.dotabuff.com/">dotabuff</a> but it just does not seem possible at the moment. Being able to access things like match details (kills, deaths, points, builds players were running) would be fantastic not only for match sites but also for things like post game breakdowns in tournaments.</p></p>
+
+<h2 id="">Samuirai.4561:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T21:18:32+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>gw2spidy, gw2tp, etc. allow us to see historical prices. It’s not ideal but ok. What we lack is a API that gives us the amount of transactions that happened in a set time frame. Example:</p>
+<p>/v2/commerce/transactions?ids=1234</p>
+<p>{ “listed”: 9999, “ordered”: 1111, “sold”: 5555, “bought”: 5678}</p>
+<p>Historical data on this would be great too, but it’s enough for now to have updates every minute or every 10 minutes, so we can populate our own databases.</p></p>
+
+<h2 id="">dlonie.6547:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T21:23:00+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 07:29PM"><a href="/forum/community/api/API-Collaboration-Station-2015/4810781">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>Lawton’s got a proposal for a user-specific TP transactions history endpoint he should be putting up as a PR. We need to get authenticated APIs up &amp; stable before that API can become a reality though.</p></div></blockquote>
+<p>O.o really? That would open up oh-so many possibilities for me. I hope this happens quickly, though I imagine it won’t be one of the first ones tested<img src="/include/images/smilies/wink.png"> +1 to this idea!</p>
+<blockquote><div class="quotey"><p>AFAIK we don’t track historical buy/sell data for items on the TP due to not having a need for it &amp; it’s a lot of data. Something I can double-check though.</p></div></blockquote>
+<p>I’m somewhat shocked to hear that — I’d have thought the economist would have wanted this info stored somewhere for various reasons. Looking forward to hearing if this is doable!</p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 09:18PM"><a href="/forum/community/api/API-Collaboration-Station-2015/4811127">Samuirai.4561:</a></cite></div><div class="quotey"><p>What we lack is a API that gives us the amount of transactions that happened in a set time frame. Example:</p>
+<p>/v2/commerce/transactions?ids=1234</p>
+<p>{ “listed”: 9999, “ordered”: 1111, “sold”: 5555, “bought”: 5678}</p></div></blockquote>
+<p>This is a solid suggestion I’d like to see as well. There’s really no good way to get at this information, in game or otherwise, and it’d be very useful for various market analyses. I’ll add that the “bought” and “sold” quantities should ensure that pulled listings aren’t counted, as that’s an issue with how we’re currently trying to measure these things (using the naive approach of diffing the listing quantities).<br>
+Thanks again!</p></p>
+
+<h2 id="">Teranas.6150:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T21:31:49+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>I would love to see <em>Trait</em> and <em>Skill</em> endpoints. I think those information should have been part of the API since v1.</p>
+<p>Those endpoints would let us develope better build constructors and BBCode plugins for our forums.</p>
+<p>They should provide information about the behavior of skills and traits.</p>
+<p>title<br>
+description<br>
+damage modifier<br>
+conditions<br>
+boons<br>
+radius<br>
+stun(breaker)<br>
+max distance<br>
+combo effects<br>
+target count<br>
+casttime<br>
+cooldown<br>
+references to applied (de)buffs<br>
+type of skill (utility, weapon skill)<br>
+corresponding class<br>
+corresponding race</p>
+<p>And of course: references to their corresponding icon files. I really think i missed some important infomation that should be included …</p>
+<p>I may write a pull request for this if no one else will do it.</p></p>
+
+<h2 id="">aRestless.6213:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T21:37:28+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>First of all thanks a whole bunch for doing this! As a developer it is very encouraging to hear that you do your best to support us a bit more!</p>
+<p>My project heavily relies on the Mumble API and it would be fantastic to have some additional information through the web API to better deal with what I already get, for example</p>
+<ul>
+	<li>Information about the (vertical) dimensions of floors sufficient to convert from player position to floor</li>
+	<li>Zoom Level Information for dungeon maps. For example: Ascalonian Catacombs are on continent Tyria and therefor should have 8 zoom levels, but since dungeons have their own map view, ingame there are only 2 zoom levels. Arah has 4.</li>
+	<li>Zoom Level to magnification factor. For Tyria I pretty much figured the magnification factors out by myself, but they seem to differ a bit between Tyria and the Mists … and of course dungeons.</li>
+</ul>
+<p>I apologise in advance if any of these are already possible – I’d be grateful for any advise. Additionally, from authenticated APIs I’d welcome two basic things:</p>
+<ul>
+	<li>Currently represented guild</li>
+	<li>Home Server for WvW (since Megaservers the Mumble API seems to be broken in that aspect)</li>
+</ul>
+<p>Also I’m hoping for a Single Sign On solution for authentication … because account theft is a bad thing.</p></p>
+
+<h2 id="">poke.3712:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T21:42:12+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 09:37PM"><a href="/forum/community/api/API-Collaboration-Station-2015/4811192">aRestless.6213:</a></cite></div><div class="quotey"><p>Also I’m hoping for a Single Sign On solution for authentication … because account theft is a bad thing.</p></div></blockquote>
+<p>For the authenticated API, OAuth2 will be used. So you will have the standard login on account.guildwars2.com, just like with the forums, to authorize applications to use your data. You could even use this as a sign-on functionality for applications that don’t use the API at all.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T21:42:26+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>/v2/skills is something Lawton’s been working on for a bit. Due to the way they’ve been organically constructed over time it’s a real hairy thing to make skill data be as regular as you’d want in an API. A proposal for that should be going up in the near future.</p>
+<p>All authenticated APIs will be using OAuth2 and authenticating against <a href="https://account.guildwars2.com">https://account.guildwars2.com</a>, yes.</p></p>
+
+<h2 id="">Teranas.6150:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T21:45:38+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 09:42PM"><a href="/forum/community/api/API-Collaboration-Station-2015/4811209">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>/v2/skills is something Lawton’s been working on for a bit. Due to the way they’ve been organically constructed over time it’s a real hairy thing to make as regular as you’d want in an API. A proposal for that should be going up in the near future.</p></div></blockquote>
+<p>Very nice to hear!</p></p>
+
+<h2 id="">AfterXII.2761:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T21:48:05+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>As a guild leader and a web/phone app developer, I took a look at the announcement of API authentication and immediately thought of the following possibilities for new implementations:</p>
+<p><strong>Personal Account</strong></p>
+<ul>
+	<li>Personal bank contents, assets, wallet, etc</li>
+	<li>Current guilds (with flag on current rep)</li>
+</ul>
+<p><strong>Guild</strong></p>
+<ul>
+	<li>Roster endpoint</li>
+	<li>MOTD endpoint</li>
+	<li>Guild bank endpoint</li>
+	<li>Guild chat endpoint (amazing applications possible with this endpoint)</li>
+</ul></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T21:50:30+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 07:41PM"><a href="/forum/community/api/API-Collaboration-Station-2015/4810815">MithranArkanere.8957:</a></cite></div><div class="quotey"><p>All I want for now is just 3 things:</p>
+<ul>
+	<li>Some sort of authentication, so the API can get permission to get info about an account and its characters.</li>
+</ul></div></blockquote>
+<p>I put together a PR about <a href="https://github.com/arenanet/api-cdi/pull/3">upcoming /v2/account</a> API. The PR has more details, but it’ll give you the ability to authenticate users and determine their homeworld (and eventually more stuff is planned for it).</p>
+<p>Wanted to have it released this week, but having some fun technical issues with the deployment.</p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 09:48PM"><a href="/forum/community/api/API-Collaboration-Station-2015/4811231">AfterXII.2761:</a></cite></div><div class="quotey"><p>As a guild leader and a web/phone app developer, I took a look at the announcement of API authentication and immediately thought of the following possibilities for implementation:</p>
+<p><strong>Personal Account</strong></p>
+<ul>
+	<li>Personal bank contents, assets, wallet, etc</li>
+	<li>Current guilds (with flag on current rep)</li>
+</ul></div></blockquote>
+<p>The personal bank account (and material storage) is planned for the /v2/account API (see the PR link above), as is the current guilds an account belongs to. The currently represented guild will probably live in /v2/characters, and the roster in an account-specific guild endpoint (haven’t really sorted out the design for that yet).</p>
+<p>Anyway lemmie get some more writeups posted on Github for you guys to peruse.</p></p>
+
+<h2 id="">AfterXII.2761:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T22:03:40+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 09:50PM"><a href="/forum/community/api/API-CDI-2015/4811240">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 19 2015 07:41PM"><a href="/forum/community/api/API-CDI-2015/4810815">MithranArkanere.8957:</a></cite></div><div class="quotey"><p>All I want for now is just 3 things:</p>
+<ul>
+	<li>Some sort of authentication, so the API can get permission to get info about an account and its characters.</li>
+</ul></div></blockquote>
+<p>I put together a PR about <a href="https://github.com/arenanet/api-cdi/pull/3">upcoming /v2/account</a> API. The PR has more details, but it’ll give you the ability to authenticate users and determine their homeworld (and eventually more stuff is planned for it).</p>
+<p>Wanted to have it released this week, but having some fun technical issues with the deployment.</p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 09:48PM"><a href="/forum/community/api/API-CDI-2015/4811231">AfterXII.2761:</a></cite></div><div class="quotey"><p>As a guild leader and a web/phone app developer, I took a look at the announcement of API authentication and immediately thought of the following possibilities for implementation:</p>
+<p><strong>Personal Account</strong></p>
+<ul>
+	<li>Personal bank contents, assets, wallet, etc</li>
+	<li>Current guilds (with flag on current rep)</li>
+</ul></div></blockquote>
+<p>The personal bank account (and material storage) is planned for the /v2/account API (see the PR link above), as is the current guilds an account belongs to. The currently represented guild will probably live in /v2/characters, and the roster in an account-specific guild endpoint (haven’t really sorted out the design for that yet).</p>
+<p>Anyway lemmie get some more writeups posted on Github for you guys to peruse.</p></div></blockquote>
+<p>Sounds awesome, cant wait!</p></p>
+
+<h2 id="">Immortius.4537:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T22:18:31+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>Basic Metadata APIs</p>
+<p>There are a number of basic metadata apis I think it would be nice to have:<br>
+professions – Information on the available professions.<br>
+weapon_types – Information on weapon types – what they are, whether they are 1-handed, 2-handed, off-hand?<br>
+weight_classes – Information on weight classes (heavy/medium/light)<br>
+armor_types – Information on armor types (helm/shoulders/helmAquatic/etc)<br>
+damage_types – Information on the weapon damage types (physical, lightning, fire, ice)</p>
+<p>While these are pretty constant, there is currently no way to get a proper, language specific display name for these things from the API. In some cases the “identifier” used to refer to these things can be a touch confusing (the whole harpoon/spear harpoongun/speargun thing). Additionally it would be nice to link these things up so that for a class you can find out the weight class and usable weapon types.</p></p>
+
+<h2 id="">poke.3712:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T22:27:56+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>There’s not really much use for that. You can just encode that statically within your application and safe heavy HTTP requests that way. As you said yourself, that data is very constant.</p>
+<p>If you want, I can write down that data for you.</p></p>
+
+<h2 id="">The Geil.8605:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T22:31:02+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>Some of these are most likely a mix between /v2/account- and /v2/character-data, but I was just brainstorming of all storts of information that would be nice to see somewhere in those.</p>
+<pre><code>Account API
+	Achievements
+	Characters
+	Collections
+		Minipets
+		Outfits
+		Mail Carriers
+	Skins
+		Armor
+			Light
+			Medium
+			Heavy
+		Weapons
+			One-handed
+				Main Hand
+				Off Hand
+			Two-handed
+	sPvP (Account Specific)
+		Games Played
+			Ranked Games
+			Unranked Games
+		Kills
+	PvE (Account Specific)
+		Dungeons
+			Stories Completed
+			Paths Completed
+	WvW (Account Specific)
+		Rank
+		Kills
+		Captures
+			Castle
+			Keep
+			Tower
+			Camp
+Character API
+	Equipped
+		Armor
+		Weapons
+		Trinkets
+	Crafting
+		Current Disciplines
+		Discipline Levels
+	sPvP (Character Specific)
+		Games Played
+			Ranked Games
+			Unranked Games
+		Kills
+	PvE (Character Specific)
+		Dungeons
+			Stories Completed
+			Paths Completed
+	WvW (Character Specific)
+		Rank
+		Kills
+		Captures
+			Castle
+			Keep
+			Tower
+			Camp
+	Build
+		PvE/WvW
+		sPvP
+</code></pre></p>
+
+<h2 id="">Divus.3175:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T22:38:02+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>About historical tp data.</p>
+<p>Either John Smith has his own server with all (I mean ALL) the data, or you have it somewhere in some form of historic tables. That’s just a wild guess.</p>
+<p>About pvp api.</p>
+<ul>
+	<li>current pvp match by account name or character name.</li>
+	<li>past pvp matches, i.e. results of pvp tournament by character name / flag (but I feel there’s no any indicator of so)</li>
+	<li>ranked and unranked statistics – how many games are played by day, what’s the most played map, etc.</li>
+	<li>what’s the percentage of each profession in pvp – statistics</li>
+</ul>
+<p>About pve api</p>
+<ul>
+	<li>what’s the missing part of map completion by character (players wants it for such a long time, and api would give a chance to create app showing these stuff interactively)</li>
+	<li>collection by account name</li>
+</ul></p>
+
+<h2 id="">Blumoon.5437:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T22:40:39+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>I’m really stoked about all of this. I’ve had a few app ideas floating around in my head for some time now, but they all require the authenticated APIs. I’m really happy to hear they’re coming soon.<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Immortius.4537:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T22:45:50+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 10:27PM"><a href="/forum/community/api/API-CDI-2015/4811364">poke.3712:</a></cite></div><div class="quotey"><p>There’s not really much use for that. You can just encode that statically within your application and safe heavy HTTP requests that way. As you said yourself, that data is very constant.</p>
+<p>If you want, I can write down that data for you.</p></div></blockquote>
+<p>I agree it should be stored statically in an application.</p>
+<p>However the question is where to source the information. I guess each each developer can go in-game and write it out manually these details for each of the four supported languages. I just feel it is appropriate for completeness to include in the APIs, so we have an easier source for it.</p>
+<p>Obviously the upcoming inclusion of a new profession and new specialisations means this information isn’t quite constant either.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T22:46:30+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 10:38PM"><a href="/forum/community/api/API-CDI-2015/4811398">Divus.3175:</a></cite></div><div class="quotey"><p>About historical tp data.</p>
+<p>Either John Smith has his own server with all (I mean ALL) the data, or you have it somewhere in some form of historic tables. That’s just a wild guess.</p></div></blockquote>
+<p>John Smith has access to offline data querying stuff that isn’t suitable to expose via the API, sadly.</p>
+<p>Also his secret is that he really gets most of his data from the fiber-optic cable in his brain that is wired directly to the DB servers in the datacenter. Limits his range of motion quite a bit, but at least his query latency is low.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T22:48:35+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>Just finished an initial writeup of the <a href="https://github.com/arenanet/api-cdi/pull/5">current in-dev state of /v2/skills</a>. It’s still quite a bit away from being ready for public consumption, mostly just looking for ways to improve the output format.</p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 10:38PM"><a href="/forum/community/api/API-CDI-2015/4811398">Divus.3175:</a></cite></div><div class="quotey"><p>About historical tp data.</p>
+<p>Either John Smith has his own server with all (I mean ALL) the data, or you have it somewhere in some form of historic tables. That’s just a wild guess.</p></div></blockquote>
+<p>Querying it is neither fast nor scalable, so it’s very unlikely that we’ll be able to provide access to anything beyond what you can see via the in-game UI. I think the current cutoff for the transaction history is three months, but might be mistaken about that.</p></p>
+
+<h2 id="">Aerodin.2795:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T22:48:41+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 08:52PM"><a href="/forum/community/api/API-CDI-2015/4811028">Cronos.6532:</a></cite></div><div class="quotey"><p>It would be pretty nice to still be able to use the API to pinpoint which events are taking place on a certain /ip server address; this was removed with megaservers.</p></div></blockquote>
+<p>I second this one. I suspect that it’s not quite that simple on the backend, but if it’s possible, it’d be awesome to get the events api back.</p>
+<p>For the future APIs, from a high-level standpoint I’ve been thinking that any APIs that promote community are going to be the most useful. Having access to some of your account information, such as bank contents, characters, etc, is cool and all, but I don’t see them having as wide of an impact as something that enhances the GW2 community.</p>
+<p>A perfect example of this is an expanded guild API. I’ll try to post a PR with more details, but I’m picturing an API that provides more details, starting with a roster of players, ranks, map locations, etc. Further expanding that with Authentication could bring guild management features, such as managing player ranks, invites, upgrade queue, etc. It’d be freaking awesome.</p></p>
+
+<h2 id="">aRestless.6213:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T22:59:57+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>Guild management and especially member management can be a big problem in larger guilds. Having Roster and Roster History exposed would be a huge thing.</p></p>
+
+<h2 id="">poke.3712:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T23:06:02+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 10:45PM"><a href="/forum/community/api/API-CDI-2015/4811428">Immortius.4537:</a></cite></div><div class="quotey"><p>However the question is where to source the information.</p></div></blockquote>
+<p>You are welcome to put this on the official wiki (which also serves as the place for the API documentation), so application developers can get the data they need in a parsable format.</p></p>
+
+<h2 id="">veggies.2178:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T23:07:27+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>As a proud owner of 11 “mule” alts out of 35 character slots, i like the api changes, but one thing that anoyed me is the lack of api for character inventory.</p>
+<p>I had to create a lot alts to separate materials ex “axyd ore, axyd bloodstoner, axyd fluffer” and would love to see something done about it like for example ?accountid=1234?altname=axyd%20ore?invtype=bags (options are bank or character bags) and that would query out item item id &amp; quantity for all bags equipped.</p>
+<p>You mentioned bank storage and think thats cool but the one we hoarders need the most is to export mules presonal inventories.</p>
+<p>Id also be happy if we could have like 100 bank tabs cause 7 is way too little….but thats another forum<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T23:11:19+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 11:07PM"><a href="/forum/community/api/API-CDI-2015/4811498">veggies.2178:</a></cite></div><div class="quotey"><p>As a proud owner of 11 “mule” alts out of 35 character slots, i like the api changes, but one thing that anoyed me is the lack of api for character inventory.</p></div></blockquote>
+<p>We’re planning to eventually expose character inventories via the /v2/characters endpoint (and the account bank via /v2/account) so that someone can write a webapp to locate where you put that extra stack of Superior Sigils of Wrath or Lemongrass Poultry Soup. I’ll post a link to the Github PR once I’ve got the endpoint proposal writeup finished.</p></p>
+
+<h2 id="">veggies.2178:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T23:16:06+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 11:11PM"><a href="/forum/community/api/API-CDI-2015/4811506">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 19 2015 11:07PM"><a href="/forum/community/api/API-CDI-2015/4811498">veggies.2178:</a></cite></div><div class="quotey"><p>As a proud owner of 11 “mule” alts out of 35 character slots, i like the api changes, but one thing that anoyed me is the lack of api for character inventory.</p></div></blockquote>
+<p>We’re planning to eventually expose character inventories via the /v2/characters endpoint (and the account bank via /v2/account) so that someone can write a webapp to locate where you put that extra stack of Superior Sigils of Wrath or Lemongrass Poultry Soup. I’ll post a link to the Github PR once I’ve got the endpoint proposal writeup finished.</p></div></blockquote>
+<p>Thank you very much.<br>
+Been waiting for it since….1 month after launch lol</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T23:16:20+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 10:59PM"><a href="/forum/community/api/API-CDI-2015/4811481">aRestless.6213:</a></cite></div><div class="quotey"><p>Guild management and especially member management can be a big problem in larger guilds. Having Roster and Roster History exposed would be a huge thing.</p></div></blockquote>
+<p>This is definitely on my todo list, but I don’t yet have any designs for the endpoints. One of my guild leaders exports the influence log by hand to a spreadsheet so he can compute and graph various engagement metrics — that’s really something that should be automatable.</p></p>
+
+<h2 id="">Remfin.4892:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T23:25:44+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>Just to be clear, when we keep talking about authentication and authentication APIs, what scenarios are intended to be supported?</p>
+<ul>
+	<li>“User” APIs (apps calling APIs)</li>
+	<li>“Server” APIs (servers/websites calling APIs On-Behalf-Of)</li>
+	<li>External authentication (ala OpenID and such) (being able to get and verify a token that ANet says you’re “X”)</li>
+</ul></p>
+
+<h2 id="">icepotato.6037:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T23:45:08+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 11:11PM"><a href="/forum/community/api/API-CDI-2015/4811506">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 19 2015 11:07PM"><a href="/forum/community/api/API-CDI-2015/4811498">veggies.2178:</a></cite></div><div class="quotey"><p>As a proud owner of 11 “mule” alts out of 35 character slots, i like the api changes, but one thing that anoyed me is the lack of api for character inventory.</p></div></blockquote>
+<p>We’re planning to eventually expose character inventories via the /v2/characters endpoint (and the account bank via /v2/account) so that someone can write a webapp to locate where you put that extra stack of Superior Sigils of Wrath or Lemongrass Poultry Soup. I’ll post a link to the Github PR once I’ve got the endpoint proposal writeup finished.</p></div></blockquote>
+<p>this would be great! another use case for this would be something like a crafting guide website that can peek into your inventory to accurately kitten if it’s cheaper to buy something or make it yourself.</p></p>
+
+<h2 id="">Sytherek.7689:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T23:51:52+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<p>After reading this thread, I’m concerned about privacy.</p>
+<p>Will the API allow anyone to investigate, say, anyone else’s backpack or storage?</p>
+<p>Are we going to have to worry about gear-check apps?</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T23:56:06+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 11:51PM"><a href="/forum/community/api/API-CDI-2015/4811628">Sytherek.7689:</a></cite></div><div class="quotey"><p>After reading this thread, I’m concerned about privacy.</p>
+<p>Will the API allow anyone to investigate, say, anyone else’s backpack or storage?</p>
+<p>Are we going to have to worry about gear-check apps?</p></div></blockquote>
+<p>No, you will have to give applications access to your data.</p></p>
+
+<h2 id="">Remfin.4892:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-19T23:57:46+00:00">
+        19 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 11:51PM"><a href="/forum/community/api/API-CDI-2015/4811628">Sytherek.7689:</a></cite></div><div class="quotey"><p>After reading this thread, I’m concerned about privacy.</p>
+<p>Will the API allow anyone to investigate, say, anyone else’s backpack or storage?</p>
+<p>Are we going to have to worry about gear-check apps?</p></div></blockquote>
+<p>*Assuming Server APIs are supported</p>
+<p>Authenticated in this case means by the person who’s information is being displayed.</p>
+<p>Can you look up a random person’s gear? No</p>
+<p>Could a guild leader force you to expose your gear to him via a website, or a group of random people kick you if don’t put your gear on a publicly accessible website or its on there and they don’t like it? Yes. Don’t associate with those people (and maybe ANet will make up a rule around that kind of behavior).</p></p>
+
+<h2 id="">Sytherek.7689:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T00:07:12+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 11:56PM"><a href="/forum/community/api/API-CDI-2015/4811641">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 19 2015 11:51PM"><a href="/forum/community/api/API-CDI-2015/4811628">Sytherek.7689:</a></cite></div><div class="quotey"><p>After reading this thread, I’m concerned about privacy.</p>
+<p>Will the API allow anyone to investigate, say, anyone else’s backpack or storage?</p>
+<p>Are we going to have to worry about gear-check apps?</p></div></blockquote>
+<p>No, you will have to give applications access to your data.</p></div></blockquote>
+<p>Thanks for the prompt reply! I really do appreciate it…</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T00:10:53+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 11:25PM"><a href="/forum/community/api/API-CDI-2015/4811552">Remfin.4892:</a></cite></div><div class="quotey"><p>Just to be clear, when we keep talking about authentication and authentication APIs, what scenarios are intended to be supported?</p>
+<ul>
+	<li>“User” APIs (apps calling APIs)</li>
+	<li>“Server” APIs (servers/websites calling APIs On-Behalf-Of)</li>
+	<li>External authentication (ala OpenID and such) (being able to get and verify a token that ANet says you’re “X”)</li>
+</ul></div></blockquote>
+<p>The authenticated APIs will use OAuth2, which is best described by the second (servers/websites calling APIs On-Behalf-Of). You must explicitly grant a server access to specific portions of your account for your data to be disclosed. Servers/API consumers cannot access any API which requires authentication without the explicit consent of the user whose data is exposed.</p>
+<p>While technically OAuth2 isn’t meant to be used for authentication, the <a href="https://github.com/arenanet/api-cdi/pull/3">/v2/account endpoint</a> will effectively provide external authentication so you can restrict e.g., guild websites to only people who are actually in the guild without relying wholly on manual in-game checks.</p></p>
+
+<h2 id="">Drant.5902:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T00:13:05+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<p>Can we get the current list of daily achievements, so we can mark for players what world boss or WvW capture is for today.</p>
+<p>Also, the events.json could be revived for megaserver instances via /ip command. So people who do temples or daily zone events don’t have to wait or spam map chat asking for active events.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T00:18:11+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 07:29PM"><a href="/forum/community/api/API-CDI-2015/4810781">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 19 2015 07:24PM"><a href="/forum/community/api/API-CDI-2015/4810767">dlonie.6547:</a></cite></div><div class="quotey"><p>One API endpoint I’d like to see would provide access to historical trading post data — for example, to get the data to produce a graph similar to those on gw2spidy, gw2tp, etc.</p>
+<p>Doing this currently requires constructing an external database and scraping the APIs regularly to populate it, and data from before the scrapes started is never accessible.</p>
+<p>Before putting up a proposal for the endpoint parameters and response format, would something like this be possible? I.e., does ArenaNet store a detailed history of trading point data? Would the sheer amount of data that would potentially be pushed through their servers be problematic?</p>
+<p>And thanks for starting this Pat — the APIs are one of the coolest things about this game for people like me<img src="/include/images/smilies/colondee.png"></p></div></blockquote>
+<p>Lawton’s got a proposal for a user-specific TP transactions history endpoint he should be putting up as a PR. We need to get authenticated APIs up &amp; stable before that API can become a reality though.</p></div></blockquote>
+<p><a href="https://github.com/arenanet/api-cdi/pull/6">Here’s the PR for /v2/commerce/transactions</a>, which would allow users to delegate access to their trading post transaction history.</p></p>
+
+<h2 id="">zerorogue.9410:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T00:43:14+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<p>The most wanted thing for me has always been retrieving character/account data through the api.</p>
+<p>Such things as.<br>
+-Retrieving their bank/inventories on their characters. <br>
+-Retrieving Build data(Traits, equipment,skills)<br>
+-Retrieving their wallet data.<br>
+-Retrieving their buy/sell orders on BLT.<br>
+-Retrieving their BLT Drop box.<br>
+-Generating avatar Icons (The login screen Icon of the character.)<br>
+-Crafting levels and unlocked recipes.<br>
+-Wardrobe unlocks.</p>
+<p>On the matter of actual editing of character/game data through the API I would rather not have it.  This is for the fact of two things. First is the obvious bot issue. Second would be the fact players would be using third party programs rather than just playing the game.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T00:51:24+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 12:43AM"><a href="/forum/community/api/API-CDI-2015/4811759">zerorogue.9410:</a></cite></div><div class="quotey"><p>On the matter of actual editing of character/game data through the API I would rather not have it.</p></div></blockquote>
+<p>Don’t worry, it’s technically infeasible for us to edit game data. We only have a read-only copy (which is potentially ~5 minutes out-of-date) due to the nature of our architecture.</p></p>
+
+<h2 id="">Bugabuga.9721:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T00:53:00+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<p>Is it possible/reasonable to ask for expanded wvw match API?<img src="/include/images/smilies/smile.png"></p>
+<p>Such as have RI counter being present?<br>
+i.e.<br>
+</p><pre><code>{ 
+   "id": 32, 
+   "owner": "Red", 
+   "owner_guild": "277CCE76-6254-4CF2-8A2D-15A30B7110BD", 
+   "RI": "01:45" 
+}
+</code></pre>Or objective taking time?<p></p>
+<p>Also for guild endpoint (guild_details) to have currently running guild buffs/upgrades?<br>
+</p><pre><code>
+ {
+   "guild_id": "75FD83CF-0C45-4834-BC4C-097F93A487AF",
+   "guild_name": "Veterans Of Lions Arch",
+   "tag": "LA",
+   "emblem": {
+     "background_id": 27,
+     "foreground_id": 114,
+     "flags": [],
+     "background_color_id": 11,
+     "foreground_primary_color_id": 584,
+     "foreground_secondary_color_id": 64
+   },
+    "upgrades": [{
+      "id": "bearLope",
+      "type": "guildRush",
+      "expirationTime": "2015-02-19 18:55:00"
+    }]
+ }
+</code></pre><p></p>
+<p>Guild-related buffs could either be public or private and only visible to authenticated user<img src="/include/images/smilies/smile.png"> (and, of course, can be split out into separate uuid-driven end-point, with ID being numeric)</p></p>
+
+<h2 id="">Adelas.6598:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T01:44:05+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 11:11PM"><a href="/forum/community/api/API-CDI-2015/4811506">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>We’re planning to eventually expose character inventories via the /v2/characters endpoint (and the account bank via /v2/account) so that someone can write a webapp to locate where you put that extra stack of Superior Sigils of Wrath or Lemongrass Poultry Soup.</p></div></blockquote>
+<p><em>sobs with joy</em></p>
+<p>Sounds like it’s time to bake some more cookies…</p>
+<p>Anyway, ZeroRogue has really nailed it for me, personally, with his list of things like bank and inventory items – the only thing I don’t see in his list is <strong>achievements</strong>. Having a website or phone app that could help me keep track of achievements would be AMAZING.</p>
+<p>1. general account achievements<br>
+2. personal story and living story completion<br>
+3. map completion – being able to check an app to see which end of Lornar’s I need on my norn vs. what I need on my charr would allow me to coordinate mapping with my friends. Wow, would that be great.</p>
+<p>In case it’s not obvious, I’m not a programmer/dev/whatnot, but if you made this particular information available to people who ARE, so they could write sites and apps for us, I would just melt with happiness.</p></p>
+
+<h2 id="">famfamfam.9137:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T01:52:40+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<p>I’m interested in plans for versioning and compat.</p>
+<p>In terms of making PR requests for format changes to existing endpoints, do you have any plans for how versioning will be handled to not-break backwards compatibility for existing clients? What are your existing thoughts on this, and do you think its possible/reasonable to do while also adding the huge list of functional things people want from the API?</p>
+<p>Would it be best to make a PR proposal for the ability to specify the specific endpoint version you want to use per-request and changes to?</p>
+<p>(Typed out a longer post but the forums swallowed it)</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T02:26:06+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 01:52AM"><a href="/forum/community/api/API-CDI-2015/4811874">famfamfam.9137:</a></cite></div><div class="quotey"><p>I’m interested in plans for versioning and compat.</p>
+<p>In terms of making PR requests for format changes to existing endpoints, do you have any plans for how versioning will be handled to not-break backwards compatibility for existing clients? What are your existing thoughts on this, and do you think its possible/reasonable to do while also adding the huge list of functional things people want from the API?</p>
+<p>Would it be best to make a PR proposal for the ability to specify the specific endpoint version you want to use per-request and changes to?</p>
+<p>(Typed out a longer post but the forums swallowed it)</p></div></blockquote>
+<p>This is a longer-term question, we don’t have a complete answer yet. I’d like to move to that model after we’ve plumbed more of the data through, I just don’t know how we’d support that sanely within our codebase. I also haven’t seen any implementations of a model like that in an API I’ve used/investigated so I don’t know what sort of best practices we should follow.</p>
+<p>I’d write up your proposal in a forum post or gist, it’s too long-term of an idea for a PR to be very useful right now. After we’ve gotten over the hump of exposing most of the useful/interesting data available I’d like to circle back around on a consistency pass that would potentially include a more flexible versioning story.</p>
+<p>In terms of the current /v2 API, once we ship the API it won’t have fields deleted or renamed. We may add fields as more data becomes available.</p></p>
+
+<h2 id="">zerorogue.9410:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T02:48:34+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 01:44AM"><a href="/forum/community/api/API-CDI-2015/4811860">Adelas.6598:</a></cite></div><div class="quotey"><p>Anyway, ZeroRogue has really nailed it for me, personally, with his list of things like bank and inventory items – the only thing I don’t see in his list is <strong>achievements</strong>. Having a website or phone app that could help me keep track of achievements would be AMAZING.</p></div></blockquote>
+<p>I had a few paragraphs written with everything I would hope to have with an account API including achievements, but I shortened it down so it was not so “wall of texty”</p>
+<p>I would hope to have nearly everything in game viewable in API form, but my #1 hope is to get synergy from site to game so you can plug your data into a site and get personalized guides.</p>
+<p>On that point I do hope we have a public and a private space for accounts. Public is basic data on the account, (Character names,Professions, levels, Status, Map currently on, Achievement points, hours played?) Private is everything else and requires authentication.</p>
+<p>The private data should be kept secure so players who like their privacy are private.</p>
+<p>For instance a system similar to the two step authentication that we have to login. Where a player generates access keys that they give to sites that are valid only for one ip. (although this would be an issue for anyone with a roaming ip. Perhapses make an access account?)</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T03:09:00+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<p>I’ve already proposed some json structure changes for the WvW APIs, so i’m gonna link these here for now – i’ll create some PR tomorrow.</p>
+<p>matches.json <a href="https://gist.github.com/codemasher/8876102#file-matches3-json">https://gist.github.com/codemasher/8876102#file-matches3-json</a><br>
+match_details.json <a href="https://gist.github.com/codemasher/8894954">https://gist.github.com/codemasher/8894954</a><br>
+objectives.json <a href="https://gist.github.com/codemasher/bac2b4f87e7af128087e#file-gw2_objectives-json">https://gist.github.com/codemasher/bac2b4f87e7af128087e#file-gw2_objectives-json</a><br>
+(more to follow)</p>
+<p>Thanks for the new floors.json, thats basically what i’ve proposed earlier<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Sol Solus.3167:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T03:13:19+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<p>The trading post APIs only accept IDs, so it would make sense to have an <strong>item name search API</strong> to get that ID. Right now the only way to implement name search is to maintain your own database, which is burdensome for non-website apps.</p>
+<p>Preferably, it would allow type, rarity, etc. filters via parameters.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T06:13:21+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 03:09AM"><a href="/forum/community/api/API-CDI-2015/4811976">smiley.1438:</a></cite></div><div class="quotey"><p>I’ve already proposed some json structure changes for the WvW APIs, so i’m gonna link these here for now – i’ll create some PR tomorrow.</p>
+<p>matches.json <a href="https://gist.github.com/codemasher/8876102#file-matches3-json">https://gist.github.com/codemasher/8876102#file-matches3-json</a><br>
+match_details.json <a href="https://gist.github.com/codemasher/8894954">https://gist.github.com/codemasher/8894954</a><br>
+objectives.json <a href="https://gist.github.com/codemasher/bac2b4f87e7af128087e#file-gw2_objectives-json">https://gist.github.com/codemasher/bac2b4f87e7af128087e#file-gw2_objectives-json</a><br>
+(more to follow)</p></div></blockquote>
+<p>Ooh, those look shiny. In addition to fixing up the response format, I definitely do want to get the objective flip times in there, though I think that’ll take some more involved backend changes.</p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 03:13AM"><a href="/forum/community/api/API-CDI-2015/4811990">Sol Solus.3167:</a></cite></div><div class="quotey"><p>The trading post APIs only accept IDs, so it would make sense to have an <strong>item name search API</strong> to get that ID. Right now the only way to implement name search is to maintain your own database, which is burdensome for non-website apps.</p>
+<p>Preferably, it would allow type, rarity, etc. filters via parameters.</p></div></blockquote>
+<p>Actual search endpoints is definitely something I’ve been looking into. The way we pull content data right now is to basically load stuff from the dat file — which is designed for semi-random access and doesn’t really yield itself to indexing. So I’m trying to pull all the data into a more normalized format so we can load it into search indexes and index all the things (not just items/recipes, but also future endpoints like skills and maps and whatnot). Still a ways from being production ready though ;_;</p></p>
+
+<h2 id="">famfamfam.9137:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T06:55:14+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 02:26AM"><a href="/forum/community/api/API-CDI-2015/4811917">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 20 2015 01:52AM"><a href="/forum/community/api/API-CDI-2015/4811874">famfamfam.9137:</a></cite></div><div class="quotey"><p>I’m interested in plans for versioning and compat…</p></div></blockquote>
+<p>I’d write up your proposal in a forum post or gist, it’s too long-term of an idea for a PR to be very useful right now.</p></div></blockquote>
+<p>If I get a chance I’ll gist a story and proposal.</p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 02:26AM"><a href="/forum/community/api/API-CDI-2015/4811917">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>After we’ve gotten over the hump of exposing most of the useful/interesting data available I’d like to circle back around on a consistency pass that would potentially include a more flexible versioning story.</p></div></blockquote>
+<p>Understandable and preferred. Looking forward to auth!</p></p>
+
+<h2 id="">Bugabuga.9721:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T07:17:30+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 03:09AM"><a href="/forum/community/api/API-CDI-2015/4811976">smiley.1438:</a></cite></div><div class="quotey"><p>I’ve already proposed some json structure changes for the WvW APIs, so i’m gonna link these here for now – i’ll create some PR tomorrow.</p>
+<p>matches.json <a href="https://gist.github.com/codemasher/8876102#file-matches3-json">https://gist.github.com/codemasher/8876102#file-matches3-json</a><br>
+match_details.json <a href="https://gist.github.com/codemasher/8894954">https://gist.github.com/codemasher/8894954</a><br>
+objectives.json <a href="https://gist.github.com/codemasher/bac2b4f87e7af128087e#file-gw2_objectives-json">https://gist.github.com/codemasher/bac2b4f87e7af128087e#file-gw2_objectives-json</a><br>
+(more to follow)</p>
+<p>Thanks for the new floors.json, thats basically what i’ve proposed earlier<img src="/include/images/smilies/colondee.png"></p></div></blockquote>
+<p>That makes me wonder — perhaps there should be “abbreviated” mode of endpoint? (and further compact it like this: <a href="https://gist.github.com/msmolev/c22210d53d10a4edd233">https://gist.github.com/msmolev/c22210d53d10a4edd233</a> ) if volume of data transmitted is causing problems.</p>
+<p>What will be the acceptable rate of requests for v2 API?</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T07:28:47+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 03:09AM"><a href="/forum/community/api/API-CDI-2015/4811976">smiley.1438:</a></cite></div><div class="quotey"><p>Thanks for the new floors.json, thats basically what i’ve proposed earlier<img src="/include/images/smilies/colondee.png"></p></div></blockquote>
+<p>No problem! Thanks for all your suggestions, they were really useful.</p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 07:17AM"><a href="/forum/community/api/API-CDI-2015/4812317">Bugabuga.9721:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 20 2015 03:09AM"><a href="/forum/community/api/API-CDI-2015/4811976">smiley.1438:</a></cite></div><div class="quotey"><p>I’ve already proposed some json structure changes for the WvW APIs, so i’m gonna link these here for now – i’ll create some PR tomorrow.</p>
+<p>matches.json <a href="https://gist.github.com/codemasher/8876102#file-matches3-json">https://gist.github.com/codemasher/8876102#file-matches3-json</a><br>
+match_details.json <a href="https://gist.github.com/codemasher/8894954">https://gist.github.com/codemasher/8894954</a><br>
+objectives.json <a href="https://gist.github.com/codemasher/bac2b4f87e7af128087e#file-gw2_objectives-json">https://gist.github.com/codemasher/bac2b4f87e7af128087e#file-gw2_objectives-json</a><br>
+(more to follow)</p>
+<p>Thanks for the new floors.json, thats basically what i’ve proposed earlier<img src="/include/images/smilies/colondee.png"></p></div></blockquote>
+<p>That makes me wonder — perhaps there should be “abbreviated” mode of endpoint? (and further compact it like this: <a href="https://gist.github.com/msmolev/c22210d53d10a4edd233">https://gist.github.com/msmolev/c22210d53d10a4edd233</a> ) if volume of data transmitted is causing problems.</p></div></blockquote>
+<p>Unless there are amazing savings from doing so either on our end or the consumer’s end I’m not particularly interested in supporting two output styles for a particular endpoint. That just sounds like more code to write/debug/write tests for/maintain. I decided to investigate what the actual over-the-wire costs are for /v1/wvw/matches.json.</p>
+<p>We gzip all responses for clients that support it (almost everyone) and the current /v1/wvw/matches.json output while verbose isn’t crazy. It’s 2.6KB uncompressed, but over the wire it’s only 380 bytes. The examples matches2.json starts out significantly smaller at ~700 bytes, and after gzip it’s down to ~325 bytes. So overall savings over the original file of 55 bytes.</p>
+<p>I’m definitely not going to build &amp; maintain two code paths to save 55 bytes over the wire, sorry.</p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 07:17AM"><a href="/forum/community/api/API-CDI-2015/4812317">Bugabuga.9721:</a></cite></div><div class="quotey"><p>What will be the acceptable rate of requests for v2 API?</p></div></blockquote>
+<p>All of our API responses are cached for some period of time, so right now we aren’t enforcing any particular limits. It would be simple for us to rate limit endpoints in the future but we’re going into this in good faith that people won’t abuse it. Also our API frontends are pretty robust and giving them a good workout from time to time is nothing for us to panic about.</p>
+<p>If you start noticing slowness/spotty responses though do let us know!</p></p>
+
+<h2 id="">aRestless.6213:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T09:03:24+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<p>Flip times for WvW would be great!  Would solve quite a few of my problems with that endpoint.</p></p>
+
+<h2 id="">DeviantShark.6548:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T09:14:07+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<p>Okay, this is actually the first time I post to a cdi, so forgive me if i made everything wrong. I just believe I speak for others with what I ’am about to say:</p>
+<p><strong>Guild-API</strong><br>
+With the possibility of authentication there ought to be some guild-roster-api, but i don’t know how this should be implemented. Obviously there should be a setting in the ingame privileges tab like “API-Access” which grants those rights to a specivic guild group. <br>
+But then again, since this would be an ingame change this might not fit in here.</p>
+<p><em>Now why would I love this?</em><br>
+Leading a somewhat medium sized guild (100+) it is getting tricky remembering all names as well as the invite date, and the date of first representation. Also this would allow to show some statistics about how much of his online time the person is actually representing said guild. Also this could help figuring out which content the guild is mostly doing. If 60% of people are almost exclusively bashing doors in the borderlands and only 2% are doing fractals every now and then, the next contest probably shouldn’t be fractals, if you know what I mean.</p>
+<p>Statistics can help a lot achieving balance for the players.</p></p>
+
+<h2 id="">Ravenmoon.5318:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T09:15:40+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<p>I would like to see improved Guild API which would help make better community websites with stuff like</p>
+<ul>
+	<li>Members (Representing/Not Representing/Total)</li>
+	<li>Member Character Names</li>
+	<li>Upgrades Queue</li>
+	<li>Some sort of a log for completed guild missions</li>
+	<li>Guild bank? (shouldn’t be an issue to make it public data :O )</li>
+	<li>And maybe an extension for the upcoming expack, like .. does the guild have a hall, how does it look like</li>
+	<li>GvG History</li>
+	<li>Upcoming GvG Matches</li>
+</ul>
+<p>I’d like to see people being able to extract pictures of their toons, or at least avatars.</p>
+<p>I would love to see steps being taken to get back the Events API, including a way for people to <strong>PICK</strong> the server in-game (i know, i know this isn’t exactly an API request, but I’m sure you guys can bring more attention/weight to this detail than a simple user like me)</p>
+<p>Also sPvP could see some love, by having an API endpoint interfacing with the leaderboards, and maybe even a build data (not necessary, I do see how that can be used to gain unfair advantage, knowing your enemy and all). The basics <strong>could</strong> be covered, like rank, and some achievements data, like players killed, points made and stuff like that.</p></p>
+
+<h2 id="">Lumiere.4609:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T10:21:47+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 09:04PM"><a href="/forum/community/api/API-CDI-2015/4811073">BLUna.7928:</a></cite></div><div class="quotey"><p>Some PvP API would be fantastic. I think it would be really cool if we could potentially create something like <a href="http://www.dotabuff.com/">dotabuff</a> but it just does not seem possible at the moment. Being able to access things like match details (kills, deaths, points, builds players were running) would be fantastic not only for match sites but also for things like post game breakdowns in tournaments.</p></div></blockquote>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 09:15AM"><a href="/forum/community/api/API-CDI-2015/4812510">Ravenmoon.5318:</a></cite></div><div class="quotey"><p>(snip)<br>
+Also sPvP could see some love, by having an API endpoint interfacing with the leaderboards, and maybe even a build data (not necessary, I do see how that can be used to gain unfair advantage, knowing your enemy and all). The basics <strong>could</strong> be covered, like rank, and some achievements data, like players killed, points made and stuff like that.</p></div></blockquote>
+<p><a href="/forum-backup/Proposal-Structured-PvP-API">https://forum-en.guildwars2.com/forum/community/api/Proposal-Structured-PvP-API/first#post4802052</a></p>
+<p>I’ll write a PR this weekend…</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T12:42:13+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 06:13AM"><a href="/forum/community/api/API-CDI-2015/4812218">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Actual search endpoints is definitely something I’ve been looking into. The way we pull content data right now is to basically load stuff from the dat file — which is designed for semi-random access and doesn’t really yield itself to indexing. So I’m trying to pull all the data into a more normalized format so we can load it into search indexes and index all the things (not just items/recipes, but also future endpoints like skills and maps and whatnot). Still a ways from being production ready though ;_;</p></div></blockquote>
+<p>Pretty please with sugar on top! Especially a search endpoint for the maps API (POIs and stuff) would be extremely helpful to create maps for the Wikis.</p>
+<p>So please: (couldn’t resist)</p></p>
+
+<h2 id="">quenoz.3859:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T12:44:12+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<p>i would be really excited about a possibility to have guild chat outside of the game too, maybe somewhat like twitch allows to connect to their irc: <a href="http://help.twitch.tv/customer/en/portal/articles/1302780-twitch-irc">http://help.twitch.tv/customer/en/portal/articles/1302780-twitch-irc</a></p></p>
+
+<h2 id="">Light.7493:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T13:53:46+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<p>I would like to suggest implementation of Zone chat API. It should follow the footsteps of twitter API in terms of structure. Something like:<br>
+GET <a href="https://blahblah/chat?limit=100&zone=1">https://blahblah/chat?limit=100&amp;zone=1</a></p>
+<p>{<br>
+    zone:1,<br>
+    messages: [<br>
+        {<br>
+            “name”: “blah”,<br>
+            “message”: “blahblah”,<br>
+            “time”:“00:00:00 UTC”<br>
+        },</p>
+<p>{<br>
+            “name”: “blah”,<br>
+            “message”: “blahblah”,<br>
+            “time”:“00:00:00 UTC”<br>
+        }<br>
+    ]<br>
+}</p></p>
+
+<h2 id="">dlonie.6547:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T14:15:35+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 10:48PM"><a href="/forum/community/api/API-CDI-2015/4811437">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 19 2015 10:38PM"><a href="/forum/community/api/API-CDI-2015/4811398">Divus.3175:</a></cite></div><div class="quotey"><p>Either John Smith has his own server with all (I mean ALL) the data, or you have it somewhere in some form of historic tables. That’s just a wild guess.</p></div></blockquote>
+<p>Querying it is neither fast nor scalable, so it’s very unlikely that we’ll be able to provide access to anything beyond what you can see via the in-game UI. I think the current cutoff for the transaction history is three months, but might be mistaken about that.</p></div></blockquote>
+<p>Would it be feasible to reduce the data to improve the database performance?</p>
+<p>The query could return statistics for a time interval. For each item:</p>
+<p>{<br>
+  “id”: xxx,<br>
+  “start_time”: xxx,<br>
+  “end_time”: xxx,<br>
+  “buy_price” : { “min”: xxx, “max”: xxx, “mean”: xxx },<br>
+  “sell_price” : { “min”: xxx, “max”: xxx, “mean”: xxx },<br>
+  “demand” : { “min”: xxx, “max”: xxx, “mean”: xxx },<br>
+  “supply” : { “min”: xxx, “max”: xxx, “mean”: xxx },<br>
+  “bought”: xxx,<br>
+  “sold”: xxx<br>
+}</p>
+<p>The further back in time, the coarser the granularity, e.g. for the last week/month the statistics could be stored at hourly intervals, for 1-12 months back, store at the day level, and for 12+ months back, store a weekly summary.</p>
+<p>This would still allow users to plot a representative history, and provide enough detail for analyzing recent trends in the market history, without having to serve every individual transaction.</p>
+<p>This would require a periodic sweep through the data to condense the summaries as they move into different level-of-detail windows, but would greatly reduce the amount of data.</p></p>
+
+<h2 id="">Khisanth.2948:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T17:15:42+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2015 08:55PM"><a href="/forum/community/api/API-CDI-2015/4811043">Torsailr.8456:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 19 2015 07:41PM"><a href="/forum/community/api/API-CDI-2015/4810815">MithranArkanere.8957:</a></cite></div><div class="quotey"><p>All I want for now is just 3 things:</p>
+<ul>
+	<li>Some sort of authentication, so the API can get permission to get info about an account and its characters.</li>
+	<li>A way to get the info of all copies of a map, and the info of a particular copy of a map. Combined with the authentication and the events API, it’ll be able to tell you the event of the particular copy of the map the current character of an account is in just like before megaserver.</li>
+	<li>Also combined with the authentication, a way to pull contact lists, and be able to pull the locations of the reciprocal friends of that account if they are in the same copy of the map.</li>
+</ul></div></blockquote>
+<p>Is it possible to take this a step further?</p>
+<p>Be able to get a list of what events are active, or the timers on the inactive events for all instances of a given map?</p>
+<p>IE, if I wanted to do Balthazar but I’m in Queensdale.  Being able to see if there are any instances in progress or about to start would be nice.  This would make it easier for people to organize on specific maps to do these events.</p></div></blockquote>
+<p>The inactive timer thing is probably not possible but we should at least be able to get back to how the events API worked before megaserver.</p>
+<p>There is no way to select which instance you end up so seeing which instances have what events doesn’t seem very useful.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T18:36:47+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 09:14AM"><a href="/forum/community/api/API-CDI-2015/4812509">DeviantShark.6548:</a></cite></div><div class="quotey"><p>With the possibility of authentication there ought to be some guild-roster-api, but i don’t know how this should be implemented. Obviously there should be a setting in the ingame privileges tab like “API-Access” which grants those rights to a specivic guild group.</p></div></blockquote>
+<p>Probably not going to be an in-game opt-in for this. Anyone in the guild can already see the roster in-game, so it doesn’t make sense to hide the roster from them out-of-game.</p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 12:44PM"><a href="/forum/community/api/API-CDI-2015/4812834">quenoz.3859:</a></cite></div><div class="quotey"><p>i would be really excited about a possibility to have guild chat outside of the game too, maybe somewhat like twitch allows to connect to their irc: <a href="http://help.twitch.tv/customer/en/portal/articles/1302780-twitch-irc">http://help.twitch.tv/customer/en/portal/articles/1302780-twitch-irc</a></p></div></blockquote>
+<p>Out-of-game guild chat is definitely something I want to have, but we haven’t really settled on a protocol for it yet. XMPP, IRC and “something custom with HTTP+SSE” have all been tossed around as potentials but it’s not immediately clear which is most advantageous to implement. As far as interoperability with existing clients, IRC’s probably the winner (though it’s a horrible mess of a protocol).</p></p>
+
+<h2 id="">Rising Dusk.2408:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T19:38:12+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<p>So let’s say I want to “opt in” to an app or overlay that allows other players to perform a gear check on me in dungeon groups. How would I do that? Would I have to use the app? Or would there be a user preference in-game (disabled by default) that shares my information for others to pull from the API?</p></p>
+
+<h2 id="">wwwes.1398:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T20:51:39+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<p>I would like to throw my vote towards XMPP for group chats.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-20T20:57:00+00:00">
+        20 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 07:38PM"><a href="/forum/community/api/API-CDI-2015/4813893">Rising Dusk.2408:</a></cite></div><div class="quotey"><p>So let’s say I want to “opt in” to an app or overlay that allows other players to perform a gear check on me in dungeon groups. How would I do that? Would I have to use the app? Or would there be a user preference in-game (disabled by default) that shares my information for others to pull from the API?</p></div></blockquote>
+<p>You’d go to the app’s webpage, which would redirect you to the official sign-ins. After signing in, you’d be presented with an authorization prompt telling you what permissions the app is requesting. Clicking a “accept” button would send you back to the app and give the app a token they can use to make authenticated API requests on your behalf.</p>
+<p>So, an example app, “pingyourgear.com”, might allow you to list your party members by name. You could them send them to the app — they’d log in and grant the app access to view their equipment. The app would pull their equipment and update it on your screen. The app could additionally save authentication tokens (with the user’s permission) so they’d only have to opt-in once — so any party members you add who’ve already used the app could have their current gear appear immediately on your UI.</p></p>
+
+<h2 id="">coldwaterq.6258:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T00:04:07+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<p>Something I would like to see added to the items api is for the vendors that the item can be purchased from to be included, along with the price those vendors charge. Alternatively the lowest price charged by a vendor would also be nice.</p></p>
+
+<h2 id="">ClockworkUnltd.2690:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T00:11:53+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<p>For the authenticated api, I would like to request adding the time a particular skill was last used.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T00:42:33+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 21 2015 12:04AM"><a href="/forum/community/api/API-CDI-2015/4814921">coldwaterq.6258:</a></cite></div><div class="quotey"><p>Something I would like to see added to the items api is for the vendors that the item can be purchased from to be included, along with the price those vendors charge. Alternatively the lowest price charged by a vendor would also be nice.</p></div></blockquote>
+<p>This is on my list, but it’s pretty far down as it is actually quite difficult to determine which vendors are (or have been) player-accessible, and under what conditions they’ll actually sell their items. Some additional discussion in <a href="/forum-backup/Item-s-Karma-and-Other-Currency-Cost">this thread</a>.</p>
+<blockquote><div class="citey"><cite title="Posted on February 21 2015 12:11AM"><a href="/forum/community/api/API-CDI-2015/4814939">ClockworkUnltd.2690:</a></cite></div><div class="quotey"><p>For the authenticated api, I would like to request adding the time a particular skill was last used.</p></div></blockquote>
+<p>This is more-or-less infeasible. The data we have access to is always between 1 and 5 minutes stale. The stream of data that could meaningfully contain skill usages (e.g., the raw logs) may be even more out-of-date.</p>
+<p>Basically, none of the APIs actually talk to game servers and are heavily cached, so real-time info isn’t going to happen.</p></p>
+
+<h2 id="">quenoz.3859:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T00:55:01+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 06:36PM"><a href="/forum/community/api/API-CDI-2015/4813732">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Out-of-game guild chat is definitely something I want to have</p></div></blockquote>
+<p>that is great to hear!<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Ravenmoon.5318:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T10:43:29+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 06:36PM"><a href="/forum/community/api/API-CDI-2015/4813732">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 20 2015 09:14AM"><a href="/forum/community/api/API-CDI-2015/4812509">DeviantShark.6548:</a></cite></div><div class="quotey"><p>With the possibility of authentication there ought to be some guild-roster-api, but i don’t know how this should be implemented. Obviously there should be a setting in the ingame privileges tab like “API-Access” which grants those rights to a specivic guild group.</p></div></blockquote>
+<p>Probably not going to be an in-game opt-in for this. Anyone in the guild can already see the roster in-game, so it doesn’t make sense to hide the roster from them out-of-game.</p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 12:44PM"><a href="/forum/community/api/API-CDI-2015/4812834">quenoz.3859:</a></cite></div><div class="quotey"><p>i would be really excited about a possibility to have guild chat outside of the game too, maybe somewhat like twitch allows to connect to their irc: <a href="http://help.twitch.tv/customer/en/portal/articles/1302780-twitch-irc">http://help.twitch.tv/customer/en/portal/articles/1302780-twitch-irc</a></p></div></blockquote>
+<p>Out-of-game guild chat is definitely something I want to have, but we haven’t really settled on a protocol for it yet. XMPP, IRC and “something custom with HTTP+SSE” have all been tossed around as potentials but it’s not immediately clear which is most advantageous to implement. As far as interoperability with existing clients, IRC’s probably the winner (though it’s a horrible mess of a protocol).</p></div></blockquote>
+<p>Go with your own protocol. People are doing chatrooms with Node.js and socket.io ever since it released. WebSockets is a nice TCP/IP wrapper and is supported on all major browsers. Its easy to write against it so I can see client apps being developed around it too. If you limit the messages to 128 bytes, you won’t have to ever implement the protocol chunking, which saves you loads of work.</p>
+<p>IRC is older than me (I’m 24 years old), it is time to let it go xD</p>
+<p>WebSockets usability info: <a href="http://caniuse.com/#feat=websockets">http://caniuse.com/#feat=websockets</a></p></p>
+
+<h2 id="">dlonie.6547:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T14:35:25+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 21 2015 10:43AM"><a href="/forum/community/api/API-CDI-2015/4815827">Ravenmoon.5318:</a></cite></div><div class="quotey"><p>IRC is older than me (I’m 24 years old), it is time to let it go xD</p></div></blockquote>
+<p>This is actually an advantage to using IRC (or another off-the-shelf technology) — existing chat clients already understand it and third party apps can use existing libraries since the protocol has had time to gain acceptance.</p>
+<p>IRC has some cobwebs for sure, but <em>everything</em> understands it<img src="/include/images/smilies/wink.png"></p>
+<p>Not to mention that it will only require them to develop an interface layer between GW2 chat and IRC, rather than build (and test and maintain) their own protocol/server implementation.</p>
+<p>Gah. Now I sound like my boss does when I get carried away, wanting to rewrite everything myself. kitten I hate the real world &gt;.&lt;</p></p>
+
+<h2 id="">Arcan Soulstorm.4356:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T15:43:42+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<p>I’d like to see a flag for waypoints in keeps and SMC in WvW as they are visble to every player by looking on the map.</p></p>
+
+<h2 id="">mahri.8410:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T20:57:37+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<p>I would like the API to provide location coordonates of players. If I would be able to see my guildmates location on Tyria map in a web app, there would be more collaboration.</p>
+<p>Also, another suggestion for the API is 3D asset streaming. Currently, only 2D assets could be displayed, such as items. What I suggest here is 3D asset streaming.</p>
+<p>This could be done in multiple ways . I’ve linked here a PDF called 3D mesh streaming based on predictive modelling : <br>
+<a href="http://thescipub.com/abstract/10.3844/jcssp.2012.1123.1133">http://thescipub.com/abstract/10.3844/jcssp.2012.1123.1133</a> (click read full pdf)</p>
+<p>What I suggest is something like this: Let’s say we have a 3D model of a lion statue from the submerged Lion Arch. That statue is isolated, and more photos are taken around it, at different angles and zoom levels. The photos are stored on the server, associated with the respective asset. API users could request various photos. On the app side, the images are combined in spherical shapes ( think of Google Street View), with different sizes, based on zoom. So, that asset could be viewed in 3D inside the app.<br>
+I would suggest png format streaming, because it supports transparency. This could also be done for animations and particle effects.</p></p>
+
+<h2 id="">ClockworkUnltd.2690:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T21:05:37+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 21 2015 08:57PM"><a href="/forum/community/api/API-CDI-2015/4817018">mahri.8410:</a></cite></div><div class="quotey"><p>I would like the API to provide location coordonates of players. If I would be able to see my guildmates location on Tyria map in a web app, there would be more collaboration.</p></div></blockquote>
+<p>I believe this can be done with the mumble API. It includes your coordinates, plus other information (such as the direction you are facing, etc). Others have created apps where you can track your own movement. Building on this, you should be able to centralize this information and display it to any users you wish to convey the information to.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T22:50:50+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 21 2015 02:35PM"><a href="/forum/community/api/API-CDI-2015/4816155">dlonie.6547:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 21 2015 10:43AM"><a href="/forum/community/api/API-CDI-2015/4815827">Ravenmoon.5318:</a></cite></div><div class="quotey"><p>IRC is older than me (I’m 24 years old), it is time to let it go xD</p></div></blockquote>
+<p>This is actually an advantage to using IRC (or another off-the-shelf technology) — existing chat clients already understand it and third party apps can use existing libraries since the protocol has had time to gain acceptance.</p>
+<p>IRC has some cobwebs for sure, but <em>everything</em> understands it<img src="/include/images/smilies/wink.png"></p></div></blockquote>
+<p>I’m in the IRC boat myself, but arguably XMPP shares the same “doesn’t need a custom client” properties. Also, calling IRC cobwebby is a bit of an understatement — the protocol is riddled with all kinds of undocumented extensions and it really baffles me that clients are even capable of communicating with the wide range of implementations that they do.</p>
+<p>The main issue with IRC/XMPP is that it would require a bridge to use within a browser. We need to internally figure out what our most common use-cases for a chat endpoint will be, I think.</p>
+<p>There’s also an authentication issue with IRC/XMPP that I’m not sure how best to handle (e.g., OAuth2 isn’t really going to work for it), but eh.</p>
+<blockquote><div class="citey"><cite title="Posted on February 21 2015 08:57PM"><a href="/forum/community/api/API-CDI-2015/4817018">mahri.8410:</a></cite></div><div class="quotey"><p>I would like the API to provide location coordonates of players. If I would be able to see my guildmates location on Tyria map in a web app, there would be more collaboration.</p></div></blockquote>
+<p>This probably won’t be technically feasible. We don’t have real-time access to character data (it can be up to 5 minutes stale).</p>
+<blockquote><div class="citey"><cite title="Posted on February 21 2015 08:57PM"><a href="/forum/community/api/API-CDI-2015/4817018">mahri.8410:</a></cite></div><div class="quotey"><p>Also, another suggestion for the API is 3D asset streaming. Currently, only 2D assets could be displayed, such as items. What I suggest here is 3D asset streaming.</p></div></blockquote>
+<p>I’d prefer to just provide the 3D models and textures in a common format, then let the application render them directly with e.g., WebGL. Makes everything a bit less complicated.</p>
+<p>Whether or not that’s something we can provide is a question that’s above my pay grade :P</p>
+<p>As far as pre-rendered stuff goes, I really really want to provide character portraits though. There are some outstanding difficult-to-solve issues with rendering on servers that we’d have to sort out first though, so it’s probably not going to happen for a long while.</p></p>
+
+<h2 id="">aRestless.6213:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-21T23:52:47+00:00">
+        21 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 21 2015 10:50PM"><a href="/forum/community/api/API-CDI-2015/4817299">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Whether or not that’s something we can provide is a question that’s above my pay grade :P</p></div></blockquote>
+<p>Even if you could decide that – you shouldn’t do it. There are already copy-paste low budget games out there that simply copy the Guild Wars 2 UI. Throwing out models and textures in a convenient easy-to-use format would only extend this content theft to all kinds of assets.</p>
+<p>Edit, to avoid double post:</p>
+<blockquote><div class="citey"><cite title="Posted on February 21 2015 09:05PM"><a href="/forum/community/api/API-CDI-2015/4817036">ClockworkUnltd.2690:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 21 2015 08:57PM"><a href="/forum/community/api/API-CDI-2015/4817018">mahri.8410:</a></cite></div><div class="quotey"><p>I would like the API to provide location coordonates of players. If I would be able to see my guildmates location on Tyria map in a web app, there would be more collaboration.</p></div></blockquote>
+<p>I believe this can be done with the mumble API.</p></div></blockquote>
+<p>Yep. <a href="http://markers.smartech.info">Markers</a> can already do that, although it would display your guild members on the ingame map instead of a web app. However, as soon as the current update is finished (features, performance, stability… ugh, I hate JavaScript) I’ll get in touch with the creators of various map-rendering projects to achieve interoperability. I’ll probably be able to provide a simple JavaScript wrapper that handles communication with a share server and spits out information about player positions and so on.</p></p>
+
+<h2 id="">Rising Dusk.2408:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-22T02:08:33+00:00">
+        22 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 08:57PM"><a href="/forum/community/api/API-CDI-2015/4814122">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>You’d go to the app’s webpage, which would redirect you to the official sign-ins. After signing in, you’d be presented with an authorization prompt telling you what permissions the app is requesting. Clicking a “accept” button would send you back to the app and give the app a token they can use to make authenticated API requests on your behalf.</p>
+<p>So, an example app, “pingyourgear.com”, might allow you to list your party members by name. You could them send them to the app — they’d log in and grant the app access to view their equipment. The app would pull their equipment and update it on your screen. The app could additionally save authentication tokens (with the user’s permission) so they’d only have to opt-in once — so any party members you add who’ve already used the app could have their current gear appear immediately on your UI.</p></div></blockquote>
+<p>Makes perfect sense. Thanks so much for the very thorough walkthrough of the typical usage model!</p></p>
+
+<h2 id="">McWolfy.5924:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-22T07:47:09+00:00">
+        22 Feb 2015
+    </time>
+</p>
+<p>
+<p>Befor release anet promised mobile apps. I think its a great opportunity to rise the gaming experience. Chat, tp buy-sell, something SAB kind of game (or SAB itself) etc…<br>
+Now we only have event timers, tp price check and wiki<br>
+I realy want to log in from my mobile and enjoy a part of the game</p></p>
+
+<h2 id="">Tub.4560:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-22T09:32:32+00:00">
+        22 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 21 2015 10:50PM"><a href="/forum/community/api/API-CDI-2015/4817299">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Also, calling IRC cobwebby is a bit of an understatement — the protocol is riddled with all kinds of undocumented extensions and it really baffles me that clients are even capable of communicating with the wide range of implementations that they do.</p></div></blockquote>
+<p>eh.. the extensions are either channel modes/user modes which a client is allowed to ignore, or arcane protocols for server-to-server communication. A client implementing all of RFC 1459 must work with all IRC servers, and a server implementing nothing but RFC 1459 must work with all clients. Implementing just some core functionality would be sufficient for everything.</p>
+<p>That being said, I dislike IRC and XMPP because they’re unencrypted (or only optionally encrypted). I really don’t want external apps to start sending my guild chat unencrypted over the wire. I’m aware that all ingame-chat is fully logged by arenanet and thus should never be used for confidential information, but that doesn’t mean it should be readable by just anyone.</p>
+<p>I also insist that it is always possible to see who is logged into the chat, including API logins. If someone decides to run a 24/7 logging-bot, I want to know.</p>
+<p>As for feature requests: Eventually, I’d like to be able to export my character with weapon, armor and dyes in a pre-selected pose as a 3d model. You know, 3d printers. Not sure if that’s feasible (doesn’t the posing rely on vertex shaders, which are difficult to emulate on CPU?), but it’d be cool.</p></p>
+
+<h2 id="">munkiman.3068:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-22T21:37:43+00:00">
+        22 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 21 2015 10:50PM"><a href="/forum/community/api/API-CDI-2015/4817299">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>This probably won’t be technically feasible. We don’t have real-time access to character data (it can be up to 5 minutes stale).</p></div></blockquote>
+<p>I’m confused, this is possible now with  mumble tracking, can you not write an extension that utilizes that code? This seems pretty straight forward to me and something mentioned before the game launched.</p></p>
+
+<h2 id="">Teranas.6150:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-22T22:40:19+00:00">
+        22 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 22 2015 09:37PM"><a href="/forum/community/api/API-CDI-2015/4819610">munkiman.3068:</a></cite></div><div class="quotey"><p>I’m confused, this is possible now with  mumble tracking, can you not write an extension that utilizes that code? This seems pretty straight forward to me and something mentioned before the game launched.</p></div></blockquote>
+<p>I suppose mumble retrieves its data directly from client side in real time meanwhile the API retrieves its data from pre cached databases of the server. This data will be pretty fast outdated when you get them from the API.</p>
+<p>Two very different mechanisms.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-22T23:32:55+00:00">
+        22 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 22 2015 07:47AM"><a href="/forum/community/api/API-CDI-2015/4818180">McWolfy.5924:</a></cite></div><div class="quotey"><p>Befor release anet promised mobile apps. I think its a great opportunity to rise the gaming experience. Chat, tp buy-sell, something SAB kind of game (or SAB itself) etc…<br>
+Now we only have event timers, tp price check and wiki<br>
+I realy want to log in from my mobile and enjoy a part of the game</p></div></blockquote>
+<p>That team hasn’t existed for years (I know, I was on it) it wasn’t going to ship anything unless we cut lots of stuff. The “Extended Experience” was doomed by a number of factors that aren’t worth going into, but I wouldn’t hold your breath for it to return in that form.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-23T00:31:13+00:00">
+        23 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 22 2015 10:40PM"><a href="/forum/community/api/API-CDI-2015/4819749">Teranas.6150:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 22 2015 09:37PM"><a href="/forum/community/api/API-CDI-2015/4819610">munkiman.3068:</a></cite></div><div class="quotey"><p>I’m confused, this is possible now with  mumble tracking, can you not write an extension that utilizes that code? This seems pretty straight forward to me and something mentioned before the game launched.</p></div></blockquote>
+<p>I suppose mumble retrieves its data directly from client side in real time meanwhile the API retrieves its data from pre cached databases of the server. This data will be pretty fast outdated when you get them from the API.</p>
+<p>Two very different mechanisms.</p></div></blockquote>
+<p>Pretty much on the money.</p></p>
+
+<h2 id="">Erunno.3295:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-23T12:33:30+00:00">
+        23 Feb 2015
+    </time>
+</p>
+<p>
+<p>Is it possible to allow more than one value in the “lang”-parameter? Or “all” as possible value? This would allow to get more than one language with one request and would make these almost redundant requests required at the moment obsolete.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-23T18:10:01+00:00">
+        23 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 23 2015 12:33PM"><a href="/forum/community/api/API-CDI-2015/4821269">Erunno.3295:</a></cite></div><div class="quotey"><p>This would allow to get more than one language with one request and would make these almost redundant requests required at the moment obsolete.</p></div></blockquote>
+<p>This is what i’ve requested more than once, see also:</p>
+<p><a href="https://github.com/codemasher/api-cdi/commit/02fd35622ef844e3d8c2d7974e462c8478f6def2">https://github.com/codemasher/api-cdi/commit/02fd35622ef844e3d8c2d7974e462c8478f6def2</a><br>
+<a href="https://github.com/codemasher/api-cdi/commit/c105219b42413e047ce0e985dca93a13910c5817">https://github.com/codemasher/api-cdi/commit/c105219b42413e047ce0e985dca93a13910c5817</a></p></p>
+
+<h2 id="">katz.8376:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-24T19:26:46+00:00">
+        24 Feb 2015
+    </time>
+</p>
+<p>
+<p>Is it feasible to add swords popping on a WvW objective to the API?</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-24T19:53:56+00:00">
+        24 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 23 2015 12:33PM"><a href="/forum/community/api/API-CDI-2015/4821269">Erunno.3295:</a></cite></div><div class="quotey"><p>Is it possible to allow more than one value in the “lang”-parameter? Or “all” as possible value? This would allow to get more than one language with one request and would make these almost redundant requests required at the moment obsolete.</p></div></blockquote>
+<p>Potentially, but it isn’t something we’ve spent much time looking at just yet.</p>
+<p>It raises a lot of format questions for me as to what the actual response would look like. Would it be the regular, language-specific responses repeated n times (where n is the number of requested languages)? That’s going to be a huge response for some endpoints. There are other options but it requires us to write a bunch more code to support it by changing the responses we get (remember, the API frontend you talk to is a middle-man) and I don’t really think it’s worth it.</p>
+<p>Why do you need multiple languages in a single response?</p></p>
+
+<h2 id="">Erunno.3295:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-24T22:00:26+00:00">
+        24 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 24 2015 07:53PM"><a href="/forum/community/api/API-CDI-2015/4825785">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>Why do you need multiple languages in a single response?</p></div></blockquote>
+<p>I want to let the user search for items by different criterias. So my plan was to parse the data into a database and use indexes for the searches. To support several language i need to know the item names in theese languages. It is not a big problem to repeat the request and ignore everything except the names, but it would be easier to just fire one request and get everything I need. <br>
+Most of the data the apis provide doesn’t change very frequently, so imho it is feasible to cache it even without a database in the back. <br>
+The format smiley used in his pull-requests looks good to me. And if only one language is requested, it stays just like it is now.</p>
+<p>P.S. There is a working work-around, so this is no high prio of course.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-24T22:10:30+00:00">
+        24 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 24 2015 10:00PM"><a href="/forum/community/api/API-CDI-2015/4826206">Erunno.3295:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 24 2015 07:53PM"><a href="/forum/community/api/API-CDI-2015/4825785">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>Why do you need multiple languages in a single response?</p></div></blockquote>
+<p>I want to let the user search for items by different criterias. So my plan was to parse the data into a database and use indexes for the searches. To support several language i need to know the item names in theese languages. It is not a big problem to repeat the request and ignore everything except the names, but it would be easier to just fire one request and get everything I need. <br>
+Most of the data the apis provide doesn’t change very frequently, so imho it is feasible to cache it even without a database in the back. <br>
+The format smiley used in his pull-requests looks good to me. And if only one language is requested, it stays just like it is now.</p>
+<p>P.S. There is a working work-around, so this is no high prio of course.</p></div></blockquote>
+<p>Yeah, the problem I see with smiley’s PRs is that we have to write code for every endpoint to add comprehensions for the specific fields and transform them into objects. It’s not impossible of course, it’s just not a very good bang-for-our-buck change. We could work out a system to make marking up those fields easier or even diffing between responses from the backends but again, more important things atm.</p>
+<p>We’ll keep it on the backburner, /v2 isn’t the end of the APIs &amp; I’d like whatever comes next to offer more flexibility on things like this.</p></p>
+
+<h2 id="">Teraphas.6210:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T01:24:25+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>A request. I don’t do much work with api so i don’t know if this is possible. Could it either be made an api or an ingame option to track the storyline choices we have made?</p>
+<p>say i am playing a second or third etc character of a race and i did the story so long ago that i don’t remember which missions i chose the first time. Could there be a way to see which paths we chose before. Nothing worse then either remembering wrong and having to restart. I had to reroll a charr because i forgot what legion i had made my first one and accidentally made my new one the same.</p>
+<p>Yes i could (and had but lost)making notes as to which choices i make but with 8(and soon to be9) characters that is a lot of notes. and i could(and have) paused and consulted the awesome wiki but that takes a good bit of time and spoilers to read each mission to find out which you did before.</p>
+<p>i saw talk here of being able to call up personal and account inventory stuff and was curious if the story and character creation choices were outside the realm of possibility.</p>
+<p>especially if this was an ingame option(off by default probably) that showed up a little red text like when you know a recipe saying choice taken(maybe even with the number of times you have taken it) this would be great for us that are looking to explore all the various story paths and get a greater understanding of the Lore. especially since characters and events from certain arcs make their way into the LS.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T01:57:45+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 25 2015 01:24AM"><a href="/forum/community/api/API-CDI-2015/4826768">Teraphas.6210:</a></cite></div><div class="quotey"><p>A request. I don’t do much work with api so i don’t know if this is possible. Could it either be made an api or an ingame option to track the storyline choices we have made?</p>
+<p>say i am playing a second or third etc character of a race and i did the story so long ago that i don’t remember which missions i chose the first time. Could there be a way to see which paths we chose before. Nothing worse then either remembering wrong and having to restart. I had to reroll a charr because i forgot what legion i had made my first one and accidentally made my new one the same.</p></div></blockquote>
+<p>That’s already a thing. Check the “My Story” section of the “Story Journal” tab of the Hero Panel. The first entry has icons in the lower-right corner with tooltips indicating which character creation choices you made, and the other entries detail the choices you’ve made throughout your personal story.</p>
+<p>It doesn’t give you the tl;dr “You pressed option 3” but it’s enough text to figure out which choice you chose.</p></p>
+
+<h2 id="">Teraphas.6210:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T02:48:57+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>yes but i mean as i am progressing the new character. I know the info is there but when i get to the end of the mission and need to make a choice i realize i have once again forgotten to write down what i have done before.</p>
+<p>would just be nice to be able to turn it on ingame or use my phone or other monitor to quickly double check what pathes i have done with someone’s app that uses the api.</p>
+<p>not hugely important but if the info is there would be nice to access it without having to jump on that charracter</p></p>
+
+<h2 id="">Valento.9852:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T04:07:24+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>Skills/traits – <a href="/forum-backup/API-Suggestion-Skills-and-Traits">https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Skills-and-Traits/first#post4700324</a></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T18:00:36+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 25 2015 04:07AM"><a href="/forum/community/api/API-CDI-2015/4827053">Valento.9852:</a></cite></div><div class="quotey"><p>Skills/traits – <a href="/forum-backup/API-Suggestion-Skills-and-Traits">https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Skills-and-Traits/first#post4700324</a></p></div></blockquote>
+<p>See the <a href="https://github.com/arenanet/api-cdi/pull/5">pull requests on the CDI repo</a>.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T19:12:42+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>I just merged the PR for the updates to /v2/floors (moving it under /v2/continents, adding lots of new selection functionality). Hoping to ship it next week sometime.</p>
+<p><a href="https://github.com/arenanet/api-cdi/pull/2">https://github.com/arenanet/api-cdi/pull/2</a></p></p>
+
+<h2 id="">Kasima.8143:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T19:44:47+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<p>I would like something that would allow voice chat software like Teamspeak, Mumble or Ventrilo to interface with the game (or vice versa) to display who is talking, as well as display text chat in the chat pannel. Overwolf is nice, but it’s still very buggy and interacting with it freezes the controls ingame.</p></p>
+
+<h2 id="">anzenketh.3759:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-25T21:19:06+00:00">
+        25 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 25 2015 07:44PM"><a href="/forum/community/api/API-CDI-2015/4829201">Kasima.8143:</a></cite></div><div class="quotey"><p>I would like something that would allow voice chat software like Teamspeak, Mumble or Ventrilo to interface with the game (or vice versa) to display who is talking, as well as display text chat in the chat pannel. Overwolf is nice, but it’s still very buggy and interacting with it freezes the controls ingame.</p></div></blockquote>
+<p>There are other options available. This would not be associated with the Guild Wars 2 API.</p></p>
+
+<h2 id="">The Geil.8605:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-26T08:35:16+00:00">
+        26 Feb 2015
+    </time>
+</p>
+<p>
+<p>Timestamps for when an account is finishing an achievement would be pretty nice for creating timelines on an account. If we’ll get access to what loot people get, then a timestamp for those would also be appreciated.</p></p>
+
+<h2 id="">aRestless.6213:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-26T10:12:05+00:00">
+        26 Feb 2015
+    </time>
+</p>
+<p>
+<p>Due to the current Overwolf App Contest… is there a (rough) ETA or priorization for the upcoming API functionality? I could start implementing without the API up and running as long as I knew that the functionality would come within the time frame of the contest.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-26T18:50:09+00:00">
+        26 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 26 2015 10:12AM"><a href="/forum/community/api/API-CDI-2015/4831119">aRestless.6213:</a></cite></div><div class="quotey"><p>Due to the current Overwolf App Contest… is there a (rough) ETA or priorization for the upcoming API functionality? I could start implementing without the API up and running as long as I knew that the functionality would come within the time frame of the contest.</p></div></blockquote>
+<p>My informal roadmap basically looks like this:</p>
+<p>1. Get the OAuth2 application registration bits deployed.<br>
+(1.5. Pat’s <a href="https://github.com/arenanet/api-cdi/pull/2">/v2/continents additions</a>.)<br>
+2. <a href="https://github.com/arenanet/api-cdi/pull/3">/v2/account/bank, /v2/account/materials</a>.<br>
+3. <a href="https://github.com/arenanet/api-cdi/pull/6">/v2/commerce/transactions</a>.<br>
+4. /v2/characters.</p>
+<p>So, basically all authenticated endpoints which aren’t really useful within the scope of a desktop application. No timeline for those, but that’s the general order they’ll probably happen in. The other endpoints I’m working on still need a bunch of manual verification (looking at <a href="https://github.com/arenanet/api-cdi/pull/5">/v2/skills</a>, there’s a lot of wonky stuff still coming out of my current implementation) or are otherwise still in a half-implemented proof-of-concept state.</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-26T19:43:12+00:00">
+        26 Feb 2015
+    </time>
+</p>
+<p>
+<p>Would /v2/characters expose everything that we currently see in the character select screen?</p>
+<p>That would be …</p>
+<ul>
+	<li>Order most recently played</li>
+	<li>Level/Race/Class</li>
+	<li>Represented guild</li>
+	<li>% Map Completion</li>
+	<li>Last location</li>
+	<li>World (presumably for if a character is guesting?  Not sure, I never really guest)</li>
+</ul>
+<p>It would be useful to me to see which guilds an account belong to, having the guilds each character is representing may not give a full list but it would be something I could work with.</p>
+<p>I’ve also had some ideas about how I could use the name of the character they are currently playing, and order of most recent play would achieve that.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-26T19:51:09+00:00">
+        26 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 26 2015 07:43PM"><a href="/forum/community/api/API-CDI-2015/4832460">Nabrok.9023:</a></cite></div><div class="quotey"><p>Would /v2/characters expose everything that we currently see in the character select screen?</p>
+<p>That would be …</p>
+<ul>
+	<li>Order most recently played</li>
+	<li>Level/Race/Class</li>
+	<li>Represented guild</li>
+	<li>% Map Completion</li>
+	<li>Last location</li>
+	<li>World (presumably for if a character is guesting?  Not sure, I never really guest)</li>
+</ul>
+<p>It would be useful to me to see which guilds an account belong to, having the guilds each character is representing may not give a full list but it would be something I could work with.</p>
+<p>I’ve also had some ideas about how I could use the name of the character they are currently playing, and order of most recent play would achieve that.</p></div></blockquote>
+<p>I haven’t written up the RFC for /v2/characters (should probably do that today so we can get some eyes on it), but briefly — no order, yes level/race/class, probably rep’d guild, no % map completion, no last location, no last guested. There’s a bunch of other stuff in there like current equipment, inventory items, etc., that’ll make it useful at first for some applications.</p>
+<p>This doesn’t preclude those features from ever being added, they just aren’t attributes that are currently pulled out of the character data on our side yet (and it takes awhile to make and deploy changes to the code that parses character data, unfortunately).</p>
+<p>EDIT: In addition to recently played, time played per character would be nice as well (also perhaps deaths, heh).</p></p>
+
+<h2 id="">Alaska II.5819:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-27T05:21:33+00:00">
+        27 Feb 2015
+    </time>
+</p>
+<p>
+<p>Is there anything that allows to pull outgoing damage?  Like how much damage you are dealing to an enemy, everything (flat damage, condis) included.  Possibly pull data from the combat data that’s already implemented as a chat option?</p>
+<p>If not, that would be something nice to have.</p>
+<p>Also, a way to pull transaction history (past buys and sells) from the trading post would be neat as well.</p></p>
+
+<h2 id="">Bugabuga.9721:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-27T10:17:17+00:00">
+        27 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 26 2015 07:51PM"><a href="/forum/community/api/API-CDI-2015/4832489">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 26 2015 07:43PM"><a href="/forum/community/api/API-CDI-2015/4832460">Nabrok.9023:</a></cite></div><div class="quotey"><p>Would /v2/characters expose everything that we currently see in the character select screen?</p>
+<p>That would be …</p>
+<ul>
+	<li>Order most recently played</li>
+	<li>Level/Race/Class</li>
+	<li>Represented guild</li>
+	<li>% Map Completion</li>
+	<li>Last location</li>
+	<li>World (presumably for if a character is guesting?  Not sure, I never really guest)</li>
+</ul>
+<p>It would be useful to me to see which guilds an account belong to, having the guilds each character is representing may not give a full list but it would be something I could work with.</p>
+<p>I’ve also had some ideas about how I could use the name of the character they are currently playing, and order of most recent play would achieve that.</p></div></blockquote>
+<p>I haven’t written up the RFC for /v2/characters (should probably do that today so we can get some eyes on it), but briefly — no order, yes level/race/class, probably rep’d guild, no % map completion, no last location, no last guested. There’s a bunch of other stuff in there like current equipment, inventory items, etc., that’ll make it useful at first for some applications.</p>
+<p>This doesn’t preclude those features from ever being added, they just aren’t attributes that are currently pulled out of the character data on our side yet (and it takes awhile to make and deploy changes to the code that parses character data, unfortunately).</p>
+<p>EDIT: In addition to recently played, time played per character would be nice as well (also perhaps deaths, heh).</p></div></blockquote>
+<p>For guild-related things probably better to keep both list of guilds <em>and</em> currently represented one (basically “which guilds character is in” and “right now represented blah”).</p>
+<p>This way an overlay can show all guild activities at once<img src="/include/images/smilies/colondee.png"> (i.e. “Guild A is doing rush” “Guild B activated +5 transport buff” etc)</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-27T14:41:22+00:00">
+        27 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 27 2015 05:21AM"><a href="/forum/community/api/API-CDI-2015/4833733">Alaska II.5819:</a></cite></div><div class="quotey"><p>Is there anything that allows to pull outgoing damage?  Like how much damage you are dealing to an enemy, everything (flat damage, condis) included.  Possibly pull data from the combat data that’s already implemented as a chat option?</p></div></blockquote>
+<p>The devs have stated repeatedly that they do not have access to real-time data.  All of the API’s data is cached and usually at least 5 minutes old.</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-27T14:51:59+00:00">
+        27 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 27 2015 02:41PM"><a href="/forum/community/api/API-CDI-2015/4834532">Dr Ishmael.9685:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 27 2015 05:21AM"><a href="/forum/community/api/API-CDI-2015/4833733">Alaska II.5819:</a></cite></div><div class="quotey"><p>Is there anything that allows to pull outgoing damage?  Like how much damage you are dealing to an enemy, everything (flat damage, condis) included.  Possibly pull data from the combat data that’s already implemented as a chat option?</p></div></blockquote>
+<p>The devs have stated repeatedly that they do not have access to real-time data.  All of the API’s data is cached and usually at least 5 minutes old.</p></div></blockquote>
+<p>I think this kind of thing (exporting chat/combat logs) should be handled directly by the client.</p>
+<p>Either a real-time stream or a slash command to save the log.</p></p>
+
+<h2 id="">Alaska II.5819:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-27T18:29:42+00:00">
+        27 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 27 2015 02:41PM"><a href="/forum/community/api/API-CDI-2015/4834532">Dr Ishmael.9685:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 27 2015 05:21AM"><a href="/forum/community/api/API-CDI-2015/4833733">Alaska II.5819:</a></cite></div><div class="quotey"><p>Is there anything that allows to pull outgoing damage?  Like how much damage you are dealing to an enemy, everything (flat damage, condis) included.  Possibly pull data from the combat data that’s already implemented as a chat option?</p></div></blockquote>
+<p>The devs have stated repeatedly that they do not have access to real-time data.  All of the API’s data is cached and usually at least 5 minutes old.</p></div></blockquote>
+<p>It didn’t have to be real time, just seeing the data from 5 minutes ago would be really helpful.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-02-27T18:40:54+00:00">
+        27 Feb 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 27 2015 10:17AM"><a href="/forum/community/api/API-CDI-2015/4834088">Bugabuga.9721:</a></cite></div><div class="quotey"><p>For guild-related things probably better to keep both list of guilds <em>and</em> currently represented one (basically “which guilds character is in” and “right now represented blah”).</p>
+<p>This way an overlay can show all guild activities at once<img src="/include/images/smilies/colondee.png"> (i.e. “Guild A is doing rush” “Guild B activated +5 transport buff” etc)</p></div></blockquote>
+<p>The currently represented one is stored per-character in the character data, so I was going to put it in /v2/characters rather than /v2/account.</p>
+<blockquote><div class="citey"><cite title="Posted on February 27 2015 02:51PM"><a href="/forum/community/api/API-CDI-2015/4834555">Nabrok.9023:</a></cite></div><div class="quotey"><p>I think this kind of thing (exporting chat/combat logs) should be handled directly by the client.</p>
+<p>Either a real-time stream or a slash command to save the log.</p></div></blockquote>
+<p>Yeah, the client has a wealth of data available to it that we don’t; I’m not even sure how we’d go about exposing that (or what the process for getting it implemented would be). While it’s definitely something I’d like to expose, it’s realistically not going to be in any time soon :/</p></p>
+
+<h2 id="">rodadams.5963:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-01T21:33:16+00:00">
+        01 Mar 2015
+    </time>
+</p>
+<p>
+<p>Trying to keep this fairly concise:</p>
+<p><a href="https://github.com/arenanet/api-cdi/commit/c0aa094cebd52d1c9ce5040825be900e011ec3d9">https://github.com/arenanet/api-cdi/commit/c0aa094cebd52d1c9ce5040825be900e011ec3d9</a><br>
+Bank:</p>
+<ul>
+	<li>Transmuted to a new skin?</li>
+	<li>Is soulbound/account bound? (can change from base item)</li>
+	<li>If soulbound, to whom?</li>
+	<li>Uses left on harvesting tools/salvage kit.</li>
+	<li>If armor, is damaged/broken?</li>
+</ul>
+<p><a href="https://github.com/arenanet/api-cdi/commit/5fe9d1470f54e7fcbeb36c2c635217f55aa1ec7b">https://github.com/arenanet/api-cdi/commit/5fe9d1470f54e7fcbeb36c2c635217f55aa1ec7b</a><br>
+Commerce:</p>
+<ul>
+	<li>You have created timestamp, how about filled?</li>
+	<li>Any tracking for cancelled orders?</li>
+	<li>Have the gold/items been collected? (should I log in to grab my fat loot?)</li>
+	<li>Perhaps walk through what we’d see if we post a buy order for 250 ecto, 150 fill in various sized batches, and we then cancel the remaining order of 100.</li>
+</ul>
+<p><a href="https://github.com/arenanet/api-cdi/commit/7224da8e3c930f9635a902ce9f2592b34fb038b9">https://github.com/arenanet/api-cdi/commit/7224da8e3c930f9635a902ce9f2592b34fb038b9</a><br>
+Skills:</p>
+<ul>
+	<li>Without information like cooldown, aftercast, damage, boons, conditions, target type, number of targets, range, etc. the utility of this endpoint will be very limited.</li>
+	<li>Will ‘categories’ be canonical in determining which traits can mutate it? I could see Phantasmal Berserker have several categories to support trait processing:  “phantasm”, “illusion”, “greatsword”. Having the client build this list from “weapon_type” and a hierarchy of categories seems expensive and error prone.  Exactly what does the Shrapnel trait apply to again?</li>
+</ul>
+<p>How far down your list is /v2/account/wallet?</p>
+<p>Will I have a server side portal to review and revoke security tokens?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-01T22:39:24+00:00">
+        01 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 01 2015 09:33PM"><a href="/forum/community/api/API-CDI-2015/4840155">rodadams.5963:</a></cite></div><div class="quotey"><p><a href="https://github.com/arenanet/api-cdi/commit/c0aa094cebd52d1c9ce5040825be900e011ec3d9">https://github.com/arenanet/api-cdi/commit/c0aa094cebd52d1c9ce5040825be900e011ec3d9</a><br>
+Bank:</p>
+<ul>
+	<li>Transmuted to a new skin?</li>
+	<li>Is soulbound/account bound? (can change from base item)</li>
+	<li>If soulbound, to whom?</li>
+	<li>Uses left on harvesting tools/salvage kit.</li>
+	<li>If armor, is damaged/broken?</li>
+</ul></div></blockquote>
+<p>IIRC, transmuted skins and charges show up (I’ll update the PR with the serializations). Binding and armor damage does not, and likely will not for the initial release. I’ll thread those through the pipeline and add them in later.</p>
+<blockquote><div class="citey"><cite title="Posted on March 01 2015 09:33PM"><a href="/forum/community/api/API-CDI-2015/4840155">rodadams.5963:</a></cite></div><div class="quotey"><p><a href="https://github.com/arenanet/api-cdi/commit/5fe9d1470f54e7fcbeb36c2c635217f55aa1ec7b">https://github.com/arenanet/api-cdi/commit/5fe9d1470f54e7fcbeb36c2c635217f55aa1ec7b</a><br>
+Commerce:</p>
+<ul>
+	<li>You have created timestamp, how about filled?</li>
+	<li>Any tracking for cancelled orders?</li>
+	<li>Have the gold/items been collected? (should I log in to grab my fat loot?)</li>
+	<li>Perhaps walk through what we’d see if we post a buy order for 250 ecto, 150 fill in various sized batches, and we then cancel the remaining order of 100.</li>
+</ul></div></blockquote>
+<p>Filled dates are in there, I’ll update the PR with the serialization. Cancelled orders are, IIRC, deleted wholly by the trade engine so there’s no way to get any record of them on my side (you’d have to track that on the application side). Pending gold/items work through a separate system that we currently have no insight into, so that’s not going to make it for the initial pass.</p>
+<p>I’ll create the walkthrough you requested on Monday.</p>
+<blockquote><div class="citey"><cite title="Posted on March 01 2015 09:33PM"><a href="/forum/community/api/API-CDI-2015/4840155">rodadams.5963:</a></cite></div><div class="quotey"><p><a href="https://github.com/arenanet/api-cdi/commit/7224da8e3c930f9635a902ce9f2592b34fb038b9">https://github.com/arenanet/api-cdi/commit/7224da8e3c930f9635a902ce9f2592b34fb038b9</a><br>
+Skills:</p>
+<ul>
+	<li>Without information like cooldown, aftercast, damage, boons, conditions, target type, number of targets, range, etc. the utility of this endpoint will be very limited.</li>
+	<li>Will ‘categories’ be canonical in determining which traits can mutate it? I could see Phantasmal Berserker have several categories to support trait processing:  “phantasm”, “illusion”, “greatsword”. Having the client build this list from “weapon_type” and a hierarchy of categories seems expensive and error prone.  Exactly what does the Shrapnel trait apply to again?</li>
+</ul></div></blockquote>
+<p>I’m intentionally omitting any skill attributes which can be modified by traits for exactly the reasons you mentioned — it needs to be clear exactly how traits modify skills. I have a couple of different serializations in mind, but want to hold off for a bit on posting them (too many other pots on the stove).</p>
+<p>Rest assured, I want the returned data to be clear both ways — a skill should indicate that “trait 45 increases range to 1200” and the corresponding trait should indicate that it “modifies skills 14, 42 and 45”.</p>
+<blockquote><div class="citey"><cite title="Posted on March 01 2015 09:33PM"><a href="/forum/community/api/API-CDI-2015/4840155">rodadams.5963:</a></cite></div><div class="quotey"><p>How far down your list is /v2/account/wallet?</p></div></blockquote>
+<p>Not terribly far.</p>
+<blockquote><div class="citey"><cite title="Posted on March 01 2015 09:33PM"><a href="/forum/community/api/API-CDI-2015/4840155">rodadams.5963:</a></cite></div><div class="quotey"><p>Will I have a server side portal to review and revoke security tokens?</p></div></blockquote>
+<p>Yes.</p></p>
+
+<h2 id="">Archomeda.6472:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-03T19:12:10+00:00">
+        03 Mar 2015
+    </time>
+</p>
+<p>
+<p>Is it viable to have an API endpoint of the gem store itself? What I have in mind, is exposing the current available items with at least their prices, discount and deadline (maybe something more that I’m currently forgetting). This way people can provide automatic gold -&gt; gem conversion costs for the gem store items (just an example use case I came up with at the moment).</p>
+<p>Just to make myself clear: I’m not asking for providing a way to buy stuff with the API, just if providing the read-only data from the gem store is possible.</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-03T20:56:51+00:00">
+        03 Mar 2015
+    </time>
+</p>
+<p>
+<p>It’s possible, we’d have to discuss with the team responsible for the listings what filtering (if any) would need to happen to that data though. Worth adding to the backlog as a low-priority item, thanks!</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-04T07:46:34+00:00">
+        04 Mar 2015
+    </time>
+</p>
+<p>
+<p>This may be a little off topic, but <a href="https://hom.guildwars2.com/character/Lady%20Mimikry">https://hom.guildwars2.com/character/Lady%20Mimikry</a> please?<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Archomeda.6472:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-04T15:24:38+00:00">
+        04 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 03 2015 08:56PM"><a href="/forum/community/api/API-CDI-2015/4845219">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>It’s possible, we’d have to discuss with the team responsible for the listings what filtering (if any) would need to happen to that data though. Worth adding to the backlog as a low-priority item, thanks!</p></div></blockquote>
+<p>Cool ^^ thanks for the answer.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-04T20:00:08+00:00">
+        04 Mar 2015
+    </time>
+</p>
+<p>
+<p>Just finished an <a href="https://github.com/arenanet/api-cdi/pull/16">initial writeup of the /v2/characters endpoint</a>.</p></p>
+
+<h2 id="">Valento.9852:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-14T11:44:58+00:00">
+        14 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 25 2015 06:00PM"><a href="/forum/community/api/API-CDI-2015/4828833">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 25 2015 04:07AM"><a href="/forum/community/api/API-CDI-2015/4827053">Valento.9852:</a></cite></div><div class="quotey"><p>Skills/traits – <a href="/forum-backup/API-Suggestion-Skills-and-Traits">https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Skills-and-Traits/first#post4700324</a></p></div></blockquote>
+<p>See the <a href="https://github.com/arenanet/api-cdi/pull/5">pull requests on the CDI repo</a>.</p></div></blockquote>
+<p>Oh my, oh my! I didn’t know this CDI was happening in github! I’ve added a comment there.<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Wilz.8461:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-16T19:52:21+00:00">
+        16 Mar 2015
+    </time>
+</p>
+<p>
+<p>Hi,</p>
+<p>I haven’t read everything in details about the new api but I don’t think this was mentioned.</p>
+<ul>
+	<li>Would it be possible to have the list of ingredients on items that can be crafted, even Mystic forge recipes like legendaries or exotic weapons (i.e infinite light, mjolnir, etc…) ?<br>
+This information is on the wiki but not in the API.</li>
+</ul>
+<ul>
+	<li>afaik, the vendor price when selling the item is included in /v2/items but not the vendor price when buying the item (if buyable from the vendor)</li>
+</ul></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-16T20:46:32+00:00">
+        16 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 16 2015 07:52PM"><a href="/forum/community/api/API-CDI-2015/4884151">Wilz.8461:</a></cite></div><div class="quotey"><ul>
+	<li>Would it be possible to have the list of ingredients on items that can be crafted, even Mystic forge recipes like legendaries or exotic weapons (i.e infinite light, mjolnir, etc…) ?<br>
+This information is on the wiki but not in the API.</li>
+</ul></div></blockquote>
+<p>Not in the forseeable future. Refer to <a href="/forum-backup/Mystic-Forge-Recipes-1">this thread</a>.</p>
+<blockquote><div class="citey"><cite title="Posted on March 16 2015 07:52PM"><a href="/forum/community/api/API-CDI-2015/4884151">Wilz.8461:</a></cite></div><div class="quotey"><ul>
+	<li>afaik, the vendor price when selling the item is included in /v2/items but not the vendor price when buying the item (if buyable from the vendor)</li>
+</ul></div></blockquote>
+<p>There are some technical difficulties that prevent this from being feasible. More discussion in <a href="/forum-backup/Item-s-Karma-and-Other-Currency-Cost">this thread</a>.</p></p>
+
+<h2 id="">Archomeda.6472:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-06T14:53:38+00:00">
+        06 Apr 2015
+    </time>
+</p>
+<p>
+<p>I’ve got a small question, and I’m sure it has been brought up many times before, but I can’t find it at the moment.</p>
+<p>Regarding the /v2/maps endpoint, is it possible to add a map_type entry for each map? With possible values like: city, dungeon, personal_story, living_story, instance, pvp, wvw. Or at least a way to separate instances from “normal” maps.</p>
+<p>My reasoning is that, previously, with /v1/map_names.json, it would only return the major maps plus some random maps like the Crown Pavillion. This way I could “easily” identify which maps are actually maps and not instances. Granted, I was still missing the cities, but I could add those ids manually without much effort. However, at some day in the past (don’t know when), that endpoint got changed to include every map. So, <a href="http://archomeda.github.io/gw2map/">my nice effort to get the major map boundaries</a> is now a major disaster as I don’t know an automated way to separate maps by type other than this non-working workaround.</p>
+<p>Also, now that I see this, I’ve got another question. Why are most instances located in Steamspur Mountains instead of their correct respective region? For example, map <a href="https://api.guildwars2.com/v2/maps/1006">1006 – Foefire Cleansing</a> is clearly an instance from living story season 2 and is located in <a href="https://api.guildwars2.com/v2/maps/19">Plains of Ashford – Ascalon</a>, yet it is tagged as Steamspur Mountains.</p>
+<p>Also, using brackets in link titles doesn’t work on the forums apparently, had to resort to use dashes instead… <img src="/include/images/smilies/sad.png"></p></p>
+
+<h2 id="">boomboompow.6185:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-10T15:58:16+00:00">
+        10 Apr 2015
+    </time>
+</p>
+<p>
+<p>Would it be possible to add Daily Achievements to the API?</p>
+<p>At the moment all Daily Achievements can be calculated as they are dependant on the day of the month but it would be great to have a RESTful API for this if/when it changes with future releases.</p>
+<p>Edit: If this is coming with the /account endpoint then all the better<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Tanis.5134:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-12T18:21:11+00:00">
+        12 May 2015
+    </time>
+</p>
+<p>
+<p>I was hoping by now to see official proposals related to the upcoming changes to WvW. Objectives will all be wrong, and anyone using the tile service currently has no idea which continent and floor to use. It would be great if we could start consuming the v2 WvW endpoints prior to the release of HoT to ensure that everything is working well.</p></p>
+
+<h2 id="">Valento.9852:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-12T18:47:28+00:00">
+        12 May 2015
+    </time>
+</p>
+<p>
+<p>I think I’ve scared Lawton. No posts since my last post on skills CDI. ;_;</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-12T19:18:49+00:00">
+        12 May 2015
+    </time>
+</p>
+<p>
+<p>Sorry sorry! Been busy working to implement everything!</p>
+<p>Soon I’ll be busy deploying everything <img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Valento.9852:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-12T20:06:29+00:00">
+        12 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 12 2015 07:18PM"><a href="/forum/community/api/API-CDI-2015/5059166">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Sorry sorry! Been busy working to implement everything!</p>
+<p>Soon I’ll be busy deploying everything <img src="/include/images/smilies/colondee.png"></p></div></blockquote>
+<p>No problem! I hope you have time to read the posts. Keep up the great work, sir!</p></p>
+
+<h2 id="">dlonie.6547:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-13T14:48:48+00:00">
+        13 May 2015
+    </time>
+</p>
+<p>
+<p>Lookin’ good guys! The transaction endpoint sounds fantastic<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Teranas.6150:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-19T13:47:51+00:00">
+        19 May 2015
+    </time>
+</p>
+<p>
+<p>I added <a href="https://github.com/arenanet/api-cdi/pull/25">a new proposal</a> that may enables us to request players ingame mails.</p>
+<p>Please let me know what you think.</p></p>
+
+<h2 id="">Strategist.6132:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-19T17:42:47+00:00">
+        19 Jun 2015
+    </time>
+</p>
+<p>
+<p>It’s been a month ago! Sorry for bumping this post:P I was just wondering: What is the state of the Skills and Trait API?</p>
+<p>I’ve already seen it being mentioned before but I really think the following API could be useful:</p>
+<p>- Account/PvP/ where you can gather statistics on the matches won and against / with who. This way people could check on their previous matches and for example check out other players statistics and things. Maybe this would also be a good way to upgrade PvP with a new better-looking leaderboard?</p>
+<p>I am not sure how hard it is though but I really think it would improve the community!</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-19T19:34:11+00:00">
+        19 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 19 2015 05:42PM"><a href="/forum/community/api/API-CDI-2015/5174314">Strategist.6132:</a></cite></div><div class="quotey"><p>It’s been a month ago! Sorry for bumping this post:P I was just wondering: What is the state of the Skills and Trait API?</p>
+<p>I’ve already seen it being mentioned before but I really think the following API could be useful:</p>
+<p>- Account/PvP/ where you can gather statistics on the matches won and against / with who. This way people could check on their previous matches and for example check out other players statistics and things. Maybe this would also be a good way to upgrade PvP with a new better-looking leaderboard?</p>
+<p>I am not sure how hard it is though but I really think it would improve the community!</p></div></blockquote>
+<p>RE: /v2/skills what progress there is can be tracked here: <a href="https://github.com/arenanet/api-cdi/pull/5">https://github.com/arenanet/api-cdi/pull/5</a></p>
+<p>It’s slowed down some as skills/traits are very complicated to represent and we’ve been focusing on things that can ship sooner and at a higher quality level.</p>
+<p>RE: PVP endpoint. This is something we’re looking at soon, some of the data we’d want to expose already exists. A PR w/ a suggested format &amp; data you’re interested in would be a great help in terms of giving some direction on what that API could look like.</p></p>
+
+<h2 id="">Strategist.6132:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-20T08:47:31+00:00">
+        20 Jun 2015
+    </time>
+</p>
+<p>
+<p>Alright Pat! Thanks for the quick response! I will try to make a PR somewhere this midday if I don’t forget! I am a bit new to Github so I will try to be careful, but please forgive me if I mess things up.</p></p>
+
+<h2 id="">Otokomae.9356:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-20T09:50:02+00:00">
+        20 Jun 2015
+    </time>
+</p>
+<p>
+<p>Wait…  is <em>this</em> the thread where we ask for future DirectX 12 implementation, or whatever other optimizations are required to allow kitten ,000 PC to get above 15 FPS at Claw of Jormag?</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-20T11:43:26+00:00">
+        20 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 20 2015 09:50AM"><a href="/forum/community/api/API-CDI-2015/5177992">Otokomae.9356:</a></cite></div><div class="quotey"><p>Wait…  is <em>this</em> the thread where we ask for future DirectX 12 implementation, or whatever other optimizations are required to allow kitten ,000 PC to get above 15 FPS at Claw of Jormag?</p></div></blockquote>
+<p>no.</p>
+<p>You may ask in the suggestions subforum. While you’re at it, please ask for a 64bit client which supports more than one cpu core…</p></p>
+
+<h2 id="">Strategist.6132:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-20T20:39:59+00:00">
+        20 Jun 2015
+    </time>
+</p>
+<p>
+<p>I created the new PR regarding /v2/spvp/matches. I hope I didn’t break / forget something:P</p></p>
+
+<h2 id="">zyph.9426:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-26T01:29:30+00:00">
+        26 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 21 2015 10:43AM"><a href="/forum/community/api/API-CDI-2015/4815827">Ravenmoon.5318:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 20 2015 06:36PM"><a href="/forum/community/api/API-CDI-2015/4813732">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 20 2015 09:14AM"><a href="/forum/community/api/API-CDI-2015/4812509">DeviantShark.6548:</a></cite></div><div class="quotey"><p>With the possibility of authentication there ought to be some guild-roster-api, but i don’t know how this should be implemented. Obviously there should be a setting in the ingame privileges tab like “API-Access” which grants those rights to a specivic guild group.</p></div></blockquote>
+<p>Probably not going to be an in-game opt-in for this. Anyone in the guild can already see the roster in-game, so it doesn’t make sense to hide the roster from them out-of-game.</p>
+<blockquote><div class="citey"><cite title="Posted on February 20 2015 12:44PM"><a href="/forum/community/api/API-CDI-2015/4812834">quenoz.3859:</a></cite></div><div class="quotey"><p>i would be really excited about a possibility to have guild chat outside of the game too, maybe somewhat like twitch allows to connect to their irc: <a href="http://help.twitch.tv/customer/en/portal/articles/1302780-twitch-irc">http://help.twitch.tv/customer/en/portal/articles/1302780-twitch-irc</a></p></div></blockquote>
+<p>Out-of-game guild chat is definitely something I want to have, but we haven’t really settled on a protocol for it yet. XMPP, IRC and “something custom with HTTP+SSE” have all been tossed around as potentials but it’s not immediately clear which is most advantageous to implement. As far as interoperability with existing clients, IRC’s probably the winner (though it’s a horrible mess of a protocol).</p></div></blockquote>
+<p>Go with your own protocol. People are doing chatrooms with Node.js and socket.io ever since it released. WebSockets is a nice TCP/IP wrapper and is supported on all major browsers. Its easy to write against it so I can see client apps being developed around it too. If you limit the messages to 128 bytes, you won’t have to ever implement the protocol chunking, which saves you loads of work.</p>
+<p>IRC is older than me (I’m 24 years old), it is time to let it go xD</p>
+<p>WebSockets usability info: <a href="http://caniuse.com/#feat=websockets">http://caniuse.com/#feat=websockets</a></p></div></blockquote>
+<p>Agreed. IIRC/XMPP are dead. And agree on websockets as well. Clients will pop up everywhere if this api is realized. But the complexity in making it real will be in the logic around guild/party/map/team channel area, and not in the passing of messages once the user is in a channel. I could see the channels materialize as separate rest endpoints and leverage the API key for authentication.  But the authorization part is the sticky bit.</p>
+<p>For example, if I’m not logged into the game and not repping a guild, what chat channel do it get access to? I’m not on a map so /m channel is out, etc… Is it only available if you’re in a guild? Just lots of things to be worked out I think.</p></p>
+
+<h2 id="">MentalFS.2589:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-29T16:08:17+00:00">
+        29 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 26 2015 01:29AM"><a href="/forum/community/api/API-CDI-2015/5212748">zyph.9426:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 21 2015 10:43AM"><a href="/forum/community/api/API-CDI-2015/4815827">Ravenmoon.5318:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 20 2015 06:36PM"><a href="/forum/community/api/API-CDI-2015/4813732">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Out-of-game guild chat is definitely something I want to have, but we haven’t really settled on a protocol for it yet. XMPP, IRC and “something custom with HTTP+SSE” have all been tossed around as potentials but it’s not immediately clear which is most advantageous to implement. As far as interoperability with existing clients, IRC’s probably the winner (though it’s a horrible mess of a protocol).</p></div></blockquote>
+<p>Go with your own protocol. People are doing chatrooms with Node.js and socket.io ever since it released. WebSockets is a nice TCP/IP wrapper and is supported on all major browsers.</p></div></blockquote>
+<p>Agreed. IIRC/XMPP are dead. And agree on websockets as well. Clients will pop up everywhere if this api is realized.</p></div></blockquote>
+<p>I wouldn’t say they’re dead, but I also don’t think they should be forcefully used as a gateway. Most services that offer IRC or XMPP access do that because they use those as their underlying backbone. Twitch and Facebook/Google Talk comes to mind here. But with Facebook/Google you can also see where this leads: Their services moved away from the old backends and they had to build gateways for backward compability. Facebook already ditched that and Google lets the gateway rot until everyone is glad when they pull the plug.</p>
+<p>Assuming Guild Wars 2 is not using an XMPP or IRC server internally, it would start out as a gateway, with all the horrible choices about how to represent things in that protocoll. And while one could hope that lots of clients would work out of the box, a lot will have their problems because of some tiny unwritten or hard to find rules between all those RFC, XEP and stuff that’s always copied from other clients implementations.</p>
+<p>Ironically, the first thing to do would be to implement a proper API first and then create a gateway around it. So the best choice would be to omit the gateway building part, make an own API with whatever technology that’s preferred and let the community do the rest. If there’s demand, there will be lots of things popping up: libpurple plugins, plugins for other multi chat clients, Jabber transports, IRC gateways/bitlbee plugins and of cause clients that directly use the API.</p></p>
+
+<h2 id="">LadyRhonwyn.2501:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-24T05:44:55+00:00">
+        24 Oct 2015
+    </time>
+</p>
+<p>
+<p>Would it be possible to add map completion status and currently selected storyline to the character details API?</p>
+<p>I did notice that the character select screen now shows crafting professions, but we still can’t show map completion!</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-24T10:26:04+00:00">
+        24 Oct 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 24 2015 05:44AM"><a href="/forum/community/api/API-CDI-2015/5646234">LadyRhonwyn.2501:</a></cite></div><div class="quotey"><p>Would it be possible to add map completion status and currently selected storyline to the character details API?</p></div></blockquote>
+<p>It’s definitely something that can be done, but I haven’t started on it yet.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

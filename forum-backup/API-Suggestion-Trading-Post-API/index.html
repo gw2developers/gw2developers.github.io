@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>[API Suggestion] Trading Post API</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/API-Suggestion-Trading-Post-API/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">[API Suggestion] Trading Post API</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Trading-Post-API
+</p>
+
+
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T02:59:03+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>Let’s make this thread a place for suggestions for the Trading Post API.  Here are the user scenarios I want to support:</p>
+<p>-  Mobile device app that the user would be able to view his or her buy/sell/bought/sold transactions.<br>
+- Mobile device app that would notify the user when there are items/gold to pick up from the Trading Post NPCs.<br>
+- Users would be able to buy/maybe sell (not sure if sell is possible), items from their mobile devices.<br>
+- Users would be able to trade gems from their mobile devices.<br>
+- Users would be able to monitor item and gem prices from their mobile devices and receive notifications if they hit user-defined limits.<br>
+- Users would be able to search for items in the trading post from their mobile devices and also be able to view buy/sell listings for each item.</p>
+<p>I know that there is an “unofficial” API to their trading post right now, but that is hardly mobile app friendly since it requires a game session key from your GW2 client for many of its features.</p>
+<p>Please post here if you want ArenaNet to release a Trading Post api that is mobile app friendly and offer your suggestions too.</p></p>
+
+<h2 id="">Rawrfaec.6412:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T06:26:44+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>I’m sceptical about being able to buy <em>and</em> sell stuff from outside the game. My view is, if you plan to game the trading post (which is fine!) you have to also be playing the game. If you can <em>only</em> buy <em>or</em> sell you won’t be able to abuse the potential for optimization you have in third party applications to generate gold faster than your competitors. However, then we’ll have people complaining that you can’t do both so it may be better to restrict a TP API to observation.</p>
+<p>Interacting with the gem store is unaffected by the above, obviously.</p></p>
+
+<h2 id="">anzenketh.3759:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T06:38:16+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>I am concerned with the ability to buy and sell via the API while I agree it would be nice it can lead to some computerized manipulation of the market for a select few. This should be thought out carefully and with communication of John Smith (Which i am sure if implemented would happen)</p></p>
+
+<h2 id="">rodadams.5963:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T08:28:39+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>When we talk about buy &amp; selling there’s a couple design questions:<br>
+- Where does the money come from/go to?<br>
+- Where does the item come from/go to?</p>
+<p>For buying items, it seems perfectly reasonable to work:<br>
+- Money comes from your bank vault.<br>
+- Items are waiting at Trading Post for pickup.</p>
+<p>For selling, the money side is fine (it’s at the TP), however I’m a bit more dubious on where the item comes from. Can you only sell from bank? Do you specify a character?<br>
+If hacked, does this let a gold seller speed-wipe your account? <br>
+Naw, I don’t see a good solution here, so it makes sense to leave things one-sided.</p>
+<p>Thus, I’d say people could possibly buy offline, but not sell.</p>
+<p>On the public side, however, I’d love to see the listings you see in the TP for “3 people are selling 110 for 1s17c; 2 people are selling 1,231 for 1s20c; …” and similar for buy orders. <br>
+That, and get the Gem &lt;—&gt; Gold ratios.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T08:43:08+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>As for buying and selling there is not much difference with what we already have now anyway.</p>
+<p>With websites like gw2spidy and goldwars2, they can already monitor prices for you.  And if the app can monitor prices, they can easily notify you if the price hits a certain user-defined limit.  All you need to do is login to the game and buy/sell.  I don’t see the difference between buying from the app or buying from the game except for maybe a delay of 1 minute to login to the game.  This only serves as an added inconvenience to your users and I don’t see any other advantage the app user would have besides this little convenience.  But if many of you think that buying through the app is too big an advantage then so be it and I am fine with not having that and the app would just produce notifications.  I am just wondering how would I feel if it hits my price limit, my phone app notifies me but I can’t login to the game because I am in the office. <img src="/include/images/smilies/smile.png"></p>
+<p>John Smith and ArenaNet should already be aware of gw2spidy and Zicore’s TP notifier tool.  There are many users who asked for ArenaNet’s opinion about them but ArenaNet chose not to comment on them at the moment.</p></p>
+
+<h2 id="">Tiscan.8345:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T09:20:26+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>YEAH! Trading Post bots!!! Awesome idea… not!</p>
+<p>As soon as they allow buying/selling stuff using the API, the game is ruined once and for all.</p></p>
+
+<h2 id="">multivira.7925:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T10:16:20+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>At the moment it’s only currently possible to buy through the ‘API’ and that’s already an incredibly powerful tool for power traders. It allows you to capitalize on markets that no sane person would do by hand, giving an unfair advantage. If you add selling in there, people with large gold stores will be able to automate some scary stuff, resulting in certain artificial bubbles that will definitely not be beneficial to the GW2 community.</p></p>
+
+<h2 id="">panoramic.4871:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T10:50:02+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>No! Please do not allow buying/selling in the TP outside of the game. Way too many bots would be ran.</p>
+<p>Buying (but probably not selling) of gems outside of the game seem fine to me though</p>
+<p>BUT: I would love to be able to track my TP buy/sell orders outside of the game. I would also like to be able to download my entire buy/sell history.</p></p>
+
+<h2 id="">Rawrfaec.6412:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T11:41:53+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 24 2013 08:43AM"><a href="/forum/community/api/API-Suggestion-Trading-Post-API/2083474">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>This only serves as an added inconvenience to your users…</p></div></blockquote>
+<p>That inconvenience is crucial for balance purposes. If you allow for buying and selling via an API you open up for AI trading and you <em>don’t want to go there</em>. The irritation of being stuck in your office and not being able to act on a notification is the price you pay for being able to get notifications at all, which, officially, you can’t right now.</p></p>
+
+<h2 id="">yakobu.4183:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T15:23:41+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>Maybe if ArenaNet creates its own app for mobile devices so you can sell/buy on the Trading Post, that’d be ok, but further encouraging botting on the Trading Post won’t make most of us happy. So yeah, with great power comes great responsibility and not every player feels responsible for a good game economy if it profits themselve.<br>
+Bottom line: Probably a bad idea to create such a powerful API. (Being able to buy something from the gem store would be a nice feature, though.)</p></p>
+
+<h2 id="">The Talcmaster.7391:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T15:56:05+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>People from Anet have commented previously on sites like gw2spidy, and specifically said that they love that people are going through the trouble of making stuff like that and are releasing all of this API stuff so that people can keep making cool things like that.  Way back when they were talking about releasing their own mobile application, the ability to buy/sell/cancel trades was part of the plan.</p>
+<p>The TP bot thing is a bit overblown.  Making money on the trading post isn’t a pure function of time invested like the rest of the game is.  Even if you have an automated system that buys and sells things at a given price, people need to agree to those price points, so the time gained by automating it and not just waiting to do it yourself becomes mostly incidental.  It is just a convenience.  Also, if I want to play the market from my phone, that’s really my own business.  Why should I have to be on my computer to stare at a bunch of numbers and text?</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T16:44:07+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 24 2013 09:20AM"><a href="/forum/community/api/API-Suggestion-Trading-Post-API/2083617">Tiscan.8345:</a></cite></div><div class="quotey"><p>YEAH! Trading Post bots!!! Awesome idea… not!</p>
+<p>As soon as they allow buying/selling stuff using the API, the game is ruined once and for all.</p></div></blockquote>
+<p>There are already bots in this game even without an api!  I have even seen bots that teleport to pick up items.  And I am sure there are no released api to support that.  Even though the current unofficial TP web api does not support selling of items, that doesn’t stop bots from selling items.  I have already seen selling bots mentioned on the internet by bot writers with details on how it works.</p>
+<p>Would not releasing an api to buy or sell in the TP prevent bots from appearing in the game or even prevent TP bots from auto buying and selling?  I don’t think so.  Even if ArenaNet removes the entire web interface for the TP, it is still possible to buy and sell  using autoit scripts or by referencing scanned function points in the game client.  Bot writers have already written harnesses that expose these function points to plugged-in bot modules.  The only thing that would achieve is to make apps less usable for the legit users.  I can understand if non-technical players may think that way, but surely you guys, who have more technical knowledge, can see that.</p>
+<p>That said, if many players are still uncomfortable to enable buying and selling through apps, then so be it.  Only the bots would have those capabilities then.  Releasing an official api only serves to bring legit app writers to write apps for users.  Not releasing an api has no bearing on bot prevention or bot capabilities.  It would only impact the capabilities of legit apps.</p></p>
+
+<h2 id="">Gilgamesh.2561:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T17:12:33+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>I’m heavily against a PUT/POST trading post API. Generally speaking I think all API should be limited to GET (reading) only. Keep in-game world-altering interaction in-game.</p></p>
+
+<h2 id="">Tiscan.8345:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T17:18:06+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>*sarcasm on* OK, then lets add a teleport function, a wallhack, zoomhack, speedhack, etc. - because... you know: its already possible for a few bots or hack-tools. *sarcasm off*</p>
+<p>There is a *huge* difference between *some* bots that are probably able to use the TP and an official, easy-to-use API which allows pretty much every coder to write an app which buys/sells automatically.</p>
+<p>IMHO it would be the worst move ANet could make to allow the API to automate stuff like this.</p>
+<p>Besides managing guilds and *probably* sending chat-messages I wouldn’t allow the API to influence "gameplay" at all.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T17:35:24+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 24 2013 05:18PM"><a href="/forum/community/api/API-Suggestion-Trading-Post-API/2085766">Tiscan.8345:</a></cite></div><div class="quotey"><p><strong>sarcasm on</strong> OK, then lets add a teleport function, a wallhack, zoomhack, speedhack, etc. – because… you know: its already possible for a few bots or hack-tools. <strong>sarcasm off</strong></p>
+<p>There is a <strong>huge</strong> difference between <strong>some</strong> bots that are probably able to use the TP and an official, easy-to-use API which allows pretty much every coder to write an app which buys/sells automatically.</p></div></blockquote>
+<p>Just because many of us have the technical knowledge to write our own bots doesn’t mean we do.  They are not that difficult to write and at a minimum, anyone who knows how to write an autoit script can create a simple bot to buy/sell on the TP.  You don’t even need to know a real programming language.</p>
+<p>The question you should ask yourself is, do you want legit apps to have those capabilities or not?  Not whether it is easy to write a bot with those apis as bots do not need official apis to be released to enable bot capabilities one way or another.</p>
+<p>I would prefer the “fear of bots” to be taken out of this api discussion, as it is out-of-topic for this thread, and move on to discussing user scenarios and how we can make  useful TP apps for legit users.  Please move bot discussions to other threads or to the BLTC forum.</p></p>
+
+<h2 id="">Rawrfaec.6412:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T19:02:56+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 24 2013 05:35PM"><a href="/forum/community/api/API-Suggestion-Trading-Post-API/2085889">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>The question you should ask yourself is, do you want legit apps to have those capabilities or not?</p></div></blockquote>
+<p>Not. I have no desire to see ArenaNet officially support out-of-game (two-way) trading post transactions, regardless of past intentions. In my not the least bit humble opinion, the cost of being able to use the trading post is having to play the game for which the trading post was made. This shouldn’t be a place to do hobby stocks trading.</p>
+<p>I’m generally a vocal advocate of convenience and ease of use but here I think it would be a mistake. Of course, I regret the in-game trading post interface is as awful as it is, but so it goes. An obvious step for the community would be to make something decent in place of that.</p>
+<blockquote><div class="citey"><cite title="Posted on May 24 2013 05:35PM"><a href="/forum/community/api/API-Suggestion-Trading-Post-API/2085889">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>I would prefer the “fear of bots” to be taken out of this api discussion, as it is out-of-topic for this thread, and move on to discussing user scenarios and how we can make  useful TP apps for legit users.</p></div></blockquote>
+<p>You’re the one that keeps going back to it. Bots in particular aren’t relevant but the question of how much power we should have over the trading post with an API very much is.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T19:33:43+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 24 2013 07:02PM"><a href="/forum/community/api/API-Suggestion-Trading-Post-API/2086383">Rawrfaec.6412:</a></cite></div><div class="quotey"><p>You’re the one that keeps going back to it. Bots in particular aren’t relevant but the question of how much power we should have over the trading post with an API very much is.</p></div></blockquote>
+<p>You basically stated why I was drawn into that discussion in the first place.  How much power we should have over the trading post with an API should NOT be relevant to this thread.  That is not our call to make but ArenaNet’s.  Remember also that developers need to be registered and be given an api key so there would be some accountability if we chose to use the api.  In any case, as far as this thread is concerned, let us drop any bot discussion from now on and think <strong>only of legit scenarios.</strong></p>
+<p>How about accessing the gem store?  That should help ArenaNet advertise their gem store items across multiple platforms.  Access to view and buy current promotional items and other gem store items would be nice.</p></p>
+
+<h2 id="">Soronthar.7236:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T19:58:12+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>I have but one concern about an API to buy and sell in the TP: Security. I bet that as soon as an API to trade in the TP is released, someone will find an exploit to “steal” things from other users (placing a buy order of 1c with his char, and fulfilling it with another person char).</p>
+<p>So, for me, a TP API for trading should be a big NO.</p></p>
+
+<h2 id="">The Talcmaster.7391:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T20:04:56+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>I agree, DarkSpirit, we should focus on the grand hopes and dreams for what we personally would like to be able to build, and let the devs decide whether or not that is a reasonable request.  No hurt in suggesting, right?</p>
+<p>That being said:  I would like to be able to retrieve the entire list of current listings out there.  All in one go would be nice (don’t worry, I can handle the throughput), but just for specific items would be fine (the ids= type of parameter would be nice if this is the case).  Last actual transaction for items with price and time would be great too.  Being able to pull in gemstore items would be great.  Exchange rate for gems to coins and back is a must have.  Getting current prices out from behind the authentication barrier would also be great.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T20:05:38+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 24 2013 07:58PM"><a href="/forum/community/api/API-Suggestion-Trading-Post-API/2086652">Soronthar.7236:</a></cite></div><div class="quotey"><p>I have but one concern about an API to buy and sell in the TP: Security. I bet that as soon as an API to trade in the TP is released, someone will find an exploit to “steal” things from other users (placing a buy order of 1c with his char, and fulfilling it with another person char).</p></div></blockquote>
+<p>Then they can easily know who the person is and ban him.  The developer key used for the api call can also be banned.</p>
+<p>If you want to talk about general api security, this is not the thread.  Note that this is just an api suggestion thread and the purpose is to <strong>actually give suggestions to enable grand scenarios that users would find useful.</strong>.  We can ask for anything we want here but ArenaNet would only give what they deem to be suitable, which would be a percentage of these scenarios.  So I am not worried about security and you should not be at this time!  Please don’t let your fear of bots and hackers hinder our brainstorming for legit users app experiences on this thread.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T20:52:41+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>With regards to buying and selling, it would nice if we have an api to:</p>
+<p>1.  View our character inventory so we can decide what to sell and if we have enough inventory space to buy certain items.</p>
+<p>2.  We also need an api to find out how much gold our character has.</p>
+<p>3.  Having a datetime stamp on the buy/sell listings of an item would also be nice.</p>
+<p>4.  Have a Upgrade field in the item record to point to the upgrade item id of the upgrade socketed within the item.</p></p>
+
+<h2 id="">Articluna.4509:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-17T03:47:10+00:00">
+        17 Jun 2013
+    </time>
+</p>
+<p>
+<p>I’d like to have an ability to actually view, filter and parse “My Transactions”.</p>
+<p>You know when you’ve something in stack @ page 88 out of 237 pages but don’t know if stack has 2 units or 238 units? And when you try to sell it uses only first 10 pages with “Add to my lowest listing” so there’s not really an easy way to check the listing without few minutes clicking.</p></p>
+
+<h2 id="">Yamagawa.5941:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-17T19:07:45+00:00">
+        17 Jun 2013
+    </time>
+</p>
+<p>
+<p>A <em>few</em> minutes?</p>
+<p>I’ve had upwards of 50 pages of stuff for sale, anything that lets us at this data would be a mixed blessing.  A blessing to us users, a curse to the back-end servers…<br>
+//Yamagawa</p></p>
+
+<h2 id="">Surmaturma.4823:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-03T08:46:10+00:00">
+        03 Jul 2013
+    </time>
+</p>
+<p>
+<p>I would like to have possibility to link TP to guild web page as well – so one could browse it in similar way as in-game<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-03T08:56:15+00:00">
+        03 Jul 2013
+    </time>
+</p>
+<p>
+<p>I’m curious what ArenaNet’s economy stuff guy, John Smith I believe was his name, has to say about this back and forth here about grand scale automation of trading post buys and sales.</p></p>
+
+<h2 id="">Cilio.4569:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-03T12:02:50+00:00">
+        03 Jul 2013
+    </time>
+</p>
+<p>
+<p>Nice suggestion…<br>
+Bots everywhere,selling and buying..</p></p>
+
+<h2 id="">Healix.5819:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-03T13:49:09+00:00">
+        03 Jul 2013
+    </time>
+</p>
+<p>
+<p>It’s possible to fully automate the trading post, you just need an auto clicker or something to pickup items, since that isn’t part of the trading post website. Buying can already be done outside the game, that’s the easy part. Selling can only be done through the game, since the website doesn’t actually handle it. The website tells the game to sell the item. To automate this part, you hijack the trading post and insert your own scripts, telling it what to sell.</p>
+<p>There’s also a small bug/flaw with the trading post window. When you close it, it doesn’t actually close, it’s just hidden. This isn’t really a problem for players, but this part wastes a lot of resources on the server side, since probably a lot of people do this. If you close the window while on the sell tab, any changes to your inventory will request an update. Every time you open a bag or loot a mob for example, a request is made for those items.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-03T16:39:30+00:00">
+        03 Jul 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on July 03 2013 12:02PM"><a href="/forum/community/api/API-Suggestion-Trading-Post-API/2340243">Cilio.4569:</a></cite></div><div class="quotey"><p>Nice suggestion…<br>
+Bots everywhere,selling and buying..</p></div></blockquote>
+<p>By the same argument, every other API exposed by ArenaNet can be said to encourage botting.  Bots can use the events api to run from events to events to farm loot/points.  Bots can use the mumble shared memory to work as a team, etc.</p>
+<p>The best way to prevent bots is simply not having a computer game in the first place.  Bots do not need an exposed set of API to do their work.  Typically, <a href="http://www.codeproject.com/Articles/20240/The-Beginners-Guide-to-Codecaves">code caves</a> can be easily found and exploited.  Therefore the APIs are mainly for legit programs that abide to the terms of service.  Not releasing any API would definitely not make bots disappear.</p></p>
+
+<h2 id="">Goddchen.4958:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-04T06:36:16+00:00">
+        04 Jul 2013
+    </time>
+</p>
+<p>
+<p>A read-only API would be perfectly fine I think… It would enable viewing of current status, notifications, etc…</p></p>
+
+<h2 id="">Cilio.4569:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-04T10:30:21+00:00">
+        04 Jul 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on July 03 2013 04:39PM"><a href="/forum/community/api/API-Suggestion-Trading-Post-API/2341861">DarkSpirit.7046:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on July 03 2013 12:02PM"><a href="/forum/community/api/API-Suggestion-Trading-Post-API/2340243">Cilio.4569:</a></cite></div><div class="quotey"><p>Nice suggestion…<br>
+Bots everywhere,selling and buying..</p></div></blockquote>
+<p>By the same argument, every other API exposed by ArenaNet can be said to encourage botting.  Bots can use the events api to run from events to events to farm loot/points.  Bots can use the mumble shared memory to work as a team, etc.</p>
+<p>The best way to prevent bots is simply not having a computer game in the first place.  Bots do not need an exposed set of API to do their work.  Typically, <a href="http://www.codeproject.com/Articles/20240/The-Beginners-Guide-to-Codecaves">code caves</a> can be easily found and exploited.  Therefore the APIs are mainly for legit programs that abide to the terms of service.  Not releasing any API would definitely not make bots disappear.</p></div></blockquote>
+<p>How a bot can run to an event if we dont have coordinates?? Anyway,a bot inside a game is easy to find,not the same in outside</p></p>
+
+<h2 id="">Primal Zed.9714:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-04T14:25:14+00:00">
+        04 Jul 2013
+    </time>
+</p>
+<p>
+<p>I don’t expect them to add anything that involves interacting with character inventories, just like I don’t expect APIs that allow people to move their characters, use skills, loot, and so on.  Even beyond the concerns of botting (and I’m boggled people here are actually suggesting that’s a non-issue), they do still want players to actually play the game in order to play the game.</p>
+<p>I’m not posting here to argue against it.  I’m posting here to say it’s absurd to expect in-game character interactions to be anything other than read-only.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-04T14:57:40+00:00">
+        04 Jul 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on July 04 2013 10:30AM"><a href="/forum/community/api/API-Suggestion-Trading-Post-API/2347202">Cilio.4569:</a></cite></div><div class="quotey"><p>How a bot can run to an event if we dont have coordinates?? Anyway,a bot inside a game is easy to find,not the same in outside</p></div></blockquote>
+<p>Why don’t we have coordinates??  Check this out:</p>
+<p><a href="https://api.guildwars2.com/v1/event_details.json?event_id=BC6495A4-6CE9-4E12-A26F-6BDF8CFA74D6">https://api.guildwars2.com/v1/event_details.json?event_id=BC6495A4-6CE9-4E12-A26F-6BDF8CFA74D6</a></p>
+<p>A bot inside of a game may not be as easy to find if nobody reports it.  If I am running a bot I would choose to guest in a less populated server.</p>
+<blockquote><div class="citey"><cite title="Posted on July 04 2013 02:25PM"><a href="/forum/community/api/API-Suggestion-Trading-Post-API/2348180">Primal Zed.9714:</a></cite></div><div class="quotey"><p>I don’t expect them to add anything that involves interacting with character inventories, just like I don’t expect APIs that allow people to move their characters, use skills, loot, and so on.  Even beyond the concerns of botting (and I’m boggled people here are actually suggesting that’s a non-issue), they do still want players to actually play the game in order to play the game.</p>
+<p>I’m not posting here to argue against it.  I’m posting here to say it’s absurd to expect in-game character interactions to be anything other than read-only.</p></div></blockquote>
+<p>I don’t expect that from ArenaNet either, but it would be a pleasant surprise if they do.  Why?  Because bots already have the capability to do that and a lot more (see Healix’s post above for an example).  What is lacking are the user scenarios supported by legit programs, as the hands of legit programmers are tied by conforming to the terms of service.</p>
+<p>I am a big supporter of ArenaNet exposing their APIs and most people who think that exposing APIs would encourage bots do not seem to understand how bots are built in the first place.  The official APIs would be monitored and require the use of developer keys (i.e. ArenaNet may charge an annual fee for this) in the future.  Non-official APIs, created by bot authors, however, do not have such restrictions.</p>
+<p>Perhaps read-only APIs would suffice but, as developers, we have to think about the user scenarios that we are going to support.  ArenaNet is encouraging mobile apps development through their API, so what would be the user scenarios that your users would like to have, in the mobile case for the trading post?  Would read-only API suffice, or would we not be able to provide to our users what they really want in our mobile apps outside of the existing gw2spidy api?</p>
+<p>Thinking of this another way, if you are a mobile user, what kind of gw2 trading post mobile apps would be so fantastic that you would be willing to pay for, considering that gw2spidy mobile apps are already common?</p></p>
+
+<h2 id="">multivira.7925:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-04T21:53:15+00:00">
+        04 Jul 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on July 04 2013 02:57PM"><a href="/forum/community/api/API-Suggestion-Trading-Post-API/2348363">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>Thinking of this another way, if you are a mobile user, what kind of gw2 trading post mobile apps would be so fantastic that you would be willing to pay for, considering that gw2spidy mobile apps are already common?</p></div></blockquote>
+<p>None. I don’t think I’d ever pay money for an app, especially not considering the amount of things fans will produce for free.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-04T22:37:58+00:00">
+        04 Jul 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on July 04 2013 09:53PM"><a href="/forum/community/api/API-Suggestion-Trading-Post-API/2350423">multivira.7925:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on July 04 2013 02:57PM"><a href="/forum/community/api/API-Suggestion-Trading-Post-API/2348363">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>Thinking of this another way, if you are a mobile user, what kind of gw2 trading post mobile apps would be so fantastic that you would be willing to pay for, considering that gw2spidy mobile apps are already common?</p></div></blockquote>
+<p>None. I don’t think I’d ever pay money for an app, especially not considering the amount of things fans will produce for free.</p></div></blockquote>
+<p>Not everyone thinks like you then, otherwise web sites like <a href="https://www.goldwars2.com/">Gold Wars 2</a> would have no subscribers.</p>
+<p>Furthermore, if ArenaNet charges for API access in order to deter bots from using their APIs, due to all these complaints about encouraging bots, then legit programmers may have to pass this cost down to their customers, either that or take a monetary loss.</p>
+<p>Note that their plan is to have every registered developer hold a developer key to access their api, each having their own quota.  What I don’t understand is, why would people think that such a system be more attractive to bot writers than the bot APIs that they already have through hacking the client for free.</p>
+<p>In any case, if bots using their APIs turns out to be a problem, I would support ArenaNet charging a fee to access their APIs.  But this would ultimately raise the cost of legit programs.  ArenaNet may decide to close the free access of their unofficial Trading Post API, effecting gw2spidy, once their official Trading Post API is out.  So no more fear of bots exploiting such APIs, at the cost of fewer free apps.</p></p>
+
+<h2 id="">multivira.7925:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-05T08:50:20+00:00">
+        05 Jul 2013
+    </time>
+</p>
+<p>
+<p>Heh, people paying for that definitely surprises me, guess I’m behind the times with these things. I’m definitely against Anet charging for the use of their API and I’d agree with you that bot users can easily do their thing without any API published by Anet.</p>
+<p>I’d say it’s more the fear about such bots being ‘legal’ due to the publishing of certain API than it is the existence of them that’s causing people to disagree with it. Theoretically bots that are currently operating, should be banned. I have my doubts about how efficient Anet is about banning certain types of bots, but if the release of certain API would legitimize them, they wouldn’t be banning them for sure.</p>
+<p>I feel that charging for API usage would give a potential unfair advantage to those willing or able to pay for certain tools over those who won’t/can’t. Obviously this won’t affect all areas of the game equally, but I still feel it goes against the spirit of what they’re trying to do by keeping their cash shop pay2win-free.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-05T09:22:08+00:00">
+        05 Jul 2013
+    </time>
+</p>
+<p>
+<p>ArenaNet probably has a priority list.  Even if exposing APIs, increases their risk of ‘legitimizing’ bots, it may be worth that risk considering the pay-off.  They have increased mind share and presence through their apps and they bring users closer to the game than ever before.</p>
+<p>It would be a grave mistake if they back off from publishing the BEST trading post API that they can give, just because of that fear.  Instead of letting botters dictate the directions that the game should take, they should dictate for themselves where they want to take GW2, then worry about botters later.  Either they decide to do a good job of supporting mobile scenarios that would really compel users, or they shouldn’t even try publishing any API, wasting their resources as a result.</p>
+<p>I would like to believe that ArenaNet is a bold and innovative company who doesn’t back down from taking that chance to improve their game and user experiences, despite the fact that botters are always lurking.</p>
+<p>Releasing APIs or not is a big decision for them.  I can only hope that they would not let their fear of bots overwhelm them and prevent them from releasing the best set of APIs that they can release.  They should go do what gives the best experiences for the game and their users, trusting that their “bot defense team” can meet up to that new challenge.</p></p>
+
+<h2 id="">Yamagawa.5941:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-06T15:10:28+00:00">
+        06 Jul 2013
+    </time>
+</p>
+<p>
+<p>Thing with legitimizing bots is it would kill the marketplace for most players.   Not hurt it.  It’d make it dead.  I could easily, with buy sell and price hooks to the API, make a program that flipped anything as had a lax price, and buy up cheap mats for crafting in-demand goods.   I’ve more or less finished code that evaluates most of that, it’s just missing trend analysis and the buy/sell hooks (and rest assured, it will NEVER buy/sell).</p>
+<p>//Yamagawa<br>
+Gw2gadget.com – crafting gadget now in beta – a java application that knows crafting like nothing else does.</p></p>
+
+<h2 id="">Healix.5819:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-06T15:44:59+00:00">
+        06 Jul 2013
+    </time>
+</p>
+<p>
+<p>It’s already possible to fully bot the TP, so there’s no point in using it as a reason to not do something.</p>
+<p>Changing how picking up items works to something like an inventory that could be accessed through the TP (api) could open up some interesting possibilities. This would allow people to play the TP detached from the character, allowing for out of game trading. I imagine this was originally in the design plan as part of the extended experience, maybe even as a paid service, since why else design it as a webpage that can be accessed out of game.</p>
+<p>At this time, I could write an app that could allow you to use the trading post as if you were in-game, with the exception of picking up items, which isn’t actually part of the TP. The only requirement is that the game has to be running.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-06T18:16:10+00:00">
+        06 Jul 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on July 06 2013 05:48PM"><a href="/forum/community/api/API-Suggestion-Trading-Post-API/2360476">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>Healix is right.  Bots can already auto undercut, buy and sell.  Bot authors also share code and they have been working together to enhance their bots, on their own forums.</p>
+<p>Dumbing down the API because of the fear of bots would just get you a ‘lol’ response from the bot community.  Why would they need to go through an API that requires them to identify themselves with developer keys and a quota system, when they have always been able to perform all these things for free anyway.  The only people you are going to hurt would be legit users.</p>
+<p>If that is not enough, like I have said before, I am fine even if ArenaNet decides to charge for the usage of their APIs, just to discourage botters from using it even more.  But this would deter free programs from circulating (unless the developer takes a monetary loss).</p>
+<p>If we go with the subscription model, ArenaNet would need to declare that all other programmatic access to their Trading Post, outside of the game and their official API, be illegal and thus bannable.  This means Ruben would have to decide if he wants to keep the gw2spidy website open by subscribing.  The free gw2psidy api that doesn’t have a quota, and all apps/bots that rely on it for free access, would have to close or stop working.  ArenaNet has to tighten security around their current unofficial TP api to prevent rogue apps/bots from gaining free access by pretending to be a GW2 game client.</p>
+<p>This will reduce the number of free apps available around the TP but if you really want to combat bots, that would be the price to pay.  It would not make them all go away, but it would certainly make things harder for them.</p></div></blockquote></p>
+
+<h2 id="">darreljnz.8951:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-08T21:29:44+00:00">
+        08 Oct 2013
+    </time>
+</p>
+<p>
+<p>I would like to see a TP API which gives you all current buy and sell listings with their current unit price and quantity. That way you can more easily identify trading walls. Right now it is really tough to do this in the game client.</p></p>
+
+<h2 id="">Alcarin.9024:</h2>
+<p class="post-meta">
+    <time datetime="2014-04-03T14:54:08+00:00">
+        03 Apr 2014
+    </time>
+</p>
+<p>
+<p>Those are my expectations about a TP API:</p>
+<ul>
+	<li>A way to gather all buy and sell order of an item withouth making 64000 requests on the TP website (with the actual limitation of 5 req/sec it’s really impossible to have a really updated DB). It should be a sort of bulk function, we give a list of item (or, if it is more simple an item type and/or subtype), and we get buy/sell lists and quantity for each price in each list. Number of users with buy/sell orders is also useful but not essential.</li>
+	<li>Number of transactions on the current day (or hour) for each item. It will be an interesting parameter to track and to easly understand “what’s going on?”. The top traded list on TP homepage already do this in some way…</li>
+</ul>
+<p>With OAuth I will like to see</p>
+<ul>
+	<li>A list of all item owned by the current user (bank an collectible), to generate presonalized crafting list/guides.</li>
+</ul>
+<p>I’m stuck with the development of my website due to the first point in the list. To have a reasonable updated prices DB, I expect to get all prices every 30 min, and with the current hack, it’s really impossible to get those info.</p></p>
+
+<h2 id="">Ryan.9387:</h2>
+<p class="post-meta">
+    <time datetime="2014-04-05T22:42:30+00:00">
+        05 Apr 2014
+    </time>
+</p>
+<p>
+<p>If you just want the basic prices (not top 10 orders) you can call the search function with count=0.</p></p>
+
+<h2 id="">Alcarin.9024:</h2>
+<p class="post-meta">
+    <time datetime="2014-04-06T22:13:24+00:00">
+        06 Apr 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on April 05 2014 10:42PM"><a href="/forum/community/api/API-Suggestion-Trading-Post-API/3861608">Ryan.9387:</a></cite></div><div class="quotey"><p>If you just want the basic prices (not top 10 orders) you can call the search function with count=0.</p></div></blockquote>
+<p>TY but I don’t need basic prices, I need the complete buy/sell list with quantity for every price for every item :-D</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

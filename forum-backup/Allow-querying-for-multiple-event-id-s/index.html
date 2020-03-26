@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Allow querying for multiple event_id&#39;s</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Allow-querying-for-multiple-event-id-s/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Allow querying for multiple event_id&#39;s</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Allow-querying-for-multiple-event-id-s
+</p>
+
+
+
+<h2 id="">Trollhammer.7439:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-19T19:30:36+00:00">
+        19 Oct 2013
+    </time>
+</p>
+<p>
+<p>This is for the events.json service. I would like to be able to call it once like this</p>
+<p><a href="https://api.guildwars2.com/v1/events.json?event_id=1&event_id=2&event_id=3">https://api.guildwars2.com/v1/events.json?event_id=1&amp;event_id=2&amp;event_id=3</a>…</p>
+<p>instead of</p>
+<p><a href="https://api.guildwars2.com/v1/events.json?event_id=1">https://api.guildwars2.com/v1/events.json?event_id=1</a><br>
+<a href="https://api.guildwars2.com/v1/events.json?event_id=2">https://api.guildwars2.com/v1/events.json?event_id=2</a><br>
+<a href="https://api.guildwars2.com/v1/events.json?event_id=3">https://api.guildwars2.com/v1/events.json?event_id=3</a><br>
+…</p>
+<p>Alternatively (and perhaps even better) I would like to just filter on events that grant daily chests.</p>
+<p><a href="https://api.guildwars2.com/v1/events.json?daily_chest=true">https://api.guildwars2.com/v1/events.json?daily_chest=true</a></p></p>
+
+<h2 id="">albus.4273:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-25T05:24:52+00:00">
+        25 Oct 2013
+    </time>
+</p>
+<p>
+<p>That would be a nice feature to be added to the API. I have compiled a list of all/most daily reward events:<br>
+</p><pre><code>daily_events = [
+	"6BD7C8B0-2605-4819-9AE6-EF2849098090", // "Defeat Rhendak the Crazed."
+	"C876757A-EF3E-4FBE-A484-07FF790D9B05", // "Kill the megadestroyer before it blows everyone up."
+	"99254BA6-F5AE-4B07-91F1-61A9E7C51A51", // "Cover Keeper Jonez Deadrun as he performs the cleansing ritual."
+	"0464CB9E-1848-4AAA-BA31-4779A959DD71", // "Defeat the Claw of Jormag."
+	"95CA969B-0CC6-4604-B166-DBCCE125864F", // "Defeat the dredge commissar."
+	"295E8D3B-8823-4960-A627-23E07575ED96", // "Defeat the fire shaman and his minions."
+	"C5972F64-B894-45B4-BC31-2DEEA6B7C033", // "Defeat the great jungle wurm."
+	"9AA133DC-F630-4A0E-BB5D-EE34A2B306C2", // "Defeat the Inquest's golem Mark II."
+	"E1CC6E63-EFFE-4986-A321-95C89EA58C07", // "Defeat the Karka Queen threatening the settlements."
+	"F479B4CF-2E11-457A-B279-90822511B53B",
+	"5282B66A-126F-4DA4-8E9D-0D9802227B6D",
+	"4CF7AA6E-4D84-48A6-A3D1-A91B94CCAD56",
+	"6A6FD312-E75C-4ABF-8EA1-7AE31E469ABA", // "Defeat the possessed statue of Dwayna."
+	"2555EFCB-2927-4589-AB61-1957D9CC70C8", // "Defeat the Risen Priest of Balthazar before it can summon a horde of Risen."
+	"31CEBA08-E44D-472F-81B0-7143D73797F5", // "Defeat the shadow behemoth."
+	"E6872A86-E434-4FC1-B803-89921FF0F6D6", // "Defeat Ulgoth the Modniir and his minions."
+	"A0796EC5-191D-4389-9C09-E48829D1FDB2", // "Destroy the Eye of Zhaitan."
+	"33F76E9E-0BB6-46D0-A3A9-BE4CDFC4A3A4", // "Destroy the fire elemental created from chaotic energy fusing with the C.L.E.A.N. 5000's energy core."
+	"7E24F244-52AF-49D8-A1D7-8A1EE18265E0", // "Destroy the Risen Priest of Melandru."
+	"242BD241-E360-48F1-A8D9-57180E146789", // "Kill Admiral Taidha Covington."
+	"0372874E-59B7-4A8F-B535-2CF57B8E67E4", // "Kill the Corrupted High Priestess"
+	"B4E6588F-232C-4F68-9D58-8803D67E564D", // "Kill the Foulbear Chieftain and her elite guards before the ogres can rally."
+	"F7D9D427-5E54-4F12-977A-9809B23FBA99", // "Kill the Svanir shaman chief to break his control over the ice elemental."
+	"03BF176A-D59F-49CA-A311-39FC6F533F2F", // "Slay the Shatterer"
+	"568A30CF-8512-462F-9D67-647D69BEFAED"  // "Defeat Tequatl the Sunless."
+];</code></pre>The results could then be filtered against that list.<br>
+<pre><code>var tmp = [], row;
+// XMLHttpRequest(...);
+
+for(var i = 0, l = http.events.length; i &lt; l; ++i){
+    row = http.events[i];
+
+    if(daily_events.indexOf(row.event_id) &gt; -1)
+        tmp.push(row);
+}
+http.events = tmp;
+delete tmp;</code></pre><p></p></p>
+
+<h2 id="">Lil Puppy.5216:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-28T08:22:56+00:00">
+        28 Oct 2013
+    </time>
+</p>
+<p>
+<p>Due to the way URLs are handled by browsers and servers, the acceptable length of a URL is 2083 characters max (thanks to IE). With that amount of character space, you can get a maximum of 54 events at a time using a comma separated list in the URL at a time.<br>
+Most browsers aside from IE will handle up to 64k characters per url, but servers also have limits so it’s usually a good idea to keep them from exceeding 2000 characters total, granting you 52 events at a time.<br>
+</p><pre><code>ex:
+https://api.guildwars2.com/v1/events.json?event_ids=6BD7C8B0-2605-4819-9AE6-EF2849098090,
+C876757A-EF3E-4FBE-A484-07FF790D9B05,
+99254BA6-F5AE-4B07-91F1-61A9E7C51A51,
+0464CB9E-1848-4AAA-BA31-4779A959DD71
+</code></pre><p></p>
+<p>base URL length = 52 characters from the h to the =<br>
+-1 because the last item doesn’t need a comma<br>
+each event id and a comma = 37 characters.</p>
+<p>Max:<br>
+2083-53=2030<br>
+2030/37=54.864~</p>
+<p>Average:<br>
+2000-53=1947<br>
+1947/37=52.621~</p></p>
+
+<h2 id="">Stefan Larimore.6872:</h2>
+<p class="post-meta">
+    <time datetime="2013-10-28T23:18:25+00:00">
+        28 Oct 2013
+    </time>
+</p>
+<p>
+<p>We are looking into some options for bulk access and filtering.  Another option is to optionally allow specifying ids in a POST body.  Though, we probably will have some sort of max id count limit so the URL constraints may not matter.</p></p>
+
+<h2 id="">AdelphiA.9287:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-04T10:23:55+00:00">
+        04 Nov 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 28 2013 08:22AM"><a href="/forum/community/api/Allow-querying-for-multiple-event-id-s/3104665">Lil Puppy.5216:</a></cite></div><div class="quotey"><p>Due to the way URLs are handled by browsers and servers, the acceptable length of a URL is 2083 characters max (thanks to IE). With that amount of character space, you can get a maximum of 54 events at a time using a comma separated list in the URL at a time.<br>
+Most browsers aside from IE will handle up to 64k characters per url, but servers also have limits so it’s usually a good idea to keep them from exceeding 2000 characters total, granting you 52 events at a time.<br>
+</p><pre><code>ex:
+https://api.guildwars2.com/v1/events.json?event_ids=6BD7C8B0-2605-4819-9AE6-EF2849098090,
+C876757A-EF3E-4FBE-A484-07FF790D9B05,
+99254BA6-F5AE-4B07-91F1-61A9E7C51A51,
+0464CB9E-1848-4AAA-BA31-4779A959DD71
+</code></pre><p></p>
+<p>base URL length = 52 characters from the h to the =<br>
+-1 because the last item doesn’t need a comma<br>
+each event id and a comma = 37 characters.</p>
+<p>Max:<br>
+2083-53=2030<br>
+2030/37=54.864~</p>
+<p>Average:<br>
+2000-53=1947<br>
+1947/37=52.621~</p></div></blockquote>
+<p>You are wasting valuable character space by using the “-”. “C876757AEF3E4FBEA48407FF790D9B05” is the same as “C876757A-EF3E-4FBE-A484-07FF790D9B05”, saving you 4 characters per ID. Not much I know, but over 52 ID’s that’s 208 wasted characters.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-04T11:07:34+00:00">
+        04 Nov 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on November 04 2013 10:23AM"><a href="/forum/community/api/Allow-querying-for-multiple-event-id-s/3147505">AdelphiA.9287:</a></cite></div><div class="quotey"><p>You are wasting valuable character space by using the “-”. “C876757AEF3E4FBEA48407FF790D9B05” is the same as “C876757A-EF3E-4FBE-A484-07FF790D9B05”, saving you 4 characters per ID. Not much I know, but over 52 ID’s that’s 208 wasted characters.</p></div></blockquote>
+<p>You’re messing up UUIDs and their respective MD5 hashes. It may be possible to strip the hyphens but don’t know yet if this would be supported by the API.</p>
+<p><a href="http://en.wikipedia.org/wiki/Universally_unique_identifier">http://en.wikipedia.org/wiki/Universally_unique_identifier</a></p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-12T19:10:58+00:00">
+        12 Nov 2013
+    </time>
+</p>
+<p>
+<p>Thumbs up for specifying event (and item/recipe) ids in the request body, not just the url.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-13T05:34:11+00:00">
+        13 Nov 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 28 2013 08:22AM"><a href="/forum/community/api/Allow-querying-for-multiple-event-id-s/3104665">Lil Puppy.5216:</a></cite></div><div class="quotey"><p>Due to the way URLs are handled by browsers and servers, the acceptable length of a URL is 2083 characters max (thanks to IE). With that amount of character space, you can get a maximum of 54 events at a time using a comma separated list in the URL at a time.<br>
+Most browsers aside from IE will handle up to 64k characters per url, but servers also have limits so it’s usually a good idea to keep them from exceeding 2000 characters total, granting you 52 events at a time.<br>
+</p><pre><code>ex:
+https://api.guildwars2.com/v1/events.json?event_ids=6BD7C8B0-2605-4819-9AE6-EF2849098090,
+C876757A-EF3E-4FBE-A484-07FF790D9B05,
+99254BA6-F5AE-4B07-91F1-61A9E7C51A51,
+0464CB9E-1848-4AAA-BA31-4779A959DD71
+</code></pre><p></p>
+<p>base URL length = 52 characters from the h to the =<br>
+-1 because the last item doesn’t need a comma<br>
+each event id and a comma = 37 characters.</p>
+<p>Max:<br>
+2083-53=2030<br>
+2030/37=54.864~</p>
+<p>Average:<br>
+2000-53=1947<br>
+1947/37=52.621~</p></div></blockquote>
+<p>How about spawning a number of threads (or web workers) and breakup the query with each event being queried per thread?</p></p>
+
+<h2 id="">sorenrye.7238:</h2>
+<p class="post-meta">
+    <time datetime="2013-11-13T06:49:58+00:00">
+        13 Nov 2013
+    </time>
+</p>
+<p>
+<p>I have only checked the source of one of the api wrappers. It creates a new connection every time it wants to request information from <a href="https://api.guildwars2.com">https://api.guildwars2.com</a>.</p>
+<p>Until it becomes possible to query for multiple event_id’s (and the like, hopefully) in a single request, does anet support the reuse of the https connection (the tcp socket) for sending multiple requests (keep_alive)? If this is supported, does any of the api wrappers take advantage of this? If so, which api wrapper takes advantage of this?</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

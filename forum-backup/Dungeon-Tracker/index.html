@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Dungeon Tracker ?</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Dungeon-Tracker/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Dungeon Tracker ?</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Dungeon-Tracker
+</p>
+
+
+
+<h2 id="">Decrypter.1785:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-01T18:19:51+00:00">
+        01 May 2015
+    </time>
+</p>
+<p>
+<p>Any chance some talented folks could make a dungeon tracker ?  ty</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-01T18:34:53+00:00">
+        01 May 2015
+    </time>
+</p>
+<p>
+<p><a href="http://gw2efficiency.com/">http://gw2efficiency.com/</a> has one.</p></p>
+
+<h2 id="">Decrypter.1785:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-02T04:29:27+00:00">
+        02 May 2015
+    </time>
+</p>
+<p>
+<p>I meant that showed what i have done/not done . This starts fresh but its still a great site ty lawton<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-03T05:39:46+00:00">
+        03 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 02 2015 04:29AM"><a href="/forum/community/api/Dungeon-Tracker/5026555">Decrypter.1785:</a></cite></div><div class="quotey"><p>I meant that showed what i have done/not done . This starts fresh but its still a great site ty lawton<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>I’m actually not sure if that’s tracked in-game right now; if it’s not it’s not something I can easily expose via API ;_;</p></p>
+
+<h2 id="">Allisa Wonderland.8192:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-03T08:00:09+00:00">
+        03 May 2015
+    </time>
+</p>
+<p>
+<p>Is the #/5 paths number calculated from a database query? It must be specified somewhere internally or there would be no way of knowing if the last dungeon run you incremented the value or not.</p>
+<p>The more of this information is exposed through the API, the less work ArenaNET staff potentially has to do to on the in game interface.. And I think that’s a good thing<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Raif.9507:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-03T09:19:29+00:00">
+        03 May 2015
+    </time>
+</p>
+<p>
+<p>Hmm I may be able to talk to some people about using in game image recognition and using it to create an Overwolf app for a dungeon tracker if it’s something that’s not in the API itself. I’ll have to check though due to some of the window being transparent, as well as if character recognition is possible.</p>
+<p>I’ll update if I have something =)</p></p>
+
+<h2 id="">Astralporing.1957:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-03T15:46:14+00:00">
+        03 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 03 2015 05:39AM"><a href="/forum/community/api/Dungeon-Tracker/5028779">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 02 2015 04:29AM"><a href="/forum/community/api/Dungeon-Tracker/5026555">Decrypter.1785:</a></cite></div><div class="quotey"><p>I meant that showed what i have done/not done . This starts fresh but its still a great site ty lawton<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>I’m actually not sure if that’s tracked in-game right now; if it’s not it’s not something I can easily expose via API ;_;</p></div></blockquote>
+<p>It must be tracked internally somehow, at least for the dungeon achievements’ sake. Otherwise, it would be impossible to determine whether running a path counted for the achievement or not.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-03T18:40:11+00:00">
+        03 May 2015
+    </time>
+</p>
+<p>
+<p>Ah, sorry, I meant the historical data isn’t tracked in a way I can easily access (e.g., it’s buried in logs that aren’t structured for querying in real-time). The <strong>current</strong> state I can pull (e.g., “has this user run ACp1 today?”). I’ll look into exposing that somewhere.</p></p>
+
+<h2 id="">Khisanth.2948:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-04T15:05:15+00:00">
+        04 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 03 2015 06:40PM"><a href="/forum/community/api/Dungeon-Tracker/5029944">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Ah, sorry, I meant the historical data isn’t tracked in a way I can easily access (e.g., it’s buried in logs that aren’t structured for querying in real-time). The <strong>current</strong> state I can pull (e.g., “has this user run ACp1 today?”). I’ll look into exposing that somewhere.</p></div></blockquote>
+<p>Being able to check if a character has done the story mode would be nice too. Right now I have a spreadsheet …</p></p>
+
+<h2 id="">Bugabuga.9721:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-04T19:11:27+00:00">
+        04 May 2015
+    </time>
+</p>
+<p>
+<p>But the code that grants you achievement and/or unlock of exploration mode, should read it from somewhere? Are those hidden achievements? Can they be exposed as such? (“completed story mode cof, 0 points” for api)</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-04T21:41:01+00:00">
+        04 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 04 2015 03:05PM"><a href="/forum/community/api/Dungeon-Tracker/5032081">Khisanth.2948:</a></cite></div><div class="quotey"><p>Being able to check if a character has done the story mode would be nice too. Right now I have a spreadsheet …</p></div></blockquote>
+<p>Yeah, I’ll have to include that too.</p>
+<blockquote><div class="citey"><cite title="Posted on May 04 2015 07:11PM"><a href="/forum/community/api/Dungeon-Tracker/5032913">Bugabuga.9721:</a></cite></div><div class="quotey"><p>But the code that grants you achievement and/or unlock of exploration mode, should read it from somewhere? Are those hidden achievements? Can they be exposed as such? (“completed story mode cof, 0 points” for api)</p></div></blockquote>
+<p>The <strong>current</strong> state is stored and can be read, but not really historical data (e.g., it can answer “have you run ACp3 today?” but not “how many times have you run ACp3 in the past month?”).</p>
+<p>There’s probably a caveat for the dungeon achievement (where a single bit is stored for each path to indicate that it’s been completed at least once).</p></p>
+
+<h2 id="">Crell.6401:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-04T21:59:08+00:00">
+        04 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 04 2015 09:41PM"><a href="/forum/community/api/Dungeon-Tracker/5033364">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>There’s probably a caveat for the dungeon achievement (where a single bit is stored for each path to indicate that it’s been completed at least once).</p></div></blockquote>
+<p>That single bit is the only part I really care about being able to get at some how. It’s very frustrating to discover you’ve made a mistake recording your dungeon-master data for some of the paths. (Arah!!!) If you’d expose this in game, I’d be very grateful! It’s tracked after all =)</p></p>
+
+<h2 id="">BuD.7851:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-04T23:09:00+00:00">
+        04 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 04 2015 09:59PM"><a href="/forum/community/api/Dungeon-Tracker/5033419">Crell.6401:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 04 2015 09:41PM"><a href="/forum/community/api/Dungeon-Tracker/5033364">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>There’s probably a caveat for the dungeon achievement (where a single bit is stored for each path to indicate that it’s been completed at least once).</p></div></blockquote>
+<p>That single bit is the only part I really care about being able to get at some how. It’s very frustrating to discover you’ve made a mistake recording your dungeon-master data for some of the paths. (Arah!!!) If you’d expose this in game, I’d be very grateful! It’s tracked after all =)</p></div></blockquote>
+<p>I’ll second this. I took a long long break from dungeons due to being on call a lot for work. I never kept a spread sheet &amp; dont remember which paths I have or have not completed. Would be very nice to see which path was completed.</p></p>
+
+<h2 id="">Itaq.1930:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-05T08:49:51+00:00">
+        05 May 2015
+    </time>
+</p>
+<p>
+<p><a href="https://gw2pao.codeplex.com/">https://gw2pao.codeplex.com/</a> is an overlay with one function to track which dungeons you have completed today. Was this what you asked for?</p></p>
+
+<h2 id="">BuD.7851:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-05T11:14:49+00:00">
+        05 May 2015
+    </time>
+</p>
+<p>
+<p>No, I mean for the dungeon master achievement. There is no way to tell which path has been completed (unless you do it over to see if you get credit towards DM). It says 2/4, doesn’t specify if it was story mode that was completed or which individual path was completed, just that you have done 2 of 4 paths.</p></p>
+
+<h2 id="">Tiscan.8345:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-05T11:35:53+00:00">
+        05 May 2015
+    </time>
+</p>
+<p>
+<p>It would be awesome if the API would return detailed informations on <strong>all</strong> achivements. For example it would not only be nice to see what paths of a dungeon a person  has already completed (personally, i don’t care <strong>how often</strong> a certain path was completed but if it was completed <strong>at least once</strong>) but also which diving goggles he already used, what badges he collected in the SW, etc.</p>
+<p>Lets face it… its a major PITA if you have to run to all goggles and use them again just because you can’t remember which ones you already completed… or to have to recheck all badges in the silverwastes just because you can’t remember which one was missing.</p>
+<p>If these informations were available, it would be easy to write an external tool which could display details on what is missing to complete a certain achivement.</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-05T13:17:41+00:00">
+        05 May 2015
+    </time>
+</p>
+<p>
+<p>For story mode you can tell if you’ve done it.</p>
+<p>If you’re just interested in the achievement, check if you have the PvP track for the dungeon available and that it has no timer.  If you do, you’ve done story mode.  Note that if you don’t have it you may still have done it, just before the PvP reward track patch.</p>
+<p>Per character you can tell simply by visiting the dungeon entrance and seeing if you have an explorable mode option or not.</p>
+<p>Unfortunately there’s no way to tell which explorable paths you have or have not done.</p></p>
+
+<h2 id="">Valento.9852:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-12T18:46:29+00:00">
+        12 May 2015
+    </time>
+</p>
+<p>
+<p>What a nice idea!</p></p>
+
+<h2 id="">rodadams.5963:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-13T04:34:51+00:00">
+        13 May 2015
+    </time>
+</p>
+<p>
+<p>IMO, the most useful things in this sense are the things that you should have access to, if I understand you correctly. Namely, the ability to answer the following questions:</p>
+<ul>
+	<li>Has $ckittene $dungeon story, and thus can open explorable mode?</li>
+	<li>Has Account done $dungeon $path, or is it left to do for Dungeon Master?</li>
+	<li>How many times has Account done $dungeon $path since reset?</li>
+</ul>
+<p>These are all things that can help inform your gameplay. It’s annoying to discover that you can’t open the dungeon for the group at the last second, since you haven’t done story on that character. Similarly, knowing what you have left for Dungeon Master can be a godsend when you just see that you’re at 4/5 on Arah…. but haven’t run a path in months. People can remember which path is which after several runs, but not after their first. And the last is kinda obvious. I’ve certainly be caught at times where Saturday afternoon I forget that I’d done a path the night before.</p>
+<p>Knowing that you’ve run CoF p1 9,563 times seems pointless, so I don’t mind at all that you can’t tell me.</p></p>
+
+<h2 id="">Reincarnated.1754:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-18T15:10:50+00:00">
+        18 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 02 2015 04:29AM"><a href="/forum/community/api/Dungeon-Tracker/5026555">Decrypter.1785:</a></cite></div><div class="quotey"><p>I meant that showed what i have done/not done . This starts fresh but its still a great site ty lawton<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>I made a little application to help me keep track of what I have done in GW2 each day.</p>
+<p><a href="http://www.palingenesis.webspace.virginmedia.com/Tim/GW2/Manual/Manual.html">Tim’s GW2 Tool’s</a></p></p>
+
+<h2 id="">Slyfer.6478:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-18T16:20:00+00:00">
+        18 May 2015
+    </time>
+</p>
+<p>
+<p>I’d be alright if we can just view what dungeons have been completed today. It would be an added bonus if we could check if a player has story and has completed the given path at least once in their lifetime (having an x amount of how many times a player has finished the dungeon is a bit excessive imo but perhaps some dungeontracker site wants to make a leaderboard).</p></p>
+
+<h2 id="">Teddiebear.1573:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-30T23:11:40+00:00">
+        30 May 2015
+    </time>
+</p>
+<p>
+<p>As rodadams.5963 pointed out, this would not be a historical data case, but rather a “yes/no” case.</p>
+<p>It is not to check how many times you have done it, but rather if you have done it at all.<br>
+An example here is the Master of Arah achievement. I have done 1/5 and I know for a fact that this is the story path. However for Twilight Arbor this is a whole different case, as I have 3/4 done.</p>
+<p>Today this is a situation where I would need to keep a spreadsheet on which paths I have taken in each dungeon, or do them all and hope that the one I am doing at that time is the one I am lacking. If we had API that returns this nformation, it would be a godsend to be perfectly honest.</p>
+<p>PS: Got a bump warning, but this is still relevant for discussion.</p></p>
+
+<h2 id="">Rincebrain.4857:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-21T03:31:40+00:00">
+        21 Oct 2015
+    </time>
+</p>
+<p>
+<p>I’d slightly care about the existence of an API query for “has X character on Y account done dungeon Z path # today”, but what I’d really like is to query against the bitmask for “what dungeon paths for dungeon Z have I done, ever”?</p>
+<p>Because there’s no user-exposed way to get that information, and short of keeping our own spreadsheet or trial and error, you just can’t see it…and when you’re talking about one missing path in Arah, trial and error is a time(or gold)-intensive task…</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-21T13:43:48+00:00">
+        21 Oct 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 21 2015 03:31AM"><a href="/forum/community/api/Dungeon-Tracker/5630968">Rincebrain.4857:</a></cite></div><div class="quotey"><p>I’d slightly care about the existence of an API query for “has X character on Y account done dungeon Z path # today”, but what I’d really like is to query against the bitmask for “what dungeon paths for dungeon Z have I done, ever”?</p></div></blockquote>
+<p>I have something working locally, but it doesn’t currently provide an intuitive mapping. I’m trying to expose the progress bits for all achievements, but we only recently added functionality to add string descriptions of each progress bit. I’m not sure offhand where in the release pipeline the supporting API code for that stuff is, but that feature will be available at some point.</p></p>
+
+<h2 id="">Rincebrain.4857:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-24T18:54:38+00:00">
+        24 Oct 2015
+    </time>
+</p>
+<p>
+<p>Neat.</p>
+<p>This has become slightly less painful with the HoT patch drop, since dungeon progress and which paths have been completed is now displayed in the individual dungeon achievements, so the information is available, even if not in convenient API format.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

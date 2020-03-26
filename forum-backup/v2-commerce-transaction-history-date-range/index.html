@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>v2/commerce/transaction/history date range</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/v2-commerce-transaction-history-date-range/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">v2/commerce/transaction/history date range</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/v2-commerce-transaction-history-date-range
+</p>
+
+
+
+<h2 id="">Crimsun.7620:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T05:29:25+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<p>When accessing v2/commerce/transaction/history/buys via <a href="https://api.guildwars2.com/v2/commerce/transactions/history/buys?access_token=&lt;my_api_key&gt">https://api.guildwars2.com/v2/commerce/transactions/history/buys?access_token=&lt;my_api_key&gt;</a> I only get about 3 hours worth of data. I am buying a lot of things currently, but according to <a href="/forum-backup/Launching-v2-commerce-transactions"> this </a> forum post by Lawton Campbell data should go back up to 90 days. The following spoiler contains the result I get when using Google Chrome.</p>
+<div class="spoiler_container"><div class="spoileroncontainer"><button type="button" class="button spoileron" title="Click to show the spoiler.">Show Spoiler</button></div><div class="spoiler"><div class="spoileroffcontainer"><button type="button" class="button spoileroff" title="Click to hide the spoiler.">hide spoiler</button><br></div><div class="spoilertext"><p>[{"id":2974784724,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="2">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T05:10:19+00:00”},{"id":2974784227,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="3">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T05:09:46+00:00”},{"id":2974783395,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="3">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T05:08:43+00:00”},{"id":2974781593,<a href="12545">item_id</a>,<a href="560">price</a>,<a href="9">quantity</a>,“created”:“2015-08-27T03:58:51+00:00”,“purchased”:“2015-08-27T05:06:44+00:00”},{"id":2974780452,<a href="12545">item_id</a>,<a href="560">price</a>,<a href="9">quantity</a>,“created”:“2015-08-27T03:58:51+00:00”,“purchased”:“2015-08-27T05:05:51+00:00”},{"id":2974777258,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T05:01:50+00:00”},{"id":2974777077,<a href="12545">item_id</a>,<a href="560">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T03:58:51+00:00”,“purchased”:“2015-08-27T05:01:38+00:00”},{"id":2974772493,<a href="12545">item_id</a>,<a href="560">price</a>,<a href="19">quantity</a>,“created”:“2015-08-27T03:58:51+00:00”,“purchased”:“2015-08-27T04:56:45+00:00”},{"id":2974768986,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T04:52:20+00:00”},{"id":2974768912,<a href="12545">item_id</a>,<a href="560">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T03:58:51+00:00”,“purchased”:“2015-08-27T04:52:15+00:00”},{"id":2974767252,<a href="12545">item_id</a>,<a href="560">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T03:58:51+00:00”,“purchased”:“2015-08-27T04:50:22+00:00”},{"id":2974764861,<a href="12545">item_id</a>,<a href="560">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T03:58:51+00:00”,“purchased”:“2015-08-27T04:47:34+00:00”},{"id":2974759904,<a href="12545">item_id</a>,<a href="560">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T03:58:51+00:00”,“purchased”:“2015-08-27T04:41:51+00:00”},{"id":2974759763,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="2">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T04:41:43+00:00”},{"id":2974759524,<a href="12545">item_id</a>,<a href="560">price</a>,<a href="53">quantity</a>,“created”:“2015-08-27T03:58:51+00:00”,“purchased”:“2015-08-27T04:41:27+00:00”},{"id":2974759026,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="22">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T04:41:10+00:00”},{"id":2974755579,<a href="12545">item_id</a>,<a href="560">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T03:58:51+00:00”,“purchased”:“2015-08-27T04:37:00+00:00”},{"id":2974755453,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T04:36:50+00:00”},{"id":2974753709,<a href="12545">item_id</a>,<a href="560">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T03:58:51+00:00”,“purchased”:“2015-08-27T04:34:46+00:00”},{"id":2974752889,<a href="12545">item_id</a>,<a href="560">price</a>,<a href="2">quantity</a>,“created”:“2015-08-27T03:58:51+00:00”,“purchased”:“2015-08-27T04:33:53+00:00”},{"id":2974751043,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T04:31:28+00:00”},{"id":2974750069,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T04:30:17+00:00”},{"id":2974748916,<a href="12545">item_id</a>,<a href="560">price</a>,<a href="34">quantity</a>,“created”:“2015-08-27T03:58:51+00:00”,“purchased”:“2015-08-27T04:28:57+00:00”},{"id":2974748851,<a href="12545">item_id</a>,<a href="560">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T03:58:51+00:00”,“purchased”:“2015-08-27T04:28:52+00:00”},{"id":2974747426,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="24">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T04:27:05+00:00”},{"id":2974741184,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="3">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T04:19:51+00:00”},{"id":2974740757,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="7">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T04:19:23+00:00”},{"id":2974740272,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T04:18:51+00:00”},{"id":2974739685,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="6">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T04:18:20+00:00”},{"id":2974738364,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T04:16:50+00:00”},{"id":2974730963,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="8">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T04:10:03+00:00”},{"id":2974726124,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="2">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T04:04:55+00:00”},{"id":2974723398,<a href="12144">item_id</a>,<a href="798">price</a>,<a href="2">quantity</a>,“created”:“2015-08-27T03:58:30+00:00”,“purchased”:“2015-08-27T04:02:11+00:00”},{"id":2974711036,<a href="12144">item_id</a>,<a href="797">price</a>,<a href="4">quantity</a>,“created”:“2015-08-27T01:40:29+00:00”,“purchased”:“2015-08-27T03:49:43+00:00”},{"id":2974706095,<a href="12144">item_id</a>,<a href="797">price</a>,<a href="8">quantity</a>,“created”:“2015-08-27T01:40:29+00:00”,“purchased”:“2015-08-27T03:44:53+00:00”},{"id":2974695025,<a href="12144">item_id</a>,<a href="797">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T01:40:29+00:00”,“purchased”:“2015-08-27T03:34:46+00:00”},{"id":2974681976,<a href="12144">item_id</a>,<a href="797">price</a>,<a href="10">quantity</a>,“created”:“2015-08-27T01:40:29+00:00”,“purchased”:“2015-08-27T03:24:02+00:00”},{"id":2974671890,<a href="12144">item_id</a>,<a href="797">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T01:40:29+00:00”,“purchased”:“2015-08-27T03:17:30+00:00”},{"id":2974667370,<a href="12545">item_id</a>,<a href="558">price</a>,<a href="2">quantity</a>,“created”:“2015-08-27T01:40:57+00:00”,“purchased”:“2015-08-27T03:13:31+00:00”},{"id":2974664603,<a href="12545">item_id</a>,<a href="558">price</a>,<a href="114">quantity</a>,“created”:“2015-08-27T01:40:57+00:00”,“purchased”:“2015-08-27T03:10:41+00:00”},{"id":2974664602,<a href="12545">item_id</a>,<a href="558">price</a>,<a href="77">quantity</a>,“created”:“2015-08-27T01:40:54+00:00”,“purchased”:“2015-08-27T03:10:41+00:00”},{"id":2974664555,<a href="12144">item_id</a>,<a href="797">price</a>,<a href="7">quantity</a>,“created”:“2015-08-27T01:40:29+00:00”,“purchased”:“2015-08-27T03:10:37+00:00”},{"id":2974663088,<a href="12545">item_id</a>,<a href="558">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T01:40:54+00:00”,“purchased”:“2015-08-27T03:09:10+00:00”},{"id":2974658869,<a href="12144">item_id</a>,<a href="797">price</a>,<a href="6">quantity</a>,“created”:“2015-08-27T01:40:29+00:00”,“purchased”:“2015-08-27T03:05:20+00:00”},{"id":2974657299,<a href="12144">item_id</a>,<a href="797">price</a>,<a href="2">quantity</a>,“created”:“2015-08-27T01:40:29+00:00”,“purchased”:“2015-08-27T03:03:59+00:00”},{"id":2974655136,<a href="12144">item_id</a>,<a href="797">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T01:40:29+00:00”,“purchased”:“2015-08-27T03:01:54+00:00”},{"id":2974651418,<a href="12144">item_id</a>,<a href="797">price</a>,<a href="3">quantity</a>,“created”:“2015-08-27T01:40:29+00:00”,“purchased”:“2015-08-27T02:58:30+00:00”},{"id":2974646734,<a href="12144">item_id</a>,<a href="797">price</a>,<a href="7">quantity</a>,“created”:“2015-08-27T01:40:29+00:00”,“purchased”:“2015-08-27T02:54:08+00:00”},{"id":2974641638,<a href="12144">item_id</a>,<a href="797">price</a>,<a href="23">quantity</a>,“created”:“2015-08-27T01:40:29+00:00”,“purchased”:“2015-08-27T02:49:50+00:00”},{"id":2974641113,<a href="12545">item_id</a>,<a href="558">price</a>,<a href="1">quantity</a>,“created”:“2015-08-27T01:40:54+00:00”,“purchased”:“2015-08-27T02:49:23+00:00”}]</p></div></div></div><p>As you can see, the last entry is from today at 02:49:23. Did I miss something in the documentation? This way I’d have to keep my computer running 24/7 to get the latest data every 2 hours and not miss anything. The point of my little tool is to keep track of purchases and materials bank and then calculate prices (based on my actual purchases) for some crafted goods.</p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T05:52:02+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 27 2015 05:29AM"><a href="/forum/community/api/v2-commerce-transaction-history-date-range/5420662">Crimsun.7620:</a></cite></div><div class="quotey"><p>Did I miss something in the documentation?</p></div></blockquote>
+<p>Yes, pagination. <br>
+You only get the first 50 results returned per default, you can get up to 200 by setting the query parameter page_size=200. To get the next 200 entries, you then can use page=2 (and so on). Take a look at the response headers, they tell you how many pages there are. <br>
+Wiki: <a href="http://wiki.guildwars2.com/wiki/API:2#Paging">http://wiki.guildwars2.com/wiki/API:2#Paging</a></p></p>
+
+<h2 id="">Crimsun.7620:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T11:35:32+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<p>Thanks! That should help<img src="/include/images/smilies/smile.png"></p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

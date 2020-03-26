@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>PHP-SQL script takes &gt;9hrs to complete db</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/PHP-SQL-script-takes-9hrs-to-complete-db/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">PHP-SQL script takes &gt;9hrs to complete db</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/PHP-SQL-script-takes-9hrs-to-complete-db
+</p>
+
+
+
+<h2 id="">Alkyoneus.3917:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-07T18:25:32+00:00">
+        07 Oct 2014
+    </time>
+</p>
+<p>
+<p>This is the 2nd time I’ve tinkered with php-sql and I made a small script to retrieve the items and their sell/buy info into my db so I can sort/rank the items.</p>
+<p>It works (yay!) but I feel its hugely inefficient because it takes like 9hours to completely copy TP info to my db is this normal? I don’t see where I can cut corners.</p>
+<p><a href="http://pastebin.com/JcZZZp98">http://pastebin.com/JcZZZp98</a></p>
+<p>oh i run it in the cli queued as a cronjob</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-07T18:57:39+00:00">
+        07 Oct 2014
+    </time>
+</p>
+<p>
+<p>Yes, 9h to complete seems highly inefficient – it should actually not take longer than a couple minutes to complete when using the bulk feature. Yor script initiates a new (single) cURL instance for each request and doesn’t queue these up to process them asynchronous which means it has to wait for the whole lifecycle of one request until it fires another one. You might want to take a look at rolling (multi) curl and maybe also at my database project on GitHub which uses it. (takes about half an hour to download the whole items database in 4 languages on my very slow connection)</p>
+<p><a href="https://github.com/codemasher/gw2-database/blob/master/classes/rollingcurl.class.php">https://github.com/codemasher/gw2-database/blob/master/classes/rollingcurl.class.php</a><br>
+<a href="https://github.com/codemasher/gw2-database/blob/master/classes/gw2items.class.php#L156">https://github.com/codemasher/gw2-database/blob/master/classes/gw2items.class.php#L156</a></p>
+<p>€: also you need to connect through https since the http URL redirects you to the https one each time (which probably costs some time) – to make cURL work with https, you need to provide a CA root certificate: <a href="http://curl.haxx.se/ca/cacert.pem">http://curl.haxx.se/ca/cacert.pem</a> by passing the parameters:</p>
+<p>CURLOPT_SSL_VERIFYPEER = true<br>
+CURLOPT_SSL_VERIFYHOST = 2<br>
+CURLOPT_CAINFO = ‘path/to/certificates.pem’</p></p>
+
+<h2 id="">Alkyoneus.3917:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-07T21:45:43+00:00">
+        07 Oct 2014
+    </time>
+</p>
+<p>
+<p>Wow this is stuff I would not have guessed in a million years;  thank you Smiley! I’ll tinker a bit and post an update later this week, if i can get it down to 30 min id be so happy<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-07T21:49:05+00:00">
+        07 Oct 2014
+    </time>
+</p>
+<p>
+<p>I’m sure you’ll get below 30 min, RollingCurl is da bomb!<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Alkyoneus.3917:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-09T12:13:30+00:00">
+        09 Oct 2014
+    </time>
+</p>
+<p>
+<p>Woo got it down to 25min <a href="http://pastebin.com/BCvNeyzr">http://pastebin.com/BCvNeyzr</a>; The rollingcurl.php I used is still a bit of a black box for me but it seems to work fine without the root certificate you mentioned.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-09T12:59:29+00:00">
+        09 Oct 2014
+    </time>
+</p>
+<p>
+<p>You’re still requesting the data for each individual item, try using the “ids” parameter and receive the data in chunks of up to 200 items per request. Over here: <a href="https://github.com/codemasher/gw2-database/blob/master/classes/gw2items.class.php#L178">https://github.com/codemasher/gw2-database/blob/master/classes/gw2items.class.php#L178</a></p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-09T16:31:00+00:00">
+        09 Oct 2014
+    </time>
+</p>
+<p>
+<p>Or just using pagination + the Link headers we return (see <a href="https://tools.ietf.org/html/rfc5988">https://tools.ietf.org/html/rfc5988</a> for a description)</p></p>
+
+<h2 id="">Alkyoneus.3917:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-09T21:12:51+00:00">
+        09 Oct 2014
+    </time>
+</p>
+<p>
+<p>@Smiley, ohh thanks, I see now in your code (not fluent in reading code);  So now I added that (<a href="http://pastebin.com/udZ9HMHP">http://pastebin.com/udZ9HMHP</a>) it went down to 21 minutes, woo!! I expected like 30 minutes divided by 4 languages so around 7-8minutes like you mentioned, but i realised I also do some array calculations directly after so I figure that accounts for the extra 13-14 minutes.</p>
+<p>@Pat oh i see like this</p>
+<p><a href="https://api.guildwars2.com/v2/commerce/listings?page=0&page_size=2">https://api.guildwars2.com/v2/commerce/listings?page=0&amp;page_size=2</a></p>
+<p>&lt;/v2/commerce/listings?page=1&amp;page_size=2&gt;; rel=next, <br>
+&lt;/v2/commerce/listings?page=0&amp;page_size=2&gt;; rel=self, <br>
+&lt;/v2/commerce/listings?page=0&amp;page_size=2&gt;; rel=first,<br>
+&lt;/v2/commerce/listings?page=11076&amp;page_size=2&gt;; rel=last</p></p>
+
+<h2 id="">anzenketh.3759:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-10T17:35:56+00:00">
+        10 Oct 2014
+    </time>
+</p>
+<p>
+<p>I am still a beginner in development. In a attempt to develop <a href="https://github.com/anzenketh/gw2-toolsdb">a application</a> that is currently on hold as I am trying to figure out the best way to persist the details of a item into the database. I have decided to use the following wrapper. It is not quite on wiki yet(no write access):</p>
+<p><a href="https://github.com/EtienneLamoureux/durmand-scriptorium">https://github.com/EtienneLamoureux/durmand-scriptorium</a></p>
+<p>It uses Guzzle to get the requests and I have got a full item database query down less then 5 Minutes.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-11T10:05:19+00:00">
+        11 Oct 2014
+    </time>
+</p>
+<p>
+<p>Getting the item details db schema right is pretty difficult. But even if you nailed the design, filling your perfectly designed database with API data has its own challenges.</p>
+<p>Some items contain references to other entities that may not already be in your database. Examples include upgradable items that reference upgrade item details, recipe sheets that reference recipe details, and dyes that reference color details.</p>
+<p>Trying to insert an item like that results in an integrity constraint violation, because the referenced item doesn’t exist in the database. So what do you do? You insert the referenced entity first, and then insert the item that holds the reference.</p>
+<p>The opposite can also happen. Multiple combat items can reference the same upgrade item. Trying to insert the referenced upgrade item results in a duplicate key violation, because the referenced item already exists in the database. So what do you do? Some database engines provide an option to silently ignore duplicate key errors. For the ones that don’t provide that option, change the query to insert only if the key doesn’t exist already.</p>
+<p>Long story short… the code can (will) get pretty messy, and it’s not your fault.</p></p>
+
+<h2 id="">AysonCurrax.3254:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-11T10:23:53+00:00">
+        11 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 11 2014 10:05AM"><a href="/forum/community/api/PHP-SQL-script-takes-9hrs-to-complete-db/4479612">StevenL.3761:</a></cite></div><div class="quotey"><p>Getting the item details db schema right is pretty difficult. But even if you nailed the design, filling your perfectly designed database with API data has its own challenges.</p>
+<p>Some items contain references to other entities that may not already be in your database. Examples include upgradable items that reference upgrade item details, recipe sheets that reference recipe details, and dyes that reference color details.</p>
+<p>Trying to insert an item like that results in an integrity constraint violation, because the referenced item doesn’t exist in the database. So what do you do? You insert the referenced entity first, and then insert the item that holds the reference.</p>
+<p>The opposite can also happen. Multiple combat items can reference the same upgrade item. Trying to insert the referenced upgrade item results in a duplicate key violation, because the referenced item already exists in the database. So what do you do? Some database engines provide an option to silently ignore duplicate key errors. For the ones that don’t provide that option, change the query to insert only if the key doesn’t exist already.</p>
+<p>Long story short… the code can (will) get pretty messy, and it’s not your fault.</p></div></blockquote>
+<p>oh god i saved myself that trouble by just not bothering to add constraints for upgrade_items and such. Id much rather toss a second SQL query to grab that bunch of info at my DB that making my data import systematics even more complicated than they already are.</p>
+<p>I mean, mapping the v1/item_details to a database scheme was already bad enough by itself.</p>
+<p><a href="http://gw2compendium.com/resources/items.png">http://gw2compendium.com/resources/items.png</a> <br>
+-cough-<br>
+this is not the final result as I noticed some mistakes with it, per se, all name/description/suffix tables have a composite primary key with a lang field instead of having a column for each lang version of the string in one row.<br>
+Also, that completely non working relationship between item_infusion_slot and item_armor, item_weapon and such has been replaced with a jointable between each of those 4. probably still not the most beautiful solition, but it does its job.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

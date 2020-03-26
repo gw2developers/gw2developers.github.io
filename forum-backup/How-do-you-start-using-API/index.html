@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>How do you start using API?</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/How-do-you-start-using-API/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">How do you start using API?</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/How-do-you-start-using-API
+</p>
+
+
+
+<h2 id="">DennisChrDk.9823:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-18T19:43:52+00:00">
+        18 Aug 2014
+    </time>
+</p>
+<p>
+<p>Hey guys</p>
+<p>I was hoping some of you guys could help me out a bit. I just started today looking into some stuff about the API and decided to implement some of it in some google spreadsheets that I have, instead of me manually having to updating the prices. So far, I’m just trying to import some data from GW2Spidy, then I might make it more advanced later on. But my knowledge about programming is very limited.</p>
+<p>So first of all, do anyone have any suggesting to maybe a website or a youtube channel where you could learn some of this basic stuff? Or maybe there is a place where I can see some excisting code from some gw2 related API?</p>
+<p>So this is the scrip I’ve so far, most of it is pretty much just a rip off from some guide, but I’ve added some more lines from the gw2spidy API v0.9. <a href="http://imgur.com/saif8we">http://imgur.com/saif8we</a><br>
+Right now I’m trying to add an auto refresh and a timer to when the prices were last updated? Could anyone help me with that? I tried adding a script with the response “price_last_changed” but it just gave me an error.<br>
+I’ve tried add an Image script as well, but whenever I use it I just get a link? I guess I’ll have to change the outpu, but how do I do that?</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-19T07:25:05+00:00">
+        19 Aug 2014
+    </time>
+</p>
+<p>
+<p>Hey!</p>
+<p>Read these first:</p>
+<p>API version 1: <a href="https://api.guildwars2.com/v1">https://api.guildwars2.com/v1</a><br>
+API version 2: <a href="https://api.guildwars2.com/v2">https://api.guildwars2.com/v2</a></p>
+<p>Note that gw2spidy does not use the official API. It uses the same web service that the game client itself uses to access trading post data. Which is not a supported scenario.</p></p>
+
+<h2 id="">DennisChrDk.9823:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-19T16:30:07+00:00">
+        19 Aug 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 19 2014 07:25AM"><a href="/forum/community/api/How-do-you-start-using-API/4308244">StevenL.3761:</a></cite></div><div class="quotey"><p>Hey!</p>
+<p>Read these first:</p>
+<p>API version 1: <a href="https://api.guildwars2.com/v1">https://api.guildwars2.com/v1</a><br>
+API version 2: <a href="https://api.guildwars2.com/v2">https://api.guildwars2.com/v2</a></p>
+<p>Note that gw2spidy does not use the official API. It uses the same web service that the game client itself uses to access trading post data. Which is not a supported scenario.</p></div></blockquote>
+<p>Thank you very much for the links, had not seen them before. I’ve actually been browsing the wiki for a while now, just to get an idea of what you would be able to extract from the API. <br>
+But a thing I can’t see is prices of the item? The only price I can find is the vendor price?</p></p>
+
+<h2 id="">Alcarin.9024:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-19T16:35:13+00:00">
+        19 Aug 2014
+    </time>
+</p>
+<p>
+<p>When writing code that relay on an API service, keep in mind that a connection to get data from a server is a cost (for you and for the server, in terms of hardware resource utilization and time), and you should always try to reduce as much as possible the cost of your application.<br>
+In your example, you are creating 4 connection to a server to know 4 information about an item. If you look at the url about that item, you see that you are asking to the server 4 time the same informations each time discarding all you get exept 1 piece of that ifnormations. This is a waste of resource, it’s not that much if you (for example) get information about 4 different items, but for each items you add 4 new connections, and if you want to know info about 100 items, you will make 400 connections, 1000 items=4000 connections.<br>
+Regarding time needed to get information, if every connection cost 200 ms of “idle of your program”, to get all information about a single item your program have to wait 800 ms, to get info about 4 items your program must wait 3200 ms (3,2 seconds), 100 items you have to wait 80 seconds. Reducing the amount of connection you programe idle time will be 1/4, so to get info about 100 items you only have to wait 20 seconds.</p>
+<p>In your specific situation, you should separate connections from data elaboration.<br>
+I would do so:<br>
+Create a function that get data from gw2spidy:<br>
+</p><pre><code>
+function GetItem(ItemID){
+    [...cut...]
+    return jsonObject
+}
+</code></pre>and then create a function for each data you need, passing the jsonObject to them:<br>
+<pre><code>
+function GetItemSellValue(jsonObject){
+    return (jsonObject.min_sale_unit_price /100)
+}
+</code></pre><p></p>
+<p>About help on programming: I don’t know much about google spreadsheet, if you want to learn javascript there are a lot of website with guides, personally I use <a href="http://www.w3schools.com">W3Schools</a> and <a href="https://developer.mozilla.org">MDN</a> as reference and some non-english for guides.<br>
+In this forum you could find a lot of examples on how to use GW2 API (not GW2Spidy API, GW2Spidy API are not developed by ArenaNet) but they are in a lot of different programming lenguage, I don’t know how much of them are in JavaScript.<br>
+You could find something in <a href="http://wiki.guildwars2.com/wiki/API:List_of_wrappers">GW2 API Wrapper List</a> or <a href="http://wiki.guildwars2.com/wiki/API:List_of_applications">List of Application that use GW2 API</a>.</p>
+<p>If you have problem with some piece of code, if you ask here and post or link to your code I’m sure that someone can help you!<br>
+Don’t use images if you are sharing your code to get help, if someone want to help you and want to try your code, they have to rewrite it all, they cannot copy&amp;paste it, use <a href="http://www.pastebin.com">pastebin</a> or <a href="http://www.jsfiddle.net">jsfiddle</a>) instead!</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-19T19:56:14+00:00">
+        19 Aug 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 19 2014 04:30PM"><a href="/forum/community/api/How-do-you-start-using-API/4309897">DennisChrDk.9823:</a></cite></div><div class="quotey"><p>But a thing I can’t see is prices of the item? The only price I can find is the vendor price?</p></div></blockquote>
+<p>You’re looking for these:</p>
+<ul>
+	<li><a href="https://api.guildwars2.com/v2/commerce/exchange">https://api.guildwars2.com/v2/commerce/exchange</a></li>
+	<li><a href="https://api.guildwars2.com/v2/commerce/listings">https://api.guildwars2.com/v2/commerce/listings</a></li>
+</ul></p>
+
+<h2 id="">DennisChrDk.9823:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-19T20:58:44+00:00">
+        19 Aug 2014
+    </time>
+</p>
+<p>
+<p>Well I havn’t really had much time today to look into all the things that you send me, but I’ve been looking at some of it for maybe an hour or two, justto get an idea of what to do<img src="/include/images/smilies/smile.png"></p>
+<p><a href="http://pastebin.com/Qc1UbmQr">http://pastebin.com/Qc1UbmQr</a></p>
+<blockquote><div class="citey"><cite title="Posted on August 19 2014 04:35PM"><a href="/forum/community/api/How-do-you-start-using-API/4309913">Alcarin.9024:</a></cite></div><div class="quotey"><p>In your example, you are creating 4 connection to a server to know 4 information about an item. If you look at the url about that item, you see that you are asking to the server 4 time the same informations each time discarding all you get exept 1 piece of that ifnormations.</p></div></blockquote>
+<p>I see, I tried make a new script, in order to minimize the connections but I didn’t really got it to work (try take a look at the link). So the first line i guess is the part getting the data for gw2spidy, while the last part is the function?</p>
+<blockquote><div class="citey"><cite title="Posted on August 19 2014 07:56PM"><a href="/forum/community/api/How-do-you-start-using-API/4310778">StevenL.3761:</a></cite></div><div class="quotey"><p>You’re looking for these:</p>
+<ul>
+	<li><a href="https://api.guildwars2.com/v2/commerce/exchange">https://api.guildwars2.com/v2/commerce/exchange</a></li>
+	<li><a href="https://api.guildwars2.com/v2/commerce/listings">https://api.guildwars2.com/v2/commerce/listings</a></li>
+</ul></div></blockquote>
+<p>Oh thanks didn’t see those, guess I’ll just change it when I get past the first initial part. But What jsonObject should I write? I doubte the line "var adjustedValue = (jsonObject.exchange /100); " is correct?</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-19T21:40:44+00:00">
+        19 Aug 2014
+    </time>
+</p>
+<p>
+<p>We don’t know what the JSON response will look like yet. We’re still waiting for more info on version 2 of the API and its release date.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-20T18:54:21+00:00">
+        20 Aug 2014
+    </time>
+</p>
+<p>
+<p>Just pretend that the /v2 stub doesn’t even exist, makes everything easier.</p></p>
+
+<h2 id="">DennisChrDk.9823:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-22T10:29:44+00:00">
+        22 Aug 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 19 2014 04:35PM"><a href="/forum/community/api/How-do-you-start-using-API/4309913">Alcarin.9024:</a></cite></div><div class="quotey"><p>In your specific situation, you should separate connections from data elaboration.<br>
+I would do so:<br>
+Create a function that get data from gw2spidy:<br>
+</p><pre><code>
+function GetItem(ItemID){
+    [...cut...]
+    return jsonObject
+}
+</code></pre>and then create a function for each data you need, passing the jsonObject to them:<br>
+<pre><code>
+function GetItemSellValue(jsonObject){
+    return (jsonObject.min_sale_unit_price /100)
+}
+</code></pre><p></p></div></blockquote>
+<p>Can anyone help me out with this? I’m not sure how to get this to work. I set up the entire spreadsheet now, and minimized the amount of data that I import to like 30 buy/sell prices, but once in a while it gives me the error and says that the “service” was called to many times?</p>
+<p>I just want it to update once ever hour (and maybe show what time it was updated), but I dont know how to do it myself. And can’t really find any guilds ect. online that shows how to do it?</p>
+<p>EDIT: Changed the code a little bit, added a utility sleep function, I guess that will help a little: <a href="http://pastebin.com/BBhAJHdX">http://pastebin.com/BBhAJHdX</a></p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-22T18:58:35+00:00">
+        22 Aug 2014
+    </time>
+</p>
+<p>
+<p>The point was that should have a single function that returns the entire response object. You have to do this in order to prevent your script from making multiple HTTP requests for the same json object.</p>
+<pre><code>
+function getItem(itemID) {
+    var myUrl = "http://www.gw2spidy.com/api/v0.9/json/item/" + escape(itemID);
+    var jsonData = UrlFetchApp.fetch(myUrl);
+    var jsonString = jsonData.getContentText();
+    return JSON.parse(jsonString).result;
+}
+
+var item = getItem(the_item_identifier);
+
+var sellValue = item.min_sale_unit_price;
+
+var salePriceChangeLastHour = item.sale_price_change_last_hour ;
+
+var buyValue = item.max_offer_unit_price;
+
+var offerPriceChangeLastHour = item.offer_price_change_last_hour;
+</code></pre></p>
+
+<h2 id="">Alcarin.9024:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-26T17:46:45+00:00">
+        26 Aug 2014
+    </time>
+</p>
+<p>
+<p>Here is an example of what are you asking: <a href="http://pastebin.com/XRruKP8f">http://pastebin.com/XRruKP8f</a></p>
+<p>Alternatively, you can adjust downloaded value directly in download function, as shown in this example: <a href="http://pastebin.com/MYkaF1jZ">http://pastebin.com/MYkaF1jZ</a></p>
+<p>In my examples I’ve stored final values in variables because I don’t know how you use them.</p></p>
+
+<h2 id="">DennisChrDk.9823:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-30T18:38:33+00:00">
+        30 Aug 2014
+    </time>
+</p>
+<p>
+<p>Never got to say this, but thank you very much for all the help guys. My spreadsheet is working like a charm, it’s much better compared to my old one were I had to type in everything manually<img src="/include/images/smilies/colondee.png"></p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

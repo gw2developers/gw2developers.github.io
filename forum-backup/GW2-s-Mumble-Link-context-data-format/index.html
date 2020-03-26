@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>GW2&#39;s Mumble Link &quot;context&quot; data format</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/GW2-s-Mumble-Link-context-data-format/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">GW2&#39;s Mumble Link &quot;context&quot; data format</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/GW2-s-Mumble-Link-context-data-format
+</p>
+
+
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-06T20:47:13+00:00">
+        06 Jul 2013
+    </time>
+</p>
+<p>
+<p>We know Mumble Link uses this data format:</p>
+<table>
+	<tbody><tr>
+		<th>Data format </th>
+		<th>Description </th>
+	</tr>
+	<tr>
+		<td> uint32_t </td>
+		<td> uiVersion </td>
+	</tr>
+	<tr>
+		<td> uint32_t </td>
+		<td> uiTick </td>
+	</tr>
+	<tr>
+		<td> float[ 3 ] </td>
+		<td> fAvatarPosition </td>
+	</tr>
+	<tr>
+		<td> float[ 3 ]  </td>
+		<td> fAvatarFront </td>
+	</tr>
+	<tr>
+		<td> float[ 3 ] </td>
+		<td> fAvatarTop </td>
+	</tr>
+	<tr>
+		<td> wchar_t[ 256 ] </td>
+		<td> name </td>
+	</tr>
+	<tr>
+		<td> float[ 3 ] </td>
+		<td> fCameraPosition </td>
+	</tr>
+	<tr>
+		<td> float[ 3 ] </td>
+		<td> fCameraFront </td>
+	</tr>
+	<tr>
+		<td> float[ 3 ] </td>
+		<td> fCameraTop </td>
+	</tr>
+	<tr>
+		<td> wchar_t[ 256 ] </td>
+		<td> identity / character name </td>
+	</tr>
+	<tr>
+		<td> uint32_t </td>
+		<td> context_len </td>
+	</tr>
+	<tr>
+		<td> byte[ 256 ] </td>
+		<td> context </td>
+	</tr>
+	<tr>
+		<td> wchar_t[ 2048 ] </td>
+		<td> description </td>
+	</tr>
+</tbody></table>
+<p>But what about the stuff inside context? GW2 writes context_len as 48 bytes, but what’s inside?</p>
+<p>Edit: See <a href="https://github.com/arenanet/api-cdi/blob/master/mumble.md">https://github.com/arenanet/api-cdi/blob/master/mumble.md</a></p></p>
+
+<h2 id="">Nithanim.5243:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-07T18:32:01+00:00">
+        07 Jul 2013
+    </time>
+</p>
+<p>
+<p>That  is what I found out while experimenting:<br>
+byte[ ] context = new byte[ 48 ];</p>
+<pre><code>context[0] //could possibly represent the region - 1 for American, 2 for European server
+context[4] //could match the server-id
+context[28] //map-id (for WvWvW: 94=Red; 95=Green; 96=Blue)</code></pre>
+<pre><code>
+world_id = byte[0]*1000+context[4]</code></pre>
+<pre><code>
+ </code></pre>
+<p><strong>edit:</strong><br>
+Assumptions/suggestions/some conclusion after a short period of further testing:<br>
+</p><pre><code>context[6]:</code></pre> overflow-server? it appears that 146=overflow; 159=normal<p></p>
+<pre><code>context[40]:</code></pre>
+<p>unknown | note: equals 128 in WvW (needs review)</p>
+<pre><code>context[7]:</code></pre>
+<p>unknown | note:  equals 37 in overflow, 224 in normal (for me at least; tested in lion’s arch); could somewhat be the id of the actual server working in background (needs review)</p>
+<pre><code>context[36]:</code></pre>
+<p>unknown | note: equals 158 when on miller-home-servers (my home) and 222 on gunnar (as guest) (if not in WvW or overflow) (tested in: gendarran, lion’s arch, bloodtide);  equals 5 in WvW; 4 in overflow (needs review)</p>
+<p><strong>edit2</strong><br>
+(hopefully) fixed: confusion<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">Khisanth.2948:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-07T23:27:48+00:00">
+        07 Jul 2013
+    </time>
+</p>
+<p>
+<p>Shouldn’t one of these be the layer?</p></p>
+
+<h2 id="">olih.6925:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-08T09:57:23+00:00">
+        08 Jul 2013
+    </time>
+</p>
+<p>
+<p>byte[4].byte[5].byte[6].byte[7]  == ip address of the map/server i think.<br>
+/ip in the chat window has the same number.</p>
+<p>edit:<br>
+byte[44]-byte[47] == uint32 and seems to be the build version of the game (cf <a href="https://api.guildwars2.com/v1/build.json">https://api.guildwars2.com/v1/build.json</a>)</p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-08T15:01:15+00:00">
+        08 Jul 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on July 08 2013 09:57AM"><a href="/forum/community/api/GW2-s-Mumble-Link-context-data-format/2368742">olih.6925:</a></cite></div><div class="quotey"><p>byte<sup class="footnote"><a href="#fn4">4</a></sup>.byte<sup class="footnote"><a href="#fn5">5</a></sup>.byte<sup class="footnote"><a href="#fn6">6</a></sup>.byte<sup class="footnote"><a href="#fn7">7</a></sup>  == ip address of the map/server i think.<br>
+/ip in the chat window has the same number.</p>
+<p>edit:<br>
+byte<sup class="footnote"><a href="#fn44">44</a></sup>-byte<sup class="footnote"><a href="#fn47">47</a></sup> == uint32 and seems to be the build version of the game (cf <a href="https://api.guildwars2.com/v1/build.json">https://api.guildwars2.com/v1/build.json</a>)</p></div></blockquote>
+<p>That seems to add up, so I added that above.</p>
+<p>Please note that I’m using square brackets to give array sizes, not position :P float[ 3 ] is an array of three floats, not a float at position 3! Thus Nithanim is confusing the heck out of me, even if I assume he means ints and not single bytes.</p>
+<hr>
+<p><strong>E:</strong> I’ve attached random dumps from Plains of Ashford, Black Citadel, Lion’s Arch, Heart of the Mists, Red, Blue, and Green Borderlands. Didn’t get any overflows.</p>
+<p>map_id seems off the charts for WvW.</p>
+<p>There seems to be something in byte 32, maybe another int? Everything else is 0 across the board.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-08T16:43:56+00:00">
+        08 Jul 2013
+    </time>
+</p>
+<p>
+<p>btw. the world_id is the current world_id, which means that you can also see on which overflow server you are<img src="/include/images/smilies/wink.png"></p>
+<p>(yes, lookin at you anet!)</p>
+<p>€: it doesn’t send the overflow world id, just a garbage value &lt;.&lt;</p></p>
+
+<h2 id="">olih.6925:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-08T16:45:11+00:00">
+        08 Jul 2013
+    </time>
+</p>
+<p>
+<p>Yeah, sorry for that<img src="/include/images/smilies/smile.png">.<br>
+For me, vizunah square : european server <br>
+For field not known :</p>
+<p>0 – 3 -&gt; uint32 ? value == 2 : so, maybe the region like you said, not really certain without more data<br>
+8 – 27 -&gt; always 0 ?<br>
+32 – 35 -&gt; uint32 ? 5 in pve, 9 cbe, 11 green map, 10 blue map, 12 red map. ?<br>
+40 – 43 -&gt; always 0 ?</p>
+<p>:edit: correction,  for 32-35</p></p>
+
+<h2 id="">Nithanim.5243:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-09T15:37:44+00:00">
+        09 Jul 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on July 08 2013 03:01PM"><a href="/forum/community/api/GW2-s-Mumble-Link-context-data-format/2370098">zeeZ.5713:</a></cite></div><div class="quotey"><p>Thus Nithanim is confusing the heck out of me, even if I assume he means ints and not single bytes.</p></div></blockquote>
+<p>Sorry for causing confusion…<br>
+I do actually mean single bytes.  I did only compare when which byte changes.<br>
+With byte[ 2 ] i mean the byte at position 2 in “context” as byte-array.</p>
+<p>PS: Editing my previous post.</p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-11T00:08:39+00:00">
+        11 Jul 2013
+    </time>
+</p>
+<p>
+<p>You guys did a good job tracking down most of it.</p>
+<p>Here’s the whole thing:<br>
+</p><pre><code>
+// uniquely identifies a map instance for mumble
+struct MumbleContext {
+    byte serverAddress[28]; // contains sockaddr_in or sockaddr_in6
+    unsigned mapId;
+    unsigned mapType;
+    unsigned shardId;
+    unsigned instance;
+    unsigned buildId;
+};
+</code></pre><p></p></p>
+
+<h2 id="">Wothor.4781:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-11T13:26:21+00:00">
+        11 Jul 2013
+    </time>
+</p>
+<p>
+<p>Thanks for the information<img src="/include/images/smilies/smile.png"><br>
+I might use this later on to overcome overflow server disparity for Positional Audio in CrossTalk (for Teamspeak), but I’m sure non-voip related applications will make much more interesting use of those bits.</p>
+<p>Might also help for the more-or-less-basic Anti-Spy Protection I’m looking into, but to leverage it to the next level it’d be helpful to have the home world id and possibly guild tag accessible. I’ve also been asked for the class to magically show as icon. While I’m totally fine with waiting for the API to reach those areas, I’ll just put it out there that I could spare you some network traffic by more extensively using idendity (note that game description would be unused yet, too), as mentioned in the Mumble Link description.</p>
+<p>For example breaking idendity [255] into char_name[x], char[3]guild_tag,  commander_and_whatever_flag[1], class[2], unsigned home_world_id.</p>
+<p>Could also be used for options with commander flags, like syncing priority speaker or assigning server/channel groups.</p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-06T17:22:36+00:00">
+        06 Aug 2013
+    </time>
+</p>
+<p>
+<p>In the latest patch, the mumble link was enhanced to provide more information about the character in the ‘identity’ field. Hopefully this extra information is useful for API developers.</p></p>
+
+<h2 id="">poke.3712:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-06T19:56:44+00:00">
+        06 Aug 2013
+    </time>
+</p>
+<p>
+<p>That’s very useful, thanks! Although it would be even better if there was some unique per account information so one could identify when a player switches the character. So either an account name, or some internal ID, or even a hash of anything account identifying would be very good.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-06T21:29:11+00:00">
+        06 Aug 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 06 2013 07:56PM"><a href="/forum/community/api/GW2-s-Mumble-Link-context-data-format/2569688">poke.3712:</a></cite></div><div class="quotey"><p>That’s very useful, thanks! Although it would be even better if there was some unique per account information so one could identify when a player switches the character. So either an account name, or some internal ID, or even a hash of anything account identifying would be very good.</p></div></blockquote>
+<p>I had this idea also in conjunction with our location tool but since unique IDs to identify user data are always problematic (<a href="http://www.h-online.com/open/news/item/Google-Chrome-to-do-away-with-unique-IDs-953601.html">ask Google…</a>) i guess we need to rely on user input.</p></p>
+
+<h2 id="">poke.3712:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-07T00:12:33+00:00">
+        07 Aug 2013
+    </time>
+</p>
+<p>
+<p>Well I don’t want something that could impose a security risk. Something like the account name would work fine. After all, the account name is not really secret; it is visible here in the forums too, and when you add someone to your friendlist using a character name (which is already in the data), then you also see the account name.</p></p>
+
+<h2 id="">Felicja.6891:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-07T01:51:03+00:00">
+        07 Aug 2013
+    </time>
+</p>
+<p>
+<p>Cliff, thank you for sharing with us the API and continually improving them.</p>
+<p>I know this may be a long shot, but…it would be fair to say that attempts to get MumbleLink to work on Mac OS X have been unsuccessful. <br>
+Is there any chance that you would be able to confirm with Transgaming that their cider wrapper of GW2 client for mac is actually executing the part of the Gw2 client code that is writing to a shared mapped memory “MumbleLink”?</p>
+<p>Also, would it be against the rules to scan the memory of the GW2 client itself and get the necessary values of the coordinates, given the MumbleLink is not working at present on Mac?</p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-07T03:07:41+00:00">
+        07 Aug 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 07 2013 01:51AM"><a href="/forum/community/api/GW2-s-Mumble-Link-context-data-format/2571699">Felicja.6891:</a></cite></div><div class="quotey"><p>Cliff, thank you for sharing with us the API and continually improving them.</p>
+<p>I know this may be a long shot, but…it would be fair to say that attempts to get MumbleLink to work on Mac OS X have been unsuccessful. <br>
+Is there any chance that you would be able to confirm with Transgaming that their cider wrapper of GW2 client for mac is actually executing the part of the Gw2 client code that is writing to a shared mapped memory “MumbleLink”?</p>
+<p>Also, would it be against the rules to scan the memory of the GW2 client itself and get the necessary values of the coordinates, given the MumbleLink is not working at present on Mac?</p></div></blockquote>
+<p>Sorry, I wouldn’t expect Mac support any time soon. The Mac version of Mumble uses a completely different transport mechanism. Even if you could tap into the Cider win32 emulation layer, and create a memory mapped file, the GW2 code responsible may simply be disabled for safety when running on Mac. We are just not setup to test and support this scenario at this time.</p>
+<p>It would be against our 3rd party app policy to scan the client in the manner you describe.</p></p>
+
+<h2 id="">Felicja.6891:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-07T08:50:47+00:00">
+        07 Aug 2013
+    </time>
+</p>
+<p>
+<p>Thanks Cliff, this is very helpful. I appreciate your swift response.:)</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-08T15:51:39+00:00">
+        08 Aug 2013
+    </time>
+</p>
+<p>
+<p>Cliff, could please you provide us with some information about the character sets which are allowed (or better: forbidden, since the PCRE will match only ASCII chars) in character names so that we could e.g. run a regexp on them in order to store them in a DB or use them in scripts/apps/websites in a XSS/hack safe manner?</p>
+<p>We know:</p>
+<ul>
+	<li>names are max 19 chars long<br>
+ * the <a href="https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet#RULE_.231_-_HTML_Escape_Before_Inserting_Untrusted_Data_into_HTML_Element_Content">most harmful chars</a>  (to HTML, also partly SQL) won’t ever appear, which are: &amp; &lt; &gt; " ’ / <br>
+ * possibly and hopefully all other non-letter chars are forbidden too, such as backticks `, the hash sign # etc.</li>
+</ul>
+<p>(dang, lists on this forum are so annoying &gt;.&lt;)</p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-08T18:44:10+00:00">
+        08 Aug 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 08 2013 03:51PM"><a href="/forum/community/api/GW2-s-Mumble-Link-context-data-format/2584603">smiley.1438:</a></cite></div><div class="quotey"><p>Cliff, could please you provide us with some information about the character sets which are allowed (or better: forbidden, since the PCRE will match only ASCII chars) in character names so that we could e.g. run a regexp on them in order to store them in a DB or use them in scripts/apps/websites in a XSS/hack safe manner</p></div></blockquote>
+<p>I assume you’re asking about the JSON in the identity structure? JSON is UTF-8, and so any valid UTF-8 character is possible. You’ll need to do whatever you need to do to store and safely present any data, though I can’t really think of any possible attacks related to the mumble data.</p>
+<p>It’s not clear to me how PCRE is related to any of this.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-08T19:58:39+00:00">
+        08 Aug 2013
+    </time>
+</p>
+<p>
+<p>Sorry, i should have asked more clear: how would i validate a GW2 character name. See, when the mumble link data is used on web services like the one, Heimdall and me provide, it’s possible that also hackers try to break stuff e.g. with REST clients etc.. So it’s essential to validate any incoming data and/or sanitize it – thats what i already do. The only thing i’m unsure about is the character name. Check out my updated location receiver script to see what i’m doing:</p>
+<p><a href="https://github.com/codemasher/gw2api-tools/blob/master/examples/gw2location-receiver.php">https://github.com/codemasher/gw2api-tools/blob/master/examples/gw2location-receiver.php</a></p></p>
+
+<h2 id="">poke.3712:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-10T02:48:58+00:00">
+        10 Aug 2013
+    </time>
+</p>
+<p>
+<p>I honestly can’t think of a good reason why you would want to validate a character name. Sanitizing data is not neccesary, if you pass it correctly. For databases use parameterized statements so that you don’t need to care about escaping ever; for HTML output escape control characters as usual.</p>
+<p>Validating input is not trivial, especially when it’s about names. Also note that <code>strlen</code> is not aware of multibyte strings while GW2 supports those pretty well (we even can use umlauts!). And I would be careful making assumptions about global restrictions when you can just see those that apply for you (e.g. in GW1 I couldn’t enter Kanjis or Hanzis while others could enter those region-specific characters).</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-10T03:34:22+00:00">
+        10 Aug 2013
+    </time>
+</p>
+<p>
+<p>As you can see, i already use a prepared statement which is already pretty safe to store the data, but i’m umm… aware of unaware users ^.^ The most harmful characters are already blacklisted in the preg_match(), so this should be fine. Good point though on strlen(), i changed it to mb_strlen() instead.</p></p>
+
+<h2 id="">Wothor.4781:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-29T20:19:32+00:00">
+        29 Aug 2013
+    </time>
+</p>
+<p>
+<p>So, I’m back from vacation and looking at the added info on idendity.<br>
+On first sight, it appears, world id and map id are duplicating the information from the context blob.<br>
+I’m just wondering if my original request, being the <strong>home</strong> world id (as opposed to guesting) got lost in the mail/translation.<br>
+Anti Spy won’t be possible without that, or a combination of smiley’s request for account name + a potentially upcoming API function to request that info for an account.</p>
+<p>Given the voicecom espionage issues folks complain about I’d just thought hey, I could help out with that and additionally add quite adequate protection of the mumble data, as has beeen requested.<br>
+Personally I can live fine not having that, just pointing out the addition isn’t opening new options for that and am wondering if I should shelve that idea altogether with osx/linux users being excluded and the hassle of a plugin installation.</p></p>
+
+<h2 id="">poke.3712:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-30T12:38:55+00:00">
+        30 Aug 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 29 2013 08:19PM"><a href="/forum/community/api/GW2-s-Mumble-Link-context-data-format/2729028">Wothor.4781:</a></cite></div><div class="quotey"><p>Anti Spy won’t be possible without that […]</p></div></blockquote>
+<p>Please note that the Mumble data can never be used as a safe authorization mechanism. It’s in a public memory location where I can write to from anywhere, so if I wanted to appear as someone else, I could easily do that, regardless of what information is included in the data.</p>
+<p>So if you want to make sure that e.g. the people accessing a world’s data are actually from that world, you will have to use some other mechanism instead. For example a login with a white list or something; or if we get OAuth logins, we might be able to use the GW2 account directly (that also might be the time when we get further account information).</p></p>
+
+<h2 id="">Wothor.4781:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-31T08:25:48+00:00">
+        31 Aug 2013
+    </time>
+</p>
+<p>
+<p>I was aware that anyone active in here could do that.<br>
+You could also have multiple accounts, then oauth bye bye.<br>
+It’s always just hurdles someone has to have the motivation and ability to break first.</p></p>
+
+<h2 id="">Caldrick.6920:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-31T17:26:11+00:00">
+        31 Aug 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on July 11 2013 12:08AM"><a href="/forum/community/api/GW2-s-Mumble-Link-context-data-format/2388565">Cliff Spradlin.3512:</a></cite></div><div class="quotey"><p>You guys did a good job tracking down most of it.</p>
+<p>Here’s the whole thing:<br>
+</p><pre><code>
+// uniquely identifies a map instance for mumble
+struct MumbleContext {
+    byte serverAddress[28]; // contains sockaddr_in or sockaddr_in6
+    unsigned mapId;
+    unsigned mapType;
+    unsigned shardId;
+    unsigned instance;
+    unsigned buildId;
+};
+</code></pre><p></p></div></blockquote>
+<p>Cliff,<br>
+  Would it be possible to add in which floor the character is currently at?  Each map seems to have different distances between floors, and some floor distances don’t appear to be constant on some maps.</p>
+<p>It looks like they are divided into 1000 inch increments from the couple of maps that I’ve looked at.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-02-05T16:49:50+00:00">
+        05 Feb 2014
+    </time>
+</p>
+<p>
+<p>Now that the world/map display in friendlist etc. have been fixed, any chance that this will be also fixed for the mumble link data? I still receive “garbage” values when in WvW like 2147483655 for RoF borderland and 3221225491 for the EoTM instance i’ve been. Can’t you just return the actual home world id for players in WvW and overflows (e.g. 2005 in my case)?</p></p>
+
+<h2 id="">Thuron.5648:</h2>
+<p class="post-meta">
+    <time datetime="2014-02-07T20:24:42+00:00">
+        07 Feb 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 05 2014 04:49PM"><a href="/forum/community/api/GW2-s-Mumble-Link-context-data-format/3598025">smiley.1438:</a></cite></div><div class="quotey"><p>Now that the world/map display in friendlist etc. have been fixed, any chance that this will be also fixed for the mumble link data? I still receive “garbage” values when in WvW like 2147483655 for RoF borderland and 3221225491 for the EoTM instance i’ve been. Can’t you just return the actual home world id for players in WvW and overflows (e.g. 2005 in my case)?</p></div></blockquote>
+<p>This!!! I tried to use those values for a WvW application a few days ago, but couldn’t because of the garbage values. Would be amazing if we can get the world-id inside WvW too.</p></p>
+
+<h2 id="">Reincarnated.1754:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-26T18:38:19+00:00">
+        26 Aug 2014
+    </time>
+</p>
+<p>
+<p>I done a little program to help me remember some of the events I have done each day.<br>
+<a href="https://www.dropbox.com/s/48vrruqyilizt4y/Boss%20Timer.rar?dl=0">https://www.dropbox.com/s/48vrruqyilizt4y/Boss%20Timer.rar?dl=0</a></p>
+<p>There is a map section that uses the API. Helps me in WvW</p>
+<p>I have found *identity * to be:<br>
+{"name": “Palingenesis”,“profession”: 6,“map_id”: 18,“world_id”: 268435465,“team_color_id”: 0,“commander”: false}</p>
+<p><strong>name</strong> — that straight forward<img src="/include/images/smilies/smile.png"><br>
+<strong>profession</strong> — I think 1=Guardian, 2=Warrior, 3=Engineer, 4=Ranger, 5=Thief, 6=Elementalist, 7=Mesmer, 8=Necromancer.<br>
+<strong>map_id</strong> — this works with <a href="https://api.guildwars2.com/v1/maps.json?map_id=18">https://api.guildwars2.com/v1/maps.json?map_id=18</a><br>
+<strong>world_id</strong> — this I don’t know, any one able to help with the number given here? (268435465)<br>
+<strong>team_color_id</strong> — I think 0=Red, 1=Green, 2=Blue.<br>
+<strong>commander</strong> — <em><strong>true</strong></em> if you are commanding.</p>
+<p>So do anyone know what the <strong>world_id</strong> number represents?</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-26T20:10:51+00:00">
+        26 Aug 2014
+    </time>
+</p>
+<p>
+<p>The world_id is (or should be) your home world id which can (could) be assigned to <a href="https://api.guildwars2.com/v1/world_names.json">https://api.guildwars2.com/v1/world_names.json</a> . However since the megaservers were introduced it’s basically messed up <del>and will only return usable values in case you’re in WvW</del>.</p>
+<p>The team_color_id value isn’t 0/1/2 but 0 for neutral and the actual color_id from <a href="https://api.guildwars2.com/v1/colors.json">https://api.guildwars2.com/v1/colors.json</a> for red/blue/green.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-27T17:22:01+00:00">
+        27 Aug 2014
+    </time>
+</p>
+<p>
+<p>268,435,465 decimal is 10 00 00 09 hexadecimal. Does that number ever change? What happens when you guest on another world?</p></p>
+
+<h2 id="">draos.9574:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-28T10:29:34+00:00">
+        28 Aug 2014
+    </time>
+</p>
+<p>
+<p>The world_id is broken with the megaserver system. Only working in wvw but there which some problems.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-29T00:23:54+00:00">
+        29 Aug 2014
+    </time>
+</p>
+<p>
+<p>@Devs:</p>
+<p>Will there be an update to the context data to reflect the changes of the commander icon colors? (like commander: 0 = off, 1 = blue, 2= red, …)<br>
+Also: can you please fix and/or explain the “garbage” values which are currently returned as world_id?</p></p>
+
+<h2 id="">meh.6784:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-01T13:20:35+00:00">
+        01 Sep 2014
+    </time>
+</p>
+<p>
+<p>The world_id seems to be broken in WvW as well.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-01T14:22:12+00:00">
+        01 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 01 2014 01:20PM"><a href="/forum/community/api/GW2-s-Mumble-Link-context-data-format/4355612">meh.6784:</a></cite></div><div class="quotey"><p>The world_id seems to be broken in WvW as well.</p></div></blockquote>
+<p>Right. I forgot that the world_id was always broken in WvW, so this value is basically useless now in all cases.</p></p>
+
+<h2 id="">meh.6784:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-01T14:40:15+00:00">
+        01 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 01 2014 02:22PM"><a href="/forum/community/api/GW2-s-Mumble-Link-context-data-format/4355738">smiley.1438:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 01 2014 01:20PM"><a href="/forum/community/api/GW2-s-Mumble-Link-context-data-format/4355612">meh.6784:</a></cite></div><div class="quotey"><p>The world_id seems to be broken in WvW as well.</p></div></blockquote>
+<p>Right. I forgot that the world_id was always broken in WvW, so this value is basically useless now in all cases.</p></div></blockquote>
+<p>Aww that sucks, hope they fix it so I can find the world automatically from my Overwolf app.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-09-01T14:58:59+00:00">
+        01 Sep 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 01 2014 02:40PM"><a href="/forum/community/api/GW2-s-Mumble-Link-context-data-format/4355766">meh.6784:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 01 2014 02:22PM"><a href="/forum/community/api/GW2-s-Mumble-Link-context-data-format/4355738">smiley.1438:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on September 01 2014 01:20PM"><a href="/forum/community/api/GW2-s-Mumble-Link-context-data-format/4355612">meh.6784:</a></cite></div><div class="quotey"><p>The world_id seems to be broken in WvW as well.</p></div></blockquote>
+<p>Right. I forgot that the world_id was always broken in WvW, so this value is basically useless now in all cases.</p></div></blockquote>
+<p>Aww that sucks, hope they fix it so I can find the world automatically from my Overwolf app.</p></div></blockquote>
+<p>soon™</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-06T11:28:16+00:00">
+        06 Oct 2014
+    </time>
+</p>
+<p>
+<p>Has anybody gathered any new information over the last couple of weeks? I already know that the value of “world_id” is now set to the same value as “shardId” of struct “MumbleContext”. It appears that this value is to be used as a bit mask, not an actual ID. I can confirm that the “shardId” and “worldId” change as you move between different parts of the game, but I haven’t cracked the pattern yet.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-06T17:42:34+00:00">
+        06 Oct 2014
+    </time>
+</p>
+<p>
+<p>Some shard_id values that I recorded so far (logged in from the Ring of Fire server):</p>
+<p>10000000000000000000000000000111, Eternal Battlegrounds<br>
+11000000000000000000000000000101, Edge of the Mists<br>
+10000000000000000000000000000111, Borderlands<br>
+00010000000000000000000000000100, Dry Top<br>
+00010000000000000000000000000001, Queensdale<br>
+00010000000000000000000000000001, Gendarran Fields<br>
+00010000000000000000000000001011, Harathi Hinterlands<br>
+00010000000000000000000000000001, Lornar’s Pass<br>
+00010000000000000000000000001010, Divinity’s Reach<br>
+00010000000000000000000000001001, Lion’s Arch<br>
+00010000000000000000000000000001, The Grove<br>
+00010000000000000000000000000010, Rata Sum<br>
+00010000000000000000000000000001, Black Citadel<br>
+00010000000000000000000000000001, Hoelbrak<br>
+00010000000000000000000000000001, Southsun Cove<br>
+00010000000000000000000000011111, Sparkfly Fen<br>
+00010000000000000000000000000011, Straits of Devastation<br>
+00010000000000000000000000000001, Caledon Forest<br>
+00000000000000000000011111010101, Twilight Arbor</p>
+<p>There is definitely a pattern here. I’m just not seeing it. Maybe if we can complete the data for all maps.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-06T17:52:15+00:00">
+        06 Oct 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 06 2014 05:42PM"><a href="/forum/community/api/GW2-s-Mumble-Link-context-data-format/4469768">StevenL.3761:</a></cite></div><div class="quotey"><p>00000000000000000000011111010101, Twilight Arbor</p></div></blockquote>
+<p>11111010101 → 2005 decimal which is RoF’s world_id (coincidence?)</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-06T18:15:38+00:00">
+        06 Oct 2014
+    </time>
+</p>
+<p>
+<p>That makes sense. Dungeons are instanced, so they wouldn’t put them on a megaserver shard.</p>
+<p>I still don’t know about the other maps though.</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-06T21:04:35+00:00">
+        06 Oct 2014
+    </time>
+</p>
+<p>
+<p>The leftmost bits look somewhat like a continent ID.</p>
+<p>0000 → dungeons (and maybe other instances as well)<br>
+0001 → Tyria<br>
+1000 → WvW<br>
+1100 → EotM</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-12T12:25:21+00:00">
+        12 Oct 2014
+    </time>
+</p>
+<p>
+<p>Could the first 4 bits actually be a map type instead of a continent ID? What makes EotM different from other WvW maps?</p>
+<p>0000 → Instance<br>
+0001 → PvE<br>
+1000 → WvW<br>
+1100 → WvW (EotM)<br>
+???? → PvP</p>
+<p>The MumbleContext struct has a mapType property that may come in use. I don’t have any data on it though.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-10-12T21:26:57+00:00">
+        12 Oct 2014
+    </time>
+</p>
+<p>
+<p>Some map types that I was able to gather (MumbleContext mapType):</p>
+<p>2 = PvP maps<br>
+4 = Instanced map (dungeons, story, home instance, activity)<br>
+5 = PvE (all explorable zones except Dry Top)<br>
+9 = Eternal Battlegrounds<br>
+10 = Blue Borderlands<br>
+11 = Green Borderlands<br>
+12 = Red Borderlands<br>
+15 = EotM<br>
+16 = Dry Top</p>
+<p>I wouldn’t be surprised if there are more map types, one for every number not already on my list (1, 3, 6, 7, 8 ,13, 14).</p></p>
+
+<h2 id="">Reincarnated.1754:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-31T20:30:14+00:00">
+        31 Mar 2015
+    </time>
+</p>
+<p>
+<p><strong>identity</strong> has been updated.<br>
+They added <strong>race</strong> and <strong>fov</strong></p>
+<p><strong>race:</strong><br>
+0 = Asura<br>
+1 = Charr<br>
+2 = Human<br>
+3 = Norn<br>
+4 = Sylvari</p>
+<p>I asume <strong>fov</strong> is Field of View, can some one confirm?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-31T23:23:57+00:00">
+        31 Mar 2015
+    </time>
+</p>
+<p>
+<p>Yeah, fov is the current field of view.</p></p>
+
+<h2 id="">aRestless.6213:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-09T20:19:24+00:00">
+        09 Apr 2015
+    </time>
+</p>
+<p>
+<p>Just to be save: Are we talking about the horizontal, vertical, or diagonal field of view?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-09T21:49:18+00:00">
+        09 Apr 2015
+    </time>
+</p>
+<p>
+<p>Should be the vertical FOV.</p></p>
+
+<h2 id="">MentalFS.2589:</h2>
+<p class="post-meta">
+    <time datetime="2015-04-14T19:57:08+00:00">
+        14 Apr 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 31 2015 08:30PM"><a href="/forum/community/api/GW2-s-Mumble-Link-context-data-format/4936134">Reincarnated.1754:</a></cite></div><div class="quotey"><p><strong>race:</strong><br>
+0 = Asura<br>
+1 = Charr<br>
+2 = Human<br>
+3 = Norn<br>
+4 = Sylvari</p></div></blockquote>
+<p>No new race alphabetically placed before Sylvari <strong>confirmed</strong>. Conveniently, there are races whose name starts with letters like <strong>T</strong>…</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

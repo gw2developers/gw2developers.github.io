@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Let&#39;s talk about permissions</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Let-s-talk-about-permissions/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Let&#39;s talk about permissions</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Let-s-talk-about-permissions
+</p>
+
+
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-06T23:57:04+00:00">
+        06 Aug 2015
+    </time>
+</p>
+<p>
+<p>Currently the API keys have only a few permissions — account, characters, inventories and tradingpost. The intent behind permissions is to allow users to withhold portions of their account data when interacting with third-party applications. The individual endpoints are grouped functionally into coarse-grain permissions to prevent information overload.</p>
+<p>We’ve got plans for quite a few more authenticated endpoints, and I wanted to get some opinions on some new scopes. The following are my rough notes for the API end-game (e.g., all permissions and authenticated endpoints we’ll ever have).</p>
+<p>I’m mostly looking for any kind of suggestions/feedback regarding which new endpoints require which scopes, and anything I’ve forgotten or left out. There’s a couple of oddities (recipe unlocks) which could fit into a handful of categories (inventories makes sense for e.g., legendary tracker, but semantically unlocks/progression makes more sense). And I’m not really yet happy with some of the new permission names.</p>
+<p>Anyway, the notes so far —</p>
+<p><strong>account</strong><br>
+<em>“Your account display name, ID, home world, and list of guilds. Required permission.”</em></p>
+<ul>
+	<li>required</li>
+</ul>
+<p><strong>characters</strong><br>
+<em>“Basic information about your characters.”</em></p>
+<ul>
+	<li>list characters</li>
+	<li>view basic character info</li>
+</ul>
+<p><strong>inventories</strong><br>
+<em>“Your account bank, material storage, and character inventories.”</em></p>
+<ul>
+	<li>account bank, material storage</li>
+	<li>character inventories</li>
+	<li>maybe recipe unlocks?</li>
+</ul>
+<p><strong>tradingpost</strong><br>
+<em>“Your Trading Post transactions.”</em></p>
+<ul>
+	<li>transaction history</li>
+	<li>current transactions</li>
+	<li>gold/items available for pickup</li>
+</ul>
+<p><strong>unlocks/wardrobe/fashion</strong> (name TBD)<br>
+<em>“Your wardrobe unlocks and currently equipped skins.”</em></p>
+<ul>
+	<li>skin/dye/mail carrier/finisher/mini/etc unlocks</li>
+	<li>maybe currently equipped skins?</li>
+	<li>maybe recipe unlocks?</li>
+</ul>
+<p><strong>mail</strong><br>
+<em>“Received in-game mail.”</em></p>
+<ul>
+	<li>in-game mail</li>
+</ul>
+<p><strong>progression</strong> (name TBD)<br>
+<em>“Your account-bound unlocks, timers, and progress.”</em></p>
+<ul>
+	<li>specialiation unlock progress</li>
+	<li>mastery progress</li>
+	<li>account achievements</li>
+	<li>world completion progression</li>
+	<li>daily dungeon/fractal reset progress</li>
+	<li>story progress, selected order, etc</li>
+</ul>
+<p><strong>pvp</strong><br>
+<em>“Your PvP stats, match history, reward track progression, and custom arena details.”</em></p>
+<ul>
+	<li>match history</li>
+	<li>custom arena state</li>
+	<li>reward track progression</li>
+</ul>
+<p><strong>guilds</strong><br>
+<em>“Guilds’ rosters, history, and MOTDs for all guilds you are a leader of.”</em></p>
+<ul>
+	<li>roster</li>
+	<li>ranks</li>
+	<li>event log</li>
+	<li>upgrades</li>
+	<li>motd</li>
+</ul>
+<p><strong>builds</strong><br>
+<em>“Your currently equipped specializations, traits, skills and equipment for all game modes.”</em></p>
+<ul>
+	<li>equipped specializations/traits</li>
+	<li>equipped skills</li>
+	<li>current equipment</li>
+</ul>
+<p><strong>wallet</strong><br>
+<em>“Your account’s wallet.”</em></p>
+<ul>
+	<li>…wallet</li>
+</ul>
+<p>EDIT: scrap chat for now; that’s months away still.</p>
+<p><strong>contacts</strong><br>
+<em>“Read and write access to your contacts list.”</em></p>
+<ul>
+	<li>read access to friends/blocks, maybe also write access.</li>
+</ul>
+<p><strong>wvw</strong><br>
+<em>“Your WvW level and mastery point assignments.</em></p>
+<ul>
+	<li>puts wvw_level into the /v2/account response.</li>
+	<li>grants access to /v2/characters/:id/wvw_masteries (or something along those lines).</li>
+</ul></p>
+
+<h2 id="">Pilot.6094:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-07T01:31:02+00:00">
+        07 Aug 2015
+    </time>
+</p>
+<p>
+<p>One thing I strongly urge you consider before expanding permissions is a means for 3rd party apps to specify a required set of privileges. As it is, our site has to display lengthy instructions for end users about how to create a key with the appropriate permissions. It is a challenge from the start because our end users don’t even know what API stands for. If privileges expand (as they tend to do), it is going to greatly hinder our growth without a system in place to manage it.</p>
+<p>We should be able to set the required permissions for our Apps to help users through the process. There are countless systems that do this today. I know an OAuth type model is out, due to ANet management preferences so how about a manifest model like Google Play, iTunes, Windows App Store, Overwolf etc. etc?</p>
+<p>1) We register our Apps with ANet and upload an XML manifest specifying the required permissions. <br>
+2) The ANet account key page would have a dropdown that allows the end user to choose the App from a list for which they want to generate a key.<br>
+3) ANet processes the manifest and checks the requested permission boxes, making them all read only. (Better yet let the manifest specify Required or Optional permissions)<br>
+4) The user can choose to accept or decline. The key is generated the key  if they accept, which they can copy it as usual.</p>
+<p>This would be a very simple fix, for a major adoption hindrance. The added benefit of this is that ANet can build up a list set of registered 3rd party Apps and track adoption.</p>
+<p>We need a way to specify required permissions to allow as many end users to complete the process as possible.</p></p>
+
+<h2 id="">Anonanon.5412:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-07T03:58:53+00:00">
+        07 Aug 2015
+    </time>
+</p>
+<p>
+<p>I was just thinking the other day that more MMOs need to have a phone app that lets you chat with friends and guild mates, on top of having basic “armory” functionality.</p>
+<p>So to add to your guild chat read/write capabilities, please extend that to the entirety of our contact lists. This includes choosing which /g chat to join (basically changing which guild to rep straight from the phone), being able to chat with guild mates, whispering users, whispering friends, contact adding, contact renaming, contact blocking, block list management.</p>
+<p>I think this is quite important to the game, it could prove to be very useful if something comes up in real life and you need to let your guild know ASAP that you’re going to be late for the guild mission reset<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">MatHack.4316:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-07T05:35:19+00:00">
+        07 Aug 2015
+    </time>
+</p>
+<p>
+<p>The list looks very solid and inclusive, here are the few comments I have:</p>
+<p><strong>unlocks/wardrobe/fashion</strong> (name TBD)</p>
+<ul>
+	<li>I would suggest <ins>skins</ins> as the name, all the things listed are basicly skins for a certain item (armor skins, mini skins, mail carrier skin). Dyes are so tightly related to armor skins that I believe most users would assume this to be included with this permission, and should not warrant changing the name to refect dyes are also included in this permission.</li>
+	<li>I think the current equipped skins should be listed under <ins>characters</ins>, the current visual representation of a character would be something that is basic to a character. It’s pretty much the first thing people see in-game when they look at a character.</li>
+	<li>Recipe unlocks are kinda weird in this endpoint, the rest is all about visual ‘effects’, I think <ins>inventories</ins> would be a more logical endpoint. The main purpose for recipe unlocks I see at the moment would be checking what the user can do/craft with his/her accumulated materials. You would need the <ins>inventories</ins> permission for that anyway, so I would put recipe unlocks under there as well.</li>
+</ul>
+<p><strong>progression</strong> (name TBD)</p>
+<ul>
+	<li><ins>progression</ins> sounds like a good descriptive name, I think it’s a solid choice.</li>
+	<li>WvW ranks would be under here as well, I guess? Or does this merit a new permission <ins>wvw</ins>? Would it make more sense if we split it up in advance in case there would every be more wvw related stuff bound to your account/characters?</li>
+</ul></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-07T06:05:23+00:00">
+        07 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 07 2015 01:31AM"><a href="/forum/community/api/Let-s-talk-about-permissions/5354626">Pilot.6094:</a></cite></div><div class="quotey"><p>We need a way to specify required permissions to allow as many end users to complete the process as possible.</p></div></blockquote>
+<p>That’s gonna be one hell of a dropdown menu :P Alternatively you could provide a way to generate some kind of string (like an encoded bitmask or json) that contains the permissions you’re asking for that the user can copy and paste to the key generation page to auto-select them.</p></p>
+
+<h2 id="">Nicsword.3956:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-07T14:39:53+00:00">
+        07 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 07 2015 05:35AM"><a href="/forum/community/api/Let-s-talk-about-permissions/5354967">MatHack.4316:</a></cite></div><div class="quotey"><p><strong>progression</strong> (name TBD)</p>
+<ul>
+	<li><ins>progression</ins> sounds like a good descriptive name, I think it’s a solid choice.</li>
+	<li>WvW ranks would be under here as well, I guess? Or does this merit a new permission <ins>wvw</ins>? Would it make more sense if we split it up in advance in case there would every be more wvw related stuff bound to your account/characters?</li>
+</ul></div></blockquote>
+<p>I like the idea of the WvW ranks.  Have statistics that tell you how many of your guild mates mastered a particular trait.</p></p>
+
+<h2 id="">Pilot.6094:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-07T15:39:29+00:00">
+        07 Aug 2015
+    </time>
+</p>
+<p>
+<p>Passing in a bit mask would be preferred but ANet seems to have ruled that out as they don’t want us direct linked to the GW2 account site. I’m open to anything that will help end users and adoption.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-07T17:05:31+00:00">
+        07 Aug 2015
+    </time>
+</p>
+<p>
+<p>RE: Fixed permission sets.</p>
+<p>Previously I’ve felt that, with only four permissions, it probably wasn’t needed. Looking at this list though, I’m starting to change my opinion and agree that we do need some way to make this a bit more straightforward.</p>
+<p>Providing a standard request permissions like is strictly out (and I realize that most everyone already links to the API key page — which redirects through login), so I think the best we can do is either to provide a way to copy-paste permissions presets from a site, or to provide a way for sites to register presets somehow.</p>
+<p>Anyway, I don’t want to get too far off-topic; so let’s <em>table</em> this for now.</p>
+<blockquote><div class="citey"><cite title="Posted on August 07 2015 03:58AM"><a href="/forum/community/api/Let-s-talk-about-permissions/5354840">Anonanon.5412:</a></cite></div><div class="quotey"><p>So to add to your guild chat read/write capabilities, please extend that to the entirety of our contact lists. This includes choosing which /g chat to join (basically changing which guild to rep straight from the phone), being able to chat with guild mates, whispering users, whispering friends, contact adding, contact renaming, contact blocking, block list management.</p></div></blockquote>
+<p>That’s actually not a bad idea — now that I think about it, we can actually do read/write contact management stuff from the API. I kind of hesitate to put that under the “chat” permission (maybe “contacts” instead?).</p>
+<p>I’m definitely not going to allow whispering arbitrary users via API though. Gold sellers in HotM are already annoying. The best I can do is the ability to whisper people who have added you as a friend, and even that’s not a certainty (needs internal discussion). Personally, I think that would provide a reasonable balance.</p>
+<blockquote><div class="citey"><cite title="Posted on August 07 2015 05:35AM"><a href="/forum/community/api/Let-s-talk-about-permissions/5354967">MatHack.4316:</a></cite></div><div class="quotey"><p>I think the current equipped skins should be listed under <ins>characters</ins>, the current visual representation of a character would be something that is basic to a character.</p></div></blockquote>
+<p>Hmm, that seems pretty reasonable. It fixes the ambiguity problem wherein both “inventories” and “fashion/unlocks/skins” provided access to the same data.</p>
+<blockquote><div class="citey"><cite title="Posted on August 07 2015 05:35AM"><a href="/forum/community/api/Let-s-talk-about-permissions/5354967">MatHack.4316:</a></cite></div><div class="quotey"><p>WvW ranks would be under here as well, I guess? Or does this merit a new permission <ins>wvw</ins>? Would it make more sense if we split it up in advance in case there would every be more wvw related stuff bound to your account/characters?</p></div></blockquote>
+<p>Hmm, the only bits I know of are your current WvW rank and chosen WvW masteries. I don’t know what our future plans are, but in the recent desert borderlands playtest I didn’t see anything new we’d expose via authenticated API, at least. If the current implementation stands (click a map icon to view upgrades) there’s a good case to be made for providing access current objective upgrades.</p>
+<p>I’ve been looking for a place to put the WvW rank though, and since we’ve already got permissions for PvE (progression) and PvP (pvp), it would be symmetrical to have one for WvW too. I dunno.</p></p>
+
+<h2 id="">MatHack.4316:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-07T17:35:19+00:00">
+        07 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 07 2015 05:05PM"><a href="/forum/community/api/Let-s-talk-about-permissions/5356239">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Hmm, the only bits I know of are your current WvW rank and chosen WvW masteries. I don’t know what our future plans are, but in the recent desert borderlands playtest I didn’t see anything new we’d expose via authenticated API, at least. If the current implementation stands (click a map icon to view upgrades) there’s a good case to be made for providing access current objective upgrades.</p>
+<p>I’ve been looking for a place to put the WvW rank though, and since we’ve already got permissions for PvE (progression) and PvP (pvp), it would be symmetrical to have one for WvW too. I dunno.</p></div></blockquote>
+<p>Just to clarify: I meant theoretical far future, not the coming stuff from HoT. I was speculating/theorizing there might be more account/character bound wvw stuff in the (far) future. This also ties in with what you are saying about splitting the playmodes into different permissions. Better to split it now, in case we might need it later.</p></p>
+
+<h2 id="">Devilsown.9376:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-23T05:48:25+00:00">
+        23 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 06 2015 11:57PM"><a href="/forum/community/api/Let-s-talk-about-permissions/5354500">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p><strong>guilds</strong><br>
+<em>“Guilds’ rosters, history, and MOTDs for all guilds you are a member of.”</em></p>
+<ul>
+	<li>roster</li>
+	<li>ranks</li>
+	<li>event log</li>
+	<li>upgrades</li>
+	<li>motd</li>
+</ul>
+<p><strong>chat</strong><br>
+<em>“Read and write access to your guilds’ chat.”</em></p>
+<ul>
+	<li>read/write access to guild chat</li>
+</ul></div></blockquote>
+<p>That’s a little problematical, because it affects also other players. Every Guild Member has to trust every other Member that he/she don’t share his/her token with dubious webpages or archive every writen word to a DB, even he/she is offline.<br>
+This should need something like a allow/disallow from a guildleader and the status should be displayed under /v2/guild/id or (much better) somewhere ingame.</p></p>
+
+<h2 id="">Archomeda.6472:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-23T17:07:01+00:00">
+        23 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 23 2015 05:48AM"><a href="/forum/community/api/Let-s-talk-about-permissions/5407470">Devilsown.9376:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 06 2015 11:57PM"><a href="/forum/community/api/Let-s-talk-about-permissions/5354500">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p><strong>guilds</strong><br>
+<em>“Guilds’ rosters, history, and MOTDs for all guilds you are a member of.”</em></p>
+<ul>
+	<li>roster</li>
+	<li>ranks</li>
+	<li>event log</li>
+	<li>upgrades</li>
+	<li>motd</li>
+</ul>
+<p><strong>chat</strong><br>
+<em>“Read and write access to your guilds’ chat.”</em></p>
+<ul>
+	<li>read/write access to guild chat</li>
+</ul></div></blockquote>
+<p>That’s a little problematical, because it affects also other players. Every Guild Member has to trust every other Member that he/she don’t share his/her token with dubious webpages or archive every writen word to a DB, even he/she is offline.<br>
+This should need something like a allow/disallow from a guildleader and the status should be displayed under /v2/guild/id or (much better) somewhere ingame.</p></div></blockquote>
+<p>I agree. Although I’m pretty sure the devs are aware of this, it can’t hurt to reiterate it. Having access to the guild chat sounds really nice and it’s something that most people want (myself included). But it should be limited by new guild permissions. Maybe even separating the read and write access. If your account does not have sufficient permissions set by the guild leader, you’re out of luck.</p>
+<p>On a similar note, even though this is not correct place to ask, but if this will be (eventually) added, I would like to be able to create more than 10 ranks. If the API permission gets added, I can imagine that leaders want to have more different ranks to allow/disallow certain people, even though the rank itself might be similar.<br>
+Also, “Admin Lower Ranks” should really be revisited (separate the ability to invite, promote/demote and kick for example). I really hope that the people who are responsible for the guild system are aware of this.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-23T20:22:26+00:00">
+        23 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 23 2015 05:48AM"><a href="/forum/community/api/Let-s-talk-about-permissions/5407470">Devilsown.9376:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 06 2015 11:57PM"><a href="/forum/community/api/Let-s-talk-about-permissions/5354500">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p><strong>guilds</strong><br>
+<em>“Guilds’ rosters, history, and MOTDs for all guilds you are a member of.”</em></p></div></blockquote>
+<p>That’s a little problematical, because it affects also other players. Every Guild Member has to trust every other Member that he/she don’t share his/her token with dubious webpages or archive every writen word to a DB, even he/she is offline.<br>
+This should need something like a allow/disallow from a guildleader and the status should be displayed under /v2/guild/id or (much better) somewhere ingame.</p></div></blockquote>
+<p>That was a typo on my part. The description for the guilds permission actually reads “guilds you a a leader of”.</p>
+<p>Until we get a checkbox in the guild permission system only guild leaders will be able to use the authenticated /v2/guild endpoints.</p>
+<p>(EDIT: My previous response RE: chat permissions was not constructive enough; apologies)</p>
+<p>For the chat endpoint, I’m somewhat opposed to restricting its access behind a guild permission because it seems to be a technical solution to a social issue. I’d originally imagined the chat to be self-policing: if someone was abusing it (where “abuse” is defined by the guild), the guild can just kick them. Having an explicit whitelist seems a bit silly to me — the current state is that guild chat is an implicit grant. It makes much more sense for the /v2/guild endpoints whose functionality is not diminished by having only one person be able to access them.</p>
+<p>In any case, the chat stuff will take a significant effort to implement; as such we’ve got plenty of time to discuss the finer points of it. I think it would be best to start a new thread specifically for the implications of the chat endpoint.</p></p>
+
+<h2 id="">das Keks.5403:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-23T22:20:58+00:00">
+        23 Aug 2015
+    </time>
+</p>
+<p>
+<p>A nice thing for the <strong>inventories</strong> API would be a flag for each item’s binding.</p>
+<p>So you could calculate how much gold you could get if you’d sell all your items. Of course that doesn’t work with account bound or soul bound items so you’d need some flag to see if its already bound the the account.</p></p>
+
+<h2 id="">Archomeda.6472:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-24T02:59:14+00:00">
+        24 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 23 2015 08:22PM"><a href="/forum/community/api/Let-s-talk-about-permissions/5408959">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Until we get a checkbox in the guild permission system only guild leaders will be able to use the authenticated /v2/guild endpoints.</p>
+<p><em>snip</em></p>
+<p>In any case, the chat stuff will take a significant effort to implement; as such we’ve got plenty of time to discuss the finer points of it. I think it would be best to start a new thread specifically for the implications of the chat endpoint.</p></div></blockquote>
+<p>Fair enough. I have a different opinion about it, but that’s a discussion for another time. I got a bit carried away, sorry about that.</p>
+<p>Looking over at</p>
+<blockquote><div class="quotey"><p><strong>unlocks/wardrobe/fashion</strong> (name TBD)<br>
+<em>“Your wardrobe unlocks and currently equipped skins.”</em></p>
+<ul>
+	<li>skin/dye/mail carrier/finisher/mini/etc unlocks</li>
+	<li>maybe currently equipped skins?</li>
+	<li>maybe recipe unlocks?</li>
+</ul>
+<p><strong>progression</strong> (name TBD)<br>
+<em>“Your account-bound unlocks, timers, and progress.”</em></p>
+<ul>
+	<li>specialiation unlock progress</li>
+	<li>mastery progress</li>
+	<li>account achievements</li>
+	<li>world completion progression</li>
+	<li>daily dungeon/fractal reset progress</li>
+	<li>story progress, selected order, etc</li>
+</ul></div></blockquote>
+<p><strong>unlocks/wardrobe/fashion</strong></p>
+<ul>
+	<li>Seeing another post about moving <em>currently equipped skins</em> to <strong>character</strong>, I think that would be the best too. It is essentially a skinned item. By the way, don’t we already have access to a character’s equipment and to the current skin of an item? I think you mentioned the duplication as well.</li>
+	<li>I think it’s best to have this dedicated to <strong>unlocks</strong> only. This means the <em>ones already listed</em> (except <em>equipped skins</em>) + <em>unlocked skins on your account</em> (which is essentially the wardrobe). It would also remove the ambiguity about this permission I think.</li>
+</ul>
+<p><strong>progression</strong></p>
+<ul>
+	<li>I would say that the name is fine. Progression means both your account and character progression.</li>
+	<li>I’m not really sure about this one, but the <em>crafting disciplines</em> are missing. Naturally I would say <strong>progression</strong>. But since <strong>unlocks</strong> holds the <em>recipe unlocks</em>, it can be under <strong>unlocks</strong> too. Especially since there’s also the <em>crafting discovery</em> in the game, which is again <strong>progression</strong>, but also a bit of an <strong>unlock</strong>.<br>
+I think that <em>recipe unlocks</em>, <em>crafting disciplines</em> and <em>crafting discoveries</em> should be together in a permission, as they are tightly related to each other. Maybe get all three under <strong>progression</strong> and keep <strong>unlocks</strong> for account-wide unlocks only?</li>
+</ul></p>
+
+<h2 id="">rodadams.5963:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-24T19:47:44+00:00">
+        24 Aug 2015
+    </time>
+</p>
+<p>
+<p>I think I’m okay with having a larger number of permissions which someone can use to fine tune what they want to give out…. but there would need to be some easy to use packages or presets which would be good for most people, covering the most common cases. Thus,  site could tell people "get a key with the Trader’s preset (or perms X, Y, Z, W, K, &amp; R)</p></p>
+
+<h2 id="">MatHack.4316:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-24T20:24:53+00:00">
+        24 Aug 2015
+    </time>
+</p>
+<p>
+<p>Correct me if I’m wrong but stuff like recipe unlocks &amp; crafting disciplines are char bound, not account bound, right? I’m not sure it would make sense to list these under (account) unlocks and progression. I also think these should at least have the name of the associated character included somewhere.</p></p>
+
+<h2 id="">Archomeda.6472:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-25T01:32:30+00:00">
+        25 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 24 2015 08:24PM"><a href="/forum/community/api/Let-s-talk-about-permissions/5411743">MatHack.4316:</a></cite></div><div class="quotey"><p>Correct me if I’m wrong but stuff like recipe unlocks &amp; crafting disciplines are char bound, not account bound, right? I’m not sure it would make sense to list these under (account) unlocks and progression. I also think these should at least have the name of the associated character included somewhere.</p></div></blockquote>
+<p>True. But as it currently stands, <strong>progression</strong> does not only have account-bound stuff. The specialization unlock, world completion, story and selected order are all character-bound.</p>
+<p>But you have to keep in mind that having all of this categorized under one permission does not necessarily mean it will also be listed under one API endpoint. I think it’s perfectly reasonable to have it all under one <strong>progression</strong> permission.</p></p>
+
+<h2 id="">Cire Lionheart.5318:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-25T13:27:09+00:00">
+        25 Aug 2015
+    </time>
+</p>
+<p>
+<p>Hello! I have been getting into working with this API and it has been a blast so far. Wish I would have built up my tools 2 years ago lol! Anyway, I was wondering if there were endpoints for PvE map completion. I would like to create a tool that lists out each zone with all its spots and create a checklist for each character and what they have unlocked.</p>
+<p>I am also really looking forward to the guild endpoints so I can create tools to help me better manage my guild.</p></p>
+
+<h2 id="">MatHack.4316:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-25T15:45:15+00:00">
+        25 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 25 2015 01:32AM"><a href="/forum/community/api/Let-s-talk-about-permissions/5412506">Archomeda.6472:</a></cite></div><div class="quotey"><p>True. But as it currently stands, <strong>progression</strong> does not only have account-bound stuff. The specialization unlock, world completion, story and selected order are all character-bound.</p>
+<p>But you have to keep in mind that having all of this categorized under one permission does not necessarily mean it will also be listed under one API endpoint. I think it’s perfectly reasonable to have it all under one <strong>progression</strong> permission.</p></div></blockquote>
+<p>Whoops, you’re totally right, I was thinking about endpoints instead of permissions… WAKE UP stupid brain!<br>
+But yeah, it should be perfectly fine to put account and character progression under 1 permission, as long as it will be multiple endpoints.</p></p>
+
+<h2 id="">Leablo.2651:</h2>
+<p class="post-meta">
+    <time datetime="2015-11-19T15:40:01+00:00">
+        19 Nov 2015
+    </time>
+</p>
+<p>
+<p>If it’s not too late to add some input: The way the permission system currently works feels more like we are managing read permissions on database tables, which might make sense to us as developers but not for the privacy and security of users. I don’t think that segmentation of data based on in-game topics of interest makes a useful analogy for real-world escalations of trust.</p>
+<p>The biggest issue with regard to privacy is personally identifying information. As far as the API is concerned, the big items here are the account and character names, which can be used to harass or track the player in-game or here on the forums, and all of which are exposed with very basic permissions. The account name isn’t really useful for the API itself but is exposed in virtually every key. Equally puzzling is that (mutable) character names are returned as the unique ID rather than a permanent and anonymous handle.</p>
+<p>As for security, the API is thus far read-only and does not itself present any attack vector so it seems almost irrelevant whether they can view minutiae about the user’s data once they’ve already been given a key with basic permissions and with it, the biggest hints for employing some other attack vector, e.g. social engineering, if that’s what they were after.</p>
+<p>As it currently stands I think you only need 2 permission sets: one for identifying information (i.e. account and character names, assuming the UID issue is addressed) and one for non-identifying information (everything else). I don’t really see any other significant gaps in trust or risk between a user and a third party they want to give a key to, though the bigger issue remains that there currently isn’t a meaningful separation in this regard.</p>
+<p>If the app further exposes individual information to the public, and the user has some specific qualms about that, it should also be the app’s responsibility to provide finer privacy controls to the user, and that provision is something the user should take into consideration when deciding how much they want to trust the app.</p></p>
+
+<h2 id="">DarkMagister.7429:</h2>
+<p class="post-meta">
+    <time datetime="2015-11-19T21:26:06+00:00">
+        19 Nov 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 07 2015 01:31AM"><a href="/forum/community/api/Let-s-talk-about-permissions/5354626">Pilot.6094:</a></cite></div><div class="quotey"><p>1) We register our Apps with ANet and upload an XML manifest specifying the required permissions.</p>
+<p>We need a way to specify required permissions to allow as many end users to complete the process as possible.</p></div></blockquote>
+<p>That’s a nice goal with an awful implementation idea. I think that is done in a far more simple way:<br>
+1. User comes to your site. User is urged to create an API ;-key with the given link<br>
+2. The link lists needed permission (as headers, post, etc., doe not matter)<br>
+3. The link leads to the My Account page here, to the page with already set permissions, following the given list. <br>
+4. The user creates the API with the proposed permissions and goes back to your site.</p>
+<p>And it does not involve anet ding something but initial coding, which is vital if you want to see it in this life.</p>
+<blockquote><div class="citey"><cite title="Posted on August 07 2015 03:58AM"><a href="/forum/community/api/Let-s-talk-about-permissions/5354840">Anonanon.5412:</a></cite></div><div class="quotey"><p>I was just thinking the other day that more MMOs need to have a phone app that lets you chat with friends and guild mates</p></div></blockquote>
+<p>That exists and is called Team Speak.</p></p>
+
+<h2 id="">Pilot.6094:</h2>
+<p class="post-meta">
+    <time datetime="2015-11-22T05:49:34+00:00">
+        22 Nov 2015
+    </time>
+</p>
+<p>
+<p>I agree DarkMaster however if you read the previous posts in the Dev forums ANet management made a decision that special links into their site will not be supported. For this reason a manifest is the only way to request any given set of permissions while addressing their concern. Very easy to implement, they just don’t seem to care.</p></p>
+
+<h2 id="">DarkMagister.7429:</h2>
+<p class="post-meta">
+    <time datetime="2015-11-22T08:38:30+00:00">
+        22 Nov 2015
+    </time>
+</p>
+<p>
+<p>hm, strange decision on their side, especially if all the “speciliality” is ?a=1,b=0,c=1,d=0<br>
+Yet it gives us some insight into what they don’t want to do to help developers outside of pure API providing, and the answer to that questions is “anything”. So I’d forget about any “uploading a manifest” and “register our Apps with ANet” ((</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-11-23T15:21:51+00:00">
+        23 Nov 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on November 19 2015 03:40PM"><a href="/forum/community/api/Let-s-talk-about-permissions/5776814">Leablo.2651:</a></cite></div><div class="quotey"><p>As far as the API is concerned, the big items here are the account and character names, which can be used to harass or track the player in-game or here on the forums, and all of which are exposed with very basic permissions. The account name isn’t really useful for the API itself but is exposed in virtually every key. Equally puzzling is that (mutable) character names are returned as the unique ID rather than a permanent and anonymous handle.</p></div></blockquote>
+<p>So, for the account names — you can already see the account name of everyone you see in-game. You just have to add ‘em to your block list and the block list will show you their account name in the mouseover. It’s how you whisper enemies in WvW and other shenanigans — I’m not sure why it’s like that, but given how easily you can reveal account names I didn’t see much reason to obscure them in the API.</p>
+<p>The character IDs are intentionally not provided for security reasons, and there’s nothing else in the character data that’s both immutable and uniquely identifies a character. It’s possible in the future (read: pretty far out) that we’ll fix this by providing an HMAC of the character ID or something, but it’s not really on the backlog. You can uniquely identify the characters within an account via the creation date (which I agree is backwards, but we’ve got worse warts).</p>
+<p>Anyway, RE: the permissions discussion; I agree that the end-user UX is sub-optimal but I don’t forsee it changing, sorry <img src="/include/images/smilies/sad.png"></p></p>
+
+<h2 id="">bxt.7691:</h2>
+<p class="post-meta">
+    <time datetime="2015-12-20T07:07:36+00:00">
+        20 Dec 2015
+    </time>
+</p>
+<p>
+<p>Hi,</p>
+<p>Apologise for the resurrection but this seems like the most recent relevant post.</p>
+<p>So I’ve been playing with the API and some of the more useful things for me, such as the members list, seem to be hidden behind a ‘guild leader only’ thing. How is that defined? Is that simply just the highest rank?</p>
+<p>My guild rank is ‘Guild Leader’ and has all the permissions but it is the second highest rank. The guild’s founder, who comes online perhaps every 6 months or so to check all is well, retains the highest rank. This isn’t a problem and seems to works really well for a large guild and I generally see it much like the Queen in the UK… for the most part is ceremonial but does have the power to resolve things if one day is needed. Useful for context but I digress.</p>
+<p>Anyway, is there some way to make it so it is dependant on a permission, maybe ideally a new one or if that isn’t possible something such as Edit Ranks or similar as for now I’m blocked from using useful APIs.</p>
+<p>Edit: Nevermind, just seen all the discussions at <a href="https://github.com/arenanet/api-cdi/pull/7">https://github.com/arenanet/api-cdi/pull/7</a> so please ignore this. Have left it up in case anyone else has the same question.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

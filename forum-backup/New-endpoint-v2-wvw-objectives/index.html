@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>New endpoint: /v2/wvw/objectives</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/New-endpoint-v2-wvw-objectives/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">New endpoint: /v2/wvw/objectives</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/New-endpoint-v2-wvw-objectives
+</p>
+
+
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-24T23:12:04+00:00">
+        24 Sep 2015
+    </time>
+</p>
+<p>
+<p>Soft-launched this yesterday and nothing blew up. Basically /v2/wvw/objectives is an actually working replacement for /v1/wvw/objective_names.json — it provides a bulk-expandable endpoint for WvW objective data. It also provides some additional fields that the v1 endpoint doesn’t, notably  the label coordinates, sector_id and such.</p>
+<ul>
+	<li><a href="https://api.guildwars2.com/v2/wvw/objectives?ids=all">/v2/wvw/objectives</a></li>
+	<li><a href="https://github.com/arenanet/api-cdi/pull/91">Github PR</a></li>
+</ul>
+<p>It’s really important to note that due to backend changes objectives ids will going forward no longer be integers — they’ll be strings. This will be reflected in /v2/wvw/matches (and likely /v1/wvw/match_details.json) which I’m trying to get out before HoT ships. Check (and comment on!) the <a href="https://github.com/arenanet/api-cdi/pull/94">/v2/wvw/matches Github PR</a> if you’ve got some time before we ship it!</p>
+<p>Hopefully coming next week are <a href="https://github.com/arenanet/api-cdi/pull/96">/v2/achievements and /v2/achievements/daily</a> (the bits for account achievements aren’t on live yet so it’ll just be dailies for a while).</p>
+<p>Lemmie know if you’ve got feedback/questions about /v2/wvw/objectives <img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Elfo Bianco.3786:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-25T18:01:51+00:00">
+        25 Sep 2015
+    </time>
+</p>
+<p>
+<p>Thank you Lawton for you job!!<img src="/include/images/smilies/colondee.png"><br>
+Now I’m not using this API, but I have a question for the future.<br>
+I have read “/v2/wvw/objectives” and there are big value for coordinates. If I’d like to use them with a scale of 1:1, the coordinates retrieved by API are to compare with a maximum zoom in of the map?</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-25T18:18:56+00:00">
+        25 Sep 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 25 2015 06:01PM"><a href="/forum/community/api/New-endpoint-v2-wvw-objectives/5526182">Elfo Bianco.3786:</a></cite></div><div class="quotey"><p>I have read “/v2/wvw/objectives” and there are big value for coordinates. If I’d like to use them with a scale of 1:1, the coordinates retrieved by API are to compare with a maximum zoom in of the map?</p></div></blockquote>
+<p>I don’t get your question 100% because syntax error. But from what i get, you’re basically asking how to project them 1:1 on the map.</p>
+<p>You might want to check out some examples:<br>
+<a href="http://gw2.chillerlan.net/examples/gw2maps-leaflet.html">http://gw2.chillerlan.net/examples/gw2maps-leaflet.html</a> (latest, vanilla JS, using ES6 window.fetch())<br>
+<a href="http://gw2.chillerlan.net/examples/gw2maps-gmaps-simple.html">http://gw2.chillerlan.net/examples/gw2maps-gmaps-simple.html</a><br>
+<a href="http://gw2.chillerlan.net/examples/gw2staticmaps.php">http://gw2.chillerlan.net/examples/gw2staticmaps.php</a> (source: <a href="https://gist.github.com/codemasher/75d8e1a24b2363cabebf">https://gist.github.com/codemasher/75d8e1a24b2363cabebf</a> )</p>
+<p>The <a href="https://gist.github.com/codemasher/75d8e1a24b2363cabebf#file-gw2staticmaps-php-L11">project() function</a> in the php example or fromPointToLatLng() in the gmaps one is probably what you’re looking for. (map.project/unproject in leaflet)</p>
+<p>@Lawton: Thanks! Can’t wait for the matches!<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Patches.7584:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-26T05:48:50+00:00">
+        26 Sep 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 24 2015 11:12PM"><a href="/forum/community/api/New-endpoint-v2-wvw-objectives/5524366">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Soft-launched this yesterday and nothing blew up. Basically /v2/wvw/objectives is an actually working replacement for /v1/wvw/objective_names.json — it provides a bulk-expandable endpoint for WvW objective data. It also provides some additional fields that the v1 endpoint doesn’t, notably  the label coordinates, sector_id and such.</p>
+<ul>
+	<li><a href="https://api.guildwars2.com/v2/wvw/objectives?ids=all">/v2/wvw/objectives</a></li>
+	<li><a href="https://github.com/arenanet/api-cdi/pull/91">Github PR</a></li>
+</ul>
+<p>It’s really important to note that due to backend changes objectives ids will going forward no longer be integers — they’ll be strings. This will be reflected in /v2/wvw/matches (and likely /v1/wvw/match_details.json) which I’m trying to get out before HoT ships. Check (and comment on!) the <a href="https://github.com/arenanet/api-cdi/pull/94">/v2/wvw/matches Github PR</a> if you’ve got some time before we ship it!</p>
+<p>Hopefully coming next week are <a href="https://github.com/arenanet/api-cdi/pull/96">/v2/achievements and /v2/achievements/daily</a> (the bits for account achievements aren’t on live yet so it’ll just be dailies for a while).</p>
+<p>Lemmie know if you’ve got feedback/questions about /v2/wvw/objectives <img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>Will the int-&gt;str change be going into any of the other API endpoints (pvp, item, etc)?</p>
+<p>I ask because if so I’ll need to cast them into ints for my wrapper (it expects int from the non-wvw endpoints).</p>
+<p>Otherwise, stoked to implement this and achievements.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-09-28T18:23:59+00:00">
+        28 Sep 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 26 2015 05:48AM"><a href="/forum/community/api/New-endpoint-v2-wvw-objectives/5530305">Patches.7584:</a></cite></div><div class="quotey"><p>Will the int-&gt;str change be going into any of the other API endpoints (pvp, item, etc)?</p></div></blockquote>
+<p>No, it’s only for WvW objectives (and even then, only for the v2 for now — the v1 stuff won’t change without a good deal of notice).</p>
+<p>In the old system, the borderlands maps were literal copy-pastes of the red borderlands. For the new borderlands maps, we added support for a programmatic copy-paste that uses almost all of the same data (so same map details, objectives, etc) but with map-specific overrides. So all of the same keep on each of the borderlands would have different metadata (e.g., different name) but same objective id because the name was just overridden. To work around this, I made the objective ids be the concatenation of the map id and objective id just to make them unique.</p>
+<p>This change is pretty WvW-specific, so no other endpoints need to change.</p></p>
+
+<h2 id="">chaly.7638:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-02T08:45:02+00:00">
+        02 Oct 2015
+    </time>
+</p>
+<p>
+<p>Thx a lot for your integer hint though datafolks will hate this change<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Tanis.5134:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-02T19:33:26+00:00">
+        02 Oct 2015
+    </time>
+</p>
+<p>
+<p>Has anyone had any luck using the coordinates in /v2/wvw/objectives? I can’t quite get markers to line up on a map created with the tile service.</p>
+<p>Here’s what I am seeing for each borderlands: <a href="https://dl.dropboxusercontent.com/u/1096483/map_offset.png">https://dl.dropboxusercontent.com/u/1096483/map_offset.png</a></p>
+<p>Notice how the markers all seem to be offset towards the center of the map. My initial thought was that I had to play around with the zoom a little, but since it is happening on all maps and the offset is relative to each individual map (instead of the world as a whole), I’m starting to doubt that.</p>
+<p>I’ll probably work on creating a Javascript fiddle tomorrow to see if it is just the library I’m using, but I’ve seen it on two libraries so far. I’m also not particularly fluent in mapping terminology, so if anyone knows what I should be looking for, I would appreciate pointers.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-02T19:38:55+00:00">
+        02 Oct 2015
+    </time>
+</p>
+<p>
+<p>This looks like a rounding error to me, but then again, the positions of the keeps are odd.<br>
+What library are you using? Leaflet? Google Maps?</p>
+<p>€: see also this: <a href="/forum-backup/New-endpoint-v2-wvw-objectives">https://forum-en.guildwars2.com/forum/community/api/New-endpoint-v2-wvw-objectives/first#post5526223</a></p></p>
+
+<h2 id="">Tanis.5134:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-03T13:32:55+00:00">
+        03 Oct 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 02 2015 07:38PM"><a href="/forum/community/api/New-endpoint-v2-wvw-objectives/5559671">smiley.1438:</a></cite></div><div class="quotey"><p>This looks like a rounding error to me, but then again, the positions of the keeps are odd.<br>
+What library are you using? Leaflet? Google Maps?</p></div></blockquote>
+<p>I tried with Google Maps back with v1 and the sectors, and I believe I had the same result. I am currently using <a href="https://www.mapbox.com/mapbox-android-sdk">Mapbox’s Android SDK </a>.</p>
+<p><a href="http://jsfiddle.net/43ccLc5k/1">Here’s a JS fiddle using leaflet with the same problem</a>. I know that the PR for this mentioned that the coordinates are just the centroid of the objective’s sector- perhaps that doesn’t actually line up with where the markers should be?</p>
+<p>If that’s the case, is there a better way to get the “correct” location of markers without just figuring them out myself and hard coding them?</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-03T14:11:43+00:00">
+        03 Oct 2015
+    </time>
+</p>
+<p>
+<p>Ok, that’s clearly API side (tbh, i haven’t checked the new coordinates yet). I wonder if it’s possible to get the positions of the markers. The thing about the sector centroids was in context of the sector name positions, so the current coordinates may be used that way  instead.</p>
+<p>Also, no need to figure out the marker coordinates, you can still use this for the time being: <a href="https://gist.github.com/codemasher/bac2b4f87e7af128087e">https://gist.github.com/codemasher/bac2b4f87e7af128087e</a></p></p>
+
+<h2 id="">Tanis.5134:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-03T14:45:20+00:00">
+        03 Oct 2015
+    </time>
+</p>
+<p>
+<p>I’m hoping I can find something in the API that will be reliable when objectives are changed or added, as I’m trying to update to support the new desert borderlands prior to the HoT release.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-05T17:52:57+00:00">
+        05 Oct 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 02 2015 07:33PM"><a href="/forum/community/api/New-endpoint-v2-wvw-objectives/5559649">Tanis.5134:</a></cite></div><div class="quotey"><p>Has anyone had any luck using the coordinates in /v2/wvw/objectives? I can’t quite get markers to line up on a map created with the tile service.</p></div></blockquote>
+<p>I’m actually not sure how the game client places markers — my impression is that the sector centroid is used for the label placement, not marker placement. I need to dig up how the markers are placed; I’m not certain that they’re data-driven.</p></p>
+
+<h2 id="">draos.9574:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-07T17:29:34+00:00">
+        07 Oct 2015
+    </time>
+</p>
+<p>
+<p>Great endpoint but I have one question.<br>
+Is it possible to give us 3D coordinate instead of 2D? Currently I’m tracking the coordinates of the objectives in wvw on my own using the mumble api. Well I have the coordinates even for HoT but I would prefer to skip this step.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-07T20:46:40+00:00">
+        07 Oct 2015
+    </time>
+</p>
+<p>
+<p>The data we’re using for objectives doesn’t have coordinates at all but they’re associated with sectors. Sectors don’t have 3D coordinates — they’re entirely 2D. IIRC the 3D bit comes from which floors the sector belongs to, though I think there’s only 1 floor for the WvW maps.</p>
+<p>I’m not sure what I typed makes any sense. :s</p></p>
+
+<h2 id="">Tanis.5134:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-08T13:40:25+00:00">
+        08 Oct 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 05 2015 05:52PM"><a href="/forum/community/api/New-endpoint-v2-wvw-objectives/5575506">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>I’m actually not sure how the game client places markers — my impression is that the sector centroid is used for the label placement, not marker placement. I need to dig up how the markers are placed; I’m not certain that they’re data-driven.</p></div></blockquote>
+<p>If you find out that they are not data-driven, it would be awesome if we could get access to the desert borderlands in the tile service so we could map out those objectives prior to the release of HoT.</p></p>
+
+<h2 id="">draos.9574:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-08T14:30:31+00:00">
+        08 Oct 2015
+    </time>
+</p>
+<p>
+<p>Maybe I asked wrong because I know how the layered maps are working.<br>
+Let me reword my question. Here is an older <a href="https://bytebucket.org/draos/guildwars2-battle-hud/raw/02e93e445cc2ab7f24c0ff70c236a8d793c3b26c/screenshots/Timer.png">example</a> of my overlay. It projects the self-tracked 3D coordinates of the objectives, in the same way the gw2 graphic engine would do, into the field of view of the users. As coordinates I use the center of the flipping areas of each objectiv.</p>
+<p>Would it be possible to give us such 3D coordinates too?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-08T17:17:00+00:00">
+        08 Oct 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 08 2015 02:30PM"><a href="/forum/community/api/New-endpoint-v2-wvw-objectives/5587735">draos.9574:</a></cite></div><div class="quotey"><p>Maybe I asked wrong because I know how the layered maps are working.<br>
+Let me reword my question. Here is an older <a href="https://bytebucket.org/draos/guildwars2-battle-hud/raw/02e93e445cc2ab7f24c0ff70c236a8d793c3b26c/screenshots/Timer.png">example</a> of my overlay. It projects the self-tracked 3D coordinates of the objectives, in the same way the gw2 graphic engine would do, into the field of view of the users. As coordinates I use the center of the flipping areas of each objectiv.</p>
+<p>Would it be possible to give us such 3D coordinates too?</p></div></blockquote>
+<p>You’re looking at the capture gadget location (which is a 3D point). The capture gadget is only casually related to the objective, so pulling them out is going to be a doozie. It’s something I can look into doing, but I can’t make any guarentees.</p>
+<p>The marker and label coordinates are only 2D points because they’re currently only used to render the map. I found out where the marker coordinates are stored so I’ll work on having those piped through (maybe before HoT ships, I dunno).</p>
+<p>I’ll be looking into map tiles today.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-09T21:40:08+00:00">
+        09 Oct 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 05 2015 05:52PM"><a href="/forum/community/api/New-endpoint-v2-wvw-objectives/5575506">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on October 02 2015 07:33PM"><a href="/forum/community/api/New-endpoint-v2-wvw-objectives/5559649">Tanis.5134:</a></cite></div><div class="quotey"><p>Has anyone had any luck using the coordinates in /v2/wvw/objectives? I can’t quite get markers to line up on a map created with the tile service.</p></div></blockquote>
+<p>I’m actually not sure how the game client places markers — my impression is that the sector centroid is used for the label placement, not marker placement. I need to dig up how the markers are placed; I’m not certain that they’re data-driven.</p></div></blockquote>
+<p>Found and fixed the issue. <a href="https://github.com/arenanet/api-cdi/pull/101">Github PR</a>. It should go out with HoT release.</p></p>
+
+<h2 id="">Tanis.5134:</h2>
+<p class="post-meta">
+    <time datetime="2015-10-10T01:54:21+00:00">
+        10 Oct 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on October 09 2015 09:40PM"><a href="/forum/community/api/New-endpoint-v2-wvw-objectives/5593026">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Found and fixed the issue. <a href="https://github.com/arenanet/api-cdi/pull/101">Github PR</a>. It should go out with HoT release.</p></div></blockquote>
+<p>Woohoo! Thanks!</p>
+<p>Out of curiosity, are there going to be any more API updates prior to HoT, or is this issue one that required some changes outside the API and that release isn’t happening until HoT?</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

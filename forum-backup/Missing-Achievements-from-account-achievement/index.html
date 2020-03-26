@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Missing Achievements from account/achievement</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Missing-Achievements-from-account-achievement/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Missing Achievements from account/achievement</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Missing-Achievements-from-account-achievement
+</p>
+
+
+
+<h2 id="">PBag.7450:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-05T08:18:14+00:00">
+        05 Feb 2016
+    </time>
+</p>
+<p>
+<p>So I checked out the information on <a href="https://github.com/arenanet/api-cdi/issues/138">issue-138</a> but it didn’t seem to address a problem I’m currently having.</p>
+<p>It’s very specifically these achievements that I’m working with so I can only speak to these. However…every other Bosses achievement seems to be working…just not these ones. Is it because they earn you a mastery point? Anyway here’s how to replicate:</p>
+<ul>
+	<li>Get your account/achievements response.</li>
+	<li>You’ll notice if you get the achievements for Bosses category, this will be returned:<br>
+<pre><code>
+{"id":16,"name":"Bosses","description":"","order":160,"icon":"https://render.guildwars2.com/file/7554DCAF5A1EA1BDF5297352A203AF2357BE2B5B/498983.png","achievements":[220,337,339,341,338,343,340,342,2202,2474,2169,2620]}
+</code></pre></li>
+</ul>
+<ul>
+	<li>Search in your account/achievements response for 2169 (Crimson Wurmslayer), 2620 (Cobalt Wurmslayer), 2474 (Amber Wurmslayer), 2323 (Ogre Airship Climber), and 2202 (Karka Queen Killer).</li>
+</ul>
+<p>If I’m not crazy, you won’t find them. Any updates on missing achievements in general?</p></p>
+
+<h2 id="">Malediktus.9250:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-05T15:26:36+00:00">
+        05 Feb 2016
+    </time>
+</p>
+<p>
+<p>The API is showing me all 12 achievements of the category “Bosses”.</p>
+<p>Though some historic ones like Group Effort I to V in the Escape from Lion’s Arch category are still missing<br>
+<a href="http://wiki.guildwars2.com/wiki/Escape_from_Lion's_Arch_%28achievements%29">http://wiki.guildwars2.com/wiki/Escape_from_Lion's_Arch_%28achievements%29</a></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-05T16:46:06+00:00">
+        05 Feb 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 05 2016 03:26PM"><a href="/forum/community/api/Missing-Achievements-from-account-achievement/5971147">Malediktus.9250:</a></cite></div><div class="quotey"><p>The API is showing me all 12 achievements of the category “Bosses”.</p></div></blockquote>
+<p>Right, but he’s saying that some of them aren’t being returned by the authenticated /v2/account/achievements endpoint if you’ve completed them.</p>
+<p>I’ve no idea why this is happening; I’ve made a separate <a href="https://github.com/arenanet/api-cdi/issues/214">issue on github</a> to track it.</p>
+<blockquote><div class="citey"><cite title="Posted on February 05 2016 03:26PM"><a href="/forum/community/api/Missing-Achievements-from-account-achievement/5971147">Malediktus.9250:</a></cite></div><div class="quotey"><p>Though some historic ones like Group Effort I to V in the Escape from Lion’s Arch category are still missing<br>
+<a href="http://wiki.guildwars2.com/wiki/Escape_from_Lion's_Arch_%28achievements%29">http://wiki.guildwars2.com/wiki/Escape_from_Lion's_Arch_%28achievements%29</a></p></div></blockquote>
+<p>I just queried the historical logs for all achievements awarded from 2014-01-01 to today and whitelisted almost all the ones that weren’t already whitelisted (only one I omitted was the 4 year birthday achievement — which is impossible for normal accounts to have acquired).</p>
+<p>That set <strong>did</strong> include the Group Effort achievements (among a bunch of others) so those should be appearing shortly on the /v2/achievements endpoint. I’ve no idea why those aren’t being automatically whitelisted, since presumably they’re being returned from /v2/account/achievements. :/</p></p>
+
+<h2 id="">Malediktus.9250:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-05T17:09:35+00:00">
+        05 Feb 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 05 2016 04:46PM"><a href="/forum/community/api/Missing-Achievements-from-account-achievement/5971251">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 05 2016 03:26PM"><a href="/forum/community/api/Missing-Achievements-from-account-achievement/5971147">Malediktus.9250:</a></cite></div><div class="quotey"><p>The API is showing me all 12 achievements of the category “Bosses”.</p></div></blockquote>
+<p>Right, but he’s saying that some of them aren’t being returned by the authenticated /v2/account/achievements endpoint if you’ve completed them.</p></div></blockquote>
+<p>What am I missing? They are being returned as completed if I use my API key and return as uncompleted if I use the API key of an account who does not have them completed. So to me it looks like they are working?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-05T20:30:03+00:00">
+        05 Feb 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 05 2016 05:09PM"><a href="/forum/community/api/Missing-Achievements-from-account-achievement/5971274">Malediktus.9250:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 05 2016 04:46PM"><a href="/forum/community/api/Missing-Achievements-from-account-achievement/5971251">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 05 2016 03:26PM"><a href="/forum/community/api/Missing-Achievements-from-account-achievement/5971147">Malediktus.9250:</a></cite></div><div class="quotey"><p>The API is showing me all 12 achievements of the category “Bosses”.</p></div></blockquote>
+<p>Right, but he’s saying that some of them aren’t being returned by the authenticated /v2/account/achievements endpoint if you’ve completed them.</p></div></blockquote>
+<p>What am I missing? They are being returned as completed if I use my API key and return as uncompleted if I use the API key of an account who does not have them completed. So to me it looks like they are working?</p></div></blockquote>
+<p>Oh, fair.</p>
+<p>@PBag can you PM me the API key you’re using?</p></p>
+
+<h2 id="">PBag.7450:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-06T01:31:32+00:00">
+        06 Feb 2016
+    </time>
+</p>
+<p>
+<p>Yup. Checked again, still isn’t in my account at all under <a href="https://api.guildwars2.com/v2/account/achievements">https://api.guildwars2.com/v2/account/achievements</a>. I’ll pm you with my API.</p>
+<p>EDIT: Just realized it might just be a misunderstanding of the account/achievements functionality. These are achievements I haven’t started and thus have no progress. Is that the issue, or should it still show achievements I haven’t started?</p>
+<p>That would make sense if it is the issue and the “fix” on my end is easy.</p>
+<p>EDIT 2: Okay IF the intention is to only show achievements where current &gt; 0, then this sentence in the <a href="https://wiki.guildwars2.com/wiki/API:2/account/achievements">account/achievements documentation</a>, “The response shows <strong>every achievement in the game by ID</strong> and how far the player has progressed.”*, may be the cause of confusion.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-08T18:33:10+00:00">
+        08 Feb 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 06 2016 01:31AM"><a href="/forum/community/api/Missing-Achievements-from-account-achievement/5972042">PBag.7450:</a></cite></div><div class="quotey"><p>EDIT: Just realized it might just be a misunderstanding of the account/achievements functionality. These are achievements I haven’t started and thus have no progress. Is that the issue, or should it still show achievements I haven’t started?</p></div></blockquote>
+<p>It only shows achievements for current &gt; 0 — if the achievements haven’t been started nothing is stored in the account record (which is where that data is coming from). I’ll see if I can get the documentation updated; sorry about the confusion :&lt;</p></p>
+
+<h2 id="">PBag.7450:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-09T01:57:35+00:00">
+        09 Feb 2016
+    </time>
+</p>
+<p>
+<p>Ah okay. Yea I saw the changes to the documentation this morning. Much clearer. Thanks!</p></p>
+
+<h2 id="">Malediktus.9250:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-17T10:39:38+00:00">
+        17 Feb 2016
+    </time>
+</p>
+<p>
+<p>What about blacklisting the WvW season ranking achievements like “WvW Premier Season: 1st Place”  and “WvW Spring Tournament 2014: 1st Place”?. There are 27 achievements of them and they are mutually exclusive, the “WvW Spring Tournament 2014” achievements are even duplicated because of a bug back then.<br>
+They also give 0 AP and provide no information about the server you were part of back then, so they provide no interesting information at all.<br>
+I would prefer if they were blacklisted or moved into a historic category to keep the WvW achievement category clean.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-17T18:21:20+00:00">
+        17 Feb 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 17 2016 10:39AM"><a href="/forum/community/api/Missing-Achievements-from-account-achievement/5990427">Malediktus.9250:</a></cite></div><div class="quotey"><p>I would prefer if they were blacklisted or moved into a historic category to keep the WvW achievement category clean.</p></div></blockquote>
+<p>Eh, the client doesn’t display achievements that have the “Hidden” flag if the account has no progress towards them. My recommendation is to either mimic that behavior or to blacklist them on the application side.</p></p>
+
+<h2 id="">Malediktus.9250:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-17T18:27:21+00:00">
+        17 Feb 2016
+    </time>
+</p>
+<p>
+<p>Sounds like a good idea, but I wonder why the developers did not move these achievements into a historic category. It makes little sense to have them there if each WvW season got its own category in the historic section.</p></p>
+
+<h2 id="">Malediktus.9250:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-19T12:04:44+00:00">
+        19 Feb 2016
+    </time>
+</p>
+<p>
+<p>An extra achievement appeared in the “Fire and Frost” category.<br>
+“Minor in Achievement”, duplicate from SAB world 1 achievements</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-19T18:35:44+00:00">
+        19 Feb 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2016 12:04PM"><a href="/forum/community/api/Missing-Achievements-from-account-achievement/5993690">Malediktus.9250:</a></cite></div><div class="quotey"><p>An extra achievement appeared in the “Fire and Frost” category.<br>
+“Minor in Achievement”, duplicate from SAB world 1 achievements</p></div></blockquote>
+<p>Whoops, I did an import from the historical log data yesterday and <strong>thought</strong> I’d gotten all the broken achievements out of it. Removed #561 from the whitelist, should be fixed in a couple of minutes. Thanks for helping with this <img src="/include/images/smilies/lion.png"></p></p>
+
+<h2 id="">Malediktus.9250:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-19T20:30:45+00:00">
+        19 Feb 2016
+    </time>
+</p>
+<p>
+<p>Yes, it is gone now. I will keep an eye out for additional issues.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-22T19:29:18+00:00">
+        22 Feb 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 19 2016 08:30PM"><a href="/forum/community/api/Missing-Achievements-from-account-achievement/5994297">Malediktus.9250:</a></cite></div><div class="quotey"><p>Yes, it is gone now. I will keep an eye out for additional issues.</p></div></blockquote>
+<p>So, #561 came back up on the whitelist today, which means that it’s being returned by /v2/account/achievements (for someone). It’s kind of gross, but there’s someone out there for whom it displays in the in-game UI, so I’m going to leave it as-is in the API.</p></p>
+
+<h2 id="">Malediktus.9250:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-23T00:57:27+00:00">
+        23 Feb 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 22 2016 07:29PM"><a href="/forum/community/api/Missing-Achievements-from-account-achievement/5999090">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 19 2016 08:30PM"><a href="/forum/community/api/Missing-Achievements-from-account-achievement/5994297">Malediktus.9250:</a></cite></div><div class="quotey"><p>Yes, it is gone now. I will keep an eye out for additional issues.</p></div></blockquote>
+<p>So, #561 came back up on the whitelist today, which means that it’s being returned by /v2/account/achievements (for someone). It’s kind of gross, but there’s someone out there for whom it displays in the in-game UI, so I’m going to leave it as-is in the API.</p></div></blockquote>
+<p>Could it be some kind of GM or test account? There are als accounts having Ad Infinitium and the legendary pvp backpiece although it is not available to players.<br>
+Otherwise I have no idea how this achievement could be unlocked at all (some glitch maybe?)</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-23T01:30:33+00:00">
+        23 Feb 2016
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on February 23 2016 12:57AM"><a href="/forum/community/api/Missing-Achievements-from-account-achievement/5999631">Malediktus.9250:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 22 2016 07:29PM"><a href="/forum/community/api/Missing-Achievements-from-account-achievement/5999090">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on February 19 2016 08:30PM"><a href="/forum/community/api/Missing-Achievements-from-account-achievement/5994297">Malediktus.9250:</a></cite></div><div class="quotey"><p>Yes, it is gone now. I will keep an eye out for additional issues.</p></div></blockquote>
+<p>So, #561 came back up on the whitelist today, which means that it’s being returned by /v2/account/achievements (for someone). It’s kind of gross, but there’s someone out there for whom it displays in the in-game UI, so I’m going to leave it as-is in the API.</p></div></blockquote>
+<p>Could it be some kind of GM or test account? There are als accounts having Ad Infinitium and the legendary pvp backpiece although it is not available to players.<br>
+Otherwise I have no idea how this achievement could be unlocked at all (some glitch maybe?)</p></div></blockquote>
+<p>Seems legit; there’s well over 10k accounts with that achievement unlocked :/</p>
+<p>That aside, the account you’re looking at is probably a <a href="https://github.com/arenanet/api-cdi/pull/229">special account</a>. I’m hoping to have that PR implemented and deployed this week or next so you can filter those out to ignore for leaderboards and stuff.</p></p>
+
+<h2 id="">Malediktus.9250:</h2>
+<p class="post-meta">
+    <time datetime="2016-02-23T03:08:47+00:00">
+        23 Feb 2016
+    </time>
+</p>
+<p>
+<p>Over 10k accounts have it unlocked and noone noticed it so far? Seems very weird if you ask me.<br>
+Maybe it is still hidden in UI after unlocked? Group Effort 1-5 are that way for sure.</p>
+<p>Anyway it is something you should forward to the appropriate dev. The API shows that this fake achievement gives 15 AP and it needs to be removed if someone in the top 25 EU or NA has it, to not skew the competition there.</p></p>
+
+<h2 id="">Malediktus.9250:</h2>
+<p class="post-meta">
+    <time datetime="2016-03-01T15:59:19+00:00">
+        01 Mar 2016
+    </time>
+</p>
+<p>
+<p>I think I found the reason for github issue #223<br>
+If I meet the exact criteria of a repeatable achievement, it does not work. If it is for example at 1/5 it will work. But if it is at 0/5 it will not work. For some reason the API is not providing the completion status if you stop exactly at a checkpoint of a repeatable achievement. For many I stopped exactly when a checkpoint was reached so it does not show up under “almost completed” ingame. Hope to see this fixed soon.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Mapping the API</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Mapping-the-API/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Mapping the API</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Mapping-the-API
+</p>
+
+
+
+<h2 id="">The Pointless.3869:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T01:27:11+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<p>Ahoy there.</p>
+<p>I’m currently trying to wrap my head around the GW2 API before I can even begin to use it. In the process, picked away at data pulled from the item details JSON and tried to lay out all I’ve found in a manner that might make it easier to understand. Largely for my own benefit, but it might be of use for others (if they can even make sense of it) o.O</p>
+<p>You can find my efforts so far here: <a href="http://wiki.guildwars2.com/wiki/User:ThePointless/APIMap"><strong>Clicky</strong></a></p>
+<p>Everything is indented to show what’s nested where. Hopefully it’s understandable and makes some semblance of sense. There are a few bits of data that are incomplete in there (pretty sure there are more attributes, for example), and any gap-filling would be appreciated.</p>
+<p>=faceplants hard and falls asleep at his desk= -_-’</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T01:40:21+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<p>Great work! Thanks!</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T02:27:13+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<p>In a crazy twist of fate, I did the exact same thing and posted it on the wiki at <a href="http://wiki.guildwars2.com/wiki/API/item_details">API/item details</a> (link fixed) before I saw Pointless’s page.  It would probably be a good idea for someone to compare our two versions to see if there are any discrepancies.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T02:37:22+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<p>Your link points to the gw1 wiki<img src="/include/images/smilies/wink.png"></p>
+<p><a href="http://wiki.guildwars2.com/wiki/API/item_details">http://wiki.guildwars2.com/wiki/API/item_details</a> &lt;- correct link</p></p>
+
+<h2 id="">The Pointless.3869:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T14:54:27+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<p>O_O</p>
+<p>I’ve had a quick glance over yours. I didn’t think to split out the shared elements into a separate code block (which might have spared me some hassle, really) and I’ve noticed you’d commented that the ID numbers were ints as well. I had chosen not to do that in my version because, unless I’m unaware of something, there’s not really any reason to  convert them, is there? I probably should have anyway. Fail on my part.<img src="/include/images/smilies/sad.png"></p>
+<p>And clearly, my use of terminology is pretty sloppy too. :\</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T15:06:54+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<p>Here is an obvious question:  Shouldn’t this documentation be provided by ArenaNet for the usage of their api?</p>
+<p>Note: Legendary is missing from rarity.</p></p>
+
+<h2 id="">Rawrfaec.6412:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T15:24:34+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 26 2013 02:54PM"><a href="/forum/community/api/Mapping-the-API/2094646">The Pointless.3869:</a></cite></div><div class="quotey"><p>I had chosen not to do that in my version because, unless I’m unaware of something, there’s not really any reason to  convert them, is there?</p></div></blockquote>
+<p>Not really, no. Especially if you want a uniform interface. However, knowing they’re integers behind the scenes can be valuable contextual knowledge (you <em>could</em> choose to convert them if you wanted to, and it will be well-defined).</p>
+<p>It becomes important because there are discrepancies between the APIs and although we’re expecting an item ID to a number it would be factually incorrect to say that they are for for instance the item detail API. A statically typed language would throw a fit.</p></p>
+
+<h2 id="">The Pointless.3869:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T15:25:13+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 26 2013 03:06PM"><a href="/forum/community/api/Mapping-the-API/2094725">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>Note: Legendary is missing from rarity.</p></div></blockquote>
+<p>Added. That, and “Junk” x_X<br>
+Thanks for that.<img src="/include/images/smilies/smile.png"></p>
+<blockquote><div class="citey"><cite title="Posted on May 26 2013 03:06PM"><a href="/forum/community/api/Mapping-the-API/2094725">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>Here is an obvious question:  Shouldn’t this documentation be provided by ArenaNet for the usage of their api?</p></div></blockquote>
+<p>I’d be inclined to agree with you. Seems a little odd to just toss it out there without providing some info on how the data is structured.</p>
+<blockquote><div class="citey"><cite title="Posted on May 26 2013 03:24PM"><a href="/forum/community/api/Mapping-the-API/2094794">Rawrfaec.6412:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 26 2013 02:54PM"><a href="/forum/community/api/Mapping-the-API/2094646">The Pointless.3869:</a></cite></div><div class="quotey"><p>I had chosen not to do that in my version because, unless I’m unaware of something, there’s not really any reason to  convert them, is there?</p></div></blockquote>
+<p>Not really, no. Especially if you want a uniform interface. However, knowing they’re integers behind the scenes can be valuable contextual knowledge (you <em>could</em> choose to convert them if you wanted to, and it will be well-defined).</p></div></blockquote>
+<p>That is a good point. o_O</p></p>
+
+<h2 id="">zeeZ.5713:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T15:42:20+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 26 2013 03:25PM"><a href="/forum/community/api/Mapping-the-API/2094798">The Pointless.3869:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 26 2013 03:06PM"><a href="/forum/community/api/Mapping-the-API/2094725">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>Here is an obvious question:  Shouldn’t this documentation be provided by ArenaNet for the usage of their api?</p></div></blockquote>
+<p>I’d be inclined to agree with you. Seems a little odd to just toss it out there without providing some</p></div></blockquote>
+<p>Doesn’t seem odd to me. They’re just testing the waters, and this is what they got. They just throw it out there and see what we do with it, spending the time on readying new shinies for us.</p>
+<p>Documenting would be something to do once the stuff is out there proper and more or less stable. We’ve got smart guys here, we can figure it out :P Maybe that’s what they’re counting on, hoping it’s well documented on the wikis by the community before they have to even lift a finger<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T15:53:42+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 26 2013 02:54PM"><a href="/forum/community/api/Mapping-the-API/2094646">The Pointless.3869:</a></cite></div><div class="quotey"><p>O_O</p>
+<p>I’ve noticed you’d commented that the ID numbers were ints as well. I had chosen not to do that in my version because, unless I’m unaware of something, there’s not really any reason to  convert them, is there?</p></div></blockquote>
+<p>If you ever wanted to sort items by ID, it wold be necessary depending on your coding language.  Perl, for example, is smart enough to convert numeric strings to integers automatically and return a numeric sort, but other languages will just return a string sort: 1, 10, 100, 101, 102, 11, 2, etc.  Not that sorting by ID is really meaningful, but I’m sure some people would find reasons to do so.</p>
+<blockquote><div class="citey"><cite title="Posted on May 26 2013 02:54PM"><a href="/forum/community/api/Mapping-the-API/2094646">The Pointless.3869:</a></cite></div><div class="quotey"><p>And clearly, my use of terminology is pretty sloppy too. :\</p></div></blockquote>
+<p>I wouldn’t be so quick to criticize yourself there, I’m not really certain of the proper jargon for JSON myself, so I just used the terms I’m familiar with (list vs array, for example).</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-26T17:16:07+00:00">
+        26 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 26 2013 03:42PM"><a href="/forum/community/api/Mapping-the-API/2094853">zeeZ.5713:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 26 2013 03:25PM"><a href="/forum/community/api/Mapping-the-API/2094798">The Pointless.3869:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 26 2013 03:06PM"><a href="/forum/community/api/Mapping-the-API/2094725">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>Here is an obvious question:  Shouldn’t this documentation be provided by ArenaNet for the usage of their api?</p></div></blockquote>
+<p>I’d be inclined to agree with you. Seems a little odd to just toss it out there without providing some</p></div></blockquote>
+<p>Doesn’t seem odd to me. They’re just testing the waters, and this is what they got. They just throw it out there and see what we do with it, spending the time on readying new shinies for us.</p>
+<p>Documenting would be something to do once the stuff is out there proper and more or less stable. We’ve got smart guys here, we can figure it out :P Maybe that’s what they’re counting on, hoping it’s well documented on the wikis by the community before they have to even lift a finger<img src="/include/images/smilies/wink.png"></p></div></blockquote>
+<p>The problem with that is the risk of breakage of apps that are written against the api.  And the developers may not even know about it beforehand.  What if they remove/rename/add some fields in the next game update?  How easy it is to track the changes?</p>
+<p>Granted that this is still beta and subject to change but I would expect no less from ArenaNet after release.  All these should be properly managed in an officially released api by ArenaNet, at least that would be the expectation from a professional developer.</p>
+<p>Preferably, they should at least document the expected enums now so we can help them review them at this stage.  Reverse engineering the specs from the data can give wrong results.  For example, maybe some of the flags are missing from their items.  We know that legendary is missing but we may not know all the flags or some other fields that are suppose to be there but are not.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-27T14:35:50+00:00">
+        27 May 2013
+    </time>
+</p>
+<p>
+<p>A great KB, I was trying to get all the item flags, restrictions, etc. for the <a href="https://gw2dotnet.codeplex.com/">GW2.Net</a> implementation but there were so many. Now I can drop those kitten  strings an put in Enumerables. Makes things so much easier.</p>
+<p>On the topic of Item Ids as strings or ints: While it may be beneficial for <a href="http://stackoverflow.com/questions/1917427/which-is-fast-comparison-convert-toint32stringvalue-intvalue-or-stringvalue">speed</a> (but really, who cares about that speed advantage? Even if it’s that “obvious”.), the sorting via int can come in handy.</p>
+<p>We at GW2.Net do a split approach (as the .Net framework does not support automatic conversion from string to int, for good reasons). The obvious integers are handled as ints the rest as a GUID. The only “problem” are the match Ids which have an “x-y” format, but that’s just a mild annoyance.</p></p>
+
+<h2 id="">The Pointless.3869:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-27T20:07:50+00:00">
+        27 May 2013
+    </time>
+</p>
+<p>
+<p>Hmm, picking apart WvW data, I’m realising that it may be more imperative to make it clear where the cases of integer values as strings are than I thought, and not just for sorting purposes (which I do agree makes sense, by the way <img src="/include/images/smilies/smile.png"> ).</p>
+<p>“matches.json” is returning the world IDs of each belligerent as true integers, where other JSONs return world IDs as strings.</p>
+<p>Similarly, “match_details.json” returns objective IDs as true ints as well, but again, in the objective names JSON, that’s returned as a string.</p>
+<p>Boy, did I almost fall backside over breast with that one. O___O’</p>
+<p>[EDIT] Added recipes, events and WvW. If I’ve made a total screwup job of those, feel free to perform the second stage of the fish slapping dance on me.</p>
+<p>[EDIT EDIT] And I will take some time out some time this week to compare mine and Dr. Ishmael’s for discrepancies. At the moment I don’t feel too awake to do an adequate job of it.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-27T20:40:05+00:00">
+        27 May 2013
+    </time>
+</p>
+<p>
+<p>Looking over it right now. If you screwed up you have to do this:<br>
+<a href="https://www.youtube.com/watch?feature=player_detailpage&v=p5Fi4FZGi98#t=29s">https://www.youtube.com/watch?feature=player_detailpage&amp;v=p5Fi4FZGi98#t=29s</a></p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-29T06:47:34+00:00">
+        29 May 2013
+    </time>
+</p>
+<p>
+<p>Missing a weapon subtype enum, “TwoHandedToy”.</p></p>
+
+<h2 id="">The Pointless.3869:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-29T12:57:34+00:00">
+        29 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 29 2013 06:47AM"><a href="/forum/community/api/Mapping-the-API/2112075">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>Missing a weapon subtype enum, “TwoHandedToy”.</p></div></blockquote>
+<p>Who’s version? It seems to be there on mine (unless I’m being an idiot and looking in the wrong place, which wouldn’t be the first time x_X).</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-29T14:15:05+00:00">
+        29 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 29 2013 06:47AM"><a href="/forum/community/api/Mapping-the-API/2112075">DarkSpirit.7046:</a></cite></div><div class="quotey"><p>Missing a weapon subtype enum, “TwoHandedToy”.</p></div></blockquote>
+<p>Completely overlooked those.  Fixed.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T15:27:37+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>You should include “Booze” into the list of consumable types.</p></p>
+
+<h2 id="">The Pointless.3869:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T20:26:19+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 03 2013 03:27PM"><a href="/forum/community/api/Mapping-the-API/2146741">Ruhrpottpatriot.7293:</a></cite></div><div class="quotey"><p>You should include “Booze” into the list of consumable types.</p></div></blockquote>
+<p>Done.<img src="/include/images/smilies/smile.png"><br>
+I might get some time this week to look at the new changes, too. Hopefully.</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T20:43:11+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p>Here is the colours object. I formatted the first and last expression and deleted the ones in the middle.</p>
+<blockquote><div class="quotey"><pre><code>
+
+{
+	"colors":
+	{
+		"1231":
+		{
+			"name":"Glacial Teal",
+			"cloth":
+			{
+				"brightness":27,
+				"contrast":1.83594,
+				"hue":175,
+				"saturation":0.117188,
+				"lightness":0.78125
+			},
+			"leather":
+			{
+				"brightness":32,
+				"contrast":1.83594,
+				"hue":175,
+				"saturation":0.0976563,
+				"lightness":0.78125
+			},
+			"metal":
+			{
+				"brightness":32,
+				"contrast":1.99219,
+				"hue":175,
+				"saturation":0.078125,
+				"lightness":0.917969
+			}
+		},
+		// additional colours go here here
+		"1221":
+		{
+			"name":"Key Lime",
+			"default":
+			{
+				"brightness":2,
+				"contrast":1.09375,
+				"hue":130,
+				"saturation":0.78125,
+				"lightness":0.996094
+			}
+		}
+	}
+}
+</code></pre></div></blockquote></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-04T18:14:39+00:00">
+        04 Jun 2013
+    </time>
+</p>
+<p>
+<p>Here is a sample guild without emblem flags I will post the flags further below:<br>
+</p><pre><code>
+{
+	"guild_id": "FBEACB6E-975B-4E10-9E52-B4E140F1C3B8",
+	"guild_name": "Gaiscíoch",
+	"tag": "GSCH",
+	"emblem": {
+		"background_id": 1,
+		"foreground_id": 33,
+		"flags": [],
+		"background_color_id": 473,
+		"foreground_primary_color_id": 617,
+		"foreground_secondary_color_id": 443
+	}
+}
+</code></pre><p></p></p>
+
+<h2 id="">The Pointless.3869:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-25T16:21:14+00:00">
+        25 Jun 2013
+    </time>
+</p>
+<p>
+<p>Hullo,</p>
+<p>Popping my head in after disappearing for a few. College conquered all else. I’ve noticed there’s been a fair few updates to the API as well. o_O</p>
+<p>Has anyone else been working to map those out at all? If not, I can make a (re)start at the weekend, I think. I hope.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

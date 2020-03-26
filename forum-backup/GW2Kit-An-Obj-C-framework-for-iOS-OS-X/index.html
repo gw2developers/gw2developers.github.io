@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>GW2Kit: An Obj-C framework for iOS &amp; OS X</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/GW2Kit-An-Obj-C-framework-for-iOS-OS-X/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">GW2Kit: An Obj-C framework for iOS &amp; OS X</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/GW2Kit-An-Obj-C-framework-for-iOS-OS-X
+</p>
+
+
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-21T04:14:22+00:00">
+        21 May 2013
+    </time>
+</p>
+<p>
+<p>First, thank you so much, <strong>ArenaNet</strong>! This is definitely the next best thing to actually working along side you guys.</p>
+<p><strong>GW2Kit – An Obj-C framework for iOS &amp; OS X</strong><br>
+<a href="https://github.com/KevinVitale/GW2Kit">GW2Kit on GitHub</a></p>
+<p><strong>What is GW2Kit?</strong></p>
+<p>GW2Kit is a native SDK project (for Apple’s Cocoa-based devices), which aims to provide:</p>
+<ul>
+	<li>Well documented SDK interfaces,</li>
+	<li>A dynamic framework for Mac apps,</li>
+	<li>A static library for iOS apps,</li>
+	<li>Unit tests to ensure GW2 API changes are in sync</li>
+</ul>
+<p>I started the project just a few hours ago, so I’ve kind of overlooked the “well documented” part, but there is enough to get some of you developers started.</p>
+<p>What’s there right now is:</p>
+<ul>
+	<li>Item details (query by item_id)</li>
+	<li>Event states (query by world_id, map_id, event_id)</li>
+</ul>
+<p>Missing:</p>
+<ul>
+	<li>The rest (<em>it’s late and I’ve been working on this for few hours, and the remaining endpoints will get added tomorrow</em>)</li>
+</ul>
+<p><strong>Let’s get this party started!</strong></p>
+<p>There’s so many sweet things I look forward to putting this SDK to use on. I don’t tweet, but journaling in-game adventures and posting them to Twitter seems like things people would get geek’d about!</p>
+<p>So with that, here we go!</p>
+<p><em>One more thing…</em></p>
+<p><strong>PS: gwaspy – A GW2Spidy.com Obj-C framework for iOS &amp; OS X</strong><br>
+<a href="https://github.com/KevinVitale/gwaspy">gwaspy on GitHub</a></p>
+<p>Awhile back, I also started working on a native SDK to communicate with <a href="http://www.gw2spidy.com">gw2spidy.com</a>.</p>
+<p><a href="http://www.reddit.com/r/Guildwars2/comments/1bx8d2/the_hunters_dilemma/">I used it</a> to build a Mac app (I called <em>Spy Hunter</em>) that would notify me when my precursor’s price changed. <a href="http://i.imgur.com/dnxOgiq.png">Here’s a screenshot</a></p>
+<p>Cheers,</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-21T16:22:28+00:00">
+        21 May 2013
+    </time>
+</p>
+<p>
+<p><strong>Updated GW2Kit</strong><br>
+<a href="https://github.com/KevinVitale/GW2Kit">GW2Kit on GitHub</a></p>
+<p>The SDK allows any valid parameters to be in each request.</p>
+<p><em>Currently Has</em>:</p>
+<ul>
+	<li>items.json</li>
+	<li>item_details.json</li>
+	<li>events.json</li>
+	<li>event_names.json</li>
+	<li>map_names.json</li>
+	<li>world_names.json</li>
+	<li>wvw/matches.json</li>
+</ul>
+<p><em>Currently Missing</em>:</p>
+<ul>
+	<li>wvw/match_details.json</li>
+	<li>wvw/objective_names.json</li>
+	<li>recipes.json</li>
+	<li>recipe_details.json</li>
+</ul></p>
+
+<h2 id="">link.4615:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-21T20:15:13+00:00">
+        21 May 2013
+    </time>
+</p>
+<p>
+<p>One minor API suggestion; a lot of libraries use ‘completionBlock:’ rather than ‘completion:’. While your library is still new, you might want to considering using completionBlock: as your argument name, rather than just ‘completion:’.</p>
+<p>See a generic github code search for ‘completionBlock:’ 20,000 results :-) <a href="https://github.com/search?l=Objective-C&q=completionBlock%3A&ref=advsearch&type=Code">https://github.com/search?l=Objective-C&amp;q=completionBlock%3A&amp;ref=advsearch&amp;type=Code</a></p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T03:32:42+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p><strong>GW2Kit is Feature Complete</strong><br>
+<a href="https://github.com/KevinVitale/GW2Kit">GW2Kit on GitHub</a></p>
+<p>The SDK allows any valid parameters to be in each request.</p>
+<p><em>Currently Has</em>:</p>
+<ul>
+	<li>items.json</li>
+	<li>item_details.json</li>
+	<li>events.json</li>
+	<li>event_names.json</li>
+	<li>map_names.json</li>
+	<li>world_names.json</li>
+	<li>wvw/matches.json</li>
+	<li>wvw/match_details.json</li>
+	<li>wvw/objective_names.json</li>
+	<li>recipes.json</li>
+	<li>recipe_details.json</li>
+</ul>
+<p><em>Next steps</em>:</p>
+<ul>
+	<li>Turn on asynchronous network requests (highest priority)</li>
+	<li>Improved unit tests</li>
+	<li>How-to Wiki on GitHub</li>
+	<li>Better code documentation</li>
+</ul></p>
+
+<h2 id="">Murakami.5243:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T03:58:14+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>thanks for this resource mate<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">McVillano.9256:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T06:31:28+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<p>Hello mate, thank you for your effort, could be possible to do a little bit of documentation of the functions or examples in aplications.<br>
+I´m new at xcode.</p></p>
+
+<h2 id="">Parthis.2091:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T10:38:28+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2013 06:31AM"><a href="/forum/community/api/GW2Kit-An-Obj-C-framework-for-iOS-OS-X/2071721">McVillano.9256:</a></cite></div><div class="quotey"><p>Hello mate, thank you for your effort, could be possible to do a little bit of documentation of the functions or examples in aplications.<br>
+I´m new at xcode.</p></div></blockquote>
+<p>Honestly, being new at Xcode and describing Objective-C’s methods as functions suggests that you’d be better reading Apple’s Objective-C introduction articles in their developer section. Rhino has done a good job at making a clean, readable and well documented API… so there’s no much more he can do to help you.</p>
+<p>@Rhino, good work chap. I too have been working on an API, but it takes a VERY different approach to yours so there’s likely room for both. I’ve tried to take a much more domain orientated approach, hiding the fact that data is even remotely hosted.</p>
+<p>For example, fetching Worlds and WvW data is a call to;</p>
+<p>[[GW2API sharedAPI] fetchCollection:GW2APIDomainCollectionWorldVsWorld<br>
+                        completionBlock:^(GW2APIDomainCollection collection) {<br>
+                            <br>
+                        }];</p>
+<p>The idea is that you ask the API for meaningful collections of data, as opposed to dealing with services directly which is, ultimately what you’ve written. If you only want one specific set of stuff, perhaps you want to quickly get new WvW scores, so you can simply ask the API to update that area of the domain by simply passing the class we’re dealing with;</p>
+<p>[[GW2API sharedAPI] fetch:[GW2Matchup class]<br>
+                        completionBlock:^(id domain) {<br>
+                            <br>
+                        }];</p>
+<p>Again, good work chap. I hope to round my stuff out in the next day or two and kick it up to Github.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T11:45:00+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2013 06:31AM"><a href="/forum/community/api/GW2Kit-An-Obj-C-framework-for-iOS-OS-X/2071721">McVillano.9256:</a></cite></div><div class="quotey"><p>Hello mate, thank you for your effort, could be possible to do a little bit of documentation of the functions or examples in aplications.<br>
+I´m new at xcode.</p></div></blockquote>
+<p>Even I haven’t put GW2Kit through a proper application, yet (only unit tests). My next step is to add details on how to do this. Thanks for the support.</p>
+<p>Cheers,</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T11:51:54+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2013 10:38AM"><a href="/forum/community/api/GW2Kit-An-Obj-C-framework-for-iOS-OS-X/2072502">Parthis.2091:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 22 2013 06:31AM"><a href="/forum/community/api/GW2Kit-An-Obj-C-framework-for-iOS-OS-X/2071721">McVillano.9256:</a></cite></div><div class="quotey"><p>Hello mate, thank you for your effort, could be possible to do a little bit of documentation of the functions or examples in aplications.<br>
+I´m new at xcode.</p></div></blockquote>
+<p>Honestly, being new at Xcode and describing Objective-C’s methods as functions suggests that you’d be better reading Apple’s Objective-C introduction articles in their developer section. Rhino has done a good job at making a clean, readable and well documented API… so there’s no much more he can do to help you.</p>
+<p>@Rhino, good work chap. I too have been working on an API, but it takes a VERY different approach to yours so there’s likely room for both. I’ve tried to take a much more domain orientated approach, hiding the fact that data is even remotely hosted.</p>
+<p>For example, fetching Worlds and WvW data is a call to;</p>
+<p>[[GW2API sharedAPI] fetchCollection:GW2APIDomainCollectionWorldVsWorld<br>
+                        completionBlock:^(GW2APIDomainCollection collection) {<br>
+                            <br>
+                        }];</p>
+<p>The idea is that you ask the API for meaningful collections of data, as opposed to dealing with services directly which is, ultimately what you’ve written. If you only want one specific set of stuff, perhaps you want to quickly get new WvW scores, so you can simply ask the API to update that area of the domain by simply passing the class we’re dealing with;</p>
+<p>[[GW2API sharedAPI] fetch:[GW2Matchup class]<br>
+                        completionBlock:^(id domain) {<br>
+                            <br>
+                        }];</p>
+<p>Again, good work chap. I hope to round my stuff out in the next day or two and kick it up to Github.</p></div></blockquote>
+<p>Awesome to hear other people are thinking about this problem in terms of ObjC, too. It’s my absolute favorite language; I’m genuinely excited to see your take on it, for sure!</p>
+<p>I do plan to add more robust method calls to the framework, but wanted to put something out there that had all the endpoints included, first.</p></p>
+
+<h2 id="">Branskins.9752:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T21:46:54+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 21 2013 08:15PM"><a href="/forum/community/api/GW2Kit-An-Obj-C-framework-for-iOS-OS-X/2069444">link.4615:</a></cite></div><div class="quotey"><p>One minor API suggestion; a lot of libraries use ‘completionBlock:’ rather than ‘completion:’. While your library is still new, you might want to considering using completionBlock: as your argument name, rather than just ‘completion:’.</p>
+<p>See a generic github code search for ‘completionBlock:’ 20,000 results :-) <a href="https://github.com/search?l=Objective-C&q=completionBlock%3A&ref=advsearch&type=Code">https://github.com/search?l=Objective-C&amp;q=completionBlock%3A&amp;ref=advsearch&amp;type=Code</a></p></div></blockquote>
+<p>Not to be nitpicky, but the preferred naming convention is actually ‘completionHandler:’</p>
+<p>:)</p>
+<p>@edit<br>
+Is there a reason why you are not using [NSURLConnection sendAsynchronousRequest…]?</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T22:55:59+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2013 09:46PM"><a href="/forum/community/api/GW2Kit-An-Obj-C-framework-for-iOS-OS-X/2075262">Branskins.9752:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 21 2013 08:15PM"><a href="/forum/community/api/GW2Kit-An-Obj-C-framework-for-iOS-OS-X/2069444">link.4615:</a></cite></div><div class="quotey"><p>One minor API suggestion; a lot of libraries use ‘completionBlock:’ rather than ‘completion:’. While your library is still new, you might want to considering using completionBlock: as your argument name, rather than just ‘completion:’.</p>
+<p>See a generic github code search for ‘completionBlock:’ 20,000 results :-) <a href="https://github.com/search?l=Objective-C&q=completionBlock%3A&ref=advsearch&type=Code">https://github.com/search?l=Objective-C&amp;q=completionBlock%3A&amp;ref=advsearch&amp;type=Code</a></p></div></blockquote>
+<p>Not to be nitpicky, but the preferred naming convention is actually ‘completionHandler:’</p>
+<p>:)</p>
+<p>@edit<br>
+Is there a reason why you are not using [NSURLConnection sendAsynchronousRequest…]?</p></div></blockquote>
+<p>When I say “I need to turn on async calls”, it’s not because I don’t know how. At the moment, I’m making a conscientious decision to turn off async request in the framework I’m using (<a href="https://github.com/KevinVitale/GW2Kit/blob/master/GW2Kit/Models/GW2Client.m#L46">here is an example, along with a pleasant reminder to myself<img src="/include/images/smilies/smile.png"></a>)</p>
+<p>The reason for this is the framework is being built through unit tests, with a focus of getting something out quickly for people to experiment with. For now, the network requests are synchronous to allow said unit tests have time to complete and validate.</p>
+<p>@edit:<br>
+In regards to the ‘completionBlock’ vs. ‘completionHandler’ thing goes, I think it’s  testament that two respected ObjC devs have commented with two different conventions. In fact, I’ve seen all three (completion, completionBlock, completionHandler); Apple’s own frameworks uses all three interchangeably.</p>
+<p>If it becomes a big problem for people, I can change it.</p></p>
+
+<h2 id="">Parthis.2091:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T23:18:57+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2013 10:55PM"><a href="/forum/community/api/GW2Kit-An-Obj-C-framework-for-iOS-OS-X/2075573">Killer Rhino.6794:</a></cite></div><div class="quotey"><p>In regards to the ‘completionBlock’ vs. ‘completionHandler’ thing goes, I think it’s  testament that two respected ObjC devs have commented with two different conventions. In fact, I’ve seen all three (completion, completionBlock, completionHandler); Apple’s own frameworks uses all three interchangeably.</p>
+<p>If it becomes a big problem for people, I can change it.</p></div></blockquote>
+<p>Indeed, Apple themselves use all three and there is no standard, just a ton of personal preferences. My preference is the completionBlock naming too, simply because it infers the type/interface without the need to understand the signature of the argument. I know from the highest level that i’ll need to provide a block… and ‘handler’ is such an unfocused term; I’ve seen people name protocols as Handlers instead of Delegates even though they’re using delegation, for example.</p>
+<p>But, it’s hardly code-breaking. Author’s choice, surely?<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-22T23:38:30+00:00">
+        22 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2013 11:18PM"><a href="/forum/community/api/GW2Kit-An-Obj-C-framework-for-iOS-OS-X/2075677">Parthis.2091:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 22 2013 10:55PM"><a href="/forum/community/api/GW2Kit-An-Obj-C-framework-for-iOS-OS-X/2075573">Killer Rhino.6794:</a></cite></div><div class="quotey"><p>In regards to the ‘completionBlock’ vs. ‘completionHandler’ thing goes, I think it’s  testament that two respected ObjC devs have commented with two different conventions. In fact, I’ve seen all three (completion, completionBlock, completionHandler); Apple’s own frameworks uses all three interchangeably.</p>
+<p>If it becomes a big problem for people, I can change it.</p></div></blockquote>
+<p>Indeed, Apple themselves use all three and there is no standard, just a ton of personal preferences. My preference is the completionBlock naming too, simply because it infers the type/interface without the need to understand the signature of the argument. I know from the highest level that i’ll need to provide a block… and ‘handler’ is such an unfocused term; I’ve seen people name protocols as Handlers instead of Delegates even though they’re using delegation, for example.</p>
+<p>But, it’s hardly code-breaking. Author’s choice, surely?<img src="/include/images/smilies/wink.png"></p></div></blockquote>
+<p>Ha, make no mistake: I love discussions. Let me know if there’s anything else you see, or better yet, fork it on github and send me pull requests (probably best to give me at least one more day for that, though<img src="/include/images/smilies/wink.png">.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T20:13:08+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<p><strong>Updated GW2Kit</strong><br>
+<a href="https://github.com/KevinVitale/GW2Kit">GW2Kit on GitHub</a></p>
+<p>I’ve updated the SDK with <em>very</em> basic app examples for iOS &amp; OS X.</p>
+<p>Changes include:</p>
+<ul>
+	<li>Inline documentation for each framework call</li>
+	<li>Basic app for iOS (pulls events for Wayfarer Foothills on Maguuma)</li>
+	<li>Basic app for OS X (same as iOS, but less UI)</li>
+	<li>Examples projects linking frameworks for both iOS &amp; OS X</li>
+	<li>Reduced code complexity with the GW2ResourceName class</li>
+	<li>Network calls happen asynchronously now</li>
+	<li>Temporarily disabled <strong>core</strong> unit tests</li>
+</ul>
+<p>I mostly want to continue focusing on improving the code base, providing sample apps, and writing good documentation, too. However, if you new to Cocoa development (I mean <em>really</em> new), <a href="http://developer.apple.com/library/ios/#referencelibrary/GettingStarted/RoadMapiOS/chapters/Introduction.html">Apple has excellent documentation to get you started</a>.</p>
+<p>More to come.</p>
+<p><em>end communication</em></p></p>
+
+<h2 id="">Taleria.7810:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T14:17:01+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>I did everything exactly the way you described but when adding the GW2kit.framework I get the following error on build:</p>
+<p>ld: framework not found GW2Kit<br>
+clang: error: linker command failed with exit code 1 (use -v to see invocation)</p>
+<p>I’m trying to build an iOS 6 app.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T15:53:17+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p><strong>Updated GW2Kit</strong><br>
+<a href="https://github.com/KevinVitale/GW2Kit">GW2Kit on GitHub</a></p>
+<p>Thanks to Taleria, and anyone else that downloaded it, for testing it out.</p>
+<p>Changes:</p>
+<ul>
+	<li>Instructions on adding GW2Kit to a new or existing iOS projects</li>
+</ul></p>
+
+<h2 id="">Taleria.7810:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-27T13:38:29+00:00">
+        27 May 2013
+    </time>
+</p>
+<p>
+<p>I tried following the instructions you added but I’m still nowhere. I can’t import &lt;GW2kit/GW2kit.h&gt;. If I copy one of the test app’s settings it works.</p>
+<p>nvm changed some files in the Header Search path and it worked.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-27T14:54:00+00:00">
+        27 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 27 2013 01:38PM"><a href="/forum/community/api/GW2Kit-An-Obj-C-framework-for-iOS-OS-X/2099499">Taleria.7810:</a></cite></div><div class="quotey"><p>I tried following the instructions you added but I’m still nowhere. I can’t import &lt;GW2kit/GW2kit.h&gt;. If I copy one of the test app’s settings it works.</p>
+<p>nvm changed some files in the Header Search path and it worked.</p></div></blockquote>
+<p>Awesome! Mind if I asked what you changed?</p></p>
+
+<h2 id="">Branskins.9752:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-28T01:08:41+00:00">
+        28 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 27 2013 02:54PM"><a href="/forum/community/api/GW2Kit-An-Obj-C-framework-for-iOS-OS-X/2099763">Killer Rhino.6794:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 27 2013 01:38PM"><a href="/forum/community/api/GW2Kit-An-Obj-C-framework-for-iOS-OS-X/2099499">Taleria.7810:</a></cite></div><div class="quotey"><p>I tried following the instructions you added but I’m still nowhere. I can’t import &lt;GW2kit/GW2kit.h&gt;. If I copy one of the test app’s settings it works.</p>
+<p>nvm changed some files in the Header Search path and it worked.</p></div></blockquote>
+<p>Awesome! Mind if I asked what you changed?</p></div></blockquote>
+<p>Usually you add $(SRCROOT) to Header Search Paths and set it as recursive. You can make it more specific by adding folder paths to $(SRCROOT)</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-28T16:21:15+00:00">
+        28 May 2013
+    </time>
+</p>
+<p>
+<p><strong>Updated GW2Kit</strong><br>
+<a href="https://github.com/KevinVitale/GW2Kit">GW2Kit on GitHub</a></p>
+<p>Changes:</p>
+<ul>
+	<li>Added ability to pull item prices from <a href="https://github.com/rubensayshi/gw2spidy">gw2spidy.com APIs</a></li>
+	<li>Fixes all goofy issues when linking GW2 in iOS or OS X</li>
+</ul>
+<p><strong>Here’s an example</strong>:<br>
+</p><pre><code>
+[Spidy itemDetailForID:@"12345"
+                completion:^(NSError *error, SPYItem *item) {
+                    printf("%s\n", item.description.UTF8String);
+                }];
+</code></pre><p></p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-06-03T17:05:52+00:00">
+        03 Jun 2013
+    </time>
+</p>
+<p>
+<p><strong>GW2Kit is Feature Complete</strong><br>
+<a href="https://github.com/KevinVitale/GW2Kit">GW2Kit on GitHub</a></p>
+<p>The SDK has been updated with the past week’s API changes.</p>
+<p><em>Updated with</em>:</p>
+<ul>
+	<li>guild_details.json</li>
+	<li>colors.json</li>
+	<li>build.json</li>
+	<li>recipe_details.json (Updated)</li>
+	<li>wvw/matches.json (Updated)</li>
+</ul>
+<p><em>Already Had</em>:</p>
+<ul>
+	<li>items.json</li>
+	<li>item_details.json</li>
+	<li>events.json</li>
+	<li>event_names.json</li>
+	<li>map_names.json</li>
+	<li>world_names.json</li>
+	<li>wvw/matches.json</li>
+	<li>wvw/match_details.json</li>
+	<li>wvw/objective_names.json</li>
+	<li>recipes.json</li>
+	<li>recipe_details.json</li>
+</ul>
+<p><em>Quick Note: The iOS Demo runs the same color demo I’ve been exhibiting in other threads. However, the OS X Demo is not working, currently. I’ll get that fixed as soon as possible.</em></p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-07-22T21:51:26+00:00">
+        22 Jul 2013
+    </time>
+</p>
+<p>
+<p><strong>GW2Kit – <em>Update (July, 22)</em></strong><br>
+<a href="http://github.com/KevinVitale/GW2Kit">GW2Kit on GitHub</a></p>
+<p>GW2Kit has received a much needed update. I was unable to work on it for the last month <a href="https://twitter.com/vitalekj/status/344504453073879040">due to a major life event</a>.</p>
+<p><strong>Separate resource daemons</strong>:</p>
+<p>The original GW2 client interface, [GW2Client sharedClient], has been removed. Instead, <em>Events</em>, <em>Items</em>, <em>WvW</em>, <em>Guilds</em>, &amp; <em>Maps</em> are now their own separate API client interfaces, referred to as <strong>daemons</strong>. This might not seem that important, but I’m really proud of this design decision and what it means for the framework’s future.</p>
+<p>The daemons in this release are the minimum viable product with respect to their corresponding API endpoints (lots of opportunity to make them individually more sophisticated). Developers can utilize just the daemons their app needs, and expect new daemons as the GW2’s API feature set expands*.</p>
+<p><strong>Map Endpoints:</strong></p>
+<p>I added the map endpoints (finally):</p>
+<ul>
+	<li>v1/continents.json,</li>
+	<li>v1/maps.json,</li>
+	<li>v1/map_floor.json</li>
+</ul>
+<p><em>Note, I’ve purposefully let out map rendering for the time being, but this won’t always be the case. I plan to add map rendering as part of the framework around the time iOS 7 is released*.</em></p>
+<p><strong>Better cross-platform support</strong></p>
+<p>I’m getting much better at writing SDKs that target iOS &amp; OS X simultaneously. To try out some example code, open <em>GW2KitTests.xcodeproj</em> and pick your platform of choice.</p>
+<hr>
+<p>(*) <em>“Is this being used?”</em> – A survey:</p>
+<p>I’m completely in the dark as to whether GW2Kit has been used by anyone besides myself. I’ve seen a couple of iOS projects posted here, and I’m curious if any of them are using GW2Kit.</p>
+<p>It would be really awesome to hear from devs that are making awesome things with GW2Kit (if any)! Feedback is very much welcomed. If there are bugs – etc., I encourage you to open issues on project’s GitHub page.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-18T19:20:08+00:00">
+        18 Aug 2013
+    </time>
+</p>
+<p>
+<p><strong>Updated GW2Kit</strong><br>
+<a href="https://github.com/KevinVitale/GW2Kit">GW2Kit on GitHub</a></p>
+<p><strong>Summary</strong><br>
+GW2Kit now has a developer wiki page (hosted on GitHub), as well as separate repo for examples using the framework.</p>
+<p><strong>Changes</strong></p>
+<ul>
+	<li><a href="https://github.com/KevinVitale/GW2Kit/wiki">GitHub wiki page</a></li>
+	<li><a href="https://github.com/KevinVitale/GW2Kit/wiki/Getting-started-on-OS-X">Step-by-step guide for OS X apps</a></li>
+	<li><a href="https://github.com/KevinVitale/GW2KitExamples">GW2KitExamples Repo</a> (more to come)</li>
+</ul>
+<p>Attached is a screenshot of the <em>Events</em> demo from the examples repo.</p>
+<p><em>end communication</em></p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-16T02:56:22+00:00">
+        16 Aug 2014
+    </time>
+</p>
+<p>
+<p><strong>GW2Kit – <em>Update (Aug. 15th)</em></strong><br>
+<a href="https://github.com/KevinVitale/GW2Kit">GW2Kit on GitHub</a></p>
+<p><strong>Abandonment Notice</strong><br>
+I’ve given up. I’ve totally lost any interest I had in this project. If <em>v2</em> <strong>does</strong> come out, I expect to completely reboot the source anyways. See you “soon™”.</p>
+<p><em>(tableflip)</em></p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

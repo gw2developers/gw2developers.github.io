@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>New endpoints: wallets and unlocks</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/New-endpoints-wallets-and-unlocks/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">New endpoints: wallets and unlocks</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/New-endpoints-wallets-and-unlocks
+</p>
+
+
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T18:49:30+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<p>Just released a handful of new endpoints:</p>
+<ul>
+	<li><a href="https://api.guildwars2.com/v2/currencies?ids=all">/v2/currencies</a> (<a href="https://github.com/arenanet/api-cdi/pull/84">github</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/account/wallet?access_token=F6FE5F2F-3836-4148-9E50-D58B22BC9A82FF20992A-58AA-4EB7-8273-3343C81EE2E7">/v2/account/wallet</a> (<a href="https://github.com/arenanet/api-cdi/pull/84">github</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/account/dyes?access_token=F6FE5F2F-3836-4148-9E50-D58B22BC9A82FF20992A-58AA-4EB7-8273-3343C81EE2E7">/v2/account/dyes</a> (<a href="https://github.com/arenanet/api-cdi/pull/81">github</a>)</li>
+	<li><a href="https://api.guildwars2.com/v2/account/skins?access_token=F6FE5F2F-3836-4148-9E50-D58B22BC9A82FF20992A-58AA-4EB7-8273-3343C81EE2E7">/v2/account/skins</a> (<a href="https://github.com/arenanet/api-cdi/pull/81">github</a>)</li>
+</ul>
+<p>Pretty straightforward endpoints, overall.</p>
+<p>As per usual, the authenticated endpoints need to be passed an API key with the appropriate permissions. The key can be passed either via an “Authorization: Bearer &lt;key&gt;” header, or via the “?access_token” URL parameter. We don’t support CORS preflighting, so if you’re making CORS requests (e.g., from a javascript app) you’ll need to use the latter.</p>
+<p>/v2/currencies dumps all the currencies that can appear in the account wallet. /v2/account/wallet lets you fetch (with the “wallet” permission) the contents of an account’s wallet — the ids returned are cross-referenced against /v2/currencies.</p>
+<p>/v2/account/skins returns the list of all skin_ids unlocked by an account (requires the “unlocks” permission). The ids can be cross-referenced against /v2/skins.</p>
+<p>/v2/account/dyes returns the list of all dyes unlocked by an account (again, with the “unlocks” permission). The ids can be cross-referenced against /v2/colors.</p>
+<p>Let the fashion wars begin.</p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T19:00:29+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<p>Awesome! There a quite a few great things we can do with those.</p></p>
+
+<h2 id="">Makani Eldrinn.5638:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T19:31:53+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<p>So you’re saying I jumped the gun? <a href="https://www.youtube.com/watch?v=SZgWM90mQqI">https://www.youtube.com/watch?v=SZgWM90mQqI</a></p></p>
+
+<h2 id="">AfterXII.2761:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T19:34:01+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<p>Yes! Thank you, so many new ideas flowing through me right now haha</p></p>
+
+<h2 id="">Creativewild.6319:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T19:37:36+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<p>@Lawton Campbell – Thank you so much…. this is awsome<img src="/include/images/smilies/smile.png"> I was waiting for the wallet one<img src="/include/images/smilies/colondee.png"> thank you</p></p>
+
+<h2 id="">Dristig.9678:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T19:40:56+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<p>Please implement: <br>
+/v2/account/whohasmycopperfedsalvagomatic</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T19:58:41+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 27 2015 07:40PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5422988">Dristig.9678:</a></cite></div><div class="quotey"><p>Please implement: <br>
+/v2/account/whohasmycopperfedsalvagomatic</p></div></blockquote>
+<p>I’ll put a 10g bounty on this; I need it.</p>
+<p>EDIT: Also since people are asking, I’m hoping to release the pvp endpoints (<a href="https://github.com/arenanet/api-cdi/pull/41">stats</a> and <a href="https://github.com/arenanet/api-cdi/pull/38#issuecomment-114235178">very basic match history</a>) as well as <a href="https://github.com/arenanet/api-cdi/pull/85">equipped specializations</a> sometime next week, provided nothing catches fire.</p></p>
+
+<h2 id="">Deheerrob.4978:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T20:00:08+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 27 2015 07:58PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5423084">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 27 2015 07:40PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5422988">Dristig.9678:</a></cite></div><div class="quotey"><p>Please implement: <br>
+/v2/account/whohasmycopperfedsalvagomatic</p></div></blockquote>
+<p>I’ll put a 10g bounty on this; I need it.</p></div></blockquote>
+<p>Luckily for you, GW2 Efficiency already has this function!<br>
+<a href="http://gw2efficiency.com/account/characters">http://gw2efficiency.com/account/characters</a></p></p>
+
+<h2 id="">Chokapik.3741:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T20:11:12+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<p>The currency names should be plural, shoudn’t they?</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T20:21:27+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 27 2015 08:00PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5423092">Deheerrob.4978:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 27 2015 07:58PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5423084">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 27 2015 07:40PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5422988">Dristig.9678:</a></cite></div><div class="quotey"><p>Please implement: <br>
+/v2/account/whohasmycopperfedsalvagomatic</p></div></blockquote>
+<p>I’ll put a 10g bounty on this; I need it.</p></div></blockquote>
+<p>Luckily for you, GW2 Efficiency already has this function!<br>
+<a href="http://gw2efficiency.com/account/characters">http://gw2efficiency.com/account/characters</a></p></div></blockquote>
+<p>Huh, didn’t notice the search feature. Whelp, 10g coming your way.</p>
+<p>EDIT: hold on, the search is for characters, not items. This doesn’t help — I just need to know where the copper-fed salvage-o-matic is.</p>
+<p>EDIT2: omg this works. bounty sent.</p>
+<blockquote><div class="citey"><cite title="Posted on August 27 2015 08:11PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5423147">Chokapik.3741:</a></cite></div><div class="quotey"><p>The currency names should be plural, shoudn’t they?</p></div></blockquote>
+<p>…maybe. Those strings are what’s coming out of content; I’m actually not sure how it handles pluralization. I’ll look into it though.</p></p>
+
+<h2 id="">Valento.9852:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T20:25:29+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<p>@Lawton, use <a href="http://gw2efficiency.com/account/overview">this</a> instead.<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">Creativewild.6319:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T20:30:43+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 27 2015 08:21PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5423197">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 27 2015 08:00PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5423092">Deheerrob.4978:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 27 2015 07:58PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5423084">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 27 2015 07:40PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5422988">Dristig.9678:</a></cite></div><div class="quotey"><p>Please implement: <br>
+/v2/account/whohasmycopperfedsalvagomatic</p></div></blockquote>
+<p>I’ll put a 10g bounty on this; I need it.</p></div></blockquote>
+<p>Luckily for you, GW2 Efficiency already has this function!<br>
+<a href="http://gw2efficiency.com/account/characters">http://gw2efficiency.com/account/characters</a></p></div></blockquote>
+<p>Huh, didn’t notice the search feature. Whelp, 10g coming your way.</p>
+<p>EDIT: hold on, the search is for characters, not items. This doesn’t help — I just need to know where the copper-fed salvage-o-matic is.</p>
+<blockquote><div class="citey"><cite title="Posted on August 27 2015 08:11PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5423147">Chokapik.3741:</a></cite></div><div class="quotey"><p>The currency names should be plural, shoudn’t they?</p></div></blockquote>
+<p>…maybe. Those strings are what’s coming out of content; I’m actually not sure how it handles pluralization. I’ll look into it though.</p></div></blockquote>
+<p>is for items as well but you need to be on the account overview for that<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Mikah.4510:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T20:50:37+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<p>idk if this is coming to you after you changed something Lawton, but you can find it already. See below</p></p>
+
+<h2 id="">Deheerrob.4978:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T20:55:04+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 27 2015 08:21PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5423197">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 27 2015 08:00PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5423092">Deheerrob.4978:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 27 2015 07:58PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5423084">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 27 2015 07:40PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5422988">Dristig.9678:</a></cite></div><div class="quotey"><p>Please implement: <br>
+/v2/account/whohasmycopperfedsalvagomatic</p></div></blockquote>
+<p>I’ll put a 10g bounty on this; I need it.</p></div></blockquote>
+<p>Luckily for you, GW2 Efficiency already has this function!<br>
+<a href="http://gw2efficiency.com/account/characters">http://gw2efficiency.com/account/characters</a></p></div></blockquote>
+<p>Huh, didn’t notice the search feature. Whelp, 10g coming your way.</p>
+<p>EDIT: hold on, the search is for characters, not items. This doesn’t help — I just need to know where the copper-fed salvage-o-matic is.</p></div></blockquote>
+<p>Look at the icons <a href="http://i.imgur.com/4fNW20r.png">http://i.imgur.com/4fNW20r.png</a>, it shows right there and otherwise with the search function.</p>
+<p>Oh, send the gold to queicherius.2563 instead of me, he made it.<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">AfterXII.2761:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T21:01:22+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<p>Correct me if I’m wrong but your currencies API seems to be missing id #17</p>
+<p>Which is what my account is also asking for.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T21:20:26+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 27 2015 09:01PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5423451">AfterXII.2761:</a></cite></div><div class="quotey"><p>Correct me if I’m wrong but your currencies API seems to be missing id #17</p>
+<p>Which is what my account is also asking for.</p></div></blockquote>
+<p>I think that might be … glory? Which is marked as disabled, so it isn’t exposed via the endpoint. I’ll add in a blacklist next week so it doesn’t appear in the wallet.</p></p>
+
+<h2 id="">AfterXII.2761:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T21:23:43+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 27 2015 09:20PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5423583">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 27 2015 09:01PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5423451">AfterXII.2761:</a></cite></div><div class="quotey"><p>Correct me if I’m wrong but your currencies API seems to be missing id #17</p>
+<p>Which is what my account is also asking for.</p></div></blockquote>
+<p>I think that might be … glory? Which is marked as disabled, so it isn’t exposed via the endpoint. I’ll add in a blacklist next week so it doesn’t appear in the wallet.</p></div></blockquote>
+<p>Awesome, no problem thanks for clarifying. I’ll just manually blacklist it for now.</p></p>
+
+<h2 id="">rodadams.5963:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T22:16:35+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<p>Woot Woot<br>
+/hands_in_the_air</p></p>
+
+<h2 id="">queicherius.2563:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T22:52:11+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 27 2015 08:55PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5423407">Deheerrob.4978:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 27 2015 08:21PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5423197">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 27 2015 08:00PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5423092">Deheerrob.4978:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 27 2015 07:58PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5423084">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 27 2015 07:40PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5422988">Dristig.9678:</a></cite></div><div class="quotey"><p>Please implement: <br>
+/v2/account/whohasmycopperfedsalvagomatic</p></div></blockquote>
+<p>I’ll put a 10g bounty on this; I need it.</p></div></blockquote>
+<p>Luckily for you, GW2 Efficiency already has this function!<br>
+<a href="http://gw2efficiency.com/account/characters">http://gw2efficiency.com/account/characters</a></p></div></blockquote>
+<p>Huh, didn’t notice the search feature. Whelp, 10g coming your way.</p>
+<p>EDIT: hold on, the search is for characters, not items. This doesn’t help — I just need to know where the copper-fed salvage-o-matic is.</p></div></blockquote>
+<p>Look at the icons <a href="http://i.imgur.com/4fNW20r.png">http://i.imgur.com/4fNW20r.png</a>, it shows right there and otherwise with the search function.</p>
+<p>Oh, send the gold to queicherius.2563 instead of me, he made it.<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>Thanks for all the mentions, it’s awesome to know that people like and use the site. Keeps the motivation going to push further!<img src="/include/images/smilies/smile.png"></p>
+<p>Edit: Also getting 10g from a dev. That’s kittening awesome.<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T23:23:05+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 27 2015 10:52PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5424022">queicherius.2563:</a></cite></div><div class="quotey"><p>Thanks for all the mentions, it’s awesome to know that people like and use the site. Keeps the motivation going to push further!<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>Oh man, I just noticed the share character function.</p>
+<p>Gonna make all my guildies use this to share builds. We’ve been looking for this for awhile — massive thanks!</p></p>
+
+<h2 id="">queicherius.2563:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T23:38:33+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 27 2015 11:23PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5424116">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Oh man, I just noticed the share character function.</p>
+<p>Gonna make all my guildies use this to share builds. We’ve been looking for this for awhile — massive thanks!</p></div></blockquote>
+<p>Thank you for providing all the endpoints! And as soon as the endpoint for character traits and skills is enabled, that’ll tie in there too<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">Malediktus.9250:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-27T23:42:22+00:00">
+        27 Aug 2015
+    </time>
+</p>
+<p>
+<p>It is amazing to see how fast the API is expanding</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-28T00:09:52+00:00">
+        28 Aug 2015
+    </time>
+</p>
+<p>
+<p>I know it seems like we’ve forgotten about the APIs from time to time, but I promise we haven’t. Some of this data is just a real adventure to get into usable form that we can expose!</p></p>
+
+<h2 id="">Malediktus.9250:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-28T00:21:53+00:00">
+        28 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 28 2015 12:09AM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5424256">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>I know it seems like we’ve forgotten about the APIs from time to time, but I promise we haven’t. Some of this data is just a real adventure to get into usable form that we can expose!</p></div></blockquote>
+<p>I didnt see anyone complain</p></p>
+
+<h2 id="">queicherius.2563:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-28T00:56:54+00:00">
+        28 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 28 2015 12:09AM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5424256">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>I know it seems like we’ve forgotten about the APIs from time to time, but I promise we haven’t. Some of this data is just a real adventure to get into usable form that we can expose!</p></div></blockquote>
+<p>You are doing an pretty amazing job bringing us all the new endpoints. We – developers and players alike – appreciate it.</p></p>
+
+<h2 id="">AfterXII.2761:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-28T00:57:46+00:00">
+        28 Aug 2015
+    </time>
+</p>
+<p>
+<p>Quick note, some skin ids that show in the main pull list (like 1042)<br>
+<a href="https://api.guildwars2.com/v2/skins">https://api.guildwars2.com/v2/skins</a></p>
+<p>Are returning ErrBadParam values when attempting to look more closely at it:<br>
+<a href="https://api.guildwars2.com/v2/skins/1042">https://api.guildwars2.com/v2/skins/1042</a></p>
+<p>This is an issue since i use the first link to check against my database for script auto update routines.</p>
+<p>EDIT: Here is a complete list of IDs that my system found inconsistent with the main skins API list (first URL):</p>
+<p>New ItemID found! (1042)<br>
+New ItemID found! (1043)<br>
+New ItemID found! (1047)<br>
+New ItemID found! (2329)<br>
+New ItemID found! (2385)<br>
+New ItemID found! (2388)<br>
+New ItemID found! (2394)<br>
+New ItemID found! (2395)<br>
+New ItemID found! (2984)<br>
+New ItemID found! (6074)</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-28T02:01:19+00:00">
+        28 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 28 2015 12:57AM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5424411">AfterXII.2761:</a></cite></div><div class="quotey"><p>Quick note, some skin ids that show in the main pull list (like 1042)<br>
+<a href="https://api.guildwars2.com/v2/skins">https://api.guildwars2.com/v2/skins</a></p>
+<p>Are returning ErrBadParam values when attempting to look more closely at it:<br>
+<a href="https://api.guildwars2.com/v2/skins/1042">https://api.guildwars2.com/v2/skins/1042</a></p>
+<p>This is an issue since i use the first link to check against my database for script auto update routines.</p></div></blockquote>
+<p>Hmm, weird. It’s either a cache coherency issue, or maybe I whitelisted something I shouldn’t have (items in banks and character inventories are now being put in the whitelist queue — been blessing them all day). I’ll track this down tomorrow — it’s highly likely that the fix will just be to remove those bad skins from the listing.</p>
+<p>Thanks for the list of broken IDs, that saves me a bunch of time &lt;3</p></p>
+
+<h2 id="">AfterXII.2761:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-28T05:22:21+00:00">
+        28 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 28 2015 02:01AM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5424606">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 28 2015 12:57AM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5424411">AfterXII.2761:</a></cite></div><div class="quotey"><p>Quick note, some skin ids that show in the main pull list (like 1042)<br>
+<a href="https://api.guildwars2.com/v2/skins">https://api.guildwars2.com/v2/skins</a></p>
+<p>Are returning ErrBadParam values when attempting to look more closely at it:<br>
+<a href="https://api.guildwars2.com/v2/skins/1042">https://api.guildwars2.com/v2/skins/1042</a></p>
+<p>This is an issue since i use the first link to check against my database for script auto update routines.</p></div></blockquote>
+<p>Hmm, weird. It’s either a cache coherency issue, or maybe I whitelisted something I shouldn’t have (items in banks and character inventories are now being put in the whitelist queue — been blessing them all day). I’ll track this down tomorrow — it’s highly likely that the fix will just be to remove those bad skins from the listing.</p>
+<p>Thanks for the list of broken IDs, that saves me a bunch of time &lt;3</p></div></blockquote>
+<p>No problem<img src="/include/images/smilies/smile.png"> Always happy to help!</p></p>
+
+<h2 id="">Chokapik.3741:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-28T06:50:09+00:00">
+        28 Aug 2015
+    </time>
+</p>
+<p>
+<p>Here is a <a href="http://jsfiddle.net/4xx2324m/1/">jsfiddle</a> that could help finding broken IDs. You can change the URL and check other endpoints.</p></p>
+
+<h2 id="">Vegeta.2563:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-28T17:43:28+00:00">
+        28 Aug 2015
+    </time>
+</p>
+<p>
+<p>I noticed on the API application to generate a new key.. there is Minipets and Finishers, but no API for it?</p></p>
+
+<h2 id="">Eearslya.6309:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-28T19:26:21+00:00">
+        28 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 28 2015 05:43PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5426938">Vegeta.2563:</a></cite></div><div class="quotey"><p>I noticed on the API application to generate a new key.. there is Minipets and Finishers, but no API for it?</p></div></blockquote>
+<p>The permission is bigger than the endpoints we have currently. So, presumably, when those endpoints do come out, that permission will apply to them as well.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-28T20:39:21+00:00">
+        28 Aug 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 27 2015 11:23PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5424116">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on August 27 2015 10:52PM"><a href="/forum/community/api/New-endpoints-wallets-and-unlocks/5424022">queicherius.2563:</a></cite></div><div class="quotey"><p>Thanks for all the mentions, it’s awesome to know that people like and use the site. Keeps the motivation going to push further!<img src="/include/images/smilies/smile.png"></p></div></blockquote>
+<p>Oh man, I just noticed the share character function.</p>
+<p>Gonna make all my guildies use this to share builds. We’ve been looking for this for awhile — massive thanks!</p></div></blockquote>
+<p>Tell your team to finally make builds savable and expose the backend so that we can create stuff like this <a href="http://youpawned.com/code/OQRCAcxDP9HknNd7gqaVANA">http://youpawned.com/code/OQRCAcxDP9HknNd7gqaVANA</a> (which is still a proof of concept &gt;.&lt;)</p></p>
+
+<h2 id="">Elfo Bianco.3786:</h2>
+<p class="post-meta">
+    <time datetime="2015-08-29T11:33:10+00:00">
+        29 Aug 2015
+    </time>
+</p>
+<p>
+<p>Thank you Lawton, just in time for what I’m doing right now in my app<img src="/include/images/smilies/wink.png"></p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

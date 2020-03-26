@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Launching /v2/characters</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Launching-v2-characters/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Launching /v2/characters</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Launching-v2-characters
+</p>
+
+
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-22T21:36:38+00:00">
+        22 May 2015
+    </time>
+</p>
+<p>
+<p>Just turned on the first half of another authenticated endpoint — /v2/characters. This endpoint provides the non-inventory-related bits detailed in <a href="https://github.com/arenanet/api-cdi/pull/16">this pull request</a>, and requires an API key with “characters” permission from the person whose data you want to access.</p>
+<p>Some examples — it basically works in the same manner as most of the other endpoints. The base URL returns a list of all the account’s character names:</p>
+<pre><code>    GET /v2/characters HTTP/1.1
+    Authorization: Bearer &lt;api-key&gt;
+
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+
+    [ "Logan Thackeray", "Eir Stegalkin"]
+ 
+</code></pre>
+<p>You can retrieve individual character blobs by putting them in the next URL component (or in a comma-delimited <code>ids</code> query parameter). Also note that you can pass the API key via the <code>access_token</code> query parameter if you’re making CORS requests (rather than setting the <code>Authorization</code> header):</p>
+<pre><code>    GET /v2/characters/Logan%20Thackeray?access_token=&lt;api-key&gt;
+
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+
+    {
+        "name": "Logan Thackeray",
+        "race": "Charr",
+        "gender": "Male",
+        "profession": "Guardian",
+        "level": 80,
+        "guild": "4BBB52AA-D768-4FC6-8EDE-C299F2822F0F"
+    }
+ 
+</code></pre>
+<p>Alternatively, you can make paginated requests. Metadata about the pagination details (e.g., the number of pages/results that can be requested) is returned in the response headers for ease-of-use.</p>
+<pre><code>    GET /v2/characters?page=0&amp;page_size=50 HTTP/1.1
+    Authorization: Bearer &lt;api-key&gt;
+
+    HTTP/1.1 200 OK
+    Content-Type: application/json
+    Link: &lt;/v2/characters?page=0&amp;page_size=50&gt;; rel=self, &lt;/v2/characters?page=0&amp;page_size=50&gt;; rel=first, &lt;/v2/characters?page=0&amp;page_size=50&gt;; rel=last
+    X-Page-Size: 50
+    X-Page-Total: 1
+    X-Result-Count: 2
+    X-Result-Total: 2
+
+    [
+        {
+            "name": "Logan Thackeray",
+            "race": "Charr",
+            "gender": "Male",
+            "profession": "Guardian",
+            "level": 80,
+            "guild": "4BBB52AA-D768-4FC6-8EDE-C299F2822F0F"
+        },
+        {
+            "name": "Eir Stegalkin",
+            "race": "Sylvari",
+            "gender": "Female",
+            "profession": "Thief",
+            "level": 80
+        }
+    ]
+ 
+</code></pre>
+<p>Right now the information returned is fairly basic, but we’ll be adding in the ability to pull character inventories, equipment, traits and skills later on.</p>
+<p>Due to technical constraints (wibbly wobbly distributed systems) the character blobs may be a bit stale (up to 5 minutes, I think), so factor that in if you’re making a guild rep tracking system or something (because I know someone’s going to do that).</p>
+<p>Let me know if you’ve got any questions/concerns and I’ll do my best to answer ’em.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-22T22:21:39+00:00">
+        22 May 2015
+    </time>
+</p>
+<p>
+<p>Neat ^.^</p>
+<p>Edit:</p>
+<p><a href="https://api.guildwars2.com/v2/characters?page=0&page_size=50&access_token=API_KEY">https://api.guildwars2.com/v2/characters?page=0&amp;page_size=50&amp;access_token=API_KEY</a> doesn’t seem to work, i get a {text: "ErrPermission"}</p>
+<p>same for <a href="https://api.guildwars2.com/v2/characters/&lt;NAME&gt;?access_token=API_KEY">https://api.guildwars2.com/v2/characters/&lt;NAME&gt;?access_token=API_KEY</a></p>
+<p><a href="https://api.guildwars2.com/v2/characters?access_token=API_KEY">https://api.guildwars2.com/v2/characters?access_token=API_KEY</a> works fine</p>
+<p>&amp;ids=all also doesn’t work… would be fine though.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-22T22:45:34+00:00">
+        22 May 2015
+    </time>
+</p>
+<p>
+<p>That’s super weird, they should all be working. Can you PM me the API key you’re using?</p>
+<p>FWIW, they all seem to be working for me:</p>
+<ul>
+	<li><a href="https://api.guildwars2.com/v2/characters?access_token=017A2B0C-A6C5-CC4D-A055-680F427CE8FDFD19A439-15C7-4EC1-AA3C-B84C4F6E5A71">/v2/characters</a></li>
+	<li><a href="https://api.guildwars2.com/v2/characters?ids=Shieldclaws&access_token=017A2B0C-A6C5-CC4D-A055-680F427CE8FDFD19A439-15C7-4EC1-AA3C-B84C4F6E5A71">/v2/characters/$char</a></li>
+	<li><a href="https://api.guildwars2.com/v2/characters?ids=Shieldclaws,Cherry%20Deathbloom&access_token=017A2B0C-A6C5-CC4D-A055-680F427CE8FDFD19A439-15C7-4EC1-AA3C-B84C4F6E5A71">/v2/characters?ids=$char1,$char2</a></li>
+	<li><a href="https://api.guildwars2.com/v2/characters?page=0&access_token=017A2B0C-A6C5-CC4D-A055-680F427CE8FDFD19A439-15C7-4EC1-AA3C-B84C4F6E5A71">/v2/characters?page=0</a></li>
+</ul>
+<p>(EDIT: noting that there’s a bug in the forum redirection thing that converts &amp; to &amp;amp; which isn’t very helpful).</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-22T22:54:49+00:00">
+        22 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2015 10:45PM"><a href="/forum/community/api/Launching-v2-characters/5091775">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>(EDIT: noting that there’s a bug in the forum redirection thing that converts &amp; to &amp;amp; which isn’t very helpful).</p></div></blockquote>
+<p>This is a known bug for ages. Can’t you just switch to… say Invision Power Board?<img src="/include/images/smilies/colondee.png"></p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-22T23:09:06+00:00">
+        22 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2015 10:54PM"><a href="/forum/community/api/Launching-v2-characters/5091806">smiley.1438:</a></cite></div><div class="quotey"><p>This is a known bug for ages. Can’t you just switch to… say Invision Power Board?<img src="/include/images/smilies/colondee.png"></p></div></blockquote>
+<p>No, for reasons. Stay on-topic please.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-22T23:09:09+00:00">
+        22 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2015 10:54PM"><a href="/forum/community/api/Launching-v2-characters/5091806">smiley.1438:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 22 2015 10:45PM"><a href="/forum/community/api/Launching-v2-characters/5091775">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>(EDIT: noting that there’s a bug in the forum redirection thing that converts &amp; to &amp;amp; which isn’t very helpful).</p></div></blockquote>
+<p>This is a known bug for ages. Can’t you just switch to… say Invision Power Board?<img src="/include/images/smilies/colondee.png"></p></div></blockquote>
+<p>Uhhh no comment.</p>
+<p>WRT the ErrPermission; not sure what the cause of the issue is yet, but one of the backend servers in the EU DC is causing some ruckus. The NA one seems fine though; will have this fixed in a bit.</p></p>
+
+<h2 id="">JoluMarti.9165:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-22T23:26:12+00:00">
+        22 May 2015
+    </time>
+</p>
+<p>
+<p><a href="https://api.guildwars2.com/v2/characters?page=0&page_size=200&access_token=TOKEN">https://api.guildwars2.com/v2/characters?page=0&amp;page_size=200&amp;access_token=TOKEN</a> works for me</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-22T23:33:28+00:00">
+        22 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2015 11:09PM"><a href="/forum/community/api/Launching-v2-characters/5091848">Pat Cavit.9234:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 22 2015 10:54PM"><a href="/forum/community/api/Launching-v2-characters/5091806">smiley.1438:</a></cite></div><div class="quotey"><p>This is a known bug for ages. Can’t you just switch to… say Invision Power Board?<img src="/include/images/smilies/colondee.png"></p></div></blockquote>
+<p>No, for reasons. Stay on-topic please.</p></div></blockquote></p>
+
+<h2 id="">Crudelis.8640:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-22T23:35:58+00:00">
+        22 May 2015
+    </time>
+</p>
+<p>
+<p>Great work<img src="/include/images/smilies/smile.png"><br>
+Maybe, if possible from the technical side, you can add an image of the character? I don’t know how it’s mashed up in your systems, but showing the user’s avatar, like in the character selection screen, would be awesome.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-22T23:40:20+00:00">
+        22 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 22 2015 11:35PM"><a href="/forum/community/api/Launching-v2-characters/5091943">Crudelis.8640:</a></cite></div><div class="quotey"><p>Maybe, if possible from the technical side, you can add an image of the character? I don’t know how it’s mashed up in your systems, but showing the user’s avatar, like in the character selection screen, would be awesome.</p></div></blockquote>
+<p>Rest assured, this is something I really, really want too. There’s a lot of moving parts that need to be ironed out before it’s feasible though, so we’ll probably be sticking to low-hanging fruit for awhile yet  :&lt;</p></p>
+
+<h2 id="">Crudelis.8640:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-22T23:55:51+00:00">
+        22 May 2015
+    </time>
+</p>
+<p>
+<p>Thank you for having it in your mind, and keep up the great work with the new API!<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-23T00:12:16+00:00">
+        23 May 2015
+    </time>
+</p>
+<p>
+<p>We might not actually have the EU DC issue fixed until next week — any requests that get routed there won’t work for now. My bad for shipping stuff on a Friday :&lt;</p>
+<p>In the meanwhile, NA’s IP address is 64.25.40.16. Requests sent to that IP should work correctly while we figure out the issue.</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-23T00:14:53+00:00">
+        23 May 2015
+    </time>
+</p>
+<p>
+<p>Thanks for the heads-up, Lawton!</p>
+<p><a href="https://twitter.com/iamdevloper/status/450905958139834368">https://twitter.com/iamdevloper/status/450905958139834368</a><br>
+<a href="https://twitter.com/iamdevloper/status/438408934458941440">https://twitter.com/iamdevloper/status/438408934458941440</a></p>
+<p>:D</p>
+<p>git commit -am “DEAL WITH IT” &amp;&amp; git push -f origin master</p></p>
+
+<h2 id="">Giltheryn.8603:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-23T20:25:10+00:00">
+        23 May 2015
+    </time>
+</p>
+<p>
+<p>I’ve been messing with this API just for fun and I was wondering if it’s be possible to add a field like last_played or is_online to individual characters?</p>
+<p>I feel like the guild rep info would be more useful if we could see what character, if any, is being played at a given time. That said, it’s just an idea; I don’t actually need it for anything and I don’t know how easy it’d be to implement.</p>
+<p>Anyway thanks for all the great work on the API stuff and for being so responsive to feedback/concerns.</p></p>
+
+<h2 id="">nightzirch.3126:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-23T22:08:09+00:00">
+        23 May 2015
+    </time>
+</p>
+<p>
+<p>Was messing around with the API as well, and gotta say it’s a lot of fun to see how the authorized API is progressing!</p>
+<p>I am currently working on a new version of gw2wardrobe.com, and am using the new API v2 for it. I am so excited for the ability to see which skins your account has unlocked! I have mostly everything ready for when that goes live.</p>
+<p>A question about /v2/character/:id/equipment: will we get access to what skins the character is wearing as well? Say, for the chest piece, we get the ID for equipment, rune, infusions and skin?</p>
+<p>Getting an image/portrait of the character would be sick as well! For now I’ll just have to <a href="http://178.62.192.69:3000/user/nightzirch">stick with generic images.</a></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-23T22:51:02+00:00">
+        23 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 23 2015 10:08PM"><a href="/forum/community/api/Launching-v2-characters/5094088">nightzirch.3126:</a></cite></div><div class="quotey"><p>A question about /v2/character/:id/equipment: will we get access to what skins the character is wearing as well? Say, for the chest piece, we get the ID for equipment, rune, infusions and skin?</p></div></blockquote>
+<p>Yeah, skins, upgrades, and infusions are going to be accessible on both the current equipment and in the inventory/bank. One of the Guthub PRs has details about a unified “item stack” structure that exposes this in a normalized form.</p>
+<blockquote><div class="citey"><cite title="Posted on May 23 2015 08:25PM"><a href="/forum/community/api/Launching-v2-characters/5093914">Giltheryn.8603:</a></cite></div><div class="quotey"><p>I’ve been messing with this API just for fun and I was wondering if it’s be possible to add a field like last_played or is_online to individual characters?</p></div></blockquote>
+<p>That’s data that can be exposed, but we should have a discussion about how to do it in a way that makes your users happy. I have a hunch that we may want to hide that data behind a separate permission, but I haven’t thought about it enough to have a well-formed opinion.</p></p>
+
+<h2 id="">Giltheryn.8603:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-24T00:35:15+00:00">
+        24 May 2015
+    </time>
+</p>
+<p>
+<p>I don’t have any users per se, I’m just a self taught programmer messing with it for fun and don’t really have a particular project in mind right now. I’m sure there’s some people here that would benefit from that data more than I would. Though I do agree that it should be somehow separate as a permission since it could be considered sensitive information to some players.</p></p>
+
+<h2 id="">quenoz.3859:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-24T15:36:05+00:00">
+        24 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 23 2015 10:51PM"><a href="/forum/community/api/Launching-v2-characters/5094147">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>That’s data that can be exposed, but we should have a discussion about how to do it in a way that makes your users happy. I have a hunch that we may want to hide that data behind a separate permission, but I haven’t thought about it enough to have a well-formed opinion.</p></div></blockquote>
+<p>talking about permissions, i think it might be really useful to have the equipment and inventory of characters behind separate permissions too.</p>
+<p>for example i will definitely write a quick tool gathering all the builds of guild members directly from the api (at the moment everyone has to do that manually), but it might make some people uncomfortable that i will basically also be able to view their inventories for whatever reason.</p></p>
+
+<h2 id="">rodadams.5963:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-24T19:00:19+00:00">
+        24 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 23 2015 10:51PM"><a href="/forum/community/api/Launching-v2-characters/5094147">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on May 23 2015 08:25PM"><a href="/forum/community/api/Launching-v2-characters/5093914">Giltheryn.8603:</a></cite></div><div class="quotey"><p>I’ve been messing with this API just for fun and I was wondering if it’s be possible to add a field like last_played or is_online to individual characters?</p></div></blockquote>
+<p>That’s data that can be exposed, but we should have a discussion about how to do it in a way that makes your users happy. I have a hunch that we may want to hide that data behind a separate permission, but I haven’t thought about it enough to have a well-formed opinion.</p></div></blockquote>
+<p>It should go with the Guild permissions, since you can see this of any guild member in game.</p></p>
+
+<h2 id="">Pilot.6094:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-25T06:11:10+00:00">
+        25 May 2015
+    </time>
+</p>
+<p>
+<p>Great to see progress with the new character API, very useful.</p>
+<p>One concern I have since OAuth was removed is that it will be near impossible to instruct ordinary users which permissions they need to add to their API key. This will be especially challenging given the new permissions being added as the API evolves.</p>
+<p>Have you given any thought on how to enhance the usability of the API key generation with permissions?</p>
+<p>Perhaps it could default to all permissions checked since we can’t pass a parameter of the permissions we require (ideal).</p></p>
+
+<h2 id="">Ruhrpottpatriot.7293:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-26T13:16:15+00:00">
+        26 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 25 2015 06:11AM"><a href="/forum/community/api/Launching-v2-characters/5096900">Pilot.6094:</a></cite></div><div class="quotey"><p>Perhaps it could default to all permissions checked since we can’t pass a parameter of the permissions we require (ideal).</p></div></blockquote>
+<p>NO! NO! Never ever do that! The less restrictions are accessible by default, the better. A user should have to <em>grant</em> permissions, not <em>revoke</em> them.</p></p>
+
+<h2 id="">DeviantShark.6548:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-26T17:00:46+00:00">
+        26 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 26 2015 01:16PM"><a href="/forum/community/api/Launching-v2-characters/5099825">Ruhrpottpatriot.7293:</a></cite></div><div class="quotey"><p>NO! NO! Never ever do that! The less restrictions are accessible by default, the better. A user should have to <em>grant</em> permissions, not <em>revoke</em> them.</p></div></blockquote>
+<p>Absolutely correct. It might seem convenient, but definitely is not the way to go.</p>
+<blockquote><div class="citey"><cite title="Posted on May 23 2015 10:51PM"><a href="/forum/community/api/Launching-v2-characters/5094147">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>That’s data that can be exposed, but we should have a discussion about how to do it in a way that makes your users happy. I have a hunch that we may want to hide that data behind a separate permission, but I haven’t thought about it enough to have a well-formed opinion.</p></div></blockquote>
+<p>This is something I really thought about a lot already. I did an automated VPN Management software once, where a requirement was to actually see online clients, so I riddled about how handling this in GW2 could be achieved. The conclusion i drew was that without actually reworking the Online-status-management within the game client it is <strong>really</strong> hard. Mostly because I can see people who want to announce their online-status ingame correctly, but not to announce it to the public (or api, in that matter). Alternatively using a seperate permission for that would definitely be a proper solution, which is completely necessary. <br>
+However, the feature itself would be incredibly useful, when it comes to organizing teams, groups, guilds and generate statistics such as average online time per guildmember per day or just how much logged in at least once a day.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-26T17:37:50+00:00">
+        26 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 24 2015 03:36PM"><a href="/forum/community/api/Launching-v2-characters/5095381">quenoz.3859:</a></cite></div><div class="quotey"><p>talking about permissions, i think it might be really useful to have the equipment and inventory of characters behind separate permissions too.</p></div></blockquote>
+<p>Hmm, it might make sense to move the equipment over to the “characters” permission (it currently requires the “inventories” permission). I hesitate to make a permission for everything; my goal is to keep the number to 7 or fewer.</p>
+<blockquote><div class="citey"><cite title="Posted on May 26 2015 05:00PM"><a href="/forum/community/api/Launching-v2-characters/5100459">DeviantShark.6548:</a></cite></div><div class="quotey"><p>Mostly because I can see people who want to announce their online-status ingame correctly, but not to announce it to the public (or api, in that matter). Alternatively using a seperate permission for that would definitely be a proper solution, which is completely necessary.</p></div></blockquote>
+<p>I think a separate permission is probably best. Putting it into the guild permission (as suggested earlier), I think is a bit unintuitive (and awkward as the guild permission is currently only useful for guild leaders).</p></p>
+
+<h2 id="">Devilsown.9376:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-26T23:04:20+00:00">
+        26 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 26 2015 05:37PM"><a href="/forum/community/api/Launching-v2-characters/5100588">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>Hmm, it might make sense to move the equipment over to the “characters” permission (it currently requires the “inventories” permission). I hesitate to make a permission for everything; my goal is to keep the number to 7 or fewer.</p></div></blockquote>
+<p>Can you put the Look / Wardrobe and Colors to the characters permission and only the Stats to the inventories (and later to the skills)?<br>
+An other Idea could be an easy and an advanced mode for the permissions. Or an easy mode with opt out for all subpoints. <br>
+Some ppl are already a little bit unhappy with the Guilds in the basics and even more with the Guilds in the characters.</p></p>
+
+<h2 id="">MatHack.4316:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-28T13:44:24+00:00">
+        28 May 2015
+    </time>
+</p>
+<p>
+<p>If you call /v2/characters you get an ordered list (by descending last logged in), however if you call /v2/characters?page=0&amp;page_size=50 the order of the characters is randomize with every call. Is there something you can do about this or is this intended?</p>
+<p>EDIT: edited in the correct order.</p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-28T14:11:01+00:00">
+        28 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 28 2015 01:44PM"><a href="/forum/community/api/Launching-v2-characters/5105757">MatHack.4316:</a></cite></div><div class="quotey"><p>If you call /v2/characters you get an ordered list (by date/time of creation)</p></div></blockquote>
+<p>No. They are not order by creation time. Its the same order I get when requesting a page, although it doesn’t seem to change as often when requesting it repeatedly.</p>
+<p>I still would like to see creation_time and a unique identifier for characters though.</p>
+<blockquote><div class="quotey"><p>[…] character GUIDs are strictly secret. We could theoretically pass them through a one-way transform (e.g., a hash function), but I think it would take significant backend work to plumb that through everything. The character name is at least unique; the mutability is just a constraint I think we’ll have to live with.</p>
+<p>I’ll spend some more time looking into it though. It’s a really horrible constraint to live with.</p>
+<p>~lye (<a href="https://github.com/arenanet/api-cdi/pull/16#issuecomment-77269899">source</a>).</p></div></blockquote></p>
+
+<h2 id="">MatHack.4316:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-28T15:09:28+00:00">
+        28 May 2015
+    </time>
+</p>
+<p>
+<p>Whoops, you are right, they are in descending last logged out order (same as the character select screen in-game).<br>
+The /v2/characters?page=0&amp;page_size=50 result is just randomized everytime (between de results you get for that page). You can actually still get the same order from /v2/characters if you use a page_size of 1 and just handle each page as one character.</p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-28T16:22:19+00:00">
+        28 May 2015
+    </time>
+</p>
+<p>
+<p>Ah you are right<img src="/include/images/smilies/smile.png"> But requesting with page_size=50 gets me the same order as /characters most of the time (60-70%), only sometimes the order seems the be random.</p></p>
+
+<h2 id="">Devilsown.9376:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-29T11:40:46+00:00">
+        29 May 2015
+    </time>
+</p>
+<p>
+<p>Do you plan a translation for Characters (lang=)? <br>
+Of course, it’s no problem to translate Race, Gender and Profession by my self. So I do not need a translation by API, but if it’s planed I would wait<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-05-29T19:57:10+00:00">
+        29 May 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 29 2015 11:40AM"><a href="/forum/community/api/Launching-v2-characters/5107925">Devilsown.9376:</a></cite></div><div class="quotey"><p>Do you plan a translation for Characters (lang=)?</p></div></blockquote>
+<p>Nah, those values are intended to be the string representation of numerical constants, i.e., meant for machine rather than human consumption. IMO, you should localize them in the application.</p></p>
+
+<h2 id="">Markus.6492:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-01T11:38:12+00:00">
+        01 Jun 2015
+    </time>
+</p>
+<p>
+<p>Hi all,</p>
+<p>I follow the API development for quite a while now and am as a guild leader pleased that now the characters API is available.</p>
+<p>And since I also have an immediate proposal to extend:</p>
+<p>We use our guild page a plugin to display the characters of our members. Unfortunately, each member has to enter all of his characters by hand and also maintain it.</p>
+<p>We have in addition to those already in the API information such as name, race and profession even the crafts profession, the associated orders, the commander, the fractal level and the Dungeons concluded Story Modes.</p>
+<p>Is it planned to be able to read this information about the API and the best to even a character image, so you only need an API key and all the information of the members to be able to automatically display on the guild page.</p>
+<p>Best regards</p>
+<p>Markus</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-01T17:30:36+00:00">
+        01 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 01 2015 11:38AM"><a href="/forum/community/api/Launching-v2-characters/5113923">Markus.6492:</a></cite></div><div class="quotey"><p>Is it planned to be able to read this information about the API and the best to even a character image, so you only need an API key and all the information of the members to be able to automatically display on the guild page.</p></div></blockquote>
+<p>In the long run, I hope to be able to provide all that information, given that you have an API key for each guild member.</p>
+<p>I don’t think we’ll allow the guild leader’s API key to act as a skeleton key for their guild members. There’d have to be some kind of opt-in system for guild members, and at that point we might as well just stick to the key per-person approach.</p>
+<p>(Posting this before I’ve had my coffee so I might not have understood/answered the correct question)</p></p>
+
+<h2 id="">rodadams.5963:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-01T17:37:00+00:00">
+        01 Jun 2015
+    </time>
+</p>
+<p>
+<p>I could, however, see an argument made for “show me what I can see in game”. As such, I’d be able to see the account.1234 of everyone in the guild, along with their AP total, and some stats on currently logged in character, such as name, locataion, and crafting skills.</p>
+<p>I can pass on the crafting skills, but if the above were available via API, one could poll it every so often, and slowly build a list of characters that people play with, thus delivering roughly what Markus wanted.</p>
+<p>I don’t see this as a guild leader skeleton key, just a base feature.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-01T17:50:06+00:00">
+        01 Jun 2015
+    </time>
+</p>
+<p>
+<p>Ah yeah, we definitely plan to expose that kind of information. There’s some details <a href="https://github.com/arenanet/api-cdi/pull/7">in the github repo</a> about the upcoming endpoint.</p></p>
+
+<h2 id="">Asuaka.1528:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-01T20:06:06+00:00">
+        01 Jun 2015
+    </time>
+</p>
+<p>
+<p>Maybe I haven’t seen it but are there any plans to include a characters age? <br>
+And maybe account age in the general account API.</p></p>
+
+<h2 id="">Markus.6492:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-02T05:12:42+00:00">
+        02 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 01 2015 05:30PM"><a href="/forum/community/api/Launching-v2-characters/5114622">Lawton Campbell.8517:</a></cite></div><div class="quotey"><p>In the long run, I hope to be able to provide all that information, given that you have an API key for each guild member.</p>
+<p>I don’t think we’ll allow the guild leader’s API key to act as a skeleton key for their guild members. There’d have to be some kind of opt-in system for guild members, and at that point we might as well just stick to the key per-person approach.</p></div></blockquote>
+<p>Hi,</p>
+<p>I think I have expressed myself wrong, of course I did not mean “the one key to rule them” <img src="/include/images/smilies/wink.png"> but an API key by each member of the guild.</p>
+<p>However, it would be nice if the information would not be until next year. Assuming that stand by the information already in a database, and so parts should already be made available from this database, it’s not too difficult to provide also the remaining information.</p>
+<p>regards</p>
+<p>Markus</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-02T17:28:50+00:00">
+        02 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 01 2015 08:06PM"><a href="/forum/community/api/Launching-v2-characters/5114952">Asuaka.1528:</a></cite></div><div class="quotey"><p>Maybe I haven’t seen it but are there any plans to include a characters age? <br>
+And maybe account age in the general account API.</p></div></blockquote>
+<p>Not formal plans, no, but it’ll probably make it in there at some point.</p>
+<blockquote><div class="citey"><cite title="Posted on June 02 2015 05:12AM"><a href="/forum/community/api/Launching-v2-characters/5115773">Markus.6492:</a></cite></div><div class="quotey"><p>However, it would be nice if the information would not be until next year. Assuming that stand by the information already in a database, and so parts should already be made available from this database, it’s not too difficult to provide also the remaining information.</p></div></blockquote>
+<p>I can’t really comment meaningfully on our release timeline. The data doesn’t come from a database, per se, but is handled by multiple backend servers that have to be kept in-sync with the normal game release processes. Regardless, I’ll try to get everything out as soon as I can.</p></p>
+
+<h2 id="">Tiscan.8345:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-05T11:09:48+00:00">
+        05 Jun 2015
+    </time>
+</p>
+<p>
+<p>IMHO, querying Chars by their name is a <strong>very</strong> bad idea. Not only is there a huge potential for messesd up queries (i know <strong>lots</strong> of players using strange unicode-stuff in their names – and we all know how “well” a lot of proxies/http-libs handle that stuff) and its making managing characters a major pita because people can always change their name using a name-change contract (which means: they are changing the “primary key” by which you can find their data in your database).</p>
+<p>It would be nice if you could add a GUID for the characters as well and probably add the possibility to query by that GUID instead of the charname.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-05T17:29:22+00:00">
+        05 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 05 2015 11:09AM"><a href="/forum/community/api/Launching-v2-characters/5123786">Tiscan.8345:</a></cite></div><div class="quotey"><p>It would be nice if you could add a GUID for the characters as well and probably add the possibility to query by that GUID instead of the charname.</p></div></blockquote>
+<p>I threw an <a href="https://github.com/arenanet/api-cdi/issues/32">issue into github</a> for this; it was something I was meaning to do before release but it slipped my mind. Querying by id is going to be surprisingly difficult (since the id will have to be generated from some immutable private per-character data), but throwing it into the character blob as a unique identifying field should be pretty straightforward.</p></p>
+
+<h2 id="">Atomix.7053:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-12T01:23:38+00:00">
+        12 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 28 2015 01:44PM"><a href="/forum/community/api/Launching-v2-characters/5105757">MatHack.4316:</a></cite></div><div class="quotey"><p>If you call /v2/characters you get an ordered list (by descending last logged in)</p></div></blockquote>
+<p>when is that this data is refreshed?<br>
+I get : <br>
+<strong><em>[“Atamix”,“Atimax”,“Atimyx”,“Atamïx”,“Atomöx”,“Atimox”,“Arlequizayy”,“Atomïx”]</em></strong></p>
+<p>but my order on login screen: <br>
+<strong><em>Atamyx, Atomïx, Atamix, Atimax, Atamïx, Atomöx, Atimox, Arlequizayy</em></strong></p>
+<p>explain me that please? i’m confused <img src="/include/images/smilies/sad.png"></p></p>
+
+<h2 id="">MatHack.4316:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-12T05:25:24+00:00">
+        12 Jun 2015
+    </time>
+</p>
+<p>
+<p>@Atomix: Lawton never confirmed (or responded to my <a href="/forum-backup/Launching-v2-characters">question</a>) that the characters are sorted in a specific order, this is just my own observation. For me it updated as soon as I was back in the character select screen. Keep in mind that the data is cached up to 5 minutes on the API-server.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-12T17:04:58+00:00">
+        12 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 12 2015 05:25AM"><a href="/forum/community/api/Launching-v2-characters/5140988">MatHack.4316:</a></cite></div><div class="quotey"><p>@Atomix: Lawton never confirmed (or responded to my <a href="/forum-backup/Launching-v2-characters">question</a>) that the characters are sorted in a specific order, this is just my own observation. For me it updated as soon as I was back in the character select screen. Keep in mind that the data is cached up to 5 minutes on the API-server.</p></div></blockquote>
+<p>Pretty much this.</p>
+<p>I haven’t looked into the code to verify that the character order is roughly sorted from most→least recently played, but my observations match yours.</p></p>
+
+<h2 id="">DeviantShark.6548:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-13T09:32:13+00:00">
+        13 Jun 2015
+    </time>
+</p>
+<p>
+<p>Quick Question related to /v2/characters<br>
+Is there a possibility to push the /age of a character to the API?</p></p>
+
+<h2 id="">darthmaim.6017:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-13T11:43:02+00:00">
+        13 Jun 2015
+    </time>
+</p>
+<p>
+<p>That is already coming: <a href="https://github.com/arenanet/api-cdi/pull/33">https://github.com/arenanet/api-cdi/pull/33</a></p></p>
+
+<h2 id="">Divine Don.9752:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-14T20:42:42+00:00">
+        14 Jun 2015
+    </time>
+</p>
+<p>
+<p>Not sure if this relates to the questions asked above but I’m having problems with the order of characters.</p>
+<p>When requesting character info by Id’s (‘<a href="https://api.guildwars2.com/v2/characters?ids">https://api.guildwars2.com/v2/characters?ids</a>=’ + namesString), I get all characters but they come in different order everytime. For example, If I request [A,B,C]; The return data will be [A,C,B] or [C,B,A] etc…</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-15T15:43:27+00:00">
+        15 Jun 2015
+    </time>
+</p>
+<p>
+<p>I’d recommend just sorting them client-side if you want them ordered — there’s going to be &lt;=64 strings, so it’s not that big of a deal.</p>
+<p>I hesitate to sort them on the server, since there might be some useful meaning in the ordering (e.g., determining which characters have been played most recently). I’d rather not take that datum away.</p></p>
+
+<h2 id="">Divine Don.9752:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-19T18:56:43+00:00">
+        19 Jun 2015
+    </time>
+</p>
+<p>
+<p>I ended up doing what you recommended. Thanks.</p>
+<p>Any ETA on /v2/characters/:id/equipment? No rush, with school and work the site that I’m creating won’t be done for another 3-4 months; I would just like a status on how things are coming along so I can adjust my schedule.</p>
+<p>Thanks again,</p></p>
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-19T19:31:06+00:00">
+        19 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 19 2015 06:56PM"><a href="/forum/community/api/Launching-v2-characters/5174743">Divine Don.9752:</a></cite></div><div class="quotey"><p>I ended up doing what you recommended. Thanks.</p>
+<p>Any ETA on /v2/characters/:id/equipment? No rush, with school and work the site that I’m creating won’t be done for another 3-4 months; I would just like a status on how things are coming along so I can adjust my schedule.</p>
+<p>Thanks again,</p></div></blockquote>
+<p><a href="https://github.com/arenanet/api-cdi/pull/36">https://github.com/arenanet/api-cdi/pull/36</a></p>
+<p>We should be able to turn it on sometime after the next patch hits, IIRC.</p></p>
+
+<h2 id="">rodadams.5963:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-19T21:01:45+00:00">
+        19 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 19 2015 07:31PM"><a href="/forum/community/api/Launching-v2-characters/5174918">Pat Cavit.9234:</a></cite></div><div class="quotey"><p><a href="https://github.com/arenanet/api-cdi/pull/36">https://github.com/arenanet/api-cdi/pull/36</a></p>
+<p>We should be able to turn it on sometime after the next patch hits, IIRC.</p></div></blockquote>
+<p>I presume we’ll get /v2/account/bank at the same time? The two pretty much go hand in hand, and I’d expect similar challenges with the two, but I’m not in your codebase.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-19T21:54:58+00:00">
+        19 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 19 2015 09:01PM"><a href="/forum/community/api/Launching-v2-characters/5175404">rodadams.5963:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 19 2015 07:31PM"><a href="/forum/community/api/Launching-v2-characters/5174918">Pat Cavit.9234:</a></cite></div><div class="quotey"><p><a href="https://github.com/arenanet/api-cdi/pull/36">https://github.com/arenanet/api-cdi/pull/36</a></p>
+<p>We should be able to turn it on sometime after the next patch hits, IIRC.</p></div></blockquote>
+<p>I presume we’ll get /v2/account/bank at the same time? The two pretty much go hand in hand, and I’d expect similar challenges with the two, but I’m not in your codebase.</p></div></blockquote>
+<p>Yeah, we’re hoping to turn on <a href="https://github.com/arenanet/api-cdi/pull/12">/v2/account/bank</a> and <a href="https://github.com/arenanet/api-cdi/pull/13">/v2/account/materials</a> around the same time, barring any catastrophes.</p></p>
+
+<h2 id="">Divine Don.9752:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-19T23:42:05+00:00">
+        19 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 19 2015 07:31PM"><a href="/forum/community/api/Launching-v2-characters/5174918">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>We should be able to turn it on sometime after the next patch hits, IIRC.</p></div></blockquote>
+<p>Next patch meaning sometime next week (Tuesday)?</p></p>
+
+<h2 id="">rodadams.5963:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-20T17:09:37+00:00">
+        20 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 19 2015 09:54PM"><a href="/forum/community/api/Launching-v2-characters/5175660">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 19 2015 09:01PM"><a href="/forum/community/api/Launching-v2-characters/5175404">rodadams.5963:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 19 2015 07:31PM"><a href="/forum/community/api/Launching-v2-characters/5174918">Pat Cavit.9234:</a></cite></div><div class="quotey"><p><a href="https://github.com/arenanet/api-cdi/pull/36">https://github.com/arenanet/api-cdi/pull/36</a></p>
+<p>We should be able to turn it on sometime after the next patch hits, IIRC.</p></div></blockquote>
+<p>I presume we’ll get /v2/account/bank at the same time? The two pretty much go hand in hand, and I’d expect similar challenges with the two, but I’m not in your codebase.</p></div></blockquote>
+<p>Yeah, we’re hoping to turn on <a href="https://github.com/arenanet/api-cdi/pull/12">/v2/account/bank</a> and <a href="https://github.com/arenanet/api-cdi/pull/13">/v2/account/materials</a> around the same time, barring any catastrophes.</p></div></blockquote>
+<p>Excellent!<br>
+I’ve got some plans for that data.</p>
+<blockquote><div class="citey"><cite title="Posted on June 19 2015 11:42PM"><a href="/forum/community/api/Launching-v2-characters/5176191">Divine Don.9752:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on June 19 2015 07:31PM"><a href="/forum/community/api/Launching-v2-characters/5174918">Pat Cavit.9234:</a></cite></div><div class="quotey"><p>We should be able to turn it on sometime after the next patch hits, IIRC.</p></div></blockquote>
+<p>Next patch meaning sometime next week (Tuesday)?</p></div></blockquote>
+<p>I believe he means that the next patch will get some changes into the backend, which will let him work on getting it out to us. I’d expect a week or two later, most likely.</p></p>
+
+<h2 id="">Strategist.6132:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-21T08:10:29+00:00">
+        21 Jun 2015
+    </time>
+</p>
+<p>
+<p>I was wondering: Does some of the character data really needs to be hidden behind a key? I mean everyone in game can basically already see if someone is online, the equipment and stuff. It would be nice if you could query a name to get his/her build too. Why was it chosen to make this API behind a key if you can view most information in game without their permission as well? Sorry if I missed something! I believe that making this more public really would open more oppurtunities for sites</p></p>
+
+<h2 id="">Killerassel.2197:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-21T08:55:08+00:00">
+        21 Jun 2015
+    </time>
+</p>
+<p>
+<p>No. Just no. Yes, you can see if someone is online (unless invisible). But you cannot see their equipment or build. You can – if you manage to find that character in the world – see the SKINS one is wearing, but not the actual items.</p>
+<p>Unlike in a certain competing game you cannot right-click “inspect” characters. GW2 does not have its own armory. And this is something I like.</p>
+<p>Please Anet, don’t make GearScore a thing in GW2! EVER!</p>
+<p>If anything the API needs MORE fine grained permissions rather than less.</p></p>
+
+<h2 id="">Eearslya.6309:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-21T09:50:51+00:00">
+        21 Jun 2015
+    </time>
+</p>
+<p>
+<p>So quick question for the devs, I was messing with the API earlier after I had left a guild, and I noticed that my characters are still shown as representing that guild, even though it no longer shows up in <strong>/v2/account</strong>. Is this intentional or a bug?</p></p>
+
+<h2 id="">Strategist.6132:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-21T10:57:30+00:00">
+        21 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 21 2015 08:55AM"><a href="/forum/community/api/Launching-v2-characters/5182783">Killerassel.2197:</a></cite></div><div class="quotey"><p>No. Just no. Yes, you can see if someone is online (unless invisible). But you cannot see their equipment or build. You can – if you manage to find that character in the world – see the SKINS one is wearing, but not the actual items.</p>
+<p>Unlike in a certain competing game you cannot right-click “inspect” characters. GW2 does not have its own armory. And this is something I like.</p>
+<p>Please Anet, don’t make GearScore a thing in GW2! EVER!</p>
+<p>If anything the API needs MORE fine grained permissions rather than less.</p></div></blockquote>
+<p>I just don’t understand why you wouldn’t want people to not see your build? It is not that private right? I can imagine you don’t want your inventory or bank to be shown. But what is wrong with making builds public?</p>
+<p>I think there are many possibilities if you would make the API public (in sense that you can query the (sPvP) builds of other people). If you would limit it only to your own character, I don’t think there would be many reasons to not just log in on GW2 itself and check their info. Maybe you can provide me with some cool idea’s that could be implemented right now with /v2/characters/ being private, and some reasons why your build should be private to other players to convince me?</p></p>
+
+<h2 id="">Killerassel.2197:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-21T12:44:10+00:00">
+        21 Jun 2015
+    </time>
+</p>
+<p>
+<p>The build itself (i.e. selection of traits), especially after the upcoming patch, would probably not be that problematic. But I foresee the meta zerker elite kittens in LFG tool will start with gear checks before running even the simplest dungeon. As long as they need to ask for an API key I can just laught at them and leave. If everyone can always check everyone else I am afraid mandatory gear checks will become commonplace.</p>
+<p>I’ve played WoW and have seen how the community became after the rise of GearScore (and similar addons). I do not want to see this happening in GW2, too. Many LFG tool listings already look discouraging. I don’t want to see support for this behaviour by granting access to data.</p>
+<p>This is pretty much along the same line why I don’t want to see damage meters in GW2. That is another topic, but many of the reasons against them apply here too.</p>
+<p>As for what you can do when the API is private: almost everything you can do if it was public. As long as each player agrees and voluntarily gives you a key to access his or her data. You can still pull up a GW2 equivalent of the WoW armory, but only list players agreeing to the service. You just can’t spy on or stalk people, who don’t opt-in.</p>
+<p>You seem to be thinking about SPvP builds, though. I see those a bit less strict, as they can already be inspected by spectators in game and I haven’t seen the PvP players as elitist about builds as the PvE’ers and PvP gear is a non-issue anyway.</p>
+<p>Also remember that API access can be easily automated. You can track my online times manually via the friend list, but this is quite cumbersome. A service that tracks online times of every player would just be spooky.</p></p>
+
+<h2 id="">Strategist.6132:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-21T15:06:41+00:00">
+        21 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 21 2015 12:44PM"><a href="/forum/community/api/Launching-v2-characters/5183239">Killerassel.2197:</a></cite></div><div class="quotey"><p>The build itself (i.e. selection of traits), especially after the upcoming patch, would probably not be that problematic. But I foresee the meta zerker elite kittens in LFG tool will start with gear checks before running even the simplest dungeon. As long as they need to ask for an API key I can just laught at them and leave. If everyone can always check everyone else I am afraid mandatory gear checks will become commonplace.</p>
+<p>I’ve played WoW and have seen how the community became after the rise of GearScore (and similar addons). I do not want to see this happening in GW2, too. Many LFG tool listings already look discouraging. I don’t want to see support for this behaviour by granting access to data.</p>
+<p>This is pretty much along the same line why I don’t want to see damage meters in GW2. That is another topic, but many of the reasons against them apply here too.</p>
+<p>As for what you can do when the API is private: almost everything you can do if it was public. As long as each player agrees and voluntarily gives you a key to access his or her data. You can still pull up a GW2 equivalent of the WoW armory, but only list players agreeing to the service. You just can’t spy on or stalk people, who don’t opt-in.</p>
+<p>You seem to be thinking about SPvP builds, though. I see those a bit less strict, as they can already be inspected by spectators in game and I haven’t seen the PvP players as elitist about builds as the PvE’ers and PvP gear is a non-issue anyway.</p>
+<p>Also remember that API access can be easily automated. You can track my online times manually via the friend list, but this is quite cumbersome. A service that tracks online times of every player would just be spooky.</p></div></blockquote>
+<p>I think you provide a few good reasons! I don’t play Dungeons myself, but I have heard a few people complain about players being aggressive on gear or professions you run. (Of course I don’t agree with this behaviour) Even though this can happen, I personally think it’s better that you get told upfront that they rather want another profession or other gear (you don’t want to stick which such a group anyway:P) then that they are raging about it during or after the dungeon path. Aside that, there would be no need to ask for the key, since the player could already easily link his/her armor them in the chat. (I think most players wouldn’t know about the keys)</p>
+<p>But as you already noticed, I was aiming more for sPvP. It would be nice if you could check the builds enemies characters run while you’re waiting before the match, so you can discuss strategy a bit more. Or to see how successful people have been with certain builds for the past matches. I think cool things could be realized this way.</p>
+<p>Maybe it is an option to split the sPvP build and the PvE build such that we don’t have the dungeon problems? But I guess this will be a bit of a hassle to maintain. So I still voting for builds to be publicly available without key. Of course I do believe that the online stat shouldn’t be shown to everyone.</p>
+<p>Maybe it is a good idea to provide an authorized friendlist API where players can see who is online? I am not sure if it is possible to also chat with friend using the API? That would be really amazing, but it might be tough to implement.</p>
+<p>Thanks for sharing your view!</p>
+<p>EDIT: I just looked up the Damage Meter, and I really agree that would be a bad idea. I hope the community will take care of the armor checks though. Overall if most people think the same way about just enjoying the game with people then it should be alright I hope.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-06-22T17:34:01+00:00">
+        22 Jun 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on June 21 2015 09:50AM"><a href="/forum/community/api/Launching-v2-characters/5182884">Eearslya.6309:</a></cite></div><div class="quotey"><p>So quick question for the devs, I was messing with the API earlier after I had left a guild, and I noticed that my characters are still shown as representing that guild, even though it no longer shows up in <strong>/v2/account</strong>. Is this intentional or a bug?</p></div></blockquote>
+<p>I noticed the same thing — it’s because the represented guild is stored in your character blob(s) and isn’t updated when you’re kicked from a guild. There’s technical reasons behind this inconsistency (<strong>waves arms and mumbles about distributed systems</strong>) but the fact that the endpoint does not reconcile against a more authoritative data source is a bug.</p>
+<p>Created a <a href="https://github.com/arenanet/api-cdi/issues/40">tracking issue</a> for this one.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Inconsistencies between ingredients and items</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Inconsistencies-between-ingredients-and-items/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Inconsistencies between ingredients and items</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Inconsistencies-between-ingredients-and-items
+</p>
+
+
+
+<h2 id="">Zarenda Mal.1364:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T16:33:03+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<p>Hi, I discovered that there are a number of ingredients that have item_id values that are not present in the items list. For some background, I pulled the recipe list and for each of those pulled the details. For each ingredient I created an entry in an ingredients table that is little more than a join table consisting of the recipe_id, the item_id and the count. Here is the output from a little program I whipped up to find out the details:</p>
+<p>Total records in “ingredients” with item_ids that are missing in “items”: 298<br>
+ 8576: Missing in 2<br>
+12151: Missing in 3<br>
+12271: Missing in 7<br>
+12324: Missing in 8<br>
+13006: Missing in 9<br>
+13007: Missing in 9<br>
+13008: Missing in 9<br>
+13009: Missing in 9<br>
+13010: Missing in 11<br>
+19664: Missing in 5<br>
+19665: Missing in 2<br>
+19666: Missing in 2<br>
+19667: Missing in 3<br>
+19668: Missing in 1<br>
+19669: Missing in 2<br>
+19670: Missing in 2<br>
+19671: Missing in 3<br>
+19717: Missing in 20<br>
+19790: Missing in 56<br>
+19791: Missing in 75<br>
+19794: Missing in 59<br>
+19924: Missing in 1</p>
+<p>Obviously that means that there are 298 ingredient entries that are missing a matching entry in items.</p>
+<p>The recipe entries that correspond to this list are:<br>
+   22<br>
+   70<br>
+   71<br>
+   72<br>
+   73<br>
+   74<br>
+   75<br>
+   97<br>
+   98<br>
+   99<br>
+  100<br>
+  101<br>
+  102<br>
+  103<br>
+  104<br>
+  105<br>
+  106<br>
+  107<br>
+  108<br>
+  109<br>
+  110<br>
+  111<br>
+  112<br>
+  113<br>
+  114<br>
+  115<br>
+  116<br>
+  117<br>
+  199<br>
+  232<br>
+  233<br>
+  234<br>
+  235<br>
+  236<br>
+  237<br>
+  238<br>
+  279<br>
+  280<br>
+  281<br>
+  282<br>
+  283<br>
+  287<br>
+  502<br>
+  503<br>
+  504<br>
+  505<br>
+  506<br>
+  507<br>
+  508<br>
+  509<br>
+  510<br>
+  511<br>
+  512<br>
+  513<br>
+  514<br>
+  515<br>
+  516<br>
+  554<br>
+  555<br>
+  556<br>
+  557<br>
+  558<br>
+  562<br>
+  568<br>
+  573<br>
+  574<br>
+  575<br>
+  576<br>
+  577<br>
+  842<br>
+  843<br>
+  844<br>
+  845<br>
+ 1031<br>
+ 1036<br>
+ 1040<br>
+ 1043<br>
+ 1044<br>
+ 1045<br>
+ 1046<br>
+ 1047<br>
+ 1048<br>
+ 1049<br>
+ 1050<br>
+ 1073<br>
+ 1074<br>
+ 1076<br>
+ 1079<br>
+ 1080<br>
+ 1081<br>
+ 1085<br>
+ 1086<br>
+ 1087<br>
+ 1088<br>
+ 1091<br>
+ 1092<br>
+ 1093<br>
+ 1094<br>
+ 1095<br>
+ 1096<br>
+ 1097<br>
+ 1098<br>
+ 1099<br>
+ 1125<br>
+ 1151<br>
+ 1154<br>
+ 1156<br>
+ 1157<br>
+ 1158<br>
+ 1159<br>
+ 1160<br>
+ 1161<br>
+ 1372<br>
+ 1373<br>
+ 1374<br>
+ 1375<br>
+ 1376<br>
+ 1377<br>
+ 1378<br>
+ 1379<br>
+ 1380<br>
+ 1381<br>
+ 1382<br>
+ 1383<br>
+ 1384<br>
+ 1385<br>
+ 1386<br>
+ 1424<br>
+ 1425<br>
+ 1426<br>
+ 1427<br>
+ 1428<br>
+ 1430<br>
+ 1433<br>
+ 1435<br>
+ 1436<br>
+ 1437<br>
+ 1438<br>
+ 1439<br>
+ 1440<br>
+ 1442<br>
+ 1445<br>
+ 1447<br>
+ 1712<br>
+ 1713<br>
+ 1714<br>
+ 1715<br>
+ 1897<br>
+ 1904<br>
+ 1906<br>
+ 1908<br>
+ 1910<br>
+ 1911<br>
+ 1912<br>
+ 1914<br>
+ 1933<br>
+ 1938<br>
+ 1940<br>
+ 1941<br>
+ 1943<br>
+ 1945<br>
+ 1948<br>
+ 1949<br>
+ 1950<br>
+ 1951<br>
+ 1953<br>
+ 1954<br>
+ 1955<br>
+ 1956<br>
+ 1957<br>
+ 1958<br>
+ 1959<br>
+ 1960<br>
+ 2040<br>
+ 2041<br>
+ 2042<br>
+ 2044<br>
+ 2047<br>
+ 2048<br>
+ 2212<br>
+ 2213<br>
+ 2214<br>
+ 2215<br>
+ 2216<br>
+ 2217<br>
+ 2218<br>
+ 2219<br>
+ 2220<br>
+ 2221<br>
+ 2222<br>
+ 2223<br>
+ 2224<br>
+ 2225<br>
+ 2226<br>
+ 2277<br>
+ 2278<br>
+ 2279<br>
+ 2281<br>
+ 2284<br>
+ 2285<br>
+ 2289<br>
+ 2290<br>
+ 2291<br>
+ 2293<br>
+ 2296<br>
+ 2297<br>
+ 2564<br>
+ 2565<br>
+ 2752<br>
+ 2758<br>
+ 2759<br>
+ 2760<br>
+ 2783<br>
+ 2787<br>
+ 2789<br>
+ 2790<br>
+ 2791<br>
+ 2792<br>
+ 2793<br>
+ 2794<br>
+ 2795<br>
+ 2796<br>
+ 2797<br>
+ 2798<br>
+ 2800<br>
+ 2802<br>
+ 2804<br>
+ 2805<br>
+ 2806<br>
+ 2808<br>
+ 2810<br>
+ 2840<br>
+ 2854<br>
+ 2862<br>
+ 2911<br>
+ 2915<br>
+ 2916<br>
+ 2922<br>
+ 3023<br>
+ 3028<br>
+ 3036<br>
+ 3043<br>
+ 3044<br>
+ 3052<br>
+ 3076<br>
+ 3081<br>
+ 3086<br>
+ 3096<br>
+ 3105<br>
+ 3117<br>
+ 3164<br>
+ 3165<br>
+ 3166<br>
+ 3723<br>
+ 3724<br>
+ 3725<br>
+ 3726<br>
+ 3727<br>
+ 4317<br>
+ 4418<br>
+ 4419<br>
+ 4420<br>
+ 4421<br>
+ 5291<br>
+ 5292<br>
+ 5293<br>
+ 5294<br>
+ 5295<br>
+ 5296<br>
+ 5297<br>
+ 6276<br>
+ 6277<br>
+ 6278<br>
+ 6279<br>
+ 6280<br>
+ 6281<br>
+ 6282<br>
+ 6283<br>
+ 6316<br>
+ 6324<br>
+ 6470<br>
+ 6507<br>
+ 6509<br>
+ 6725<br>
+ 6726<br>
+ 6727<br>
+ 6749<br>
+ 6750<br>
+ 7009<br>
+ 7012<br>
+ 7013<br>
+ 7018<br>
+ 7021<br>
+ 7022<br>
+ 7031<br>
+ 7032<br>
+ 7034<br>
+ 7224</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T17:20:45+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<p>Good find!</p>
+<p>Item id 12151, for example, is Packet[s] of Baking Powder.</p>
+<p>You can check it against gw2spidy since their TP api uses the same item id.</p>
+<p><a href="http://www.gw2spidy.com/item/12151">http://www.gw2spidy.com/item/12151</a></p>
+<p>But</p>
+<p><a href="https://api.guildwars2.com/v1/item_details.json?item_id=12151">https://api.guildwars2.com/v1/item_details.json?item_id=12151</a></p>
+<p>..gives an error, so this item is missing from their items api.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T17:31:56+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<p>I wonder if they are keeping track of the bugs reported in this forum.  I don’t see a reported bugs thread sticked.</p></p>
+
+<h2 id="">Zarenda Mal.1364:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T17:51:38+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<p>I downloaded the entire database to have it offline. Instead of building a online web program I am building some desktop stuff that uses these files directly. I still need to further evaluate the data to fully design the tables, since it is more of a tree than a set of relational database tables. But there is significant value in having a desktop app.</p></p>
+
+<h2 id="">Cliff Spradlin.3512:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T23:00:23+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 23 2013 04:33PM"><a href="/forum/community/api/Inconsistencies-between-ingredients-and-items/2079234">Zarenda Mal.1364:</a></cite></div><div class="quotey"><p>Hi, I discovered that there are a number of ingredients that have item_id values that are not present in the items list.</p></div></blockquote>
+<p>You’re right — good catch. We’ll fix this in a future update. Thanks for the bug report!</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-23T23:30:33+00:00">
+        23 May 2013
+    </time>
+</p>
+<p>
+<p>Thanks for looking into the issues Cliff!</p></p>
+
+<h2 id="">Vennyhedgie.5369:</h2>
+<p class="post-meta">
+    <time datetime="2013-05-24T14:57:57+00:00">
+        24 May 2013
+    </time>
+</p>
+<p>
+<p>Not really related to ids but guild sword and greatsword have their icons swapped, if you look at the hilts you can see it clearly</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

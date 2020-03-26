@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>OAuth Application Creation is live!</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/OAuth-Application-Creation-is-live/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">OAuth Application Creation is live!</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/OAuth-Application-Creation-is-live
+</p>
+
+
+
+<h2 id="">Pat Cavit.9234:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-20T22:56:39+00:00">
+        20 Mar 2015
+    </time>
+</p>
+<p>
+<p>You’re now able to create OAuth Applications, manage them, and use them to create apps that can request data from authenticated APIs!</p>
+<p><strong>WARNING</strong> – This is all <strong>BETA</strong>-quality and may be subject to change as we discover bugs or just decide we don’t like the way it’s looking at us.</p>
+<p>I’ve documented the process in a few images, hopefully you find it straightforward. If you find a bug <a href="https://github.com/arenanet/api-cdi/issues/new">please file an issue</a>.</p>
+<p><a href="https://imgur.com/a/TB5B7">https://imgur.com/a/TB5B7</a></p>
+<p>Sorry it took a bit longer than we were hoping for, this latest patch caused some excitement that we had to tackle first.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-20T23:33:47+00:00">
+        20 Mar 2015
+    </time>
+</p>
+<p>
+<p>Also note that since this is kind of a BETA, the application page link will not show up on the account sidebar (outside of the applications page) — you have to manually navigate to “/account/applications” to access it. We still have a handful of issues to sort out before making it more widely-visible.</p></p>
+
+<h2 id="">Remfin.4892:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-21T00:36:38+00:00">
+        21 Mar 2015
+    </time>
+</p>
+<p>
+<p>Very nice<img src="/include/images/smilies/smile.png"></p>
+<p>Is there a delay for your permissions-granted showing up, or is that bugged?</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-21T13:11:16+00:00">
+        21 Mar 2015
+    </time>
+</p>
+<p>
+<p>Fantastic news! Thanks for all your hard work guys.</p></p>
+
+<h2 id="">Nabrok.9023:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-21T13:16:13+00:00">
+        21 Mar 2015
+    </time>
+</p>
+<p>
+<p>When I make requests on /v2/account I’m getting the {"text":"ErrBadData"} response again.</p>
+<p>This is happening if I use my own client_id or the gw2_api_demo one.</p></p>
+
+<h2 id="">Teranas.6150:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-21T14:05:42+00:00">
+        21 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 21 2015 01:16PM"><a href="/forum/community/api/OAuth-Application-Creation-is-live/4904552">Nabrok.9023:</a></cite></div><div class="quotey"><p>When I make requests on /v2/account I’m getting the {"text":"ErrBadData"} response again.</p>
+<p>This is happening if I use my own client_id or the gw2_api_demo one.</p></div></blockquote>
+<p>They will look into this next week.</p>
+<p>See GitHub Issue <a href="https://github.com/arenanet/api-cdi/issues/19">https://github.com/arenanet/api-cdi/issues/19</a></p></p>
+
+<h2 id="">Divine Don.9752:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-21T18:35:19+00:00">
+        21 Mar 2015
+    </time>
+</p>
+<p>
+<p>Anyone else getting this type of response?</p>
+<p>{ statusCode: 400,<br>
+  data: ‘{"error":“invalid_grant”,“error_description”:“Grant is expired or revoked”,“text”:"ErrSessionNotFound"}’ }</p>
+<p>Above is what I get running the <a href="https://github.com/arenanet/api-cdi/tree/master/examples/auth-nodejs">nodeJS example</a></p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-21T21:53:41+00:00">
+        21 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 21 2015 12:36AM"><a href="/forum/community/api/OAuth-Application-Creation-is-live/4903176">Remfin.4892:</a></cite></div><div class="quotey"><p>Is there a delay for your permissions-granted showing up, or is that bugged?</p></div></blockquote>
+<p>Uhh, what do you mean? Does the token returned from /oauth2/token not work immediately? The token should be fully working when we return it :&lt;</p>
+<blockquote><div class="citey"><cite title="Posted on March 21 2015 06:35PM"><a href="/forum/community/api/OAuth-Application-Creation-is-live/4905351">Divine Don.9752:</a></cite></div><div class="quotey"><p>Anyone else getting this type of response?</p>
+<p>{ statusCode: 400,<br>
+  data: ‘{"error":“invalid_grant”,“error_description”:“Grant is expired or revoked”,“text”:"ErrSessionNotFound"}’ }</p>
+<p>Above is what I get running the <a href="https://github.com/arenanet/api-cdi/tree/master/examples/auth-nodejs">nodeJS example</a></p></div></blockquote>
+<p>That can be caused either by attempting to use the same grant more than once, or by waiting more than a few minutes to pass the grant code to /oauth2/token (or it could be a bug in our backend). Not sure which is happening.</p>
+<p>Does the auth-go example exhibit the same issue?</p></p>
+
+<h2 id="">Divine Don.9752:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-21T23:58:00+00:00">
+        21 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 21 2015 09:53PM"><a href="/forum/community/api/OAuth-Application-Creation-is-live/4905808">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 21 2015 06:35PM"><a href="/forum/community/api/OAuth-Application-Creation-is-live/4905351">Divine Don.9752:</a></cite></div><div class="quotey"><p>Anyone else getting this type of response?</p>
+<p>{ statusCode: 400,<br>
+  data: ‘{"error":“invalid_grant”,“error_description”:“Grant is expired or revoked”,“text”:"ErrSessionNotFound"}’ }</p>
+<p>Above is what I get running the <a href="https://github.com/arenanet/api-cdi/tree/master/examples/auth-nodejs">nodeJS example</a></p></div></blockquote>
+<p>That can be caused either by attempting to use the same grant more than once, or by waiting more than a few minutes to pass the grant code to /oauth2/token (or it could be a bug in our backend). Not sure which is happening.</p>
+<p>Does the auth-go example exhibit the same issue?</p></div></blockquote>
+<p>You are correct that I was requesting more than once with the same code. I was doing this only because the first request returned undefined. I’m horrible at explaining things so I recorded a 60sec vid of me running through the steps of the nodeJS example:<br>
+<a href="https://www.youtube.com/watch?v=59rNUY20kSs&feature=youtu.be">https://www.youtube.com/watch?v=59rNUY20kSs&amp;feature=youtu.be</a></p>
+<p>As the videos shows, the first request returns undefined, second request (with the same code) gets denied. I get the same result when trying to insert my own client id &amp; secret.</p>
+<p>I’m not familiar with goLang.<img src="/include/images/smilies/sad.png"></p></p>
+
+<h2 id="">Teranas.6150:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-22T01:35:32+00:00">
+        22 Mar 2015
+    </time>
+</p>
+<p>
+<p>Insert at line 19:</p>
+<p>console.log(err);</p>
+<p>before or after</p>
+<p>console.log(body);</p>
+<p>I’m pretty sure you will get something like</p>
+<p>{statusCode: 400, data: ‘{"text":"ErrBadData"}’ }</p>
+<p>that is already reportet on <a href="https://github.com/arenanet/api-cdi/issues/19">GitHub</a> .</p></p>
+
+<h2 id="">Remfin.4892:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-22T18:07:49+00:00">
+        22 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 21 2015 09:53PM"><a href="/forum/community/api/OAuth-Application-Creation-is-live/4905808">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 21 2015 12:36AM"><a href="/forum/community/api/OAuth-Application-Creation-is-live/4903176">Remfin.4892:</a></cite></div><div class="quotey"><p>Is there a delay for your permissions-granted showing up, or is that bugged?</p></div></blockquote>
+<p>Uhh, what do you mean? Does the token returned from /oauth2/token not work immediately? The token should be fully working when we return it :&lt;</p></div></blockquote>
+<p>The token works just fine. It doesn’t show up in the account/applications page as an authorized app (no way to revoke it). It’s my own app if that makes a difference.</p></p>
+
+<h2 id="">Moturdrn.2837:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-23T08:31:56+00:00">
+        23 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 22 2015 06:07PM"><a href="/forum/community/api/OAuth-Application-Creation-is-live/4907740">Remfin.4892:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 21 2015 09:53PM"><a href="/forum/community/api/OAuth-Application-Creation-is-live/4905808">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 21 2015 12:36AM"><a href="/forum/community/api/OAuth-Application-Creation-is-live/4903176">Remfin.4892:</a></cite></div><div class="quotey"><p>Is there a delay for your permissions-granted showing up, or is that bugged?</p></div></blockquote>
+<p>Uhh, what do you mean? Does the token returned from /oauth2/token not work immediately? The token should be fully working when we return it :&lt;</p></div></blockquote>
+<p>The token works just fine. It doesn’t show up in the account/applications page as an authorized app (no way to revoke it). It’s my own app if that makes a difference.</p></div></blockquote>
+<p>To add to this, I get the same thing. The GW2 Api Demo app is listed, but not my own despite having given access and using it.</p></p>
+
+<h2 id="">Teranas.6150:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-23T13:39:43+00:00">
+        23 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 22 2015 06:07PM"><a href="/forum/community/api/OAuth-Application-Creation-is-live/4907740">Remfin.4892:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 21 2015 09:53PM"><a href="/forum/community/api/OAuth-Application-Creation-is-live/4905808">Lawton Campbell.8517:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 21 2015 12:36AM"><a href="/forum/community/api/OAuth-Application-Creation-is-live/4903176">Remfin.4892:</a></cite></div><div class="quotey"><p>Is there a delay for your permissions-granted showing up, or is that bugged?</p></div></blockquote>
+<p>Uhh, what do you mean? Does the token returned from /oauth2/token not work immediately? The token should be fully working when we return it :&lt;</p></div></blockquote>
+<p>The token works just fine. It doesn’t show up in the account/applications page as an authorized app (no way to revoke it). It’s my own app if that makes a difference.</p></div></blockquote>
+<p>It seems like you’re right. I have two accounts. The one i registered the application with does not show granted privileges for this application but the other account does.</p></p>
+
+<h2 id="">Lawton Campbell.8517:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-24T00:12:27+00:00">
+        24 Mar 2015
+    </time>
+</p>
+<p>
+<p>Okay, the ErrBadData stuff should be fixed now. One of the backend servers didn’t get updated with the most recent hotfix and was early-outing because the account data was from a more recent build. Sorry about that!</p></p>
+
+<h2 id="">Teranas.6150:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-24T22:06:35+00:00">
+        24 Mar 2015
+    </time>
+</p>
+<p>
+<p>Thanks! API is working lika a charm!</p>
+<p>I think most of my guild mates enjoy the new authentification process.</p>
+<p>Looking forward to automatically sync guild ranks to guild forum groups =)</p></p>
+
+<h2 id="">levionan.8506:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-25T14:53:45+00:00">
+        25 Mar 2015
+    </time>
+</p>
+<p>
+<p>That’s odd, I don’t see the option available on my account page.<br>
+Would definitely like to give OAuth2 a shot when I got spare time.<br>
+Where do I go about registering my app?</p>
+<p>Thanks!</p></p>
+
+<h2 id="">Moturdrn.2837:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-25T15:22:26+00:00">
+        25 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 25 2015 02:53PM"><a href="/forum/community/api/OAuth-Application-Creation-is-live/4917530">levionan.8506:</a></cite></div><div class="quotey"><p>That’s odd, I don’t see the option available on my account page.<br>
+Would definitely like to give OAuth2 a shot when I got spare time.<br>
+Where do I go about registering my app?</p>
+<p>Thanks!</p></div></blockquote>
+<p>It’s not yet a publicly available link on the sidebar (until you’re on the page) so you need to manually browse to the <a href="https://account.guildwars2.com/account/applications">https://account.guildwars2.com/account/applications</a> for now.</p></p>
+
+<h2 id="">levionan.8506:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-25T16:21:10+00:00">
+        25 Mar 2015
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on March 25 2015 03:22PM"><a href="/forum/community/api/OAuth-Application-Creation-is-live/4917626">Moturdrn.2837:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on March 25 2015 02:53PM"><a href="/forum/community/api/OAuth-Application-Creation-is-live/4917530">levionan.8506:</a></cite></div><div class="quotey"><p>That’s odd, I don’t see the option available on my account page.<br>
+Would definitely like to give OAuth2 a shot when I got spare time.<br>
+Where do I go about registering my app?</p>
+<p>Thanks!</p></div></blockquote>
+<p>It’s not yet a publicly available link on the sidebar (until you’re on the page) so you need to manually browse to the <a href="https://account.guildwars2.com/account/applications">https://account.guildwars2.com/account/applications</a> for now.</p></div></blockquote>
+<p>Oh, I understand now. Thanks! =)</p></p>
+
+<h2 id="">Koala BR.8236:</h2>
+<p class="post-meta">
+    <time datetime="2015-03-31T15:55:21+00:00">
+        31 Mar 2015
+    </time>
+</p>
+<p>
+<p>My friend an me are trying to get an application registered. While I could get this done without any problems (with the account I am posting from), my friend has no luck.</p>
+<p>As he is not comfortable with his english skills, he asked me to post about his problems.</p>
+<p>When entering name, comment, redirection url etc. and click on “save changes” he only gets a redirection back to the same page with an url of:<br>
+<a href="https://account.guildwars2.com/account/applications/create?error=saveFailed">https://account.guildwars2.com/account/applications/create?error=saveFailed</a></p>
+<p>No further information about the error can be seen.</p>
+<p>Me I was seeing the client id and secret plus an Icon selection on the right side of the page.</p>
+<p>We tried everything, even entering exactly the same values I did enter on my account. He always gets this error. If I add his application data as a second application for my account, this works but I have removed it again from my account.</p>
+<p>His account is “Dedlina Maguire.6872”. So he is stuck with testing, anything we are doing wrong here or any advice to spare?</p>
+<p>If you need further information please feel free to ask.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

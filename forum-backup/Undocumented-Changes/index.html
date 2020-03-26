@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Undocumented Changes</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Undocumented-Changes/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Undocumented Changes</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Undocumented-Changes
+</p>
+
+
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-04-26T20:46:19+00:00">
+        26 Apr 2014
+    </time>
+</p>
+<p>
+<p>I’m doing some manual regression testing to verify that my code still works after recent updates. Indeed, there have been some changes that are as of yet undocumented.</p>
+<p>In this thread, I’ll make and update a bullet list of changes as I find them.</p>
+<p><strong>Removed Properties</strong><br>
+= item_details.json =</p>
+<ul>
+	<li>infusion_slot.item
+	<ul>
+		<li>string</li>
+		<li>was reserved for future use, now gone</li>
+	</ul></li>
+</ul>
+<p><strong>New Properties</strong><br>
+= item_details.json =</p>
+<ul>
+	<li>infusion_slot.item_id
+	<ul>
+		<li>optional</li>
+		<li>string, implicit int</li>
+		<li>example: <a href="https://api.guildwars2.com/v1/item_details.json?item_id=37013">https://api.guildwars2.com/v1/item_details.json?item_id=37013</a></li>
+	</ul></li>
+	<li>default_skin
+	<ul>
+		<li>optional (only for types “Armor”, “Back”, “Gathering” or “Weapon”)</li>
+		<li>string, implicit int</li>
+		<li>example: <a href="https://api.guildwars2.com/v1/item_details.json?item_id=28445">https://api.guildwars2.com/v1/item_details.json?item_id=28445</a></li>
+	</ul></li>
+	<li>armor.secondary_suffix_item_id</li>
+	<li>back.secondary_suffix_item_id</li>
+	<li>weapon.secondary_suffix_item_id
+	<ul>
+		<li>optional</li>
+		<li>string, implicit int</li>
+		<li>example: <a href="https://api.guildwars2.com/v1/item_details.json?item_id=38875">https://api.guildwars2.com/v1/item_details.json?item_id=38875</a></li>
+	</ul></li>
+</ul>
+<p><strong>Changed Properties</strong><br>
+= item_details.json =</p>
+<ul>
+	<li>description
+	<ul>
+		<li>Now optional, in the sense that it will not be present in the response</li>
+	</ul></li>
+</ul>
+<p><strong>New Constants</strong><br>
+= item_details.json =</p>
+<ul>
+	<li>flags.AccountBindOnUse
+	<ul>
+		<li>Presumably has something to do with legendaries being account bound now</li>
+	</ul></li>
+</ul></p>
+
+<h2 id="">Alcarin.9024:</h2>
+<p class="post-meta">
+    <time datetime="2014-04-28T17:55:33+00:00">
+        28 Apr 2014
+    </time>
+</p>
+<p>
+<p>The “description” property seems to no longer be present on some items (I’m sure for consumable), so it seems that now is optional.</p>
+<p>Edit: Also miniature 21047 and 39090 have no “description” parameter.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-03T19:20:32+00:00">
+        03 May 2014
+    </time>
+</p>
+<p>
+<p>Possibly removed constant: <strong>armor.weight_class = “Clothing”</strong></p>
+<p>Can anyone confirm?</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-07T03:44:18+00:00">
+        07 May 2014
+    </time>
+</p>
+<p>
+<p>All clothing items were removed from the game, so yes, that value is now defunct.</p>
+<p>The only trace left of clothing is on characters who haven’t been to the BL Armorsmith yet – they have a data record of what clothing they were wearing before April 15, so the game can determine which tonics or consumables to give in return.</p></p>
+
+<h2 id="">Alcarin.9024:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-07T23:42:12+00:00">
+        07 May 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 03 2014 07:20PM"><a href="/forum/community/api/Undocumented-Changes/3985969">StevenL.3761:</a></cite></div><div class="quotey"><p>Possibly removed constant: <strong>armor.weight_class = “Clothing”</strong></p>
+<p>Can anyone confirm?</p></div></blockquote>
+<p>There are still 65 armor with weight_class “Clothing”. This are their id: 20219, 20221, 20222, 20223, 20225, 20227, 20229, 20231, 20234, 20235, 20236, 20238, 20239, 20240, 20247, 20263, 20264, 20268, 20311, 20762, 20854, 36168, 36362, 36363, 36364, 36365, 36368, 36369, 36370, 36371, 36375, 36376, 36377, 36378, 36515, 36709, 37209, 37210, 38052, 38053, 38054, 38055, 38056, 38057, 38060, 39530, 39531, 39532, 39533, 39536, 39539, 39540, 39542, 39543, 41996, 41997, 41998, 41999, 42001, 43087, 43089, 43093, 43094, 43095, 43096.<br>
+Their descriptions are all about the same: “Town clothes can no longer be equipped separately.\n\nSpeak to a Black Lion Armor Trader at the trading post in any major city to exchange this item for an outfit wearable in combat.”</p>
+<p>So they are still present but are no longer equippable.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-05-15T12:23:18+00:00">
+        15 May 2014
+    </time>
+</p>
+<p>
+<p>Possibly added constant: <strong>weapon.damage_type = “Choking”</strong></p>
+<p>Example:<br>
+<a href="https://api.guildwars2.com/v1/item_details.json?item_id=6">https://api.guildwars2.com/v1/item_details.json?item_id=6</a><br>
+Icon:<br>
+<a href="https://render.guildwars2.com/file/CC2E01E0F566A6EEF4F2EC2B19AA7A3E1FEFB1B4/60984.png">https://render.guildwars2.com/file/CC2E01E0F566A6EEF4F2EC2B19AA7A3E1FEFB1B4/60984.png</a></p>
+<p>Not sure if this is real or not</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-24T16:35:52+00:00">
+        24 Jun 2014
+    </time>
+</p>
+<p>
+<p>New container type: <strong>OpenUI</strong></p>
+<p>Example:<br>
+<a href="https://api.guildwars2.com/v1/item_details.json?item_id=20313">https://api.guildwars2.com/v1/item_details.json?item_id=20313</a></p>
+<p>New gizmo type: <strong>ContainerKey</strong></p>
+<p>Example:<br>
+<a href="https://api.guildwars2.com/v1/item_details.json?item_id=19980">https://api.guildwars2.com/v1/item_details.json?item_id=19980</a></p></p>
+
+<h2 id="">Sariel V.7024:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-26T15:12:29+00:00">
+        26 Jun 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 15 2014 12:23PM"><a href="/forum/community/api/Undocumented-Changes/4024890">StevenL.3761:</a></cite></div><div class="quotey"><p>Possibly added constant: <strong>weapon.damage_type = “Choking”</strong></p>
+<p>Example:<br>
+<a href="https://api.guildwars2.com/v1/item_details.json?item_id=6">https://api.guildwars2.com/v1/item_details.json?item_id=6</a><br>
+Icon:<br>
+<a href="https://render.guildwars2.com/file/CC2E01E0F566A6EEF4F2EC2B19AA7A3E1FEFB1B4/60984.png">https://render.guildwars2.com/file/CC2E01E0F566A6EEF4F2EC2B19AA7A3E1FEFB1B4/60984.png</a></p>
+<p>Not sure if this is real or not</p></div></blockquote>
+<p>Looking at the stats… bundle usable anywhere? Probably not in the game.</p></p>
+
+<h2 id="">Alcarin.9024:</h2>
+<p class="post-meta">
+    <time datetime="2014-06-27T14:22:22+00:00">
+        27 Jun 2014
+    </time>
+</p>
+<p>
+<p>I’ve added damage_type choking as known value on wiki documentation, altough it seems a test item, also the name of the only item of this type (id:6) is “((Assassin Coin Bundle))”…</p>
+<p>Container type OpenUI and Gizmo type ContainerKey are used only for the new Black Lion Chest and Key, they are been added in the wiki documentation on 12 June.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-07-20T21:57:02+00:00">
+        20 Jul 2014
+    </time>
+</p>
+<p>
+<p>New item type: <strong>Trait</strong></p>
+<p>Example:<br>
+<a href="https://api.guildwars2.com/v1/item_details.json?item_id=66115">https://api.guildwars2.com/v1/item_details.json?item_id=66115</a></p>
+<p>@devs why isn’t this a consumable // unlock // trait type??</p></p>
+
+<h2 id="">smiley.1438:</h2>
+<p class="post-meta">
+    <time datetime="2014-07-21T01:46:03+00:00">
+        21 Jul 2014
+    </time>
+</p>
+<p>
+<p>Because “Trait Guide [Dogged March]”. It’s the trait unlock item which probably won’t fit into other categories because it’s actually a skill unlock. In fact, it would also fit into Consumable/Unlock – but who knows how it’s handled internally… For example, the Commander’s Compendium is Gizmo/Default.</p>
+<p>Consumable/Unlock are so far only:</p>
+<p>- bank tabs<br>
+- bag slots<br>
+- recipes<br>
+- dyes<br>
+- finishers (unknown)</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-09T13:33:29+00:00">
+        09 Aug 2014
+    </time>
+</p>
+<p>
+<p>New item flag: <strong>MonsterOnly</strong></p>
+<p>Example:<br>
+<a href="https://api.guildwars2.com/v1/item_details.json?item_id=8469">https://api.guildwars2.com/v1/item_details.json?item_id=8469</a></p></p>
+
+<h2 id="">Sariel V.7024:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-11T17:11:18+00:00">
+        11 Aug 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 09 2014 01:33PM"><a href="/forum/community/api/Undocumented-Changes/4277546">StevenL.3761:</a></cite></div><div class="quotey"><p>New item flag: <strong>MonsterOnly</strong></p>
+<p>Example:<br>
+<a href="https://api.guildwars2.com/v1/item_details.json?item_id=8469">https://api.guildwars2.com/v1/item_details.json?item_id=8469</a></p></div></blockquote>
+<p>Weird. Particularly since there’s a player version on the gem store right now.</p>
+<p>The only critter I think might use this is The Beak of Darkness</p></p>
+
+<h2 id="">Alcarin.9024:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-11T19:58:20+00:00">
+        11 Aug 2014
+    </time>
+</p>
+<p>
+<p>This should be a bug. There is no reason for this flag, item_id 8469 IS the item in the gem store, it was added 5 August:<br>
+<a href="http://www.gw2services.com/items/show_news/05-08-2014">http://www.gw2services.com/items/show_news/05-08-2014</a><br>
+and there are no other items with the same name:<br>
+<a href="http://www.gw2services.com/items/search/primer">http://www.gw2services.com/items/search/primer</a></p></p>
+
+<h2 id="">AysonCurrax.3254:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-12T18:53:15+00:00">
+        12 Aug 2014
+    </time>
+</p>
+<p>
+<p>I added <strong>MonsterOnly</strong> to the API documentation just in case because it messed with my program. Also added WeaponTypes <strong>Toy</strong> and <strong>SmallBundle</strong>.</p></p>
+
+<h2 id="">StevenL.3761:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-12T19:21:44+00:00">
+        12 Aug 2014
+    </time>
+</p>
+<p>
+<p>Thanks. Are you converting the flags to bit flags in your code? That’s usually what makes my program crash whenever they add a new value. I wish they would announce these changes, so I don’t have to.</p></p>
+
+<h2 id="">AysonCurrax.3254:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-12T19:38:38+00:00">
+        12 Aug 2014
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on August 12 2014 07:21PM"><a href="/forum/community/api/Undocumented-Changes/4286371">StevenL.3761:</a></cite></div><div class="quotey"><p>Thanks. Are you converting the flags to bit flags in your code? That’s usually what makes my program crash whenever they add a new value. I wish they would announce these changes, so I don’t have to.</p></div></blockquote>
+<p>I have a table in my database where i map an id to each flag. since i added those manually, if the flag isnt in there because i couldnt find it in the documentation before, my code tosses errors at me when parsing all items into my database. another thing that caused problems for me in the past was the missing “bonuses” property on upgrade components which i also added to the documentation back then.</p></p>
+
+<h2 id="">AysonCurrax.3254:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-12T20:12:44+00:00">
+        12 Aug 2014
+    </time>
+</p>
+<p>
+<p>Added two more WeaponTypes to the API documentation <strong>TwoHandedToy</strong> and <strong>LargeBundle</strong>.</p>
+<p>EDIT: Never mind, someone else beat me to it. not taking credit in that case. :P</p>
+<p>EDIT2: Added Unlock_Type <strong>Unknown</strong> to the documentation.</p></p>
+
+<h2 id="">AysonCurrax.3254:</h2>
+<p class="post-meta">
+    <time datetime="2014-08-13T01:38:28+00:00">
+        13 Aug 2014
+    </time>
+</p>
+<p>
+<p>Added restriction <strong>Mesmer</strong> to the documentation along with possible future values of the other classes, since the items using them are the Trait guides and hence will likely be used as they are discovered in the api.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

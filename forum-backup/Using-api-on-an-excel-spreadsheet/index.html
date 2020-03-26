@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Using api on an excel spreadsheet?</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Using-api-on-an-excel-spreadsheet/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Using api on an excel spreadsheet?</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Using-api-on-an-excel-spreadsheet
+</p>
+
+
+
+<h2 id="">Dagnis.2936:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-28T02:06:50+00:00">
+        28 Aug 2013
+    </time>
+</p>
+<p>
+<p>So I’m starting to learn how to play the TP market and I thought of a cool idea that I’m sure others have thought of. Is it possible, using APIs to request to selling price of an item and place that data on excel, having it update every once in a while? I’m hoping that someone has already done this somewhere and would have a guide maybe on how to do it.</p></p>
+
+<h2 id="">Killer Rhino.6794:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-28T03:01:27+00:00">
+        28 Aug 2013
+    </time>
+</p>
+<p>
+<p>At this moment, there is no official trading-post API provide by ArenaNet (see the API documentation sticky’d at the top of this sub-forum for what is available).</p>
+<p>The TP website, gw2spidy.com, might be a place to start looking for what you want. However, I don’t have the foggiest clue about Excel and its capabilities.</p></p>
+
+<h2 id="">Heimdall.4510:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-28T15:26:30+00:00">
+        28 Aug 2013
+    </time>
+</p>
+<p>
+<p>I think MS Query is the thing you’re looking for:<br>
+ <a href="http://office.microsoft.com/en-us/excel-help/use-microsoft-query-to-retrieve-external-data-HA010099664.aspx">http://office.microsoft.com/en-us/excel-help/use-microsoft-query-to-retrieve-external-data-HA010099664.aspx</a></p>
+<p>Hope this helps you solving your problem</p></p>
+
+<h2 id="">Dr Ishmael.9685:</h2>
+<p class="post-meta">
+    <time datetime="2013-08-28T15:29:40+00:00">
+        28 Aug 2013
+    </time>
+</p>
+<p>
+<p>Gw2spidy’s API provides a CSV-style output that can be imported into Excel as a text datasource.  Check <a href="https://github.com/rubensayshi/gw2spidy/wiki/API-v0.9">their wiki</a> for details and examples.</p>
+<p>The official APIs are only available as JSON, and I don’t think there’s any way to import that directly in to Excel.</p></p>
+
+<h2 id="">Illconceived Was Na.9781:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-01T19:09:51+00:00">
+        01 Sep 2013
+    </time>
+</p>
+<p>
+<p>I’m finding more luck with <a href="http://www.guildwarstrade.com/api">guild wars trade</a>.</p>
+<ul>
+	<li>New items are added more often.</li>
+	<li>The response time is better.</li>
+	<li>Spidy is down or wigs out during a data request; gwt has always worked for me.</li>
+	<li>Spidy is still pulling incorrect data from GW2DB, which miscategorizes items (probably about 10%).</li>
+</ul>
+<p>Although spidy provides about 10 fields versus only 4 for GWT, most of the spidy data is static (and, as noted above, not always accurate).</p>
+<p>tl;dr I used to import spidy data into excel, now I use guildwarstrade.com and I greatly prefer it for my purposes.</p>
+<p>To learn how to import csv data into excel, use the link provided by Dr Ishamel.9685. There is a PDF that explains how to do it for Spidy and you can substitute the appropriate URL for Guild Wars Trade. The excel interface is unintuitive.</p></p>
+
+<h2 id="">cvpcs.5914:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-05T13:08:53+00:00">
+        05 Sep 2013
+    </time>
+</p>
+<p>
+<p>If you’re using a newer version of Excel you can accomplish this with the GW2Spidy API combined with the <acronym title=") and FILTERXML(">WEBSERVICE</acronym> functions. About 6 months ago I submitted a series of <a href="https://github.com/rubensayshi/gw2spidy/commit/d9b02bd63dc8db12ba7339c13f4bd54cbfb21280">patches</a> to provide XML API support specifically so Excel could work with spidy.</p>
+<p>Usually what I do is have a hidden column for the item IDs, a column for the XML to download into, and then filter it from there into the various fields. For example</p>
+<ol>
+	<li><strong>A1</strong> is my ID field for Mithril Ore, it will contain<br>
+<pre><code>19700</code></pre></li>
+	<li><strong>B1</strong> is my data field, so it will contain<br>
+<pre><code>=WEBSERVICE(CONCATENATE("http://www.gw2spidy.com/api/v0.9/xml/item/", A1,
+    "?excel_filterxml_fix=1"))</code></pre></li>
+	<li><strong>C1</strong> is my value field where I want to place the current buy price, so it will contain <pre><code>=FILTERXML(B1, "/response/result/max_offer_unit_price")</code></pre></li>
+</ol>
+<p>You’ll notice that I append <strong>?excel_filterxml_fix=1</strong> to the end of my API request. This solves a very specific issue with Excel, where 4 digit numbers between 1900 and 9999 that are returned are interpreted as years, and the value displayed in the cell becomes the number of days since January 1st, 1900. This is a known bug in Excel. This addition to the end of the request URL triggers a workaround, which can be seen <a href="https://github.com/rubensayshi/gw2spidy/commit/aa001a643983eeddef48363d09971cb6917284dc">here</a></p></p>
+
+<h2 id="">KU Jayhawk.5803:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-24T18:23:16+00:00">
+        24 Sep 2013
+    </time>
+</p>
+<p>
+<p>Is there any way to export your personal Trading Post to Excel such as what you’ve bought and sold and are buying and selling? I’d like to create a balance sheet to know what I’ve currently made given that so much money gets tied up in the flux between it all.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-24T18:45:42+00:00">
+        24 Sep 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 24 2013 06:23PM"><a href="/forum/community/api/Using-api-on-an-excel-spreadsheet/2906682">KU Jayhawk.5803:</a></cite></div><div class="quotey"><p>Is there any way to export your personal Trading Post to Excel such as what you’ve bought and sold and are buying and selling? I’d like to create a balance sheet to know what I’ve currently made given that so much money gets tied up in the flux between it all.</p></div></blockquote>
+<p>The short answer is no.  To access your personal Trading Post transactions, you need to have your GW2 client session key.</p>
+<p>However, there are apps that read the session key from your GW2 client memory and displays your personal transactions for you.  For example, this:</p>
+<p><a href="http://notifier.zicore.de/">http://notifier.zicore.de/</a></p>
+<p>The app is also open source.  I am not 100% sure if this is considered a violation from ArenaNet’s perspective since we have asked them several times without getting a reply from them, so use it at your own risk.</p>
+<p>I wish ArenaNet would provide an official trading post api with OAuth2 support though, so that we don’t have to resort to reading the session key off the client memory.</p></p>
+
+<h2 id="">DarkSpirit.7046:</h2>
+<p class="post-meta">
+    <time datetime="2013-09-25T17:55:35+00:00">
+        25 Sep 2013
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on September 01 2013 07:09PM"><a href="/forum/community/api/Using-api-on-an-excel-spreadsheet/2748301">Illconceived Was Na.9781:</a></cite></div><div class="quotey"><p>I’m finding more luck with <a href="http://www.guildwarstrade.com/api">guild wars trade</a>.</p>
+<ul>
+	<li>New items are added more often.</li>
+	<li>The response time is better.</li>
+	<li>Spidy is down or wigs out during a data request; gwt has always worked for me.</li>
+	<li>Spidy is still pulling incorrect data from GW2DB, which miscategorizes items (probably about 10%).</li>
+</ul></div></blockquote>
+<p>I need to say something about the use of the data from GW2DB.  I agree that GW2DB does have some outdated data but gw2spidy has already updated to use the official items/recipes api.</p>
+<p><a href="http://www.reddit.com/r/Guildwars2/comments/1m96er/gw2spidy_updated_with_ascended_recipes/">http://www.reddit.com/r/Guildwars2/comments/1m96er/gw2spidy_updated_with_ascended_recipes/</a></p>
+<p>I suspect that gw2spidy still needs the GW2DB because the official items/recipes api doesn’t have vendor information.  You can’t tell which vendors sell this particular item at what gold cost or karma cost from the official api, even though I have requested for this a long time ago.  GW2DB has this information.</p>
+<p><a href="/forum-backup/API-Suggestion-Items-Recipes-and-Crafting">https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Items-Recipes-and-Crafting/first#post2093046</a></p>
+<p>Without this information, gw2spidy would not be able to generate the recipe minimum crafting cost tree with the cost of buying from vendor like this:</p>
+<p><a href="http://www.gw2spidy.com/recipe/3258">http://www.gw2spidy.com/recipe/3258</a></p>
+<p>My app is currently in the same predicament, it uses BOTH the GW2DB and the official items/recipes api as it generates recipe trees like the ones from gw2spidy except that I had to create my own DB for mystic forge recipes and also includes skill point costs for some of the items.  I have suggested these to be included in the official items/recipes api as well.</p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

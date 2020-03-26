@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Proposal: Combat statistics and DPS meters</title>
+  <meta name="description" content="Learn how to use the GW2 API.">
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="/forum-backup/Proposal-Combat-statistics-and-DPS-meters-1/">
+  <link rel="alternate" type="application/rss+xml" title="GW2 Developers" href="/feed.xml">
+  
+  
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-106748097-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  
+
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header" role="banner">
+
+  <div class="wrapper">
+    
+    
+    <a class="site-title" href="/"><img src="/assets/images/logo.svg"></a>
+  
+    
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+          
+            
+            
+          
+            
+            
+            <a class="page-link" href="/forum-backup/">Forum Backup</a>
+            
+          
+            
+            
+            <a class="page-link" href="/guides/">Guides</a>
+            
+          
+            
+            
+          
+            
+            
+          
+            
+            
+          
+        </div>
+      </nav>
+    
+  </div>
+</header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Proposal: Combat statistics and DPS meters</h1>
+  </header>
+
+  <div class="post-content">
+    
+
+
+<p class="post-meta">
+    Original Url: http://forum-en.guildwars2.com/forum/community/api/Proposal-Combat-statistics-and-DPS-meters-1
+</p>
+
+
+
+<h2 id="">Thrill.6259:</h2>
+<p class="post-meta">
+    <time datetime="2017-04-02T09:09:20+00:00">
+        02 Apr 2017
+    </time>
+</p>
+<p>
+<p>Greetings,</p>
+<p>This post is aimed at the implementation and usage of DPS meters.</p>
+<p><strong>API proposal</strong></p>
+<p>Provide a json API that provides logs of the last fights. Something along the lines of</p>
+<pre><code>
+GET /v2/last_combats
+
+[
+    {
+        "foe": "Sabetha the Saboteur",
+        "success": true,
+        "group_dps": 120154,
+        "individiual_dps": {
+            "player_a": 23053,
+            [...]
+        },
+        "effect_uptime": {
+            "player_a": {
+                "alacrity": 0.92,
+                "regeneration": 0.32,
+               [...]
+            },
+            [...]
+        },
+        combat_events: [
+            {
+                "timestamp": 1491122052,
+                "player": "player_a",
+                "target": "Sabetha the Saboteur",
+                "category": "damage",
+                "amount": 1492,
+                "type": "Condition",
+                "subtype": "Poison"
+            }, {
+                "timestamp": 1491122053,
+                "player": "some_druid",
+                "target": "player_a",
+                "category": "heal",
+                "amount": 423,
+                "type": "Boon",
+                "subtype": "Regeneration"
+            }, {
+                "timestamp": 1491122054,
+                "player": "some_warrior",
+                "target": "player_a",
+                "category": "boon",
+                "amount": 1,
+                "type": "Might",
+                "subtype": "Phalanx Strength"
+            },
+            [...]
+        ]
+    }, {
+        "foe": "Bandit",
+        "success": true,
+        "group_dps": 80152,
+        [...]
+    }
+]
+</code></pre>
+<p><strong>Current state</strong></p>
+<p>Players use 2 brands of memory reading DPS meters in Raids. In the following sections S will explain why I will not use them and why no one should.</p>
+<p><strong>Legal issues</strong></p>
+<p>From the <a href="https://www.guildwars2.com/en/legal/guild-wars-2-user-agreement/">User Agreement</a> §8:</p>
+<p><em>You acknowledge that You may not, without signed written consent from a legally authorized representative of ArenaNet, do any of the following:</em></p>
+<p><em>[…]</em></p>
+<p><em>(i) Use, obtain or provide data related to operation of the Game, including but not limited to:</em></p>
+<p><em>????????(i) software that reads areas of computer memory or storage devices related to the Game;</em></p>
+<p><em>[…]</em></p>
+<p>In the GW2 <a href="https://www.reddit.com/r/Guildwars2/comments/5svug8/the_head_of_the_snake_devs_here_ask_us_anything/ddi7kta/">AMA</a> for Head of the Snake Chris Cleary wrote the following:</p>
+<p><em>We have no problems with players using a 3rd party tool whose scope is only to collect and visualize combat data gathered directly from the game client. Anything beyond that scope is still considered a violation of the User Agreement.</em></p>
+<p>This is not a written signed agreement though so in my laymans opinion DPS meter users are still in violation to the user agreement (Yes, I’m fun at parties). If ANet wants users to continue using these mods they should change the user agreement.</p>
+<p><strong>Security issues</strong></p>
+<p>Especially the B*** tool concerns me a lot regarding security. This tool contains auto-update functionality that makes it possible for anyone controlling the update server to execute arbitrary code. I do not think that the developers have the resources to ensure the safety of their infrastructure under the circumstances. Arbitrary access to thousands of GW2 Accounts make these C&amp;C servers very high-profile targets.</p>
+<p>The A** tool seems saner in this matter as the developer guarantees that the DLL contains no network functionality.</p>
+<p><strong>Anti cheating heuristics</strong></p>
+<p>Both A** and B*** employ techniques that are very common among cheats. Any heuristic from ANet that detects D3D9 wrappers will have no way to determine the legitimacy of these wrappers except whitelisting every version of every legitimate meter.</p>
+<p>Tolerating these kind of tools may make it difficult for ANet to employ such techniques if they become necessary.</p>
+<p><strong>Summary</strong></p>
+<p>If ANet tolerates DPS meters they should provide a sane way for everyone to use this data. D3D9 wrappers are not a sane way at all. As it stands players without DPS meters have a huge disadvantage in raids because they have less feedback from boss fights which they can use to refine their gameplay.</p></p>
+
+<h2 id="">SlippyCheeze.5483:</h2>
+<p class="post-meta">
+    <time datetime="2017-04-03T16:25:42+00:00">
+        03 Apr 2017
+    </time>
+</p>
+<p>
+<p>You would be much more likely to see, eg, local combat log output than API based combat log output.  That distributes the costs over a much wider area, without significantly changing the effort require by anet to implement.  (eg: similar to how the wow combat logs work.)</p>
+<p>Regardless, though, it’s a big effort, and the grudging acceptance of the memory reading DPS meters reflects a reality that this isn’t going to bring the sort of return on investment anet are likely to find worthwhile any time soon.</p></p>
+
+<h2 id="">voidvector.2780:</h2>
+<p class="post-meta">
+    <time datetime="2017-04-16T17:38:48+00:00">
+        16 Apr 2017
+    </time>
+</p>
+<p>
+<p>It could be a localhsot:8080 style implementation. This way it is more accessible to developers, as anyone with HTTP JSON experience in any language/platform would know how to use it.</p>
+<p>However, I am not sure if Anet has that kind architecture in place.</p></p>
+
+<h2 id="">SlippyCheeze.5483:</h2>
+<p class="post-meta">
+    <time datetime="2017-04-18T18:18:10+00:00">
+        18 Apr 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on April 16 2017 05:38PM"><a href="/forum/community/api/Proposal-Combat-statistics-and-DPS-meters-1/6555845">voidvector.2780:</a></cite></div><div class="quotey"><p>It could be a localhsot:8080 style implementation. This way it is more accessible to developers, as anyone with HTTP JSON experience in any language/platform would know how to use it.</p>
+<p>However, I am not sure if Anet has that kind architecture in place.</p></div></blockquote>
+<p>That is significantly more costly than just writing a file to disk, FWIW, so … I’d not hold my breath for that.<img src="/include/images/smilies/wink.png"></p></p>
+
+<h2 id="">Thrill.6259:</h2>
+<p class="post-meta">
+    <time datetime="2017-04-20T16:09:35+00:00">
+        20 Apr 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on April 18 2017 06:18PM"><a href="/forum/community/api/Proposal-Combat-statistics-and-DPS-meters-1/6557671">SlippyCheeze.5483:</a></cite></div><div class="quotey"><p>That is significantly more costly than just writing a file to disk, FWIW, so … I’d not hold my breath for that.<img src="/include/images/smilies/wink.png"></p></div></blockquote>
+<p>Uh. No. Socket interactions are way less expensive than Disk IO. And when it comes to development costs the real cost is in gathering the data anyway and whether you write it to disk (using existing libs) or write it to a socket (using existing libs) shouldn’t matter all that much.</p>
+<p>Anyway I’d still like to have an answer to my original concerns – preferably from ANet. Even something along the lines of “we are still trying to figure it out” would be sufficient. I just want to know this issue is not forgotten.</p></p>
+
+<h2 id="">SlippyCheeze.5483:</h2>
+<p class="post-meta">
+    <time datetime="2017-04-20T17:43:17+00:00">
+        20 Apr 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on April 20 2017 04:09PM"><a href="/forum/community/api/Proposal-Combat-statistics-and-DPS-meters-1/6559371">Thrill.6259:</a></cite></div><div class="quotey"><blockquote><div class="citey"><cite title="Posted on April 18 2017 06:18PM"><a href="/forum/community/api/Proposal-Combat-statistics-and-DPS-meters-1/6557671">SlippyCheeze.5483:</a></cite></div><div class="quotey"><p>That is significantly more costly than just writing a file to disk, FWIW, so … I’d not hold my breath for that.<img src="/include/images/smilies/wink.png"></p></div></blockquote>
+<p>Uh. No. Socket interactions are way less expensive than Disk IO. And when it comes to development costs the real cost is in gathering the data anyway and whether you write it to disk (using existing libs) or write it to a socket (using existing libs) shouldn’t matter all that much.</p></div></blockquote>
+<p>haha, yeah, just writing raw data to either is approximately as expensive, but…  you were talking about some sort of HTTP or WebSocket backed thing, not a simple raw socket, right?  Running the stack to serve that up to an HTTP style client is more expensive than writing formatted data to a file handle, is what I mean.<img src="/include/images/smilies/smile.png"></p>
+<p>It’s not the cost per “line” of output, it’s the cost of all the administrative overhead of making it work that adds difficulty.<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">deltaconnected.4058:</h2>
+<p class="post-meta">
+    <time datetime="2017-04-25T19:58:19+00:00">
+        25 Apr 2017
+    </time>
+</p>
+<p>
+<p>An average fight can range from 100-250k events depending on length and composition. If I included single-stack buff removal events, this would be closer to 150-300k. If we had strike healing and passive healing, it would probably be in the range of 200-400k. Even compressed, making that kind of detail available via the web API is probably a bit too hefty.</p></p>
+
+<h2 id="">SlippyCheeze.5483:</h2>
+<p class="post-meta">
+    <time datetime="2017-04-26T18:38:56+00:00">
+        26 Apr 2017
+    </time>
+</p>
+<p>
+<p>Yah, WoW tracks this is the range of 150 to 300MB of data for a “night” of raiding, which is around three hours of concentrated play for 20 people, uncompressed, for some comparison.  It does compress well, though.<img src="/include/images/smilies/smile.png"></p></p>
+
+<h2 id="">Thrill.6259:</h2>
+<p class="post-meta">
+    <time datetime="2017-04-28T09:52:06+00:00">
+        28 Apr 2017
+    </time>
+</p>
+<p>
+<p>Apart from the (very interesting) technical details implementing this is feasible “if” ANet wants to. I guess they don’t though. Seems like they’re hoping this problem will just go away by itself (Spoiler: It won’t).</p>
+<p>This really is a shame. Solving this would single-handedly make raids more accessible to newcomers. The golem is OK for DPS classes but supporters need to keep track of their uptime. Even making the stats there more precise would somewhat solve this issue.</p>
+<p>Maybe when the first wave of compromised accounts arrives ANet will act. Wouldn’t be the first time some shady after-market mod gets a little keylogging feature. I can already imagine the Headline “Thousands of Guild Wars 2 accounts hacked – Auto updater of approved third-party mod at fault”.</p></p>
+
+<h2 id="">deltaconnected.4058:</h2>
+<p class="post-meta">
+    <time datetime="2017-04-30T06:53:40+00:00">
+        30 Apr 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on April 28 2017 09:52AM"><a href="/forum/community/api/Proposal-Combat-statistics-and-DPS-meters-1/6567644">Thrill.6259:</a></cite></div><div class="quotey"><p>Apart from the (very interesting) technical details implementing this is feasible “if” ANet wants to. I guess they don’t though. Seems like they’re hoping this problem will just go away by itself (Spoiler: It won’t).</p>
+<p>This really is a shame. Solving this would single-handedly make raids more accessible to newcomers. The golem is OK for DPS classes but supporters need to keep track of their uptime. Even making the stats there more precise would somewhat solve this issue.</p>
+<p>Maybe when the first wave of compromised accounts arrives ANet will act. Wouldn’t be the first time some shady after-market mod gets a little keylogging feature. I can already imagine the Headline “Thousands of Guild Wars 2 accounts hacked – Auto updater of approved third-party mod at fault”.</p></div></blockquote>
+<p>Possible*. Important distinction. We can’t speculate on the feasibility of anything about ANet’s client or server architecture because we had no part in writing it. In fact the only hint we have about the feasibility of a combat tracker API was that it would be <a href="/forum-backup/Chat-log">client-local and that it’s a large undertaking</a>. It’s very possible as well that ANet does not see this as a problem in the first place  – perhaps the risk of one of the few meter developers stealing accounts is worth taking in comparison to the hours needed to create the infrastructure. Also important to note that ANet did not approve any mods – they approved hackish means as long as they are only used to get combat data out of the client. The risk is still on the user to determine if the mod is compliant or “safe”. Aaaand it wouldn’t be the first time an enthusiastic developer wrote a 3rd party mod for fun that will fade after the game fades.</p></p>
+
+<h2 id="">voidvector.2780:</h2>
+<p class="post-meta">
+    <time datetime="2017-05-01T12:22:54+00:00">
+        01 May 2017
+    </time>
+</p>
+<p>
+<p>HTTP+JSON doesn’t meant it has to be a web app. It can be a CRON job that periodically curls or a Graphite integration.</p>
+<p>Interesting that ArenaNet had this in mind already.</p></p>
+
+<h2 id="">SlippyCheeze.5483:</h2>
+<p class="post-meta">
+    <time datetime="2017-05-01T17:36:00+00:00">
+        01 May 2017
+    </time>
+</p>
+<p>
+<blockquote><div class="citey"><cite title="Posted on May 01 2017 12:22PM"><a href="/forum/community/api/Proposal-Combat-statistics-and-DPS-meters-1/6570853">voidvector.2780:</a></cite></div><div class="quotey"><p>HTTP+JSON doesn’t meant it has to be a web app. It can be a CRON job that periodically curls or a Graphite integration.</p>
+<p>Interesting that ArenaNet had this in mind already.</p></div></blockquote>
+<p>You are misreading on two fronts here:</p>
+<p>First, the comments about HTTP/JSON vs anything else were about the complexity on the server side, not the consumer side.  Your response deals with the consumer side.</p>
+<p>Second, anet have given absolutely no indication of what, if any, thoughts they have on the subject.  (Unless you mean the references to the terms of service, in which case that is more generic “everything is forbidden, unless it is permitted”.)</p></p>
+
+<h2 id="">voidvector.2780:</h2>
+<p class="post-meta">
+    <time datetime="2017-05-02T07:39:36+00:00">
+        02 May 2017
+    </time>
+</p>
+<p>
+<p>I don’t think we were talking about the same thing.</p>
+<p>When I said “doesn’t meant it has to be a web app” I was referring to the conversation about the amount of in-memory data being enormous.</p>
+<p>When I said “ArenaNet had this in mind” I was referring to <a href="https://github.com/arenanet/api-cdi/issues/127">this ticket of theirs</a></p></p>
+
+
+  </div>
+
+</article>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">GW2 Developers</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>
+            
+              GW2 Developers
+            
+            </li>
+            
+            <li><a href="mailto:gw2developers@darthmaim.de">gw2developers@darthmaim.de</a></li>
+            
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/gw2developers"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+</span><span class="username">gw2developers</span></a>
+
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gw2api"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+</span><span class="username">gw2api</span></a>
+
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Learn how to use the GW2 API.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>
